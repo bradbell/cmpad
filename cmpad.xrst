@@ -1,0 +1,9 @@
+{xrst_begin cmpad}
+
+The Compare AD Users Documentation
+##################################
+{xrst_toc_table
+   include/cmpad/det_of_minor.hpp
+}
+
+{xrst_end cmpad}

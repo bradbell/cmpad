@@ -1,0 +1,62 @@
+[project_name]
+data = 'cmpad'
+
+[root_file]
+default  = 'cmpad.xrst'
+
+# If running an old verison of xrst that does not support heading,
+# comment out the lines from [heading] to overline =.
+[heading]
+#   level         0,     1,     2,     3,     4,
+character = [   '#',   '*',   '=',   '-',   '.',  ]
+overline  = [ false, false, false, false, false,  ]
+
+[input_files]
+data = [
+   [ 'git', 'ls-files' ]
+]
+
+[html_theme_options.sphinx_book_theme]
+show_toc_level = 4
+
+[html_theme_options.sphinx_rtd_theme]
+navigation_depth = -1
+titles_only      = true
+
+[include_all]
+rst_epilog = ''
+rst_prolog = ''
+latex_macro  = []
+
+[project_dictionary]
+data = [
+   # project name
+   '''
+      cmpad
+   ''',
+   # file extensions
+   '''
+      hpp
+      cpp
+      py
+      rst
+   ''',
+   # language keywords
+   '''
+      bool
+      namespace
+   ''',
+   # words that do not begin with backslash and used in latex
+   '''
+      eqnarray
+   ''',
+   # valid words not in some dictionaries
+   '''
+      determinant
+      factorial
+   ''',
+]
+
+[not_in_index]
+data = []
+

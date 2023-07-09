@@ -2,12 +2,12 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CPPAD_SPEED_DET_OF_MINOR_HPP
-# define CPPAD_SPEED_DET_OF_MINOR_HPP
+# ifndef CMPAD_DET_OF_MINOR_HPP
+# define CMPAD_DET_OF_MINOR_HPP
 /*
-{xrst_begin det_of_minor}
+{xrst_begin_parent det_of_minor}
 {xrst_spell
-   factorial
+   factorization
 }
 
 Determinant of a Minor
@@ -16,20 +16,15 @@ Determinant of a Minor
 Syntax
 ******
 
-| ``# include <cppad/speed/det_of_minor.hpp>``
-| *d* = ``det_of_minor`` ( *a* , *m* , *n* , *r* , *c* )
+| ``# include <cmpad/det_of_minor.hpp>``
+| *d* = ``cmpad::det_of_minor`` ( *a* , *m* , *n* , *r* , *c* )
 
 Prototype
 *********
 {xrst_literal
-   // BEGIN_DET_OF_MINOR
-   // END_DET_OF_MINOR
+   // BEGIN PROTOTYPE
+   // END PROTOTYPE
 }
-
-Inclusion
-*********
-The template function ``det_of_minor`` is defined in the ``CppAD``
-namespace by including the file ``cppad/speed/det_of_minor.hpp`` .
 
 Purpose
 *******
@@ -113,7 +108,6 @@ To be specific, the function :math:`R(i)`
 for :math:`i = 1, \ldots , n-1` is defined by
 
 .. math::
-   :nowrap:
 
    \begin{eqnarray}
       R(0)   & = & r[m]
@@ -134,7 +128,6 @@ To be specific, the function :math:`C(i)`
 for :math:`j = 1, \ldots , n-1` is defined by
 
 .. math::
-   :nowrap:
 
    \begin{eqnarray}
       C(0)   & = & c[m]
@@ -152,23 +145,33 @@ d
 The return value *d* is equal to the determinant of the minor :math:`M`.
 
 {xrst_toc_hidden
-   speed/example/det_of_minor.cpp
-   xrst/det_of_minor_hpp.xrst
+   example/det_of_minor.cpp
 }
 
 Example
 *******
-The file
-:ref:`det_of_minor.cpp-name`
-contains an example and test of ``det_of_minor.hpp`` .
+The file :ref:`det_of_minor.cpp-name`
+contains an example and test of ``det_of_minor`` .
 
 Source Code
 ***********
-The file
+The page
 :ref:`det_of_minor.hpp-name`
-contains the source for this template function.
+displays the source for this function.
 
 {xrst_end det_of_minor}
+---------------------------------------------------------------------------
+{xrst_begin det_of_minor.hpp}
+
+det_of_minor Source Code
+########################
+
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end det_of_minor.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
@@ -176,9 +179,9 @@ contains the source for this template function.
 # include <cassert>
 # include <cstddef>
 
-namespace CppAD { // BEGIN CppAD namespace
+namespace cmpad { // BEGIN cmpad namespace
 
-// BEGIN_DET_OF_MINOR
+// BEGIN PROTOTYPE
 template <class Scalar>
 Scalar det_of_minor(
    const std::vector<Scalar>&      a  ,
@@ -189,7 +192,7 @@ Scalar det_of_minor(
 {  assert( a.size() == m * m );
    assert( r.size() == m + 1 );
    assert( c.size() == m + 1 );
-   // END_DET_OF_MINOR
+   // END PROTOTYPE
    //
    // R0 = R(0)
    size_t R0 = r[m];
@@ -259,6 +262,6 @@ Scalar det_of_minor(
    return detM;
 }
 
-} // END CppAD namespace
+} // END cmpad namespace
 // END C++
 # endif
