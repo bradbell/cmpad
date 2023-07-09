@@ -1,0 +1,18 @@
+# ----------------------------------------------------------------------------
+# directories
+#
+# used to build and run the project
+/build/
+#
+# used to cache and restore git changes
+/new/
+/new.*/
+# ----------------------------------------------------------------------------
+# files
+#
+# used by vim to backup and restore changes
+*.swp
+#
+# used as temporary files
+temp
+temp.*
