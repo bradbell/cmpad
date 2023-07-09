@@ -163,8 +163,8 @@ displays the source for this function.
 ---------------------------------------------------------------------------
 {xrst_begin det_of_minor.hpp}
 
-det_of_minor Source Code
-########################
+det_of_minor: Source Code
+#########################
 
 {xrst_literal
    // BEGIN C++

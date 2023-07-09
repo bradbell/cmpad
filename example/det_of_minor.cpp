@@ -6,8 +6,8 @@
 /*
 {xrst_begin det_of_minor.cpp}
 
-Determinant of a Minor: Example and Test
-########################################
+det_of_minor: Example and Test
+##############################
 
 {xrst_literal
    // BEGIN C++
@@ -54,7 +54,7 @@ TEST(example, Test_det_of_minor)
    //
    // det
    // evaluate the determinant of A
-   double det = CppAD::det_of_minor(a, m, n, r, c);
+   double det = cmpad::det_of_minor(a, m, n, r, c);
    //
    // ok
    // check the value of the determinant of A
@@ -68,7 +68,7 @@ TEST(example, Test_det_of_minor)
    //
    // det
    // evaluate determinant of the minor
-   det = CppAD::det_of_minor(a, m, n, r, c);
+   det = cmpad::det_of_minor(a, m, n, r, c);
    //
    // ok
    // check the value of the determinant of the minor
