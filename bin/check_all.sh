@@ -55,5 +55,5 @@ make
 example/example
 #
 # -----------------------------------------------------------------------------
-echo 'check_all.sh: OK'
+echo 'bin/check_all.sh: OK'
 exit 0

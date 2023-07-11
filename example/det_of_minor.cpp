@@ -22,7 +22,7 @@ det_of_minor: Example and Test
 # include <gtest/gtest.h>
 # include <cmpad/det_of_minor.hpp>
 
-TEST(example, Test_det_of_minor)
+TEST(example, det_of_minor)
 {  //
    // a
    // values in the matrix A in row major order
@@ -73,6 +73,5 @@ TEST(example, Test_det_of_minor)
    // ok
    // check the value of the determinant of the minor
    ASSERT_EQ(det,  (double) (4*10-6*7) );
-   //
 }
 // END C++

@@ -4,6 +4,7 @@ The Compare AD Users Documentation
 ##################################
 {xrst_toc_table
    include/cmpad/det_of_minor.hpp
+   include/cmpad/det_by_minor.hpp
 }
 
 {xrst_end cmpad}

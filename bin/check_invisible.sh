@@ -5,6 +5,11 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -e -u
+if [ $# != 0 ]
+then
+   echo 'check_invisible.sh does not expect any arguments'
+   exit 1
+fi
 # ---------------------------------------------------------------------------
 for file in $(git ls-files)
 do
