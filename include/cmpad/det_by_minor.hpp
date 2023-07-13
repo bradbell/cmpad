@@ -107,7 +107,7 @@ det_by_minor: Source Code
 */
 // BEGIN C++
 # include <cmpad/det_of_minor.hpp>
-# include <vector>
+# include <cppad/utility/vector.hpp>
 
 // BEGIN cmpad namespace
 namespace cmpad {
@@ -124,12 +124,12 @@ private:
    //
    // r_, c_
    // row and column indices so that minor is entire matrix.
-   std::vector<size_t> r_;
-   std::vector<size_t> c_;
+   CppAD::vector<size_t> r_;
+   CppAD::vector<size_t> c_;
    //
    // a_
    // temporary vector declared here to avoid reallocation for each use
-   std::vector<Scalar> a_;
+   CppAD::vector<Scalar> a_;
 public:
    // BEGIN CONSTRUCTOR
    det_by_minor(size_t m)
@@ -152,7 +152,7 @@ public:
    // END OPERATOR()
    {  //
       // a_
-      // copy from type Vector to std::vector<Scalar>
+      // copy from type Vector to CppAD::vector<Scalar>
       for(size_t i = 0; i < m_ * m_; ++i)
          a_[i] = x[i];
       //

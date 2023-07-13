@@ -18,15 +18,15 @@ det_of_minor: Example and Test
 */
 // BEGIN C++
 # include <cstddef>
+# include <vector>
 # include <gtest/gtest.h>
-# include <cppad/utility/vector.hpp>
 # include <cmpad/det_of_minor.hpp>
 
 TEST(example, det_of_minor)
 {  //
    // a
    // values in the matrix A in row major order
-   CppAD::vector<double> a = {
+   std::vector<double> a = {
       1., 2., 3.,
       4., 5., 6.,
       7., 8., 10.
@@ -39,8 +39,8 @@ TEST(example, det_of_minor)
    //
    // r, c
    // index vectors set so minor is the entire matrix A
-   CppAD::vector<size_t> r(m + 1);
-   CppAD::vector<size_t> c(m + 1);
+   std::vector<size_t> r(m + 1);
+   std::vector<size_t> c(m + 1);
    for(size_t i= 0; i < m; i++)
    {  r[i] = i+1;
       c[i] = i+1;

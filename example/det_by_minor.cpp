@@ -17,7 +17,7 @@ det_by_minor: Example and Test
 {xrst_end det_by_minor.cpp}
 */
 // BEGIN C++
-# include <vector>
+# include <cppad/utility/vector.hpp>
 # include <gtest/gtest.h>
 # include <cmpad/det_by_minor.hpp>
 
@@ -31,7 +31,7 @@ TEST(example, det_by_minor)
    cmpad::det_by_minor<double> det(m);
    //
    // a
-   std::vector<double>  a = {
+   CppAD::vector<double>  a = {
       1., 2., 3.,  // a[0] a[1] a[2]
       3., 2., 1.,  // a[3] a[4] a[5]
       2., 1., 2.   // a[6] a[7] a[8]
