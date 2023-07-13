@@ -4,6 +4,9 @@
 # used to build and run the project
 /build/
 #
+# used to install other packages
+/external/
+#
 # used to cache and restore git changes
 /new/
 /new.*/

@@ -16,6 +16,7 @@ FIND_PACKAGE(GTest REQUIRED)
 # include directories
 INCLUDE_DIRECTORIES(
    ${PROJECT_SOURCE_DIR}/include
+   ${PROJECT_SOURCE_DIR}/build/prefix/include
    ${GTEST_INCLUDE_DIRS}
 )
 #
