@@ -127,14 +127,11 @@ private:
    CppAD::vector<size_t> r_;
    CppAD::vector<size_t> c_;
    //
-   // a_
-   // temporary vector declared here to avoid reallocation for each use
-   CppAD::vector<Scalar> a_;
 public:
    // BEGIN CONSTRUCTOR
    det_by_minor(size_t m)
    // END CONSTRUCTOR
-   : m_(m) , r_(m + 1) , c_(m + 1), a_(m * m)
+   : m_(m) , r_(m + 1) , c_(m + 1)
    {  //
       // r_, c_
       // values that correspond to entire matrix
@@ -148,17 +145,12 @@ public:
    //
    // BEGIN OPERATOR()
    template <class Vector>
-   Scalar operator()(const Vector &x)
+   Scalar operator()(const Vector& a)
    // END OPERATOR()
    {  //
-      // a_
-      // copy from type Vector to CppAD::vector<Scalar>
-      for(size_t i = 0; i < m_ * m_; ++i)
-         a_[i] = x[i];
-      //
       // det
       // compute determinant of entire matrix
-      Scalar det = det_of_minor(a_, m_, m_, r_, c_);
+      Scalar det = det_of_minor(a, m_, m_, r_, c_);
       //
 # ifndef NDEBUG
       // r_, c_
