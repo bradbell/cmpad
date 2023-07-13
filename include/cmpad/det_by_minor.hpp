@@ -132,7 +132,7 @@ private:
    std::vector<Scalar> a_;
 public:
    // BEGIN CONSTRUCTOR
-   det_by_minor(size_t m) 
+   det_by_minor(size_t m)
    // END CONSTRUCTOR
    : m_(m) , r_(m + 1) , c_(m + 1), a_(m * m)
    {  //

@@ -29,14 +29,11 @@ Prototype
 Purpose
 *******
 This template function
-returns the determinant of a minor of the matrix :math:`A`
+computes the determinant of a minor of the matrix :math:`A`
 using expansion by minors.
-This template function
-is for example and testing purposes only.
+It is for example and testing purposes only.
 Expansion by minors is chosen as an example because it uses
-a lot of floating point operations yet does not require much source code
-(on the order of *m* factorial floating point operations and
-about 100 lines of source code including comments).
+a lot of floating point operations yet does not require much source code.
 This is not an efficient method for computing a determinant;
 for example, using an LU factorization would be faster.
 
@@ -78,10 +75,24 @@ the type *Scalar* must support the following operations:
 
    **Syntax**,**Description**,**Result Type**
    *Scalar* (0),constructor for *Scalar* object equal to zero,*Scalar*
+   *Scalar* ( *x* ),constructor for *Scalar* object equal to *x* ,*Scalar*
    *x* = *y*,set value of *x* to current value of *y*
    *x* + *y*,value of *x* plus *y*,*Scalar*
    *x* ``-`` *y*,value of *x* minus *y*,*Scalar*
    *x* * *y*,value of *x* times value of *y*,*Scalar*
+
+Vectors
+*******
+The type *ScalarVector* ( *SizeVector* ) has elements of type
+*Scalar* ( ``size_t`` ).
+A vector object *v* must support the following operations where *e* is an
+element type object and *i* is a ``size_t`` object.
+
+.. csv-table::
+   :widths: auto
+
+   e = v[i], access the element with index i
+   v[i] = e, assignment to the element with index i
 
 a
 *
@@ -182,17 +193,20 @@ det_of_minor: Source Code
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
-template <class Scalar>
-Scalar det_of_minor(
-   const std::vector<Scalar>&      a  ,
+template <class ScalarVector, class SizeVector>
+typename ScalarVector::value_type det_of_minor(
+   const ScalarVector&             a  ,
    size_t                          m  ,
    size_t                          n  ,
-   std::vector<size_t>&            r  ,
-   std::vector<size_t>&            c  )
+   SizeVector&                     r  ,
+   SizeVector&                     c  )
 {  assert( a.size() == m * m );
    assert( r.size() == m + 1 );
    assert( c.size() == m + 1 );
    // END PROTOTYPE
+   //
+   // Scalar
+   typedef typename ScalarVector::value_type Scalar;
    //
    // R0 = R(0)
    size_t R0 = r[m];

@@ -22,7 +22,7 @@ det_by_minor: Example and Test
 # include <cmpad/det_by_minor.hpp>
 
 TEST(example, det_by_minor)
-{ 
+{
    // m
    // dimension of the matrix
    size_t m = 3;
