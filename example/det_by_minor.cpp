@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    };
    //
    // d
-   double d = det.fun(a);
+   double d = det(a);
    //
    // check
    double check;

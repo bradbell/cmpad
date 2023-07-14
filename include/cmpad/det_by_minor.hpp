@@ -32,8 +32,8 @@ Prototype
    // END SETUP
 }
 {xrst_literal
-   // BEGIN FUN
-   // END FUN
+   // BEGIN OPERATOR
+   // END OPERATOR
 }
 
 Scalar
@@ -149,10 +149,10 @@ public:
       c_[m] = 0;
    }
    //
-   // BEGIN FUN
+   // BEGIN OPERATOR
    template <class Vector>
-   Scalar fun(const Vector& a)
-   // END FUN
+   Scalar operator()(const Vector& a)
+   // END OPERATOR
    {  //
       static_assert(
          std::is_same< typename Vector::value_type , Scalar >::value ,

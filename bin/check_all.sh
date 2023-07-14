@@ -52,7 +52,8 @@ cmake ..
 make
 #
 # example
-example/example --log_level=unit_scope --no_color_output
+{ example/example --log_level=test_suite --no_color_output 2>&1 ; }\
+   | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
 #
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
