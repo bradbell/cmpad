@@ -19,7 +19,7 @@ Syntax
 | ``# include <cmpad/det_by_minor.hpp>``
 | ``cmpad::det_by_minor`` < *Scalar* > *det*
 | *det* . ``setup`` ( *m* )
-| *d* = *det* . ``fun`` ( *a* )
+| *d* = *det* ( *a* )
 
 Prototype
 *********

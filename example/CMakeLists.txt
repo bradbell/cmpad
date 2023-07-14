@@ -7,4 +7,5 @@ ADD_EXECUTABLE(example
    example.cpp
    det_by_minor.cpp
    det_of_minor.cpp
+   gradient.cpp
 )
