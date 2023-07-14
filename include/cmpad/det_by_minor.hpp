@@ -17,8 +17,9 @@ Syntax
 ******
 
 | ``# include <cmpad/det_by_minor.hpp>``
-| ``cmpad::det_by_minor`` < *Scalar* > *det* ( *m* )
-| *d* = *det* ( *a* )
+| ``cmpad::det_by_minor`` < *Scalar* > *det*
+| *det* . ``setup`` ( *m* )
+| *d* = *det* . ``fun`` ( *a* )
 
 Prototype
 *********
@@ -27,12 +28,12 @@ Prototype
    // END CLASS
 }
 {xrst_literal
-   // BEGIN CONSTRUCTOR
-   // END CONSTRUCTOR
+   // BEGIN SETUP
+   // END SETUP
 }
 {xrst_literal
-   // BEGIN OPERATOR
-   // END OPERATOR
+   // BEGIN FUN
+   // END FUN
 }
 
 Scalar
@@ -58,7 +59,7 @@ the determinant of *m* by *m* matrices using expansion by minors.
 
 m
 *
-This is the row and column dimension for the matrices.
+This is the row and column dimension for subsequent use of the *det* object.
 
 a
 *
@@ -120,8 +121,8 @@ class det_by_minor {
 private:
    //
    // m_
-   // size for the matrix
-   const size_t        m_;
+   // size of the matrix
+   size_t m_;
    //
    // r_, c_
    // row and column indices so that minor is entire matrix.
@@ -129,11 +130,15 @@ private:
    CppAD::vector<size_t> c_;
    //
 public:
-   // BEGIN CONSTRUCTOR
-   det_by_minor(size_t m)
-   // END CONSTRUCTOR
-   : m_(m) , r_(m + 1) , c_(m + 1)
+   // BEGIN SETUP
+   void setup(size_t m)
+   // END SETUP
    {  //
+      // m_, r_, c_
+      m_ = m;
+      r_.resize(m + 1);
+      c_.resize(m + 1);
+      //
       // r_, c_
       // values that correspond to entire matrix
       for(size_t i = 0; i < m; i++)
@@ -144,10 +149,10 @@ public:
       c_[m] = 0;
    }
    //
-   // BEGIN OPERATOR()
+   // BEGIN FUN
    template <class Vector>
-   Scalar operator()(const Vector& a)
-   // END OPERATOR()
+   Scalar fun(const Vector& a)
+   // END FUN
    {  //
       static_assert(
          std::is_same< typename Vector::value_type , Scalar >::value ,

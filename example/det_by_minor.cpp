@@ -31,7 +31,8 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    size_t m = 3;
    //
    // det
-   cmpad::det_by_minor<double> det(m);
+   cmpad::det_by_minor<double> det;
+   det.setup(m);
    //
    // a
    CppAD::vector<double>  a = {
@@ -41,7 +42,7 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    };
    //
    // d
-   double d = det(a);
+   double d = det.fun(a);
    //
    // check
    double check;
