@@ -35,7 +35,7 @@ then
       exit 1
    fi
 else
-   if ! sed -n -e '1,1p' $file_name | grep '^#!' > /dev/null
+   if sed -n -e '1,1p' $file_name | grep '^#!' > /dev/null
    then
       echo "copyright.sh: $file_name has a shebang but is not executable"
       exit 1
