@@ -17,11 +17,14 @@ det_by_minor: Example and Test
 {xrst_end det_by_minor.cpp}
 */
 // BEGIN C++
+# include <boost/test/unit_test.hpp>
 # include <cppad/utility/vector.hpp>
-# include <gtest/gtest.h>
 # include <cmpad/det_by_minor.hpp>
 
-TEST(example, det_by_minor)
+# define BOOST_TEST_DYN_LINK
+# define BOOST_TEST_MODULE example
+
+BOOST_AUTO_TEST_CASE(det_by_minor)
 {
    // m
    // dimension of the matrix
@@ -45,7 +48,7 @@ TEST(example, det_by_minor)
    check = a[0]*(a[4]*a[8] - a[5]*a[7])
          - a[1]*(a[3]*a[8] - a[5]*a[6])
          + a[2]*(a[3]*a[7] - a[4]*a[6]);
-   ASSERT_EQ(d, check);
+   BOOST_CHECK(d == check);
 }
 
 // END C++

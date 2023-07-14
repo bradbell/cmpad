@@ -63,7 +63,8 @@ This is the row and column dimension for the matrices.
 a
 *
 The argument *a* is a *Vector* with length :math:`m * m` and with
-elements of type *Scalar* .
+elements of type *Scalar*
+( *Vector* :: ``value_type`` must be *Scalar* ).
 The elements of the :math:`m \times m` matrix :math:`A` are defined,
 for :math:`i = 0 , \ldots , m-1` and :math:`j = 0 , \ldots , m-1`, by
 
@@ -148,6 +149,10 @@ public:
    Scalar operator()(const Vector& a)
    // END OPERATOR()
    {  //
+      static_assert(
+         std::is_same< typename Vector::value_type , Scalar >::value ,
+         "det_by_minor: elements of the vector a are not of type Scalar"
+      );
       // det
       // compute determinant of entire matrix
       Scalar det = det_of_minor(a, m_, m_, r_, c_);

@@ -52,7 +52,7 @@ cmake ..
 make
 #
 # example
-example/example
+example/example --log_level=unit_scope --no_color_output
 #
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'

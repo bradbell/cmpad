@@ -19,10 +19,13 @@ det_of_minor: Example and Test
 // BEGIN C++
 # include <cstddef>
 # include <vector>
-# include <gtest/gtest.h>
+# include <boost/test/unit_test.hpp>
 # include <cmpad/det_of_minor.hpp>
 
-TEST(example, det_of_minor)
+# define BOOST_TEST_DYN_LINK
+# define BOOST_TEST_MODULE example
+
+BOOST_AUTO_TEST_CASE(det_of_minor)
 {  //
    // a
    // values in the matrix A in row major order
@@ -35,7 +38,7 @@ TEST(example, det_of_minor)
    // m
    // dimension of the matrix A
    size_t m = 3;
-   ASSERT_EQ( m * m,  a.size() );
+   BOOST_REQUIRE( m * m ==  a.size() );
    //
    // r, c
    // index vectors set so minor is the entire matrix A
@@ -58,7 +61,7 @@ TEST(example, det_of_minor)
    //
    // ok
    // check the value of the determinant of A
-   ASSERT_EQ(det, (double) (1*(5*10-6*8) - 2*(4*10-6*7) + 3*(4*8-5*7)) );
+   BOOST_CHECK(det == (double) (1*(5*10-6*8) - 2*(4*10-6*7) + 3*(4*8-5*7)) );
    //
    // M
    // minor where row 0 and column 1 are removed
@@ -72,6 +75,6 @@ TEST(example, det_of_minor)
    //
    // ok
    // check the value of the determinant of the minor
-   ASSERT_EQ(det,  (double) (4*10-6*7) );
+   BOOST_CHECK(det ==  (double) (4*10-6*7) );
 }
 // END C++
