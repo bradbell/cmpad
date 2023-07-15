@@ -1,7 +1,9 @@
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+// SPDX-FileContributor: 2023 Bradley M. Bell
+// ---------------------------------------------------------------------------
 # ifndef CMPAD_CPPAD_GRADIENT_HPP
 # define CMPAD_CPPAD_GRADIENT_HPP
-# include <boost/test/unit_test.hpp>
-# include <cppad/cppad.hpp>
 /*
 {xrst_begin cppad_gradient}
 
@@ -62,8 +64,32 @@ This result is an ``cmpad::vector<double>`` object with size *n*.
 This is the gradient of the function corresponding to the argument
 evaluated at the point *x* .
 
+Example
+*******
+The file :ref:`gradient.cpp-name`
+contains an example and test of this class.
+
+Source Code
+***********
+The page :ref:`cppad_gradient.hpp-name`
+displays the source code for this class.
+
 {xrst_end cppad_gradient}
+-------------------------------------------------------------------------------
+{xrst_begin cppad_gradient.hpp}
+
+CppAD gradient: Source Code
+###########################
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end cppad_gradient.hpp}
 */
+// BEGIN C++
+# include <boost/test/unit_test.hpp>
+# include <cppad/cppad.hpp>
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
@@ -111,4 +137,5 @@ public:
 };
 
 } } // END cmpad::cppad namespace
+// END C++
 # endif

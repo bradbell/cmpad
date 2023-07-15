@@ -7,6 +7,7 @@ The Compare AD Users Documentation
    include/cmpad/det_of_minor.hpp
    include/cmpad/det_by_minor.hpp
    include/cmpad/cppad/gradient.hpp
+   example/gradient.cpp
 }
 
 {xrst_end cmpad}

@@ -1,3 +1,16 @@
+/*
+{xrst_begin gradient.cpp}
+
+gradient: Example and Test
+##########################
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end  gradient.cpp}
+*/
+// BEGIN C++
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/cppad/gradient.hpp>
 
@@ -43,3 +56,4 @@ BOOST_AUTO_TEST_CASE(cppad_gradient)
    typedef cmpad::det_by_minor< CppAD::AD<double> > Algo;
    check_grad_det< cmpad::cppad::gradient<Algo> >();
 }
+// END C++
