@@ -16,6 +16,8 @@ Syntax
 | ``# include <cmpad/det_by_minor.hpp>``
 | ``cmpad::det_by_minor`` < *Scalar* > *det*
 | *det* . ``setup`` ( *ell* )
+| *det* . ``domain`` ()
+| *det* . ``range`` ()
 | *y* = *det* ( *x* )
 
 Prototype
@@ -29,10 +31,17 @@ Prototype
    // END SETUP
 }
 {xrst_literal
+   // BEGIN DOMAIN
+   // END DOMAIN
+}
+{xrst_literal
+   // BEGIN RANGE
+   // END RANGE
+}
+{xrst_literal
    // BEGIN OPERATOR
    // END OPERATOR
 }
-
 
 Scalar
 ******
@@ -118,6 +127,14 @@ private:
    cmpad::vector<Scalar> y_;
    //
 public:
+   // BEGIN DOMAIN
+   size_t domain(void) override
+   {  return ell_ * ell_; }
+   // END DOMAIN
+   // BEGIN RANGE
+   size_t range(void) override
+   {  return 1; }
+   // END RANGE
    // BEGIN SETUP
    void setup(size_t ell) override
    // END SETUP
@@ -137,7 +154,6 @@ public:
       r_[ell] = 0;
       c_[ell] = 0;
    }
-   //
    // BEGIN OPERATOR
    const cmpad::vector<Scalar>& operator()(
       const cmpad::vector<Scalar>& x

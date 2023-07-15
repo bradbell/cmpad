@@ -56,6 +56,16 @@ setup
 This is a pure virtual function; i.e., it must be defined by the derived class.
 It is used to initialize the function object.
 
+domain
+******
+This pure virtual function returns the dimension of the domain space for
+the function; i.e., *n*
+
+range
+*****
+This pure virtual function returns the dimension of the range space for
+the function; i.e., *m*
+
 x
 *
 The argument *x* has size *n* and elements of type *Scalar* .
@@ -78,9 +88,12 @@ Derived Classes
 
 namespace cmpad {
    template <class Scalar> struct fun_algo {
-      //
       // setup
       virtual void setup(size_t ell) = 0;
+      // n
+      virtual size_t domain(void) = 0;
+      // m
+      virtual size_t range(void) = 0;
       //
       // operator()
       virtual const cmpad::vector<Scalar>& operator()(
