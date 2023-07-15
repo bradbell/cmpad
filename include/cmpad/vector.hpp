@@ -20,8 +20,8 @@ cmpad::vector
 The cmpad cmake command line can define cmpad_vector in the following way:
 
 |   ``cmake -D cmpad_vector=`` *type*
-   
-where *type* is one of the following values: ``boost`` , ``cppad`` , 
+
+where *type* is one of the following values: ``boost`` , ``cppad`` ,
 or ``std``.
 This will determine if ``cmpad::vector`` is the boost, cppad, or std
 vector template class.

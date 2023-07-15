@@ -5,8 +5,6 @@ namespace {
    template <class Grad_Det>
    void check_grad_det(void)
    {  //
-      // vector_type
-      typedef typename Grad_Det::vector_type vector_type;
       // n
       size_t n = 3;
       //
@@ -16,14 +14,14 @@ namespace {
       //
       // x
       // values in the matrix in row major order
-      vector_type x = {
+      cmpad::vector<double> x = {
          1., 2., 3.,
          4., 5., 6.,
          7., 8., 10.
       };
       //
       // g
-      vector_type g = grad_det(x);
+      cmpad::vector<double> g = grad_det(x);
       //
       BOOST_CHECK( g[ 0 * n + 0] == + (5.*10. - 6.*8.) );
       BOOST_CHECK( g[ 0 * n + 1] == - (4.*10. - 6.*7.) );

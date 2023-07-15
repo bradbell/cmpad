@@ -3,9 +3,9 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
-# cmpad_vector_is_<name> 
+# cmpad_vector_is_<name>
 # for <name> equal to boost, cppad, std
-SET(cmpad_vector std CACHE STRING 
+SET(cmpad_vector std CACHE STRING
    "Is cmpad::vector a boost, cppad, or std vector ?"
 )
 SET(cmpad_vector_is_boost 0)
