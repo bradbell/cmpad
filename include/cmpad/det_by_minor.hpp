@@ -6,9 +6,6 @@
 // ----------------------------------------------------------------------------
 /*
 {xrst_begin det_by_minor}
-{xrst_spell
-   th
-}
 
 Determinant Using Expansion by Minors
 #####################################
@@ -41,17 +38,6 @@ Scalar
 The type *Scalar* must satisfy the same conditions
 as in the function :ref:`det_of_minor<det_of_minor@Scalar>` .
 
-Vector
-******
-If *y* is a *Vector* object, it must support the syntax
-
-   *y* [ *i* ]
-
-where *i* has type ``size_t`` with value less than :math:`m * m`.
-This must return a *Scalar* value corresponding to the *i*-th
-element of the vector *y* .
-This is the only requirement of the type *Vector* .
-
 det
 ***
 The object *det* can be used to evaluate
@@ -63,9 +49,7 @@ This is the row and column dimension for subsequent use of the *det* object.
 
 a
 *
-The argument *a* is a *Vector* with length :math:`m * m` and with
-elements of type *Scalar*
-( *Vector* :: ``value_type`` must be *Scalar* ).
+The argument *a* has size :math:`m * m` and elements of type *Scalar* .
 The elements of the :math:`m \times m` matrix :math:`A` are defined,
 for :math:`i = 0 , \ldots , m-1` and :math:`j = 0 , \ldots , m-1`, by
 
@@ -109,7 +93,7 @@ det_by_minor: Source Code
 */
 // BEGIN C++
 # include <cmpad/det_of_minor.hpp>
-# include <cppad/utility/vector.hpp>
+# include <cmpad/vector.hpp>
 
 // BEGIN cmpad namespace
 namespace cmpad {
@@ -126,8 +110,8 @@ private:
    //
    // r_, c_
    // row and column indices so that minor is entire matrix.
-   CppAD::vector<size_t> r_;
-   CppAD::vector<size_t> c_;
+   cmpad::vector<size_t> r_;
+   cmpad::vector<size_t> c_;
    //
 public:
    // BEGIN SETUP
@@ -150,14 +134,9 @@ public:
    }
    //
    // BEGIN OPERATOR
-   template <class Vector>
-   Scalar operator()(const Vector& a)
+   Scalar operator()(const cmpad::vector<Scalar>& a)
    // END OPERATOR
    {  //
-      static_assert(
-         std::is_same< typename Vector::value_type , Scalar >::value ,
-         "det_by_minor: elements of the vector a are not of type Scalar"
-      );
       // det
       // compute determinant of entire matrix
       Scalar det = det_of_minor(a, m_, m_, r_, c_);

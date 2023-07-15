@@ -11,7 +11,7 @@ template <class Algo> class gradient {
 //
 public:
    // vector_type
-   typedef CppAD::vector<double> vector_type;
+   typedef cmpad::vector<double> vector_type;
 //
 private:
    // algo_
@@ -35,11 +35,11 @@ public:
       w_[0] = 1.0;
       //
       // tape_
-      CppAD::vector< CppAD::AD<double> > ax(n * n);
+      cmpad::vector< CppAD::AD<double> > ax(n * n);
       for(size_t i = 0; i < n * n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      CppAD::vector< CppAD::AD<double> > ay(1);
+      cmpad::vector< CppAD::AD<double> > ay(1);
       ay[0] = algo_(ax);
       tape_.Dependent(ax, ay);
    }

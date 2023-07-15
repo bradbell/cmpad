@@ -18,9 +18,9 @@ det_of_minor: Example and Test
 */
 // BEGIN C++
 # include <cstddef>
-# include <vector>
 # include <boost/test/unit_test.hpp>
 # include <cmpad/det_of_minor.hpp>
+# include <cmpad/vector.hpp>
 
 # define BOOST_TEST_DYN_LINK
 # define BOOST_TEST_MODULE example
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(det_of_minor)
 {  //
    // a
    // values in the matrix A in row major order
-   std::vector<double> a = {
+   cmpad::vector<double> a = {
       1., 2., 3.,
       4., 5., 6.,
       7., 8., 10.
@@ -42,8 +42,8 @@ BOOST_AUTO_TEST_CASE(det_of_minor)
    //
    // r, c
    // index vectors set so minor is the entire matrix A
-   std::vector<size_t> r(m + 1);
-   std::vector<size_t> c(m + 1);
+   cmpad::vector<size_t> r(m + 1);
+   cmpad::vector<size_t> c(m + 1);
    for(size_t i= 0; i < m; i++)
    {  r[i] = i+1;
       c[i] = i+1;

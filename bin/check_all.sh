@@ -48,7 +48,7 @@ then
 fi
 #
 # make
-cmake ..
+cmake -B . -S .. -D cmpad_vector=cppad
 make
 #
 # example

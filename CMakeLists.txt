@@ -26,7 +26,6 @@ IF( cppad_LINK_LIBRARIES )
 ELSE( )
    SET(cppad_LINK_LIBRARIES "")
 ENDIF( )
-
 #
 # include directories
 INCLUDE_DIRECTORIES(
@@ -44,4 +43,5 @@ LINK_LIBRARIES(
 SET(CMAKE_CXX_STANDARD 14)
 #
 # subdirectories
+ADD_SUBDIRECTORY(include/cmpad)
 ADD_SUBDIRECTORY(example)

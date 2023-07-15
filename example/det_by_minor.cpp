@@ -18,7 +18,7 @@ det_by_minor: Example and Test
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
-# include <cppad/utility/vector.hpp>
+# include <cmpad/vector.hpp>
 # include <cmpad/det_by_minor.hpp>
 
 # define BOOST_TEST_DYN_LINK
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    det.setup(m);
    //
    // a
-   CppAD::vector<double>  a = {
+   cmpad::vector<double>  a = {
       1., 2., 3.,  // a[0] a[1] a[2]
       3., 2., 1.,  // a[3] a[4] a[5]
       2., 1., 2.   // a[6] a[7] a[8]

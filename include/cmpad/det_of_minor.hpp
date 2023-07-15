@@ -78,21 +78,8 @@ the type *Scalar* must support the following operations:
    *Scalar* ( *x* ),constructor for *Scalar* object equal to *x* ,*Scalar*
    *x* = *y*,set value of *x* to current value of *y*
    *x* + *y*,value of *x* plus *y*,*Scalar*
-   *x* ``-`` *y*,value of *x* minus *y*,*Scalar*
+   *x* - *y*,value of *x* minus *y*,*Scalar*
    *x* * *y*,value of *x* times value of *y*,*Scalar*
-
-Vectors
-*******
-The type *ScalarVector* ( *SizeVector* ) has elements of type
-*Scalar* ( ``size_t`` ).
-A vector object *v* must support the following operations where *e* is an
-element type object and *i* is a ``size_t`` object.
-
-.. csv-table::
-   :widths: auto
-
-   e = v[i], access the element with index i
-   v[i] = e, assignment to the element with index i
 
 a
 *
@@ -186,27 +173,24 @@ det_of_minor: Source Code
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
-# include <vector>
 # include <cassert>
 # include <cstddef>
+# include <cmpad/vector.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
-template <class ScalarVector, class SizeVector>
-typename ScalarVector::value_type det_of_minor(
-   const ScalarVector&             a  ,
+template <class Scalar>
+Scalar det_of_minor(
+   const cmpad::vector<Scalar>&    a  ,
    size_t                          m  ,
    size_t                          n  ,
-   SizeVector&                     r  ,
-   SizeVector&                     c  )
+   cmpad::vector<size_t>&          r  ,
+   cmpad::vector<size_t>&          c  )
 {  assert( a.size() == m * m );
    assert( r.size() == m + 1 );
    assert( c.size() == m + 1 );
    // END PROTOTYPE
-   //
-   // Scalar
-   typedef typename ScalarVector::value_type Scalar;
    //
    // R0 = R(0)
    size_t R0 = r[m];
