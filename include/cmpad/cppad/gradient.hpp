@@ -124,7 +124,7 @@ public:
          ax[i] = 0.;
       CppAD::Independent(ax);
       cmpad::vector< CppAD::AD<double> > ay(1);
-      ay[0] = algo_(ax);
+      ay = algo_(ax);
       tape_.Dependent(ax, ay);
    }
    //

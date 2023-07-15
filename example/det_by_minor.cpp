@@ -26,30 +26,32 @@ det_by_minor: Example and Test
 
 BOOST_AUTO_TEST_CASE(det_by_minor)
 {
-   // m
+   // ell
    // dimension of the matrix
-   size_t m = 3;
+   size_t ell = 3;
    //
    // det
    cmpad::det_by_minor<double> det;
-   det.setup(m);
+   det.setup(ell);
    //
-   // a
-   cmpad::vector<double>  a = {
-      1., 2., 3.,  // a[0] a[1] a[2]
-      3., 2., 1.,  // a[3] a[4] a[5]
-      2., 1., 2.   // a[6] a[7] a[8]
+   // x
+   cmpad::vector<double>  x = {
+      1., 2., 3.,  // x[0] x[1] x[2]
+      3., 2., 1.,  // x[3] x[4] x[5]
+      2., 1., 2.   // x[6] x[7] x[8]
    };
+   BOOST_REQUIRE( x.size() == ell * ell );
    //
-   // d
-   double d = det(a);
+   // y
+   const cmpad::vector<double>& y = det(x);
+   BOOST_CHECK( y.size() == 1 );
    //
    // check
    double check;
-   check = a[0]*(a[4]*a[8] - a[5]*a[7])
-         - a[1]*(a[3]*a[8] - a[5]*a[6])
-         + a[2]*(a[3]*a[7] - a[4]*a[6]);
-   BOOST_CHECK(d == check);
+   check = x[0]*(x[4]*x[8] - x[5]*x[7])
+         - x[1]*(x[3]*x[8] - x[5]*x[6])
+         + x[2]*(x[3]*x[7] - x[4]*x[6]);
+   BOOST_CHECK(y[0] == check);
 }
 
 // END C++
