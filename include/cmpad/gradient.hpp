@@ -15,6 +15,7 @@ Syntax
 |  ``cmpad::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
+|  *grad* . ``domain`` ()
 |  *g* = *grad* ( *x* )
 
 Source Code
@@ -38,12 +39,17 @@ This object is initialized using its ``setup`` syntax
 The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
 
+domain
+******
+This pure virtual function returns the dimension of the
+:ref:`fun_algo@domain` space dimension for this algorithm.
+This value depends on *ell* and *Algo* .
+
 x
 *
-The size of this vector depends on *ell* and *Algo* .
+This vector has size equal to the dimension of the domain space.
 It is the point at which the gradient,
-of the function represented by *algo* ,
-is evaluated.
+of the function represented by *algo* , is evaluated.
 
 g
 *
@@ -69,6 +75,8 @@ namespace cmpad {
    public:
       // setup
       virtual void setup(size_t ell) = 0;
+      // domain
+      virtual size_t domain(void) = 0;
       // operator
       virtual const cmpad::vector<double>& operator()(
          const cmpad::vector<double>& x

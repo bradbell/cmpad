@@ -18,6 +18,7 @@ Syntax
 |  ``cmpad::adolc::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
+|  *grad* . ``domain`` ( )
 |  *g* = *grad* ( *x* )
 
 
@@ -101,6 +102,9 @@ public:
       // g_
       g_.resize(n);
    }
+   // domain
+   size_t domain(void) override
+   {  return algo_.domain(); };
    //
    // operator
    const cmpad::vector<double>& operator()(
