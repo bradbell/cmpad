@@ -5,7 +5,7 @@
 # ifndef CMPAD_UNIFORM_01_HPP
 # define CMPAD_UNIFORM_01_HPP
 /*
-{xrst_begin uniform_01}
+{xrst_begin_parent uniform_01}
 {xrst_spell
    std
    srand
@@ -52,9 +52,25 @@ Example
 The file :ref:`uniform_01.cpp-name` contains an example and test
 of this routine.
 
+Source Code
+***********
+The page :ref:`uniform_01.hpp-name` displays the source code for this function.
+
 {xrst_end uniform_01}
 ------------------------------------------------------------------------------
+{xrst_begin uniform_01.hpp}
+
+uniform_10.hpp: Source Code
+###########################
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end uniform_01.hpp}
+------------------------------------------------------------------------------
 */
+// BEGIN C++
 # include <cstdlib>
 # include <cmpad/vector.hpp>
 
@@ -68,4 +84,5 @@ namespace cmpad {
          x[n] = std::rand() * factor;
    }
 }
+// END C++
 # endif
