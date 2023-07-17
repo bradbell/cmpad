@@ -19,7 +19,7 @@ Syntax
 
 Source Code
 ***********
-{xrst_literal 
+{xrst_literal
    // BEGIN C++
    // END C++
 }
@@ -62,7 +62,7 @@ Example and Derived Classes
 -------------------------------------------------------------------------------
 */
 // BEGIN C++
-namespace cmpad { 
+namespace cmpad {
    // gradient
    template <class Algo> class gradient {
    public:

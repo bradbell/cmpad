@@ -9,8 +9,11 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
 PROJECT(cmpad)
 #
+# cmpad_install_prefix
+SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/build/prefix" )
+#
 # PKG_CONFIG_PATH
-SET(ENV{PKG_CONFIG_PATH} "${PROJECT_SOURCE_DIR}/build/prefix/lib/pkgconfig")
+SET(ENV{PKG_CONFIG_PATH} "${cmpad_install_prefix}/lib/pkgconfig")
 MESSAGE(STATUS "PKG_CONFIG_PATH = $ENV{PKG_CONFIG_PATH}")
 #
 # pkg_check_modules
@@ -30,7 +33,7 @@ ENDIF( )
 # include directories
 INCLUDE_DIRECTORIES(
    ${PROJECT_SOURCE_DIR}/include
-   ${PROJECT_SOURCE_DIR}/build/prefix/include
+   ${cmpad_install_prefix}/include
 )
 #
 # link libraries

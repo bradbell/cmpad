@@ -17,6 +17,7 @@ gradient: Example and Test
 // BEGIN C++
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/cppad/gradient.hpp>
+# include <boost/test/unit_test.hpp>
 
 namespace {
    template <class Grad_Det>

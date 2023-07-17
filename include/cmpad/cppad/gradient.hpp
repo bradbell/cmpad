@@ -40,7 +40,6 @@ Source Code
 {xrst_end cppad_gradient.hpp}
 */
 // BEGIN C++
-# include <boost/test/unit_test.hpp>
 # include <cmpad/gradient.hpp>
 # include <cppad/cppad.hpp>
 
