@@ -15,9 +15,10 @@ gradient: Example and Test
 {xrst_end  gradient.cpp}
 */
 // BEGIN C++
-# include <cmpad/det_by_minor.hpp>
-# include <cmpad/cppad/gradient.hpp>
 # include <boost/test/unit_test.hpp>
+# include <cmpad/det_by_minor.hpp>
+# include <cmpad/adolc/gradient.hpp>
+# include <cmpad/cppad/gradient.hpp>
 
 namespace {
    template <class Grad_Det>
@@ -57,8 +58,12 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(cppad_gradient)
 {  //
-   // check_grad_det
-   typedef cmpad::det_by_minor< CppAD::AD<double> > Algo;
-   check_grad_det< cmpad::cppad::gradient<Algo> >();
+   // adolc
+   typedef cmpad::det_by_minor<adouble> adolc_Algo;
+   check_grad_det< cmpad::adolc::gradient<adolc_Algo> >();
+   //
+   // cppad
+   typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
+   check_grad_det< cmpad::cppad::gradient<cppad_Algo> >();
 }
 // END C++

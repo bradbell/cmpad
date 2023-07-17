@@ -55,6 +55,7 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    example/gradient.cpp
+   include/cmpad/adolc/gradient.hpp
    include/cmpad/cppad/gradient.hpp
 }
 

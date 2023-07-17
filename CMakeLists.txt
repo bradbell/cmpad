@@ -22,13 +22,16 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 # Boost_UNIT_TEST_FRAMEWORK_LIBRARY
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
 #
-# cppad_LINK_LIBRARIES
-pkg_check_modules(cppad REQUIRED cppad)
-IF( cppad_LINK_LIBRARIES )
-   MESSAGE(STATUS "cppad_LINK_LIBRARIES = ${cppad_LINK_LIBRARIES}")
-ELSE( )
-   SET(cppad_LINK_LIBRARIES "")
-ENDIF( )
+FOREACH(package adolc cppad)
+   #
+   # ${package}_LINK_LIBRARIES
+   pkg_check_modules(${package} REQUIRED ${package})
+   IF( ${package}_LINK_LIBRARIES )
+      MESSAGE(STATUS "${package}_LINK_LIBRARIES = ${${package}_LINK_LIBRARIES}")
+   ELSE( )
+      SET(${package}_LINK_LIBRARIES "")
+   ENDIF( )
+ENDFOREACH( )
 #
 # include directories
 INCLUDE_DIRECTORIES(
@@ -39,6 +42,7 @@ INCLUDE_DIRECTORIES(
 # link libraries
 LINK_LIBRARIES(
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+   ${adolc_LINK_LIBRARIES}
    ${cppad_LINK_LIBRARIES}
 )
 #

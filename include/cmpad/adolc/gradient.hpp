@@ -2,20 +2,20 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CPPAD_GRADIENT_HPP
-# define CMPAD_CPPAD_GRADIENT_HPP
+# ifndef CMPAD_ADOLC_GRADIENT_HPP
+# define CMPAD_ADOLC_GRADIENT_HPP
 /*
-{xrst_begin cppad_gradient.hpp}
+{xrst_begin adolc_gradient.hpp}
 {xrst_spell
-   cppad
+   adolc
 }
 
-Calculate Gradient Using CppAD
-##############################
+Calculate Gradient Using ADOL-C
+###############################
 
 Syntax
 ******
-|  ``cmpad::cppad::gradient`` < *Algo* > *grad*
+|  ``cmpad::adolc::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
 |  *g* = *grad* ( *x* )
@@ -37,23 +37,26 @@ Source Code
    // END C++
 }
 
-{xrst_end cppad_gradient.hpp}
+{xrst_end adolc_gradient.hpp}
 */
 // BEGIN C++
 # include <cmpad/gradient.hpp>
-# include <cppad/cppad.hpp>
+# include <adolc/adolc.h>
 
-namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
+namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
 // gradient
 template <class Algo> class gradient : ::cmpad::gradient<Algo> {
 private:
    // algo_
    Algo algo_;
-   // w_
-   cmpad::vector<double> w_;
-   // tape_
-   CppAD::ADFun<double>  tape_;
+   //
+   // tag_
+   int tag_;
+   //
+   // u_
+   cmpad::vector<double> u_;
+   //
    // g_
    cmpad::vector<double> g_;
 //
@@ -71,18 +74,29 @@ public:
       size_t m = algo_.range();
       assert( m == 1 );
       //
-      // w_
-      w_.resize(1);
-      w_[0] = 1.0;
+      // tag_
+      tag_ = 0;
       //
-      // tape_
-      cmpad::vector< CppAD::AD<double> > ax(n);
-      for(size_t i = 0; i < n; ++i)
-         ax[i] = 0.;
-      CppAD::Independent(ax);
-      cmpad::vector< CppAD::AD<double> > ay(m);
-      ay = algo_(ax);
-      tape_.Dependent(ax, ay);
+      // ax
+      // independent variables
+      int keep = 0;
+      trace_on(tag_, keep);
+      cmpad::vector<adouble> ax(n);
+      for(size_t j = 0; j < n; ++j)
+         ax[j] <<= 0.0;
+      //
+      // ay
+      // dependent variable
+      cmpad::vector<adouble> ay = algo_(ax);
+      //
+      // create f : x -> y
+      double f;
+      ay[0] >>= f;
+      trace_off();
+      //
+      // u_
+      u_.resize(1);
+      u_[0] = 1.0;
       //
       // g_
       g_.resize(n);
@@ -92,8 +106,18 @@ public:
    const cmpad::vector<double>& operator()(
       const cmpad::vector<double>& x
    ) override
-   {  tape_.Forward(0, x);
-      g_ =  tape_.Reverse(1, w_);
+   {  assert( x.size() == algo_.domain() );
+      int m    = int( algo_.range() );
+      int n    = int( algo_.domain() );
+      //
+      // zos_forward
+      int keep = 1; // keep this forward mode result
+      double f;     // function result
+      zos_forward(tag_, m, n, keep, x.data(), &f);
+      //
+      // fos_reverse
+      fos_reverse(tag_, m, n, u_.data(), g_.data() );
+      //
       return g_;
    }
 };
