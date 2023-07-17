@@ -64,21 +64,28 @@ public:
       // algo_
       algo_.setup(ell);
       //
+      // n
+      size_t n = algo_.domain();
+      //
+      // m
+      size_t m = algo_.range();
+      assert( m == 1 );
+      //
       // w_
       w_.resize(1);
       w_[0] = 1.0;
       //
       // tape_
-      cmpad::vector< CppAD::AD<double> > ax(ell * ell);
-      for(size_t i = 0; i < ell * ell; ++i)
+      cmpad::vector< CppAD::AD<double> > ax(n);
+      for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      cmpad::vector< CppAD::AD<double> > ay(1);
+      cmpad::vector< CppAD::AD<double> > ay(m);
       ay = algo_(ax);
       tape_.Dependent(ax, ay);
       //
       // g_
-      g_.resize(ell * ell);
+      g_.resize(n);
    }
    //
    // operator
