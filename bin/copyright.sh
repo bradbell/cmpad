@@ -10,13 +10,14 @@ if [ $# != 2 ]
 then
    echo 'usage: bin/copyright.sh file_name comment_string'
    echo 'file_name:      path to file we are adding copyright statement to'
-   echo 'comment_string: in file_name this makes the rest of line a comment'
+   echo 'comment_string: This makes the rest of line, in file_name, a comment.'
+   echo '                This may need to be quoted and may be empty.'
    exit 1
 fi
 #
-# $file_name, cs
+# $file_name, comment_string
 file_name="$1"
-cs="$2"
+comment_string="$2"
 if [ ! -f "$file_name" ]
 then
    echo "copyright.sh: cannot find the file '$file_name'."
@@ -45,21 +46,29 @@ fi
 # $file_name copyright.$$
 mv $file_name copyright.$$
 #
+# cs
+if [ "$comment_string" == '' ]
+then
+   cs=''
+else
+   cs="$comment_string "
+fi
+#
 # $file_name
 if [ "$shebang" == 'yes' ]
 then
    sed -n -e '1,1p' copyright.$$ > $file_name
    cat << EOF >> $file_name
-$cs ---------------------------------------------------------------------------
+$cs---------------------------------------------------------------------------
 EOF
 fi
 #
 # $file_name
 cat << EOF >> $file_name
-$cs SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
-$cs SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-$cs SPDX-FileContributor: 2023 Bradley M. Bell
-$cs ---------------------------------------------------------------------------
+${cs}SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+${cs}SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+${cs}SPDX-FileContributor: 2023 Bradley M. Bell
+$cs---------------------------------------------------------------------------
 EOF
 if [ $shebang == 'yes' ]
 then

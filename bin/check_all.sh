@@ -32,7 +32,7 @@ fi
 list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
 for check in $list
 do
-   echo_eval $check
+   $check
 done
 # -----------------------------------------------------------------------------
 #
