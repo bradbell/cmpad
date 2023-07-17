@@ -15,6 +15,7 @@ Calculate Gradient Using ADOL-C
 
 Syntax
 ******
+| ``# include <cmpad/adolc/gradient.hpp>``
 |  ``cmpad::adolc::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )

@@ -12,6 +12,7 @@ Abstract Class For Calculating Gradient
 
 Syntax
 ******
+|  ``# include <cmpad/gradient.hpp``
 |  ``cmpad::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
