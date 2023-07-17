@@ -23,11 +23,11 @@ namespace {
    void check_grad_det(void)
    {  //
       // n
-      size_t n = 3;
+      size_t ell = 3;
       //
       // grad_det
       Grad_Det grad_det;
-      grad_det.setup(n);
+      grad_det.setup(ell);
       //
       // x
       // values in the matrix in row major order
@@ -40,17 +40,17 @@ namespace {
       // g
       cmpad::vector<double> g = grad_det(x);
       //
-      BOOST_CHECK( g[ 0 * n + 0] == + (5.*10. - 6.*8.) );
-      BOOST_CHECK( g[ 0 * n + 1] == - (4.*10. - 6.*7.) );
-      BOOST_CHECK( g[ 0 * n + 2] == + (4.*8.  - 5.*7.) );
+      BOOST_CHECK( g[ 0 * ell + 0] == + (5.*10. - 6.*8.) );
+      BOOST_CHECK( g[ 0 * ell + 1] == - (4.*10. - 6.*7.) );
+      BOOST_CHECK( g[ 0 * ell + 2] == + (4.*8.  - 5.*7.) );
       //
-      BOOST_CHECK( g[ 1 * n + 0] == - (2.*10. - 3.*8.) );
-      BOOST_CHECK( g[ 1 * n + 1] == + (1.*10. - 3.*7.) );
-      BOOST_CHECK( g[ 1 * n + 2] == - (1.*8.  - 2.*7.) );
+      BOOST_CHECK( g[ 1 * ell + 0] == - (2.*10. - 3.*8.) );
+      BOOST_CHECK( g[ 1 * ell + 1] == + (1.*10. - 3.*7.) );
+      BOOST_CHECK( g[ 1 * ell + 2] == - (1.*8.  - 2.*7.) );
       //
-      BOOST_CHECK( g[ 2 * n + 0] == + (2.*6.  - 3.*5.) );
-      BOOST_CHECK( g[ 2 * n + 1] == - (1.*6.  - 3.*4.) );
-      BOOST_CHECK( g[ 2 * n + 2] == + (1.*5.  - 2.*4.) );
+      BOOST_CHECK( g[ 2 * ell + 0] == + (2.*6.  - 3.*5.) );
+      BOOST_CHECK( g[ 2 * ell + 1] == - (1.*6.  - 3.*4.) );
+      BOOST_CHECK( g[ 2 * ell + 2] == + (1.*5.  - 2.*4.) );
    }
 }
 

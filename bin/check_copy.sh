@@ -26,7 +26,7 @@ do
       if ! grep 'SPDX-FileCopyrightText:' $file_name > /dev/null
       then
          echo "missing SPDX-FileCopyrightText: $file_name"
-         missing='yes' 
+         missing='yes'
       fi
    fi
 done

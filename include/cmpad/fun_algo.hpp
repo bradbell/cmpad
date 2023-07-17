@@ -7,8 +7,8 @@
 /*
 {xrst_begin fun_algo}
 
-Abstract Class fo An Algorithm as a Function Object
-###################################################
+Abstract Class for An Algorithm as a Function Object
+####################################################
 
 Syntax
 ******
