@@ -59,10 +59,12 @@ namespace {
 BOOST_AUTO_TEST_CASE(cppad_gradient)
 {  //
    // adolc
+   BOOST_TEST_MESSAGE("   adolc gradient");
    typedef cmpad::det_by_minor<adouble> adolc_Algo;
    check_grad_det< cmpad::adolc::gradient<adolc_Algo> >();
    //
    // cppad
+   BOOST_TEST_MESSAGE("   cppad gradient");
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
    check_grad_det< cmpad::cppad::gradient<cppad_Algo> >();
 }
