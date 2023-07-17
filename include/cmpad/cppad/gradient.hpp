@@ -20,17 +20,10 @@ Syntax
 
 Prototype
 *********
-{xrst_literal
-   // BEGIN CLASS
-   // END CLASS
-}
-{xrst_literal
-   // BEGIN SETUP
-   // END SETUP
-}
-{xrst_literal
-   // BEGIN OPERATOR
-   // END OPERATOR
+{xrst_literal ,
+   // BEGIN CLASS,    // END CLASS
+   // BEGIN SETUP,    // END SETUP
+   // BEGIN OPERATOR, // END OPERATOR
 }
 
 algo
@@ -94,9 +87,10 @@ CppAD gradient: Source Code
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // BEGIN CLASS
-template <class Algo> class gradient {
+// gradient
+template <class Algo> class gradient
 // END CLASS
-//
+{
 private:
    // algo_
    Algo algo_;
@@ -108,6 +102,7 @@ private:
 public:
    //
    // BEGIN SETUP
+   // setup
    void setup(size_t n)
    // END SETUP
    {  //
@@ -129,6 +124,7 @@ public:
    }
    //
    // BEGIN OPERATOR
+   // operator
    cmpad::vector<double> operator()(const cmpad::vector<double>& x)
    // END OPERATOR
    {  tape_.Forward(0, x);

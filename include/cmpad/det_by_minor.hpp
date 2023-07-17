@@ -22,25 +22,12 @@ Syntax
 
 Prototype
 *********
-{xrst_literal
-   // BEGIN CLASS
-   // END CLASS
-}
-{xrst_literal
-   // BEGIN SETUP
-   // END SETUP
-}
-{xrst_literal
-   // BEGIN DOMAIN
-   // END DOMAIN
-}
-{xrst_literal
-   // BEGIN RANGE
-   // END RANGE
-}
-{xrst_literal
-   // BEGIN OPERATOR
-   // END OPERATOR
+{xrst_literal ,
+   // BEGIN CLASS,    // END CLASS
+   // BEGIN SETUP,    // END SETUP
+   // BEGIN DOMAIN,   // END DOMAIN
+   // BEGIN RANGE,    // END RANGE
+   // BEGIN OPERATOR, // END OPERATOR
 }
 
 Scalar
@@ -111,8 +98,10 @@ det_by_minor: Source Code
 namespace cmpad {
 
 // BEGIN CLASS
-template <class Scalar> class det_by_minor : public fun_algo<Scalar> {
+// det_by_minor
+template <class Scalar> class det_by_minor : public fun_algo<Scalar>
 // END CLASS
+{
 private:
    // ell_
    // size of the matrix
@@ -128,14 +117,17 @@ private:
    //
 public:
    // BEGIN DOMAIN
+   // domain
    size_t domain(void) override
    {  return ell_ * ell_; }
    // END DOMAIN
    // BEGIN RANGE
+   // range
    size_t range(void) override
    {  return 1; }
    // END RANGE
    // BEGIN SETUP
+   // setup
    void setup(size_t ell) override
    // END SETUP
    {  //
@@ -155,6 +147,7 @@ public:
       c_[ell] = 0;
    }
    // BEGIN OPERATOR
+   // operator
    const cmpad::vector<Scalar>& operator()(
       const cmpad::vector<Scalar>& x
    ) override
