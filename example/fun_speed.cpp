@@ -25,6 +25,8 @@ namespace {
    template <class Algo>
    void check_speed_det(cmpad::gradient<Algo>& grad_det)
    {  //
+      // message
+      BOOST_TEST_MESSAGE( "   " + grad_det.package() );
       //
       // time_min
       // minimum time for test in seconds
@@ -32,7 +34,7 @@ namespace {
       //
       // previous_rate, ell
       double previous_rate = 0.0;
-      for(size_t ell = 5; ell < 10; ++ell)
+      for(size_t ell = 6; ell < 10; ++ell)
       {  //
          // rate
          double rate  = cmpad::fun_speed(grad_det, ell, time_min);
@@ -43,6 +45,7 @@ namespace {
          //
          if( previous_rate != 0.0 )
             BOOST_CHECK( 0.5 < ratio && ratio < 2.0 );
+         previous_rate = rate;
       }
    }
 }
@@ -50,13 +53,11 @@ namespace {
 BOOST_AUTO_TEST_CASE(Fun_speed)
 {  //
    // adolc
-   BOOST_TEST_MESSAGE("   adolc fun_speed");
    typedef cmpad::det_by_minor<adouble>       adolc_Algo;
    cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
    check_speed_det(adolc_grad_det);
    //
    // cppad
-   BOOST_TEST_MESSAGE("   cppad fun_speed");
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
    cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
    check_speed_det(cppad_grad_det);

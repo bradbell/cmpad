@@ -20,12 +20,13 @@ Syntax
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
 |  *grad* . ``domain`` ( )
+|  *package* = *grad* . ``package`` ()
 |  *g* = *grad* ( *x* )
 
 
 Purpose
 *******
-This implements the :ref:`gradient-name` interface using CppAD.
+This implements the :ref:`gradient-name` interface using ADOL-C.
 
 Example
 *******
@@ -63,6 +64,9 @@ private:
    cmpad::vector<double> g_;
 //
 public:
+   // package
+   std::string package(void)
+   {  return "adolc"; }
    // setup
    void setup(size_t ell) override
    {  //

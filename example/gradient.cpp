@@ -24,6 +24,9 @@ namespace {
    template <class Algo>
    void check_grad_det(cmpad::gradient<Algo>& grad_det)
    {  //
+      // message
+      BOOST_TEST_MESSAGE( "   " + grad_det.package() );
+      //
       // ell
       size_t ell = 3;
       //
@@ -58,13 +61,11 @@ namespace {
 BOOST_AUTO_TEST_CASE(Gradient)
 {  //
    // adolc
-   BOOST_TEST_MESSAGE("   adolc gradient");
    typedef cmpad::det_by_minor<adouble>       adolc_Algo;
    cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
    check_grad_det(adolc_grad_det);
    //
    // cppad
-   BOOST_TEST_MESSAGE("   cppad gradient");
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
    cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
    check_grad_det(cppad_grad_det);

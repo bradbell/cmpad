@@ -17,6 +17,7 @@ Syntax
 |  *algo* . ``setup`` ( *ell* )
 |  *grad* . ``setup`` ( *ell* )
 |  *grad* . ``domain`` ()
+|  *package* = *grad* . ``package`` ()
 |  *g* = *grad* ( *x* )
 
 Source Code
@@ -46,6 +47,10 @@ This pure virtual function returns the dimension of the
 :ref:`fun_algo@domain` space dimension for this algorithm.
 This value depends on *ell* and *Algo* .
 
+package
+*******
+Is the name of the package that is computing the gradient.
+
 x
 *
 This vector has size equal to the dimension of the domain space.
@@ -74,6 +79,8 @@ namespace cmpad {
    // gradient
    template <class Algo> class gradient {
    public:
+      // package
+      virtual std::string package(void) = 0;
       // setup
       virtual void setup(size_t ell) = 0;
       // domain
