@@ -13,7 +13,18 @@ PROJECT(cmpad)
 SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/build/prefix" )
 #
 # PKG_CONFIG_PATH
-SET(ENV{PKG_CONFIG_PATH} "${cmpad_install_prefix}/lib/pkgconfig")
+IF( "$ENV{PKG_CONFIG_PATH}" STREQUAL "" )
+   SET(tmp "")
+   FOREACH(dir lib lib64 share)
+      IF( EXISTS ${cmpad_install_prefix}/${dir}/pkgconfig )
+         IF( NOT tmp STREQUAL "" )
+            SET(tmp "${tmp};")
+         ENDIF( )
+         SET(tmp "${tmp}${cmpad_install_prefix}/${dir}/pkgconfig")
+      ENDIF( )
+   ENDFOREACH( )
+   SET(ENV{PKG_CONFIG_PATH} "${tmp}")
+ENDIF( )
 MESSAGE(STATUS "PKG_CONFIG_PATH = $ENV{PKG_CONFIG_PATH}")
 #
 # pkg_check_modules

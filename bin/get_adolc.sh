@@ -21,7 +21,7 @@ web_page="https://github.com/coin-or/ADOL-C.git"
 version=master
 #
 # configure
-flags="--prefix=$prefix --with-colpack=$prefix --libdir=$prefix/$libdir"
+flags="--prefix=$prefix --with-colpack=$prefix"
 flags="$flags --enable-static --enable-shared --enable-atrig-erf"
 configure="cd ..; autoreconf -fi; cd build ; ../configure $flags"
 # -----------------------------------------------------------------------------
@@ -62,7 +62,6 @@ then
    echo $configured_flag
    echo_eval cd external/$package.git/build
    echo_eval make -j $n_job install
-   echo_eval cp $prefix/pkgconfig/adolc.pc $prefix/lib/pkgconfig/adolc.pc
    echo "bin/get_$package.sh: OK"
    exit 0
 fi
@@ -104,12 +103,6 @@ echo_eval touch $top_srcdir/$configured_flag
 # install
 echo_eval make -j $n_job install
 #
-# adolc.pc
-if [ ! -d $prefix/lib/pkgconfig ]
-then
-   mkdir -p $prefix/lib/pkgconfig
-fi
-cp $prefix/pkgconfig/adolc.pc $prefix/lib/pkgconfig/adolc.pc
 # -----------------------------------------------------------------------------
 echo "bin/get_$package.sh: OK"
 exit 0
