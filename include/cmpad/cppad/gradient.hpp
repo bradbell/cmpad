@@ -17,7 +17,7 @@ Syntax
 ******
 |  ``# include <cmpad/cppad/gradient.hpp``
 |  ``cmpad::cppad::gradient`` < *Algo* > *grad*
-|  *algo* . ``setup`` ( *ell* )
+|  *algo* . ``setup`` ( *option* )
 |  *grad* . ``setup`` ( *ell* )
 |  *grad* . ``domain`` ( )
 |  *package* = *grad* . ``package`` ()
@@ -68,7 +68,10 @@ public:
    void setup(size_t ell) override
    {  //
       // algo_
-      algo_.setup(ell);
+      cmpad::option_t option;
+      option["name"] = "function";
+      option["ell"]  = std::to_string(ell);
+      algo_.setup(option);
       //
       // n
       size_t n = algo_.domain();

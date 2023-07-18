@@ -30,6 +30,11 @@ is ``std`` .
 
 {xrst_end cmpad_vector}
 */
+# include <map>
+# include <string>
+namespace cmpad {
+   typedef std::map<std::string, std::string> option_t;
+}
 
 
 // boost vector

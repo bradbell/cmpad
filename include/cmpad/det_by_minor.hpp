@@ -7,7 +7,8 @@
 /*
 {xrst_begin_parent det_by_minor}
 {xrst_spell
-   obj
+   std
+   stoi
 }
 
 Determinant Using Expansion by Minors
@@ -15,19 +16,19 @@ Determinant Using Expansion by Minors
 
 Syntax
 ******
-|  ``# include <cmpad/fun_obj.hpp``
-|  ``cmpad::det_by_minor`` *det*
-|  *name* = *det* . ``name`` ()
+|  ``# include <cmpad/det_by_minor.hpp``
+|  ``cmpad::det_by_minor`` < *Scalar* > *det*
+|  *det* . ``setup`` ( *option* )
+|  *option* = *det* . ``option`` ()
 |  *n* = *det* . ``domain`` ()
 |  *m* = *det* . ``range`` ()
-|  *det* . ``setup`` ( *ell* )
 |  *y* = *det* ( *x* )
 
 Purpose
 *******
 This implements the :ref:`fun_obj-name` interface.
-The function object computes
-the determinant of *ell* by *ell* matrices using expansion by minors.
+The function call computes
+the determinant of a square matrix using expansion by minors.
 
 Scalar
 ******
@@ -51,10 +52,19 @@ det
 The object *det* corresponds to :ref:`fun_obj@fun` in the function
 object interface.
 
+option
+******
+In addition to :ref:`fun_obj@option@name` ,
+this map has the following key:
+
 ell
-***
+===
+The corresponding value can be converted to an integer using
+
+|  std::stoi ( *option* [ ``"ell"`` ] )
+
 This is the row and column dimension for subsequent use of the *det* object.
-We also use the notation :math:`\ell` for this value.
+We use the notation :math:`\ell` for this value.
 
 x
 *
@@ -68,7 +78,7 @@ for :math:`i = 0 , \ldots , \ell-1` and :math:`j = 0 , \ldots , \ell-1`, by
 
 y
 *
-The return value *y* has :math:`m = 1` and its element
+The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden
@@ -92,7 +102,6 @@ displays the source code for this function
 
 det_by_minor: Source Code
 #########################
-
 {xrst_literal
    // BEGIN C++
    // END C++
@@ -108,14 +117,14 @@ det_by_minor: Source Code
 // BEGIN cmpad namespace
 namespace cmpad {
 
-// BEGIN CLASS
 // det_by_minor
 template <class Scalar> class det_by_minor : public fun_obj<Scalar>
-// END CLASS
 {
 private:
+   // option_
+   option_t option_;
+   //
    // ell_
-   // size of the matrix
    size_t ell_;
    //
    // r_, c_
@@ -127,32 +136,39 @@ private:
    cmpad::vector<Scalar> y_;
    //
 public:
-   // name
-   std::string name(void) override
-   {  return "det_by_minor"; }
+   // option
+   const option_t& option(void) const override
+   {  return option_; }
    // domain
-   size_t domain(void) override
+   size_t domain(void) const override
    {  return ell_ * ell_; }
    // range
-   size_t range(void) override
+   size_t range(void) const override
    {  return 1; }
    // setup
-   void setup(size_t ell) override
+   void setup(const option_t& option) override
    {  //
-      // ell_, r_, c_, y_
-      ell_ = ell;
-      r_.resize(ell + 1);
-      c_.resize(ell + 1);
+      // option_
+      option_ = option;
+      //
+      // ell_
+      int ell = std::stoi( option.at("ell") );
+      assert( 0 < ell );
+      ell_ = size_t(ell);
+      //
+      // r_, c_, y_
+      r_.resize(ell_ + 1);
+      c_.resize(ell_ + 1);
       y_.resize(1);
       //
       // r_, c_
       // values that correspond to entire matrix
-      for(size_t i = 0; i < ell; i++)
+      for(size_t i = 0; i < ell_; i++)
       {  r_[i] = i+1;
          c_[i] = i+1;
       }
-      r_[ell] = 0;
-      c_[ell] = 0;
+      r_[ell_] = 0;
+      c_[ell_] = 0;
    }
    // operator
    const cmpad::vector<Scalar>& operator()(

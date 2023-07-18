@@ -14,7 +14,7 @@ Syntax
 ******
 |  ``# include <cmpad/gradient.hpp``
 |  ``cmpad::gradient`` < *Algo* > *grad*
-|  *algo* . ``setup`` ( *ell* )
+|  *algo* . ``setup`` ( *option* )
 |  *grad* . ``setup`` ( *ell* )
 |  *grad* . ``domain`` ()
 |  *package* = *grad* . ``package`` ()

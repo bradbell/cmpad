@@ -32,7 +32,12 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    //
    // det
    cmpad::det_by_minor<double> det;
-   det.setup(ell);
+   //
+   // det.setup
+   std::map<std::string, std::string> option;
+   option["name"] = "det_by_minor double";
+   option["ell"]  = std::to_string(ell);
+   det.setup(option);
    //
    // x
    cmpad::vector<double>  x = {

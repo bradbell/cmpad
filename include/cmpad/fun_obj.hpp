@@ -16,11 +16,11 @@ Abstract Class for a Function Object
 Syntax
 ******
 |  ``# include <cmpad/fun_obj.hpp``
-|  ``cmpad::fun_obj`` *fun*
-|  *name* = *fun* . ``name`` ()
+|  ``cmpad::fun_obj`` < *Scalar* > *fun*
+|  *fun* . ``setup`` ( *option* )
+|  *option* = *fun* . ``option`` ()
 |  *n* = *fun* . ``domain`` ()
 |  *m* = *fun* . ``range`` ()
-|  *fun* . ``setup`` ( *ell* )
 |  *y* = *fun* ( *x* )
 
 Source Code
@@ -33,33 +33,35 @@ Source Code
 fun
 ***
 This is the function object.
-The corresponding function call computes *y* as a function of *x* .
-
-name
-****
-is the name used to distinguish different function objects.
-
-domain
-******
-This returns *n* the dimension of the domain space for this function object;
-i.e. the size of *x*. It likely depends on the value of *ell*.
-
-range
-*****
-This returns *m* the dimension of the range space for this function object;
-i.e. the size of *y*. It likely depends on the value of *ell*.
+The corresponding function call,
+*y* = *fun* ( *x* ),
+computes *y* as a function of *x* .
 
 setup
 *****
-The function object is initialized using its ``setup`` syntax.
+The function object is initialized using the ``setup`` syntax.
 The ``setup`` can (and should) do calculations that do not depend on *x*
-(to make the evaluation of the function).
+(to make the evaluation of the function call faster).
 
-*ell*
+option
+******
+This map must have the following key:
+
+name
+====
+The corresponding value is the name of this function object.
+
+domain
+******
+The return value *n* is the dimension of the domain space for
+this function; i.e. the size of *x*.
+It likely depends on the value of *option*.
+
+range
 *****
-This parameter is used to scale the function object to different size
-calculations. For example, it could be the row and or column dimension
-of a matrix that the function object will operate on.
+The return value *m* is the dimension of the range space for
+this function; i.e. the size of *y*.
+It likely depends on the value of *option*.
 
 x
 *
@@ -85,14 +87,14 @@ Derived Classes
 
 namespace cmpad {
    template <class Scalar> struct fun_obj {
-      // name
-      virtual std::string name(void) = 0;
-      // n
-      virtual size_t domain(void) = 0;
-      // m
-      virtual size_t range(void) = 0;
       // setup
-      virtual void setup(size_t ell) = 0;
+      virtual void setup(const option_t& option) = 0;
+      // option
+      virtual const option_t& option(void) const = 0;
+      // domain
+      virtual size_t domain(void) const = 0;
+      // range
+      virtual size_t range(void) const = 0;
       // operator()
       virtual const cmpad::vector<Scalar>& operator()(
          const cmpad::vector<Scalar>& x
