@@ -7,6 +7,7 @@ ADD_EXECUTABLE(example
    example.cpp
    det_by_minor.cpp
    det_of_minor.cpp
+   fun_speed.cpp
    gradient.cpp
    uniform_01.cpp
 )

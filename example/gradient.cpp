@@ -24,7 +24,7 @@ namespace {
    template <class Algo>
    void check_grad_det(cmpad::gradient<Algo>& grad_det)
    {  //
-      // n
+      // ell
       size_t ell = 3;
       //
       // grad_det
@@ -55,7 +55,7 @@ namespace {
    }
 }
 
-BOOST_AUTO_TEST_CASE(cppad_gradient)
+BOOST_AUTO_TEST_CASE(Gradient)
 {  //
    // adolc
    BOOST_TEST_MESSAGE("   adolc gradient");
