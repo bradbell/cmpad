@@ -8,7 +8,7 @@ The Compare AD Users Documentation
 ##################################
 {xrst_toc_table
    include/cmpad/vector.hpp.in
-   include/cmpad/fun_algo.hpp
+   include/cmpad/fun_obj.hpp
    include/cmpad/det_of_minor.hpp
    include/cmpad/gradient.hpp
    include/cmpad/uniform_01.hpp

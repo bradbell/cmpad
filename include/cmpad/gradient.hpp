@@ -29,9 +29,9 @@ Source Code
 
 Algo
 ****
-The *Algo* class is derived from the :ref:`fun_algo-name` class.
+The *Algo* class is derived from the :ref:`fun_obj-name` class.
 The *algo* object is initialized using its ``setup`` syntax.
-The dimension of the :ref:`fun_algo@range` space for this algorithm
+The dimension of the :ref:`fun_obj@range` space for this algorithm
 must be one.
 
 grad
@@ -44,7 +44,7 @@ The ``setup`` should do calculations that do not depend on *x*
 domain
 ******
 This pure virtual function returns the dimension of the
-:ref:`fun_algo@domain` space dimension for this algorithm.
+:ref:`fun_obj@domain` space dimension for this algorithm.
 This value depends on *ell* and *Algo* .
 
 package

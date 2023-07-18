@@ -6,39 +6,50 @@
 // ----------------------------------------------------------------------------
 /*
 {xrst_begin_parent det_by_minor}
+{xrst_spell
+   obj
+}
 
 Determinant Using Expansion by Minors
 #####################################
 
 Syntax
 ******
+|  ``# include <cmpad/fun_obj.hpp``
+|  ``cmpad::det_by_minor`` *det*
+|  *name* = *det* . ``name`` ()
+|  *n* = *det* . ``domain`` ()
+|  *m* = *det* . ``range`` ()
+|  *det* . ``setup`` ( *ell* )
+|  *y* = *det* ( *x* )
 
-| ``# include <cmpad/det_by_minor.hpp>``
-| ``cmpad::det_by_minor`` < *Scalar* > *det*
-| *det* . ``setup`` ( *ell* )
-| *det* . ``domain`` ()
-| *det* . ``range`` ()
-| *y* = *det* ( *x* )
-
-Prototype
-*********
-{xrst_literal ,
-   // BEGIN CLASS,    // END CLASS
-   // BEGIN SETUP,    // END SETUP
-   // BEGIN DOMAIN,   // END DOMAIN
-   // BEGIN RANGE,    // END RANGE
-   // BEGIN OPERATOR, // END OPERATOR
-}
+Purpose
+*******
+This implements the :ref:`fun_obj-name` interface.
+The function object computes
+the determinant of *ell* by *ell* matrices using expansion by minors.
 
 Scalar
 ******
-The type *Scalar* must satisfy the same conditions
-as in the function :ref:`det_of_minor<det_of_minor@Scalar>` .
+If *u* and *v* are *Scalar* objects,
+the type *Scalar* must support the following operations:
+
+.. csv-table::
+   :widths: auto
+   :header-rows: 1
+
+   Syntax,      Description,                                      Result Type
+   Scalar(0),   constructor for *Scalar* object equal to zero,    *Scalar*
+   Scalar(u),   constructor for *Scalar* object equal to *u*,     *Scalar*
+   *u* + *v*,   value of *u* plus *v*,                            *Scalar*
+   *u* - *v*,   value of *u* minus *v*,                           *Scalar*
+   *u* * *v*,   value of *u* times value of *v*,                  *Scalar*
+   *u* = *v*,   set value of *u* to current value of *v*,
 
 det
 ***
-The object *det* can be used to evaluate
-the determinant of *ell* by *ell* matrices using expansion by minors.
+The object *det* corresponds to :ref:`fun_obj@fun` in the function
+object interface.
 
 ell
 ***
@@ -47,7 +58,7 @@ We also use the notation :math:`\ell` for this value.
 
 x
 *
-The argument *x* has size :math:`\ell * \ell` .
+The argument *x* has size :math:`n = \ell * \ell` .
 The elements of the matrix :math:`A(x)` is defined as follows:
 for :math:`i = 0 , \ldots , \ell-1` and :math:`j = 0 , \ldots , \ell-1`, by
 
@@ -57,7 +68,7 @@ for :math:`i = 0 , \ldots , \ell-1` and :math:`j = 0 , \ldots , \ell-1`, by
 
 y
 *
-The return value *y* has size one and its element
+The return value *y* has :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden
@@ -91,7 +102,7 @@ det_by_minor: Source Code
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
-# include <cmpad/fun_algo.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/det_of_minor.hpp>
 
 // BEGIN cmpad namespace
@@ -99,7 +110,7 @@ namespace cmpad {
 
 // BEGIN CLASS
 // det_by_minor
-template <class Scalar> class det_by_minor : public fun_algo<Scalar>
+template <class Scalar> class det_by_minor : public fun_obj<Scalar>
 // END CLASS
 {
 private:
@@ -116,20 +127,17 @@ private:
    cmpad::vector<Scalar> y_;
    //
 public:
-   // BEGIN DOMAIN
+   // name
+   std::string name(void) override
+   {  return "det_by_minor"; }
    // domain
    size_t domain(void) override
    {  return ell_ * ell_; }
-   // END DOMAIN
-   // BEGIN RANGE
    // range
    size_t range(void) override
    {  return 1; }
-   // END RANGE
-   // BEGIN SETUP
    // setup
    void setup(size_t ell) override
-   // END SETUP
    {  //
       // ell_, r_, c_, y_
       ell_ = ell;
@@ -146,12 +154,10 @@ public:
       r_[ell] = 0;
       c_[ell] = 0;
    }
-   // BEGIN OPERATOR
    // operator
    const cmpad::vector<Scalar>& operator()(
       const cmpad::vector<Scalar>& x
    ) override
-   // END OPERATOR
    {  //
       // y_
       // compute determinant of entire matrix
