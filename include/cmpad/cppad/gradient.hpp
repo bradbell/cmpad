@@ -85,6 +85,7 @@ public:
       cmpad::vector< CppAD::AD<double> > ay(m);
       ay = algo_(ax);
       tape_.Dependent(ax, ay);
+      tape_.optimize();
       //
       // g_
       g_.resize(n);

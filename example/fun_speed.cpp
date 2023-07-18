@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin gradient.cpp}
+{xrst_begin fun_speed.cpp}
 
 gradient: Example and Test
 ##########################
@@ -12,7 +12,7 @@ gradient: Example and Test
    // END C++
 }
 
-{xrst_end  gradient.cpp}
+{xrst_end  fun_speed.cpp}
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
@@ -34,12 +34,12 @@ namespace {
       double previous_rate = 0.0;
       for(size_t ell = 5; ell < 10; ++ell)
       {  //
-         // rate  
+         // rate
          double rate  = cmpad::fun_speed(grad_det, ell, time_min);
          //
          // ratio
          // number of floating operations goes up by a factor of ell
-         double ratio = previous_rate / (ell * rate); 
+         double ratio = previous_rate / (ell * rate);
          //
          if( previous_rate != 0.0 )
             BOOST_CHECK( 0.5 < ratio && ratio < 2.0 );

@@ -1,7 +1,14 @@
-# ifndef CPPAD_CMPAD_SPEED_TEST_HPP
-# define CPPAD_CMPAD_SPEED_TEST_HPP
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+// SPDX-FileContributor: 2023 Bradley M. Bell
+// ---------------------------------------------------------------------------
+# ifndef CMPAD_FUN_SPEED_HPP
+# define CMPAD_FUN_SPEED_HPP
 /*
 {xrst_begin_parent fun_speed}
+{xrst_spell
+   obj
+}
 
 Determine Execution Speed of a Function Object
 ##############################################
@@ -39,7 +46,7 @@ to the function object.
 
 n
 *
-This is the dimenions of the domain space for the function object.
+This is the dimensions of the domain space for the function object.
 
 x
 *
@@ -52,7 +59,7 @@ dimension of the range space for the function object.
 
 time_min
 ********
-This is the minimum time in seconds for the timing of the comuputation.
+This is the minimum time in seconds for the timing of the computation.
 The computation of the function object will be repeated until
 so that this minimum time is reached.
 
@@ -61,16 +68,24 @@ rate
 This is the speed of one computation of the function object; i.e.,
 the number of times per second that the function object gets computed.
 
+{xrst_toc_hidden
+   example/fun_speed.cpp
+}
+Example
+*******
+The file :ref:`fun_speed.cpp-name` is an example and test that
+uses this function.
+
 Source Code
 ***********
-The page :ref:`fun_speed.hpp-name` contains the source code for this funciton.
+The page :ref:`fun_speed.hpp-name` contains the source code for this function.
 
 {xrst_end fun_speed}
 -------------------------------------------------------------------------------
 {xrst_begin fun_speed.hpp}
 
 fun_speed: Source Code
-**********************
+######################
 {xrst_literal
    // BEGIN C++
    // END C++
@@ -80,23 +95,23 @@ fun_speed: Source Code
 {xrst_end fun_speed.hpp}
 -------------------------------------------------------------------------------
 */
-
+// BEGIN C++
 # include <cmpad/uniform_01.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
 template <class Fun_Obj> double fun_speed(
-   Fun_Obj& fun_obj    , 
-   size_t   ell        , 
+   Fun_Obj& fun_obj    ,
+   size_t   ell        ,
    double   time_min   )
 // END PROTOTYPE
-{  //  
-   // steady_clock  
-   using std::chrono::steady_clock;  
+{  //
+   // steady_clock
+   using std::chrono::steady_clock;
    //
    // time_point, duration
-   typedef std::chrono::time_point<steady_clock> time_point;  
+   typedef std::chrono::time_point<steady_clock> time_point;
    typedef std::chrono::duration<double>         duration;
    //
    // fun_obj
@@ -104,7 +119,7 @@ template <class Fun_Obj> double fun_speed(
    //
    // x
    size_t n = fun_obj.domain();
-   cmpad::vector<double> x(n); 
+   cmpad::vector<double> x(n);
    //
    // repeat, t_start, t_end, t_diff
    size_t     repeat  = 0;
@@ -115,7 +130,7 @@ template <class Fun_Obj> double fun_speed(
    // while t_diff < time_min
    while( t_diff < time_min )
    {  //
-      // repeat  
+      // repeat
       if( repeat == 0 )
          repeat = 1;
       else
@@ -143,5 +158,5 @@ template <class Fun_Obj> double fun_speed(
 }
 
 } // END cmpad namespace
-      
+// END C++
 # endif
