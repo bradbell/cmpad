@@ -48,7 +48,7 @@ Source Code
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
 // gradient
-template <class Algo> class gradient : ::cmpad::gradient<Algo> {
+template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
 private:
    // algo_
    Algo algo_;

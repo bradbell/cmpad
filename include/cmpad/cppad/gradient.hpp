@@ -48,7 +48,7 @@ Source Code
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // gradient
-template <class Algo> class gradient : ::cmpad::gradient<Algo> {
+template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
 private:
    // algo_
    Algo algo_;

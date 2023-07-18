@@ -21,14 +21,13 @@ gradient: Example and Test
 # include <cmpad/cppad/gradient.hpp>
 
 namespace {
-   template <class Grad_Det>
-   void check_grad_det(void)
+   template <class Algo>
+   void check_grad_det(cmpad::gradient<Algo>& grad_det)
    {  //
       // n
       size_t ell = 3;
       //
       // grad_det
-      Grad_Det grad_det;
       grad_det.setup(ell);
       //
       // x
@@ -60,12 +59,14 @@ BOOST_AUTO_TEST_CASE(cppad_gradient)
 {  //
    // adolc
    BOOST_TEST_MESSAGE("   adolc gradient");
-   typedef cmpad::det_by_minor<adouble> adolc_Algo;
-   check_grad_det< cmpad::adolc::gradient<adolc_Algo> >();
+   typedef cmpad::det_by_minor<adouble>       adolc_Algo;
+   cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
+   check_grad_det(adolc_grad_det);
    //
    // cppad
    BOOST_TEST_MESSAGE("   cppad gradient");
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
-   check_grad_det< cmpad::cppad::gradient<cppad_Algo> >();
+   cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
+   check_grad_det(cppad_grad_det);
 }
 // END C++
