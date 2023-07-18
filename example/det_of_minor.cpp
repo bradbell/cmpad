@@ -20,7 +20,7 @@ det_of_minor: Example and Test
 # include <cstddef>
 # include <boost/test/unit_test.hpp>
 # include <cmpad/det_of_minor.hpp>
-# include <cmpad/vector.hpp>
+# include <cmpad/typedef.hpp>
 
 # define BOOST_TEST_DYN_LINK
 # define BOOST_TEST_MODULE example

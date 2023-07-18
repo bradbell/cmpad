@@ -175,7 +175,7 @@ det_of_minor: Source Code
 // BEGIN C++
 # include <cassert>
 # include <cstddef>
-# include <cmpad/vector.hpp>
+# include <cmpad/typedef.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 

@@ -72,7 +72,7 @@ uniform_10.hpp: Source Code
 */
 // BEGIN C++
 # include <cstdlib>
-# include <cmpad/vector.hpp>
+# include <cmpad/typedef.hpp>
 
 namespace cmpad {
    // BEGIN PROTOTYPE

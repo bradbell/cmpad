@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_VECTOR_HPP
-# define CMPAD_VECTOR_HPP
+# ifndef CMPAD_TYPEDEF_HPP
+# define CMPAD_TYPEDEF_HPP
 /*
 {xrst_begin cmpad_vector}
 {xrst_spell

@@ -83,7 +83,7 @@ Derived Classes
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
-# include <cmpad/vector.hpp>
+# include <cmpad/typedef.hpp>
 
 namespace cmpad {
    template <class Scalar> struct fun_obj {

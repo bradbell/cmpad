@@ -14,7 +14,7 @@
 # files
 #
 # cmake creates this file from vector.hpp.in
-/include/cmpad/vector.hpp
+/include/cmpad/typedef.hpp
 #
 # used by vim to backup and restore changes
 *.swp

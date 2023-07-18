@@ -7,7 +7,7 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 The Compare AD Users Documentation
 ##################################
 {xrst_toc_table
-   include/cmpad/vector.hpp.in
+   include/cmpad/typedef.hpp.in
    include/cmpad/fun_obj.hpp
    include/cmpad/det_of_minor.hpp
    include/cmpad/gradient.hpp
