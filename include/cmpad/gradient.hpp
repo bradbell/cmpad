@@ -15,9 +15,10 @@ Syntax
 |  ``# include <cmpad/gradient.hpp``
 |  ``cmpad::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *option* )
-|  *grad* . ``setup`` ( *ell* )
-|  *grad* . ``domain`` ()
-|  *package* = *grad* . ``package`` ()
+|  *grad* . ``setup`` ( *option* )
+|  *option* = *grad* . ``option`` ()
+|  *n* = *grad* . ``domain`` ()
+|  *m* = *grad* . ``range`` ()
 |  *g* = *grad* ( *x* )
 
 Source Code
@@ -43,13 +44,18 @@ The ``setup`` should do calculations that do not depend on *x*
 
 domain
 ******
-This pure virtual function returns the dimension of the
-:ref:`fun_obj@domain` space dimension for this algorithm.
-This value depends on *ell* and *Algo* .
+This returns the dimension of the
+:ref:`fun_obj@domain` space dimension for the function and gradient.
+This likely depends on *option* and *Algo* .
 
-package
-*******
-Is the name of the package that is computing the gradient.
+range
+*****
+This returns the dimension of the
+:ref:`fun_obj@range` space dimension for the gradient.
+This likely depends on *option* and *Algo* .
+The dimension of the range space for the gradient is equal
+to the dimension of the domain space for the gradient and function.
+Hence ``range`` is implemented by this interface and not virtual.
 
 x
 *
@@ -59,8 +65,8 @@ of the function represented by *algo* , is evaluated.
 
 g
 *
-This result is an ``cmpad::vector<double>`` object with size
-equal to the size of *x* .
+This result is has equal to the dimension of the range space for the gradient,
+which is equal to the size of *x* .
 It is the gradient evaluated at the point *x* .
 
 Example and Derived Classes
@@ -75,20 +81,25 @@ Example and Derived Classes
 -------------------------------------------------------------------------------
 */
 // BEGIN C++
+# include <cmpad/fun_obj.hpp>
+
 namespace cmpad {
    // gradient
-   template <class Algo> class gradient {
+   template <class Algo> class gradient : public fun_obj<double> {
    public:
-      // package
-      virtual std::string package(void) = 0;
       // setup
-      virtual void setup(size_t ell) = 0;
+      virtual void setup(const option_t& option) override = 0;
+      // option
+      virtual const option_t& option(void) const override = 0;
       // domain
-      virtual size_t domain(void) = 0;
+      virtual size_t domain(void) const override  = 0;
+      // range
+      size_t range(void) const override
+      {  return domain(); }
       // operator
       virtual const cmpad::vector<double>& operator()(
          const cmpad::vector<double>& x
-      ) = 0;
+      ) override = 0;
    };
 
 }

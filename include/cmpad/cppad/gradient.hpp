@@ -15,12 +15,13 @@ Calculate Gradient Using CppAD
 
 Syntax
 ******
-|  ``# include <cmpad/cppad/gradient.hpp``
+| ``# include <cmpad/cppad/gradient.hpp>``
 |  ``cmpad::cppad::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *option* )
-|  *grad* . ``setup`` ( *ell* )
-|  *grad* . ``domain`` ( )
-|  *package* = *grad* . ``package`` ()
+|  *grad* . ``setup`` ( *option* )
+|  *option* = *grad* . ``option`` ()
+|  *n* = *grad* . ``domain`` ( )
+|  *m* = *grad* . ``range`` ( )
 |  *g* = *grad* ( *x* )
 
 
@@ -51,6 +52,10 @@ namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 // gradient
 template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
 private:
+   //
+   // option_
+   option_t option_;
+   //
    // algo_
    Algo algo_;
    // w_
@@ -61,16 +66,13 @@ private:
    cmpad::vector<double> g_;
 //
 public:
-   // package
-   std::string package(void)
-   {  return "cppad"; }
+   // option
+   const option_t& option(void) const override
+   {  return option_; }
    // setup
-   void setup(size_t ell) override
+   void setup(const option_t& option) override
    {  //
       // algo_
-      cmpad::option_t option;
-      option["name"] = "function";
-      option["ell"]  = std::to_string(ell);
       algo_.setup(option);
       //
       // n
@@ -98,7 +100,7 @@ public:
       g_.resize(n);
    }
    // domain
-   size_t domain(void) override
+   size_t domain(void) const override
    {  return algo_.domain(); };
    //
    // operator

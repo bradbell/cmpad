@@ -16,10 +16,9 @@ Determine Execution Speed of a Function Object
 Syntax
 ******
 |  ``# include <cmpad/fun_speed.hpp>``
-|  *fun_obj* . ``setup`` ( *ell* )
 |  *n* = *fun_obj*.domain()
 |  *y* = *fun_obj* ( *x* )
-|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *ell*, *time_min* )
+|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *time_min* )
 
 Prototype
 *********
@@ -32,17 +31,7 @@ fun_obj
 *******
 We are testing the speed of the evaluation of *y* by this function object.
 The time to execute its setup routine is not included.
-
-setup
-*****
-The *fun_obj* ``setup`` function is call once with *ell* equal
-to is value in the call to ``cmpad::fun_speed``.
-The time for this call is not included in the *rate* result .
-
-ell
-***
-This parameter determines the size of the calculation corresponding
-to the function object.
+The *fun_obj* :ref:`fun_obj@setup`  must have already been called.
 
 n
 *
@@ -103,7 +92,6 @@ namespace cmpad { // BEGIN cmpad namespace
 // BEGIN PROTOTYPE
 template <class Fun_Obj> double fun_speed(
    Fun_Obj& fun_obj    ,
-   size_t   ell        ,
    double   time_min   )
 // END PROTOTYPE
 {  //
@@ -113,9 +101,6 @@ template <class Fun_Obj> double fun_speed(
    // time_point, duration
    typedef std::chrono::time_point<steady_clock> time_point;
    typedef std::chrono::duration<double>         duration;
-   //
-   // fun_obj
-   fun_obj.setup(ell);
    //
    // x
    size_t n = fun_obj.domain();

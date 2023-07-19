@@ -18,9 +18,10 @@ Syntax
 | ``# include <cmpad/adolc/gradient.hpp>``
 |  ``cmpad::adolc::gradient`` < *Algo* > *grad*
 |  *algo* . ``setup`` ( *option* )
-|  *grad* . ``setup`` ( *ell* )
-|  *grad* . ``domain`` ( )
-|  *package* = *grad* . ``package`` ()
+|  *grad* . ``setup`` ( *option* )
+|  *option* = *grad* . ``option`` ()
+|  *n* = *grad* . ``domain`` ( )
+|  *m* = *grad* . ``range`` ( )
 |  *g* = *grad* ( *x* )
 
 
@@ -51,6 +52,10 @@ namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 // gradient
 template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
 private:
+   //
+   // option_
+   option_t option_;
+   //
    // algo_
    Algo algo_;
    //
@@ -64,16 +69,13 @@ private:
    cmpad::vector<double> g_;
 //
 public:
-   // package
-   std::string package(void)
-   {  return "adolc"; }
+   // option
+   const option_t& option(void) const override
+   {  return option_; }
    // setup
-   void setup(size_t ell) override
+   void setup(const option_t& option) override
    {  //
       // algo_
-      cmpad::option_t option;
-      option["name"] = "function";
-      option["ell"]  = std::to_string(ell);
       algo_.setup(option);
       //
       // n
@@ -111,7 +113,7 @@ public:
       g_.resize(n);
    }
    // domain
-   size_t domain(void) override
+   size_t domain(void) const override
    {  return algo_.domain(); };
    //
    // operator

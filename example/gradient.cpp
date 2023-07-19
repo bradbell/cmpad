@@ -22,16 +22,23 @@ gradient: Example and Test
 
 namespace {
    template <class Algo>
-   void check_grad_det(cmpad::gradient<Algo>& grad_det)
+   void check_grad_det(
+      const std::string&     name     ,
+      cmpad::gradient<Algo>& grad_det )
    {  //
       // message
-      BOOST_TEST_MESSAGE( "   " + grad_det.package() );
+      BOOST_TEST_MESSAGE( "   " + name );
+      //
+      // option
+      cmpad::option_t option;
+      option["name"] = name;
+      option["ell"]  = "3";
       //
       // ell
       size_t ell = 3;
       //
       // grad_det
-      grad_det.setup(ell);
+      grad_det.setup(option);
       //
       // x
       // values in the matrix in row major order
@@ -63,11 +70,11 @@ BOOST_AUTO_TEST_CASE(Gradient)
    // adolc
    typedef cmpad::det_by_minor<adouble>       adolc_Algo;
    cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
-   check_grad_det(adolc_grad_det);
+   check_grad_det("adolc gradient", adolc_grad_det);
    //
    // cppad
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
    cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
-   check_grad_det(cppad_grad_det);
+   check_grad_det("cppad gradient", cppad_grad_det);
 }
 // END C++

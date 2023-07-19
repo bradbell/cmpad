@@ -23,10 +23,16 @@ gradient: Example and Test
 
 namespace {
    template <class Algo>
-   void check_speed_det(cmpad::gradient<Algo>& grad_det)
+   void check_speed_det(
+      const std::string&     name     ,
+      cmpad::gradient<Algo>& grad_det )
    {  //
       // message
-      BOOST_TEST_MESSAGE( "   " + grad_det.package() );
+      BOOST_TEST_MESSAGE( "   " + name );
+      //
+      // option
+      cmpad::option_t option;
+      option["name"] = name;
       //
       // time_min
       // minimum time for test in seconds
@@ -36,8 +42,14 @@ namespace {
       double previous_rate = 0.0;
       for(size_t ell = 6; ell < 10; ++ell)
       {  //
+         // option
+         option["ell"] = std::to_string(ell);
+         //
+         // grad_det
+         grad_det.setup(option);
+         //
          // rate
-         double rate  = cmpad::fun_speed(grad_det, ell, time_min);
+         double rate  = cmpad::fun_speed(grad_det, time_min);
          //
          // ratio
          // number of floating operations goes up by a factor of ell
@@ -55,11 +67,11 @@ BOOST_AUTO_TEST_CASE(Fun_speed)
    // adolc
    typedef cmpad::det_by_minor<adouble>       adolc_Algo;
    cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
-   check_speed_det(adolc_grad_det);
+   check_speed_det("adolc grad_det", adolc_grad_det);
    //
    // cppad
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
-   cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
-   check_speed_det(cppad_grad_det);
+   cmpad::cppad::gradient<cppad_Algo>               cppad_grad_det;
+   check_speed_det("cppad grad_det", cppad_grad_det);
 }
 // END C++
