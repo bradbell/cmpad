@@ -21,7 +21,7 @@ for file_name in $(git ls-files)
 do
    if ! echo "$ignore_list" | tr '\n' ' ' | grep " $file_name " > /dev/null
    then
-      if echo $file_name | grep '^bin/' > /dev/null 
+      if echo $file_name | grep '^bin/' > /dev/null
       then
          if [ ! -x $file_name ]
          then

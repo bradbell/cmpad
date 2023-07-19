@@ -31,8 +31,7 @@ namespace {
       //
       // option
       cmpad::option_t option;
-      option["name"] = name;
-      option["ell"]  = "3";
+      option["size"]  = "3";
       //
       // ell
       size_t ell = 3;

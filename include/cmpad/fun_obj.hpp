@@ -45,11 +45,7 @@ The ``setup`` can (and should) do calculations that do not depend on *x*
 
 option
 ******
-This map must have the following key:
-
-name
-====
-The corresponding value is the name of this function object.
+This interface does not place any restrictions on the content of *option* .
 
 domain
 ******

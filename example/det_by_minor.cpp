@@ -26,7 +26,7 @@ det_by_minor: Example and Test
 
 BOOST_AUTO_TEST_CASE(det_by_minor)
 {
-   // ell
+   // size
    // dimension of the matrix
    size_t ell = 3;
    //
@@ -35,8 +35,7 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    //
    // det.setup
    std::map<std::string, std::string> option;
-   option["name"] = "det_by_minor double";
-   option["ell"]  = std::to_string(ell);
+   option["size"]  = std::to_string(ell);
    det.setup(option);
    //
    // x

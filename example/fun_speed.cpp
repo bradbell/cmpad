@@ -32,18 +32,17 @@ namespace {
       //
       // option
       cmpad::option_t option;
-      option["name"] = name;
       //
       // time_min
       // minimum time for test in seconds
       double time_min = 0.2;
       //
-      // previous_rate, ell
+      // previous_rate, size
       double previous_rate = 0.0;
       for(size_t ell = 6; ell < 10; ++ell)
       {  //
          // option
-         option["ell"] = std::to_string(ell);
+         option["size"] = std::to_string(ell);
          //
          // grad_det
          grad_det.setup(option);

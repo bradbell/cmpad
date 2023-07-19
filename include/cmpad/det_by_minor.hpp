@@ -54,14 +54,13 @@ object interface.
 
 option
 ******
-In addition to :ref:`fun_obj@option@name` ,
-this map has the following key:
+This map has the following key:
 
-ell
-===
+size
+====
 The corresponding value can be converted to an integer using
 
-|  std::stoi ( *option* [ ``"ell"`` ] )
+|  std::stoi ( *option* [ ``"size"`` ] )
 
 This is the row and column dimension for subsequent use of the *det* object.
 We use the notation :math:`\ell` for this value.
@@ -152,7 +151,7 @@ public:
       option_ = option;
       //
       // ell_
-      int ell = std::stoi( option.at("ell") );
+      int ell = std::stoi( option.at("size") );
       assert( 0 < ell );
       ell_ = size_t(ell);
       //
