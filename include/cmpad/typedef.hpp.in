@@ -5,7 +5,7 @@
 # ifndef CMPAD_TYPEDEF_HPP
 # define CMPAD_TYPEDEF_HPP
 /*
-{xrst_begin cmpad_vector}
+{xrst_begin cmpad_typedef}
 {xrst_spell
    cmake
    cppad
@@ -15,45 +15,68 @@
 The cmpad::vector Template Class
 ################################
 
-cmpad::vector
-*************
-The cmpad cmake command line can define cmpad_vector in the following way:
-
-|   ``cmake -D cmpad_vector=`` *type*
-
-where *type* is one of the following values: ``boost`` , ``cppad`` ,
-or ``std``.
-This will determine if ``cmpad::vector`` is the boost, cppad, or std
-vector template class.
-The default value, if *cmpad_vector* is not defined on the cmake command line,
-is ``std`` .
-
-{xrst_end cmpad_vector}
-*/
-# include <map>
-# include <string>
-namespace cmpad {
-   typedef std::map<std::string, std::string> option_t;
+option_t
+********
+{xrst_literal
+   // BEGIN OPTION_T
+   // END OPTION_T
 }
 
+cmpad::vector
+*************
+The cmpad cmake command line determines the ``cmpad::vector`` template class
+in the following way. If
 
-// boost vector
-# if @cmpad_vector_is_boost@
-# include<boost/numeric/ublas/vector.hpp>
-namespace cmpad { using boost::numeric::ublas::vector; }
-# endif
+|   ``-D cmpad_vector=`` *vector_type*
 
-// CppAD vector
-# if @cmpad_vector_is_cppad@
-# include<cppad/utility/vector.hpp>
-namespace cmpad { using CppAD::vector; }
-# endif
+is present on the cmake command line, *vector_type* must be
+``std`` , ``boost`` , or ``cppad``;
+see below for the corresponding definition.
+If *vector_type* is not on the cmake command line, ``std`` is used.
 
-// std vector
+std
+===
+{xrst_literal
+   cmpad_vector_is_std
+   // END std
+}
+
+boost
+=====
+{xrst_literal
+   cmpad_vector_is_boost
+   // END boost
+}
+
+cppad
+=====
+{xrst_literal
+   cmpad_vector_is_cppad
+   // END cppad
+}
+
+{xrst_end cmpad_typedef}
+*/
+// BEGIN OPTION_T
+# include <map>
+# include <string>
+namespace cmpad { typedef std::map<std::string, std::string> option_t; }
+// END OPTION_T
+
 # if @cmpad_vector_is_std@
 # include<vector>
 namespace cmpad { using std::vector; }
-# endif
+# endif // END std
+
+# if @cmpad_vector_is_boost@
+# include<boost/numeric/ublas/vector.hpp>
+namespace cmpad { using boost::numeric::ublas::vector; }
+# endif // END boost
+
+# if @cmpad_vector_is_cppad@
+# include<cppad/utility/vector.hpp>
+namespace cmpad { using CppAD::vector; }
+# endif // END cppad
 
 
 # endif
