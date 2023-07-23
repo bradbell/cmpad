@@ -88,9 +88,9 @@ namespace cmpad {
    template <class Algo> class gradient : public fun_obj<double> {
    public:
       // setup
-      virtual void setup(const option_t& option) override = 0;
+      virtual void setup(const str2str_map& option) override = 0;
       // option
-      virtual const option_t& option(void) const override = 0;
+      virtual const str2str_map& option(void) const override = 0;
       // domain
       virtual size_t domain(void) const override  = 0;
       // range

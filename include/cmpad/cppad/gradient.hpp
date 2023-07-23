@@ -54,7 +54,7 @@ template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
 private:
    //
    // option_
-   option_t option_;
+   str2str_map option_;
    //
    // algo_
    Algo algo_;
@@ -67,10 +67,10 @@ private:
 //
 public:
    // option
-   const option_t& option(void) const override
+   const str2str_map& option(void) const override
    {  return option_; }
    // setup
-   void setup(const option_t& option) override
+   void setup(const str2str_map& option) override
    {  //
       // algo_
       algo_.setup(option);

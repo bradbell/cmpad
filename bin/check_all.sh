@@ -47,6 +47,10 @@ then
    rm CMakeCache.txt
 fi
 #
+# PKG_CONFIG_PATH
+# if this is empty, cmake uses local install of packages
+PKG_CONFIG_PATH=''
+#
 # make
 cmake -B . -S .. -D cmpad_vector=cppad
 make

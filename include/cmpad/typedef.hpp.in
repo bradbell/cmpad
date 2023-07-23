@@ -10,16 +10,17 @@
    cmake
    cppad
    std
+   str
 }
 
 The cmpad::vector Template Class
 ################################
 
-option_t
-********
+str2str_map
+***********
 {xrst_literal
-   // BEGIN OPTION_T
-   // END OPTION_T
+   // BEGIN STR2STR_MAP
+   // END STR2STR_MAP
 }
 
 cmpad::vector
@@ -57,11 +58,11 @@ cppad
 
 {xrst_end cmpad_typedef}
 */
-// BEGIN OPTION_T
+// BEGIN STR2STR_MAP
 # include <map>
 # include <string>
-namespace cmpad { typedef std::map<std::string, std::string> option_t; }
-// END OPTION_T
+namespace cmpad { typedef std::map<std::string, std::string> str2str_map; }
+// END STR2STR_MAP
 
 # if @cmpad_vector_is_std@
 # include<vector>

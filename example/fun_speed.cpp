@@ -31,7 +31,7 @@ namespace {
       BOOST_TEST_MESSAGE( "   " + name );
       //
       // option
-      cmpad::option_t option;
+      cmpad::str2str_map option;
       //
       // time_min
       // minimum time for test in seconds

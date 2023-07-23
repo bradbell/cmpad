@@ -121,7 +121,7 @@ template <class Scalar> class det_by_minor : public fun_obj<Scalar>
 {
 private:
    // option_
-   option_t option_;
+   str2str_map option_;
    //
    // ell_
    size_t ell_;
@@ -136,7 +136,7 @@ private:
    //
 public:
    // option
-   const option_t& option(void) const override
+   const str2str_map& option(void) const override
    {  return option_; }
    // domain
    size_t domain(void) const override
@@ -145,7 +145,7 @@ public:
    size_t range(void) const override
    {  return 1; }
    // setup
-   void setup(const option_t& option) override
+   void setup(const str2str_map& option) override
    {  //
       // option_
       option_ = option;
