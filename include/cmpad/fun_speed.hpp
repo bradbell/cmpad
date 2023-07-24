@@ -49,7 +49,7 @@ dimension of the range space for the function object.
 time_min
 ********
 This is the minimum time in seconds for the timing of the computation.
-The computation of the function object will be repeated until
+The computation of the function object will be repeated enough times
 so that this minimum time is reached.
 
 rate
