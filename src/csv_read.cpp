@@ -17,8 +17,8 @@ Read a Csv File
 Prototype
 *********
 {xrst_literal ,
-   // BEGIN PROTOTYPE, END PROTOTYPE
-   // BEGIN RETURN, END RETURN
+   // BEGIN PROTOTYPE, // END PROTOTYPE
+   // BEGIN RETURN, // END RETURN
 }
 
 vec_vec_str
@@ -28,8 +28,10 @@ see :ref:`cmpad_typedef@vec_vec_str` .
 file_name
 *********
 is the name of the file containing the csv file.
-The rows in this file are separated by newlines ``'\n'``
-and the columns are separated by commas ``','`` .
+Each row in this file ends with a newlines ``'\n'``.
+The columns are separated by commas ``','`` .
+A comma at the end of a line means there is an empty value
+at the end of the corresponding row.
 There are no other special characters in this file.
 
 csv_table
@@ -88,21 +90,26 @@ namespace cmpad {
    vec_vec_str csv_read(const std::string& file_name)
    // END PROTOTYPE
    {  //
+      // csv_table
+      vec_vec_str csv_table;
+      //
       // ifs
       std::ifstream ifs(file_name);
       if( ( ifs.rdstate() & std::ifstream::failbit ) != 0 )
       {  std::cerr << "csv_table.read: error opening " << file_name
             << " for reading\n";
-         return false;
+         return csv_table;
       }
       // csv_table
-      vec_vec_str                csv_table;
       cmpad::vector<std::string> row;
       row = get_row(ifs);
       while( row.size() > 0 )
       {  csv_table.push_back(row);
          row = get_row(ifs);
       }
+      //
+      // ifs
+      ifs.close();
       //
       // BEGIN RETURN
       // ...
