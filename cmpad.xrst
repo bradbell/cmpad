@@ -12,6 +12,7 @@ The Compare AD Users Documentation
    include/cmpad/gradient.hpp
    include/cmpad/fun_speed.hpp
    include/cmpad/det_of_minor.hpp
+   src/csv_read.cpp
    src/uniform_01.cpp
 }
 

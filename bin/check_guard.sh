@@ -18,8 +18,8 @@ do
    first_dir=$(echo $dir | sed -e 's|/.*||')
    #
    macro_name=$(\
-      sed -n -e '/^# *ifndef *CMPAD_[0-9A-Z_]*_HPP$/p' $file_name | \
-      sed -e 's|^# *ifndef *||'
+      sed -n -e '/^# *ifndef *CMPAD_[0-9A-Z_]*_HPP[ \t]*$/p' $file_name | \
+      sed -e 's|^# *ifndef *||' -e 's|[ \t]*$||'
    )
    check=$(echo $file_name | tr [a-zA-Z/.] [A-Za-z__])
    #
@@ -32,7 +32,7 @@ do
    #
    if [ "$macro_name" == '' ]
    then
-      echo "$file_name: Cannot find  ^# *ifndef *CMPAD_[0-9A-Z_]*_HPP"
+      echo "$file_name: Cannot find  ^# *ifndef *CMPAD_[0-9A-Z_]*_HPP[ \t]*"
       different='yes'
    elif [ "$macro_name" != "$check" ]
    then

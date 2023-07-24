@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CSV_READ_HPP  
-# define CMPAD_CSV_READ_HPP  
+# ifndef CMPAD_CSV_READ_HPP
+# define CMPAD_CSV_READ_HPP
 
 # include <string>
 # include <cmpad/typedef.hpp>

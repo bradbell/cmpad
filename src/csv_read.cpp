@@ -4,9 +4,50 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin csv_read}
+{xrst_spell
+   vec
+   str
+   newlines
+   th
+}
 
 Read a Csv File
 ###############
+
+Prototype
+*********
+{xrst_literal ,
+   // BEGIN PROTOTYPE, END PROTOTYPE
+   // BEGIN RETURN, END RETURN
+}
+
+vec_vec_str
+***********
+see :ref:`cmpad_typedef@vec_vec_str` .
+
+file_name
+*********
+is the name of the file containing the csv file.
+The rows in this file are separated by newlines ``'\n'``
+and the columns are separated by commas ``','`` .
+There are no other special characters in this file.
+
+csv_table
+*********
+#. The *j*-th column of the *i*-th row of the file contains the value
+   csv_table[i][j] . The special characters ``'\n'`` and ``','`` are
+   not included in these values.
+#. The row and column indices start at zero.
+#. csv_table.size() is the number of rows in the table
+#. csv_table[i].size() is the number of columns in the *i*-th row.
+
+{xrst_toc_hidden
+   example/csv_read.cpp
+}
+Example
+*******
+The file :ref:`xam_csv_read.cpp-name` contains an example and test
+of this routine.
 
 {xrst_end csv_read}
 ------------------------------------------------------------------------------
@@ -19,7 +60,7 @@ Read a Csv File
 namespace {
    // get_row
    cmpad::vector<std::string> get_row(std::ifstream& ifs)
-   {  // line  
+   {  // line
       std::string line;
       std::getline(ifs, line);
       //
@@ -47,16 +88,16 @@ namespace cmpad {
    vec_vec_str csv_read(const std::string& file_name)
    // END PROTOTYPE
    {  //
-      // ifs  
+      // ifs
       std::ifstream ifs(file_name);
       if( ( ifs.rdstate() & std::ifstream::failbit ) != 0 )
-      {  std::cerr << "csv_table.read: error opening " << file_name 
+      {  std::cerr << "csv_table.read: error opening " << file_name
             << " for reading\n";
          return false;
       }
       // csv_table
       vec_vec_str                csv_table;
-      cmpad::vector<std::string> row; 
+      cmpad::vector<std::string> row;
       row = get_row(ifs);
       while( row.size() > 0 )
       {  csv_table.push_back(row);

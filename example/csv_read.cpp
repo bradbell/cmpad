@@ -3,16 +3,16 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin csv_read.cpp}
+{xrst_begin xam_csv_read.cpp}
 
 csv_read: Example and Test
-############################
+##########################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end  csv_read.cpp}
+{xrst_end  xam_csv_read.cpp}
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(csv_read)
    }
    //
    // example_data
-   const char* example_data = 
+   const char* example_data =
       "A,B,C\n"
       "item_1_A,item_1_B,item_1_C\n"
       "item_2_A,item_2_B,item_2_C\n"
@@ -47,15 +47,21 @@ BOOST_AUTO_TEST_CASE(csv_read)
    // example_table
    cmpad::vec_vec_str example_table = cmpad::csv_read(file_name);
    //
-   // check example_table[0]
+   // example_table
+   // check number of rows
+   BOOST_CHECK( example_table.size() == 4 );
+   //
+   // example_table[0]
+   BOOST_CHECK( example_table[0].size() == 3 );
    for(int j = 0; j < 3; ++j)
    {  string c{ char('A' + j) };
       BOOST_CHECK( c == example_table[0][j] );
    }
    //
-   // check other rows of example_table
+   // example_table[j] for 0 < j
    for(int i = 1; i < 4; ++i)
-   {  string r{ char('0' + i) };  
+   {  BOOST_CHECK( example_table[0].size() == 3 );
+      string r{ char('0' + i) };
       for(int j = 0; j < 3; ++j)
       {  string c{ char('A' + j) };
          string item = "item_" + r + "_" + c;
