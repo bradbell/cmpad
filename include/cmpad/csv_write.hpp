@@ -9,7 +9,7 @@
 # include <cmpad/typedef.hpp>
 namespace cmpad {
    void csv_write(
-      const std::string& file_name  , const vec_vec_str& csv_table  
+      const std::string& file_name  , const vec_vec_str& csv_table
    );
 }
 

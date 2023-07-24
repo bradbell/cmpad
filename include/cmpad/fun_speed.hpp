@@ -5,7 +5,7 @@
 # ifndef CMPAD_FUN_SPEED_HPP
 # define CMPAD_FUN_SPEED_HPP
 /*
-{xrst_begin_parent fun_speed}
+{xrst_begin fun_speed}
 {xrst_spell
    obj
 }
@@ -65,23 +65,19 @@ Example
 The file :ref:`fun_speed.cpp-name` is an example and test that
 uses this function.
 
-Source Code
-***********
-The page :ref:`fun_speed.hpp-name` contains the source code for this function.
-
 {xrst_end fun_speed}
 -------------------------------------------------------------------------------
-{xrst_begin fun_speed.hpp}
+\{xrst_begin fun_speed.hpp}
 
 fun_speed: Source Code
 ######################
-{xrst_literal
+\{xrst_literal
    // BEGIN C++
    // END C++
 }
 
 
-{xrst_end fun_speed.hpp}
+\{xrst_end fun_speed.hpp}
 -------------------------------------------------------------------------------
 */
 // BEGIN C++

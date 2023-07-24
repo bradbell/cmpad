@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin_parent uniform_01}
+{xrst_begin uniform_01}
 {xrst_spell
    std
    srand
@@ -50,22 +50,18 @@ Example
 The file :ref:`xam_uniform_01.cpp-name` contains an example and test
 of this routine.
 
-Source Code
-***********
-The page :ref:`uniform_01.cpp-name` displays the source code for this function.
-
 {xrst_end uniform_01}
 ------------------------------------------------------------------------------
-{xrst_begin uniform_01.cpp}
+\{xrst_begin uniform_01.cpp}
 
 uniform_10.cpp: Source Code
 ###########################
-{xrst_literal
+\{xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end uniform_01.cpp}
+\{xrst_end uniform_01.cpp}
 ------------------------------------------------------------------------------
 */
 // BEGIN C++

@@ -35,7 +35,7 @@ There are no other special characters in this file.
 csv_table
 *********
 #. The *j*-th column of the *i*-th row of the file contains the value
-   csv_table[i][j] . 
+   csv_table[i][j] .
 #. 0 < csv_table[i].size() for all row indices *i* .
 #. The character ``','`` is added between columns.
 #. The character ``'\n'`` is added at the end of every line.
@@ -59,7 +59,7 @@ of this routine.
 namespace {
    // get_row
    void put_row(std::ofstream& ofs, const cmpad::vector<std::string>& row)
-   {  // 
+   {  //
       assert( 0 < row.size() );
       //
       // ofs
@@ -75,7 +75,7 @@ namespace {
 namespace cmpad {
    // BEGIN PROTOTYPE
    void csv_write(
-      const std::string& file_name , 
+      const std::string& file_name ,
       const vec_vec_str& csv_table )
    // END PROTOTYPE
    {  //

@@ -5,7 +5,7 @@
 # ifndef CMPAD_DET_OF_MINOR_HPP
 # define CMPAD_DET_OF_MINOR_HPP
 /*
-{xrst_begin_parent det_of_minor}
+{xrst_begin det_of_minor}
 {xrst_spell
    factorization
 }
@@ -151,25 +151,19 @@ Example
 The file :ref:`det_of_minor.cpp-name`
 contains an example and test of ``det_of_minor`` .
 
-Source Code
-***********
-The page
-:ref:`det_of_minor.hpp-name`
-displays the source for this function.
-
 {xrst_end det_of_minor}
 ---------------------------------------------------------------------------
-{xrst_begin det_of_minor.hpp}
+\{xrst_begin det_of_minor.hpp}
 
 det_of_minor: Source Code
 #########################
 
-{xrst_literal
+\{xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end det_of_minor.hpp}
+\{xrst_end det_of_minor.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++

@@ -21,7 +21,7 @@ csv_write: Example and Test
 
 namespace {
    std::string get_file(const std::string& file_name)
-   {  // ifs  
+   {  // ifs
       std::ifstream ifs(file_name);
       if( ifs.rdstate() & std::ifstream::failbit != 0 )
       {  std::cerr << "xam_xsv_write: error opening " << file_name << "\n";
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(csv_write)
    ;
    //
    // check
-   BOOST_CHECK( check == example_data ); 
+   BOOST_CHECK( check == example_data );
 }
 
 // END C++
