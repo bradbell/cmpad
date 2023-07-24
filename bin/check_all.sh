@@ -13,9 +13,9 @@ echo_eval() {
 }
 # -----------------------------------------------------------------------------
 #
-if [ $# != 0 ]
+if [ $# != 1 ]
 then
-   echo 'usage: bin/check_all.sh'
+   echo 'usage: bin/check_all.sh (debug|release)'
    exit 1
 fi
 if [ "$0" != 'bin/check_all.sh' ]
@@ -28,6 +28,12 @@ then
    echo 'bin/check_all.sh: cannot find ./.git'
    exit 1
 fi
+if [ "$1" != 'debug' ] && [ "$1" != 'release' ]
+then
+   echo 'usage: bin/check_all.sh (debug|release)'
+   exit 1
+fi
+build_type="$1"
 # -----------------------------------------------------------------------------
 list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
 for check in $list
@@ -36,7 +42,7 @@ do
 done
 # -----------------------------------------------------------------------------
 # run_cmake.sh
-bin/run_cmake.sh
+bin/run_cmake.sh $build_type
 #
 # build
 cd build

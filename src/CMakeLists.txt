@@ -8,6 +8,7 @@ SET(soversion 23.7.24)
 #
 # cmpad
 ADD_LIBRARY(cmpad SHARED
+   csv_read.cpp
    uniform_01.cpp
 )
 SET_TARGET_PROPERTIES(cmpad PROPERTIES SOVERSION ${soversion})

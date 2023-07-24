@@ -7,6 +7,7 @@
 # example
 ADD_EXECUTABLE(example
    example.cpp
+   csv_read.cpp
    det_by_minor.cpp
    det_of_minor.cpp
    fun_speed.cpp

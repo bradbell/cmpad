@@ -11,6 +11,7 @@
    cppad
    std
    str
+   vec
 }
 
 The cmpad::vector Template Class
@@ -21,6 +22,13 @@ str2str_map
 {xrst_literal
    // BEGIN STR2STR_MAP
    // END STR2STR_MAP
+}
+
+vec_vec_str
+***********
+{xrst_literal
+   // BEGIN VEC_VEC_STR
+   // END VEC_VEC_STR
 }
 
 cmpad::vector
@@ -78,6 +86,13 @@ namespace cmpad { using boost::numeric::ublas::vector; }
 # include<cppad/utility/vector.hpp>
 namespace cmpad { using CppAD::vector; }
 # endif // END cppad
+
+// BEGIN VEC_VEC_STR
+# include <string>
+namespace cmpad {
+   typedef cmpad::vector< cmpad::vector<std::string> > vec_vec_str;
+}
+// END VEC_VEC_STR
 
 
 # endif

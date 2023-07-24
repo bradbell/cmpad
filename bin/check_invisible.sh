@@ -23,7 +23,7 @@ do
       read -p "remove invisible white space from $file [y/n] ?" response
       if [ "$response" == 'y' ]
       then
-         if [ -e $file ]
+         if [ -x $file ]
          then
             mv check_invisible.$$ $file
             chmod +x $file
