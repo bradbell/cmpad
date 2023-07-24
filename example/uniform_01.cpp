@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin uniform_01.cpp}
+{xrst_begin xam_uniform_01.cpp}
 
 uniform_01: Example and Test
 ############################
@@ -12,7 +12,7 @@ uniform_01: Example and Test
    // END C++
 }
 
-{xrst_end  uniform_01.cpp}
+{xrst_end  xam_uniform_01.cpp}
 */
 // BEGIN C++
 # include <ctime>

@@ -62,4 +62,5 @@ SET(CMAKE_CXX_STANDARD 14)
 #
 # subdirectories
 ADD_SUBDIRECTORY(include/cmpad)
+ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(example)

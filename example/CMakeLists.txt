@@ -3,6 +3,8 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+#
+# example
 ADD_EXECUTABLE(example
    example.cpp
    det_by_minor.cpp
@@ -11,3 +13,5 @@ ADD_EXECUTABLE(example
    gradient.cpp
    uniform_01.cpp
 )
+LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/src )
+TARGET_LINK_LIBRARIES(example cmpad)
