@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_csv_read.cpp}
+{xrst_begin csv_read.cpp}
 
 csv_read: Example and Test
 ##########################
@@ -12,7 +12,7 @@ csv_read: Example and Test
    // END C++
 }
 
-{xrst_end  xam_csv_read.cpp}
+{xrst_end  csv_read.cpp}
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
@@ -28,7 +28,8 @@ BOOST_AUTO_TEST_CASE(csv_read)
    std::string file_name= "csv_read.csv";
    std::ofstream ofs(file_name);
    if( ofs.rdstate() & std::ifstream::failbit != 0 )
-   {  std::cerr << "csv_read: error opening " << file_name << " for writing\n";
+   {  std::cerr << "csv_read.cpp: error opening " << file_name
+         << " for writing\n";
       std::exit(1);
    }
    //

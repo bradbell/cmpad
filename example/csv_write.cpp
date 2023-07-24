@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_csv_write.cpp}
+{xrst_begin csv_write.cpp}
 
 csv_write: Example and Test
 ###########################
@@ -12,7 +12,7 @@ csv_write: Example and Test
    // END C++
 }
 
-{xrst_end  xam_csv_write.cpp}
+{xrst_end  csv_write.cpp}
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
@@ -24,7 +24,7 @@ namespace {
    {  // ifs
       std::ifstream ifs(file_name);
       if( ifs.rdstate() & std::ifstream::failbit != 0 )
-      {  std::cerr << "xam_xsv_write: error opening " << file_name << "\n";
+      {  std::cerr << "csv_write.cpp: error opening " << file_name << "\n";
          std::exit(1);
       }
       //

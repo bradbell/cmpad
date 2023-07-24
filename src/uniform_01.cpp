@@ -47,21 +47,10 @@ uniformly sampled over the interval [0,1].
 }
 Example
 *******
-The file :ref:`xam_uniform_01.cpp-name` contains an example and test
+The file :ref:`uniform_01.cpp-name` contains an example and test
 of this routine.
 
 {xrst_end uniform_01}
-------------------------------------------------------------------------------
-\{xrst_begin uniform_01.cpp}
-
-uniform_10.cpp: Source Code
-###########################
-\{xrst_literal
-   // BEGIN C++
-   // END C++
-}
-
-\{xrst_end uniform_01.cpp}
 ------------------------------------------------------------------------------
 */
 // BEGIN C++
