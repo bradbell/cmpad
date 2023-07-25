@@ -2,8 +2,62 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
+/*
+{xrst_begin csv_speed}
+{xrst_spell
+   newlines
+}
+
+Record Execution Speed for an Algorithm and AD Package
+######################################################
+
+file_name
+*********
+is the name of the file were the results will be recorded.
+
+#. This is a csv file. To be specific commas separate columns
+   and newlines terminate rows; see :ref:`csv_read-name` and
+   :ref:`csv_write-name` .
+
+#. A line is added to this file corresponding to
+   rate in this call to csv_speed.
+
+#. If the file is empty on input, the following csv header line
+   is written to the file before the result for this call::
+
+      date,package,algorithm,rate
+
+#. If the file is not empty on input, it is assumed that the header line
+   for this file is as above.
+
+package
+*******
+This is the name of the AD package that *rate* corresponds to.
+If *package* is ``double`` , this is not a derivative calculation
+but rather an evaluations of the algorithm using the C++ type double.
+
+algorithm
+*********
+This is the name of the algorithm; e.g., :ref:`det_by_minor-name` .
+
+rate
+****
+This is the number of times per second that the derivative
+was calculated.
+
+{xrst_toc_hidden
+   example/csv_speed.cpp
+}
+Example
+*******
+The file :ref:`csv_speed.cpp-name` contains an example and test
+of this routine.
+
+{xrst_end csv_speed}
+*/
 # include <ctime>
 # include <filesystem>
+# include <sstream>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
 # include <cmpad/csv_write.hpp>
@@ -32,20 +86,21 @@ void csv_speed(
       csv_table.push_back(row);
    }
    //
-   // rate_str
-   char buffer[100];
-   snprintf(buffer, sizeof(buffer), "%g.5", rate);
-   std::string rate_str = buffer;
+   // ss, rate_str
+   std::stringstream ss;
+   ss << rate;
+   std::string rate_str = ss.str();
+   ss.str("");
    //
    // date_str
    std::time_t rawtime;
    std::time ( &rawtime );
-   struct tm*  ptm = std::gmtime( &rawtime );
-   int year  = ptm->tm_year + 1990;
+   struct tm*  ptm = std::localtime( &rawtime );
+   int year  = ptm->tm_year + 1900;
    int month = ptm->tm_mon + 1;
    int day   = ptm->tm_mday;
-   snprintf(buffer, sizeof(buffer), "%d-%d-%d", year, month, day);
-   std::string date = buffer;
+   ss << year << '-' << month << '-' << day;
+   std::string date = ss.str();
    //
    // csv_table
    cmpad::vector<std::string> row = { date, package, algorithm, rate_str };

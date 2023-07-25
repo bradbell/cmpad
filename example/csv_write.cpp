@@ -23,7 +23,7 @@ namespace {
    std::string get_file(const std::string& file_name)
    {  // ifs
       std::ifstream ifs(file_name);
-      if( ifs.rdstate() & std::ifstream::failbit != 0 )
+      if( ifs.rdstate() & (std::ifstream::failbit != 0) )
       {  std::cerr << "csv_write.cpp: error opening " << file_name << "\n";
          std::exit(1);
       }

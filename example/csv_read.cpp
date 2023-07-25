@@ -18,6 +18,7 @@ csv_read: Example and Test
 # include <boost/test/unit_test.hpp>
 # include <cmpad/csv_read.hpp>
 # include <fstream>
+# include <iostream>
 
 BOOST_AUTO_TEST_CASE(csv_read)
 {  //
@@ -27,7 +28,7 @@ BOOST_AUTO_TEST_CASE(csv_read)
    // ofs
    std::string file_name= "csv_read.csv";
    std::ofstream ofs(file_name);
-   if( ofs.rdstate() & std::ifstream::failbit != 0 )
+   if( ofs.rdstate() & (std::ifstream::failbit != 0) )
    {  std::cerr << "csv_read.cpp: error opening " << file_name
          << " for writing\n";
       std::exit(1);

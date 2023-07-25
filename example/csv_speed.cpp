@@ -3,16 +3,16 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-\{xrst_begin csv_speed.cpp}
+{xrst_begin csv_speed.cpp}
 
 csv_speed: Example and Test
 ###########################
-\{xrst_literal
+{xrst_literal
    // BEGIN C++
    // END C++
 }
 
-\{xrst_end  csv_speed.cpp}
+{xrst_end  csv_speed.cpp}
 */
 // BEGIN C++
 # include <filesystem>
@@ -45,6 +45,12 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // rate
    double rate;
    //
+   // double
+   cmpad::det_by_minor<double>        det_double;
+   det_double.setup(option);
+   rate = cmpad::fun_speed(det_double, time_min);
+   cmpad::csv_speed(file_name, "double", "det_by_minor", rate);
+   //
    // adolc
    typedef cmpad::det_by_minor<adouble>       det_adolc;
    cmpad::adolc::gradient<det_adolc>          grad_det_adolc;
@@ -62,11 +68,22 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // csv_table
    cmpad::vec_vec_str csv_table = cmpad::csv_read(file_name);
    //
-   // check csv_table[0]
-   cmpad::vector<std::string> check =
-      { "date", "package", "algorithm", "rate" };
-   BOOST_CHECK( csv_table[0].size() == check.size() );
-   for(size_t j = 0; j < check.size(); ++j)
-      BOOST_CHECK( csv_table[0][j] == check[j] );
+   // csv_table: check
+   BOOST_CHECK( csv_table.size() == 4 );
+   for(size_t i = 0; i < csv_table.size(); ++i)
+      BOOST_CHECK( csv_table[i].size() == 4 );
+   //
+   BOOST_CHECK( csv_table[0][0] == "date" );
+   BOOST_CHECK( csv_table[0][1] == "package" );
+   BOOST_CHECK( csv_table[0][2] == "algorithm" );
+   BOOST_CHECK( csv_table[0][3] == "rate" );
+   //
+   BOOST_CHECK( csv_table[1][1] == "double" );
+   BOOST_CHECK( csv_table[2][1] == "adolc" );
+   BOOST_CHECK( csv_table[3][1] == "cppad" );
+   //
+   BOOST_CHECK( csv_table[1][2] == "det_by_minor" );
+   BOOST_CHECK( csv_table[2][2] == "det_by_minor" );
+   BOOST_CHECK( csv_table[3][2] == "det_by_minor" );
 }
 // END C++

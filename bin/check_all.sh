@@ -13,9 +13,9 @@ echo_eval() {
 }
 # -----------------------------------------------------------------------------
 #
-if [ $# != 1 ]
+if [ $# != 0 ]
 then
-   echo 'usage: bin/check_all.sh (debug|release)'
+   echo 'usage: bin/check_all.sh: does not expect arugments'
    exit 1
 fi
 if [ "$0" != 'bin/check_all.sh' ]
@@ -28,12 +28,6 @@ then
    echo 'bin/check_all.sh: cannot find ./.git'
    exit 1
 fi
-if [ "$1" != 'debug' ] && [ "$1" != 'release' ]
-then
-   echo 'usage: bin/check_all.sh (debug|release)'
-   exit 1
-fi
-build_type="$1"
 # -----------------------------------------------------------------------------
 list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
 for check in $list
@@ -42,15 +36,29 @@ do
 done
 # -----------------------------------------------------------------------------
 # run_cmake.sh
-bin/run_cmake.sh $build_type
+flags=''
+if [ $(expr $RANDOM % 2) == 1 ]
+then
+   flags="$flags --clang"
+fi
+if [ $(expr $RANDOM % 2) == 1 ]
+then
+   flags="$flags --debug"
+fi
+if [ $(expr $RANDOM % 2) == 1 ]
+then
+   flags="$flags --std_vector"
+fi
+echo_eval bin/run_cmake.sh $flags
 #
 # build
-cd build
+echo_eval cd build
 #
 # make
-make
+echo_eval make
 #
 # example
+echo "example/example"
 { example/example --log_level=test_suite --no_color_output 2>&1 ; }\
    | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
 #
