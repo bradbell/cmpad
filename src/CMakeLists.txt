@@ -9,6 +9,7 @@ SET(soversion 23.7.24)
 # cmpad
 ADD_LIBRARY(cmpad SHARED
    csv_read.cpp
+   csv_speed.cpp
    csv_write.cpp
    uniform_01.cpp
 )

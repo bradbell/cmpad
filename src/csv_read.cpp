@@ -98,7 +98,7 @@ namespace cmpad {
       if( ( ifs.rdstate() & std::ifstream::failbit ) != 0 )
       {  std::cerr << "csv_table.read: error opening " << file_name
             << " for reading\n";
-         return csv_table;
+         assert(false);
       }
       // csv_table
       cmpad::vector<std::string> row;

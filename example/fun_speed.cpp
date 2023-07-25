@@ -61,7 +61,7 @@ namespace {
    }
 }
 
-BOOST_AUTO_TEST_CASE(Fun_speed)
+BOOST_AUTO_TEST_CASE(fun_speed)
 {  //
    // adolc
    typedef cmpad::det_by_minor<adouble>       adolc_Algo;

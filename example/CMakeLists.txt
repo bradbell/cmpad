@@ -8,6 +8,7 @@
 ADD_EXECUTABLE(example
    example.cpp
    csv_read.cpp
+   csv_speed.cpp
    csv_write.cpp
    det_by_minor.cpp
    det_of_minor.cpp
