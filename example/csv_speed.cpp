@@ -68,22 +68,34 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // csv_table
    cmpad::vec_vec_str csv_table = cmpad::csv_read(file_name);
    //
+   // debug
+# ifndef NDEBUG
+   std::string debug = "true";
+# else
+   std::string debug = "false";
+# endif
+   //
    // csv_table: check
    BOOST_CHECK( csv_table.size() == 4 );
    for(size_t i = 0; i < csv_table.size(); ++i)
-      BOOST_CHECK( csv_table[i].size() == 4 );
+      BOOST_CHECK( csv_table[i].size() == 5 );
    //
    BOOST_CHECK( csv_table[0][0] == "date" );
-   BOOST_CHECK( csv_table[0][1] == "package" );
-   BOOST_CHECK( csv_table[0][2] == "algorithm" );
-   BOOST_CHECK( csv_table[0][3] == "rate" );
+   BOOST_CHECK( csv_table[0][1] == "debug" );
+   BOOST_CHECK( csv_table[0][2] == "package" );
+   BOOST_CHECK( csv_table[0][3] == "algorithm" );
+   BOOST_CHECK( csv_table[0][4] == "rate" );
    //
-   BOOST_CHECK( csv_table[1][1] == "double" );
-   BOOST_CHECK( csv_table[2][1] == "adolc" );
-   BOOST_CHECK( csv_table[3][1] == "cppad" );
+   BOOST_CHECK( csv_table[1][1] == debug );
+   BOOST_CHECK( csv_table[2][1] == debug );
+   BOOST_CHECK( csv_table[3][1] == debug );
    //
-   BOOST_CHECK( csv_table[1][2] == "det_by_minor" );
-   BOOST_CHECK( csv_table[2][2] == "det_by_minor" );
-   BOOST_CHECK( csv_table[3][2] == "det_by_minor" );
+   BOOST_CHECK( csv_table[1][2] == "double" );
+   BOOST_CHECK( csv_table[2][2] == "adolc" );
+   BOOST_CHECK( csv_table[3][2] == "cppad" );
+   //
+   BOOST_CHECK( csv_table[1][3] == "det_by_minor" );
+   BOOST_CHECK( csv_table[2][3] == "det_by_minor" );
+   BOOST_CHECK( csv_table[3][3] == "det_by_minor" );
 }
 // END C++

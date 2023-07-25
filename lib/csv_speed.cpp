@@ -25,10 +25,22 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      date,package,algorithm,rate
+      date,debug,package,algorithm,rate
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
+
+date
+****
+This is the date when csv_speed is called.
+The *date* value is automatically determined and not an argument to csv_speed.
+
+debug
+*****
+Was csv_speed compiled with debugging.
+The assumption here is that all the cmpad routines get compiled
+with debugging (for speed) when this is true (false).
+The *debug* value is automatically determined and not an argument to csv_speed.
 
 package
 *******
@@ -82,7 +94,7 @@ void csv_speed(
       csv_table = csv_read(file_name);
    else
    {  cmpad::vector<std::string> row =
-         { "date", "package"   , "algorithm" , "rate" };
+         { "date", "debug", "package"   , "algorithm" , "rate" };
       csv_table.push_back(row);
    }
    //
@@ -92,7 +104,7 @@ void csv_speed(
    std::string rate_str = ss.str();
    ss.str("");
    //
-   // date_str
+   // date
    std::time_t rawtime;
    std::time ( &rawtime );
    struct tm*  ptm = std::localtime( &rawtime );
@@ -102,8 +114,16 @@ void csv_speed(
    ss << year << '-' << month << '-' << day;
    std::string date = ss.str();
    //
+   // debug
+# ifndef NDEBUG
+   std::string debug = "true";
+# else
+   std::string debug = "false";
+# endif
+   //
    // csv_table
-   cmpad::vector<std::string> row = { date, package, algorithm, rate_str };
+   cmpad::vector<std::string> row =
+      { date, debug, package, algorithm, rate_str };
    csv_table.push_back(row);
    //
    // file_name

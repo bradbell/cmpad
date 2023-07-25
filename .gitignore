@@ -13,6 +13,9 @@
 # ----------------------------------------------------------------------------
 # files
 #
+# used by bin/git_commit.sh for git logs
+git_commit.log
+#
 # cmake creates this file from vector.hpp.in
 /include/cmpad/typedef.hpp
 #
