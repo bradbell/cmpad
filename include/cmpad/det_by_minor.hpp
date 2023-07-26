@@ -6,10 +6,6 @@
 // ----------------------------------------------------------------------------
 /*
 {xrst_begin det_by_minor}
-{xrst_spell
-   std
-   stoi
-}
 
 Determinant Using Expansion by Minors
 #####################################
@@ -54,14 +50,10 @@ object interface.
 
 option
 ******
-This map has the following key:
+Thes are options thats that are used to setup the function object.
 
 size
 ====
-The corresponding value can be converted to an integer using
-
-|  std::stoi ( *option* [ ``"size"`` ] )
-
 This is the row and column dimension for subsequent use of the *det* object.
 We use the notation :math:`\ell` for this value.
 
@@ -116,7 +108,7 @@ template <class Scalar> class det_by_minor : public fun_obj<Scalar>
 {
 private:
    // option_
-   str2str_map option_;
+   option_t option_;
    //
    // ell_
    size_t ell_;
@@ -131,7 +123,7 @@ private:
    //
 public:
    // option
-   const str2str_map& option(void) const override
+   const option_t& option(void) const override
    {  return option_; }
    // domain
    size_t domain(void) const override
@@ -140,15 +132,13 @@ public:
    size_t range(void) const override
    {  return 1; }
    // setup
-   void setup(const str2str_map& option) override
+   void setup(const option_t& option) override
    {  //
       // option_
       option_ = option;
       //
       // ell_
-      int ell = std::stoi( option.at("size") );
-      assert( 0 < ell );
-      ell_ = size_t(ell);
+      ell_ = option.size;
       //
       // r_, c_, y_
       r_.resize(ell_ + 1);

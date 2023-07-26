@@ -39,8 +39,8 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       std::remove( file_name.c_str() );
    //
    // option
-   cmpad::str2str_map option;
-   option["size"] = "6";
+   cmpad::option_t option;
+   option.size = 6;
    //
    // rate
    double rate;

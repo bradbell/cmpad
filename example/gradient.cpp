@@ -30,8 +30,8 @@ namespace {
       BOOST_TEST_MESSAGE( "   " + name );
       //
       // option
-      cmpad::str2str_map option;
-      option["size"]  = "3";
+      cmpad::option_t option;
+      option.size = 3;
       //
       // ell
       size_t ell = 3;

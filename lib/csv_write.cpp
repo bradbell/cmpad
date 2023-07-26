@@ -54,6 +54,8 @@ of this routine.
 
 # include <string>
 # include <fstream>
+# include <cassert>
+# include <iostream>
 # include <cmpad/typedef.hpp>
 
 namespace {

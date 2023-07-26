@@ -31,7 +31,7 @@ namespace {
       BOOST_TEST_MESSAGE( "   " + name );
       //
       // option
-      cmpad::str2str_map option;
+      cmpad::option_t option;
       //
       // time_min
       // minimum time for test in seconds
@@ -42,7 +42,7 @@ namespace {
       for(size_t ell = 6; ell < 10; ++ell)
       {  //
          // option
-         option["size"] = std::to_string(ell);
+         option.size = ell;
          //
          // grad_det
          grad_det.setup(option);

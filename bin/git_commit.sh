@@ -54,18 +54,20 @@ do
    fi
 done
 # -----------------------------------------------------------------------------
-# git add
-echo_eval git add --all
-#
 # git_commit.log
 branch=$(git branch --show-current)
 cat << EOF > git_commit.log
 $branch: 1. General comments about this git commit go here.
-2. If you delete all the linse in this file, this git commit will abort.
-3. Delete the lines below if you do not want them in the commit message.
+2. If you delete all the lines in this file, this commit will abort.
+3. All the files below will be included in this commit. 
+4. Delete the lines below if you do not want them in the commit message.
 EOF
 git status --porcelain >> git_commit.log
 $EDITOR git_commit.log
+#
+# git add
+echo_eval git add --all
+#
 #
 # git commit
 git commit --file=git_commit.log
@@ -73,6 +75,3 @@ git commit --file=git_commit.log
 echo 'bin/git_commit.sh: OK'
 exit 0
 
-
-
-   

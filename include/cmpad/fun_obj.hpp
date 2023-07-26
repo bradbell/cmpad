@@ -84,9 +84,9 @@ Derived Classes
 namespace cmpad {
    template <class Scalar> struct fun_obj {
       // setup
-      virtual void setup(const str2str_map& option) = 0;
+      virtual void setup(const option_t& option) = 0;
       // option
-      virtual const str2str_map& option(void) const = 0;
+      virtual const option_t& option(void) const = 0;
       // domain
       virtual size_t domain(void) const = 0;
       // range

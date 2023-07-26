@@ -34,8 +34,8 @@ BOOST_AUTO_TEST_CASE(det_by_minor)
    cmpad::det_by_minor<double> det;
    //
    // det.setup
-   std::map<std::string, std::string> option;
-   option["size"]  = std::to_string(ell);
+   cmpad::option_t option;
+   option.size = ell;
    det.setup(option);
    //
    // x

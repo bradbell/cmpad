@@ -57,6 +57,8 @@ of this routine.
 
 # include <string>
 # include <fstream>
+# include <iostream>
+# include <cassert>
 # include <cmpad/csv_read.hpp>
 
 namespace {

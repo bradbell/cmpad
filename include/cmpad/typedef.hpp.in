@@ -17,11 +17,11 @@
 The cmpad::vector Template Class
 ################################
 
-str2str_map
-***********
+option_t
+********
 {xrst_literal
-   // BEGIN STR2STR_MAP
-   // END STR2STR_MAP
+   // BEGIN OPTION_T
+   // END OPTION_T
 }
 
 vec_vec_str
@@ -66,11 +66,9 @@ cppad
 
 {xrst_end cmpad_typedef}
 */
-// BEGIN STR2STR_MAP
-# include <map>
-# include <string>
-namespace cmpad { typedef std::map<std::string, std::string> str2str_map; }
-// END STR2STR_MAP
+// BEGIN OPTION_T
+namespace cmpad { struct option_t { size_t size; }; }
+// END OPTION_T
 
 # if @cmpad_vector_is_std@
 # include<vector>
