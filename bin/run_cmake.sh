@@ -4,7 +4,7 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
-if [ ! -e 'bin/run_cmake.sh' ]
+if [ "$0" != 'bin/run_cmake.sh' ]
 then
    echo 'bin/run_cmake.sh: must be executed from its parent directory'
    exit 1
