@@ -86,7 +86,7 @@ then
    package_top_srcdir="$package.git"
 else
    package_top_srcdir="$package"
-fi  
+fi
 #
 # configured_flag
 configured_flag="external/$package.configured"

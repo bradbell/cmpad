@@ -13,12 +13,8 @@ Abstract Class For Calculating Gradient
 Syntax
 ******
 |  ``# include <cmpad/gradient.hpp``
+|  *Algo* *algo*
 |  ``cmpad::gradient`` < *Algo* > *grad*
-|  *algo* . ``setup`` ( *option* )
-|  *grad* . ``setup`` ( *option* )
-|  *option* = *grad* . ``option`` ()
-|  *n* = *grad* . ``domain`` ()
-|  *m* = *grad* . ``range`` ()
 |  *g* = *grad* ( *x* )
 
 Source Code
@@ -28,16 +24,18 @@ Source Code
    // END C++
 }
 
-Algo
+
+algo
 ****
 The *Algo* class is derived from the :ref:`fun_obj-name` class.
-The *algo* object is initialized using its ``setup`` syntax.
+The *algo* object is initialized using its
+:ref:`fun_obj@setup` member function.
 The dimension of the :ref:`fun_obj@range` space for this algorithm
 must be one.
 
 grad
 ****
-This object is initialized using its ``setup`` syntax
+This object is initialized using its ``setup`` member function
 (which in turn will initialize *algo* with its ``setup`` syntax).
 The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).

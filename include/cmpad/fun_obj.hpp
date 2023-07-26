@@ -17,10 +17,6 @@ Syntax
 ******
 |  ``# include <cmpad/fun_obj.hpp``
 |  ``cmpad::fun_obj`` < *Scalar* > *fun*
-|  *fun* . ``setup`` ( *option* )
-|  *option* = *fun* . ``option`` ()
-|  *n* = *fun* . ``domain`` ()
-|  *m* = *fun* . ``range`` ()
 |  *y* = *fun* ( *x* )
 
 Source Code
@@ -49,13 +45,13 @@ This interface does not place any restrictions on the content of *option* .
 
 domain
 ******
-The return value *n* is the dimension of the domain space for
+The return value is the dimension of the domain space for
 this function; i.e. the size of *x*.
 It likely depends on the value of *option*.
 
 range
 *****
-The return value *m* is the dimension of the range space for
+The return value is the dimension of the range space for
 this function; i.e. the size of *y*.
 It likely depends on the value of *option*.
 

@@ -17,11 +17,6 @@ Syntax
 ******
 | ``# include <cmpad/adolc/gradient.hpp>``
 |  ``cmpad::adolc::gradient`` < *Algo* > *grad*
-|  *algo* . ``setup`` ( *option* )
-|  *grad* . ``setup`` ( *option* )
-|  *option* = *grad* . ``option`` ()
-|  *n* = *grad* . ``domain`` ( )
-|  *m* = *grad* . ``range`` ( )
 |  *g* = *grad* ( *x* )
 
 
