@@ -6,12 +6,14 @@
 # define CMPAD_CSV_SPEED_HPP
 
 # include <string>
+# include <cmpad/typedef.hpp>
 namespace cmpad {
    void csv_speed(
       const std::string& file_name ,
       double             rate      ,
       const std::string& package   ,
-      const std::string& algorithm
+      const std::string& algorithm ,
+      const option_t&    option
    );
 }
 

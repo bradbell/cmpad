@@ -25,15 +25,15 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      rate,package,algorithm,date,debug
+      rate,package,algorithm,size,date,debug
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
 
 rate
 ****
-This is the number of times per second that the derivative
-was calculated.
+This is the number of times per second that the algorithm, 
+or a derivative of the algorithm, was calculated.
 
 package
 *******
@@ -44,6 +44,10 @@ but rather an evaluations of the algorithm using the C++ type double.
 algorithm
 *********
 This is the name of the algorithm; e.g., :ref:`det_by_minor-name` .
+
+size
+****
+This is the value of *option*\ .\ ``size`` .
 
 date
 ****
@@ -80,7 +84,8 @@ void csv_speed(
    const std::string& file_name ,
    double             rate      ,
    const std::string& package   ,
-   const std::string& algorithm )
+   const std::string& algorithm ,
+   const option_t&    option    )
 {  //
    // file_system
    namespace filesystem = std::filesystem;
@@ -94,7 +99,7 @@ void csv_speed(
       csv_table = csv_read(file_name);
    else
    {  cmpad::vector<std::string> row =
-         { "rate", "package", "algorithm", "date", "debug" };
+         { "rate", "package", "algorithm", "size", "date", "debug" };
       csv_table.push_back(row);
    }
    //
@@ -121,9 +126,12 @@ void csv_speed(
    std::string debug = "false";
 # endif
    //
+   // size
+   std::string size = std::to_string(option.size);
+   //
    // csv_table
    cmpad::vector<std::string> row =
-      { rate_str, package, algorithm, date, debug };
+      { rate_str, package, algorithm, size, date, debug };
    csv_table.push_back(row);
    //
    // file_name
