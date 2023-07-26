@@ -84,17 +84,19 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    std::string debug = "false";
 # endif
    //
+   // col_name, n_col
+   const char* col_name[] = {
+      "rate", "package", "algorithm", "size", "date", "compiler", "debug"
+   };
+   size_t n_col = sizeof(col_name) / sizeof( col_name[0] );
+   //
    // csv_table: check
    BOOST_CHECK( csv_table.size() == 4 );
    for(size_t i = 0; i < csv_table.size(); ++i)
-      BOOST_CHECK( csv_table[i].size() == 6 );
+      BOOST_CHECK( csv_table[i].size() == n_col );
    //
-   BOOST_CHECK( csv_table[0][0] == "rate" );
-   BOOST_CHECK( csv_table[0][1] == "package" );
-   BOOST_CHECK( csv_table[0][2] == "algorithm" );
-   BOOST_CHECK( csv_table[0][3] == "size" );
-   BOOST_CHECK( csv_table[0][4] == "date" );
-   BOOST_CHECK( csv_table[0][5] == "debug" );
+   for(size_t j = 0; j < n_col; ++j)
+      BOOST_CHECK( csv_table[0][j] == col_name[j] );
    //
    BOOST_CHECK( csv_table[1][1] == "double" );
    BOOST_CHECK( csv_table[2][1] == "adolc" );
@@ -103,7 +105,8 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    for(size_t i = 1; i < csv_table.size(); ++i)
    {  BOOST_CHECK( csv_table[i][2] == "det_by_minor" );
       BOOST_CHECK( csv_table[i][3] == std::to_string(option.size) );
-      BOOST_CHECK( csv_table[1][5] == debug );
+      BOOST_CHECK( csv_table[i][5] == CMPAD_CXX_COMPILER );
+      BOOST_CHECK( csv_table[1][6] == debug );
    }
 }
 // END C++

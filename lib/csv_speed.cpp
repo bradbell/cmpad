@@ -25,14 +25,14 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      rate,package,algorithm,size,date,debug
+      rate,package,algorithm,size,date,compiler,debug
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
 
 rate
 ****
-This is the number of times per second that the algorithm, 
+This is the number of times per second that the algorithm,
 or a derivative of the algorithm, was calculated.
 
 package
@@ -53,6 +53,12 @@ date
 ****
 This is the date when csv_speed is called.
 The *date* value is automatically determined and not an argument to csv_speed.
+
+compiler
+********
+This is the compiler used for this test.
+The *compiler* value
+is automatically determined and not an argument to csv_speed.
 
 debug
 *****
@@ -99,7 +105,7 @@ void csv_speed(
       csv_table = csv_read(file_name);
    else
    {  cmpad::vector<std::string> row =
-         { "rate", "package", "algorithm", "size", "date", "debug" };
+      { "rate", "package", "algorithm", "size", "date", "compiler", "debug" };
       csv_table.push_back(row);
    }
    //
@@ -119,6 +125,9 @@ void csv_speed(
    ss << year << '-' << month << '-' << day;
    std::string date = ss.str();
    //
+   // compiler
+   std::string compiler = CMPAD_CXX_COMPILER;
+   //
    // debug
 # ifndef NDEBUG
    std::string debug = "true";
@@ -131,7 +140,7 @@ void csv_speed(
    //
    // csv_table
    cmpad::vector<std::string> row =
-      { rate_str, package, algorithm, size, date, debug };
+      { rate_str, package, algorithm, size, date, compiler, debug };
    csv_table.push_back(row);
    //
    // file_name
