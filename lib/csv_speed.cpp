@@ -25,22 +25,15 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      date,debug,package,algorithm,rate
+      rate,package,algorithm,date,debug
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
 
-date
+rate
 ****
-This is the date when csv_speed is called.
-The *date* value is automatically determined and not an argument to csv_speed.
-
-debug
-*****
-Was csv_speed compiled with debugging.
-The assumption here is that all the cmpad routines get compiled
-with debugging (for speed) when this is true (false).
-The *debug* value is automatically determined and not an argument to csv_speed.
+This is the number of times per second that the derivative
+was calculated.
 
 package
 *******
@@ -52,10 +45,17 @@ algorithm
 *********
 This is the name of the algorithm; e.g., :ref:`det_by_minor-name` .
 
-rate
+date
 ****
-This is the number of times per second that the derivative
-was calculated.
+This is the date when csv_speed is called.
+The *date* value is automatically determined and not an argument to csv_speed.
+
+debug
+*****
+This is true (false) if  csv_speed eas compiled with (without) debugging.
+The assumption here is that all the cmpad routines get compiled
+with debugging (for speed) when this is true (false).
+The *debug* value is automatically determined and not an argument to csv_speed.
 
 {xrst_toc_hidden
    example/csv_speed.cpp
@@ -78,9 +78,9 @@ namespace cmpad { // BEGIN_CMPAD_NAMESPACE
 
 void csv_speed(
    const std::string& file_name ,
+   double             rate      ,
    const std::string& package   ,
-   const std::string& algorithm ,
-   double             rate      )
+   const std::string& algorithm )
 {  //
    // file_system
    namespace filesystem = std::filesystem;
@@ -94,7 +94,7 @@ void csv_speed(
       csv_table = csv_read(file_name);
    else
    {  cmpad::vector<std::string> row =
-         { "date", "debug", "package"   , "algorithm" , "rate" };
+         { "rate", "package", "algorithm", "date", "debug" };
       csv_table.push_back(row);
    }
    //
@@ -123,7 +123,7 @@ void csv_speed(
    //
    // csv_table
    cmpad::vector<std::string> row =
-      { date, debug, package, algorithm, rate_str };
+      { rate_str, package, algorithm, date, debug };
    csv_table.push_back(row);
    //
    // file_name
