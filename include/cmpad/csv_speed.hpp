@@ -8,6 +8,7 @@
 {xrst_begin csv_speed}
 {xrst_spell
    newlines
+   obj
 }
 
 Record Execution Speed for an Algorithm and AD Package
