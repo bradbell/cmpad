@@ -56,7 +56,9 @@ namespace {
          double ratio = previous_rate / (ell * rate);
          //
          if( ! (previous_rate == 0.0 || (0.5 < ratio && ratio < 2.0) ) )
-            std::cout << name << ": ratio = " + std::to_string(ratio) << "\n";
+         {  std::cout << name << ": ell = " << ell << ": ratio = ";
+            std::cout << std::to_string(ratio) << "\n";
+         }
          if( previous_rate != 0.0 )
             BOOST_CHECK( 0.5 < ratio && ratio < 2.0 );
          previous_rate = rate;
