@@ -13,7 +13,7 @@ The Compare AD Users Documentation
    include/cmpad/fun_speed.hpp
    include/cmpad/det_of_minor.hpp
    lib/csv_read.cpp
-   lib/csv_speed.cpp
+   include/cmpad/csv_speed.hpp
    lib/csv_write.cpp
    lib/uniform_01.cpp
 }

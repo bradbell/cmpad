@@ -55,6 +55,7 @@ namespace {
          // number of floating operations goes up by a factor of ell
          double ratio = previous_rate / (ell * rate);
          //
+         // std::cout << name << ": ratio = " + std::to_string(ratio) << "\n";
          if( previous_rate != 0.0 )
             BOOST_CHECK( 0.5 < ratio && ratio < 2.0 );
          previous_rate = rate;
