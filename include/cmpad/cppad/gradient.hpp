@@ -24,6 +24,10 @@ Purpose
 *******
 This implements the :ref:`gradient-name` interface using CppAD.
 
+value_type
+**********
+The type *Algo*\ ::\ ``value_type`` must be ``CppAD::AD<double>`` .
+
 Example
 *******
 The file :ref:`gradient.cpp-name`
@@ -46,6 +50,10 @@ namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // gradient
 template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
+   static_assert(
+      std::is_same<typename Algo::value_type, CppAD::AD<double>>::value ,
+      "in cmpad::adolc<Algo>, Algo::value_type != CppAD::AD<double>"
+   );
 private:
    //
    // option_

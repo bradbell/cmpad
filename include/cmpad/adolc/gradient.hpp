@@ -8,6 +8,7 @@
 {xrst_begin adolc_gradient.hpp}
 {xrst_spell
    adolc
+   adouble
 }
 
 Calculate Gradient Using ADOL-C
@@ -24,6 +25,10 @@ Purpose
 *******
 This implements the :ref:`gradient-name` interface using ADOL-C.
 
+value_type
+**********
+The type *Algo*\ ::\ ``value_type`` must be ``adouble`` .
+
 Example
 *******
 The file :ref:`gradient.cpp-name`
@@ -39,6 +44,7 @@ Source Code
 {xrst_end adolc_gradient.hpp}
 */
 // BEGIN C++
+# include <type_traits>
 # include <cmpad/gradient.hpp>
 # include <adolc/adolc.h>
 
@@ -46,6 +52,10 @@ namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
 // gradient
 template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
+   static_assert(
+      std::is_same<typename Algo::value_type, adouble>::value ,
+      "in cmpad::adolc<Algo>, Algo::value_type != adouble"
+   );
 private:
    //
    // option_

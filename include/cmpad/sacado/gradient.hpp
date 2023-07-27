@@ -7,6 +7,7 @@
 /*
 {xrst_begin sacado_gradient.hpp}
 {xrst_spell
+   dvar
    sacado
 }
 
@@ -23,6 +24,11 @@ Syntax
 Purpose
 *******
 This implements the :ref:`gradient-name` interface using Sacado.
+
+value_type
+**********
+The type *Algo*\ ::\ ``value_type`` must be
+``Sacado::Rad::ADvar<double>`` .
 
 Example
 *******
@@ -46,6 +52,13 @@ namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 
 // gradient
 template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
+   static_assert(
+      std::is_same<
+         typename Algo::value_type,
+         Sacado::Rad::ADvar<double>
+      >::value ,
+      "in cmpad::adolc<Algo>, Algo::value_type != Sacado::Rad::ADVar<double>"
+   );
 private:
    //
    // option_

@@ -13,6 +13,7 @@ Determinant Using Expansion by Minors
 Syntax
 ******
 |  ``# include <cmpad/det_by_minor.hpp``
+|  ``cmpad::det_by_minor`` < *Scalar* >::value_type
 |  ``cmpad::det_by_minor`` < *Scalar* > *det*
 |  *y* = *det* ( *x* )
 
@@ -38,6 +39,12 @@ the type *Scalar* must support the following operations:
    *u* - *v*,   value of *u* minus *v*,                           *Scalar*
    *u* * *v*,   value of *u* times value of *v*,                  *Scalar*
    *u* = *v*,   set value of *u* to current value of *v*,
+
+value_type
+**********
+This is the same type as *Scalar* and is intended to be used when
+cmpad::det_by_minor<Scalar> is passed as a template parameter;
+see :ref:`fun_obj@value_type` .
 
 det
 ***
@@ -118,6 +125,9 @@ private:
    cmpad::vector<Scalar> y_;
    //
 public:
+   // value_type
+   typedef Scalar value_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }

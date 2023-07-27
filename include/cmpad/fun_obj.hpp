@@ -33,6 +33,12 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
+value_type
+**********
+A derived class must define *value_type* to be the same as *Scalar* .
+This is intended for use when derived class type
+is passed as a template parameter.
+
 setup
 *****
 The function object is initialized using the ``setup`` syntax.
@@ -79,6 +85,10 @@ Derived Classes
 
 namespace cmpad {
    template <class Scalar> struct fun_obj {
+      //
+      // The following must appear in any concrete derived class of fun_obj:
+      // typedef Scalar value_type;
+      //
       // setup
       virtual void setup(const option_t& option) = 0;
       // option

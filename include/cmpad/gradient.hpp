@@ -14,6 +14,7 @@ Syntax
 ******
 |  ``# include <cmpad/gradient.hpp``
 |  *Algo* *algo*
+|  *Algo*\ ::\ ``value_type``
 |  ``cmpad::gradient`` < *Algo* > *grad*
 |  *g* = *grad* ( *x* )
 
@@ -32,6 +33,11 @@ The *algo* object is initialized using its
 :ref:`fun_obj@setup` member function.
 The dimension of the :ref:`fun_obj@range` space for this algorithm
 must be one.
+
+value_type
+**********
+This is the
+:ref:`fun_obj@value_type` for the arguments to the function object *algo* .
 
 grad
 ****
