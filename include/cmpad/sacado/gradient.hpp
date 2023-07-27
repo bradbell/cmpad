@@ -27,8 +27,8 @@ This implements the :ref:`gradient-name` interface using Sacado.
 
 value_type
 **********
-The type *Algo*\ ::\ ``value_type`` must be
-``Sacado::Rad::ADvar<double>`` .
+The type *Algo*\ ::\ ``value_type`` must be ``Sacado::Rad::ADvar<double>`` .
+The type cmpad::sacado::gradient<Algo>::value_type is ``double`` .
 
 Example
 *******
@@ -77,6 +77,8 @@ private:
    cmpad::vector<double> g_;
 //
 public:
+   // value_type
+   typedef double value_type;
    // option
    const option_t& option(void) const override
    {  return option_; }

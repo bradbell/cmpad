@@ -14,7 +14,6 @@ Syntax
 ******
 |  ``# include <cmpad/gradient.hpp``
 |  *Algo* *algo*
-|  *Algo*\ ::\ ``value_type``
 |  ``cmpad::gradient`` < *Algo* > *grad*
 |  *g* = *grad* ( *x* )
 
@@ -36,8 +35,13 @@ must be one.
 
 value_type
 **********
-This is the
-:ref:`fun_obj@value_type` for the arguments to the function object *algo* .
+There are two value function objects,
+and hence two :ref:`fun_obj@value_type` ,
+associated with a gradient class.
+
+1. Algo::value_type is the scalar type used when evaluating the algorithm.
+2. cmpad::gradient<Algo>::value_type is the scalar type
+   of the arguments and return value for the gradient object; i.e., double.
 
 grad
 ****
@@ -92,6 +96,8 @@ namespace cmpad {
    // gradient
    template <class Algo> class gradient : public fun_obj<double> {
    public:
+      // value_type
+      typedef double value_type;
       // setup
       virtual void setup(const option_t& option) override = 0;
       // option

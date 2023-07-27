@@ -86,8 +86,8 @@ Derived Classes
 namespace cmpad {
    template <class Scalar> struct fun_obj {
       //
-      // The following must appear in any concrete derived class of fun_obj:
-      // typedef Scalar value_type;
+      // value_type
+      typedef Scalar value_type;
       //
       // setup
       virtual void setup(const option_t& option) = 0;
