@@ -4,6 +4,9 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
+# CHECK_LIBRARY_EXISTS
+INCLUDE(CheckLibraryExists)
+#
 # example
 ADD_EXECUTABLE(example
    example.cpp
@@ -17,4 +20,17 @@ ADD_EXECUTABLE(example
    uniform_01.cpp
 )
 LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/src )
-TARGET_LINK_LIBRARIES(example cmpad)
+#
+# Sacado_LIBRARIIES
+FOREACH(dir lib lib64)
+   IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
+      SET(Trilinos_DIR "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
+   ENDIF( )
+ENDFOREACH( )
+FIND_PACKAGE(Trilinos CONFIG)
+#
+# For Sacado
+ADD_DEFINITIONS("-DCPPAD_SACADO_SPEED -DRAD_AUTO_AD_Const")
+#
+TARGET_LINK_LIBRARIES(example cmpad ${Sacado_LIBRARIES} )
+

@@ -19,6 +19,7 @@ gradient: Example and Test
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
+# include <cmpad/sacado/gradient.hpp>
 
 namespace {
    template <class Algo>
@@ -75,5 +76,10 @@ BOOST_AUTO_TEST_CASE(Gradient)
    typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
    cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
    check_grad_det("cppad gradient", cppad_grad_det);
+   //
+   // sacado
+   typedef cmpad::det_by_minor<  Sacado::Rad::ADvar<double>  > sacado_Algo;
+   cmpad::sacado::gradient<sacado_Algo>                        sacado_grad_det;
+   check_grad_det("sacado gradient", sacado_grad_det);
 }
 // END C++

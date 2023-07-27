@@ -57,8 +57,11 @@ fi
 # if this is empty, cmake uses local install of packages
 PKG_CONFIG_PATH=''
 #
+# for_sacado
+for_sacado='-DCMAKE_CXX_EXTENSIONS=Off'
+#
 # make
-cmake -B . -S .. $compiler $build_type $vector
+cmake -B . -S .. $for_sacado $compiler $build_type $vector
 # -----------------------------------------------------------------------------
 echo 'bin/run_cmake.sh: OK'
 exit 0

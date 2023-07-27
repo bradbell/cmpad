@@ -20,6 +20,7 @@ csv_speed: Example and Test
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
+# include <cmpad/sacado/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
@@ -74,6 +75,14 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    rate = cmpad::fun_speed(grad_det_cppad, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
+   // sacado
+   package   = "sacado";
+   typedef cmpad::det_by_minor<  Sacado::Rad::ADvar<double> > det_sacado;
+   cmpad::sacado::gradient<det_sacado>                        grad_det_sacado;
+   grad_det_sacado.setup(option);
+   rate = cmpad::fun_speed(grad_det_sacado, time_min);
+   cmpad::csv_speed(file_name, rate, package, algorithm, option);
+   //
    // csv_table
    cmpad::vec_vec_str csv_table = cmpad::csv_read(file_name);
    //
@@ -91,7 +100,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    size_t n_col = sizeof(col_name) / sizeof( col_name[0] );
    //
    // csv_table: check
-   BOOST_CHECK( csv_table.size() == 4 );
+   BOOST_CHECK( csv_table.size() == 5 );
    for(size_t i = 0; i < csv_table.size(); ++i)
       BOOST_CHECK( csv_table[i].size() == n_col );
    //
@@ -101,6 +110,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    BOOST_CHECK( csv_table[1][1] == "double" );
    BOOST_CHECK( csv_table[2][1] == "adolc" );
    BOOST_CHECK( csv_table[3][1] == "cppad" );
+   BOOST_CHECK( csv_table[4][1] == "sacado" );
    //
    for(size_t i = 1; i < csv_table.size(); ++i)
    {  BOOST_CHECK( csv_table[i][2] == "det_by_minor" );

@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 #
 # cmake requires version
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 #
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
 PROJECT(cmpad)
