@@ -56,7 +56,7 @@ of this routine.
 # include <fstream>
 # include <cassert>
 # include <iostream>
-# include <cmpad/typedef.hpp>
+# include <cmpad/configure.hpp>
 
 namespace {
    // get_row

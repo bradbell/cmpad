@@ -17,7 +17,7 @@
 git_commit.log
 #
 # cmake creates this file from vector.hpp.in
-/include/cmpad/typedef.hpp
+/include/cmpad/configure.hpp
 #
 # used by vim to backup and restore changes
 *.swp

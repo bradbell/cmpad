@@ -6,7 +6,7 @@
 # define CMPAD_CSV_READ_HPP
 
 # include <string>
-# include <cmpad/typedef.hpp>
+# include <cmpad/configure.hpp>
 namespace cmpad {
    vec_vec_str csv_read(const std::string& file_name);
 

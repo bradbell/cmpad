@@ -22,6 +22,6 @@ ELSE( )
 ENDIF( )
 #
 CONFIGURE_FILE(
-   ${CMAKE_CURRENT_SOURCE_DIR}/typedef.hpp.in
-   ${CMAKE_CURRENT_SOURCE_DIR}/typedef.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp.in
+   ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp
 )
