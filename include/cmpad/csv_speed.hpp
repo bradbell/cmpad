@@ -13,6 +13,17 @@
 Record Execution Speed for an Algorithm and AD Package
 ######################################################
 
+fun_obj
+*******
+We are testing the speed of the evaluation of this function object
+when evaluating *y* = *fun_obj* ( *x* ).
+
+time_min
+********
+This is the minimum time in seconds for the timing of the computation.
+The computation of the function object will be repeated enough times
+so that this minimum time is reached.
+
 file_name
 *********
 is the name of the file were the results will be recorded.
@@ -36,6 +47,8 @@ rate
 ****
 This is the number of times per second that the algorithm,
 or a derivative of the algorithm, was calculated.
+The *rate* value
+is automatically determined and not an argument to csv_speed.
 
 package
 *******
@@ -82,19 +95,24 @@ of this routine.
 # include <ctime>
 # include <filesystem>
 # include <sstream>
+# include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
 # include <cmpad/csv_write.hpp>
 
 namespace cmpad { // BEGIN_CMPAD_NAMESPACE
 
-inline void csv_speed(
+template <class Fun_Obj> void csv_speed(
+   Fun_Obj&           fun_obj   ,
+   double             time_min  ,
    const std::string& file_name ,
-   double             rate      ,
    const std::string& package   ,
    const std::string& algorithm ,
    const option_t&    option    )
 {  //
+   // rate
+   double rate = fun_speed(fun_obj, time_min);
+   //
    // file_system
    namespace filesystem = std::filesystem;
    //
