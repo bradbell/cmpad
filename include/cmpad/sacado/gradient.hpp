@@ -11,7 +11,7 @@
 }
 
 Calculate Gradient Using Sacado
-##############################
+###############################
 
 Syntax
 ******
@@ -95,16 +95,16 @@ public:
    const cmpad::vector<double>& operator()(
       const cmpad::vector<double>& x
    ) override
-   {  // ax_  
+   {  // ax_
       for(size_t j = 0; j < domain(); ++j)
          ax_[j] = x[j];
-      // 
+      //
       // ay_
       ay_ = algo_(ax_);
       //
       // reverse mode computation of gradient for last computed value
       Sacado::Rad::ADvar<double>::Gradcomp();
-      // 
+      //
       // g_
       for(size_t j = 0; j < domain(); ++j)
          g_[j] = ax_[j].adj();

@@ -73,6 +73,7 @@ Example and Derived Classes
    example/gradient.cpp
    include/cmpad/adolc/gradient.hpp
    include/cmpad/cppad/gradient.hpp
+   include/cmpad/sacado/gradient.hpp
 }
 
 {xrst_end gradient}

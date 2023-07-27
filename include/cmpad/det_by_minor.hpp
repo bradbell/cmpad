@@ -14,10 +14,6 @@ Syntax
 ******
 |  ``# include <cmpad/det_by_minor.hpp``
 |  ``cmpad::det_by_minor`` < *Scalar* > *det*
-|  *det* . ``setup`` ( *option* )
-|  *option* = *det* . ``option`` ()
-|  *n* = *det* . ``domain`` ()
-|  *m* = *det* . ``range`` ()
 |  *y* = *det* ( *x* )
 
 Purpose
@@ -50,7 +46,7 @@ object interface.
 
 option
 ******
-Thes are options thats that are used to setup the function object.
+This contains options thats that are used to setup the function object.
 
 size
 ====
