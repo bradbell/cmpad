@@ -6,7 +6,7 @@
 # define CMPAD_UNIFORM_01_HPP
 
 # include <cstdlib>
-# include <cmpad/configure.hpp>
+# include <cmpad/vec_vec_str.hpp>
 namespace cmpad {
    void uniform_01(cmpad::vector<double>& x);
 }

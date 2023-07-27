@@ -2,14 +2,24 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CSV_READ_HPP
-# define CMPAD_CSV_READ_HPP
-
-# include <string>
-# include <cmpad/vec_vec_str.hpp>
-namespace cmpad {
-   vec_vec_str csv_read(const std::string& file_name);
-
+# ifndef CMPAD_OPTION_T_HPP
+# define CMPAD_OPTION_T_HPP
+/*
+{xrst_begin option_t}
+o{xrst_spell
+   struct
 }
+
+The Option Type
+###############
+{xrst_code cpp} */
+namespace cmpad {
+   struct option_t {
+      size_t size;
+   };
+}
+/* {xrst_code}
+{xrst_end option_t}
+*/
 
 # endif

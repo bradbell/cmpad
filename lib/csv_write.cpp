@@ -56,7 +56,7 @@ of this routine.
 # include <fstream>
 # include <cassert>
 # include <iostream>
-# include <cmpad/configure.hpp>
+# include <cmpad/vec_vec_str.hpp>
 
 namespace {
    // get_row

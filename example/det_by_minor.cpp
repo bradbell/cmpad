@@ -18,7 +18,6 @@ det_by_minor: Example and Test
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
-# include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
 
 # define BOOST_TEST_DYN_LINK

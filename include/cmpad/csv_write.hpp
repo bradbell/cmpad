@@ -5,8 +5,7 @@
 # ifndef CMPAD_CSV_WRITE_HPP
 # define CMPAD_CSV_WRITE_HPP
 
-# include <string>
-# include <cmpad/configure.hpp>
+# include <cmpad/vec_vec_str.hpp>
 namespace cmpad {
    void csv_write(
       const std::string& file_name  , const vec_vec_str& csv_table

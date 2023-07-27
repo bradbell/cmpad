@@ -11,33 +11,16 @@
    cppad
    preprocessor
    std
-   str
-   vec
 }
 
-Type Definitions and Preprocessor Constants
-###########################################
+Preprocessor Definitions and Configured Types
+#############################################
 
 CMPAD_CXX_COMPILER
 ******************
 This preprocessor symbol
 is a quoted string containing a name of that identifies the C++ compiler
 that CMake chose; e.g., ``"GNU-13.1.1"`` .
-
-
-option_t
-********
-{xrst_literal
-   // BEGIN OPTION_T
-   // END OPTION_T
-}
-
-vec_vec_str
-***********
-{xrst_literal
-   // BEGIN VEC_VEC_STR
-   // END VEC_VEC_STR
-}
 
 cmpad::vector
 *************
@@ -77,10 +60,6 @@ cppad
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
 
-// BEGIN OPTION_T
-namespace cmpad { struct option_t { size_t size; }; }
-// END OPTION_T
-
 # if @cmpad_vector_is_std@
 # include<vector>
 namespace cmpad { using std::vector; }
@@ -95,13 +74,6 @@ namespace cmpad { using boost::numeric::ublas::vector; }
 # include<cppad/utility/vector.hpp>
 namespace cmpad { using CppAD::vector; }
 # endif // END cppad
-
-// BEGIN VEC_VEC_STR
-# include <string>
-namespace cmpad {
-   typedef cmpad::vector< cmpad::vector<std::string> > vec_vec_str;
-}
-// END VEC_VEC_STR
 
 
 # endif
