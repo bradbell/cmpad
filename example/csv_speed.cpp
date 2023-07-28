@@ -52,6 +52,9 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // rate
    double rate;
    //
+   // det_by_minor
+   using cmpad::det_by_minor;
+   //
    // double
    package   = "double";
    cmpad::det_by_minor<double>        det_double;
@@ -61,24 +64,21 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // adolc
    package   = "adolc";
-   typedef cmpad::det_by_minor<adouble>       det_adolc;
-   cmpad::adolc::gradient<det_adolc>          grad_det_adolc;
+   cmpad::adolc::gradient<det_by_minor>          grad_det_adolc;
    grad_det_adolc.setup(option);
    rate = cmpad::fun_speed(grad_det_adolc, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // cppad
    package   = "cppad";
-   typedef cmpad::det_by_minor< CppAD::AD<double> > det_cppad;
-   cmpad::cppad::gradient<det_cppad>                grad_det_cppad;
+   cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
    grad_det_cppad.setup(option);
    rate = cmpad::fun_speed(grad_det_cppad, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // sacado
    package   = "sacado";
-   typedef cmpad::det_by_minor<  Sacado::Rad::ADvar<double> > det_sacado;
-   cmpad::sacado::gradient<det_sacado>                        grad_det_sacado;
+   cmpad::sacado::gradient<det_by_minor>          grad_det_sacado;
    grad_det_sacado.setup(option);
    rate = cmpad::fun_speed(grad_det_sacado, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);

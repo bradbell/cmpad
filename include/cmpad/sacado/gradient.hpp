@@ -7,8 +7,8 @@
 /*
 {xrst_begin sacado_gradient.hpp}
 {xrst_spell
-   dvar
    sacado
+   obj
 }
 
 Calculate Gradient Using Sacado
@@ -17,7 +17,7 @@ Calculate Gradient Using Sacado
 Syntax
 ******
 | ``# include <cmpad/sacado/gradient.hpp>``
-|  ``cmpad::sacado::gradient`` < *Algo* > *grad*
+|  ``cmpad::sacado::gradient`` < *TemplateAlgo* > *grad*
 |  *g* = *grad* ( *x* )
 
 
@@ -25,10 +25,15 @@ Purpose
 *******
 This implements the :ref:`gradient-name` interface using Sacado.
 
+TemplateAlgo
+************
+The class TemplateAlgo<Scalar> must be a derived class for
+:ref:`fun_obj\<Scalar\> <fun_obj-name>` .
+
 value_type
 **********
-The type *Algo*\ ::\ ``value_type`` must be ``Sacado::Rad::ADvar<double>`` .
-The type cmpad::sacado::gradient<Algo>::value_type is ``double`` .
+The type cmpad::sacado::gradient<TemplateAlgo>::value_type is ``double`` ;
+see :ref:`gradient@value_type` .
 
 Example
 *******
@@ -51,30 +56,24 @@ Source Code
 namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 
 // gradient
-template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
-   static_assert(
-      std::is_same<
-         typename Algo::value_type,
-         Sacado::Rad::ADvar<double>
-      >::value ,
-      "in cmpad::adolc<Algo>, Algo::value_type != Sacado::Rad::ADVar<double>"
-   );
+template < template<class Scalar> class TemplateAlgo> class gradient
+: public ::cmpad::gradient< TemplateAlgo< Sacado::Rad::ADvar<double> > > {
 private:
    //
    // option_
-   option_t option_;
+   option_t                                            option_;
    //
    // algo_
-   Algo algo_;
+   TemplateAlgo< Sacado::Rad::ADvar<double> >          algo_;
    //
    // ax_
-   cmpad::vector< Sacado::Rad::ADvar<double> > ax_;
+   cmpad::vector< Sacado::Rad::ADvar<double> >         ax_;
    //
    // ay_
-   cmpad::vector< Sacado::Rad::ADvar<double> > ay_;
+   cmpad::vector< Sacado::Rad::ADvar<double> >         ay_;
    //
    // g_
-   cmpad::vector<double> g_;
+   cmpad::vector<double>                               g_;
 //
 public:
    // value_type

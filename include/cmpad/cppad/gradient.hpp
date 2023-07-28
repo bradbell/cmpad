@@ -8,6 +8,7 @@
 {xrst_begin cppad_gradient.hpp}
 {xrst_spell
    cppad
+   obj
 }
 
 Calculate Gradient Using CppAD
@@ -16,7 +17,7 @@ Calculate Gradient Using CppAD
 Syntax
 ******
 | ``# include <cmpad/cppad/gradient.hpp>``
-|  ``cmpad::cppad::gradient`` < *Algo* > *grad*
+|  ``cmpad::cppad::gradient`` < *TemplateAlgo* > *grad*
 |  *g* = *grad* ( *x* )
 
 
@@ -24,10 +25,15 @@ Purpose
 *******
 This implements the :ref:`gradient-name` interface using CppAD.
 
+TemplateAlgo
+************
+The class TemplateAlgo<Scalar> must be a derived class for
+:ref:`fun_obj\<Scalar\> <fun_obj-name>` .
+
 value_type
 **********
-The type *Algo*\ ::\ ``value_type`` must be ``CppAD::AD<double>`` .
-The type cmpad::cppad::gradient<Algo>::value_type is ``double`` .
+The type cmpad::cppad::gradient<TemplateAlgo>::value_type is ``double`` ;
+see :ref:`gradient@value_type` .
 
 Example
 *******
@@ -49,25 +55,22 @@ Source Code
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
-// gradient
-template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
-   static_assert(
-      std::is_same<typename Algo::value_type, CppAD::AD<double>>::value ,
-      "in cmpad::adolc<Algo>, Algo::value_type != CppAD::AD<double>"
-   );
+// cmpad::cppad::gradient
+template < template<class Scalar> class TemplateAlgo> class gradient
+: public ::cmpad::gradient< TemplateAlgo< CppAD::AD<double> > > {
 private:
    //
    // option_
-   option_t option_;
+   option_t                          option_;
    //
    // algo_
-   Algo algo_;
+   TemplateAlgo< CppAD::AD<double> > algo_;
    // w_
-   cmpad::vector<double> w_;
+   cmpad::vector<double>             w_;
    // tape_
-   CppAD::ADFun<double>  tape_;
+   CppAD::ADFun<double>              tape_;
    // g_
-   cmpad::vector<double> g_;
+   cmpad::vector<double>             g_;
 //
 public:
    // value_type

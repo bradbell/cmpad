@@ -67,19 +67,19 @@ namespace {
 
 BOOST_AUTO_TEST_CASE(Gradient)
 {  //
+   // det_by_minor
+   using cmpad::det_by_minor;
+   //
    // adolc
-   typedef cmpad::det_by_minor<adouble>       adolc_Algo;
-   cmpad::adolc::gradient<adolc_Algo>         adolc_grad_det;
-   check_grad_det("adolc gradient", adolc_grad_det);
+   cmpad::adolc::gradient<det_by_minor>  adolc_grad_det;
+   check_grad_det("adolc gradient",      adolc_grad_det);
    //
    // cppad
-   typedef cmpad::det_by_minor< CppAD::AD<double> > cppad_Algo;
-   cmpad::cppad::gradient<cppad_Algo>         cppad_grad_det;
-   check_grad_det("cppad gradient", cppad_grad_det);
+   cmpad::cppad::gradient<det_by_minor>  cppad_grad_det;
+   check_grad_det("cppad gradient",      cppad_grad_det);
    //
    // sacado
-   typedef cmpad::det_by_minor<  Sacado::Rad::ADvar<double>  > sacado_Algo;
-   cmpad::sacado::gradient<sacado_Algo>                        sacado_grad_det;
-   check_grad_det("sacado gradient", sacado_grad_det);
+   cmpad::sacado::gradient<det_by_minor> sacado_grad_det;
+   check_grad_det("sacado gradient",     sacado_grad_det);
 }
 // END C++

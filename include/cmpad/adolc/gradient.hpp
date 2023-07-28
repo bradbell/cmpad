@@ -8,7 +8,7 @@
 {xrst_begin adolc_gradient.hpp}
 {xrst_spell
    adolc
-   adouble
+   obj
 }
 
 Calculate Gradient Using ADOL-C
@@ -17,7 +17,7 @@ Calculate Gradient Using ADOL-C
 Syntax
 ******
 | ``# include <cmpad/adolc/gradient.hpp>``
-|  ``cmpad::adolc::gradient`` < *Algo* > *grad*
+|  ``cmpad::adolc::gradient`` < *TemplateAlgo* > *grad*
 |  *g* = *grad* ( *x* )
 
 
@@ -25,10 +25,15 @@ Purpose
 *******
 This implements the :ref:`gradient-name` interface using ADOL-C.
 
+TemplateAlgo
+************
+The class TemplateAlgo<Scalar> must be a derived class for
+:ref:`fun_obj\<Scalar\> <fun_obj-name>` .
+
 value_type
 **********
-The type Algo::value_type must be ``adouble`` .
-The type cmpad::adolc::gradient<Algo>::value_type is ``double`` .
+The type cmpad::adolc::gradient<TemplateAlgo>::value_type is ``double`` ;
+see :ref:`gradient@value_type` .
 
 Example
 *******
@@ -51,28 +56,25 @@ Source Code
 
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
-// gradient
-template <class Algo> class gradient : public ::cmpad::gradient<Algo> {
-   static_assert(
-      std::is_same<typename Algo::value_type, adouble>::value ,
-      "in cmpad::adolc<Algo>, Algo::value_type != adouble"
-   );
+// cmpad::adolc::gradient
+template < template<class Scalar> class TemplateAlgo > class gradient
+: public ::cmpad::gradient< TemplateAlgo<adouble> > {
 private:
    //
    // option_
-   option_t option_;
+   option_t                      option_;
    //
    // algo_
-   Algo algo_;
+   TemplateAlgo<adouble>         algo_;
    //
    // tag_
-   int tag_;
+   int                           tag_;
    //
    // u_
-   cmpad::vector<double> u_;
+   cmpad::vector<double>         u_;
    //
    // g_
-   cmpad::vector<double> g_;
+   cmpad::vector<double>         g_;
 //
 public:
    // value_type
@@ -144,6 +146,6 @@ public:
    }
 };
 
-} } // END cmpad::cppad namespace
+} } // END cmpad::adolc namespace
 // END C++
 # endif
