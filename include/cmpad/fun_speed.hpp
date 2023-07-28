@@ -16,9 +16,8 @@ Determine Execution Speed of a Function Object
 Syntax
 ******
 |  ``# include <cmpad/fun_speed.hpp>``
-|  *n* = *fun_obj*.domain()
 |  *y* = *fun_obj* ( *x* )
-|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *time_min* )
+|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *option*, *time_min* )
 
 Prototype
 *********
@@ -30,21 +29,31 @@ Prototype
 fun_obj
 *******
 We are testing the speed of the evaluation of *y* by this function object.
-The time to execute its setup routine is not included.
-The *fun_obj* :ref:`fun_obj@setup`  must have already been called.
-
-n
-*
-This is the dimensions of the domain space for the function object.
 
 x
 *
-This is a ``cmpad::vector<double>`` object with size *n*.
+This is a ``cmpad::vector<double>`` object with size equal to the
+dimension of the :ref:`fun_obj@domain` space for the function object.
 
 y
 *
 This is a ``cmpad::vector<double>`` object with size equal to the
-dimension of the range space for the function object.
+dimension of the :ref:`fun_obj@range` space for the function object.
+
+option
+******
+This is the :ref:`option_t-name` object used to setup the function object
+with the call
+{xrst_code cpp}
+   fun_obj.setup(option)
+{xrst_code}
+
+time_setup
+==========
+If option.time_setup is true (false) the setup function is (is not)
+included in the time for each function evaluation.
+If the setup time is not included, the only thing that changes
+between function evaluations is the argument vector *x* .
 
 time_min
 ********
@@ -67,28 +76,16 @@ uses this function.
 
 {xrst_end fun_speed}
 -------------------------------------------------------------------------------
-\{xrst_begin fun_speed.hpp}
-
-fun_speed: Source Code
-######################
-\{xrst_literal
-   // BEGIN C++
-   // END C++
-}
-
-
-\{xrst_end fun_speed.hpp}
--------------------------------------------------------------------------------
 */
-// BEGIN C++
 # include <cmpad/uniform_01.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
 template <class Fun_Obj> double fun_speed(
-   Fun_Obj& fun_obj    ,
-   double   time_min   )
+   Fun_Obj&         fun_obj    ,
+   const option_t&  option     ,
+   double           time_min   )
 // END PROTOTYPE
 {  //
    // steady_clock
@@ -97,6 +94,9 @@ template <class Fun_Obj> double fun_speed(
    // time_point, duration
    typedef std::chrono::time_point<steady_clock> time_point;
    typedef std::chrono::duration<double>         duration;
+   //
+   // fun_obj.setup
+   fun_obj.setup(option);
    //
    // x
    size_t n = fun_obj.domain();
@@ -128,6 +128,8 @@ template <class Fun_Obj> double fun_speed(
       // computation
       for(size_t i = 0; i < repeat; ++i)
       {  uniform_01(x);
+         if( option.time_setup )
+            fun_obj.setup(option);
          fun_obj(x);
       }
       // t_diff
@@ -139,5 +141,4 @@ template <class Fun_Obj> double fun_speed(
 }
 
 } // END cmpad namespace
-// END C++
 # endif

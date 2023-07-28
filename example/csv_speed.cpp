@@ -47,7 +47,8 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // option
    cmpad::option_t option;
-   option.size = 6;
+   option.size       = 6;
+   option.time_setup = true;
    //
    // rate
    double rate;
@@ -58,29 +59,25 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // double
    package   = "double";
    cmpad::det_by_minor<double>        det_double;
-   det_double.setup(option);
-   rate = cmpad::fun_speed(det_double, time_min);
+   rate = cmpad::fun_speed(det_double, option, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // adolc
    package   = "adolc";
    cmpad::adolc::gradient<det_by_minor>          grad_det_adolc;
-   grad_det_adolc.setup(option);
-   rate = cmpad::fun_speed(grad_det_adolc, time_min);
+   rate = cmpad::fun_speed(grad_det_adolc, option, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // cppad
    package   = "cppad";
    cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
-   grad_det_cppad.setup(option);
-   rate = cmpad::fun_speed(grad_det_cppad, time_min);
+   rate = cmpad::fun_speed(grad_det_cppad, option, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // sacado
    package   = "sacado";
    cmpad::sacado::gradient<det_by_minor>          grad_det_sacado;
-   grad_det_sacado.setup(option);
-   rate = cmpad::fun_speed(grad_det_sacado, time_min);
+   rate = cmpad::fun_speed(grad_det_sacado, option, time_min);
    cmpad::csv_speed(file_name, rate, package, algorithm, option);
    //
    // csv_table
@@ -95,7 +92,14 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // col_name, n_col
    const char* col_name[] = {
-      "rate", "package", "algorithm", "size", "date", "compiler", "debug"
+      "rate",
+      "package",
+      "algorithm",
+      "size",
+      "time_setup",
+      "date",
+      "compiler",
+      "debug"
    };
    size_t n_col = sizeof(col_name) / sizeof( col_name[0] );
    //
@@ -112,11 +116,17 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    BOOST_CHECK( csv_table[3][1] == "cppad" );
    BOOST_CHECK( csv_table[4][1] == "sacado" );
    //
+   std::string time_setup;
+   if( option.time_setup )
+      time_setup = "true";
+   else
+      time_setup = "false";
    for(size_t i = 1; i < csv_table.size(); ++i)
    {  BOOST_CHECK( csv_table[i][2] == "det_by_minor" );
       BOOST_CHECK( csv_table[i][3] == std::to_string(option.size) );
-      BOOST_CHECK( csv_table[i][5] == CMPAD_CXX_COMPILER );
-      BOOST_CHECK( csv_table[1][6] == debug );
+      BOOST_CHECK( csv_table[i][4] == time_setup );
+      BOOST_CHECK( csv_table[i][6] == CMPAD_CXX_COMPILER );
+      BOOST_CHECK( csv_table[1][7] == debug );
    }
 }
 // END C++

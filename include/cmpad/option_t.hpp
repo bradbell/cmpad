@@ -16,6 +16,7 @@ The Option Type
 namespace cmpad {
    struct option_t {
       size_t size;
+      bool   time_setup;
    };
 }
 /* {xrst_code}

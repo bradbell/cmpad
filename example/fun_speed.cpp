@@ -43,13 +43,14 @@ namespace {
       for(size_t ell = 6; ell < 10; ++ell)
       {  //
          // option
-         option.size = ell;
+         option.size       = ell;
+         option.time_setup = false;
          //
          // grad_det
          grad_det.setup(option);
          //
          // rate
-         double rate  = cmpad::fun_speed(grad_det, time_min);
+         double rate  = cmpad::fun_speed(grad_det, option, time_min);
          //
          // ratio
          // number of floating operations goes up by a factor of ell

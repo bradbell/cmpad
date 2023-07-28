@@ -49,6 +49,10 @@ size
 ****
 This is the value of *option*\ .\ ``size`` .
 
+time_setup
+**********
+This is the value of *option*\ .\ ``time_setup`` .
+
 date
 ****
 This is the date when csv_speed is called.
@@ -104,8 +108,16 @@ void csv_speed(
    if( filesystem::exists( filesystem::path(file_name) ) )
       csv_table = csv_read(file_name);
    else
-   {  cmpad::vector<std::string> row =
-      { "rate", "package", "algorithm", "size", "date", "compiler", "debug" };
+   {  cmpad::vector<std::string> row = {
+         "rate",
+         "package",
+         "algorithm",
+         "size",
+         "time_setup",
+         "date",
+         "compiler",
+         "debug"
+      };
       csv_table.push_back(row);
    }
    //
@@ -138,9 +150,24 @@ void csv_speed(
    // size
    std::string size = std::to_string(option.size);
    //
+   // time_setup
+   std::string time_setup;
+   if( option.time_setup )
+      time_setup = "true";
+   else
+      time_setup = "false";
+   //
    // csv_table
-   cmpad::vector<std::string> row =
-      { rate_str, package, algorithm, size, date, compiler, debug };
+   cmpad::vector<std::string> row = {
+      rate_str,
+      package,
+      algorithm,
+      size,
+      time_setup,
+      date,
+      compiler,
+      debug
+   };
    csv_table.push_back(row);
    //
    // file_name
