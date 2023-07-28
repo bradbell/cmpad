@@ -11,7 +11,6 @@ The Compare AD Users Documentation
    include/cmpad/option_t.hpp
    include/cmpad/vec_vec_str.hpp
    include/cmpad/fun_obj.hpp
-   include/cmpad/gradient.hpp
    include/cmpad/fun_speed.hpp
    include/cmpad/det_of_minor.hpp
    lib/csv_read.cpp

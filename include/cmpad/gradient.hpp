@@ -41,7 +41,8 @@ associated with a gradient class.
 
 1. Algo::value_type is the scalar type used when evaluating the algorithm.
 2. cmpad::gradient<Algo>::value_type is the scalar type
-   of the arguments and return value for the gradient object; i.e., double.
+   of the arguments and return value for the gradient object; i.e., double;
+   see :ref:`fun_obj@value_type` .
 
 grad
 ****

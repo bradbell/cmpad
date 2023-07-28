@@ -5,7 +5,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ----------------------------------------------------------------------------
 /*
-{xrst_begin det_by_minor}
+{xrst_begin_parent det_by_minor}
 
 Determinant Using Expansion by Minors
 #####################################
@@ -13,9 +13,14 @@ Determinant Using Expansion by Minors
 Syntax
 ******
 |  ``# include <cmpad/det_by_minor.hpp``
-|  ``cmpad::det_by_minor`` < *Scalar* >::value_type
-|  ``cmpad::det_by_minor`` < *Scalar* > *det*
 |  *y* = *det* ( *x* )
+
+Prototype
+*********
+{xrst_literal
+   // BEGIN DET_BY_MINOR
+   // END DET_BY_MINOR
+}
 
 Purpose
 *******
@@ -42,9 +47,7 @@ the type *Scalar* must support the following operations:
 
 value_type
 **********
-This is the same type as *Scalar* and is intended to be used when
-cmpad::det_by_minor<Scalar> is passed as a template parameter;
-see :ref:`fun_obj@value_type` .
+This is the same type as *Scalar* ; see :ref:`fun_obj@value_type` .
 
 det
 ***
@@ -87,16 +90,16 @@ contains an example and test of ``det_by_minor`` .
 
 {xrst_end det_by_minor}
 ---------------------------------------------------------------------------
-\{xrst_begin det_by_minor.hpp}
+{xrst_begin det_by_minor.hpp}
 
 det_by_minor: Source Code
 #########################
-\{xrst_literal
+{xrst_literal
    // BEGIN C++
    // END C++
 }
 
-\{xrst_end det_by_minor.hpp}
+{xrst_end det_by_minor.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
@@ -106,8 +109,9 @@ det_by_minor: Source Code
 // BEGIN cmpad namespace
 namespace cmpad {
 
-// det_by_minor
+// BEGIN DET_BY_MINOR
 template <class Scalar> class det_by_minor : public fun_obj<Scalar>
+// END DET_BY_MINOR
 {
 private:
    // option_

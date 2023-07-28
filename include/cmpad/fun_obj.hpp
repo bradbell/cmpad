@@ -75,6 +75,7 @@ Derived Classes
 ***************
 {xrst_toc_table
    include/cmpad/det_by_minor.hpp
+   include/cmpad/gradient.hpp
 }
 
 {xrst_end fun_obj}
