@@ -81,7 +81,7 @@ else
 fi
 #
 # package_top_srcdir
-if echo $web_page | grep '\.git#' > /dev/null
+if echo $web_page | grep '\.git' > /dev/null
 then
    package_top_srcdir="$package.git"
 else
@@ -110,7 +110,7 @@ fi
 echo_eval cd external
 #
 # package top source directory
-if echo $web_page | grep '\.git#' > /dev/null
+if echo $web_page | grep '\.git' > /dev/null
 then
    if [ ! -d "$package.git" ]
    then
