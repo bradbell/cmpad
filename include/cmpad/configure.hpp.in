@@ -5,7 +5,7 @@
 # ifndef CMPAD_TYPEDEF_HPP
 # define CMPAD_TYPEDEF_HPP
 /*
-{xrst_begin cmpad_typedef}
+{xrst_begin configure}
 {xrst_spell
    cmake
    cppad
@@ -55,7 +55,7 @@ cppad
    // END cppad
 }
 
-{xrst_end cmpad_typedef}
+{xrst_end configure}
 */
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"

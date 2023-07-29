@@ -82,6 +82,6 @@ BOOST_AUTO_TEST_CASE(fun_speed)
    //
    // sacado
    cmpad::sacado::gradient<det_by_minor> sacado_grad_det;
-   check_speed_det("sacado grad_det", sacado_grad_det);
+   check_speed_det("sacado grad_det",    sacado_grad_det);
 }
 // END C++
