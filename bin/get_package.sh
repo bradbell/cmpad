@@ -21,7 +21,7 @@ fi
 if [ "$#" != 1 ]
 then
    echo 'usage: bin/get_package package'
-   echo 'where package is adolc, cppad, sacado.'
+   echo 'where package is adolc, autodiff, cppad, sacado.'
    exit 1
 fi
 #
@@ -47,12 +47,30 @@ case $package in
    configure="cd ..; autoreconf -fi; cd build ; ../configure $configure"
    ;;
 
+   autodiff)
+   web_page='https://github.com/autodiff/autodiff.git'
+   version='main'
+   configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   for name in TESTS PYTHON EXAMPLES DOCS
+   do
+      configure="$configure -D AUTODIFF_BUILD_$name=OFF"
+   done
+   ;;
+
    cppad)
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
    configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
    configure="$configure -D cppad_prefix=$prefix"
    configure="$configure -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
+   ;;
+
+   eigen)
+   web_page='https://gitlab.com/libeigen/$package.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    sacado)
@@ -67,9 +85,10 @@ case $package in
 
    *)
    echo 'bin/get_package.sh: package'
-   echo 'package is not adolc, or cppad'
+   echo 'package is not adolc, autodiff, cppad, or sacado'
    exit 1
    ;;
+
 esac
 #
 # n_job
@@ -87,6 +106,7 @@ then
 else
    package_top_srcdir="$package"
 fi
+echo $package_top_srcdir
 #
 # configured_flag
 configured_flag="external/$package.configured"
@@ -95,7 +115,7 @@ if [ -e "$configured_flag" ]
 then
    echo "Skipping configuration because following file exists:"
    echo $configured_flag
-   echo_eval cd external/$package_top_srcdir.git/build
+   echo_eval cd external/$package_top_srcdir/build
    echo_eval make -j $n_job install
    echo "bin/get_package.sh: $package OK"
    exit 0
@@ -165,6 +185,14 @@ echo_eval touch $top_srcdir/$configured_flag
 #
 # install
 echo_eval make -j $n_job install
+if [ "$package" == 'eigen' ]
+then
+   if [ -e $prefix/include/Eigen ]
+   then
+      rm $prefix/include/Eigen
+   fi
+   ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
+fi
 #
 # -----------------------------------------------------------------------------
 echo "bin/get_package.sh: $package OK"

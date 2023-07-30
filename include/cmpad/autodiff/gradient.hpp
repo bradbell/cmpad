@@ -2,28 +2,28 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_SACADO_GRADIENT_HPP
-# define CMPAD_SACADO_GRADIENT_HPP
+# ifndef CMPAD_AUTODIFF_GRADIENT_HPP
+# define CMPAD_AUTODIFF_GRADIENT_HPP
 /*
-{xrst_begin sacado_gradient.hpp}
+{xrst_begin autodiff_gradient.hpp}
 {xrst_spell
-   sacado
+   autodiff
    obj
 }
 
-Calculate Gradient Using Sacado
-###############################
+Calculate Gradient Using autodiff
+#################################
 
 Syntax
 ******
-| ``# include <cmpad/sacado/gradient.hpp>``
-|  ``cmpad::sacado::gradient`` < *TemplateAlgo* > *grad*
+| ``# include <cmpad/autodiff/gradient.hpp>``
+|  ``cmpad::autodiff::gradient`` < *TemplateAlgo* > *grad*
 |  *g* = *grad* ( *x* )
 
 
 Purpose
 *******
-This implements the :ref:`gradient-name` interface using Sacado.
+This implements the :ref:`gradient-name` interface using autodiff.
 
 TemplateAlgo
 ************
@@ -32,7 +32,7 @@ The class TemplateAlgo<Scalar> must be a derived class for
 
 value_type
 **********
-The type cmpad::sacado::gradient<TemplateAlgo>::value_type is ``double`` ;
+The type cmpad::autodiff::gradient<TemplateAlgo>::value_type is ``double`` ;
 see :ref:`gradient@value_type` .
 
 Example
@@ -47,34 +47,40 @@ Source Code
    // END C++
 }
 
-{xrst_end sacado_gradient.hpp}
+{xrst_end autodiff_gradient.hpp}
 */
 // BEGIN C++
 # include <cmpad/gradient.hpp>
-# include <Sacado.hpp>
+# include <autodiff/forward/real.hpp>
+# include <autodiff/forward/real/eigen.hpp>
 
-namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
+namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
+
+typedef ::autodiff::real          real;
+typedef ::autodiff::VectorXreal   VectorXreal;
 
 // gradient
 template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo< Sacado::Rad::ADvar<double> > > {
+: public ::cmpad::gradient< TemplateAlgo<real> > {
 private:
    //
    // option_
-   option_t                                            option_;
+   option_t              option_;
    //
    // algo_
-   TemplateAlgo< Sacado::Rad::ADvar<double> >          algo_;
+   TemplateAlgo<real>    algo_;
    //
-   // ax_
-   cmpad::vector< Sacado::Rad::ADvar<double> >         ax_;
+   // ax_, ax_copy_
+   VectorXreal           ax_;
+   cmpad::vector<real>   ax_copy_;
    //
    // ay_
-   cmpad::vector< Sacado::Rad::ADvar<double> >         ay_;
+   cmpad::vector<real>   ay_;
    //
-   // g_
-   cmpad::vector<double>                               g_;
-//
+   // g_, g_copy_
+   Eigen::VectorXd       g_;
+   cmpad::vector<double> g_copy_;
+   //
 public:
    // value_type
    typedef double value_type;
@@ -90,16 +96,18 @@ public:
       // n, m
       size_t n = algo_.domain();
       size_t m = algo_.range();
+      assert( m == 1 );
       //
-      // ax_
+      // ax_, ax_copy_
       ax_.resize(n);
+      ax_copy_.resize(n);
       //
       // ay_
-      assert( m == 1 );
       ay_.resize(m);
       //
-      // g_
+      // g_, g_copy_
       g_.resize(n);
+      g_copy_.resize(n);
    }
    // domain
    size_t domain(void) const override
@@ -113,20 +121,25 @@ public:
       for(size_t j = 0; j < domain(); ++j)
          ax_[j] = x[j];
       //
-      // ay_
-      ay_ = algo_(ax_);
+      auto f = [&](const VectorXreal& ax)
+      {  for(int i = 0; i < ax.size(); ++i)
+            ax_copy_[i] = ax[i];
+         ay_ = algo_(ax_copy_);
+         return ay_[0];
+      };
       //
-      // reverse mode computation of gradient for last computed value
-      Sacado::Rad::ADvar<double>::Gradcomp();
+      // forward mode computation of gradient
+      real y;
+      g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y);
       //
       // g_
       for(size_t j = 0; j < domain(); ++j)
-         g_[j] = ax_[j].adj();
+         g_copy_[j] = g_[j];
       //
-      return g_;
+      return g_copy_;
    }
 };
 
-} } // END cmpad::sacado namespace
+} } // END cmpad::autodiff namespace
 // END C++
 # endif
