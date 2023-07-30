@@ -26,6 +26,14 @@ csv_speed: Example and Test
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
 
+namespace {
+   std::string to_string(bool flag)
+   {  if( flag )
+         return "true";
+      else
+         return "false";
+   }
+}
 BOOST_AUTO_TEST_CASE(csv_speed)
 {  //
    // filesystem
@@ -46,12 +54,15 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // algorithm
    std::string algorithm = "det_by_minor";
    //
+   // size
+   size_t size = 7;
+   //
    // time_setup
    for(bool time_setup : {true, false} )
    {
       // option
       cmpad::option_t option;
-      option.size       = 6;
+      option.size       = size;
       option.time_setup = time_setup;
       //
       // rate
@@ -133,16 +144,11 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // check column 2, 3, 4, 6, 7
    for(size_t i = 1; i < n_row; ++i)
-   {  // time_setup_str  
-      std::string time_setup_str;  
-      if( (i-1) < n_time_setup )
-         time_setup_str = "true";
-      else
-         time_setup_str = "false";  
+   {  bool time_setup = i <= n_time_setup;
       //
       BOOST_CHECK( csv_table[i][2] == "det_by_minor" );
-      BOOST_CHECK( csv_table[i][3] == "6" );
-      BOOST_CHECK( csv_table[i][4] == time_setup_str );
+      BOOST_CHECK( csv_table[i][3] == std::to_string(size) );
+      BOOST_CHECK( csv_table[i][4] == to_string(time_setup) );
       BOOST_CHECK( csv_table[i][6] == CMPAD_CXX_COMPILER );
       BOOST_CHECK( csv_table[1][7] == debug );
    }
