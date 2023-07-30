@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    std::string algorithm = "det_by_minor";
    //
    // size
-   size_t size = 7;
+   size_t size = 8;
    //
    // time_setup
    for(bool time_setup : {true, false} )
