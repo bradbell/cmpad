@@ -21,6 +21,7 @@ csv_speed: Example and Test
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
+# include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
@@ -45,40 +46,51 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // algorithm
    std::string algorithm = "det_by_minor";
    //
-   // option
-   cmpad::option_t option;
-   option.size       = 6;
-   option.time_setup = true;
-   //
-   // rate
-   double rate;
-   //
-   // det_by_minor
-   using cmpad::det_by_minor;
-   //
-   // double
-   package.push_back("double");
-   cmpad::det_by_minor<double>        det_double;
-   rate = cmpad::fun_speed(det_double, option, time_min);
-   cmpad::csv_speed(file_name, rate, "double", algorithm, option);
-   //
-   // adolc
-   package.push_back("adolc");
-   cmpad::adolc::gradient<det_by_minor>          grad_det_adolc;
-   rate = cmpad::fun_speed(grad_det_adolc, option, time_min);
-   cmpad::csv_speed(file_name, rate, "adolc", algorithm, option);
-   //
-   // cppad
-   package.push_back("cppad");
-   cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
-   rate = cmpad::fun_speed(grad_det_cppad, option, time_min);
-   cmpad::csv_speed(file_name, rate, "cppad", algorithm, option);
-   //
-   // sacado
-   package.push_back("sacado");
-   cmpad::sacado::gradient<det_by_minor>          grad_det_sacado;
-   rate = cmpad::fun_speed(grad_det_sacado, option, time_min);
-   cmpad::csv_speed(file_name, rate, "sacado", algorithm, option);
+   // time_setup
+   for(bool time_setup : {true, false} )
+   {
+      // option
+      cmpad::option_t option;
+      option.size       = 6;
+      option.time_setup = time_setup;
+      //
+      // rate
+      double rate;
+      //
+      // det_by_minor
+      using cmpad::det_by_minor;
+      //
+      // double
+      package.push_back("double");
+      cmpad::det_by_minor<double>        det_double;
+      rate = cmpad::fun_speed(det_double, option, time_min);
+      cmpad::csv_speed(file_name, rate, "double", algorithm, option);
+      //
+      // adolc
+      package.push_back("adolc");
+      cmpad::adolc::gradient<det_by_minor>          grad_det_adolc;
+      rate = cmpad::fun_speed(grad_det_adolc, option, time_min);
+      cmpad::csv_speed(file_name, rate, "adolc", algorithm, option);
+      //
+      // cppad
+      package.push_back("cppad");
+      cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
+      rate = cmpad::fun_speed(grad_det_cppad, option, time_min);
+      cmpad::csv_speed(file_name, rate, "cppad", algorithm, option);
+      //
+      // sacado
+      package.push_back("sacado");
+      cmpad::sacado::gradient<det_by_minor>          grad_det_sacado;
+      rate = cmpad::fun_speed(grad_det_sacado, option, time_min);
+      cmpad::csv_speed(file_name, rate, "sacado", algorithm, option);
+      //
+      // autodiff
+      package.push_back("autodiff");
+      cmpad::autodiff::gradient<det_by_minor>        grad_det_autodiff;
+      rate = cmpad::fun_speed(grad_det_autodiff, option, time_min);
+      cmpad::csv_speed(file_name, rate, "autodiff", algorithm, option);
+   }
+   assert( package.size() % 2 == 0 );
    //
    // csv_table
    cmpad::vec_vec_str csv_table = cmpad::csv_read(file_name);
@@ -89,13 +101,6 @@ BOOST_AUTO_TEST_CASE(csv_speed)
 # else
    std::string debug = "false";
 # endif
-   //
-   // time_setup
-   std::string time_setup;
-   if( option.time_setup )
-      time_setup = "true";
-   else
-      time_setup = "false";
    //
    // col_name
    cmpad::vector<std::string> col_name = {
@@ -109,9 +114,10 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       "debug"
    };
    //
-   // n_row, n_col
-   size_t n_row = package.size() + 1; // header row is not in package
-   size_t n_col = col_name.size();
+   // n_row, n_col, n_time_setup
+   size_t n_row        = package.size() + 1; // header row is not in package
+   size_t n_col        = col_name.size();
+   size_t n_time_setup = package.size() / 2;
    //
    // check sizes
    BOOST_CHECK( csv_table.size() == n_row );
@@ -127,9 +133,16 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // check column 2, 3, 4, 6, 7
    for(size_t i = 1; i < n_row; ++i)
-   {  BOOST_CHECK( csv_table[i][2] == "det_by_minor" );
-      BOOST_CHECK( csv_table[i][3] == std::to_string(option.size) );
-      BOOST_CHECK( csv_table[i][4] == time_setup );
+   {  // time_setup_str  
+      std::string time_setup_str;  
+      if( (i-1) < n_time_setup )
+         time_setup_str = "true";
+      else
+         time_setup_str = "false";  
+      //
+      BOOST_CHECK( csv_table[i][2] == "det_by_minor" );
+      BOOST_CHECK( csv_table[i][3] == "6" );
+      BOOST_CHECK( csv_table[i][4] == time_setup_str );
       BOOST_CHECK( csv_table[i][6] == CMPAD_CXX_COMPILER );
       BOOST_CHECK( csv_table[1][7] == debug );
    }

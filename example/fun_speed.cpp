@@ -20,6 +20,7 @@ gradient: Example and Test
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
+# include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
 
 namespace {
@@ -73,15 +74,19 @@ BOOST_AUTO_TEST_CASE(fun_speed)
    using cmpad::det_by_minor;
    //
    // adolc
-   cmpad::adolc::gradient<det_by_minor>  adolc_grad_det;
-   check_speed_det("adolc grad_det",     adolc_grad_det);
+   cmpad::adolc::gradient<det_by_minor>    adolc_grad_det;
+   check_speed_det("adolc grad_det",       adolc_grad_det);
    //
    // cppad
-   cmpad::cppad::gradient<det_by_minor>  cppad_grad_det;
-   check_speed_det("cppad grad_det",     cppad_grad_det);
+   cmpad::cppad::gradient<det_by_minor>    cppad_grad_det;
+   check_speed_det("cppad grad_det",       cppad_grad_det);
    //
    // sacado
-   cmpad::sacado::gradient<det_by_minor> sacado_grad_det;
-   check_speed_det("sacado grad_det",    sacado_grad_det);
+   cmpad::sacado::gradient<det_by_minor>   sacado_grad_det;
+   check_speed_det("sacado grad_det",      sacado_grad_det);
+   //
+   // autodiff
+   cmpad::autodiff::gradient<det_by_minor> autodiff_grad_det;
+   check_speed_det("autodiff grad_det",    sacado_grad_det);
 }
 // END C++
