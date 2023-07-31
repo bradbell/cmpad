@@ -173,7 +173,7 @@ public:
          dll_file = "";
       }
       //
-      if( dll_file != "" );
+      if( dll_file != "" )
       {  std::filesystem::path path = std::filesystem::current_path();
          path /= dll_file;
          dll_file = path.string();

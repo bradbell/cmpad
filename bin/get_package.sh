@@ -28,6 +28,12 @@ fi
 # package
 package="$1"
 # ---------------------------------------------------------------------------
+if [ "$package" == autodiff ]
+then
+   # autodiff requires eigen
+   bin/get_package.sh eigen
+fi
+# ---------------------------------------------------------------------------
 #
 # top_srcdir
 top_srcdir=$(pwd)
@@ -117,6 +123,15 @@ then
    echo $configured_flag
    echo_eval cd external/$package_top_srcdir/build
    echo_eval make -j $n_job install
+   #
+   if [ "$package" == 'eigen' ]
+   then
+      if [ -e $prefix/include/Eigen ]
+      then
+         rm $prefix/include/Eigen
+      fi
+      ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
+   fi
    echo "bin/get_package.sh: $package OK"
    exit 0
 fi
