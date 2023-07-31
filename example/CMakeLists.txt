@@ -21,15 +21,7 @@ ADD_EXECUTABLE(example
 )
 LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/src )
 #
-# Sacado_LIBRARIIES
-FOREACH(dir lib lib64)
-   IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
-      SET(Trilinos_DIR "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
-   ENDIF( )
-ENDFOREACH( )
-FIND_PACKAGE(Trilinos CONFIG)
-#
 # For Sacado
 ADD_DEFINITIONS("-DCPPAD_SACADO_SPEED -DRAD_AUTO_AD_Const")
 #
-TARGET_LINK_LIBRARIES(example cmpad ${Sacado_LIBRARIES} )
+TARGET_LINK_LIBRARIES(example cmpad )

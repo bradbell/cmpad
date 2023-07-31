@@ -44,6 +44,14 @@ FOREACH(package adolc cppad)
    ENDIF( )
 ENDFOREACH( )
 #
+# Sacado_LIBRARIIES
+FOREACH(dir lib lib64)
+   IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
+      SET(Trilinos_DIR "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
+   ENDIF( )
+ENDFOREACH( )
+FIND_PACKAGE(Trilinos CONFIG)
+#
 # include directories
 INCLUDE_DIRECTORIES(
    ${PROJECT_SOURCE_DIR}/include
@@ -53,6 +61,7 @@ INCLUDE_DIRECTORIES(
 # link libraries
 LINK_LIBRARIES(
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+   ${Sacado_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
    ${cppad_LINK_LIBRARIES}
 )
