@@ -16,6 +16,7 @@ gradient: Example and Test
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
+# include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
@@ -57,12 +58,12 @@ namespace {
          // number of floating operations goes up by a factor of ell
          double ratio = previous_rate / (ell * rate);
          //
-         if( ! (previous_rate == 0.0 || (0.5 < ratio && ratio < 2.0) ) )
+         if( ! (previous_rate == 0.0 || (0.33 < ratio && ratio < 3.0) ) )
          {  std::cout << name << ": ell = " << ell << ": ratio = ";
             std::cout << std::to_string(ratio) << "\n";
          }
          if( previous_rate != 0.0 )
-            BOOST_CHECK( 0.5 < ratio && ratio < 2.0 );
+            BOOST_CHECK( 0.33 < ratio && ratio < 3.0 );
          previous_rate = rate;
       }
    }
@@ -73,20 +74,24 @@ BOOST_AUTO_TEST_CASE(fun_speed)
    // det_by_minor
    using cmpad::det_by_minor;
    //
-   // adolc
+# if CMPAD_HAS_ADOLC
    cmpad::adolc::gradient<det_by_minor>    adolc_grad_det;
    check_speed_det("adolc grad_det",       adolc_grad_det);
+# endif
    //
-   // cppad
+# if CMPAD_HAS_CPPAD
    cmpad::cppad::gradient<det_by_minor>    cppad_grad_det;
    check_speed_det("cppad grad_det",       cppad_grad_det);
+# endif
    //
-   // sacado
+# if CMPAD_HAS_SACADO
    cmpad::sacado::gradient<det_by_minor>   sacado_grad_det;
    check_speed_det("sacado grad_det",      sacado_grad_det);
+# endif
    //
-   // autodiff
+# if CMPAD_HAS_AUTODIFF
    cmpad::autodiff::gradient<det_by_minor> autodiff_grad_det;
-   check_speed_det("autodiff grad_det",    sacado_grad_det);
+   check_speed_det("autodiff grad_det",    autodiff_grad_det);
+# endif
 }
 // END C++

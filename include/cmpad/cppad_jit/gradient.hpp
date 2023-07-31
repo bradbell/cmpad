@@ -57,6 +57,8 @@ Source Code
 {xrst_end cppad_jit_gradient.hpp}
 */
 // BEGIN C++
+# if CMPAD_HAS_CPPAD
+
 # include <filesystem>
 # include <cmpad/gradient.hpp>
 # include <cppad/cppad.hpp>
@@ -214,5 +216,7 @@ public:
 };
 
 } } // END cmpad::cppad_jit namespace
+
+# endif // CMPAD_HAS_CPPAD
 // END C++
 # endif

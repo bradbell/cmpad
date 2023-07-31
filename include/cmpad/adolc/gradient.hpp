@@ -50,6 +50,8 @@ Source Code
 {xrst_end adolc_gradient.hpp}
 */
 // BEGIN C++
+# if CMPAD_HAS_ADOLC
+
 # include <type_traits>
 # include <cmpad/gradient.hpp>
 # include <adolc/adolc.h>
@@ -147,5 +149,7 @@ public:
 };
 
 } } // END cmpad::adolc namespace
+
+# endif // CMPAD_HAS_ADOLC
 // END C++
 # endif

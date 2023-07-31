@@ -3,6 +3,11 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
+# print_variable
+MACRO(print_variable variable)
+   MESSAGE(STATUS "${variable} = ${${variable}}" )
+ENDMACRO( )
+#
 # cmake requires version
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 #
@@ -33,24 +38,25 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 # Boost_UNIT_TEST_FRAMEWORK_LIBRARY
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
 #
+# ${package}_LINK_LIBRARIES
 FOREACH(package adolc cppad)
-   #
-   # ${package}_LINK_LIBRARIES
    pkg_check_modules(${package} REQUIRED ${package})
    IF( ${package}_LINK_LIBRARIES )
-      MESSAGE(STATUS "${package}_LINK_LIBRARIES = ${${package}_LINK_LIBRARIES}")
+      print_variable( ${package}_LINK_LIBRARIES )
    ELSE( )
       SET(${package}_LINK_LIBRARIES "")
    ENDIF( )
 ENDFOREACH( )
 #
-# Sacado_LIBRARIIES
+# sacado_LINK_LIBRARIES
 FOREACH(dir lib lib64)
    IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
       SET(Trilinos_DIR "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
    ENDIF( )
 ENDFOREACH( )
 FIND_PACKAGE(Trilinos CONFIG)
+SET(sacado_LINK_LIBRARIES "${Sacado_LIBRARIES}")
+print_variable( sacado_LINK_LIBRARIES )
 #
 # include directories
 INCLUDE_DIRECTORIES(
@@ -61,7 +67,7 @@ INCLUDE_DIRECTORIES(
 # link libraries
 LINK_LIBRARIES(
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-   ${Sacado_LIBRARIES}
+   ${sacado_LINK_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
    ${cppad_LINK_LIBRARIES}
 )

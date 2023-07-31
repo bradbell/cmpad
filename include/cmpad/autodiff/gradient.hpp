@@ -50,6 +50,8 @@ Source Code
 {xrst_end autodiff_gradient.hpp}
 */
 // BEGIN C++
+# if CMPAD_HAS_AUTODIFF
+
 # include <cmpad/gradient.hpp>
 # include <autodiff/forward/real.hpp>
 # include <autodiff/forward/real/eigen.hpp>
@@ -141,5 +143,7 @@ public:
 };
 
 } } // END cmpad::autodiff namespace
+
+# endif // CMPAD_HAS_AUTODIFF
 // END C++
 # endif

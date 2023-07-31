@@ -23,7 +23,7 @@ Prototype
 
 vec_vec_str
 ***********
-see :ref:`cmpad_typedef@vec_vec_str` .
+see :ref:`vec_vec_str-name` .
 
 file_name
 *********

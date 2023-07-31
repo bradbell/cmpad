@@ -17,6 +17,7 @@ csv_speed: Example and Test
 // BEGIN C++
 # include <filesystem>
 # include <boost/test/unit_test.hpp>
+# include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
@@ -77,29 +78,33 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       rate = cmpad::fun_speed(det_double, option, time_min);
       cmpad::csv_speed(file_name, rate, "double", algorithm, option);
       //
-      // adolc
+# if CMPAD_HAS_ADOLC
       package.push_back("adolc");
       cmpad::adolc::gradient<det_by_minor>          grad_det_adolc;
       rate = cmpad::fun_speed(grad_det_adolc, option, time_min);
       cmpad::csv_speed(file_name, rate, "adolc", algorithm, option);
+# endif
       //
-      // cppad
+# if CMPAD_HAS_CPPAD
       package.push_back("cppad");
       cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
       rate = cmpad::fun_speed(grad_det_cppad, option, time_min);
       cmpad::csv_speed(file_name, rate, "cppad", algorithm, option);
+# endif
       //
-      // sacado
+# if CMPAD_HAS_SACADO
       package.push_back("sacado");
       cmpad::sacado::gradient<det_by_minor>          grad_det_sacado;
       rate = cmpad::fun_speed(grad_det_sacado, option, time_min);
       cmpad::csv_speed(file_name, rate, "sacado", algorithm, option);
+# endif
       //
-      // autodiff
+# if CMPAD_HAS_AUTODIFF
       package.push_back("autodiff");
       cmpad::autodiff::gradient<det_by_minor>        grad_det_autodiff;
       rate = cmpad::fun_speed(grad_det_autodiff, option, time_min);
       cmpad::csv_speed(file_name, rate, "autodiff", algorithm, option);
+# endif
    }
    assert( package.size() % 2 == 0 );
    //

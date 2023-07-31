@@ -3,6 +3,22 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
+# cmpad_has_${package}
+FOREACH(package adolc cppad sacado)
+   IF( "${${package}_LINK_LIBRARIES}" STREQUAL "" )
+      SET( cmpad_has_${package} 0 )
+   ELSE( )
+      SET( cmpad_has_${package} 1 )
+   ENDIF( )
+   print_variable(cmpad_has_${package})
+ENDFOREACH( )
+IF( EXISTS "${cmpad_install_prefix}/include/autodiff/forward/real.hpp" )
+   SET( cmpad_has_autodiff 1 )
+ELSE( )
+   SET( cmpad_has_autodiff 0 )
+ENDIF( )
+print_variable(cmpad_has_autodiff)
+#
 # cmpad_vector_is_<name>
 # for <name> equal to boost, cppad, std
 SET(cmpad_vector std CACHE STRING

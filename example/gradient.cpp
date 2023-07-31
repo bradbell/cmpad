@@ -16,6 +16,7 @@ gradient: Example and Test
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
+# include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
@@ -72,21 +73,25 @@ BOOST_AUTO_TEST_CASE(Gradient)
    // det_by_minor
    using cmpad::det_by_minor;
    //
-   // adolc
+# if CMPAD_HAS_ADOLC
    cmpad::adolc::gradient<det_by_minor>     adolc_grad_det;
    check_grad_det("adolc gradient",         adolc_grad_det);
+# endif
    //
-   // cppad
+# if CMPAD_HAS_CPPAD
    cmpad::cppad::gradient<det_by_minor>     cppad_grad_det;
    check_grad_det("cppad gradient",         cppad_grad_det);
+# endif
    //
-   // sacado
+# if CMPAD_HAS_SACADO
    cmpad::sacado::gradient<det_by_minor>    sacado_grad_det;
    check_grad_det("sacado gradient",        sacado_grad_det);
+# endif
    //
-   // autodiff
+# if CMPAD_HAS_AUTODIFF
    cmpad::autodiff::gradient<det_by_minor>  autodiff_grad_det;
    check_grad_det("autodiff gradient",      autodiff_grad_det);
+# endif
 # if 0
    // This test is not yet working.
    // cppad_jit

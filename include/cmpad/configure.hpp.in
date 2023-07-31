@@ -11,6 +11,8 @@
    cppad
    preprocessor
    std
+   sh
+   adolc
 }
 
 Preprocessor Definitions and Configured Types
@@ -21,6 +23,15 @@ CMPAD_CXX_COMPILER
 This preprocessor symbol
 is a quoted string containing a name of that identifies the C++ compiler
 that CMake chose; e.g., ``"GNU-13.1.1"`` .
+
+CMPAD_HAS_PACKAGE
+*****************
+For *PACKAGE* equal to ADOLC, CPPAD, SACADO, AUTODIFF,
+this preprocessor symbol is one (zero) if *package* has been installed
+using bin/get_package.sh; e.g,
+{xrst_code sh}
+   bin/get_package.sh adolc
+{xrst_code}
 
 cmpad::vector
 *************
@@ -59,6 +70,11 @@ cppad
 */
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
+
+# define CMPAD_HAS_ADOLC    @cmpad_has_adolc@
+# define CMPAD_HAS_CPPAD    @cmpad_has_cppad@
+# define CMPAD_HAS_SACADO   @cmpad_has_sacado@
+# define CMPAD_HAS_AUTODIFF @cmpad_has_autodiff@
 
 # if @cmpad_vector_is_std@
 # include<vector>

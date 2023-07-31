@@ -50,6 +50,8 @@ Source Code
 {xrst_end sacado_gradient.hpp}
 */
 // BEGIN C++
+# if CMPAD_HAS_SACADO
+
 # include <cmpad/gradient.hpp>
 # include <Sacado.hpp>
 
@@ -128,5 +130,7 @@ public:
 };
 
 } } // END cmpad::sacado namespace
+
+# endif // CMPAD_HAS_SACADO
 // END C++
 # endif
