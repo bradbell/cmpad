@@ -86,6 +86,7 @@ Example and Derived Classes
    include/cmpad/cppad/gradient.hpp
    include/cmpad/sacado/gradient.hpp
    include/cmpad/autodiff/gradient.hpp
+   include/cmpad/cppad_jit/gradient.hpp
 }
 
 {xrst_end gradient}

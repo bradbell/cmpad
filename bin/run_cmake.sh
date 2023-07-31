@@ -13,7 +13,9 @@ fi
 # compiler, build_type, vector
 compiler=''
 build_type='-D CMAKE_BUILD_TYPE=release'
+code_generator=""
 vector='-D cmpad_vector=cppad'
+verbose='-D CMAKE_VERBOSE_MAKEFILE=NO'
 for i in $(seq 1 $#)
 do
    i_th_command_line_argument="${!i}"
@@ -27,15 +29,25 @@ do
       build_type='-D CMAKE_BUILD_TYPE=debug'
       ;;
 
+      --ninja)
+      code_generator='-G Ninja'
+      ;;
+
       --std_vector)
       vector='-D cmpad_vector=std'
       ;;
 
+      --verbose)
+      verbose='-D CMAKE_VERBOSE_MAKEFILE=YES'
+      ;;
+
       *)
-      echo "usage: bin/run_cmake.sh \\"
-      echo "   [--clang] \\"
-      echo "   [--debug] \\"
-      echo "   [--std_vector] "
+      echo 'usage: bin/run_cmake.sh \\'
+      echo '   [--clang] \\'
+      echo '   [--debug] \\'
+      echo '   [--ninja ] \\ '
+      echo '   [--std_vector] \\'
+      echo '   [--verbose]'
       exit 0
       ;;
 
@@ -61,7 +73,10 @@ PKG_CONFIG_PATH=''
 for_sacado='-DCMAKE_CXX_EXTENSIONS=Off'
 #
 # make
-cmake -B . -S .. $for_sacado $compiler $build_type $vector
+echo cmake -B . -S .. \
+   $code_generator $for_sacado $compiler $build_type $vector $verbose
+cmake -B . -S .. \
+   $code_generator $for_sacado $compiler $build_type $vector $verbose
 # -----------------------------------------------------------------------------
 echo 'bin/run_cmake.sh: OK'
 exit 0
