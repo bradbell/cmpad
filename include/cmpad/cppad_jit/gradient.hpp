@@ -89,10 +89,21 @@ private:
    // g_
    cmpad::vector<double>             g_;
    //
+   // dll_linker_
+   // grad_det_cppad_jit_ is only valid for life of dll_linker_.
+   CppAD::link_dll_lib*              dll_linker_;
+   //
    // grad_det_cppad_jit_
    CppAD::jit_double                 grad_det_cppad_jit_;
 //
 public:
+   // ctor, dtor
+   gradient(void)
+   {  dll_linker_ = nullptr; }
+   ~gradient(void)
+   {  if( dll_linker_ != nullptr )
+         delete dll_linker_;
+   }
    // value_type
    typedef double value_type;
    // option
@@ -121,7 +132,7 @@ public:
       cmpad::vector< CppAD::AD<double> > ax(n), ay(m), aw(m), ag(n);
       //
       // function_name
-      string function_name = "grad_det_cppad_jit";
+      string function_name = "grad_det";
       //
       // tapef
       CppAD::ADFun<double> tapef;
@@ -179,23 +190,31 @@ public:
          dll_file = path.string();
       }
       //
-      // dll_linker
-      CppAD::link_dll_lib dll_linker(dll_file, err_msg);
-      if( err_msg != "" )
-      {  std::cerr << "cppad_jit::gradient::setup: err_msg = ";
-         std::cerr << err_msg << "\n";
+      // dll_linker_
+      if( dll_linker_ != nullptr )
+         delete dll_linker_;
+      if( dll_file != "" )
+      {  dll_linker_ = new CppAD::link_dll_lib(dll_file, err_msg);
+         if( err_msg != "" )
+         {  std::cerr << "cppad_jit::gradient::setup: err_msg = ";
+            std::cerr << err_msg << "\n";
+            if( dll_linker_ != nullptr )
+               delete dll_linker_;
+            dll_linker_ = nullptr;
+         }
       }
       //
       // grad_det_cppad_jit_
-      void* void_ptr = dll_linker("cppad_jit_" + function_name, err_msg);
-      if( err_msg != "" )
-      {  std::cerr << "cppad_jit::gradient::setup: err_msg = ";
-         std::cerr << err_msg << "\n";
-         void_ptr = nullptr;
+      void* void_ptr = nullptr;
+      if( dll_linker_ != nullptr )
+      {  void_ptr = (*dll_linker_)("cppad_jit_" + function_name, err_msg);
+         if( err_msg != "" )
+         {  std::cerr << "cppad_jit::gradient::setup: err_msg = ";
+            std::cerr << err_msg << "\n";
+            void_ptr = nullptr;
+         }
       }
       grad_det_cppad_jit_ = reinterpret_cast<CppAD::jit_double>(void_ptr);
-      std::cout << "void_ptr = " << void_ptr << "\n";
-      std::cout << "grad_det_cppad_jit_ = " << grad_det_cppad_jit_ << "\n";
    }
    // domain
    size_t domain(void) const override
@@ -209,6 +228,7 @@ public:
       size_t compare_change = 0;
       assert( x.size() == n );
       assert( g_.size() == n );
+      //
       grad_det_cppad_jit_(n, x.data(), n, g_.data(), &compare_change);
       assert( compare_change == 0 );
       return g_;

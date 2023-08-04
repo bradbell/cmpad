@@ -79,8 +79,14 @@ BOOST_AUTO_TEST_CASE(Gradient)
 # endif
    //
 # if CMPAD_HAS_CPPAD
+   //
+   // cppad
    cmpad::cppad::gradient<det_by_minor>     cppad_grad_det;
    check_grad_det("cppad gradient",         cppad_grad_det);
+   //
+   // cppad_jit
+   cmpad::cppad_jit::gradient<det_by_minor> cppad_jit_grad_det;
+   check_grad_det("cppad_jit gradient",     cppad_jit_grad_det);
 # endif
    //
 # if CMPAD_HAS_SACADO
@@ -91,12 +97,6 @@ BOOST_AUTO_TEST_CASE(Gradient)
 # if CMPAD_HAS_AUTODIFF
    cmpad::autodiff::gradient<det_by_minor>  autodiff_grad_det;
    check_grad_det("autodiff gradient",      autodiff_grad_det);
-# endif
-# if 0
-   // This test is not yet working.
-   // cppad_jit
-   cmpad::cppad_jit::gradient<det_by_minor> cppad_jit_grad_det;
-   check_grad_det("cppad_jit gradient",     cppad_jit_grad_det);
 # endif
 }
 // END C++
