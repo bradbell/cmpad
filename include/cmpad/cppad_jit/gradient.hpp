@@ -158,6 +158,8 @@ public:
       CppAD::ADFun<double> tapeg;
       tapeg.Dependent(ax, ag);
       tapeg.function_name_set(function_name);
+      if( ! option.time_setup )
+         tapeg.optimize();
       //
       // csrc_file
       string type = "double";
@@ -174,7 +176,7 @@ public:
 # ifdef _MSC_VER
       dll_options["compile"] = "cl /EHs /EHc /c /LD /TC /O2";
 # else
-      dll_options["compile"] = "gcc -c -fPIC";
+      dll_options["compile"] = "gcc -c -O2 -fPIC";
 # endif
       string err_msg =
          CppAD::create_dll_lib(dll_file, csrc_files, dll_options);

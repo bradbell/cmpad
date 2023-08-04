@@ -21,6 +21,7 @@ csv_speed: Example and Test
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
+# include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
@@ -56,7 +57,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    std::string algorithm = "det_by_minor";
    //
    // size
-   size_t size = 8;
+   size_t size = 9;
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -86,10 +87,18 @@ BOOST_AUTO_TEST_CASE(csv_speed)
 # endif
       //
 # if CMPAD_HAS_CPPAD
+      //
+      // cppad
       package.push_back("cppad");
       cmpad::cppad::gradient<det_by_minor>           grad_det_cppad;
       rate = cmpad::fun_speed(grad_det_cppad, option, time_min);
       cmpad::csv_speed(file_name, rate, "cppad", algorithm, option);
+      //
+      // cppad_jit
+      package.push_back("cppad_jit");
+      cmpad::cppad::gradient<det_by_minor>           grad_det_cppad_jit;
+      rate = cmpad::fun_speed(grad_det_cppad_jit, option, time_min);
+      cmpad::csv_speed(file_name, rate, "cppad_jit", algorithm, option);
 # endif
       //
 # if CMPAD_HAS_SACADO

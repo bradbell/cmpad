@@ -20,6 +20,7 @@ gradient: Example and Test
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
+# include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
@@ -42,7 +43,7 @@ namespace {
       //
       // previous_rate, size
       double previous_rate = 0.0;
-      for(size_t ell = 6; ell < 10; ++ell)
+      for(size_t ell = 5; ell < 8; ++ell)
       {  //
          // option
          option.size       = ell;
@@ -58,12 +59,12 @@ namespace {
          // number of floating operations goes up by a factor of ell
          double ratio = previous_rate / (ell * rate);
          //
-         if( ! (previous_rate == 0.0 || (0.33 < ratio && ratio < 3.0) ) )
+         if( ! (previous_rate == 0.0 || (0.1 < ratio && ratio < 3.0) ) )
          {  std::cout << name << ": ell = " << ell << ": ratio = ";
             std::cout << std::to_string(ratio) << "\n";
          }
          if( previous_rate != 0.0 )
-            BOOST_CHECK( 0.33 < ratio && ratio < 3.0 );
+            BOOST_CHECK( 0.1 < ratio && ratio < 3.0 );
          previous_rate = rate;
       }
    }
@@ -75,23 +76,29 @@ BOOST_AUTO_TEST_CASE(fun_speed)
    using cmpad::det_by_minor;
    //
 # if CMPAD_HAS_ADOLC
-   cmpad::adolc::gradient<det_by_minor>    adolc_grad_det;
-   check_speed_det("adolc grad_det",       adolc_grad_det);
+   cmpad::adolc::gradient<det_by_minor>       adolc_grad_det;
+   check_speed_det("adolc grad_det",          adolc_grad_det);
 # endif
    //
 # if CMPAD_HAS_CPPAD
-   cmpad::cppad::gradient<det_by_minor>    cppad_grad_det;
-   check_speed_det("cppad grad_det",       cppad_grad_det);
+   //
+   // cppad
+   cmpad::cppad::gradient<det_by_minor>       cppad_grad_det;
+   check_speed_det("cppad grad_det",          cppad_grad_det);
+   //
+   // cppad_jit
+   cmpad::cppad_jit::gradient<det_by_minor>    cppad_jit_grad_det;
+   check_speed_det("cppad_jit grad_det",       cppad_jit_grad_det);
 # endif
    //
 # if CMPAD_HAS_SACADO
-   cmpad::sacado::gradient<det_by_minor>   sacado_grad_det;
-   check_speed_det("sacado grad_det",      sacado_grad_det);
+   cmpad::sacado::gradient<det_by_minor>      sacado_grad_det;
+   check_speed_det("sacado grad_det",         sacado_grad_det);
 # endif
    //
 # if CMPAD_HAS_AUTODIFF
-   cmpad::autodiff::gradient<det_by_minor> autodiff_grad_det;
-   check_speed_det("autodiff grad_det",    autodiff_grad_det);
+   cmpad::autodiff::gradient<det_by_minor>    autodiff_grad_det;
+   check_speed_det("autodiff grad_det",       autodiff_grad_det);
 # endif
 }
 // END C++

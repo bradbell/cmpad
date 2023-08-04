@@ -81,7 +81,7 @@ case $package in
 
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
-   version='trilinos-release-14-0-0'
+   version='trilinos-release-14-4-0'
    configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
    configure="$configure -D Trilinos_ENABLE_Sacado=ON"
    configure="$configure -D Sacado_ENABLE_TESTS=OFF"
@@ -174,15 +174,6 @@ fi
 if [ "$package" == 'adolc' ]
 then
    sed -i ADOL-C/src/uni5_for.c -e 's|for (\([ij]\)=|for(int \1=|'
-fi
-if [ "$package" == 'sacado' ]
-then
-   # see https://github.com/trilinos/Trilinos/issues/11923
-   file="packages/teuchos/core/src/Teuchos_BigUIntDecl.hpp"
-   if ! grep '^#include <cstdint>' $file > /dev/null
-   then
-      sed -i $file -e 's|#include <iosfwd>|&\n#include <cstdint>|'
-   fi
 fi
 #
 # build

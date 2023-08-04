@@ -16,7 +16,7 @@ Calculate Gradient Using autodiff
 
 Syntax
 ******
-| ``# include <cmpad/autodiff/gradient.hpp>``
+|  ``# include <cmpad/autodiff/gradient.hpp>``
 |  ``cmpad::autodiff::gradient`` < *TemplateAlgo* > *grad*
 |  *g* = *grad* ( *x* )
 
