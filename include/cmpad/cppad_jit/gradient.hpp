@@ -176,7 +176,11 @@ public:
 # ifdef _MSC_VER
       dll_options["compile"] = "cl /EHs /EHc /c /LD /TC /O2";
 # else
+# ifndef NDEBUG
+      dll_options["compile"] = "gcc -c -g -fPIC";
+# else
       dll_options["compile"] = "gcc -c -O2 -fPIC";
+# endif
 # endif
       string err_msg =
          CppAD::create_dll_lib(dll_file, csrc_files, dll_options);

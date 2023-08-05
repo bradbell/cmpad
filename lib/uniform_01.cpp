@@ -18,7 +18,7 @@ Syntax
 
 |  ``# include <cmpad/speed/uniform_01.hpp>``
 |  ``std::srand`` ( *seed* )
-|  ``uniform_01`` ( *x* )
+|  ``cmpad::uniform_01`` ( *x* )
 
 Prototype
 *********
