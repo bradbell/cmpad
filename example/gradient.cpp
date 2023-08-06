@@ -18,6 +18,7 @@ gradient: Example and Test
 # include <boost/test/unit_test.hpp>
 # include <cmpad/configure.hpp>
 # include <cmpad/uniform_01.hpp>
+# include <cmpad/near_equal.hpp>
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
@@ -32,16 +33,18 @@ namespace {
       cmpad::gradient<Algo>& grad_det )
    {  //
       //
-      // tt
-      namespace tt = boost::test_tools;
-      //
       // message
       BOOST_TEST_MESSAGE( "   " + name );
+      //
+      // rel_error
+      double rel_error = 100. * std::numeric_limits<double>::epsilon();
+      //
+      // near_equal
+      using cmpad::near_equal;
       //
       // size
       for(size_t size = 3; size < 5; ++size)
       {
-         //
          // option
          cmpad::option_t option;
          option.size = size;
@@ -89,7 +92,9 @@ namespace {
                if( (i + j) % 2 == 1 )
                   check = - det_minor;
                //
-               BOOST_TEST( g[ i * size + j ] == check , tt::tolerance(1e-7) );
+               BOOST_CHECK(
+                  near_equal(g[ i * size + j ], check, rel_error, x)
+               );
                //
                // r, c
                if( i == 0 )
@@ -123,11 +128,8 @@ BOOST_AUTO_TEST_CASE(Gradient)
    check_grad_det("cppad gradient",         cppad_grad_det);
    //
    // cppad_jit
-   /*
-   This test iis failing
    cmpad::cppad_jit::gradient<det_by_minor> cppad_jit_grad_det;
    check_grad_det("cppad_jit gradient",     cppad_jit_grad_det);
-   */
 # endif
    //
 # if CMPAD_HAS_SACADO
