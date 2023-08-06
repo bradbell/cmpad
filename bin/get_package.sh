@@ -18,20 +18,28 @@ then
    echo 'bin/get_package.sh: must be executed from its parent directory'
    exit 1
 fi
-if [ "$#" != 1 ]
+if [ "$#" != 2 ]
 then
-   echo 'usage: bin/get_package package'
+   echo 'usage: bin/get_package package build_type'
    echo 'where package is adolc, autodiff, cppad, sacado.'
+   echo 'and build_type is debug or release'
    exit 1
 fi
 #
-# package
+# package, build_type
 package="$1"
+build_type="$2"
+if [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
+then
+   echo 'bin/package.sh: package build_type'
+   echo 'build_type is not debug or release'
+   exit 1
+fi
 # ---------------------------------------------------------------------------
 if [ "$package" == autodiff ]
 then
    # autodiff requires eigen
-   bin/get_package.sh eigen
+   bin/get_package.sh eigen $build_type
 fi
 # ---------------------------------------------------------------------------
 #
@@ -56,7 +64,7 @@ case $package in
    autodiff)
    web_page='https://github.com/autodiff/autodiff.git'
    version='main'
-   configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
+   configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    for name in TESTS PYTHON EXAMPLES DOCS
    do
@@ -67,7 +75,7 @@ case $package in
    cppad)
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
-   configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
+   configure='cmake -S .. -B .'
    configure="$configure -D cppad_prefix=$prefix"
    configure="$configure -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
    ;;
@@ -82,7 +90,7 @@ case $package in
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
    version='trilinos-release-14-4-0'
-   configure='cmake -S .. -B . -D CMAKE_BUILD_TYPE=release'
+   configure='cmake -S .. -B .'
    configure="$configure -D Trilinos_ENABLE_Sacado=ON"
    configure="$configure -D Sacado_ENABLE_TESTS=OFF"
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
@@ -90,12 +98,21 @@ case $package in
    ;;
 
    *)
-   echo 'bin/get_package.sh: package'
+   echo 'bin/get_package.sh: package build_type'
    echo 'package is not adolc, autodiff, cppad, or sacado'
    exit 1
    ;;
 
 esac
+if [ "$package" == 'adolc' ]
+then
+   if [ "$build_type" == 'debug' ]
+   then
+      configure="$configure --enable-debug"
+   fi
+else
+   configure="$configure -D CMAKE_BUILD_TYPE=$build_type"
+fi
 #
 # n_job
 if which nproc > /dev/null
@@ -114,9 +131,21 @@ else
 fi
 echo $package_top_srcdir
 #
-# configured_flag
-configured_flag="external/$package.configured"
+# other_build
+if [ $build_type == 'debug' ]
+then
+   other_build='release'
+else
+   other_build='debug'
+fi
+#
+# configure_flag
+configured_flag="external/$package.$build_type"
 # -----------------------------------------------------------------------------
+if [ -e "external/$package.$other_build" ]
+then
+   rm "external/$package.$other_build"
+fi
 if [ -e "$configured_flag" ]
 then
    echo "Skipping configuration because following file exists:"
@@ -201,5 +230,5 @@ then
 fi
 #
 # -----------------------------------------------------------------------------
-echo "bin/get_package.sh: $package OK"
+echo "bin/get_package.sh: $package $build_type OK"
 exit 0

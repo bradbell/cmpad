@@ -95,10 +95,12 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       cmpad::csv_speed(file_name, rate, "cppad", algorithm, option);
       //
       // cppad_jit
+      /* fails when cppad built with debugging
       package.push_back("cppad_jit");
       cmpad::cppad::gradient<det_by_minor>           grad_det_cppad_jit;
       rate = cmpad::fun_speed(grad_det_cppad_jit, option, time_min);
       cmpad::csv_speed(file_name, rate, "cppad_jit", algorithm, option);
+      */
 # endif
       //
 # if CMPAD_HAS_SACADO
