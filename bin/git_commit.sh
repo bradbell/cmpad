@@ -28,6 +28,8 @@ then
    echo 'bin/git_commit.sh: cannot find ./.git'
    exit 1
 fi
+# -----------------------------------------------------------------------------
+# EDITOR
 set +u
 if [ "$EDITOR" == '' ]
 then
@@ -36,6 +38,24 @@ then
 fi
 set -u
 # -----------------------------------------------------------------------------
+# csv_speed.csv
+csv_file='example/csv_speed.csv'
+pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
+if git status --porcelain | grep "$pattern" > /dev/null
+then
+   res=''
+   while [ "$res" != 'yes' ] && [ "$res" != 'no' ]
+   do
+      read -p "revert to old $csv_file [yes/no] ?" res
+   done
+   if [ "$res" == 'yes' ]
+   then
+      git reset "$csv_file"
+      git checkout "$csv_file"
+   fi
+fi
+# -----------------------------------------------------------------------------
+# new files
 list=$(git status --porcelain | sed -n -e '/^?? /p' | sed -e 's|^?? ||')
 for file in $list
 do
@@ -57,13 +77,13 @@ done
 # git_commit.log
 branch=$(git branch --show-current)
 cat << EOF > git_commit.log
-$branch: 1. General comments about this git commit go here.
-2. If you delete all the lines in this file, this commit will abort.
-3. All the files below will be included in this commit.
-4. Delete the lines below if you do not want them in the commit message.
+$branch: Comments about this commit go in this file.
+If you delete all the lines in this file, this commit will abort.
+Below is a list of the files that will be changed by this commit:
 EOF
 git status --porcelain >> git_commit.log
 $EDITOR git_commit.log
+# -----------------------------------------------------------------------------
 #
 # git add
 echo_eval git add --all
