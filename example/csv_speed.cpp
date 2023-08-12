@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    namespace filesystem =  std::filesystem;
    //
    // time_min
-   double time_min = 0.2;
+   double time_min = 0.5;
    //
    // file_name
    std::string file_name = "csv_speed.csv";

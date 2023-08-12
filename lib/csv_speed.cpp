@@ -123,7 +123,7 @@ void csv_speed(
    //
    // ss, rate_str
    std::stringstream ss;
-   ss << std::setprecision(2) << std::scientific << rate;
+   ss << std::setprecision(1) << std::scientific << rate;
    std::string rate_str = ss.str();
    ss.str("");
    //
