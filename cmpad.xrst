@@ -4,8 +4,29 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 ---------------------------------------------------------------------------
 {xrst_begin cmpad}
 
-The Compare AD Users Documentation
-##################################
+
+Compare Algorithmic Differentiation Packages
+############################################
+
+Example Speed Comparison
+************************
+:ref:`csv_speed.cpp@Example Results`
+
+Gradient Source Code Comparison
+*******************************
+
+.. csv-table::
+
+   :ref:`adolc_gradient.hpp-title`
+   :ref:`cppad_gradient.hpp-title`
+   :ref:`sacado_gradient.hpp-title`
+   :ref:`autodiff_gradient.hpp-title`
+   :ref:`cppad_jit_gradient.hpp-title`
+
+
+Documentation
+*************
+
 {xrst_toc_table
    include/cmpad/configure.hpp.in
    include/cmpad/option_t.hpp

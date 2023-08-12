@@ -17,6 +17,7 @@ fi
 # ---------------------------------------------------------------------------
 ignore_list='
    .gitignore
+   example/csv_speed.csv
 '
 missing='no'
 for file_name in $(git ls-files)

@@ -18,6 +18,10 @@
 Preprocessor Definitions and Configured Types
 #############################################
 
+CMPAD_PROJECT_DIR
+*****************
+The cmpad top source directory as a C-string; i.e., its project directory.
+
 CMPAD_CXX_COMPILER
 ******************
 This preprocessor symbol
@@ -68,6 +72,8 @@ cppad
 
 {xrst_end configure}
 */
+# define CMPAD_PROJECT_DIR "@CMAKE_SOURCE_DIR@"
+
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
 

@@ -7,10 +7,20 @@
 
 csv_speed: Example and Test
 ###########################
+
+Example Results
+***************
+
+.. csv-table::
+   :file: {xrst_dir example/csv_speed.csv}
+
+Source Code
+***********
 {xrst_literal
    // BEGIN C++
    // END C++
 }
+
 
 {xrst_end  csv_speed.cpp}
 */
@@ -46,9 +56,12 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    //
    // file_name
    std::string file_name = "csv_speed.csv";
-   filesystem::path path(file_name);
-   if( filesystem::exists( filesystem::path(file_name)  ) )
-      std::remove( file_name.c_str() );
+   filesystem::path file_path(CMPAD_PROJECT_DIR);
+   file_path /= "example";
+   file_path /= file_name;
+   BOOST_REQUIRE( filesystem::exists( file_path )  );
+   file_name = file_path.c_str();
+   std::remove( file_name.c_str() );
    //
    // package
    cmpad::vector<std::string> package;
