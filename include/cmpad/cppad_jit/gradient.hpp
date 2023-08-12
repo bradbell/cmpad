@@ -134,6 +134,10 @@ public:
       // function_name
       string function_name = "grad_det";
       //
+      // optimize_options
+      std::string optimize_options =
+      "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
+      //
       // tapef
       CppAD::ADFun<double> tapef;
       for(size_t i = 0; i < n; ++i)
@@ -142,7 +146,7 @@ public:
       ay = algo_(ax);
       tapef.Dependent(ax, ay);
       if( ! option.time_setup )
-         tapef.optimize();
+         tapef.optimize(optimize_options);
       //
       // atapef
       CppAD::ADFun< CppAD::AD<double> , double > atapef;
@@ -159,7 +163,7 @@ public:
       tapeg.Dependent(ax, ag);
       tapeg.function_name_set(function_name);
       if( ! option.time_setup )
-         tapeg.optimize();
+         tapeg.optimize(optimize_options);
       //
       // csrc_file
       string type = "double";

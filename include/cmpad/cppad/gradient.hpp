@@ -97,6 +97,9 @@ public:
       w_.resize(1);
       w_[0] = 1.0;
       //
+      std::string optimize_options =
+      "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
+      //
       // tape_
       cmpad::vector< CppAD::AD<double> > ax(n);
       for(size_t i = 0; i < n; ++i)
@@ -106,7 +109,7 @@ public:
       ay = algo_(ax);
       tape_.Dependent(ax, ay);
       if( ! option.time_setup )
-         tape_.optimize();
+         tape_.optimize(optimize_options);
       //
       // g_
       g_.resize(n);
