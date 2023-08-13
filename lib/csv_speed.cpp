@@ -8,8 +8,8 @@
    newlines
 }
 
-Record Execution Speed for an Algorithm and AD Package
-######################################################
+Record Speed of an AD Package for an Algorithm
+##############################################
 
 file_name
 *********

@@ -2,7 +2,7 @@ SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 SPDX-FileContributor: 2023 Bradley M. Bell
 ---------------------------------------------------------------------------
-{xrst_begin cmpad}
+{xrst_begin_parent cmpad}
 
 
 Compare Algorithmic Differentiation Packages
@@ -29,16 +29,48 @@ Documentation
 
 {xrst_toc_table
    include/cmpad/configure.hpp.in
+   include/cmpad/gradient.hpp
+   lib/csv_speed.cpp
+}
+
+{xrst_end cmpad}
+-----------------------------------------------------------------------------
+{xrst_begin type}
+
+Simple Types
+############
+
+{xrst_toc_table
    include/cmpad/option_t.hpp
    include/cmpad/vec_vec_str.hpp
    include/cmpad/fun_obj.hpp
+}
+
+{xrst_end type}
+-----------------------------------------------------------------------------
+{xrst_begin algorithm}
+
+Algorithms Used to Compare Packages
+###################################
+
+{xrst_toc_table
+   include/cmpad/det_by_minor.hpp
+}
+
+{xrst_end algorithm}
+-----------------------------------------------------------------------------
+{xrst_begin utility}
+
+General Purpose Utilities
+#########################
+
+{xrst_toc_table
    include/cmpad/fun_speed.hpp
-   include/cmpad/det_of_minor.hpp
    include/cmpad/near_equal.hpp
    lib/csv_read.cpp
-   lib/csv_speed.cpp
    lib/csv_write.cpp
    lib/uniform_01.cpp
 }
 
-{xrst_end cmpad}
+{xrst_end utility}
+-----------------------------------------------------------------------------

@@ -5,7 +5,7 @@
 # ifndef CMPAD_DET_OF_MINOR_HPP
 # define CMPAD_DET_OF_MINOR_HPP
 /*
-{xrst_begin det_of_minor}
+{xrst_begin_parent det_of_minor}
 {xrst_spell
    factorization
 }
@@ -142,7 +142,7 @@ d
 *
 The return value *d* is equal to the determinant of the minor :math:`M`.
 
-{xrst_toc_hidden
+{xrst_toc_table
    example/det_of_minor.cpp
 }
 
@@ -153,17 +153,17 @@ contains an example and test of ``det_of_minor`` .
 
 {xrst_end det_of_minor}
 ---------------------------------------------------------------------------
-\{xrst_begin det_of_minor.hpp}
+{xrst_begin det_of_minor.hpp}
 
 det_of_minor: Source Code
 #########################
 
-\{xrst_literal
+{xrst_literal
    // BEGIN C++
    // END C++
 }
 
-\{xrst_end det_of_minor.hpp}
+{xrst_end det_of_minor.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
