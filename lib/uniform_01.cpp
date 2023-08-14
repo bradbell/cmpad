@@ -47,8 +47,7 @@ uniformly sampled over the interval [0,1].
 }
 Example
 *******
-The file :ref:`uniform_01.cpp-name` contains an example and test
-of this routine.
+:ref:`xam_uniform_01.cpp-name` contains an example and test of this routine.
 
 {xrst_end uniform_01}
 ------------------------------------------------------------------------------

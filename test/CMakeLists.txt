@@ -10,6 +10,7 @@ INCLUDE(CheckLibraryExists)
 # test
 ADD_EXECUTABLE(test
    test.cpp
+   example.cpp
    ../example/csv_read.cpp
    ../example/csv_speed.cpp
    ../example/csv_write.cpp
@@ -17,10 +18,9 @@ ADD_EXECUTABLE(test
    ../example/det_of_minor.cpp
    ../example/fun_speed.cpp
    ../example/gradient.cpp
-   ../example/uniform_01.cpp
 )
 #
 # For Sacado
 ADD_DEFINITIONS("-DRAD_AUTO_AD_Const")
 #
-TARGET_LINK_LIBRARIES(test cmpad )
+TARGET_LINK_LIBRARIES(test cmpad xam)

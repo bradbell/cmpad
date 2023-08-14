@@ -3,31 +3,34 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin uniform_01.cpp}
+{xrst_begin xam_uniform_01.cpp}
 
-uniform_01: Example and Test
-############################
+Example and Test of uniform_01
+##############################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end uniform_01.cpp}
+{xrst_end xam_uniform_01.cpp}
 */
 // BEGIN C++
 # include <ctime>
 # include <boost/test/unit_test.hpp>
 # include <cmpad/uniform_01.hpp>
 
-BOOST_AUTO_TEST_CASE(uniform_01)
+bool xam_uniform_01(void)
 {  //
+   // ok
+   bool ok = true;
+   //
    // seed
    unsigned int seed = static_cast<unsigned int>( std::time(nullptr) );
    //
    // srand
    std::srand(seed);
    //
-   // x
+   // n, x
    size_t n = 10;
    cmpad::vector<double> x(n);
    for(size_t i = 0; i < n; ++i)
@@ -35,7 +38,11 @@ BOOST_AUTO_TEST_CASE(uniform_01)
    //
    // x
    cmpad::uniform_01(x);
+   //
+   // ok
    for(size_t i = 0; i < n; ++i)
-      BOOST_CHECK( 0.0 <= x[i] && x[i] <= 1.0 );
+      ok &= 0.0 <= x[i] && x[i] <= 1.0;
+   //
+   return ok;
 }
 // END C++
