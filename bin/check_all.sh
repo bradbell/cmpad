@@ -57,9 +57,9 @@ echo_eval cd build
 # make
 echo_eval make
 #
-# example
-echo "example/example"
-{ example/example --log_level=test_suite --no_color_output 2>&1 ; }\
+# test
+echo "test/test"
+{ test/test --log_level=test_suite --no_color_output 2>&1 ; }\
    | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
 #
 # -----------------------------------------------------------------------------

@@ -7,21 +7,21 @@
 # CHECK_LIBRARY_EXISTS
 INCLUDE(CheckLibraryExists)
 #
-# example
-ADD_EXECUTABLE(example
-   example.cpp
-   csv_read.cpp
-   csv_speed.cpp
-   csv_write.cpp
-   det_by_minor.cpp
-   det_of_minor.cpp
-   fun_speed.cpp
-   gradient.cpp
-   uniform_01.cpp
+# test
+ADD_EXECUTABLE(test
+   test.cpp
+   ../example/csv_read.cpp
+   ../example/csv_speed.cpp
+   ../example/csv_write.cpp
+   ../example/det_by_minor.cpp
+   ../example/det_of_minor.cpp
+   ../example/fun_speed.cpp
+   ../example/gradient.cpp
+   ../example/uniform_01.cpp
 )
 LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/src )
 #
 # For Sacado
 ADD_DEFINITIONS("-DCPPAD_SACADO_SPEED -DRAD_AUTO_AD_Const")
 #
-TARGET_LINK_LIBRARIES(example cmpad )
+TARGET_LINK_LIBRARIES(test cmpad )
