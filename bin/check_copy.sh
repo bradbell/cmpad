@@ -18,6 +18,8 @@ fi
 ignore_list='
    .gitignore
    example/csv_speed.csv
+   .readthedocs.yaml
+   readme.md
 '
 missing='no'
 for file_name in $(git ls-files)
