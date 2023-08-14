@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 #
 # soversion: year.month.day
-SET(soversion 23.7.24)
+SET(soversion 2023.8.14)
 #
 # cmpad
 ADD_LIBRARY(cmpad SHARED
