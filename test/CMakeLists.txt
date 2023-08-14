@@ -12,7 +12,6 @@ ADD_EXECUTABLE(test
    test.cpp
    example.cpp
    ../example/csv_speed.cpp
-   ../example/csv_write.cpp
    ../example/det_by_minor.cpp
    ../example/det_of_minor.cpp
    ../example/fun_speed.cpp

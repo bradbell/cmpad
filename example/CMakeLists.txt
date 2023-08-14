@@ -10,5 +10,6 @@ SET(soversion 2023.8.14)
 ADD_LIBRARY(xam SHARED
    uniform_01.cpp
    csv_read.cpp
+   csv_write.cpp
 )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})

@@ -45,7 +45,7 @@ csv_table
 }
 Example
 *******
-The file :ref:`csv_write.cpp-name` contains an example and test
+The file :ref:`xam_csv_write.cpp-name` contains an example and test
 of this routine.
 
 {xrst_end csv_write}

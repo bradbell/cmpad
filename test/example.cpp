@@ -8,6 +8,7 @@
 
 // xam library
 bool xam_csv_read(void);
+bool xam_csv_write(void);
 bool xam_uniform_01(void);
 
 BOOST_AUTO_TEST_SUITE( example ) // begin example
@@ -15,6 +16,8 @@ BOOST_AUTO_TEST_SUITE( example ) // begin example
 BOOST_AUTO_TEST_CASE(csv_read)
 {  BOOST_CHECK( xam_csv_read() == true ); }
 
+BOOST_AUTO_TEST_CASE(csv_write)
+{  BOOST_CHECK( xam_csv_write() == true ); }
 
 BOOST_AUTO_TEST_CASE(uniform_01)
 {  BOOST_CHECK( xam_uniform_01() == true ); }

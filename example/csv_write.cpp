@@ -3,16 +3,16 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin csv_write.cpp}
+{xrst_begin xam_csv_write.cpp}
 
-csv_write: Example and Test
-###########################
+Example and Test of csv_write
+#############################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end  csv_write.cpp}
+{xrst_end  xam_csv_write.cpp}
 */
 // BEGIN C++
 # include <boost/test/unit_test.hpp>
@@ -44,8 +44,11 @@ namespace {
    }
 }
 
-BOOST_AUTO_TEST_CASE(csv_write)
+bool xam_csv_write(void)
 {  //
+   // ok
+   bool ok = true;
+   //
    // string
    using std::string;
    //
@@ -74,8 +77,10 @@ BOOST_AUTO_TEST_CASE(csv_write)
       "item_3_A,item_3_B,item_3_C\n"
    ;
    //
-   // check
-   BOOST_CHECK( check == example_data );
+   // ok
+   ok &= check == example_data;
+   //
+   return ok;
 }
 
 // END C++
