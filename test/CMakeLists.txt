@@ -19,9 +19,8 @@ ADD_EXECUTABLE(test
    ../example/gradient.cpp
    ../example/uniform_01.cpp
 )
-LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/src )
 #
 # For Sacado
-ADD_DEFINITIONS("-DCPPAD_SACADO_SPEED -DRAD_AUTO_AD_Const")
+ADD_DEFINITIONS("-DRAD_AUTO_AD_Const")
 #
 TARGET_LINK_LIBRARIES(test cmpad )
