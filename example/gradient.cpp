@@ -128,10 +128,8 @@ BOOST_AUTO_TEST_CASE(Gradient)
    check_grad_det("cppad gradient",         cppad_grad_det);
    //
    // cppad_jit
-   /* fails when debug verison of cppad installed
    cmpad::cppad_jit::gradient<det_by_minor> cppad_jit_grad_det;
    check_grad_det("cppad_jit gradient",     cppad_jit_grad_det);
-   */
 # endif
    //
 # if CMPAD_HAS_SACADO

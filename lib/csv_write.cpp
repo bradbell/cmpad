@@ -27,7 +27,7 @@ see :ref:`vec_vec_str-name` .
 
 file_name
 *********
-is the name of the file containing the csv file.
+is the name of the csv file.
 The rows in this file are separated by newlines ``'\n'``
 and the columns are separated by commas ``','`` .
 There are no other special characters in this file.
