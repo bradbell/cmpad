@@ -28,74 +28,45 @@ This preprocessor symbol
 is a quoted string containing a name of that identifies the C++ compiler
 that CMake chose; e.g., ``"GNU-13.1.1"`` .
 
-CMPAD_HAS_PACKAGE
+CMPAD_HAS_package
 *****************
-For *PACKAGE* equal to ADOLC, CPPAD, SACADO, AUTODIFF,
+For *package* equal to ADOLC, CPPAD, SACADO, AUTODIFF,
 this preprocessor symbol is one (zero) if *package* has been installed
 using bin/get_package.sh; e.g,
 {xrst_code sh}
    bin/get_package.sh adolc
 {xrst_code}
 
-cmpad::vector
-*************
-The cmpad cmake command line determines the ``cmpad::vector`` template class
-in the following way. If
+CMPAD_VECTOR_STD
+****************
+This symbol is one (zero)if
+``-D cmpad_vector=std``
+is specified on the cmake command line.
 
-|   ``-D cmpad_vector=`` *vector_type*
-
-is present on the cmake command line, *vector_type* must be
-``std`` , ``boost`` , or ``cppad``;
-see below for the corresponding definition.
-If *vector_type* is not on the cmake command line, ``std`` is used.
-
-std
-===
-{xrst_literal
-   cmpad_vector_is_std
-   // END std
-}
-
-boost
-=====
-{xrst_literal
-   cmpad_vector_is_boost
-   // END boost
-}
-
-cppad
-=====
-{xrst_literal
-   cmpad_vector_is_cppad
-   // END cppad
-}
+CMPAD_VECTOR_CPPAD
+******************
+This symbol is one (zero)if
+``-D cmpad_vector=cppad``
+is present on the cmake command line.
 
 {xrst_end configure}
 */
+
+// CMPAD_PROJECT_DIR
 # define CMPAD_PROJECT_DIR "@CMAKE_SOURCE_DIR@"
 
+// CMPAD_CXX_COMPILER
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
 
+// CMPAD_HAS_package
 # define CMPAD_HAS_ADOLC    @cmpad_has_adolc@
 # define CMPAD_HAS_CPPAD    @cmpad_has_cppad@
 # define CMPAD_HAS_SACADO   @cmpad_has_sacado@
 # define CMPAD_HAS_AUTODIFF @cmpad_has_autodiff@
 
-# if @cmpad_vector_is_std@
-# include<vector>
-namespace cmpad { using std::vector; }
-# endif // END std
-
-# if @cmpad_vector_is_boost@
-# include<boost/numeric/ublas/vector.hpp>
-namespace cmpad { using boost::numeric::ublas::vector; }
-# endif // END boost
-
-# if @cmpad_vector_is_cppad@
-# include<cppad/utility/vector.hpp>
-namespace cmpad { using CppAD::vector; }
-# endif // END cppad
-
+// CMPAD_VECOR_vector_type
+# define CMPAD_VECTOR_STD     @cmpad_vector_std@
+# define CMPAD_VECTOR_CPPAD   @cmpad_vector_cppad@
 
 # endif

@@ -4,6 +4,9 @@
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_OPTION_T_HPP
 # define CMPAD_OPTION_T_HPP
+
+# include <cstddef>
+
 /*
 {xrst_begin option_t}
 o{xrst_spell

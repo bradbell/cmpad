@@ -17,7 +17,7 @@ Vector of Vector of String Type
 ###############################
 {xrst_code cpp} */
 # include <string>
-# include <cmpad/configure.hpp>
+# include <cmpad/vector.hpp>
 namespace cmpad {
    typedef cmpad::vector< cmpad::vector<std::string> > vec_vec_str;
 }

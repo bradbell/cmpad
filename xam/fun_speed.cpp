@@ -15,6 +15,7 @@ Example and Test of fun_speed
 {xrst_end xam_fun_speed.cpp}
 */
 // BEGIN C++
+# include <cassert>
 # include <iostream>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/fun_obj.hpp>
@@ -99,6 +100,8 @@ bool xam_fun_speed(void)
    // ok
    double ratio = rate_one / rate_two;
    ok &= 1.8 < ratio && ratio < 2.2;
+   if( ! ok )
+      std::cout << "fun_speed: ratio = " << ratio << "\n";
    //
    return ok;
 }

@@ -76,6 +76,8 @@ a messages is written to this stream describing the comparison failure.
 
 {xrst_end near_equal}
 */
+# include <cmpad/vector.hpp>
+
 // BEGIN PROTOTYPE
 namespace cmpad {
    template <class Type> bool near_equal(

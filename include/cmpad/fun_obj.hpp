@@ -76,7 +76,7 @@ is the function value corresponding to *x*.
 */
 // BEGIN C++
 
-# include <cmpad/configure.hpp>
+# include <cmpad/vector.hpp>
 # include <cmpad/option_t.hpp>
 namespace cmpad {
    template <class Scalar> struct fun_obj {

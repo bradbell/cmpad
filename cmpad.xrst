@@ -45,6 +45,7 @@ Simple Types
 
 {xrst_toc_table
    include/cmpad/option_t.hpp
+   include/cmpad/vector.hpp
    include/cmpad/vec_vec_str.hpp
    include/cmpad/fun_obj.hpp
 }

@@ -19,22 +19,19 @@ ELSE( )
 ENDIF( )
 print_variable(cmpad_has_autodiff)
 #
-# cmpad_vector_is_<name>
+# cmpad_vector_<name>
 # for <name> equal to boost, cppad, std
 SET(cmpad_vector std CACHE STRING
    "Is cmpad::vector a boost, cppad, or std vector ?"
 )
-SET(cmpad_vector_is_boost 0)
-SET(cmpad_vector_is_cppad 0)
-SET(cmpad_vector_is_std   0)
-IF( ${cmpad_vector} STREQUAL "boost" )
-   SET(cmpad_vector_is_boost 1)
-ELSEIF( ${cmpad_vector} STREQUAL "cppad" )
-   SET(cmpad_vector_is_cppad 1)
+SET(cmpad_vector_cppad 0)
+SET(cmpad_vector_std   0)
+IF( ${cmpad_vector} STREQUAL "cppad" )
+   SET(cmpad_vector_cppad 1)
 ELSEIF( ${cmpad_vector} STREQUAL "std" )
-   SET(cmpad_vector_is_std 1)
+   SET(cmpad_vector_std 1)
 ELSE( )
-   MESSAGE(FATAL_ERROR "cppad_vector is not boost, cppad, or std")
+   MESSAGE(FATAL_ERROR "cppad_vector is not cppad, or std")
 ENDIF( )
 #
 CONFIGURE_FILE(
