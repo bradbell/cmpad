@@ -11,10 +11,10 @@ INCLUDE(CheckLibraryExists)
 ADD_EXECUTABLE(test
    test.cpp
    xam.cpp
+   fun_speed.cpp
    ../xam/csv_speed.cpp
    ../xam/det_by_minor.cpp
    ../xam/det_of_minor.cpp
-   ../xam/fun_speed.cpp
    ../xam/gradient.cpp
 )
 #
