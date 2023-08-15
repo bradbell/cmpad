@@ -6,25 +6,15 @@
 # include <ctime>
 # include <boost/test/unit_test.hpp>
 
-// xam library
-bool xam_csv_read(void);
-bool xam_csv_write(void);
-bool xam_near_equal(void);
-bool xam_uniform_01(void);
+// CMPAD_TEST_EXAMPLE
+# define CMPAD_TEST_EXAMPLE(name) \
+   extern bool xam_##name(void); \
+   BOOST_AUTO_TEST_SUITE( example ) \
+   BOOST_AUTO_TEST_CASE(name) \
+   {  BOOST_CHECK( xam_##name () == true ); } \
+   BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE( example ) // begin example
-
-BOOST_AUTO_TEST_CASE(csv_read)
-{  BOOST_CHECK( xam_csv_read() == true ); }
-
-BOOST_AUTO_TEST_CASE(csv_write)
-{  BOOST_CHECK( xam_csv_write() == true ); }
-
-BOOST_AUTO_TEST_CASE(near_equal)
-{  BOOST_CHECK( xam_near_equal() == true ); }
-
-BOOST_AUTO_TEST_CASE(uniform_01)
-{  BOOST_CHECK( xam_uniform_01() == true ); }
-
-
-BOOST_AUTO_TEST_SUITE_END() // end example
+CMPAD_TEST_EXAMPLE(csv_read)
+CMPAD_TEST_EXAMPLE(csv_write)
+CMPAD_TEST_EXAMPLE(near_equal)
+CMPAD_TEST_EXAMPLE(uniform_01)

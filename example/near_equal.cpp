@@ -27,10 +27,10 @@ bool xam_near_equal(void)
    //
    // rel_error
    double rel_error = 1e-4;
-   // 
+   //
    // x, y
    double x = 3.000;
-   double y = x * (1.0 + rel_error / 2 ); 
+   double y = x * (1.0 + rel_error / 2 );
    //
    // ok
    ok &= cmpad::near_equal(x, y, rel_error);
@@ -45,7 +45,7 @@ bool xam_near_equal(void)
    //
    // vec
    vec.resize(1);
-   vec[0]     = x * 10; 
+   vec[0]     = x * 10;
    //
    // ok
    ok &=   cmpad::near_equal(x, y, rel_error, vec);
