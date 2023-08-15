@@ -40,7 +40,7 @@ namespace {
       //
       // setup
       void setup(const cmpad::option_t& option) override
-      {  size_   = option.size; 
+      {  size_   = option.size;
          option_ = option;
          y_.resize(1);
       }
@@ -49,11 +49,11 @@ namespace {
       }
       // domain
       size_t domain(void) const override
-      {  return size_; 
+      {  return size_;
       }
-      // range  
+      // range
       size_t range(void) const override
-      {  return 1; 
+      {  return 1;
       }
       // operator()
       const cmpad::vector<double>& operator()(

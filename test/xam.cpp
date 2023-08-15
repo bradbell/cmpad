@@ -16,6 +16,7 @@
 
 CMPAD_TEST_EXAMPLE(csv_read)
 CMPAD_TEST_EXAMPLE(csv_write)
+CMPAD_TEST_EXAMPLE(det_by_minor)
 CMPAD_TEST_EXAMPLE(near_equal)
 CMPAD_TEST_EXAMPLE(fun_speed)
 CMPAD_TEST_EXAMPLE(uniform_01)

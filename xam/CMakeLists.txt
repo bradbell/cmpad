@@ -11,6 +11,7 @@ ADD_LIBRARY(xam SHARED
    uniform_01.cpp
    csv_read.cpp
    csv_write.cpp
+   det_by_minor.cpp
    fun_speed.cpp
    near_equal.cpp
 )

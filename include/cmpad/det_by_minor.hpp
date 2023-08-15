@@ -78,15 +78,15 @@ y
 The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
-{xrst_toc_hidden
-   xam/det_by_minor.cpp
+{xrst_toc_hidden after
    include/cmpad/det_of_minor.hpp
+   xam/det_by_minor.cpp
 }
 
 Example
 *******
 The file
-:ref:`det_by_minor.cpp-name`
+:ref:`xam_det_by_minor.cpp-name`
 contains an example and test of ``det_by_minor`` .
 
 {xrst_end det_by_minor}
