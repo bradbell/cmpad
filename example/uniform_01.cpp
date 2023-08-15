@@ -16,7 +16,6 @@ Example and Test of uniform_01
 */
 // BEGIN C++
 # include <ctime>
-# include <boost/test/unit_test.hpp>
 # include <cmpad/uniform_01.hpp>
 
 bool xam_uniform_01(void)

@@ -15,7 +15,6 @@ Example and Test of csv_read
 {xrst_end  xam_csv_read.cpp}
 */
 // BEGIN C++
-# include <boost/test/unit_test.hpp>
 # include <cmpad/csv_read.hpp>
 # include <fstream>
 # include <iostream>

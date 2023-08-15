@@ -15,9 +15,9 @@ Example and Test of csv_write
 {xrst_end  xam_csv_write.cpp}
 */
 // BEGIN C++
-# include <boost/test/unit_test.hpp>
-# include <cmpad/csv_write.hpp>
 # include <fstream>
+# include <iostream>
+# include <cmpad/csv_write.hpp>
 
 namespace {
    std::string get_file(const std::string& file_name)
