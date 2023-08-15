@@ -39,7 +39,7 @@ fi
 set -u
 # -----------------------------------------------------------------------------
 # csv_speed.csv
-csv_file='example/csv_speed.csv'
+csv_file='xam/csv_speed.csv'
 pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
 if git status --porcelain | grep "$pattern" > /dev/null
 then
@@ -50,8 +50,9 @@ then
    done
    if [ "$res" == 'yes' ]
    then
-      git reset "$csv_file"
-      git checkout "$csv_file"
+      echo "removing change to $csv_file"
+      git reset "$csv_file"   > /dev/null
+      git checkout "$csv_file" > /dev/null
    fi
 fi
 # -----------------------------------------------------------------------------

@@ -79,7 +79,7 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden
-   example/det_by_minor.cpp
+   xam/det_by_minor.cpp
    include/cmpad/det_of_minor.hpp
 }
 

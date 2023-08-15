@@ -1,0 +1,13 @@
+rate,package,algorithm,size,time_setup,date,compiler,debug
+5.5e+04,double,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+8.9e+03,adolc,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+4.5e+03,cppad,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+3.0e+00,cppad_jit,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+7.5e+03,sacado,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+2.5e+02,autodiff,det_by_minor,6,true,2023-8-15,GNU-13.2.1,true
+5.5e+04,double,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true
+4.4e+04,adolc,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true
+6.1e+04,cppad,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true
+8.4e+05,cppad_jit,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true
+7.6e+03,sacado,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true
+2.5e+02,autodiff,det_by_minor,6,false,2023-8-15,GNU-13.2.1,true

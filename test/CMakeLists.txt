@@ -10,12 +10,12 @@ INCLUDE(CheckLibraryExists)
 # test
 ADD_EXECUTABLE(test
    test.cpp
-   example.cpp
-   ../example/csv_speed.cpp
-   ../example/det_by_minor.cpp
-   ../example/det_of_minor.cpp
-   ../example/fun_speed.cpp
-   ../example/gradient.cpp
+   xam.cpp
+   ../xam/csv_speed.cpp
+   ../xam/det_by_minor.cpp
+   ../xam/det_of_minor.cpp
+   ../xam/fun_speed.cpp
+   ../xam/gradient.cpp
 )
 #
 # For Sacado
