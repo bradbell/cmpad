@@ -69,6 +69,11 @@ os
 If the values are not nearly equal,
 a messages is written to this stream describing the comparison failure.
 
+{xrst_toc_hidden
+   example/near_equal.cpp
+}
+:ref:`xam_near_equal.cpp-name` contains an example and test of this routine.
+
 {xrst_end near_equal}
 */
 // BEGIN PROTOTYPE

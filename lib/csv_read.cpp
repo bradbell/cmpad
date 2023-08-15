@@ -48,8 +48,7 @@ csv_table
 }
 Example
 *******
-The file :ref:`xam_csv_read.cpp-name` contains an example and test
-of this routine.
+:ref:`xam_csv_read.cpp-name` contains an example and test of this routine.
 
 {xrst_end csv_read}
 ------------------------------------------------------------------------------
