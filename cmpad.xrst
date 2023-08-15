@@ -10,7 +10,10 @@ Compare Algorithmic Differentiation Packages
 
 Example Speed Comparison
 ************************
-:ref:`csv_speed.cpp@Example Results`
+{xrst_comment test/csv_speed.csv is created by test/csv_speed.cpp}
+.. csv-table::
+   :file: {xrst_dir test/csv_speed.csv}
+
 
 Gradient Source Code Comparison
 *******************************

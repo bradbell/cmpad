@@ -72,12 +72,11 @@ with debugging (for speed) when this is true (false).
 The *debug* value is automatically determined and not an argument to csv_speed.
 
 {xrst_toc_hidden
-   test/csv_speed.cpp
+   xam/csv_speed.cpp
 }
 Example
 *******
-The file :ref:`csv_speed.cpp-name` contains an example and test
-of this routine.
+:ref:`xam_csv_speed.cpp-name` contains an example and test of this routine.
 
 {xrst_end csv_speed}
 */

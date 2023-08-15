@@ -2,29 +2,6 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-/*
-{xrst_begin csv_speed.cpp}
-
-csv_speed: Example and Test
-###########################
-
-Example Results
-***************
-
-.. csv-table::
-   :file: {xrst_dir test/csv_speed.csv}
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
-}
-
-
-{xrst_end  csv_speed.cpp}
-*/
-// BEGIN C++
 # include <filesystem>
 # include <boost/test/unit_test.hpp>
 # include <cmpad/configure.hpp>
@@ -180,4 +157,3 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       BOOST_CHECK( csv_table[1][7] == debug );
    }
 }
-// END C++
