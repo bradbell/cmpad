@@ -2,19 +2,6 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-/*
-{xrst_begin fun_speed.cpp}
-
-gradient: Example and Test
-##########################
-{xrst_literal
-   // BEGIN C++
-   // END C++
-}
-
-{xrst_end  fun_speed.cpp}
-*/
-// BEGIN C++
 # include <boost/test/unit_test.hpp>
 # include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
@@ -103,4 +90,3 @@ BOOST_AUTO_TEST_CASE(fun_speed)
    check_speed_det("autodiff grad_det",       autodiff_grad_det);
 # endif
 }
-// END C++

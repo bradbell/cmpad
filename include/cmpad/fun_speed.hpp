@@ -67,17 +67,18 @@ This is the speed of one computation of the function object; i.e.,
 the number of times per second that the function object gets computed.
 
 {xrst_toc_hidden
-   test/fun_speed.cpp
+   xam/fun_speed.cpp
 }
 Example
 *******
-The file :ref:`fun_speed.cpp-name` is an example and test that
-uses this function.
+:ref:`xam_fun_speed.cpp-name` is an example and test that uses this function.
 
 {xrst_end fun_speed}
 -------------------------------------------------------------------------------
 */
+# include <chrono>
 # include <cmpad/uniform_01.hpp>
+# include <cmpad/option_t.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 

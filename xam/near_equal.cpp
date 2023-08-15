@@ -15,7 +15,6 @@ Example and Test of near_equal
 {xrst_end xam_near_equal.cpp}
 */
 // BEGIN C++
-# include <ctime>
 # include <cmpad/configure.hpp>
 # include <cmpad/near_equal.hpp>
 # include <sstream>
