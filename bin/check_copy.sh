@@ -17,7 +17,7 @@ fi
 # ---------------------------------------------------------------------------
 ignore_list='
    .gitignore
-   xam/csv_speed.csv
+   test/csv_speed.csv
    .readthedocs.yaml
    readme.md
 '

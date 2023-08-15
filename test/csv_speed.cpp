@@ -12,7 +12,7 @@ Example Results
 ***************
 
 .. csv-table::
-   :file: {xrst_dir xam/csv_speed.csv}
+   :file: {xrst_dir test/csv_speed.csv}
 
 Source Code
 ***********
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(csv_speed)
    // file_name
    std::string file_name = "csv_speed.csv";
    filesystem::path file_path(CMPAD_PROJECT_DIR);
-   file_path /= "xam";
+   file_path /= "test";
    file_path /= file_name;
    BOOST_REQUIRE( filesystem::exists( file_path )  );
    file_name = file_path.c_str();

@@ -39,7 +39,7 @@ fi
 set -u
 # -----------------------------------------------------------------------------
 # csv_speed.csv
-csv_file='xam/csv_speed.csv'
+csv_file='test/csv_speed.csv'
 pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
 if git status --porcelain | grep "$pattern" > /dev/null
 then
