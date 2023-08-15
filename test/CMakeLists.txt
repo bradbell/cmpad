@@ -13,7 +13,6 @@ ADD_EXECUTABLE(test
    xam.cpp
    fun_speed.cpp
    ../xam/csv_speed.cpp
-   ../xam/det_of_minor.cpp
    ../xam/gradient.cpp
 )
 #

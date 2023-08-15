@@ -148,7 +148,7 @@ The return value *d* is equal to the determinant of the minor :math:`M`.
 
 Example
 *******
-The file :ref:`det_of_minor.cpp-name`
+:ref:`xam_det_of_minor.cpp-name`
 contains an example and test of ``det_of_minor`` .
 
 {xrst_end det_of_minor}

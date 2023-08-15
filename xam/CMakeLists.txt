@@ -12,6 +12,7 @@ ADD_LIBRARY(xam SHARED
    csv_read.cpp
    csv_write.cpp
    det_by_minor.cpp
+   det_of_minor.cpp
    fun_speed.cpp
    near_equal.cpp
 )
