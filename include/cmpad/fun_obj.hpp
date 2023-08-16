@@ -71,6 +71,13 @@ y
 This vector has size *m* and
 is the function value corresponding to *x*.
 
+{xrst_toc_hidden
+   xam/fun_obj.cpp
+}
+Example
+*******
+:ref:`xam_fun_obj.cpp-name` is an example and test that uses this function.
+
 {xrst_end fun_obj}
 ---------------------------------------------------------------------------
 */

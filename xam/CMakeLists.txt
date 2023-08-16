@@ -7,6 +7,7 @@
 SET(soversion 2023.8.14)
 #
 # xam
+# All the ./*.cpp files should be included below and in ../test/xam.cpp
 ADD_LIBRARY(xam SHARED
    uniform_01.cpp
    csv_read.cpp
@@ -14,6 +15,7 @@ ADD_LIBRARY(xam SHARED
    csv_write.cpp
    det_by_minor.cpp
    det_of_minor.cpp
+   fun_obj.cpp
    fun_speed.cpp
    near_equal.cpp
 )

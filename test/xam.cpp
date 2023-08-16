@@ -2,7 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-// BEGIN C++
+// This test suite runs each of the tests in ../xam/*.cpp
+
 # include <ctime>
 # include <boost/test/unit_test.hpp>
 
@@ -20,5 +21,6 @@ CMPAD_TEST_EXAMPLE(csv_write)
 CMPAD_TEST_EXAMPLE(det_by_minor)
 CMPAD_TEST_EXAMPLE(det_of_minor)
 CMPAD_TEST_EXAMPLE(near_equal)
+CMPAD_TEST_EXAMPLE(fun_obj)
 CMPAD_TEST_EXAMPLE(fun_speed)
 CMPAD_TEST_EXAMPLE(uniform_01)

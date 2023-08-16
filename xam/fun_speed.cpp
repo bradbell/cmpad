@@ -21,7 +21,7 @@ Example and Test of fun_speed
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/option_t.hpp>
 
-namespace {
+namespace { // BEGIN_EMPTY_NAMESPACE
 
    // my_fun_obj
    class my_fun_obj : public cmpad::fun_obj<double> {
@@ -68,41 +68,56 @@ namespace {
          return y_;
       }
    };
-}
+
+   // run_test
+   bool run_test(size_t try_index)
+   {  //
+      // ok
+      bool ok = true;
+      //
+      // time_min
+      double time_min = 0.1;
+      //
+      // my_fun_obj
+      my_fun_obj my_fun;
+      //
+      // option_one
+      cmpad::option_t option_one;
+      option_one.size       = 1000;
+      option_one.time_setup = false;
+      //
+      // rate_one
+      double rate_one = cmpad::fun_speed(my_fun, option_one, time_min);
+      //
+      // option_two
+      cmpad::option_t option_two;
+      option_two.size       = 2 * option_one.size;
+      option_two.time_setup = false;
+      //
+      // rate_two
+      double rate_two = cmpad::fun_speed(my_fun, option_two, time_min);
+      //
+      // ok
+      double ratio = rate_one / rate_two;
+      ok &= 1.7 < ratio && ratio < 2.3;
+      if( (! ok) && 0 < try_index )
+      {  std::cout << "fun_speed: try_index = " << try_index << ", ";
+         std::cout << "ratio = " << ratio << "\n";
+      }
+      //
+      return ok;
+   }
+} // END_EMPTY_NAMESPACE
 
 bool xam_fun_speed(void)
-{  //
-   // ok
-   bool ok = true;
-   //
-   // time_min
-   double time_min = 0.1;
-   //
-   // my_fun_obj
-   my_fun_obj my_fun;
-   //
-   // option_one
-   cmpad::option_t option_one;
-   option_one.size       = 1000;
-   option_one.time_setup = false;
-   //
-   // rate_one
-   double rate_one = cmpad::fun_speed(my_fun, option_one, time_min);
-   //
-   // option_two
-   cmpad::option_t option_two;
-   option_two.size       = 2 * option_one.size;
-   option_two.time_setup = false;
-   //
-   // rate_two
-   double rate_two = cmpad::fun_speed(my_fun, option_two, time_min);
-   //
-   // ok
-   double ratio = rate_one / rate_two;
-   ok &= 1.8 < ratio && ratio < 2.2;
+{  size_t try_index = 0;
+   bool ok          = run_test(try_index);
    if( ! ok )
-      std::cout << "fun_speed: ratio = " << ratio << "\n";
-   //
+   {  // try again (maybe system was doing other things during rate test)
+      try_index += 1;
+      ok = run_test(try_index);
+   }
    return ok;
 }
+
 // END C++
