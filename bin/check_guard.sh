@@ -21,18 +21,20 @@ do
       sed -n -e '/^# *ifndef *CMPAD_[0-9A-Z_]*_HPP[ \t]*$/p' $file_name | \
       sed -e 's|^# *ifndef *||' -e 's|[ \t]*$||'
    )
-   check=$(echo $file_name | tr [a-zA-Z/.] [A-Za-z__])
-   #
-   if [ "$first_dir" == 'include' ]
+   if [ "$macro_name" == '' ]
    then
-      check=$(echo $check | sed -e 's|INCLUDE_||')
-   else
-      check="CMPAD_$check"
+      macro_name=$(\
+         sed -n -e '/^# *ifndef *XAM_[0-9A-Z_]*_HPP[ \t]*$/p' $file_name | \
+         sed -e 's|^# *ifndef *||' -e 's|[ \t]*$||'
+      )
    fi
+   check=$(echo $file_name | tr [a-zA-Z/.] [A-Za-z__])
+   check=$(echo $check | sed -e 's|^INCLUDE_||')
    #
    if [ "$macro_name" == '' ]
    then
       echo "$file_name: Cannot find  ^# *ifndef *CMPAD_[0-9A-Z_]*_HPP[ \t]*"
+      echo "or find  ^# *ifndef *XAM_[0-9A-Z_]*_HPP[ \t]*"
       different='yes'
    elif [ "$macro_name" != "$check" ]
    then
