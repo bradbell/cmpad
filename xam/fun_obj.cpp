@@ -42,7 +42,7 @@ namespace {
       //
       // setup
       void setup(const cmpad::option_t& option) override
-      {  y_.resize(1);  
+      {  y_.resize(1);
          option_ = option;
       }
       const cmpad::option_t& option(void) const override

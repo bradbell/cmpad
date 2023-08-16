@@ -8,6 +8,14 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 Compare Algorithmic Differentiation Packages
 ############################################
 
+Git Repository
+**************
+`<https://github.com/bradbell/cmpad>`_
+
+Version of this Documentation
+*****************************
+cmpad-2023.8.15
+
 Example Speed Comparison
 ************************
 {xrst_comment test/csv_speed.csv is created by test/csv_speed.cpp}

@@ -4,6 +4,12 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+# bash function that echos and executes a command
+echo_eval() {
+	echo $*
+	eval $*
+}
+# -----------------------------------------------------------------------------
 set -u -e
 if [ "$#" != 0 ]
 then
@@ -16,22 +22,34 @@ then
    exit 1
 fi
 # -------------------------------------------------------------------------
+check_version() {
+   sed "$1" -f temp.sed > temp.out
+   if ! diff "$1" temp.out > /dev/null
+   then
+      mv temp.out "$1"
+      echo_eval git diff "$1"
+   else
+      rm temp.out
+   fi
+}
+# -------------------------------------------------------------------------
+# version
 version=$(date +%Y.%m.%d | sed -e 's|\.0*|.|g')
 #
-# lib/CMakeLists.txt
-file=lib/CMakeLists.txt
+# temp.sed
 cat << EOF > temp.sed
 s|soversion *[0-9][0-9][.][0-9][0-9]*[.][0-9][0-9]*|soversion $version|
+s|cmpad-[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|cmpad-$version|
 EOF
-sed $file -f temp.sed > temp.out
-if ! diff $file temp.out > /dev/null
-then
-   mv temp.out $file
-   echo_eval git diff $file
-else
-   rm temp.out
-fi
-rm temp.sed
+#
+# lib/CMakeLists.txt
+check_version lib/CMakeLists.txt
+#
+# cmpad.xrst
+check_version cmpad.xrst
+#
+# temp.sed
+# rm temp.sed
 # -------------------------------------------------------------------------
 echo 'check_version.sh: OK'
 exit 0
