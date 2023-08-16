@@ -94,6 +94,7 @@ case $package in
    configure="$configure -D Trilinos_ENABLE_Sacado=ON"
    configure="$configure -D Sacado_ENABLE_TESTS=OFF"
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure="$configure -D BUILD_SHARED_LIBS=ON"
    # -D Trilinos_INSTALL_LIB_DIR=$prefix/$libdir
    ;;
 
@@ -189,14 +190,22 @@ else
       echo "bin/get_package.sh: $package: expected web_page to end with .git"
       exit 1
    fi
-   if [ -e "$version.tar.gz" ]
+   if [ "$package_top_srcdir" != 'sacado' ]
    then
-      rm $version.tar.gz
+      echo 'bin/get_package.sh: program error'
+      exit 1
    fi
-   wget $web_page/$version.tar.gz
-   tar -xzf "$version.tar.gz"
-   mv Trilinos-$version $package_top_srcdir
-   cd $package_top_srcdir
+   if [ ! -e sacado ]
+   then
+      if [ -e "$version.tar.gz" ]
+      then
+         rm $version.tar.gz
+      fi
+      wget $web_page/$version.tar.gz
+      tar -xzf "$version.tar.gz"
+      mv Trilinos-$version sacado
+   fi
+   cd sacado
 fi
 #
 # patch source

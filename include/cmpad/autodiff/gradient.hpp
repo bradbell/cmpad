@@ -37,7 +37,7 @@ see :ref:`gradient@value_type` .
 
 Example
 *******
-The file :ref:`gradient.cpp-name`
+The file :ref:`xam_gradient_autodiff.cpp-name`
 contains an example and test using this class.
 
 Source Code

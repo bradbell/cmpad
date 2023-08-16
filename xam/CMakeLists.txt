@@ -18,5 +18,10 @@ ADD_LIBRARY(xam SHARED
    fun_obj.cpp
    fun_speed.cpp
    near_equal.cpp
+   gradient/adolc.cpp
+   gradient/autodiff.cpp
+   gradient/cppad.cpp
+   gradient/cppad_jit.cpp
+   gradient/sacado.cpp
 )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})

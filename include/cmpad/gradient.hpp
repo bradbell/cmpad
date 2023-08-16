@@ -81,11 +81,11 @@ It is the gradient evaluated at the point *x* .
 Example and Derived Classes
 ***************************
 {xrst_toc_table
-   xam/gradient.cpp
+   xam/gradient.xrst
    include/cmpad/adolc/gradient.hpp
+   include/cmpad/autodiff/gradient.hpp
    include/cmpad/cppad/gradient.hpp
    include/cmpad/sacado/gradient.hpp
-   include/cmpad/autodiff/gradient.hpp
    include/cmpad/cppad_jit/gradient.hpp
 }
 

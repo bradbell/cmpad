@@ -6,6 +6,7 @@
 
 # include <ctime>
 # include <boost/test/unit_test.hpp>
+# include <cmpad/configure.hpp>
 
 // CMPAD_TEST_EXAMPLE
 # define CMPAD_TEST_EXAMPLE(name) \
@@ -24,3 +25,16 @@ CMPAD_TEST_EXAMPLE(near_equal)
 CMPAD_TEST_EXAMPLE(fun_obj)
 CMPAD_TEST_EXAMPLE(fun_speed)
 CMPAD_TEST_EXAMPLE(uniform_01)
+# if CMPAD_HAS_ADOLC
+CMPAD_TEST_EXAMPLE(gradient_adolc)
+# endif
+# if CMPAD_HAS_AUTODIFF
+CMPAD_TEST_EXAMPLE(gradient_autodiff)
+# endif
+# if CMPAD_HAS_CPPAD
+CMPAD_TEST_EXAMPLE(gradient_cppad)
+CMPAD_TEST_EXAMPLE(gradient_cppad_jit)
+# endif
+# if CMPAD_HAS_SACADO
+CMPAD_TEST_EXAMPLE(gradient_sacado)
+# endif

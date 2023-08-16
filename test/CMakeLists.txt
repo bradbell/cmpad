@@ -10,13 +10,14 @@ INCLUDE(CheckLibraryExists)
 # test
 ADD_EXECUTABLE(test
    test.cpp
-   xam.cpp
    fun_speed.cpp
    csv_speed.cpp
-   ../xam/gradient.cpp
+   xam.cpp
 )
 #
 # For Sacado
-ADD_DEFINITIONS("-DRAD_AUTO_AD_Const")
+# 2023-08-16: The definition below causes a crash in
+#  test/test --run_test=example/gradient_sacado
+# ADD_DEFINITIONS("-DRAD_AUTO_AD_Const")
 #
 TARGET_LINK_LIBRARIES(test cmpad xam)
