@@ -22,6 +22,10 @@ then
    echo 'bin/check_xrst.sh: must execute this script from its parent directory'
    exit 1
 fi
+if [ -e build/html ]
+then
+   echo_eval rm -r build/html
+fi
 echo_eval xrst --local_toc --html_theme sphinx_rtd_theme
 echo 'bin/check_xrst.sh: OK'
 exit 0

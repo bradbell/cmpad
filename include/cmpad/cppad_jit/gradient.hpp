@@ -15,11 +15,6 @@
 Calculate Gradient Using CppAD Compiled Derivative Calculation
 ##############################################################
 
-Under Construction
-******************
-The test of this routine has been commented out of
-:ref:`gradient.cpp-name` because it is not yet working.
-
 Syntax
 ******
 | ``# include <cmpad/cppad_jit/gradient.hpp>``
