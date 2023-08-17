@@ -55,8 +55,8 @@ Source Code
 # if CMPAD_HAS_CPPAD
 
 # include <filesystem>
-# include <cmpad/gradient.hpp>
 # include <cppad/cppad.hpp>
+# include <cmpad/gradient.hpp>
 
 # ifdef _WIN32
 # define CMPAD_DLL_EXT ".dll"

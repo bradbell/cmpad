@@ -53,8 +53,8 @@ Source Code
 # if CMPAD_HAS_ADOLC
 
 # include <type_traits>
-# include <cmpad/gradient.hpp>
 # include <adolc/adolc.h>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 

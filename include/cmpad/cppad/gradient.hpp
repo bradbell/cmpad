@@ -52,8 +52,8 @@ Source Code
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
 
-# include <cmpad/gradient.hpp>
 # include <cppad/cppad.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 

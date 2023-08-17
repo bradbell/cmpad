@@ -52,8 +52,8 @@ Source Code
 // BEGIN C++
 # if CMPAD_HAS_SACADO
 
-# include <cmpad/gradient.hpp>
 # include <Sacado.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 

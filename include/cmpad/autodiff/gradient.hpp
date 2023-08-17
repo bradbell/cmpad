@@ -52,9 +52,9 @@ Source Code
 // BEGIN C++
 # if CMPAD_HAS_AUTODIFF
 
-# include <cmpad/gradient.hpp>
 # include <autodiff/forward/real.hpp>
 # include <autodiff/forward/real/eigen.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 
