@@ -47,7 +47,7 @@ then
 fi
 if [ $(expr $RANDOM % 2) == 1 ]
 then
-   flags="$flags --std_vector"
+   flags="$flags --cppad_vector"
 fi
 echo_eval bin/run_cmake.sh $flags
 #

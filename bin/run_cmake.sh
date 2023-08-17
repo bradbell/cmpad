@@ -14,7 +14,7 @@ fi
 compiler=''
 build_type='-D CMAKE_BUILD_TYPE=release'
 code_generator=""
-vector='-D cmpad_vector=cppad'
+vector='-D cmpad_vector=std'
 verbose='-D CMAKE_VERBOSE_MAKEFILE=NO'
 for i in $(seq 1 $#)
 do
@@ -33,8 +33,8 @@ do
       code_generator='-G Ninja'
       ;;
 
-      --std_vector)
-      vector='-D cmpad_vector=std'
+      --cppad_vector)
+      vector='-D cmpad_vector=cppad'
       ;;
 
       --verbose)
@@ -46,7 +46,7 @@ do
       echo '   [--clang] \\'
       echo '   [--debug] \\'
       echo '   [--ninja ] \\ '
-      echo '   [--std_vector] \\'
+      echo '   [--cppad_vector] \\'
       echo '   [--verbose]'
       exit 0
       ;;
