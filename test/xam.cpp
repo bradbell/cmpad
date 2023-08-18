@@ -11,7 +11,7 @@
 // CMPAD_TEST_EXAMPLE
 # define CMPAD_TEST_EXAMPLE(name) \
    extern bool xam_##name(void); \
-   BOOST_AUTO_TEST_SUITE( example ) \
+   BOOST_AUTO_TEST_SUITE( xam ) \
    BOOST_AUTO_TEST_CASE(name) \
    {  BOOST_CHECK( xam_##name () == true ); } \
    BOOST_AUTO_TEST_SUITE_END()
