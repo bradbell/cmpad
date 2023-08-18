@@ -7,10 +7,6 @@ build:
    commands:
       #
       # xrst
-      - pip3 install xrst
-      #
-      # This is only necessary if you need the most recent testing verison
-      - pip3 uninstall -y xrst
       - pip3 install --index-url https://test.pypi.org/simple/ xrst
       #
       # build/html
