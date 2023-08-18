@@ -15,9 +15,4 @@ ADD_EXECUTABLE(test
    xam.cpp
 )
 #
-# For Sacado
-# 2023-08-16: The definition below causes a crash in
-#  test/test --run_test=example/gradient_sacado
-# ADD_DEFINITIONS("-DRAD_AUTO_AD_Const")
-#
 TARGET_LINK_LIBRARIES(test cmpad xam)

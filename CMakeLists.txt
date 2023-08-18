@@ -58,6 +58,11 @@ FIND_PACKAGE(Trilinos CONFIG)
 SET(sacado_LINK_LIBRARIES "${Sacado_LIBRARIES}")
 print_variable( sacado_LINK_LIBRARIES )
 #
+# Special compiler flag that makes Sacado faster
+IF( NOT ( "${sacado_LINK_LIBRARIES}" STREQUAL "" ) )
+   ADD_DEFINITIONS( "-DRAD_AUTO_AD_Const" )
+ENDIF( )
+#
 # include directories
 INCLUDE_DIRECTORIES(
    ${PROJECT_SOURCE_DIR}/include
