@@ -35,6 +35,9 @@ CMPAD_TEST_EXAMPLE(gradient_autodiff)
 CMPAD_TEST_EXAMPLE(gradient_cppad)
 CMPAD_TEST_EXAMPLE(gradient_cppad_jit)
 # endif
+# if CMPAD_HAS_CPPADCG
+CMPAD_TEST_EXAMPLE(gradient_cppadcg)
+# endif
 # if CMPAD_HAS_SACADO
 CMPAD_TEST_EXAMPLE(gradient_sacado)
 # endif

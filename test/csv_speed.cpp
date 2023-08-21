@@ -7,13 +7,16 @@
 # include <cmpad/configure.hpp>
 # include <cmpad/det_by_minor.hpp>
 # include <cmpad/adolc/gradient.hpp>
-# include <cmpad/cppad/gradient.hpp>
-# include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
+
+// <cppad/cg/cg.hpp> must come before <cppad/cppad.hpp>
+# include <cmpad/cppadcg/gradient.hpp>
+# include <cmpad/cppad/gradient.hpp>
+# include <cmpad/cppad_jit/gradient.hpp>
 
 namespace {
    std::string to_string(bool flag)
@@ -89,6 +92,12 @@ BOOST_AUTO_TEST_CASE(csv_speed)
       cmpad::cppad_jit::gradient<det_by_minor>       grad_det_cppad_jit;
       rate = cmpad::fun_speed(grad_det_cppad_jit, option, time_min);
       cmpad::csv_speed(file_name, rate, "cppad_jit", algorithm, option);
+# endif
+# if CMPAD_HAS_CPPADCG
+      package.push_back("cppadcg");
+      cmpad::cppadcg::gradient<det_by_minor>         grad_det_cppadcg;
+      rate = cmpad::fun_speed(grad_det_cppadcg, option, time_min);
+      cmpad::csv_speed(file_name, rate, "cppadcg", algorithm, option);
 # endif
       //
 # if CMPAD_HAS_SACADO

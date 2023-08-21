@@ -39,7 +39,7 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
 #
 # ${package}_LINK_LIBRARIES
-FOREACH(package adolc cppad)
+FOREACH(package adolc cppad cppadcg)
    pkg_check_modules(${package} ${package})
    IF( ${package}_LINK_LIBRARIES )
       print_variable( ${package}_LINK_LIBRARIES )

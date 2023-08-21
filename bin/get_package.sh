@@ -13,6 +13,10 @@ echo_eval() {
    eval $*
 }
 # -----------------------------------------------------------------------------
+#
+# package_list
+package_list='adolc, autodiff, cppad, cppadcg, or sacado'
+#
 if [ "$0" != 'bin/get_package.sh' ]
 then
    echo 'bin/get_package.sh: must be executed from its parent directory'
@@ -21,7 +25,7 @@ fi
 if [ "$#" != 2 ]
 then
    echo 'usage: bin/get_package package build_type'
-   echo 'where package is adolc, autodiff, cppad, sacado.'
+   echo "where package is $package_list"
    echo 'and build_type is debug or release'
    exit 1
 fi
@@ -41,6 +45,11 @@ then
    # autodiff requires eigen
    bin/get_package.sh eigen $build_type
 fi
+if [ "$package" == cppadcg ]
+then
+   # cpapdcg requires cppad
+   bin/get_package.sh cppad $build_type
+fi
 # ---------------------------------------------------------------------------
 #
 # top_srcdir
@@ -49,6 +58,12 @@ top_srcdir=$(pwd)
 # prefix
 # $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
 prefix=$top_srcdir/build/prefix
+#
+# PKG_CONFIG_PATH
+PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig"
+PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib64/pkgconfig"
+PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/share/pkgconfig"
+export PKG_CONFIT_PATH
 #
 # web_page, version, configure
 case $package in
@@ -80,6 +95,15 @@ case $package in
    configure="$configure -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
    ;;
 
+   cppadcg)
+   web_page="https://github.com/joaoleal/CppADCodeGen.git"
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure="$configure -D EIGEN3_INCLUDE_DIR=$prefix/include"
+   configure="$configure -D GOOGLETEST_GIT=ON"
+   ;;
+
    eigen)
    web_page='https://gitlab.com/libeigen/$package.git'
    version='master'
@@ -100,7 +124,7 @@ case $package in
 
    *)
    echo 'bin/get_package.sh: package build_type'
-   echo 'package is not adolc, autodiff, cppad, or sacado'
+   echo "package is not $package_list"
    exit 1
    ;;
 
@@ -221,6 +245,12 @@ then
 fi
 echo_eval cd build
 #
+# CMakeCache.txt
+if [ -e CMakeCache.txt ]
+then
+   rm CMakeCache.txt
+fi
+#
 # configure
 echo_eval $configure
 #
@@ -239,5 +269,5 @@ then
 fi
 #
 # -----------------------------------------------------------------------------
-echo "bin/get_package.sh: $package $build_type OK"
+echo "bin/get_package.sh $package $build_type: OK"
 exit 0

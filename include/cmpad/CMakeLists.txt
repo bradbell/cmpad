@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 #
 # cmpad_has_${package}
-FOREACH(package adolc cppad sacado)
+FOREACH(package adolc cppad cppadcg sacado)
    IF( "${${package}_LINK_LIBRARIES}" STREQUAL "" )
       SET( cmpad_has_${package} 0 )
    ELSE( )
