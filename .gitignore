@@ -13,10 +13,13 @@
 # ----------------------------------------------------------------------------
 # files
 #
+# libreoffice uses this file when viewing test/csv_speed.csv
+/test/.~lock.csv_speed.csv#
+#
 # used by bin/git_commit.sh for git logs
 git_commit.log
 #
-# cmake creates this file from vector.hpp.in
+# cmake creates this file from configure.hpp.in
 /include/cmpad/configure.hpp
 #
 # used by vim to backup and restore changes
