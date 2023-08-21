@@ -66,6 +66,11 @@ is present on the cmake command line.
 # define CMPAD_HAS_SACADO   @cmpad_has_sacado@
 # define CMPAD_HAS_AUTODIFF @cmpad_has_autodiff@
 
+// CMPAD_COMPILER_IS_compiler
+# define CMPAD_COMPILER_IS_CLANG @cmpad_compiler_is_clang@
+# define CMPAD_COMPILER_IS_GNU   @cmpad_compiler_is_gnu@
+# define CMPAD_COMPILER_IS_MSVC  @cmpad_compiler_is_msvc@
+
 // CMPAD_VECOR_vector_type
 # define CMPAD_VECTOR_STD     @cmpad_vector_std@
 # define CMPAD_VECTOR_CPPAD   @cmpad_vector_cppad@

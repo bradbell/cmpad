@@ -172,13 +172,21 @@ public:
       string  dll_file = function_name + CMPAD_DLL_EXT;
       cmpad::vector<string> csrc_files = {csrc_file};
       std::map< string, string > dll_options;
-# ifdef _MSC_VER
+# if CMPAD_COMPILER_IS_MSVC
       dll_options["compile"] = "cl /EHs /EHc /c /LD /TC /O2";
-# else
+# endif
+# if CMPAD_COMPILER_IS_GNU
 # ifndef NDEBUG
       dll_options["compile"] = "gcc -c -g -fPIC";
 # else
       dll_options["compile"] = "gcc -c -O2 -fPIC";
+# endif
+# endif
+# if CMPAD_COMPILER_IS_CLANG
+# ifndef NDEBUG
+      dll_options["compile"] = "clang -c -g -fPIC";
+# else
+      dll_options["compile"] = "clang -c -O2 -fPIC";
 # endif
 # endif
       string err_msg =

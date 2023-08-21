@@ -92,6 +92,14 @@ public:
    void setup(const option_t& option) override
    {  // see https://github.com/joaoleal/CppADCodeGen/wiki/LibGeneration
       //
+      // compiler
+# if CMPAD_COMPILER_IS_GNU
+      CppAD::cg::GccCompiler<double> compiler;
+# endif
+# if CMPAD_COMPILER_IS_CLANG
+      CppAD::cg::ClangCompiler<double> compiler;
+# endif
+      //
       // algo_
       algo_.setup(option);
       //
@@ -127,7 +135,6 @@ public:
       //
       // dynamic_lib_
       CppAD::cg::DynamicModelLibraryProcessor<double> proc(libcgen);
-      CppAD::cg::GccCompiler<double> compiler;
       dynamic_lib_ = nullptr;
       dynamic_lib_ = proc.createDynamicLibrary(compiler);
       //
