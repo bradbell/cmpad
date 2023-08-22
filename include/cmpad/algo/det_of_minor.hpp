@@ -72,14 +72,15 @@ the type *Scalar* must support the following operations:
 
 .. csv-table::
    :widths: auto
-   :header: Syntax, Description, Result Type
+   :header-rows: 1
 
-   *Scalar* (0), constructor for *Scalar* object equal to zero, *Scalar*
+   Syntax,           Description,                                   Result Type
+   *Scalar* (0),     constructor for *Scalar* object equal to zero, *Scalar*
    *Scalar* ( *x* ), constructor for *Scalar* object equal to *x* , *Scalar*
-   *x* = *y*, set value of *x* to current value of *y*
-   *x* + *y*, value of *x* plus *y*, *Scalar*
-   *x* - *y*, value of *x* minus *y*, *Scalar*
-   *x* * *y*, value of *x* times value of *y*, *Scalar*
+   *x* = *y*,        set value of *x* to current value of *y*
+   *x* + *y*,        value of *x* plus *y*,                         *Scalar*
+   *x* - *y*,        value of *x* minus *y*,                        *Scalar*
+   *x* * *y*,        value of *x* times value of *y*,               *Scalar*
 
 a
 *

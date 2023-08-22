@@ -46,13 +46,14 @@ the type *Scalar* must support the following operations:
 
 .. csv-table::
    :widths: auto
-   :header: Syntax, Description, Result Type
+   :header-rows: 1
 
-   Scalar(i), constructs a *Scalar* with value i,  *Scalar*
-   a = b, set value of *a* equal to current value of *b*
-   a + b, value of *a* plus *b*, *Scalar*
-   a * b, value of *a* times *b*, *Scalar*
-   a / b, value of *a* divided by *b*, *Scalar*
+   Syntax,    Description,                                     Result Type
+   Scalar(i), constructs a *Scalar* with value i,              *Scalar*
+   a = b,     set value of *a* equal to current value of *b*
+   a + b,     value of *a* plus *b*,                           *Scalar*
+   a * b,     value of *a* times *b*,                          *Scalar*
+   a / b,     value of *a* divided by *b*,                     *Scalar*
 
 fun
 ***
