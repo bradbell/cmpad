@@ -25,6 +25,8 @@ CMPAD_TEST_EXAMPLE(near_equal)
 CMPAD_TEST_EXAMPLE(fun_obj)
 CMPAD_TEST_EXAMPLE(fun_speed)
 CMPAD_TEST_EXAMPLE(uniform_01)
+CMPAD_TEST_EXAMPLE(runge_kutta)
+//
 # if CMPAD_HAS_ADOLC
 CMPAD_TEST_EXAMPLE(gradient_adolc)
 # endif

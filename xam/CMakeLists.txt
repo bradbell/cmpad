@@ -24,5 +24,6 @@ ADD_LIBRARY(xam SHARED
    gradient/cppad_jit.cpp
    gradient/cppadcg.cpp
    gradient/sacado.cpp
+   runge_kutta.cpp
 )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})

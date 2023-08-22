@@ -67,6 +67,7 @@ Algorithms Used to Compare Packages
 
 {xrst_toc_table
    include/cmpad/algo/det_by_minor.hpp
+   include/cmpad/algo/runge_kutta.hpp
 }
 
 {xrst_end algorithm}
