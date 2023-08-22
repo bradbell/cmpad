@@ -17,7 +17,7 @@ Example and Test of det_by_minor
 {xrst_end xam_det_by_minor.cpp}
 */
 // BEGIN C++
-# include <cmpad/det_by_minor.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
 
 bool xam_det_by_minor(void)
 {  // ok

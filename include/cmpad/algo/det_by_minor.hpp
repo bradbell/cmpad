@@ -1,5 +1,5 @@
-# ifndef CMPAD_DET_BY_MINOR_HPP
-# define CMPAD_DET_BY_MINOR_HPP
+# ifndef CMPAD_ALGO_DET_BY_MINOR_HPP
+# define CMPAD_ALGO_DET_BY_MINOR_HPP
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
@@ -12,7 +12,7 @@ Determinant Using Expansion by Minors
 
 Syntax
 ******
-|  ``# include <cmpad/det_by_minor.hpp``
+|  ``# include <cmpad/algo/det_by_minor.hpp``
 |  *y* = *det* ( *x* )
 
 Prototype
@@ -79,7 +79,7 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
-   include/cmpad/det_of_minor.hpp
+   include/cmpad/algo/det_of_minor.hpp
    xam/det_by_minor.cpp
 }
 
@@ -105,7 +105,7 @@ det_by_minor: Source Code
 */
 // BEGIN C++
 # include <cmpad/fun_obj.hpp>
-# include <cmpad/det_of_minor.hpp>
+# include <cmpad/algo/det_of_minor.hpp>
 
 // BEGIN cmpad namespace
 namespace cmpad {

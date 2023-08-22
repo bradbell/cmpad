@@ -25,7 +25,7 @@ bool xam_csv_speed(void)
 // BEGIN C++
 # include <filesystem>
 # include <cmpad/configure.hpp>
-# include <cmpad/det_by_minor.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 

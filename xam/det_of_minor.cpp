@@ -18,7 +18,7 @@ Example and Test of det_of_minor
 */
 // BEGIN C++
 # include <cstddef>
-# include <cmpad/det_of_minor.hpp>
+# include <cmpad/algo/det_of_minor.hpp>
 
 bool xam_det_of_minor(void)
 {  //

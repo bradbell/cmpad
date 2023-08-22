@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_DET_OF_MINOR_HPP
-# define CMPAD_DET_OF_MINOR_HPP
+# ifndef CMPAD_ALGO_DET_OF_MINOR_HPP
+# define CMPAD_ALGO_DET_OF_MINOR_HPP
 /*
 {xrst_begin_parent det_of_minor}
 {xrst_spell
@@ -16,7 +16,7 @@ Determinant of a Minor
 Syntax
 ******
 
-| ``# include <cmpad/det_of_minor.hpp>``
+| ``# include <cmpad/algo/det_of_minor.hpp>``
 | *d* = ``cmpad::det_of_minor`` ( *a* , *m* , *n* , *r* , *c* )
 
 Prototype

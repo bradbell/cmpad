@@ -23,7 +23,7 @@ Source Code
 */
 // BEGIN C++
 # include <cmpad/configure.hpp>
-# include <cmpad/det_by_minor.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/cppad/gradient.hpp>
 # include "check_grad_det.hpp"
 
