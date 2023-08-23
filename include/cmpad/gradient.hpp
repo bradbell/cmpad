@@ -81,7 +81,7 @@ It is the gradient evaluated at the point *x* .
 Example and Derived Classes
 ***************************
 {xrst_toc_table
-   xam/gradient.xrst
+   xam/gradient/gradient.xrst
    include/cmpad/adolc/gradient.hpp
    include/cmpad/autodiff/gradient.hpp
    include/cmpad/cppad/gradient.hpp

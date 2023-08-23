@@ -38,10 +38,10 @@ bool xam_an_ode(void)
    //
    // x
    cmpad::vector<double> x = { 1.0, 2.0, 3.0, 4.0, 5.0 };
-   ok &= x.size() == n; 
+   ok &= x.size() == n;
    //
    // yf
-   cmpad::vector<double> yf = ode(x); 
+   cmpad::vector<double> yf = ode(x);
    //
    // rel_error
    double rel_error = std::numeric_limits<double>::epsilon() * 100.0;

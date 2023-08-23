@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+// SPDX-FileContributor: 2023 Bradley M. Bell
+// ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_AN_ODE_HPP
 # define CMPAD_ALGO_AN_ODE_HPP
 /*
@@ -30,7 +34,7 @@ Purpose
 *******
 This implements the :ref:`fun_obj-name` interface.
 The function call uses :ref:`runge_kutta-name` to
-compute the solution of the ODE defined below: 
+compute the solution of the ODE defined below:
 
 The ODE
 *******
@@ -51,7 +55,7 @@ Initial Value
 
 Solution
 ********
-This initial value problem has the following analytic solution 
+This initial value problem has the following analytic solution
 (which can be used to check function values and derivatives):
 
 .. math::
@@ -179,7 +183,7 @@ public:
    ) override
    {  //
       // x
-      assert( x.size() == domain() );  
+      assert( x.size() == domain() );
       //
       // tf
       Scalar tf = Scalar(2);
@@ -190,11 +194,11 @@ public:
       // yf
       const cmpad::vector<Scalar>& yi = x;
       yf_ = cmpad::runge_kutta(fun, yi, tf, ns);
-      assert( yf_.size() == domain() );  
+      assert( yf_.size() == domain() );
       //
       return yf_;
    }
-}; 
+};
 
 }  // END cmpad namespace
 
