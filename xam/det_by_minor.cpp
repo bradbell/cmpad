@@ -23,7 +23,7 @@ bool xam_det_by_minor(void)
 {  // ok
    bool ok = true;
    //
-   // size
+   // ell
    // dimension of the matrix
    size_t ell = 3;
    //

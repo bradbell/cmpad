@@ -14,7 +14,7 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2023.8.22
+cmpad-2023.8.23
 
 Example Speed Comparison
 ************************
@@ -67,7 +67,7 @@ Algorithms Used to Compare Packages
 
 {xrst_toc_table
    include/cmpad/algo/det_by_minor.hpp
-   include/cmpad/algo/runge_kutta.hpp
+   include/cmpad/algo/an_ode.hpp
 }
 
 {xrst_end algorithm}

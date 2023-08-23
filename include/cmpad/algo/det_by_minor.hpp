@@ -12,7 +12,9 @@ Determinant Using Expansion by Minors
 
 Syntax
 ******
-|  ``# include <cmpad/algo/det_by_minor.hpp``
+|  ``# include <cmpad/algo/det_by_minor.hpp>``
+|  ``cmpad::det_by_minor`` < *Scalar* > *det*
+| *det* . ``setup`` ( *option* )
 |  *y* = *det* ( *x* )
 
 Prototype
@@ -53,6 +55,7 @@ det
 ***
 The object *det* corresponds to :ref:`fun_obj@fun` in the function
 object interface.
+It computes the determinant.
 
 option
 ******
@@ -79,8 +82,8 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
-   include/cmpad/algo/det_of_minor.hpp
    xam/det_by_minor.cpp
+   include/cmpad/algo/det_of_minor.hpp
 }
 
 Example
@@ -88,6 +91,10 @@ Example
 The file
 :ref:`xam_det_by_minor.cpp-name`
 contains an example and test of ``det_by_minor`` .
+
+Source Code
+***********
+:ref:`det_by_minor.hpp-name` is the source code for this algorithm.
 
 {xrst_end det_by_minor}
 ---------------------------------------------------------------------------
@@ -107,8 +114,7 @@ det_by_minor: Source Code
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
-// BEGIN cmpad namespace
-namespace cmpad {
+namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN DET_BY_MINOR
 template <class Scalar> class det_by_minor : public fun_obj<Scalar>

@@ -16,6 +16,7 @@
    {  BOOST_CHECK( xam_##name () == true ); } \
    BOOST_AUTO_TEST_SUITE_END()
 
+CMPAD_TEST_EXAMPLE(an_ode)
 CMPAD_TEST_EXAMPLE(csv_read)
 CMPAD_TEST_EXAMPLE(csv_speed)
 CMPAD_TEST_EXAMPLE(csv_write)
@@ -24,8 +25,8 @@ CMPAD_TEST_EXAMPLE(det_of_minor)
 CMPAD_TEST_EXAMPLE(near_equal)
 CMPAD_TEST_EXAMPLE(fun_obj)
 CMPAD_TEST_EXAMPLE(fun_speed)
-CMPAD_TEST_EXAMPLE(uniform_01)
 CMPAD_TEST_EXAMPLE(runge_kutta)
+CMPAD_TEST_EXAMPLE(uniform_01)
 //
 # if CMPAD_HAS_ADOLC
 CMPAD_TEST_EXAMPLE(gradient_adolc)

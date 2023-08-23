@@ -11,35 +11,38 @@
 
 Example and Test of runge_kutta
 ###############################
-{xrst_literal
-   // BEGIN C++
-   // END C++
-}
 
 ODE
 ***
 
 .. math::
 
-   y_i '(t) & = & 0           & \mbox(for) \; i = 0 \\
-   y_i '(t) & = & y_{i-1} (t) & \mbox{for) \; i > 0
+   y_i '(t) & = 0           \; & \mbox{for} \; i = 0 \\
+   y_i '(t) & = y_{i-1} (t) \; & \mbox{for} \; i > 0
 
 Initial Value
 *************
 
 .. math::
 
-   y_i (0) & = & 1   & \mbox(for) \; i = 0 \\
-   y_i (0) & = & 0   & \mbox{for) \; i > 0
+   y_i (0) & = 1   \; & \mbox{for} \; i = 0 \\
+   y_i (0) & = 0   \; & \mbox{for} \; i > 0 \\
 
 Solution
+********
 
 .. math::
 
-   y_0 (t) & = & 1
-   y_1 (t) & = & t
-   y_i (t) & = & t^i / i !
+   y_0 (t) & = 1               \\
+   y_1 (t) & = t               \\
+   y_i (t) & = t^i / i !       \\
 
+Source Code
+***********
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
 
 {xrst_end xam_runge_kutta.cpp}
 */

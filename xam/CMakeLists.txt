@@ -9,7 +9,7 @@ SET(soversion 2023.8.14)
 # xam
 # All the ./*.cpp files should be included below and in ../test/xam.cpp
 ADD_LIBRARY(xam SHARED
-   uniform_01.cpp
+   an_ode.cpp
    csv_read.cpp
    csv_speed.cpp
    csv_write.cpp
@@ -17,13 +17,14 @@ ADD_LIBRARY(xam SHARED
    det_of_minor.cpp
    fun_obj.cpp
    fun_speed.cpp
-   near_equal.cpp
    gradient/adolc.cpp
    gradient/autodiff.cpp
    gradient/cppad.cpp
    gradient/cppad_jit.cpp
    gradient/cppadcg.cpp
    gradient/sacado.cpp
+   near_equal.cpp
    runge_kutta.cpp
+   uniform_01.cpp
 )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})
