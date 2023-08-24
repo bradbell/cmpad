@@ -6,9 +6,9 @@
 # soversion: year.month.day
 SET(soversion 2023.8.14)
 #
-# xam
-# All the ./*.cpp files should be included below and in ../test/xam.cpp
-ADD_LIBRARY(xam SHARED
+# example_list
+# examples that to not require AD packages
+SET(example_list
    an_ode.cpp
    csv_read.cpp
    csv_speed.cpp
@@ -17,14 +17,20 @@ ADD_LIBRARY(xam SHARED
    det_of_minor.cpp
    fun_obj.cpp
    fun_speed.cpp
-   gradient/adolc.cpp
-   gradient/autodiff.cpp
-   gradient/cppad.cpp
-   gradient/cppad_jit.cpp
-   gradient/cppadcg.cpp
-   gradient/sacado.cpp
    near_equal.cpp
    runge_kutta.cpp
    uniform_01.cpp
 )
+#
+# example_list
+# examples that require AD packages
+FOREACH(package adolc autodiff cppad cppad_jit cppadcg sacado)
+   IF( ${cmpad_has_${package}} )
+      SET(example_list ${example_list} gradient/${package}.cpp)
+   ENDIF( )
+ENDFOREACH( )
+#
+# xam
+# All the ./*.cpp files should be included below and in ../test/xam.cpp
+ADD_LIBRARY(xam SHARED ${example_list} )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})

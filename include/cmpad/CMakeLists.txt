@@ -10,14 +10,13 @@ FOREACH(package adolc cppad cppadcg sacado)
    ELSE( )
       SET( cmpad_has_${package} 1 )
    ENDIF( )
-   print_variable(cmpad_has_${package})
 ENDFOREACH( )
 IF( EXISTS "${cmpad_install_prefix}/include/autodiff/forward/real.hpp" )
    SET( cmpad_has_autodiff 1 )
 ELSE( )
    SET( cmpad_has_autodiff 0 )
 ENDIF( )
-print_variable(cmpad_has_autodiff)
+SET(cmpad_has_cppad_jit ${cmpad_has_cppad})
 #
 # cmpad_compiler_is_clang
 # cmpad_compiler_is_gnu
@@ -34,7 +33,7 @@ ENDFOREACH( )
 # cmpad_has_cppadcg
 # cmpad_has_cppad_jit
 IF( NOT cmpad_compiler_is_clang )
-   IF( NOT cmpad_comlier_is_gnu )
+   IF( NOT cmpad_compiler_is_gnu )
       SET( cmpad_has_cppadcg 0 )
       IF( NOT cmpad_compiler_is_msvc )
          SET( cmpad_has_cppad_jit 0 )
@@ -57,7 +56,17 @@ ELSE( )
    MESSAGE(FATAL_ERROR "cmpad_vector is not cppad, or std")
 ENDIF( )
 #
+IF( cmpad_vector_cppad AND NOT cmpad_has_cppad )
+   MESSAGE(FATAL_ERROR "cmpad_vector is cppad but cppad is not installed.")
+ENDIF( )
+#
 CONFIGURE_FILE(
    ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp.in
    ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp
 )
+#
+# cmpad_has_${package} PARENT_SCOPE
+FOREACH(package adolc autodiff cppad cppad_jit cppadcg sacado)
+   print_variable( cmpad_has_${package} )
+   SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
+ENDFOREACH( )

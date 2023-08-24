@@ -30,7 +30,6 @@ Source Code
 # include <cmpad/cppad_jit/gradient.hpp>
 # include "check_grad_det.hpp"
 
-# if CMPAD_HAS_CPPAD
 bool xam_gradient_cppad_jit(void)
 {  //
    // ok
@@ -45,5 +44,4 @@ bool xam_gradient_cppad_jit(void)
    //
    return ok;
 }
-# endif
 // END C++

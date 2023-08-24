@@ -27,7 +27,6 @@ Source Code
 # include <cmpad/adolc/gradient.hpp>
 # include "check_grad_det.hpp"
 
-# if CMPAD_HAS_ADOLC
 bool xam_gradient_adolc(void)
 {  //
    // ok
@@ -42,5 +41,4 @@ bool xam_gradient_adolc(void)
    //
    return ok;
 }
-# endif
 // END C++

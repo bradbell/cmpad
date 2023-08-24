@@ -80,8 +80,11 @@ LINK_LIBRARIES(
 # CMAKE_CXX_STANDARG
 SET(CMAKE_CXX_STANDARD 17)
 #
-# subdirectories
+# include/cmpad/configure.hpp
+# cmpad_has_${package}
 ADD_SUBDIRECTORY(include/cmpad)
+#
+# other subdirectories
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(xam)
 ADD_SUBDIRECTORY(test)

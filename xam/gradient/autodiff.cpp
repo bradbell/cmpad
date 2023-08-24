@@ -30,7 +30,6 @@ Source Code
 # include <cmpad/autodiff/gradient.hpp>
 # include "check_grad_det.hpp"
 
-# if CMPAD_HAS_AUTODIFF
 bool xam_gradient_autodiff(void)
 {  //
    // ok
@@ -45,5 +44,4 @@ bool xam_gradient_autodiff(void)
    //
    return ok;
 }
-# endif
 // END C++

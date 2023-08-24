@@ -27,7 +27,6 @@ Source Code
 # include <cmpad/cppad/gradient.hpp>
 # include "check_grad_det.hpp"
 
-# if CMPAD_HAS_CPPAD
 bool xam_gradient_cppad(void)
 {  //
    // ok
@@ -42,5 +41,4 @@ bool xam_gradient_cppad(void)
    //
    return ok;
 }
-# endif
 // END C++

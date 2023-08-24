@@ -30,7 +30,6 @@ Source Code
 # include <cmpad/sacado/gradient.hpp>
 # include "check_grad_det.hpp"
 
-# if CMPAD_HAS_SACADO
 bool xam_gradient_sacado(void)
 {  //
    // ok
@@ -45,5 +44,4 @@ bool xam_gradient_sacado(void)
    //
    return ok;
 }
-# endif
 // END C++
