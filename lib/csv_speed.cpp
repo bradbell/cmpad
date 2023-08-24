@@ -11,6 +11,13 @@
 Record Speed of an AD Package for an Algorithm
 ##############################################
 
+Prototype
+*********
+{xrst_literal
+   // BEGIN PROTOTYPE
+   // END PROTOTYPE
+}
+
 file_name
 *********
 is the name of the file were the results will be recorded.
@@ -89,12 +96,14 @@ Example
 
 namespace cmpad { // BEGIN_CMPAD_NAMESPACE
 
+// BEGIN PROTOTYPE
 void csv_speed(
    const std::string& file_name ,
    double             rate      ,
    const std::string& package   ,
    const std::string& algorithm ,
    const option_t&    option    )
+// END PROTOTYPE
 {  //
    // file_system
    namespace filesystem = std::filesystem;
