@@ -18,14 +18,8 @@
 # include <cmpad/cppad/gradient.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
 
-namespace {
-   std::string to_string(bool flag)
-   {  if( flag )
-         return "true";
-      else
-         return "false";
-   }
-}
+# include "to_string.hpp"
+
 BOOST_AUTO_TEST_CASE(csv_speed)
 {  //
    // filesystem
