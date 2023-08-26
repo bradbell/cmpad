@@ -7,7 +7,9 @@
 # include <cmpad/cppad/gradient.hpp>
 # include "check_speed_det.hpp"
 
-BOOST_AUTO_TEST_CASE(fun_speed_cppad)
+BOOST_AUTO_TEST_SUITE(fun_speed)
+BOOST_AUTO_TEST_CASE(cppad)
 {  cmpad::cppad::gradient<cmpad::det_by_minor> grad_det;
    check_speed_det(grad_det);
 }
+BOOST_AUTO_TEST_SUITE_END()

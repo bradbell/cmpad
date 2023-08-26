@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef TEST_TO_STIRNG_HPP
-# define TEST_TO_STIRNG_HPP
+# ifndef TEST_TO_STRING_HPP
+# define TEST_TO_STRING_HPP
 
 inline std::string to_string(bool flag)
 {  if( flag )
