@@ -13,17 +13,25 @@
 # tests that to not depend on AD packages
 SET(test_list
    test.cpp
-   csv_speed.cpp
    xam.cpp
+   csv_double.cpp
 )
 #
 # test_list
 # tests that depend on AD packages
 FOREACH(package adolc autodiff cppad cppad_jit cppadcg sacado)
+   SET(package_cpp "${CMAKE_CURRENT_BINARY_DIR}/${package}.cpp" )
    IF( ${cmpad_has_${package}} )
-      SET(test_list ${test_list} ${package}.cpp)
+      CONFIGURE_FILE( package.cpp.in ${package_cpp} )
+      SET(test_list ${test_list} ${package_cpp} )
    ENDIF( )
 ENDFOREACH( )
+#
+# INCLUDE_DIRECRTORIES
+# so source files in binary directory find include files in source directory
+INCLUDE_DIRECTORIES(
+   ${CMAKE_CURRENT_SOURCE_DIR}
+)
 #
 # test
 ADD_EXECUTABLE(test ${test_list})
