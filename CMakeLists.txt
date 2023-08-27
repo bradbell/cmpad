@@ -86,5 +86,6 @@ ADD_SUBDIRECTORY(include/cmpad)
 #
 # other subdirectories
 ADD_SUBDIRECTORY(lib)
+ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(xam)
 ADD_SUBDIRECTORY(test)

@@ -6,7 +6,6 @@
 # define CMPAD_OPTION_T_HPP
 
 # include <cstddef>
-
 /*
 {xrst_begin option_t}
 o{xrst_spell
@@ -15,6 +14,13 @@ o{xrst_spell
 
 The Option Type
 ###############
+
+Syntax
+******
+| ``# include <cmpad/option_t.hpp>``
+
+Source Code
+***********
 {xrst_code cpp} */
 namespace cmpad {
    struct option_t {

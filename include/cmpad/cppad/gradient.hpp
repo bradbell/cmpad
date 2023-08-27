@@ -51,7 +51,9 @@ Source Code
 */
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
-
+# if CMPAD_HAS_CPPADCG
+# include <cppad/cg/cppadcg.hpp>
+# endif
 # include <cppad/cppad.hpp>
 # include <cmpad/gradient.hpp>
 

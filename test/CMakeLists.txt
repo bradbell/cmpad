@@ -3,12 +3,6 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
-# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
-# ---------------------------------------------------------------------------
-#
 # test_list
 # tests that to not depend on AD packages
 SET(test_list
