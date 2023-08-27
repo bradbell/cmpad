@@ -6,7 +6,15 @@
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include "check_speed_det.hpp"
 # include "csv_fixture.hpp"
+
+BOOST_AUTO_TEST_SUITE(fun_speed)
+BOOST_AUTO_TEST_CASE(Double)
+{  cmpad::det_by_minor<double> det;
+   check_speed_det(det);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_FIXTURE_TEST_SUITE(csv_speed, csv_fixture)
 BOOST_AUTO_TEST_CASE(Double)

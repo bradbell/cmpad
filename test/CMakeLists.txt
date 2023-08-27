@@ -14,7 +14,7 @@
 SET(test_list
    test.cpp
    xam.cpp
-   csv_double.cpp
+   double.cpp
 )
 #
 # test_list

@@ -6,6 +6,11 @@
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/@package@/gradient.hpp>
 # include <cmpad/csv_speed.hpp>
+
+// These files are in the current source directory, not the binary directory
+// where CMake will put the diffferent configurations of this file.
+// The current source directory will be an include directory added by CMake
+// when the different configurations are compiled.
 # include <check_speed_det.hpp>
 # include <csv_fixture.hpp>
 

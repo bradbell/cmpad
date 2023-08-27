@@ -4,10 +4,11 @@
 // ---------------------------------------------------------------------------
 # ifndef TEST_CHECK_SPEED_DET_HPP
 # define TEST_CHECK_SPEED_DET_HPP
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/fun_speed.hpp>
 
 template <class Algo>
-void check_speed_det(cmpad::gradient<Algo>& grad_det )
+void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
 {  //
    // option
    cmpad::option_t option;
