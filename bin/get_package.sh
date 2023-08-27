@@ -15,7 +15,7 @@ echo_eval() {
 # -----------------------------------------------------------------------------
 #
 # package_list
-package_list='adolc, autodiff, cppad, cppadcg, or sacado'
+package_list='adolc, autodiff, cppad, cppadcg, sacado, eigen, or argparse'
 #
 if [ "$0" != 'bin/get_package.sh' ]
 then
@@ -40,6 +40,22 @@ then
    exit 1
 fi
 # ---------------------------------------------------------------------------
+#
+# top_srcdir
+top_srcdir=$(pwd)
+#
+# prefix
+# $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
+prefix=$top_srcdir/build/prefix
+#
+# argparse_file
+argparse_file="$prefix/include/argparse/argparse.hpp"
+# ---------------------------------------------------------------------------
+if [ ! -e "$argparse_file" && "$pacakge" != 'argparse' ]
+then
+   # cmpad main program requires argparse
+   bin/get_package.sh argparse $build_type
+fi
 if [ "$package" == autodiff ]
 then
    # autodiff requires eigen
@@ -50,14 +66,6 @@ then
    # cpapdcg requires cppad
    bin/get_package.sh cppad $build_type
 fi
-# ---------------------------------------------------------------------------
-#
-# top_srcdir
-top_srcdir=$(pwd)
-#
-# prefix
-# $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
-prefix=$top_srcdir/build/prefix
 #
 # PKG_CONFIG_PATH
 PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig"
@@ -75,6 +83,14 @@ case $package in
    configure="$configure --enable-static --enable-shared --enable-atrig-erf"
    configure="cd ..; autoreconf -fi; cd build ; ../configure $configure"
    ;;
+
+   argparse)
+   web_page='https://github.com/p-ranav/argparse.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
 
    autodiff)
    web_page='https://github.com/autodiff/autodiff.git'
@@ -266,6 +282,16 @@ then
       rm $prefix/include/Eigen
    fi
    ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
+fi
+if [ "$package" == 'argparse' ]
+then
+   if [ ! -e "$argparse_file" ]
+   then
+      echo "bin/get_package.sh $package $build_type"
+      echo 'after install cannot find'
+      echo "$argparse_file"
+      exit 1
+   fi
 fi
 #
 # -----------------------------------------------------------------------------
