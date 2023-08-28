@@ -42,8 +42,8 @@ bool xam_csv_speed(void)
    // filesystem
    namespace filesystem =  std::filesystem;
    //
-   // time_min
-   double time_min = 0.1;
+   // min_time
+   double min_time = 0.1;
    //
    // file_name
    std::string file_name = "csv_speed.csv";
@@ -69,7 +69,7 @@ bool xam_csv_speed(void)
    cmpad::det_by_minor<double>        det_double;
    //
    // rate
-   double rate = cmpad::fun_speed(det_double, option, time_min);
+   double rate = cmpad::fun_speed(det_double, option, min_time);
    //
    // csv_speed
    cmpad::csv_speed(file_name, rate, "double", algorithm, option);

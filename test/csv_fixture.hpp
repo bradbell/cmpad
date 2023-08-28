@@ -20,8 +20,8 @@ public:
    // size_
    const size_t size_;
    //
-   // time_min_
-   const double time_min_;
+   // min_time_
+   const double min_time_;
    //
    // debug_
    const std::string debug_;
@@ -38,7 +38,7 @@ public:
    csv_fixture(void)
    : algorithm_("det_by_minor")
    , size_(6)
-   , time_min_(0.5)
+   , min_time_(0.5)
 # ifdef NDEBUG
    , debug_("false")
 # else

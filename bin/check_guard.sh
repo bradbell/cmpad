@@ -35,6 +35,13 @@ do
          sed -e 's|^# *ifndef *||' -e 's|[ \t]*$||'
       )
    fi
+   if [ "$macro_name" == '' ]
+   then
+      macro_name=$(\
+         sed -n -e '/^# *ifndef *SRC_[0-9A-Z_]*_HPP[ \t]*$/p' $file_name | \
+         sed -e 's|^# *ifndef *||' -e 's|[ \t]*$||'
+      )
+   fi
    check=$(echo $file_name | tr [a-zA-Z/.] [A-Za-z__])
    check=$(echo $check | sed -e 's|^INCLUDE_||')
    #
@@ -43,6 +50,7 @@ do
       echo "$file_name: Cannot find  ^# *ifndef *CMPAD_[0-9A-Z_]*_HPP[ \t]*"
       echo "or ^# *ifndef *XAM_[0-9A-Z_]*_HPP[ \t]*"
       echo "or ^# *ifndef *TEST_[0-9A-Z_]*_HPP[ \t]*"
+      echo "or ^# *ifndef *SRC_[0-9A-Z_]*_HPP[ \t]*"
       different='yes'
    elif [ "$macro_name" != "$check" ]
    then

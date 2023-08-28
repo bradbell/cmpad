@@ -75,8 +75,8 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       // ok
       bool ok = true;
       //
-      // time_min
-      double time_min = 0.1;
+      // min_time
+      double min_time = 0.1;
       //
       // my_fun_obj
       my_fun_obj my_fun;
@@ -87,7 +87,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       option_one.time_setup = false;
       //
       // rate_one
-      double rate_one = cmpad::fun_speed(my_fun, option_one, time_min);
+      double rate_one = cmpad::fun_speed(my_fun, option_one, min_time);
       //
       // option_two
       cmpad::option_t option_two;
@@ -95,7 +95,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       option_two.time_setup = false;
       //
       // rate_two
-      double rate_two = cmpad::fun_speed(my_fun, option_two, time_min);
+      double rate_two = cmpad::fun_speed(my_fun, option_two, min_time);
       //
       // ok
       double ratio = rate_one / rate_two;

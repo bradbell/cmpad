@@ -17,7 +17,7 @@ Syntax
 ******
 |  ``# include <cmpad/fun_speed.hpp>``
 |  *y* = *fun_obj* ( *x* )
-|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *option*, *time_min* )
+|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *option*, *min_time* )
 
 Prototype
 *********
@@ -55,7 +55,7 @@ included in the time for each function evaluation.
 If the setup time is not included, the only thing that changes
 between function evaluations is the argument vector *x* .
 
-time_min
+min_time
 ********
 This is the minimum time in seconds for the timing of the computation.
 The computation of the function object will be repeated enough times
@@ -86,7 +86,7 @@ namespace cmpad { // BEGIN cmpad namespace
 template <class Fun_Obj> double fun_speed(
    Fun_Obj&         fun_obj    ,
    const option_t&  option     ,
-   double           time_min   )
+   double           min_time   )
 // END PROTOTYPE
 {  //
    // steady_clock
@@ -109,8 +109,8 @@ template <class Fun_Obj> double fun_speed(
    time_point t_end   = steady_clock::now();
    double     t_diff  = duration(t_end - t_start).count();
    //
-   // while t_diff < time_min
-   while( t_diff < time_min )
+   // while t_diff < min_time
+   while( t_diff < min_time )
    {  //
       // repeat
       if( repeat == 0 )

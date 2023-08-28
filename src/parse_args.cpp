@@ -29,7 +29,7 @@ arguments_t
    option name, meaning
    algorithm, see :ref:`main@algorithm`
    file_name, see :ref:`main@file_name`
-   time_min, see :ref:`main@time_min`
+   min_time, see :ref:`main@min_time`
    package, see :ref:`main@package`
    size, see :ref:`main@size`
    time_setup, see :ref:`main@time_setup`
@@ -41,7 +41,7 @@ arguments_t
 # include <argp.h>
 # include "parse_args.hpp"
 
-namespace { 
+namespace {
 
    error_t next_arg(int key, char* arg, argp_state* state)
    {  // arugments
@@ -54,32 +54,32 @@ namespace {
          case 'a':
          arguments->algorithm = arg;
          break;
-   
+
          // file_name
          case 'f':
          arguments->file_name = arg;
          break;
-   
-         // time_min
+
+         // min_time
          case 'm':
-         arguments->time_min = std::atof(arg);
+         arguments->min_time = std::atof(arg);
          break;
-   
+
          // package
          case 'p':
          arguments->package = arg;
          break;
-   
+
          // size
          case 's':
          arguments->size = size_t( std::atoi(arg) );
          break;
-   
+
          // time_setup
          case 't':
          arguments->time_setup = true;
          break;
-   
+
          // default
          default:
          return ARGP_ERR_UNKNOWN;
@@ -88,17 +88,17 @@ namespace {
       return 0;
    }
 
-}; 
+};
 
 // BEGIN PROTOTYPE
 arguments_t parse_args(int argc, char* argv[])
 // END PROTOTYPE
-{  
+{
    // BEGIN DEFAULT ARGUMENTS
    arguments_t arguments;
    arguments.algorithm  = "det_by_minor";
    arguments.file_name  = "cmpad.csv";
-   arguments.time_min   = 0.5;
+   arguments.min_time   = 0.5;
    arguments.package    = "double";
    arguments.size       = 5;
    arguments.time_setup = false;
@@ -110,11 +110,11 @@ arguments_t parse_args(int argc, char* argv[])
       " } [defualt: det_by_minor]";
    //
    // file_name_help
-   const char* file_name_help = 
+   const char* file_name_help =
       "csv file that result is added to [default: cmpad.csv]";
    //
-   // time_min_help
-   const char* time_min_help = 
+   // min_time_help
+   const char* min_time_help =
       "minumum number of seconds to average speed over [default: 0.5]";
    //
    // package_help
@@ -126,7 +126,7 @@ arguments_t parse_args(int argc, char* argv[])
    const char* size_help = "size of argument to algorithm [default: 5]";
    //
    // time_setup_help
-   const char* time_setup_help = 
+   const char* time_setup_help =
       "include setup time in speed tests [default: false]";
    //
    // options
@@ -134,7 +134,7 @@ arguments_t parse_args(int argc, char* argv[])
       // option_name,  key, value_name,   flag, help
       {  "algorithm",   'a', "string",    0, algorithm_help},
       {  "file_name",  'f', "string",     0, file_name_help },
-      {  "time_min",    'm', "double",    0, time_min_help},
+      {  "min_time",    'm', "double",    0, min_time_help},
       {  "package",     'p', "string",    0, package_help},
       {  "size",        's', "size_t",    0, size_help},
       {  "time_setup",  't', 0,           0, time_setup_help},
@@ -156,5 +156,4 @@ arguments_t parse_args(int argc, char* argv[])
    // arguments
    return arguments;
 };
-
 

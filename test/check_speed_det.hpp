@@ -13,9 +13,9 @@ void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
    // option
    cmpad::option_t option;
    //
-   // time_min
+   // min_time
    // minimum time for test in seconds
-   double time_min = 0.2;
+   double min_time = 0.2;
    //
    // previous_rate, size
    double previous_rate = 0.0;
@@ -29,7 +29,7 @@ void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
       grad_det.setup(option);
       //
       // rate
-      double rate  = cmpad::fun_speed(grad_det, option, time_min);
+      double rate  = cmpad::fun_speed(grad_det, option, min_time);
       //
       // ratio
       // number of floating operations goes up by a factor of ell

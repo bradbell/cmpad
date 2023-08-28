@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+// SPDX-FileContributor: 2023 Bradley M. Bell
+// ---------------------------------------------------------------------------
 # ifndef SRC_PARSE_ARGS_HPP
 # define SRC_PARSE_ARGS_HPP
 
@@ -5,10 +9,10 @@
 
 // BEGIN ARGUMENTS_T
 struct arguments_t
-{  
+{
    std::string  algorithm;
    std::string  file_name;
-   double       time_min;
+   double       min_time;
    std::string  package;
    size_t       size;
    bool         time_setup;

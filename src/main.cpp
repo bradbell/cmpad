@@ -23,7 +23,7 @@ when the option is not present.
    short version, long version
    ``-a`` *algorithm* , ``--algorithm`` = *algorithm*
    ``-f`` *file_name* , ``--file_name`` = *file_name*
-   ``-m`` *time_min*  , ``--time_min`` = *time_min*
+   ``-m`` *min_time*  , ``--min_time`` = *min_time*
    ``-p`` *package*   , ``--package`` = *package*
    ``-s`` *size*      , ``--size`` = *size*
    ``-t``             , ``--time_setup``
@@ -42,7 +42,7 @@ the file is created and it's header row is written.
 The results for this test are placed at the end of the file.
 The default value for this option is ``cmpad.csv`` .
 
-time_min
+min_time
 ********
 This is the minimum time in seconds for the timing of the computation.
 The computation will be repeated enough times so that this minimum time
@@ -110,7 +110,7 @@ The default value for this option is ``false`` .
 # define CMPAD_PACKAGE_TEST(package) \
    if( algorithm == "det_by_minor" ) \
    {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
-      double rate = cmpad::fun_speed(grad_det, option, time_min); \
+      double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed(file_name, rate, #package , algorithm, option); \
       case_found = true; \
    }
@@ -178,11 +178,11 @@ int main(int argc, char* argv[])
    // time_setup
    bool time_setup = arguments.time_setup;
    //
-   // time_min
-   double time_min = arguments.time_min;
-   if( time_min <= 0.0 || 1.0 < time_min )
-   {  std::cerr << "cmpad Error: time_min = ";
-      std::cerr << time_min <<
+   // min_time
+   double min_time = arguments.min_time;
+   if( min_time <= 0.0 || 1.0 < min_time )
+   {  std::cerr << "cmpad Error: min_time = ";
+      std::cerr << min_time <<
          " is less than or equal zero or greater than one.";
       return 1;
    }
@@ -199,7 +199,7 @@ int main(int argc, char* argv[])
    if( package == "double" )
    {  if( algorithm == "det_by_minor" )
       {  cmpad::det_by_minor<double> det;
-         double rate = cmpad::fun_speed(det, option, time_min);
+         double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(file_name, rate, "double", algorithm, option);
          case_found = true;
       }
@@ -247,5 +247,4 @@ int main(int argc, char* argv[])
    std::cerr << "cmpad: BUG\n";
    return 1;
 }
-
 
