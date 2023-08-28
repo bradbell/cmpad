@@ -4,9 +4,6 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_gradient_autodiff.cpp}
-{xrst_spell
-   autodiff
-}
 
 Example and Test of Gradient Using Autodiff
 ###########################################

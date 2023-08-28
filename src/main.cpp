@@ -2,6 +2,81 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
+/*
+{xrst_begin main}
+
+The cmpad Main Program
+######################
+
+Syntax
+******
+| ``cmpad`` *options*
+
+Options
+*******
+All of the options below have a default value that is used
+when the option is not present.
+
+.. csv-table::
+   :header-rows: 1
+
+   short version, long version
+   ``-a`` *algorithm* , ``--algorithm`` = *algorithm*
+   ``-f`` *file_name* , ``--file_name`` = *file_name*
+   ``-m`` *time_min*  , ``--time_min`` = *time_min*
+   ``-p`` *package*   , ``--package`` = *package*
+   ``-s`` *size*      , ``--size`` = *size*
+   ``-t``             , ``--time_setup``
+
+
+algorithm
+*********
+The only choice (so far) for this option is :ref:`det_by_minor-name` .
+The default value for this option is ``det_by_minor`` .
+
+file_name
+*********
+is the csv file where the results of this test are placed.
+If the file does not exist,
+the file is created and it's header row is written.
+The results for this test are placed at the end of the file.
+The default value for this option is ``cmpad.csv`` .
+
+time_min
+********
+This is the minimum time in seconds for the timing of the computation.
+The computation will be repeated enough times so that this minimum time
+is reached.
+
+package
+*******
+This is either ``double`` or the AD package used for this test.
+The possible AD packages are:
+double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
+Note that cppad_jit is the JIT compiled version of cppad derivatives.
+The default value for this option is ``double`` .
+
+size
+****
+This is the size of the argument to the algorithm.
+The meaning of this value depends on the algorithm; e.g.,
+for det_by_minor it is the row and column dimension of the matrix.
+The default value for this option is ``5`` .
+
+time_setup
+**********
+If this option is present, the setup time is included during the speed
+testing for this algorithm.
+So AD packages may spend more setup time to use less evaluation time
+for each new argument value.
+The default value for this option is ``false`` .
+
+{xrst_toc_table
+   src/parse_args.cpp
+}
+
+{xrst_end main}
+*/
 # include <algorithm>
 # include <string>
 # include <iostream>
@@ -10,6 +85,7 @@
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
+# include "parse_args.hpp"
 
 # if CMPAD_HAS_ADOLC
 # include <cmpad/adolc/gradient.hpp>
@@ -39,8 +115,11 @@
       case_found = true; \
    }
 
-int main(int argc, const char* argv[])
-{  //  
+int main(int argc, char* argv[])
+{  //
+   // arguments
+   arguments_t arguments = parse_args(argc, argv);
+   //
    // package_vec
    cmpad::vector<std::string> package_vec;
    package_vec.push_back("double");
@@ -64,44 +143,14 @@ int main(int argc, const char* argv[])
    cmpad::vector<std::string> algorithm_vec;
    algorithm_vec.push_back("det_by_minor");
    //
-   // usage
-   std::string usage = 
-      "cmpad file_name package algorithm size time_setup time_min";
-   usage += "\nfile_name:  name of csv file where results are written";
-   usage += "\npackage:    one of";
-   for(size_t i = 0; i < package_vec.size(); ++i)
-   {  if( i == package_vec.size() - 1)
-         usage += " or";
-      else if( 0 < i )
-         usage += ",";
-      usage += " " + package_vec[i];
-   }
-   usage += "\nalgorithm:  one of";
-   for(const std::string& algorithm : algorithm_vec)
-      usage += " " + algorithm;
-   usage += "\nsize:       a positive integer";
-   usage += "\ntime_setup: true or false";
-   usage += "\ntime_min:   positive floating point value <= 1.0";
-   usage += "\n\n";
-   //
-   // argc
-   if( argc != 7 )
-   {  std::cerr << usage;
-      std::cerr << "expected 6 arguments and found " << argc - 1 << "\n";
-      return 1;
-   }
-   //
-   // itr;
+   // itr
    cmpad::vector<std::string>::iterator itr;
    //
-   // i_arg
-   size_t i_arg = 0;
+   // file_name
+   std::string file_name = arguments.file_name;
    //
-   // file_name, i_arg
-   std::string file_name = argv[++i_arg];
-   //
-   // package, i_arg
-   std::string package = argv[++i_arg];
+   // package
+   std::string package = arguments.package;
    itr = std::find(package_vec.begin(), package_vec.end(), package);
    if( itr == package_vec.end() )
    {  std::cerr << "cmpad Error: ";
@@ -109,8 +158,8 @@ int main(int argc, const char* argv[])
       return 1;
    }
    //
-   // algorithm, i_arg
-   std::string algorithm = argv[++i_arg];
+   // algorithm
+   std::string algorithm = arguments.algorithm;
    itr = std::find(algorithm_vec.begin(), algorithm_vec.end(), algorithm);
    if( itr == algorithm_vec.end() )
    {  std::cerr << "cmpad Error: ";
@@ -118,29 +167,23 @@ int main(int argc, const char* argv[])
       return 1;
    }
    //
-   // size, i_arg
-   int size_int = std::atoi( argv[++i_arg] );
-   if( size_int <= 0 )
-   {  std::cerr << "cmpad Error: ";
-      std::cerr << "size = " << size_int << " is not available" << "\n";
+   // size
+   size_t size = arguments.size;
+   if( size == 0 || 10 < size )
+   {  std::cerr << "cmpad Error: size = ";
+      std::cerr << size << " is zero or greater than ten.";
       return 1;
    }
-   size_t size = size_t(size_int);
    //
-   // time_setup, i_arg
-   std::string time_setup_str = argv[++i_arg];
-   if( time_setup_str != "true" && time_setup_str != "false" )
-   {  std::cerr << "cmpad Error: time_setup = ";
-      std::cerr << time_setup_str << " is not true or false\n";
-      return 1;
-   }
-   bool time_setup = time_setup_str == "true";
+   // time_setup
+   bool time_setup = arguments.time_setup;
    //
-   // time_min, i_arg
-   double time_min = std::atof( argv[++i_arg] );
+   // time_min
+   double time_min = arguments.time_min;
    if( time_min <= 0.0 || 1.0 < time_min )
    {  std::cerr << "cmpad Error: time_min = ";
-      std::cerr << time_min << " is not greater than zero and less than one\n";
+      std::cerr << time_min <<
+         " is less than or equal zero or greater than one.";
       return 1;
    }
    //
@@ -205,7 +248,4 @@ int main(int argc, const char* argv[])
    return 1;
 }
 
-
-
- 
 

@@ -8,11 +8,9 @@
 {xrst_begin configure}
 {xrst_spell
    cmake
-   cppad
    preprocessor
    std
    sh
-   adolc
 }
 
 Preprocessor Definitions and Configured Types

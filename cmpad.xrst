@@ -14,7 +14,7 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2023.8.27
+cmpad-2023.8.28
 
 Example Speed Comparison
 ************************
@@ -38,10 +38,10 @@ Gradient Source Code Comparison
 Documentation
 *************
 
-{xrst_toc_table
+{xrst_toc_table before
+   src/main.cpp
    include/cmpad/configure.hpp.in
    include/cmpad/gradient.hpp
-   lib/csv_speed.cpp
 }
 
 {xrst_end cmpad}
@@ -81,6 +81,7 @@ General Purpose Utilities
    include/cmpad/fun_speed.hpp
    include/cmpad/near_equal.hpp
    lib/csv_read.cpp
+   lib/csv_speed.cpp
    lib/csv_write.cpp
    lib/uniform_01.cpp
 }

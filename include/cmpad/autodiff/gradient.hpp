@@ -7,7 +7,6 @@
 /*
 {xrst_begin autodiff_gradient.hpp}
 {xrst_spell
-   autodiff
    obj
 }
 

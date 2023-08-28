@@ -3,7 +3,9 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+# main
+ADD_EXECUTABLE(main main.cpp parse_args.cpp)
+TARGET_LINK_LIBRARIES(main cmpad)
+#
 # cmpad
-ADD_EXECUTABLE(cmpad_exe cmpad.cpp)
-TARGET_LINK_LIBRARIES(cmpad_exe cmpad)
-SET_PROPERTY(TARGET cmpad_exe PROPERTY OUTPUT_NAME cmpad)
+SET_PROPERTY(TARGET main PROPERTY OUTPUT_NAME cmpad)

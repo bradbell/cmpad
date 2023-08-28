@@ -7,7 +7,6 @@
 /*
 {xrst_begin adolc_gradient.hpp}
 {xrst_spell
-   adolc
    obj
 }
 

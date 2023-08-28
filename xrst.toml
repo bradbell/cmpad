@@ -29,14 +29,26 @@ titles_only      = true
 
 [include_all]
 rst_epilog = ''
-rst_prolog = ''
-latex_macro  = []
+rst_prolog = '''
+.. |space| unicode:: 0xA0
+.. |tab| replace:: |space| |space| |space|
+'''
+latex_macro = []
 
 [project_dictionary]
 data = [
    # project name
    '''
       cmpad
+   ''',
+   # package names
+   '''
+      adolc
+      autodiff
+      cppad
+      jit
+      cppadcg
+      sacado
    ''',
    # file extensions
    '''

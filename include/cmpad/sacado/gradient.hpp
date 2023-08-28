@@ -7,7 +7,6 @@
 /*
 {xrst_begin sacado_gradient.hpp}
 {xrst_spell
-   sacado
    obj
 }
 

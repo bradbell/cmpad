@@ -8,7 +8,6 @@
 {xrst_begin vector}
 {xrst_spell
    std
-   cppad
    vec
    cmake
 }

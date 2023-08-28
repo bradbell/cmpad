@@ -4,9 +4,6 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_gradient_cppad_jit.cpp}
-{xrst_spell
-   jit
-}
 
 Example and Test of Gradient Using CppAD Jit
 ############################################

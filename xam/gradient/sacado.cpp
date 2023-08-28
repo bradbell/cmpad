@@ -4,9 +4,6 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_gradient_sacado.cpp}
-{xrst_spell
-   sacado
-}
 
 Example and Test of Gradient Using Sacado
 #########################################

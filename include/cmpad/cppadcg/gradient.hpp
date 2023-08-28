@@ -7,7 +7,6 @@
 /*
 {xrst_begin cppadcg_gradient.hpp}
 {xrst_spell
-   cppadcg
    obj
 }
 
