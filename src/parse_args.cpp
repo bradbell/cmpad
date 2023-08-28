@@ -36,6 +36,7 @@ arguments_t
 
 {xrst_end parse_args}
 */
+// see http://www.crasseux.com/books/ctutorial/argp-example.html
 # include <stdlib.h>
 # include <argp.h>
 # include "parse_args.hpp"
