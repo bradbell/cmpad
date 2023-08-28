@@ -32,7 +32,7 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      rate,package,algorithm,size,date,compiler,debug
+      rate,min_time,package,algorithm,size,date,compiler,debug
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
@@ -41,6 +41,11 @@ rate
 ****
 This is the number of times per second that the algorithm,
 or a derivative of the algorithm, was calculated.
+
+min_time
+********
+This is the :ref:`fun_speed@min_time` used
+by fun_speed when it computed *rate*.
 
 package
 *******
@@ -100,6 +105,7 @@ namespace cmpad { // BEGIN_CMPAD_NAMESPACE
 void csv_speed(
    const std::string& file_name ,
    double             rate      ,
+   double             min_time  ,
    const std::string& package   ,
    const std::string& algorithm ,
    const option_t&    option    )
@@ -118,6 +124,7 @@ void csv_speed(
    else
    {  cmpad::vector<std::string> row = {
          "rate",
+         "min_time",
          "package",
          "algorithm",
          "size",
@@ -128,12 +135,18 @@ void csv_speed(
       };
       csv_table.push_back(row);
    }
-   //
-   // ss, rate_str
+   // ss
    std::stringstream ss;
+   //
+   // rate_str
+   ss.str("");
    ss << std::setprecision(1) << std::scientific << rate;
    std::string rate_str = ss.str();
+   //
+   // time_min_str
    ss.str("");
+   ss << std::setprecision(3) << std::fixed << min_time;
+   std::string min_time_str = ss.str();
    //
    // date
    std::time_t rawtime;
@@ -142,6 +155,7 @@ void csv_speed(
    int year  = ptm->tm_year + 1900;
    int month = ptm->tm_mon + 1;
    int day   = ptm->tm_mday;
+   ss.str("");
    ss << year << '-' << month << '-' << day;
    std::string date = ss.str();
    //
@@ -168,6 +182,7 @@ void csv_speed(
    // csv_table
    cmpad::vector<std::string> row = {
       rate_str,
+      min_time_str,
       package,
       algorithm,
       size,

@@ -41,7 +41,9 @@ BOOST_AUTO_TEST_CASE(Double)
       double rate = cmpad::fun_speed(det, option, min_time_);
       //
       // csv_speed
-      cmpad::csv_speed(file_name, rate, "double", algorithm_, option);
+      cmpad::csv_speed(
+         file_name, rate, min_time_, "double", algorithm_, option
+      );
    }
    check();
 }

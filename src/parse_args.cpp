@@ -156,4 +156,3 @@ arguments_t parse_args(int argc, char* argv[])
    // arguments
    return arguments;
 };
-

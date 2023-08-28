@@ -72,7 +72,9 @@ bool xam_csv_speed(void)
    double rate = cmpad::fun_speed(det_double, option, min_time);
    //
    // csv_speed
-   cmpad::csv_speed(file_name, rate, "double", algorithm, option);
+   cmpad::csv_speed(
+      file_name, rate, min_time, "double", algorithm, option
+   );
    //
    // csv_table
    cmpad::vec_vec_str csv_table = cmpad::csv_read(file_name);
@@ -87,6 +89,7 @@ bool xam_csv_speed(void)
    // col_name, n_col
    cmpad::vector<std::string> col_name = {
       "rate",
+      "min_time",
       "package",
       "algorithm",
       "size",
@@ -108,14 +111,15 @@ bool xam_csv_speed(void)
    ok &=( csv_table[0] == col_name );
    //
    // ok
-   // check column 1, 2, 3, 4, 6, 7
+   // check column 1-5, 7, 8
    //
-   ok &= ( csv_table[1][1] == "double" );
-   ok &= ( csv_table[1][2] == "det_by_minor" );
-   ok &= ( csv_table[1][3] == std::to_string(size) );
-   ok &= ( csv_table[1][4] == to_string(time_setup) );
-   ok &= ( csv_table[1][6] == CMPAD_CXX_COMPILER );
-   ok &= ( csv_table[1][7] == debug;
+   ok &= ( std::atof( csv_table[1][1].c_str() ) == min_time );
+   ok &= ( csv_table[1][2] == "double" );
+   ok &= ( csv_table[1][3] == "det_by_minor" );
+   ok &= ( csv_table[1][4] == std::to_string(size) );
+   ok &= ( csv_table[1][5] == to_string(time_setup) );
+   ok &= ( csv_table[1][7] == CMPAD_CXX_COMPILER );
+   ok &= ( csv_table[1][8] == debug;
    //
    return ok;
 }

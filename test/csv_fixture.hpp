@@ -77,6 +77,7 @@ public:
       // col_name
       cmpad::vector<std::string> col_name = {
          "rate",
+         "min_time",
          "package",
          "algorithm",
          "size",
@@ -93,21 +94,25 @@ public:
       BOOST_CHECK( csv_table[0] == col_name );
       //
       // check column 1
+      BOOST_CHECK( std::atof(csv_table[n_row-2][1].c_str()) == min_time_ );
+      BOOST_CHECK( std::atof(csv_table[n_row-1][1].c_str()) == min_time_ );
+      //
+      // check column 2
       // each package outputs two rows
-      BOOST_CHECK( csv_table[n_row-2][1] == package_ );
-      BOOST_CHECK( csv_table[n_row-1][1] == package_ );
+      BOOST_CHECK( csv_table[n_row-2][2] == package_ );
+      BOOST_CHECK( csv_table[n_row-1][2] == package_ );
       //
-      // check column 4
+      // check column 5
       // time_setup is true and then false
-      BOOST_CHECK( csv_table[n_row-2][4] == "true"   );
-      BOOST_CHECK( csv_table[n_row-1][4] == "false"  );
+      BOOST_CHECK( csv_table[n_row-2][5] == "true"   );
+      BOOST_CHECK( csv_table[n_row-1][5] == "false"  );
       //
-      // check column 2, 3, 6, 7
+      // check column 3, 4, 7, 8
       for(size_t i = n_row-1; i < n_row; ++i)
-      {  BOOST_CHECK( csv_table[i][2] == algorithm_ );
-         BOOST_CHECK( csv_table[i][3] == std::to_string(size_) );
-         BOOST_CHECK( csv_table[i][6] == CMPAD_CXX_COMPILER );
-         BOOST_CHECK( csv_table[1][7] == debug_ );
+      {  BOOST_CHECK( csv_table[i][3] == algorithm_ );
+         BOOST_CHECK( csv_table[i][4] == std::to_string(size_) );
+         BOOST_CHECK( csv_table[i][7] == CMPAD_CXX_COMPILER );
+         BOOST_CHECK( csv_table[1][8] == debug_ );
       }
    }
 };

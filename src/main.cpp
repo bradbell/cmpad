@@ -111,7 +111,9 @@ The default value for this option is ``false`` .
    if( algorithm == "det_by_minor" ) \
    {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
-      cmpad::csv_speed(file_name, rate, #package , algorithm, option); \
+      cmpad::csv_speed( \
+         file_name, rate, min_time, #package , algorithm, option \
+      ); \
       case_found = true; \
    }
 
@@ -200,7 +202,9 @@ int main(int argc, char* argv[])
    {  if( algorithm == "det_by_minor" )
       {  cmpad::det_by_minor<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
-         cmpad::csv_speed(file_name, rate, "double", algorithm, option);
+         cmpad::csv_speed(
+            file_name, rate, min_time, "double", algorithm, option
+         );
          case_found = true;
       }
    }
@@ -247,4 +251,3 @@ int main(int argc, char* argv[])
    std::cerr << "cmpad: BUG\n";
    return 1;
 }
-

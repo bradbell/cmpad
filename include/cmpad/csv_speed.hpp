@@ -12,6 +12,7 @@ namespace cmpad {
    void csv_speed(
       const std::string& file_name ,
       double             rate      ,
+      double             min_time  ,
       const std::string& package   ,
       const std::string& algorithm ,
       const option_t&    option
