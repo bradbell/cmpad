@@ -171,7 +171,7 @@ int main(int argc, char* argv[])
    size_t size = arguments.size;
    if( size == 0 || 10 < size )
    {  std::cerr << "cmpad Error: size = ";
-      std::cerr << size << " is zero or greater than ten.";
+      std::cerr << size << " is zero or greater than ten.\n";
       return 1;
    }
    //
@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
    if( min_time <= 0.0 || 1.0 < min_time )
    {  std::cerr << "cmpad Error: min_time = ";
       std::cerr << min_time <<
-         " is less than or equal zero or greater than one.";
+         " is less than or equal zero or greater than one.\n";
       return 1;
    }
    //
