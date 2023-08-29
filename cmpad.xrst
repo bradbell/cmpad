@@ -24,6 +24,7 @@ Gradient Source Code Comparison
 *******************************
 
 .. csv-table::
+   :widths: auto
 
    :ref:`adolc_gradient.hpp-title`
    :ref:`cppad_gradient.hpp-title`

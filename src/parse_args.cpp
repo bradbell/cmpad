@@ -24,6 +24,7 @@ arguments_t
 }
 
 .. csv-table::
+   :widths: auto
    :header-rows: 1
 
    option name, meaning

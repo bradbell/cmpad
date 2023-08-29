@@ -18,14 +18,15 @@ All of the options below have a default value that is used
 when the option is not present.
 
 .. csv-table::
+   :widths: auto
    :header-rows: 1
 
    short version, long version
-   ``-a`` *algorithm* , ``--algorithm`` = *algorithm*
-   ``-f`` *file_name* , ``--file_name`` = *file_name*
-   ``-m`` *min_time*  , ``--min_time`` = *min_time*
-   ``-p`` *package*   , ``--package`` = *package*
-   ``-s`` *size*      , ``--size`` = *size*
+   ``-a`` |space| *algorithm* , ``--algorithm``\ =\ *algorithm*
+   ``-f`` |space| *file_name* , ``--file_name``\ =\ *file_name*
+   ``-m`` |space| *min_time*  , ``--min_time``\ =\ *min_time*
+   ``-p`` |space| *package*   , ``--package``\ =\ *package*
+   ``-s`` |space| *size*      , ``--size``\ =\ *size*
    ``-t``             , ``--time_setup``
 
 
