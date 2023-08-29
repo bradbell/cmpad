@@ -72,7 +72,7 @@ def main() :
    default_min_time = 0.5
    #
    # default_n_arg
-   default_n_arg = 5
+   default_n_arg = 9
    #
    #
    # package

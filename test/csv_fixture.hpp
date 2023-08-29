@@ -37,7 +37,7 @@ public:
    // ctor
    csv_fixture(void)
    : algorithm_("det_by_minor")
-   , n_arg_(6)
+   , n_arg_(16)
    , min_time_(0.5)
 # ifdef NDEBUG
    , debug_("false")

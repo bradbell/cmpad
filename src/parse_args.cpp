@@ -66,14 +66,14 @@ namespace {
          arguments->min_time = std::atof(arg);
          break;
 
+         // n_arg
+         case 'n':
+         arguments->n_arg = size_t( std::atoi(arg) );
+         break;
+
          // package
          case 'p':
          arguments->package = arg;
-         break;
-
-         // n_arg
-         case 's':
-         arguments->n_arg = size_t( std::atoi(arg) );
          break;
 
          // time_setup
@@ -101,7 +101,7 @@ arguments_t parse_args(int argc, char* argv[])
    arguments.file_name  = "cmpad.csv";
    arguments.min_time   = 0.5;
    arguments.package    = "double";
-   arguments.n_arg       = 5;
+   arguments.n_arg       = 9;
    arguments.time_setup = false;
    // END DEFAULT ARGUMENTS
    //
@@ -123,8 +123,8 @@ arguments_t parse_args(int argc, char* argv[])
       "double, adolc, autodiff, cppad, cppad_jit, cppadcg, sacado"
       " } [default: double]";
    //
-   // size_help
-   const char* size_help = "size of argument to algorithm [default: 5]";
+   // n_arg_help
+   const char* n_arg_help = "size of argument to algorithm [default: 9]";
    //
    // time_setup_help
    const char* time_setup_help =
@@ -136,8 +136,8 @@ arguments_t parse_args(int argc, char* argv[])
       {  "algorithm",   'a', "string",    0, algorithm_help},
       {  "file_name",  'f', "string",     0, file_name_help },
       {  "min_time",    'm', "double",    0, min_time_help},
+      {  "n_arg",       'n', "size_t",    0, n_arg_help},
       {  "package",     'p', "string",    0, package_help},
-      {  "n_arg",        's', "size_t",    0, size_help},
       {  "time_setup",  't', 0,           0, time_setup_help},
       { 0 }
    };

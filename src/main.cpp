@@ -25,15 +25,20 @@ when the option is not present.
    ``-a`` |space| *algorithm* , ``--algorithm``\ =\ *algorithm*
    ``-f`` |space| *file_name* , ``--file_name``\ =\ *file_name*
    ``-m`` |space| *min_time*  , ``--min_time``\ =\ *min_time*
+   ``-n`` |space| *n_arg*     , ``--n_arg``\ =\ *n_arg*
    ``-p`` |space| *package*   , ``--package``\ =\ *package*
-   ``-s`` |space| *n_arg*      , ``--n_arg``\ =\ *n_arg*
-   ``-t``             , ``--time_setup``
+   ``-t``                     , ``--time_setup``
 
 
 algorithm
 *********
 The only choice (so far) for this option is :ref:`det_by_minor-name` .
 The default value for this option is ``det_by_minor`` .
+
+det_by_minor
+============
+If *algorithm* is ``det_by_minor``, *n_arg* must be a square
+and its square root is the row and column dimension of the matrix.
 
 file_name
 *********
@@ -49,6 +54,12 @@ This is the minimum time in seconds for the timing of the computation.
 The computation will be repeated enough times so that this minimum time
 is reached.
 
+n_arg
+*****
+This is the size of the argument to the algorithm; i.e.,
+its the dimension of its :ref:`fun_obj@domain` space.
+The default value for this option is ``9`` .
+
 package
 *******
 This is either ``double`` or the AD package used for this test.
@@ -56,13 +67,6 @@ The possible AD packages are:
 double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
 Note that cppad_jit is the JIT compiled version of cppad derivatives.
 The default value for this option is ``double`` .
-
-n_arg
-*****
-This is the size of the argument to the algorithm.
-The meaning of this value depends on the algorithm; e.g.,
-for det_by_minor it is the row and column dimension of the matrix.
-The default value for this option is ``5`` .
 
 time_setup
 **********
@@ -200,9 +204,12 @@ int main(int argc, char* argv[])
    //
    // n_arg
    size_t n_arg = arguments.n_arg;
-   if( n_arg == 0 || 10 < n_arg )
+   size_t ell = size_t( std::sqrt( double(n_arg) ) );
+   if( ell * ell != n_arg )
+      ++ell;
+   if( ell * ell != n_arg )
    {  std::cerr << "cmpad Error: n_arg = ";
-      std::cerr << n_arg << " is zero or greater than ten.\n";
+      std::cerr << n_arg << " is not a square.\n";
       return 1;
    }
    //

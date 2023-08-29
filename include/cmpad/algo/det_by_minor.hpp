@@ -55,7 +55,7 @@ det
 ***
 The object *det* corresponds to :ref:`fun_obj@fun` in the function
 object interface.
-It computes the determinant.
+It computes the determinant of a square matrix.
 
 option
 ******
@@ -63,12 +63,14 @@ This contains options thats that are used to setup the function object.
 
 n_arg
 =====
-This is the row and column dimension for subsequent use of the *det* object.
-We use the notation :math:`\ell` for this value.
+This is the number of elements in the matrix
+(number of arguments to the algorithm).
+It must be a square and we use :math:``\ell`` to denote its square root; i.e,
+the number of rows and columns in the matrix.
 
 x
 *
-The argument *x* has size :math:`n = \ell * \ell` .
+The argument *x* has size *n_arg* = :math:`\ell * \ell` .
 The elements of the matrix :math:`A(x)` is defined as follows:
 for :math:`i = 0 , \ldots , \ell-1` and :math:`j = 0 , \ldots , \ell-1`, by
 
@@ -111,6 +113,7 @@ det_by_minor: Source Code
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
+# include <cmath> // for std::sqrt
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
@@ -144,7 +147,7 @@ public:
    {  return option_; }
    // domain
    size_t domain(void) const override
-   {  return ell_ * ell_; }
+   {  return option_.n_arg; }
    // range
    size_t range(void) const override
    {  return 1; }
@@ -155,7 +158,10 @@ public:
       option_ = option;
       //
       // ell_
-      ell_ = option.n_arg;
+      ell_ = size_t( std::sqrt( double( option.n_arg ) ) );
+      if( ell_ * ell_ != option.n_arg )
+         ++ell_;
+      assert( ell_ * ell_ == option.n_arg );
       //
       // r_, c_, y_
       r_.resize(ell_ + 1);

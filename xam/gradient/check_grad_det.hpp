@@ -61,20 +61,20 @@ bool check_grad_det( cmpad::gradient<Algo>& grad_det )
    // near_equal
    using cmpad::near_equal;
    //
-   // n_arg
-   for(size_t n_arg = 3; n_arg < 5; ++n_arg)
+   // ell
+   for(size_t ell = 3; ell < 5; ++ell)
    {
       // option
       cmpad::option_t option;
-      option.n_arg       = n_arg;
-      option.time_setup = static_cast<bool>(n_arg % 2);
+      option.n_arg       = ell * ell;
+      option.time_setup = static_cast<bool>(ell % 2);
       //
       // grad_det
       grad_det.setup(option);
       //
       // x
       // values in the matrix in row major order
-      cmpad::vector<double> x(n_arg * n_arg);
+      cmpad::vector<double> x(ell * ell);
       cmpad::uniform_01(x);
       //
       // g
@@ -82,33 +82,33 @@ bool check_grad_det( cmpad::gradient<Algo>& grad_det )
       //
       // r, c
       // index values corresponding to computing determinat of entire matrix
-      cmpad::vector<size_t> r(n_arg+1), c(n_arg+1);
-      for(size_t i = 0; i < n_arg; ++i)
+      cmpad::vector<size_t> r(ell+1), c(ell+1);
+      for(size_t i = 0; i < ell; ++i)
       {  r[i] = i+1;
          c[i] = i+1;
       }
-      r[n_arg] = 0;
-      c[n_arg] = 0;
+      r[ell] = 0;
+      c[ell] = 0;
       //
       // i, j
       // for each row and column index in the matrix
-      for(size_t i = 0; i < n_arg; i++)
-      {  for(size_t j = 0; j < n_arg; j++)
+      for(size_t i = 0; i < ell; i++)
+      {  for(size_t j = 0; j < ell; j++)
          {
             // r, c
             // minor with row i and column j removed
             if( i == 0 )
-               r[n_arg] = 1;
+               r[ell] = 1;
             else
                r[i-1] = i+1;
             if( j == 0 )
-               c[n_arg] = 1;
+               c[ell] = 1;
             else
                c[j-1] = j+1;
             //
             // det_minor
             // determinant of minor corresponding to (i, j) removed
-            double det_minor = cmpad::det_of_minor(x, n_arg, n_arg-1, r, c);
+            double det_minor = cmpad::det_of_minor(x, ell, ell-1, r, c);
             //
             // check
             // derivative of determinant with respect matrix element (i, j)
@@ -117,16 +117,16 @@ bool check_grad_det( cmpad::gradient<Algo>& grad_det )
                check = - det_minor;
             //
             // ok
-            ok &= near_equal(g[ i * n_arg + j ], check, rel_error, x);
+            ok &= near_equal(g[ i * ell + j ], check, rel_error, x);
             //
             // r, c
             // restore to computing determinant of entire matrix
             if( i == 0 )
-               r[n_arg] = 0;
+               r[ell] = 0;
             else
                r[i-1] = i;
             if( j == 0 )
-               c[n_arg] = 0;
+               c[ell] = 0;
             else
                c[j-1] = j;
          }
