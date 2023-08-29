@@ -61,8 +61,8 @@ option
 ******
 This contains options thats that are used to setup the function object.
 
-size
-====
+n_arg
+=====
 This is the row and column dimension for subsequent use of the *det* object.
 We use the notation :math:`\ell` for this value.
 
@@ -155,7 +155,7 @@ public:
       option_ = option;
       //
       // ell_
-      ell_ = option.size;
+      ell_ = option.n_arg;
       //
       // r_, c_, y_
       r_.resize(ell_ + 1);

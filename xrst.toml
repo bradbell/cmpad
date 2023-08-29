@@ -50,6 +50,10 @@ data = [
       cppadcg
       sacado
    ''',
+   # option field names
+   '''
+      arg
+   ''',
    # file extensions
    '''
       csv

@@ -14,7 +14,7 @@ struct arguments_t
    std::string  file_name;
    double       min_time;
    std::string  package;
-   size_t       size;
+   size_t       n_arg;
    bool         time_setup;
 };
 // END ARGUMENTS_T

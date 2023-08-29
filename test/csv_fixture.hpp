@@ -18,7 +18,7 @@ public:
    std::string algorithm_;
    //
    // size_
-   const size_t size_;
+   const size_t n_arg_;
    //
    // min_time_
    const double min_time_;
@@ -37,7 +37,7 @@ public:
    // ctor
    csv_fixture(void)
    : algorithm_("det_by_minor")
-   , size_(6)
+   , n_arg_(6)
    , min_time_(0.5)
 # ifdef NDEBUG
    , debug_("false")
@@ -80,7 +80,7 @@ public:
          "min_time",
          "package",
          "algorithm",
-         "size",
+         "n_arg",
          "time_setup",
          "date",
          "compiler",
@@ -110,7 +110,7 @@ public:
       // check column 3, 4, 7, 8
       for(size_t i = n_row-1; i < n_row; ++i)
       {  BOOST_CHECK( csv_table[i][3] == algorithm_ );
-         BOOST_CHECK( csv_table[i][4] == std::to_string(size_) );
+         BOOST_CHECK( csv_table[i][4] == std::to_string(n_arg_) );
          BOOST_CHECK( csv_table[i][7] == CMPAD_CXX_COMPILER );
          BOOST_CHECK( csv_table[1][8] == debug_ );
       }

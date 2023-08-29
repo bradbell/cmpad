@@ -32,7 +32,7 @@ arguments_t
    file_name, see :ref:`main@file_name`
    min_time, see :ref:`main@min_time`
    package, see :ref:`main@package`
-   size, see :ref:`main@size`
+   n_arg, see :ref:`main@n_arg`
    time_setup, see :ref:`main@time_setup`
 
 {xrst_end parse_args}
@@ -71,9 +71,9 @@ namespace {
          arguments->package = arg;
          break;
 
-         // size
+         // n_arg
          case 's':
-         arguments->size = size_t( std::atoi(arg) );
+         arguments->n_arg = size_t( std::atoi(arg) );
          break;
 
          // time_setup
@@ -101,7 +101,7 @@ arguments_t parse_args(int argc, char* argv[])
    arguments.file_name  = "cmpad.csv";
    arguments.min_time   = 0.5;
    arguments.package    = "double";
-   arguments.size       = 5;
+   arguments.n_arg       = 5;
    arguments.time_setup = false;
    // END DEFAULT ARGUMENTS
    //
@@ -137,7 +137,7 @@ arguments_t parse_args(int argc, char* argv[])
       {  "file_name",  'f', "string",     0, file_name_help },
       {  "min_time",    'm', "double",    0, min_time_help},
       {  "package",     'p', "string",    0, package_help},
-      {  "size",        's', "size_t",    0, size_help},
+      {  "n_arg",        's', "size_t",    0, size_help},
       {  "time_setup",  't', 0,           0, time_setup_help},
       { 0 }
    };

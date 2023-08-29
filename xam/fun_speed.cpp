@@ -27,7 +27,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
    class my_fun_obj : public cmpad::fun_obj<double> {
    private:
       // size_
-      size_t size_;
+      size_t n_arg_;
       //
       // option_
       cmpad::option_t option_;
@@ -41,7 +41,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       //
       // setup
       void setup(const cmpad::option_t& option) override
-      {  size_   = option.size;
+      {  n_arg_   = option.n_arg;
          option_ = option;
          y_.resize(1);
       }
@@ -50,7 +50,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       }
       // domain
       size_t domain(void) const override
-      {  return size_;
+      {  return n_arg_;
       }
       // range
       size_t range(void) const override
@@ -60,7 +60,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       const cmpad::vector<double>& operator()(
          const cmpad::vector<double>& x
       ) override
-      {  assert( x.size() == size_ );
+      {  assert( x.size() == n_arg_ );
          double sum = 0.0;
          for(const double& xi : x)
             sum += xi;
@@ -83,7 +83,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       //
       // option_one
       cmpad::option_t option_one;
-      option_one.size       = 1000;
+      option_one.n_arg       = 1000;
       option_one.time_setup = false;
       //
       // rate_one
@@ -91,7 +91,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       //
       // option_two
       cmpad::option_t option_two;
-      option_two.size       = 2 * option_one.size;
+      option_two.n_arg       = 2 * option_one.n_arg;
       option_two.time_setup = false;
       //
       // rate_two

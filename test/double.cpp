@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(Double)
    {
       // option
       cmpad::option_t option;
-      option.size       = size_;
+      option.n_arg       = n_arg_;
       option.time_setup = time_setup;
       //
       // det

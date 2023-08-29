@@ -81,8 +81,8 @@ option
 ******
 This contains the options that are used to setup the function object.
 
-size
-====
+n_arg
+=====
 THis is the size of the vectors *x* and *yf* .
 
 x
@@ -171,7 +171,7 @@ public:
       option_ = option;
       //
       // n_
-      n_ = option_.size;
+      n_ = option_.n_arg;
       //
       // yf_
       yf_.resize(n_);
@@ -189,7 +189,7 @@ public:
       Scalar tf = Scalar(2);
       //
       // ns
-      size_t ns = option_.size;
+      size_t ns = option_.n_arg;
       //
       // yf
       const cmpad::vector<Scalar>& yi = x;

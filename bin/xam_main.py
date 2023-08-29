@@ -71,8 +71,8 @@ def main() :
    # default_min_time
    default_min_time = 0.5
    #
-   # default_size
-   default_size = 5
+   # default_n_arg
+   default_n_arg = 5
    #
    #
    # package
@@ -109,7 +109,7 @@ def main() :
    reader = csv.DictReader(file_obj)
    for row in reader :
       assert float(row['min_time']) == default_min_time
-      assert int(row['size']) == default_size
+      assert int(row['n_arg']) == default_n_arg
       assert row['package'] in package_list
       assert row['algorithm'] in algorithm_list
       assert row['time_setup'] in [ 'true', 'false' ]

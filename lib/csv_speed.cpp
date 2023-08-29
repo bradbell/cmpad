@@ -32,7 +32,7 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      rate,min_time,package,algorithm,size,date,compiler,debug
+      rate,min_time,package,algorithm,n_arg,date,compiler,debug
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
@@ -57,9 +57,9 @@ algorithm
 *********
 This is the name of the algorithm; e.g., :ref:`det_by_minor-name` .
 
-size
-****
-This is the value of *option*\ .\ ``size`` .
+n_arg
+*****
+This is the value of *option*\ .\ ``n_arg`` .
 
 time_setup
 **********
@@ -127,7 +127,7 @@ void csv_speed(
          "min_time",
          "package",
          "algorithm",
-         "size",
+         "n_arg",
          "time_setup",
          "date",
          "compiler",
@@ -169,8 +169,8 @@ void csv_speed(
    std::string debug = "false";
 # endif
    //
-   // size
-   std::string size = std::to_string(option.size);
+   // n_arg
+   std::string n_arg = std::to_string(option.n_arg);
    //
    // time_setup
    std::string time_setup;
@@ -185,7 +185,7 @@ void csv_speed(
       min_time_str,
       package,
       algorithm,
-      size,
+      n_arg,
       time_setup,
       date,
       compiler,

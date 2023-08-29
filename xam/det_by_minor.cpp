@@ -32,7 +32,7 @@ bool xam_det_by_minor(void)
    //
    // det.setup
    cmpad::option_t option;
-   option.size = ell;
+   option.n_arg = ell;
    det.setup(option);
    //
    // x

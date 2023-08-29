@@ -24,7 +24,7 @@ Source Code
 {xrst_code cpp} */
 namespace cmpad {
    struct option_t {
-      size_t size;
+      size_t n_arg;
       bool   time_setup;
    };
 }

@@ -26,7 +26,7 @@ when the option is not present.
    ``-f`` |space| *file_name* , ``--file_name``\ =\ *file_name*
    ``-m`` |space| *min_time*  , ``--min_time``\ =\ *min_time*
    ``-p`` |space| *package*   , ``--package``\ =\ *package*
-   ``-s`` |space| *size*      , ``--size``\ =\ *size*
+   ``-s`` |space| *n_arg*      , ``--n_arg``\ =\ *n_arg*
    ``-t``             , ``--time_setup``
 
 
@@ -57,8 +57,8 @@ double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
 Note that cppad_jit is the JIT compiled version of cppad derivatives.
 The default value for this option is ``double`` .
 
-size
-****
+n_arg
+*****
 This is the size of the argument to the algorithm.
 The meaning of this value depends on the algorithm; e.g.,
 for det_by_minor it is the row and column dimension of the matrix.
@@ -198,11 +198,11 @@ int main(int argc, char* argv[])
       return 1;
    }
    //
-   // size
-   size_t size = arguments.size;
-   if( size == 0 || 10 < size )
-   {  std::cerr << "cmpad Error: size = ";
-      std::cerr << size << " is zero or greater than ten.\n";
+   // n_arg
+   size_t n_arg = arguments.n_arg;
+   if( n_arg == 0 || 10 < n_arg )
+   {  std::cerr << "cmpad Error: n_arg = ";
+      std::cerr << n_arg << " is zero or greater than ten.\n";
       return 1;
    }
    //
@@ -220,7 +220,7 @@ int main(int argc, char* argv[])
    //
    // option
    cmpad::option_t option;
-   option.size       = size;
+   option.n_arg       = n_arg;
    option.time_setup = time_setup;
    //
    // case_found
