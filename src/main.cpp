@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin main}
+{xrst_begin_parent main}
 
 The cmpad Main Program
 ######################
@@ -71,12 +71,37 @@ So AD packages may spend more setup time to use less evaluation time
 for each new argument value.
 The default value for this option is ``false`` .
 
+{xrst_toc_hidden before
+   bin/xam_main.py
+}
+Example
+*******
+The file :ref:`xam_main.py-name`
+is an example and test that uses this program.
+
+{xrst_end main}
+------------------------------------------------------------------------------
+{xrst_begin main.cpp}
+
+Main Program Implementation
+###########################
+
+Subroutines
+***********
 {xrst_toc_table
    src/parse_args.cpp
 }
 
-{xrst_end main}
+Source Code
+***********
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end main.cpp}
 */
+// BEGIN C++
 # include <algorithm>
 # include <string>
 # include <iostream>
@@ -127,6 +152,9 @@ int main(int argc, char* argv[])
    package_vec.push_back("double");
 # if CMPAD_HAS_ADOLC
    package_vec.push_back("adolc");
+# endif
+# if CMPAD_HAS_AUTODIFF
+   package_vec.push_back("autodiff");
 # endif
 # if CMPAD_HAS_CPPAD
    package_vec.push_back("cppad");
@@ -251,3 +279,4 @@ int main(int argc, char* argv[])
    std::cerr << "cmpad: BUG\n";
    return 1;
 }
+// END C++

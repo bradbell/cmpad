@@ -28,7 +28,8 @@ that CMake chooses; e.g., ``"GNU-13.1.1"`` .
 
 CMPAD_HAS_package
 *****************
-For *package* equal to ADOLC, CPPAD, SACADO, AUTODIFF,
+For *package* equal to
+ADOLC, AUTODIFF, CPPAD, CPPAD_JIT, CPPADCG, SACADO,
 this preprocessor symbol is one (zero) if *package* has been installed
 using bin/get_package.sh; e.g,
 {xrst_code sh}
@@ -58,11 +59,12 @@ is present on the cmake command line.
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
 
 // CMPAD_HAS_package
-# define CMPAD_HAS_ADOLC    @cmpad_has_adolc@
-# define CMPAD_HAS_CPPAD    @cmpad_has_cppad@
-# define CMPAD_HAS_CPPADCG  @cmpad_has_cppadcg@
-# define CMPAD_HAS_SACADO   @cmpad_has_sacado@
-# define CMPAD_HAS_AUTODIFF @cmpad_has_autodiff@
+# define CMPAD_HAS_ADOLC       @cmpad_has_adolc@
+# define CMPAD_HAS_AUTODIFF    @cmpad_has_autodiff@
+# define CMPAD_HAS_CPPAD       @cmpad_has_cppad@
+# define CMPAD_HAS_CPPAD_JIT   @cmpad_has_cppad_jit@
+# define CMPAD_HAS_CPPADCG     @cmpad_has_cppadcg@
+# define CMPAD_HAS_SACADO      @cmpad_has_sacado@
 
 // CMPAD_COMPILER_IS_compiler
 # define CMPAD_COMPILER_IS_CLANG @cmpad_compiler_is_clang@
