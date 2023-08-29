@@ -29,6 +29,16 @@ namespace cmpad {
    };
 }
 /* {xrst_code}
+
+n_arg
+*****
+is the dimension of the :ref:`fun_obj@domain` space for the algorithm.
+
+time_setup
+**********
+if true (false) the setup time is included (is not included) in the execution
+speed timing.
+
 {xrst_end option_t}
 */
 
