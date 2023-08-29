@@ -1,3 +1,0 @@
-rate,package,algorithm,size,time_setup,date,compiler,debug
-4.2e+03,cppad,det_by_minor,6,true,2023-8-26,GNU-13.2.1,true
-5.8e+04,cppad,det_by_minor,6,false,2023-8-26,GNU-13.2.1,true

@@ -18,10 +18,7 @@ cmpad-2023.8.28
 
 Example Speed Comparison
 ************************
-{xrst_comment test/csv_speed.csv is created by test/csv_speed.cpp}
-.. csv-table::
-   :file: {xrst_dir test/csv_speed.csv}
-
+see :ref:`xam_main.py@src/xam_main.csv`
 
 Gradient Source Code Comparison
 *******************************

@@ -19,6 +19,12 @@
 # This program create the file src/xam_main.csv.
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
+# Below is an example of the contents of this file:
+#
+# ..  csv-table::
+#     :widths: auto
+#     :header-rows: 1
+#     :file: {xrst_dir src/xam_main.csv}
 #
 # Source Code
 # ***********
@@ -39,7 +45,7 @@ def main() :
    cmpad_main = 'build/src/cmpad'
    #
    # check
-   usage = 'bin/xam_main.py'  
+   usage = 'bin/xam_main.py'
    if len(sys.argv) != 1 :
       msg = 'bin/xam_main.py: does not expect any arguments'
       sys.exit(msg)
@@ -68,7 +74,7 @@ def main() :
    # default_size
    default_size = 5
    #
-   # 
+   #
    # package
    package_list = 'double,adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
    package_list = package_list.split(',')
@@ -90,7 +96,7 @@ def main() :
             ]
             if time_setup :
                command.append('--time_setup')
-            # 
+            #
             # run command
             print( ' '.join(command) )
             result = subprocess.run(command)
