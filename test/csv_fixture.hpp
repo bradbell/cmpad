@@ -14,12 +14,6 @@ class csv_fixture
 {  //
 public:
    //
-   // algorithm_
-   std::string algorithm_;
-   //
-   // size_
-   const size_t n_arg_;
-   //
    // min_time_
    const double min_time_;
    //
@@ -29,14 +23,19 @@ public:
    // package_
    std::string package_;
    //
+   // algorithm_
+   std::string algorithm_;
+   //
+   // n_arg_
+   size_t n_arg_;
+   //
    // csv_file_path_
    std::string csv_file_path_;
    //
    // ctor
+   // min_time_, debug_
    csv_fixture(void)
-   : algorithm_("det_by_minor")
-   , n_arg_(16)
-   , min_time_(0.5)
+   : min_time_(0.5)
 # ifdef NDEBUG
    , debug_("false")
 # else
@@ -44,11 +43,20 @@ public:
 # endif
    { }
    // set_fixture
-   // sets package_ and csv_file_path_
-   void set_fixture(const std::string& package)
+   // package_, algorithm_, n_arg_, csv_file_path_
+   void set_fixture(
+      const std::string& package   ,
+      const std::string& algorithm ,
+      size_t             n_arg     )
    {  //
       // package_
       package_ = package;
+      //
+      // algorithm_
+      algorithm_ = algorithm;
+      //
+      // n_arg_
+      n_arg_     = n_arg;
       //
       // csv_file
       std::string csv_file = package + ".csv";

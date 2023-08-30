@@ -27,8 +27,12 @@ BOOST_AUTO_TEST_CASE(@package@)
    // package
    std::string package= "@package@";
    //
-   // package_, csv_file_path_
-   set_fixture( package );
+   // algorithm, n_arg
+   std::string algorithm = "det_by_minor";
+   size_t      n_arg     = 16;
+   //
+   // package_, algorithm_, n_arg_, csv_file_path_
+   set_fixture(package, algorithm, n_arg);
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -39,7 +43,6 @@ BOOST_AUTO_TEST_CASE(@package@)
       option.time_setup = time_setup;
       //
       // det
-      BOOST_REQUIRE( algorithm_ == "det_by_minor" );
       cmpad::@package@::gradient<cmpad::det_by_minor> grad_det;
       //
       // rate
@@ -47,7 +50,7 @@ BOOST_AUTO_TEST_CASE(@package@)
       //
       // csv_speed
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm, option
       );
    }
    check();

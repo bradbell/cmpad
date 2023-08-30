@@ -22,8 +22,12 @@ BOOST_AUTO_TEST_CASE(Double)
    // package
    std::string package = "double";
    //
-   // package_, csv_file_path_
-   set_fixture(package);
+   // algorithm, n_arg
+   std::string algorithm = "det_by_minor";
+   size_t      n_arg     = 16;
+   //
+   // package_, algorithm_, n_arg_, csv_file_path_
+   set_fixture(package, algorithm, n_arg);
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -34,7 +38,6 @@ BOOST_AUTO_TEST_CASE(Double)
       option.time_setup = time_setup;
       //
       // det
-      BOOST_REQUIRE( algorithm_ == "det_by_minor" );
       cmpad::det_by_minor<double> det;
       //
       // rate
@@ -42,7 +45,7 @@ BOOST_AUTO_TEST_CASE(Double)
       //
       // csv_speed
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm, option
       );
    }
    check();
