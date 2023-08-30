@@ -131,16 +131,16 @@ public:
       const cmpad::vector<double>& x
    ) override
    {  assert( x.size() == algo_.domain() );
-      int m    = int( algo_.range() );
+      int one  = 1;
       int n    = int( algo_.domain() );
       //
       // zos_forward
       int keep = 1; // keep this forward mode result
       double f;     // function result
-      zos_forward(tag_, m, n, keep, x.data(), &f);
+      zos_forward(tag_, one, n, keep, x.data(), &f);
       //
       // fos_reverse
-      fos_reverse(tag_, m, n, u_.data(), g_.data() );
+      fos_reverse(tag_, one, n, u_.data(), g_.data() );
       //
       return g_;
    }

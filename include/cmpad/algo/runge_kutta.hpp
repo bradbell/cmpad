@@ -41,7 +41,7 @@ for :math:`y( t^f )` where :math:`y(0) = y^i` and
 Scalar
 ******
 This is the type of the elements of *yi* and *yf* .
-If *a* and *b* are *Scalar* objects and *i* is literal integer,
+If *a* and *b* are *Scalar* objects and *d* is a double,
 the type *Scalar* must support the following operations:
 
 .. csv-table::
@@ -49,7 +49,7 @@ the type *Scalar* must support the following operations:
    :header-rows: 1
 
    Syntax,    Description,                                     Result Type
-   Scalar(i), constructs a *Scalar* with value i,              *Scalar*
+   Scalar(d), constructs a *Scalar* with value d,              *Scalar*
    a = b,     set value of *a* equal to current value of *b*
    a + b,     value of *a* plus *b*,                           *Scalar*
    a * b,     value of *a* times *b*,                          *Scalar*
@@ -125,13 +125,13 @@ cmpad::vector<Scalar> runge_kutta(
 {
    //
    // two, six
-   Scalar two = Scalar(2);
-   Scalar six = Scalar(6);
+   Scalar two = Scalar(2.0);
+   Scalar six = Scalar(6.0);
    // n
    size_t n = yi.size();
    //
    // h
-   Scalar h  = tf / Scalar( ns );
+   Scalar h  = tf / Scalar( double(ns) );
    //
    // k1, k2, k3, k4, y_tmp
    cmpad::vector<Scalar> k1(n), k2(n), k3(n), k4(n), y_tmp(n);

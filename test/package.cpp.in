@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------------------
 # include <boost/test/unit_test.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/@package@/gradient.hpp>
 # include <cmpad/csv_speed.hpp>
 
@@ -27,9 +28,14 @@ BOOST_AUTO_TEST_CASE(@package@)
    // package
    std::string package= "@package@";
    //
+   // algorithm, n_arg
+   std::string algorithm;
+   size_t      n_arg;
+   //
+   // ------------------------------------------------------------------------
    // package_, algorithm_, n_arg_, csv_file_path_
-   std::string algorithm = "det_by_minor";
-   size_t      n_arg     = 16;
+   algorithm = "det_by_minor";
+   n_arg     = 16;
    set_fixture(package, algorithm, n_arg);
    //
    // time_setup
@@ -43,6 +49,28 @@ BOOST_AUTO_TEST_CASE(@package@)
       // csv_file_path_
       cmpad::@package@::gradient<cmpad::det_by_minor> grad_det;
       double rate = cmpad::fun_speed(grad_det, option, min_time_);
+      cmpad::csv_speed(
+         csv_file_path_, rate, min_time_, package, algorithm_, option
+      );
+   }
+   check();
+   // ------------------------------------------------------------------------
+   // package_, algorithm_, n_arg_, csv_file_path_
+   algorithm = "an_ode";
+   n_arg     = 5;
+   set_fixture(package, algorithm, n_arg);
+   //
+   // time_setup
+   for(bool time_setup : {true, false} )
+   {
+      // option
+      cmpad::option_t option;
+      option.n_arg       = n_arg_;
+      option.time_setup = time_setup;
+      //
+      // csv_file_path_
+      cmpad::@package@::gradient<cmpad::an_ode> grad_ode;
+      double rate = cmpad::fun_speed(grad_ode, option, min_time_);
       cmpad::csv_speed(
          csv_file_path_, rate, min_time_, package, algorithm_, option
       );
