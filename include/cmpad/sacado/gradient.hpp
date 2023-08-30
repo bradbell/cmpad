@@ -96,7 +96,6 @@ public:
       ax_.resize(n);
       //
       // ay_
-      assert( m == 1 );
       ay_.resize(m);
       //
       // g_
@@ -116,6 +115,9 @@ public:
       //
       // ay_
       ay_ = algo_(ax_);
+      //
+      size_t m = algo_.range();
+      Sacado::Rad::ADvar<double> az = ay_[m-1] + 0.0;
       //
       // reverse mode computation of gradient for last computed value
       Sacado::Rad::ADvar<double>::Gradcomp();

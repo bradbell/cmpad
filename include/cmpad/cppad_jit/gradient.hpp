@@ -116,13 +116,12 @@ public:
       //
       // m
       size_t m = algo_.range();
-      assert( m == 1 );
       //
       // g_
       g_.resize(n);
       //
-      // ax, ay, aw
-      cmpad::vector< CppAD::AD<double> > ax(n), ay(m), aw(m), ag(n);
+      // ax, ay, az, aw
+      cmpad::vector< CppAD::AD<double> > ax(n), ay(1), az, aw(1), ag(n);
       //
       // function_name
       string function_name = "grad_det";
@@ -136,7 +135,8 @@ public:
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      ay = algo_(ax);
+      az    = algo_(ax);
+      ay[0] = az[m-1];
       tapef.Dependent(ax, ay);
       if( ! option.time_setup )
          tapef.optimize(optimize_options);

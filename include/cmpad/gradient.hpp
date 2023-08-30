@@ -30,8 +30,8 @@ algo
 The *Algo* class is derived from the :ref:`fun_obj-name` class.
 The *algo* object is initialized using its
 :ref:`fun_obj@setup` member function.
-The dimension of the :ref:`fun_obj@range` space for this algorithm
-must be one.
+The gradient is for the last component of the range space of the algorithm.
+Hence, *algo*.range() can be greater than one.
 
 value_type
 **********
@@ -50,18 +50,18 @@ This object is initialized using its ``setup`` member function
 (which in turn will initialize *algo* with its ``setup`` syntax).
 The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
+It calculates the gradient of the last component of the values
+compute by *algo*.
 
 domain
 ******
 This returns the dimension of the
 :ref:`fun_obj@domain` space dimension for the function and gradient.
-This likely depends on *option* and *Algo* .
 
 range
 *****
 This returns the dimension of the
 :ref:`fun_obj@range` space dimension for the gradient.
-This likely depends on *option* and *Algo* .
 The dimension of the range space for the gradient is equal
 to the dimension of the domain space for the gradient and function.
 Hence ``range`` is implemented by this interface and not virtual.

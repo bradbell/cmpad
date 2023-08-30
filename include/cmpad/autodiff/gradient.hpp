@@ -97,7 +97,6 @@ public:
       // n, m
       size_t n = algo_.domain();
       size_t m = algo_.range();
-      assert( m == 1 );
       //
       // ax_, ax_copy_
       ax_.resize(n);
@@ -123,10 +122,11 @@ public:
          ax_[j] = x[j];
       //
       auto f = [&](const VectorXreal& ax)
-      {  for(int i = 0; i < ax.size(); ++i)
+      {  size_t m = algo_.range();  
+         for(int i = 0; i < ax.size(); ++i)
             ax_copy_[i] = ax[i];
          ay_ = algo_(ax_copy_);
-         return ay_[0];
+         return ay_[m-1];
       };
       //
       // forward mode computation of gradient

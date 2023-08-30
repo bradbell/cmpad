@@ -94,7 +94,6 @@ public:
       //
       // m
       size_t m = algo_.range();
-      assert( m == 1 );
       //
       // tag_
       tag_ = 0;
@@ -113,7 +112,7 @@ public:
       //
       // create f : x -> y
       double f;
-      ay[0] >>= f;
+      ay[m-1] >>= f;
       trace_off();
       //
       // u_

@@ -92,7 +92,6 @@ public:
       //
       // m
       size_t m = algo_.range();
-      assert( m == 1 );
       //
       // w_
       w_.resize(1);
@@ -107,8 +106,9 @@ public:
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      cmpad::vector< CppAD::AD<double> > ay(m);
-      ay = algo_(ax);
+      cmpad::vector< CppAD::AD<double> > ay(1), az;
+      az    = algo_(ax);
+      ay[0] = az[m-1];
       tape_.Dependent(ax, ay);
       if( ! option.time_setup )
          tape_.optimize(optimize_options);
