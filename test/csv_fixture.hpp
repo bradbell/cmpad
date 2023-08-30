@@ -27,11 +27,9 @@ public:
    const std::string debug_;
    //
    // package_
-   // set by set_package
    std::string package_;
    //
    // csv_file_path_
-   // set by set_package
    std::string csv_file_path_;
    //
    // ctor
@@ -45,9 +43,9 @@ public:
    , debug_("true")
 # endif
    { }
-   // set_package
+   // set_fixture
    // sets package_ and csv_file_path_
-   void set_package(const std::string& package)
+   void set_fixture(const std::string& package)
    {  //
       // package_
       package_ = package;

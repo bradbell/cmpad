@@ -19,11 +19,11 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_FIXTURE_TEST_SUITE(csv_speed, csv_fixture)
 BOOST_AUTO_TEST_CASE(Double)
 {  //
-   // package_, csv_fiel_path_
-   set_package("double");
+   // package
+   std::string package = "double";
    //
-   // file_name
-   std::string file_name = csv_file_path_;
+   // package_, csv_file_path_
+   set_fixture(package);
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(Double)
       //
       // csv_speed
       cmpad::csv_speed(
-         file_name, rate, min_time_, "double", algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm_, option
       );
    }
    check();
