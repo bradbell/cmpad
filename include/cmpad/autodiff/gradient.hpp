@@ -122,7 +122,7 @@ public:
          ax_[j] = x[j];
       //
       auto f = [&](const VectorXreal& ax)
-      {  size_t m = algo_.range();  
+      {  size_t m = algo_.range();
          for(int i = 0; i < ax.size(); ++i)
             ax_copy_[i] = ax[i];
          ay_ = algo_(ax_copy_);
