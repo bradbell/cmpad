@@ -38,13 +38,11 @@ bool xam_gradient_cppadcg(void)
    {  cmpad::cppadcg::gradient<cmpad::det_by_minor> grad_det;
       ok &= check_grad_det(grad_det);
    }
-# if 0
    //
    // ok
    {  cmpad::cppadcg::gradient<cmpad::an_ode> grad_ode;
       ok &= check_grad_ode(grad_ode);
    }
-# endif
    //
    return ok;
 }
