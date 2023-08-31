@@ -83,11 +83,11 @@ private:
    cmpad::vector<double>             g_;
    //
    // dll_linker_
-   // grad_det_cppad_jit_ is only valid for life of dll_linker_.
+   // grad_cppad_jit_ is only valid for life of dll_linker_.
    CppAD::link_dll_lib*              dll_linker_;
    //
-   // grad_det_cppad_jit_
-   CppAD::jit_double                 grad_det_cppad_jit_;
+   // grad_cppad_jit_
+   CppAD::jit_double                 grad_cppad_jit_;
 //
 public:
    // ctor, dtor
@@ -124,7 +124,7 @@ public:
       cmpad::vector< CppAD::AD<double> > ax(n), ay(1), az, aw(1), ag(n);
       //
       // function_name
-      string function_name = "grad_det";
+      string function_name = "grad_cppad_jit";
       //
       // optimize_options
       std::string optimize_options =
@@ -215,7 +215,7 @@ public:
          }
       }
       //
-      // grad_det_cppad_jit_
+      // grad_cppad_jit_
       void* void_ptr = nullptr;
       if( dll_linker_ != nullptr )
       {  void_ptr = (*dll_linker_)("cppad_jit_" + function_name, err_msg);
@@ -225,7 +225,7 @@ public:
             void_ptr = nullptr;
          }
       }
-      grad_det_cppad_jit_ = reinterpret_cast<CppAD::jit_double>(void_ptr);
+      grad_cppad_jit_ = reinterpret_cast<CppAD::jit_double>(void_ptr);
    }
    // domain
    size_t domain(void) const override
@@ -240,7 +240,7 @@ public:
       assert( x.size() == n );
       assert( g_.size() == n );
       //
-      grad_det_cppad_jit_(n, x.data(), n, g_.data(), &compare_change);
+      grad_cppad_jit_(n, x.data(), n, g_.data(), &compare_change);
       assert( compare_change == 0 );
       return g_;
    }

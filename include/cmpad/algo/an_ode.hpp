@@ -63,7 +63,7 @@ This initial value problem has the following analytic solution
    \begin{array}{llll}
    y_0 (t) & = & x_0 \\
    y_1 (t) & = & x_0 t        & + & x_1 \\
-   y_2 (t) & = & x_0 t^2 / 2! & + & x_1 t^1/ 1! & + & x_0 / 0!
+   y_2 (t) & = & x_0 t^2 / 2! & + & x_1 t^1/ 1! & + & x_2 / 0!
    \end{array}
 
 .. math ::

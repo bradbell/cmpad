@@ -5,7 +5,7 @@
 /*
 {xrst_begin xam_gradient_autodiff.cpp}
 
-Example and Test of Gradient Using Autodiff
+Example and Test of Gradient Using autodiff
 ###########################################
 
 check_grad_det
@@ -24,20 +24,23 @@ Source Code
 // BEGIN C++
 # include <cmpad/configure.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include "check_grad_det.hpp"
+# include "check_grad_ode.hpp"
 
 bool xam_gradient_autodiff(void)
 {  //
    // ok
    bool ok = true;
    //
-   // det_by_minor
-   using cmpad::det_by_minor;
+   // ok
+   cmpad::autodiff::gradient<cmpad::det_by_minor> grad_det;
+   ok &= check_grad_det(grad_det);
    //
    // ok
-   cmpad::autodiff::gradient<det_by_minor> grad_det;
-   ok &= check_grad_det(grad_det);
+   cmpad::autodiff::gradient<cmpad::an_ode> grad_ode;
+   ok &= check_grad_ode(grad_ode);
    //
    return ok;
 }

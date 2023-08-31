@@ -5,7 +5,7 @@
 /*
 {xrst_begin xam_gradient_sacado.cpp}
 
-Example and Test of Gradient Using Sacado
+Example and Test of Gradient Using sacado
 #########################################
 
 check_grad_det
@@ -24,20 +24,23 @@ Source Code
 // BEGIN C++
 # include <cmpad/configure.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/sacado/gradient.hpp>
 # include "check_grad_det.hpp"
+# include "check_grad_ode.hpp"
 
 bool xam_gradient_sacado(void)
 {  //
    // ok
    bool ok = true;
    //
-   // det_by_minor
-   using cmpad::det_by_minor;
+   // ok
+   cmpad::sacado::gradient<cmpad::det_by_minor> grad_det;
+   ok &= check_grad_det(grad_det);
    //
    // ok
-   cmpad::sacado::gradient<det_by_minor> grad_det;
-   ok &= check_grad_det(grad_det);
+   cmpad::sacado::gradient<cmpad::an_ode> grad_ode;
+   ok &= check_grad_ode(grad_ode);
    //
    return ok;
 }

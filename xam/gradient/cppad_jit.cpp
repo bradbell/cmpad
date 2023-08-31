@@ -5,7 +5,7 @@
 /*
 {xrst_begin xam_gradient_cppad_jit.cpp}
 
-Example and Test of Gradient Using CppAD Jit
+Example and Test of Gradient Using cppad_jit
 ############################################
 
 check_grad_det
@@ -24,20 +24,25 @@ Source Code
 // BEGIN C++
 # include <cmpad/configure.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
 # include "check_grad_det.hpp"
+# include "check_grad_ode.hpp"
 
 bool xam_gradient_cppad_jit(void)
 {  //
    // ok
    bool ok = true;
    //
-   // det_by_minor
-   using cmpad::det_by_minor;
+   // ok
+   {  cmpad::cppad_jit::gradient<cmpad::det_by_minor> grad_det;
+      ok &= check_grad_det(grad_det);
+   }
    //
    // ok
-   cmpad::cppad_jit::gradient<det_by_minor> grad_det;
-   ok &= check_grad_det(grad_det);
+   {  cmpad::cppad_jit::gradient<cmpad::an_ode> grad_ode;
+      ok &= check_grad_ode(grad_ode);
+   }
    //
    return ok;
 }
