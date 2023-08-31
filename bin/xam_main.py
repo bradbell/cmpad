@@ -38,11 +38,15 @@
 import sys
 import os
 import csv
+import re
 import subprocess
 def main() :
    #
    # cmpad_main
    cmpad_main = 'build/src/cmpad'
+   #
+   # configure_file
+   configure_file = 'include/cmpad/configure.hpp'
    #
    # check
    usage = 'bin/xam_main.py'
@@ -52,9 +56,32 @@ def main() :
    if sys.argv[0] != 'bin/xam_main.py' :
       msg = 'bin/xam_main.py: must be executed from its parent directory'
       sys.exit(msg)
+   if not os.path.isfile(configure_file) :
+      msg = f'bin/xam_main.py: {configure_file} does not exist'
+      msg = '\nmust use cmake to create it'
+      sys.exit(msg)
    if not os.path.isfile(cmpad_main) :
       msg = f'bin/xam_main.py: {cmpad_main} does not exist'
+      msg = '\nmust use make to create it'
       sys.exit(msg)
+   #
+   # package_list
+   # use configure file to determine list of available packages
+   package_list = [ 'double' ]
+   file_obj  = open(configure_file, 'r')
+   file_data = file_obj.read()
+   file_obj.close()
+   ad_package = 'adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
+   for package in ad_package.split(',') :
+      PACKAGE = package.upper()
+      pattern = f'# *define *CMPAD_HAS_{PACKAGE} *[01]'
+      match   = re.search(pattern, file_data)
+      if match == None :
+         msg   = f'bin/xam_main.py: {configure_file} cannot find the pattern'
+         msg += f'\n{pattern}'
+         sys.exit(msg)
+      if match.group(0)[-1] == '1' :
+         package_list.append(package)
    #
    # change directory
    os.chdir('build')
@@ -74,10 +101,6 @@ def main() :
    # default_n_arg
    default_n_arg = 9
    #
-   #
-   # package
-   package_list = 'double,adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
-   package_list = package_list.split(',')
    for package in package_list :
       #
       # algorithm
