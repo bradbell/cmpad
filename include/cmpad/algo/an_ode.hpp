@@ -11,6 +11,7 @@
    Kutta
    yf
    llll
+   truncation
 }
 
 Use Runge-Kutta Method to Solve an ODE
@@ -42,8 +43,8 @@ The ODE
 .. math::
 
    \begin{array}{llll}
-   y_i '(t) & = & 0           & \mbox{for} \; i = 0 \\
-   y_i '(t) & = & y_{i-1} (t) & \mbox{for} \; i > 0  \\
+   y_i '(t) & = & x_0                          & \mbox{for} \; i = 0 \\
+   y_i '(t) & = & \sum_{j=1}^i x_j y_{i-1} (t) & \mbox{for} \; i > 0  \\
    \end{array}
 
 Initial Value
@@ -51,7 +52,7 @@ Initial Value
 
 .. math::
 
-   y_i (0) = x_i  \; \mbox{for all} \; i
+   y_i (0) = 0  \; \mbox{for all} \; i
 
 Solution
 ********
@@ -61,21 +62,22 @@ This initial value problem has the following analytic solution
 .. math::
 
    \begin{array}{llll}
-   y_0 (t) & = & x_0 \\
-   y_1 (t) & = & x_0 t        & + & x_1 \\
-   y_2 (t) & = & x_0 t^2 / 2! & + & x_1 t^1/ 1! & + & x_2 / 0!
+   y_0 (t) & = & x_0 t \\
+   y_1 (t) & = & x_0 x_1 t^2 / 2 ! \\
+   y_2 (t) & = & x_0 x_1 x_2 t^3 / 3 !
    \end{array}
 
 .. math ::
 
-   y_i (t) = \sum_{j=0}^i x_{i-j} \frac{t^j}{j!}  \; \; \mbox{for all} \; i
-
+   y_i (t) = \frac{t^{i+1}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
 
 ode
 ***
 The object *ode* corresponding to :ref:`fun_obj@fun`
 in the function object interface.
 It computes a Runge-Kutta approximation for :math:`y(t)` at :math:`t = 2` .
+Note that this approximation for :math:`y_i (t)` has no truncation error
+for :math:`i < 4` (because it is a fourth order method).
 
 option
 ******
@@ -83,7 +85,7 @@ This contains the options that are used to setup the function object.
 
 n_arg
 =====
-THis is the size of the vectors *x* and *yf* .
+This is the size of the vectors *x* and *yf* .
 
 x
 *
@@ -125,6 +127,31 @@ an_ode: Source Code
 
 namespace cmpad { // BEGIN cmpad namespace
 
+// an_ode_fun
+template <class Scalar> class an_ode_fun
+{
+private:
+   // x_
+   cmpad::vector<Scalar> x_;
+public:
+   //
+   // operator
+   cmpad::vector<Scalar> operator()(const cmpad::vector<Scalar>& y) const
+   {  size_t n = y.size();
+      assert( x_.size() == n );
+      cmpad::vector<Scalar> dy(n);
+      dy[0] = x_[0];
+      for(size_t i = 1; i < n; ++i)
+         dy[i] = x_[i] * y[i-1];
+      return dy;
+   }
+   //
+   // set_x
+   void set_x(const cmpad::vector<Scalar>& x)
+   {  x_ = x;
+   }
+};
+
 // BEGIN PROTOTYPE
 template <class Scalar> class an_ode : public fun_obj<Scalar>
 // END PROTOTYPE
@@ -133,21 +160,14 @@ private:
    // option_
    option_t option_;
    //
-   // n_
-   size_t n_;
+   // zero_
+   cmpad::vector<Scalar> zero_;
    //
    // yf_
    cmpad::vector<Scalar> yf_;
    //
-   // fun
-   static cmpad::vector<Scalar> fun(const cmpad::vector<Scalar>& y)
-   {  size_t n = y.size();
-      cmpad::vector<Scalar> dy(n);
-      dy[0] = Scalar(0);
-      for(size_t i = 1; i < n; ++i)
-         dy[i] = y[i-1];
-      return dy;
-   }
+   // fun_
+   an_ode_fun<Scalar> fun_;
 public:
    // value_type
    typedef Scalar value_type;
@@ -158,11 +178,11 @@ public:
    //
    // domain
    size_t domain(void) const override
-   {  return n_; }
+   {  return option_.n_arg; }
    //
    // range
    size_t range(void) const override
-   {  return n_; }
+   {  return option_.n_arg; }
    //
    // setup
    void setup(const option_t& option) override
@@ -170,11 +190,13 @@ public:
       // option_
       option_ = option;
       //
-      // n_
-      n_ = option_.n_arg;
+      // zero_
+      zero_.resize(option.n_arg);
+      for(size_t i = 0; i < zero_.size(); ++i)
+         zero_[i] = Scalar(0.0);
       //
       // yf_
-      yf_.resize(n_);
+      yf_.resize(option.n_arg);
    }
    //
    // operator
@@ -184,6 +206,7 @@ public:
    {  //
       // x
       assert( x.size() == domain() );
+      fun_.set_x(x);
       //
       // tf
       Scalar tf = Scalar(2);
@@ -192,8 +215,8 @@ public:
       size_t ns = option_.n_arg;
       //
       // yf
-      const cmpad::vector<Scalar>& yi = x;
-      yf_ = cmpad::runge_kutta(fun, yi, tf, ns);
+      const cmpad::vector<Scalar>& yi = zero_;
+      yf_ = cmpad::runge_kutta(fun_, yi, tf, ns);
       assert( yf_.size() == domain() );
       //
       return yf_;

@@ -32,7 +32,8 @@ when the option is not present.
 
 algorithm
 *********
-The only choice (so far) for this option is :ref:`det_by_minor-name` .
+The only choices (so far) for this option are :ref:`det_by_minor-name` 
+and :ref:`an_ode-name` .
 The default value for this option is ``det_by_minor`` .
 
 det_by_minor
@@ -113,6 +114,7 @@ Source Code
 # include <cmpad/vector.hpp>
 # include <cmpad/option_t.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
 # include "parse_args.hpp"
@@ -140,6 +142,14 @@ Source Code
 # define CMPAD_PACKAGE_TEST(package) \
    if( algorithm == "det_by_minor" ) \
    {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
+      double rate = cmpad::fun_speed(grad_det, option, min_time); \
+      cmpad::csv_speed( \
+         file_name, rate, min_time, #package , algorithm, option \
+      ); \
+      case_found = true; \
+   } \
+   else if( algorithm == "an_ode" ) \
+   {  cmpad::package::gradient<cmpad::an_ode> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, option \
@@ -177,6 +187,7 @@ int main(int argc, char* argv[])
    // algorithm_vec
    cmpad::vector<std::string> algorithm_vec;
    algorithm_vec.push_back("det_by_minor");
+   algorithm_vec.push_back("an_ode");
    //
    // itr
    cmpad::vector<std::string>::iterator itr;
@@ -237,6 +248,14 @@ int main(int argc, char* argv[])
    if( package == "double" )
    {  if( algorithm == "det_by_minor" )
       {  cmpad::det_by_minor<double> det;
+         double rate = cmpad::fun_speed(det, option, min_time);
+         cmpad::csv_speed(
+            file_name, rate, min_time, "double", algorithm, option
+         );
+         case_found = true;
+      }
+      if( algorithm == "an_ode" )
+      {  cmpad::an_ode<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "double", algorithm, option

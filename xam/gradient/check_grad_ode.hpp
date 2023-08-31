@@ -37,11 +37,14 @@ Gradient
 
 .. math::
 
-   y_i (t) = \sum_{j=0}^i x_{i-j} \frac{t^j}{j!}  \; \; \mbox{for all} \; i
+   y_i (t) = \frac{t^{i+1}}{(i+1)!}  \prod{j=0}^i x_j \; \; \mbox{for all} \; i
 
 .. math::
 
-   \partial y_i (t) \partial x_{i-j} = \frac{t^j}{j!}
+   \partial y_i (t) \partial x_j = \begin{cases}
+      0               & \text{if} \; i < j \\
+      y_i (t) / x_j   & \text{otherwise}
+   \end{cases}
 
 
 Source Code
@@ -73,7 +76,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
    using cmpad::near_equal;
    //
    // n_arg
-   size_t n_arg = 5;
+   size_t n_arg = 4;
    //
    // i
    // component of y that gradient corresponds to
@@ -91,8 +94,11 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       grad_ode.setup(option);
       //
       // x
+      // note that x[i] != 0.0 so can divide by it
       cmpad::vector<double> x(n_arg);
       cmpad::uniform_01(x);
+      for(size_t i = 0; i < n_arg; ++i)
+         x[i] += 1.0;
       //
       // g
       cmpad::vector<double> g = grad_ode(x);
@@ -100,18 +106,14 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // i
       size_t i = n_arg - 1;
       //
-      // t
-      double t = 2.0;
-      //
       // ok
-      double check = 1.0;
-      ok &= cmpad::near_equal( g[i], check, rel_error );
-      //
-      // ok
-      for(size_t j = 1; j < n_arg; ++j)
-      {  check *= t / double(j);
-         ok &= cmpad::near_equal( g[i-j], check, rel_error );
+      double tf  = 2.0;
+      double yi  = x[0] * tf;
+      for(size_t i = 1; i < n_arg; ++i)
+      {  yi = x[i] * yi * tf / double(i+1);
       }
+      for(size_t j = 0; j < n_arg; ++j)
+         ok &= cmpad::near_equal( g[j], yi / x[j], rel_error );
    }
    return ok;
 }

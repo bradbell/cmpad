@@ -81,7 +81,7 @@ def main() :
    for package in package_list :
       #
       # algorithm
-      algorithm_list = [ 'det_by_minor' ]
+      algorithm_list = [ 'det_by_minor' , 'an_ode' ]
       for algorithm in algorithm_list :
          #
          # time_setup

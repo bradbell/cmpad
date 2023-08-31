@@ -26,7 +26,7 @@ bool xam_an_ode(void)
    bool ok = true;
    //
    // n
-   size_t n = 5;
+   size_t n = 4;
    //
    // ode
    cmpad::an_ode<double> ode;
@@ -37,7 +37,7 @@ bool xam_an_ode(void)
    ode.setup(option);
    //
    // x
-   cmpad::vector<double> x = { 1.0, 2.0, 3.0, 4.0, 5.0 };
+   cmpad::vector<double> x = { 1.0, 2.0, 3.0, 4.0 };
    ok &= x.size() == n;
    //
    // yf
@@ -47,16 +47,11 @@ bool xam_an_ode(void)
    double rel_error = std::numeric_limits<double>::epsilon() * 100.0;
    //
    // ok
-   for(size_t i = 0; i < n; ++i)
-   {  double yi        = 0.0;
-      double t         = 2.0;
-      double tj        = 1.0;
-      size_t factorial = 1;
-      for(size_t j = 0; j <= i; ++j)
-      {  yi        += x[i-j] * tj / double(factorial);
-         tj        *= t;
-         factorial *= (j+1);
-      }
+   double tf  = 2.0;
+   double yi  = x[0] * tf;
+   ok &= cmpad::near_equal( yf[0], yi, rel_error );
+   for(size_t i = 1; i < n; ++i)
+   {  yi = x[i] * yi * tf / double(i+1);
       ok &= cmpad::near_equal( yf[i], yi, rel_error );
    }
    //
