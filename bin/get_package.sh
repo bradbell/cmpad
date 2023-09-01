@@ -14,31 +14,39 @@ echo_eval() {
 }
 # -----------------------------------------------------------------------------
 #
-# package_list
-package_list='adolc, autodiff, cppad, cppadcg, sacado, eigen, or argparse'
+# package_set
+package_set='adolc, autodiff, cppad, cppadcg, sacado, or eigen'
 #
 if [ "$0" != 'bin/get_package.sh' ]
 then
    echo 'bin/get_package.sh: must be executed from its parent directory'
    exit 1
 fi
-if [ "$#" != 2 ]
+if [ "$#" -lt 2 ]
 then
-   echo 'usage: bin/get_package package build_type'
-   echo "where package is $package_list"
-   echo 'and build_type is debug or release'
+   echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
+   echo 'where build_type is debug or release and package_j is one of'
+   echo "$package_set"
    exit 1
 fi
 #
-# package, build_type
-package="$1"
-build_type="$2"
+# build_type
+build_type="$1"
 if [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
 then
-   echo 'bin/package.sh: package build_type'
-   echo 'build_type is not debug or release'
+   echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
+   echo "build_type=$build_type is not debug or release"
    exit 1
 fi
+#
+# package
+while [ "$#" -gt 2 ]
+do
+   package="$2"
+   echo_eval bin/get_package.sh $build_type $package
+   shift
+done
+package="$2"
 # ---------------------------------------------------------------------------
 #
 # top_srcdir
@@ -48,23 +56,15 @@ top_srcdir=$(pwd)
 # $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
 prefix=$top_srcdir/build/prefix
 #
-# argparse_file
-argparse_file="$prefix/include/argparse/argparse.hpp"
-# ---------------------------------------------------------------------------
-if [ ! -e "$argparse_file" && "$pacakge" != 'argparse' ]
-then
-   # cmpad main program requires argparse
-   bin/get_package.sh argparse $build_type
-fi
 if [ "$package" == autodiff ]
 then
    # autodiff requires eigen
-   bin/get_package.sh eigen $build_type
+   bin/get_package.sh $build_type eigen
 fi
 if [ "$package" == cppadcg ]
 then
    # cpapdcg requires cppad
-   bin/get_package.sh cppad $build_type
+   bin/get_package.sh $build_type cppad
 fi
 #
 # PKG_CONFIG_PATH
@@ -83,14 +83,6 @@ case $package in
    configure="$configure --enable-static --enable-shared --enable-atrig-erf"
    configure="cd ..; autoreconf -fi; cd build ; ../configure $configure"
    ;;
-
-   argparse)
-   web_page='https://github.com/p-ranav/argparse.git'
-   version='master'
-   configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
-   ;;
-
 
    autodiff)
    web_page='https://github.com/autodiff/autodiff.git'
@@ -120,13 +112,6 @@ case $package in
    configure="$configure -D GOOGLETEST_GIT=ON"
    ;;
 
-   eigen)
-   web_page='https://gitlab.com/libeigen/$package.git'
-   version='master'
-   configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
-   ;;
-
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
    version='trilinos-release-14-4-0'
@@ -138,9 +123,16 @@ case $package in
    # -D Trilinos_INSTALL_LIB_DIR=$prefix/$libdir
    ;;
 
+   eigen)
+   web_page='https://gitlab.com/libeigen/$package.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
    *)
    echo 'bin/get_package.sh: package build_type'
-   echo "package is not $package_list"
+   echo "package is not $package_set"
    exit 1
    ;;
 
@@ -283,17 +275,6 @@ then
    fi
    ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
 fi
-if [ "$package" == 'argparse' ]
-then
-   if [ ! -e "$argparse_file" ]
-   then
-      echo "bin/get_package.sh $package $build_type"
-      echo 'after install cannot find'
-      echo "$argparse_file"
-      exit 1
-   fi
-fi
-#
 # -----------------------------------------------------------------------------
 echo "bin/get_package.sh $package $build_type: OK"
 exit 0

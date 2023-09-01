@@ -55,7 +55,11 @@ FOREACH(dir lib lib64)
    ENDIF( )
 ENDFOREACH( )
 FIND_PACKAGE(Trilinos CONFIG)
-SET(sacado_LINK_LIBRARIES "${Sacado_LIBRARIES}")
+IF( Trilinos_FOUND )
+   SET(sacado_LINK_LIBRARIES "${Sacado_LIBRARIES}")
+ELSE( )
+   SET(sacado_LINK_LIBRARIES "")
+ENDIF( )
 print_variable( sacado_LINK_LIBRARIES )
 #
 # Special compiler flag that makes Sacado faster
