@@ -22,12 +22,13 @@ when the option is not present.
    :header-rows: 1
 
    short version, long version
-   ``-a`` |space| *algorithm* , ``--algorithm``\ =\ *algorithm*
-   ``-f`` |space| *file_name* , ``--file_name``\ =\ *file_name*
-   ``-m`` |space| *min_time*  , ``--min_time``\ =\ *min_time*
-   ``-n`` |space| *n_arg*     , ``--n_arg``\ =\ *n_arg*
-   ``-p`` |space| *package*   , ``--package``\ =\ *package*
-   ``-t``                     , ``--time_setup``
+   ``-a``  *algorithm* , ``--algorithm``  *algorithm*
+   ``-f``  *file_name* , ``--file_name``  *file_name*
+   ``-m``  *min_time*  , ``--min_time``   *min_time*
+   ``-n``  *n_arg*     , ``--n_arg``      *n_arg*
+   ``-p``  *package*   , ``--package``    *package*
+   ``-t``              , ``--time_setup``
+   ``-h``              , ``--help``
 
 
 algorithm
@@ -73,9 +74,15 @@ time_setup
 **********
 If this option is present, the setup time is included during the speed
 testing for this algorithm.
-So AD packages may spend more setup time to use less evaluation time
+Some AD packages may spend more setup time to use less evaluation time
 for each new argument value.
 The default value for this option is ``false`` .
+
+help
+****
+If this option is present,
+print the help message on standard out and then exit program
+without any further processing.
 
 {xrst_toc_hidden before
    bin/xam_main.py

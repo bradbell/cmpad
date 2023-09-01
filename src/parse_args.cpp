@@ -28,68 +28,20 @@ arguments_t
    :header-rows: 1
 
    option name, meaning
-   algorithm, see :ref:`main@algorithm`
-   file_name, see :ref:`main@file_name`
-   min_time, see :ref:`main@min_time`
-   package, see :ref:`main@package`
-   n_arg, see :ref:`main@n_arg`
-   time_setup, see :ref:`main@time_setup`
+   algorithm,   see :ref:`main@algorithm`
+   file_name,   see :ref:`main@file_name`
+   min_time,    see :ref:`main@min_time`
+   package,     see :ref:`main@package`
+   n_arg,       see :ref:`main@n_arg`
+   time_setup,  see :ref:`main@time_setup`
 
 {xrst_end parse_args}
 */
 // see http://www.crasseux.com/books/ctutorial/argp-example.html
+# include <iostream>
 # include <stdlib.h>
-# include <argp.h>
+# include <getopt.h>
 # include "parse_args.hpp"
-
-namespace {
-
-   error_t next_arg(int key, char* arg, argp_state* state)
-   {  // arugments
-      arguments_t* arguments = reinterpret_cast<arguments_t*>(state->input);
-      //
-      // key
-      switch( key )
-      {
-         // algorithm
-         case 'a':
-         arguments->algorithm = arg;
-         break;
-
-         // file_name
-         case 'f':
-         arguments->file_name = arg;
-         break;
-
-         // min_time
-         case 'm':
-         arguments->min_time = std::atof(arg);
-         break;
-
-         // n_arg
-         case 'n':
-         arguments->n_arg = size_t( std::atoi(arg) );
-         break;
-
-         // package
-         case 'p':
-         arguments->package = arg;
-         break;
-
-         // time_setup
-         case 't':
-         arguments->time_setup = true;
-         break;
-
-         // default
-         default:
-         return ARGP_ERR_UNKNOWN;
-         break;
-      }
-      return 0;
-   }
-
-};
 
 // BEGIN PROTOTYPE
 arguments_t parse_args(int argc, char* argv[])
@@ -101,59 +53,124 @@ arguments_t parse_args(int argc, char* argv[])
    arguments.file_name  = "cmpad.csv";
    arguments.min_time   = 0.5;
    arguments.package    = "double";
-   arguments.n_arg       = 9;
+   arguments.n_arg      = 9;
    arguments.time_setup = false;
    // END DEFAULT ARGUMENTS
    //
-   // algorithm_help
-   const char* algorithm_help = "is one of { "
-      "det_by_minor"
-      " } [defualt: det_by_minor]";
-   //
-   // file_name_help
-   const char* file_name_help =
-      "csv file that result is added to [default: cmpad.csv]";
-   //
-   // min_time_help
-   const char* min_time_help =
-      "minumum number of seconds to average speed over [default: 0.5]";
-   //
-   // package_help
-   const char* package_help = "is one of { "
-      "double, adolc, autodiff, cppad, cppad_jit, cppadcg, sacado"
-      " } [default: double]";
-   //
-   // n_arg_help
-   const char* n_arg_help = "size of argument to algorithm [default: 9]";
-   //
-   // time_setup_help
-   const char* time_setup_help =
-      "include setup time in speed tests [default: false]";
-   //
-   // options
-   argp_option options[] = {
-      // option_name,  key, value_name,   flag, help
-      {  "algorithm",   'a', "string",    0, algorithm_help},
-      {  "file_name",  'f', "string",     0, file_name_help },
-      {  "min_time",    'm', "double",    0, min_time_help},
-      {  "n_arg",       'n', "size_t",    0, n_arg_help},
-      {  "package",     'p', "string",    0, package_help},
-      {  "time_setup",  't', 0,           0, time_setup_help},
-      { 0 }
+   // long_options
+   struct option long_options[] =
+   {  // name,         has_arg,            *flag,            val
+      { "algorithm",   required_argument,  0,                'a' },
+      { "file_name",   required_argument,  0,                'f' },
+      { "min_time",    required_argument,  0,                'm' },
+      { "n_arg",       required_argument,  0,                'n' },
+      { "package",     required_argument,  0,                'p' },
+      // flags
+      { "help",        no_argument,        0,                'h' },
+      { "time_setup",  no_argument,        0,                't' },
+      {0,              0,                  0,                 0  }
    };
    //
-   // doc
-   const char* doc = "Compare C++ AD package speeds";
+   // shortopts
+   // one : means option is required.
+   const char* shortopts = "a:f:m:n:p:ht";
    //
-   // args_doc
-   const char* args_doc = nullptr;
+   // error_msg
+   std::string error_msg = "";
    //
-   // argp
-   argp argparse = { options, next_arg, args_doc, doc };
+   // help
+   bool help = false;
    //
-   // arguments
-   argp_parse(&argparse, argc, argv, 0, 0, &arguments);
+   // c
+   int c = -2;
+   while( c != -1 && error_msg == "" )
+   {  //
+      //
+      // option_index
+      int option_index = 0;
+      //
+      // c
+      c = getopt_long(argc, argv, shortopts, long_options, &option_index);
+      switch(c)
+      {  // -1
+         case -1:
+         break;
+         //
+         // 0
+         case 0:
+         error_msg = "cmpad: exiting due to program error";
+         break;
+         //
+         // algorithm
+         case 'a':
+         arguments.algorithm = optarg;
+         break;
+         //
+         // file_name
+         case 'f':
+         arguments.file_name = optarg;
+         break;
+         //
+         // min_time
+         case 'm':
+         arguments.min_time = std::atof( optarg );
+         break;
+         //
+         // n_arg
+         case 'n':
+         arguments.n_arg = size_t( std::atoi( optarg ) );
+         break;
+         //
+         // package
+         case 'p':
+         arguments.package = optarg;
+         break;
+         //
+         // help
+         case 'h':
+         help = true;
+         break;
+         //
+         // time_setup
+         case 't':
+         arguments.time_setup = true;
+         break;
+         //
+         // ?
+         case '?':
+         error_msg  = "cmpad: exiting due to option error";
+         break;
+         //
+         // default:
+         error_msg = "cmapd: program error";
+         break;
+      }
+   };
+   if( error_msg != "" )
+   {  std::cerr << error_msg << "\n";
+      std::exit(1);
+   }
+   if( help )
+   {  const char* usage =
+         "cmpad: Compare C++ AD packages\n\n"
+         "-a: --algorithm:  string: "
+            "is one of { det_by_minor, an_ode} [det_by_minor]\n"
+         "-f: --file_name:  string: "
+            "csv file that line is added to [cmpad.csv]\n"
+         "-m: --min_time:   double: "
+            "csv file that line is added to [cmpad.csv]\n"
+         "-n: --n_arg:      size_t: "
+            "size of argument to algorithm [9]\n"
+         "-p: --pakcage:    string: "
+            "double or an AD packae name [double]\n"
+         "-t: --time_setup:       : "
+            "if present, include setup time in speed [false]\n"
+         "-h: --help:             : "
+            "if present, print this message and halt [false]\n"
+         "\nValues between '[' and ']' above are defaults.\n";
+      std::cout << usage;
+      std::exit(0);
+   }
    //
-   // arguments
    return arguments;
-};
+}
