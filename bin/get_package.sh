@@ -15,7 +15,7 @@ echo_eval() {
 # -----------------------------------------------------------------------------
 #
 # package_set
-package_set='adolc, autodiff, cppad, cppadcg, sacado, or eigen'
+package_set='adolc, autodiff, clad, cppad, cppadcg, sacado, or eigen'
 #
 if [ "$0" != 'bin/get_package.sh' ]
 then
@@ -95,6 +95,13 @@ case $package in
    done
    ;;
 
+   clad)
+   web_page='https://github.com/vgvassilev/clad.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
    cppad)
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
@@ -131,12 +138,14 @@ case $package in
    ;;
 
    *)
-   echo 'bin/get_package.sh: package build_type'
-   echo "package is not $package_set"
+   echo 'bin/get_package.sh: build_type package'
+   echo "package = $package is not one of the following:"
+   echo "$package_set"
    exit 1
    ;;
 
 esac
+#
 if [ "$package" == 'adolc' ]
 then
    if [ "$build_type" == 'debug' ]
@@ -146,6 +155,7 @@ then
 else
    configure="$configure -D CMAKE_BUILD_TYPE=$build_type"
 fi
+# ----------------------------------------------------------------------------
 #
 # n_job
 if which nproc > /dev/null
@@ -198,8 +208,27 @@ then
    exit 0
 fi
 # -----------------------------------------------------------------------------
+if [ "$package" == 'clad' ]
+then
+   missing=""
+   for program in lsb_release lit
+   do
+      if ! which $program > /dev/null
+      then
+         missing="$missing, $package"
+      fi
+   done
+   if [ "$missing" != '' ]
+   then
+      missing=$(echo $missing | sed -e 's|, ||')
+      echo "bin/get_package.sh: $package requires following programs:"
+      echo "$missing"
+      exit 1
+   fi
+fi
+# -----------------------------------------------------------------------------
 #
-# external
+# external/$package_top_srcdir
 if [ ! -d external ]
 then
    echo_eval mkdir external
@@ -239,13 +268,13 @@ else
    fi
    cd sacado
 fi
-#
+# -----------------------------------------------------------------------------
 # patch source
 if [ "$package" == 'adolc' ]
 then
    sed -i ADOL-C/src/uni5_for.c -e 's|for (\([ij]\)=|for(int \1=|'
 fi
-#
+# -----------------------------------------------------------------------------
 # build
 if [ ! -d build ]
 then

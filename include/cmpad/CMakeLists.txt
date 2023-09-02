@@ -11,12 +11,22 @@ FOREACH(package adolc cppad cppadcg sacado)
       SET( cmpad_has_${package} 1 )
    ENDIF( )
 ENDFOREACH( )
-IF( EXISTS "${cmpad_install_prefix}/include/autodiff/forward/real.hpp" )
+#
+# cmpad_has_autodiff
+IF( EXISTS
+   "${cmpad_install_prefix}/include/autodiff/forward/real.hpp" )
    SET( cmpad_has_autodiff 1 )
 ELSE( )
    SET( cmpad_has_autodiff 0 )
 ENDIF( )
-SET(cmpad_has_cppad_jit ${cmpad_has_cppad})
+#
+# cmpad_has_clad
+IF( EXISTS
+   "${cmpad_install_prefix}/include/clad/Differentiator/Differentiator.h" )
+   SET( cmpad_has_clad 1 )
+ELSE( )
+   SET( cmpad_has_clad 0 )
+ENDIF( )
 #
 # cmpad_compiler_is_clang
 # cmpad_compiler_is_gnu
@@ -32,6 +42,7 @@ ENDFOREACH( )
 #
 # cmpad_has_cppadcg
 # cmpad_has_cppad_jit
+SET(cmpad_has_cppad_jit ${cmpad_has_cppad})
 IF( NOT cmpad_compiler_is_clang )
    IF( NOT cmpad_compiler_is_gnu )
       SET( cmpad_has_cppadcg 0 )
@@ -66,7 +77,7 @@ CONFIGURE_FILE(
 )
 #
 # cmpad_has_${package} PARENT_SCOPE
-FOREACH(package adolc autodiff cppad cppad_jit cppadcg sacado)
+FOREACH(package adolc autodiff clad cppad cppad_jit cppadcg sacado)
    print_variable( cmpad_has_${package} )
    SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
 ENDFOREACH( )
