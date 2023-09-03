@@ -12,6 +12,7 @@ set -e -u
 #     eigen
 #     srcdir
 #     pwd
+#     rm
 # }
 # {xrst_comment_ch #}
 #
@@ -24,6 +25,18 @@ set -e -u
 # Syntax
 # ******
 # ``bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+#
+# build_type
+# ==========
+# This is either ``debug`` or ``release`` and determines if libraries,
+# built while installing the packages, are debug or release versions.
+#
+# package_j
+# =========
+# The packages *package_1* , *package_2*, ...
+# are the list of packages that will be installed.
+# This list must have at least one package ; i.e.,
+# *package_2* , *package_3* , ... are optional.
 #
 # package_set
 # ***********
@@ -58,21 +71,15 @@ prefix=$top_srcdir/build/prefix
 # external
 # ********
 # The source code, and corresponding builds, for all installed packages
-# is in the *top_srcdir*\ /external directory.
+# is in the *top_srcdir*\ ``/external`` directory.
 # Thus you can remove the *prefix* directory and reinstall a new list
 # of packages quickly.
+# If you have trouble with a particular *package* , 
+# and ``external/``\ *package*\ .\ *build_type* exists,
+# you may want to try the following:
 #
-# build_type
-# **********
-# This is either ``debug`` or ``release`` and determines if libraries,
-# built while install the packages, are debug or release versions.
-#
-# package_j
-# *********
-# The packages *package_1* , *package_2*, ...
-# are the list of packages that will be installed.
-# This list must have at least one package ; i.e.,
-# *package_2* , *package_3* , ... are optional.
+# | |tab| ``rm external/``\ *package*\ .\ *build_type*
+# | |tab| ``bin/get_package`` *build_type* *package*
 #
 # {xrst_end get_package.sh}
 # -----------------------------------------------------------------------------
