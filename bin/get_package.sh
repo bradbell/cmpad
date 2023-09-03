@@ -39,15 +39,19 @@ package_set='{ adolc, autodiff, clad, cppad, cppadcg, sacado, eigen }'
 # The working directory, when this command is executed, must be the
 # top source directory for cmpad; i.e.,
 # the directory containing the ``.git`` directory for cmpad.
+# {xrst_code sh}
 top_srcdir=$(pwd)
+# {xrst_code}
 #
-# {xrst_comment 
-#  $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
+# {xrst_comment
+#     $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
 # }
 # prefix
 # ******
 # This is the prefix for the packages installed by ``bin/get_package.sh`` :
+# {xrst_code sh}
 prefix=$top_srcdir/build/prefix
+# {xrst_code}
 # Note that this is a local install and does not require any special
 # permissions.
 #
