@@ -6,6 +6,69 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # -----------------------------------------------------------------------------
+# {xrst_begin get_package.sh}
+# {xrst_spell
+#     sh
+#     eigen
+#     srcdir
+#     pwd
+# }
+# {xrst_comment_ch #}
+#
+# Getting Optional Packages
+# #########################
+# This bash shell script can be used to install optional AD packages
+# that cmpad can test. In addition, it can be used to install packages
+# required by these optional packages.
+#
+# Syntax
+# ******
+# ``bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+#
+# package_set
+# ***********
+# This is the set of the packages (so far) that can be installed:
+# {xrst_code sh}
+package_set='{ adolc, autodiff, clad, cppad, cppadcg, sacado, eigen }'
+# {xrst_code}
+# If one of these packages is not install, it will not be included in
+# the cmpad testing.
+#
+# top_srcdir
+# **********
+# The working directory, when this command is executed, must be the
+# top source directory for cmpad; i.e.,
+# the directory containing the ``.git`` directory for cmpad.
+top_srcdir=$(pwd)
+#
+# prefix
+# ******
+# This is the prefix for the packages installed by ``bin/get_package.sh`` :
+prefix=$top_srcdir/build/prefix
+# Note that this is a local install and does not require any special
+# permissions.
+#
+# external
+# ********
+# The source code, and corresponding builds, for all installed packages
+# is in the *top_srcdir*\ /external directory.
+# Thus you can remove the *prefix* directory and reinstall a new list
+# of packages quickly.
+#
+# build_type
+# **********
+# This is either ``debug`` or ``release`` and determines if libraries,
+# built while install the packages, are debug or release versions.
+#
+# package_j
+# *********
+# The packages *package_1* , *package_2*, ...
+# are the list of packages that will be installed.
+# This list must have at least one package ; i.e.,
+# *package_2* , *package_3* , ... are optional.
+#
+# {xrst_end get_package.sh}
+# -----------------------------------------------------------------------------
 # echo_eval
 # bash function that echos and executes a command
 echo_eval() {
@@ -17,9 +80,9 @@ echo_eval() {
 # package_set
 package_set='adolc, autodiff, clad, cppad, cppadcg, sacado, or eigen'
 #
-if [ "$0" != 'bin/get_package.sh' ]
+if [ ! -d '.git' ]
 then
-   echo 'bin/get_package.sh: must be executed from its parent directory'
+   echo 'bin/get_package.sh: must be executed from cmpad top soruce directory'
    exit 1
 fi
 if [ "$#" -lt 2 ]
@@ -48,13 +111,8 @@ do
 done
 package="$2"
 # ---------------------------------------------------------------------------
-#
-# top_srcdir
-top_srcdir=$(pwd)
-#
 # prefix
 # $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
-prefix=$top_srcdir/build/prefix
 #
 if [ "$package" == autodiff ]
 then

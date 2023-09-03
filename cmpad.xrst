@@ -8,13 +8,18 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 Compare Algorithmic Differentiation Packages
 ############################################
 
+Under Construction
+******************
+This project is under construction and does not yet have a stable
+API that is guaranteed to be supported in the future.
+
 Git Repository
 **************
 `<https://github.com/bradbell/cmpad>`_
 
 Version of this Documentation
 *****************************
-cmpad-2023.9.2
+cmpad-2023.9.3
 
 Example Speed Comparison
 ************************
@@ -37,6 +42,7 @@ Documentation
 *************
 
 {xrst_toc_table before
+   bin/get_package.sh
    src/main.cpp
    include/cmpad/configure.hpp.in
    include/cmpad/gradient.hpp
