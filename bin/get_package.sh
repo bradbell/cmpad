@@ -41,6 +41,9 @@ package_set='{ adolc, autodiff, clad, cppad, cppadcg, sacado, eigen }'
 # the directory containing the ``.git`` directory for cmpad.
 top_srcdir=$(pwd)
 #
+# {xrst_comment 
+#  $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
+# }
 # prefix
 # ******
 # This is the prefix for the packages installed by ``bin/get_package.sh`` :
@@ -77,9 +80,6 @@ echo_eval() {
 }
 # -----------------------------------------------------------------------------
 #
-# package_set
-package_set='adolc, autodiff, clad, cppad, cppadcg, sacado, or eigen'
-#
 if [ ! -d '.git' ]
 then
    echo 'bin/get_package.sh: must be executed from cmpad top soruce directory'
@@ -111,8 +111,6 @@ do
 done
 package="$2"
 # ---------------------------------------------------------------------------
-# prefix
-# $top_srcdir/CMakeLists.txt assumes that prefix setting is as below
 #
 if [ "$package" == autodiff ]
 then
