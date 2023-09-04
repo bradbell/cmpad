@@ -126,24 +126,13 @@ Source Code
 # include <cmpad/csv_speed.hpp>
 # include "parse_args.hpp"
 
-# if CMPAD_HAS_ADOLC
+# include <cmpad/adept/gradient.hpp>
 # include <cmpad/adolc/gradient.hpp>
-# endif
-# if CMPAD_HAS_AUTODIFF
 # include <cmpad/autodiff/gradient.hpp>
-# endif
-# if CMPAD_HAS_CPPAD
 # include <cmpad/cppad/gradient.hpp>
-# endif
-# if CMPAD_HAS_CPPAD_JIT
 # include <cmpad/cppad_jit/gradient.hpp>
-# endif
-# if CMPAD_HAS_CPPADCG
 # include <cmpad/cppadcg/gradient.hpp>
-# endif
-# if CMPAD_HAS_SACADO
 # include <cmpad/sacado/gradient.hpp>
-# endif
 
 // CMPAD_PACKAGE_TEST
 # define CMPAD_PACKAGE_TEST(package) \
@@ -164,32 +153,42 @@ Source Code
       case_found = true; \
    }
 
+
+// get_package_available
+cmpad::vector<std::string> get_package_available(void)
+{  cmpad::vector<std::string> package_available;
+   package_available.push_back("double");
+# if CMPAD_HAS_ADEPT
+   package_available.push_back("adept");
+# endif
+# if CMPAD_HAS_ADOLC
+   package_available.push_back("adolc");
+# endif
+# if CMPAD_HAS_AUTODIFF
+   package_available.push_back("autodiff");
+# endif
+# if CMPAD_HAS_CPPAD
+   package_available.push_back("cppad");
+# endif
+# if CMPAD_HAS_CPPAD_JIT
+   package_available.push_back("cppad_jit");
+# endif
+# if CMPAD_HAS_CPPADCG
+   package_available.push_back("cppadcg");
+# endif
+# if CMPAD_HAS_SACADO
+   package_available.push_back("sacado");
+# endif
+   return package_available;
+}
+
 int main(int argc, char* argv[])
 {  //
    // arguments
    arguments_t arguments = parse_args(argc, argv);
    //
    // package_vec
-   cmpad::vector<std::string> package_vec;
-   package_vec.push_back("double");
-# if CMPAD_HAS_ADOLC
-   package_vec.push_back("adolc");
-# endif
-# if CMPAD_HAS_AUTODIFF
-   package_vec.push_back("autodiff");
-# endif
-# if CMPAD_HAS_CPPAD
-   package_vec.push_back("cppad");
-# endif
-# if CMPAD_HAS_CPPAD_JIT
-   package_vec.push_back("cppad_jit");
-# endif
-# if CMPAD_HAS_CPPADCG
-   package_vec.push_back("cppadcg");
-# endif
-# if CMPAD_HAS_SACADO
-   package_vec.push_back("sacado");
-# endif
+   cmpad::vector<std::string> package_vec = get_package_available();
    //
    // algorithm_vec
    cmpad::vector<std::string> algorithm_vec;
@@ -272,6 +271,10 @@ int main(int argc, char* argv[])
    }
    //
    // file_name, case_found
+# if CMPAD_HAS_ADEPT
+   else if( package == "adept" )
+   {  CMPAD_PACKAGE_TEST(adept) }
+# endif
 # if CMPAD_HAS_ADOLC
    else if( package == "adolc" )
    {  CMPAD_PACKAGE_TEST(adolc) }

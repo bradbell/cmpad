@@ -71,7 +71,7 @@ def main() :
    file_obj  = open(configure_file, 'r')
    file_data = file_obj.read()
    file_obj.close()
-   ad_package = 'adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
+   ad_package = 'adept,adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
    for package in ad_package.split(',') :
       PACKAGE = package.upper()
       pattern = f'# *define *CMPAD_HAS_{PACKAGE} *[01]'
@@ -82,6 +82,7 @@ def main() :
          sys.exit(msg)
       if match.group(0)[-1] == '1' :
          package_list.append(package)
+   print( f'package_list = {package_list}' )
    #
    # change directory
    os.chdir('build')

@@ -62,7 +62,7 @@ package_set=\
 #  :header-rows: 1
 #
 #  Web Site,      Implemented
-#  `adept`_       none
+#  `adept`_,      :ref:`gradient <adept_gradient.hpp-name>`
 #  `adolc`_,      :ref:`gradient <adolc_gradient.hpp-name>`
 #  `autodiff`_,   :ref:`gradient <autodiff_gradient.hpp-name>`
 #  `clad`_,       none

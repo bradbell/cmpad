@@ -77,7 +77,7 @@ public:
    //
    // default ctor
    gradient(void)
-   : stack_(nullptr) 
+   : stack_(nullptr)
    , algo_(nullptr)
    { }
    //
@@ -140,7 +140,7 @@ public:
       stack_->new_recording();
       //
       // ay
-      cmpad::vector<::adept::adouble> ay = (*algo_)(ax); 
+      cmpad::vector<::adept::adouble> ay = (*algo_)(ax);
       assert( ay.size() == m );
       //
       // g_
