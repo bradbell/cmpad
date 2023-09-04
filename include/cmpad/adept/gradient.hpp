@@ -10,7 +10,7 @@
    obj
 }
 
-Calculate Gradient Using CppAD
+Calculate Gradient Using Adept
 ##############################
 
 Syntax
@@ -22,7 +22,7 @@ Syntax
 
 Purpose
 *******
-This implements the :ref:`gradient-name` interface using CppAD.
+This implements the :ref:`gradient-name` interface using Adept.
 
 TemplateAlgo
 ************
