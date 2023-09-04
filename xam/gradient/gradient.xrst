@@ -10,6 +10,7 @@ Example and Test of Gradient
 {xrst_toc_table
    xam/gradient/check_grad_det.hpp
    xam/gradient/check_grad_ode.hpp
+   xam/gradient/adept.cpp
    xam/gradient/adolc.cpp
    xam/gradient/autodiff.cpp
    xam/gradient/cppad.cpp

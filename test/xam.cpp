@@ -28,6 +28,9 @@ CMPAD_TEST_EXAMPLE(fun_speed)
 CMPAD_TEST_EXAMPLE(runge_kutta)
 CMPAD_TEST_EXAMPLE(uniform_01)
 //
+# if CMPAD_HAS_ADEPT
+CMPAD_TEST_EXAMPLE(gradient_adept)
+# endif
 # if CMPAD_HAS_ADOLC
 CMPAD_TEST_EXAMPLE(gradient_adolc)
 # endif
@@ -36,6 +39,8 @@ CMPAD_TEST_EXAMPLE(gradient_autodiff)
 # endif
 # if CMPAD_HAS_CPPAD
 CMPAD_TEST_EXAMPLE(gradient_cppad)
+# endif
+# if CMPAD_HAS_CPPAD_JIT
 CMPAD_TEST_EXAMPLE(gradient_cppad_jit)
 # endif
 # if CMPAD_HAS_CPPADCG

@@ -42,10 +42,39 @@ set -e -u
 # ***********
 # This is the set of the packages (so far) that can be installed:
 # {xrst_code sh}
-package_set='{ adolc, autodiff, clad, cppad, cppadcg, sacado, eigen }'
+package_set=\
+'{ adept, adolc, autodiff, clad, cppad, cppad_jit, cppadcg, sacado, eigen }'
 # {xrst_code}
 # If one of these packages is not install, it will not be included in
 # the cmpad testing.
+#
+# .. _adept:     https://github.com/rjhogan/Adept-2
+# .. _adolc:     https://github.com/coin-or/ADOL-C
+# .. _autodiff:  https://github.com/autodiff/autodiff
+# .. _clad:      https://github.com/vgvassilev/clad
+# .. _cppad:     https://github.com/coin-or/CppAD
+# .. _cppad_jit: https://github.com/coin-or/CppAD
+# .. _cppadcg:   https://github.com/joaoleal/CppADCodeGen
+# .. _sacado:    https://trilinos.github.io/sacado.html
+#
+# .. csv-table::
+#  :widths: auto
+#  :header-rows: 1
+#
+#  Web Site,      Implemented
+#  `adept`_       none
+#  `adolc`_,      :ref:`gradient <adolc_gradient.hpp-name>`
+#  `autodiff`_,   :ref:`gradient <autodiff_gradient.hpp-name>`
+#  `clad`_,       none
+#  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`
+#  `cppad_jit`_,  :ref:`gradient <cppad_jit_gradient.hpp-name>`
+#  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`
+#  `sacado`_,     :ref:`gradient <sacado_gradient.hpp-name>`
+#
+# #. Implemented is the list of cmpad derivatives implemented so far
+# #. Installing autodiff also installs eigen.
+# #. Installing cppad or cppad_jit has the same effect.
+# #. Installing cppadcg also installs cppad.
 #
 # top_srcdir
 # **********
@@ -74,7 +103,7 @@ prefix=$top_srcdir/build/prefix
 # is in the *top_srcdir*\ ``/external`` directory.
 # Thus you can remove the *prefix* directory and reinstall a new list
 # of packages quickly.
-# If you have trouble with a particular *package* , 
+# If you have trouble with a particular *package* ,
 # and ``external/``\ *package*\ .\ *build_type* exists,
 # you may want to try the following:
 #
@@ -142,6 +171,14 @@ export PKG_CONFIT_PATH
 #
 # web_page, version, configure
 case $package in
+
+   adept)
+   web_page='https://github.com/rjhogan/Adept-2.git'
+   version='master'
+   configure="--prefix=$prefix"
+   configure="$configure --enable-static --enable-shared"
+   configure="autoreconf -fi; ./configure $configure"
+   ;;
 
    adolc)
    web_page='https://github.com/coin-or/ADOL-C.git'
@@ -219,6 +256,14 @@ then
    then
       configure="$configure --enable-debug"
    fi
+elif [ "$package" == 'adept' ]
+then
+   if [ "$build_type" == 'debug' ]
+   then
+      configure="$configure CXXFLAGS='-g -O0'"
+   else
+      configure="$configure CXXFLAGS='-DNDEBUG -O2'"
+   fi
 else
    configure="$configure -D CMAKE_BUILD_TYPE=$build_type"
 fi
@@ -260,7 +305,12 @@ if [ -e "$configured_flag" ]
 then
    echo "Skipping configuration because following file exists:"
    echo $configured_flag
-   echo_eval cd external/$package_top_srcdir/build
+   if [ "$package" == 'adept' ]
+   then
+      echo_eval cd external/$package_top_srcdir
+   else
+      echo_eval cd external/$package_top_srcdir/build
+   fi
    echo_eval make -j $n_job install
    #
    if [ "$package" == 'eigen' ]
@@ -343,11 +393,14 @@ then
 fi
 # -----------------------------------------------------------------------------
 # build
-if [ ! -d build ]
+if [ "$package" != 'adept' ]
 then
-   echo_eval mkdir build
+   if [ ! -d build ]
+   then
+      echo_eval mkdir build
+   fi
+   echo_eval cd build
 fi
-echo_eval cd build
 #
 # CMakeCache.txt
 if [ -e CMakeCache.txt ]

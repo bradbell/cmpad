@@ -48,6 +48,18 @@ FOREACH(package adolc cppad cppadcg)
    ENDIF( )
 ENDFOREACH( )
 #
+# adept_LINK_LIBRARIES
+SET(adept_LINK_LIBRARIES "")
+FOREACH(dir lib lib64)
+   FOREACH(ext dll dylib so)
+      SET(tmp "${cmpad_install_prefix}/${dir}/libadept.${ext}" )
+      IF( EXISTS ${tmp} )
+         SET( adept_LINK_LIBRARIES "${tmp}" )
+      ENDIF( )
+   ENDFOREACH( )
+ENDFOREACH( )
+print_variable( adept_LINK_LIBRARIES )
+#
 # sacado_LINK_LIBRARIES
 FOREACH(dir lib lib64)
    IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
@@ -75,10 +87,11 @@ INCLUDE_DIRECTORIES(
 #
 # link libraries
 LINK_LIBRARIES(
-   ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-   ${sacado_LINK_LIBRARIES}
+   ${adept_LINK_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
    ${cppad_LINK_LIBRARIES}
+   ${sacado_LINK_LIBRARIES}
+   ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 )
 #
 # CMAKE_CXX_STANDARG

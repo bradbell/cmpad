@@ -68,10 +68,13 @@ private:
    //
    // algo_
    TemplateAlgo< CppAD::AD<double> > algo_;
+   //
    // w_
    cmpad::vector<double>             w_;
+   //
    // tape_
    CppAD::ADFun<double>              tape_;
+   //
    // g_
    cmpad::vector<double>             g_;
 //

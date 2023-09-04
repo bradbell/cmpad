@@ -69,6 +69,7 @@ private:
    //
    // algo_
    TemplateAlgo< CppAD::AD<cg_double> >               algo_;
+   //
    // w_
    cmpad::vector<double>                              w_;
    //

@@ -82,6 +82,7 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    xam/gradient/gradient.xrst
+   include/cmpad/adept/gradient.hpp
    include/cmpad/adolc/gradient.hpp
    include/cmpad/autodiff/gradient.hpp
    include/cmpad/cppad/gradient.hpp

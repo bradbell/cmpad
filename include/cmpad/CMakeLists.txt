@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 #
 # cmpad_has_${package}
-FOREACH(package adolc cppad cppadcg sacado)
+FOREACH(package adept adolc cppad cppadcg sacado)
    IF( "${${package}_LINK_LIBRARIES}" STREQUAL "" )
       SET( cmpad_has_${package} 0 )
    ELSE( )
@@ -77,7 +77,7 @@ CONFIGURE_FILE(
 )
 #
 # cmpad_has_${package} PARENT_SCOPE
-FOREACH(package adolc autodiff clad cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff clad cppad cppad_jit cppadcg sacado)
    print_variable( cmpad_has_${package} )
    SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
 ENDFOREACH( )
