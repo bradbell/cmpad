@@ -65,7 +65,7 @@ package_set=\
 #  `adept`_,      :ref:`gradient <adept_gradient.hpp-name>`
 #  `adolc`_,      :ref:`gradient <adolc_gradient.hpp-name>`
 #  `autodiff`_,   :ref:`gradient <autodiff_gradient.hpp-name>`
-#  `clad`_,       none
+#  `clad`_,       Under Construction
 #  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`
 #  `cppad_jit`_,  :ref:`gradient <cppad_jit_gradient.hpp-name>`
 #  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`
@@ -127,6 +127,8 @@ then
 fi
 if [ "$#" -lt 2 ]
 then
+   echo "bin/get_package.sh: found $# arugments and expected 2 or more"
+   echo
    echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
    echo 'where build_type is debug or release and package_j is one of'
    echo "$package_set"
@@ -150,6 +152,10 @@ do
    shift
 done
 package="$2"
+if [ "$package" == 'cppad_jit' ]
+then
+   package='cppad'
+fi
 # ---------------------------------------------------------------------------
 #
 if [ "$package" == autodiff ]
