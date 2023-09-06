@@ -24,7 +24,7 @@ set -e -u
 #
 # Syntax
 # ******
-# ``bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# ``bin/c++/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
 #
 # build_type
 # ==========
@@ -90,9 +90,9 @@ top_srcdir=$(pwd)
 # }
 # prefix
 # ******
-# This is the prefix for the packages installed by ``bin/get_package.sh`` :
+# This is the prefix for the packages installed by ``bin/c++/get_package.sh`` :
 # {xrst_code sh}
-prefix=$top_srcdir/build/prefix
+prefix=$top_srcdir/c++/build/prefix
 # {xrst_code}
 # Note that this is a local install and does not require any special
 # permissions.
@@ -119,15 +119,16 @@ echo_eval() {
    eval $*
 }
 # -----------------------------------------------------------------------------
+program='bin/c++/get_package.sh'
 #
 if [ ! -d '.git' ]
 then
-   echo 'bin/get_package.sh: must be executed from cmpad top soruce directory'
+   echo "$program: must be executed from cmpad top soruce directory"
    exit 1
 fi
 if [ "$#" -lt 2 ]
 then
-   echo "bin/get_package.sh: found $# arugments and expected 2 or more"
+   echo "$program: found $# arugments and expected 2 or more"
    echo
    echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
    echo 'where build_type is debug or release and package_j is one of'
@@ -148,7 +149,7 @@ fi
 while [ "$#" -gt 2 ]
 do
    package="$2"
-   echo_eval bin/get_package.sh $build_type $package
+   echo_eval $program $build_type $package
    shift
 done
 package="$2"
@@ -161,12 +162,12 @@ fi
 if [ "$package" == autodiff ]
 then
    # autodiff requires eigen
-   bin/get_package.sh $build_type eigen
+   $program $build_type eigen
 fi
 if [ "$package" == cppadcg ]
 then
    # cpapdcg requires cppad
-   bin/get_package.sh $build_type cppad
+   $program $build_type cppad
 fi
 #
 # PKG_CONFIG_PATH
@@ -248,7 +249,7 @@ case $package in
    ;;
 
    *)
-   echo 'bin/get_package.sh: build_type package'
+   echo "$progam: build_type package"
    echo "package = $package is not one of the following:"
    echo "$package_set"
    exit 1
@@ -327,7 +328,7 @@ then
       fi
       ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
    fi
-   echo "bin/get_package.sh: $package OK"
+   echo "$program: $package OK"
    exit 0
 fi
 # -----------------------------------------------------------------------------

@@ -4,9 +4,9 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
-if [ "$0" != 'bin/run_cmake.sh' ]
+if [ "$0" != 'bin/c++/run_cmake.sh' ]
 then
-   echo 'bin/run_cmake.sh: must be executed from its parent directory'
+   echo 'bin/c++/run_cmake.sh: must be executed the top source directory'
    exit 1
 fi
 #
@@ -57,7 +57,7 @@ done
 # c++/build
 if [ ! -e c++/build ]
 then
-   mkdir c++/build
+   mkdir -p c++/build
 fi
 cd c++/build
 if [ -e CMakeCache.txt ]

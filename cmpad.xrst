@@ -42,7 +42,7 @@ Documentation
 *************
 
 {xrst_toc_table before
-   bin/get_package.sh
+   bin/c++/get_package.sh
    c++/src/main.cpp
    c++/include/cmpad/configure.hpp.in
    c++/include/cmpad/gradient.hpp

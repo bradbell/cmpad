@@ -28,7 +28,7 @@ def xam_det_of_minor () :
    for i in range(m) :
       r[i] = i+1
       c[i] = i+1
-    
+
    r[m] = 0
    c[m] = 0
    #
@@ -60,4 +60,4 @@ def xam_det_of_minor () :
    #
    return ok
 def test_det_of_minor () :
-   assert xam_det_of_minor() == True 
+   assert xam_det_of_minor() == True

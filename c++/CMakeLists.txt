@@ -15,7 +15,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 PROJECT(cmpad)
 #
 # cmpad_install_prefix
-SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/../build/prefix" )
+SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/build/prefix" )
 #
 # PKG_CONFIG_PATH
 IF( "$ENV{PKG_CONFIG_PATH}" STREQUAL "" )

@@ -49,7 +49,7 @@ if [ $(expr $RANDOM % 2) == 1 ]
 then
    flags="$flags --cppad_vector"
 fi
-echo_eval bin/run_cmake.sh $flags
+echo_eval bin/c++/run_cmake.sh $flags
 #
 # c++/build
 echo_eval cd c++/build
