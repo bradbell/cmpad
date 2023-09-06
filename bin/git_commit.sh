@@ -61,7 +61,7 @@ list=$(git status --porcelain | sed -n -e '/^?? /p' | sed -e 's|^?? ||')
 for file in $list
 do
    res=''
-   while [ "$res" != 'delete' ] && [ "$res" != 'add' ] [ "$res" != 'abort' ]
+   while [ "$res" != 'delete' ] && [ "$res" != 'add' ] && [ "$res" != 'abort' ]
    do
       read -p "$file is uknown to git, [delete/add/abort] ?" res
    done
