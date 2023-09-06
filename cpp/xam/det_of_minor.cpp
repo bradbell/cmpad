@@ -35,27 +35,27 @@ bool xam_det_of_minor(void)
    //
    // m
    // dimension of the matrix A
-   size_t m = 3;
-   ok &= m * m ==  a.size();
+   size_t n = 3;
+   ok &= n * n ==  a.size();
    //
    // r, c
    // index vectors set so minor is the entire matrix A
-   cmpad::vector<size_t> r(m + 1);
-   cmpad::vector<size_t> c(m + 1);
-   for(size_t i= 0; i < m; i++)
+   cmpad::vector<size_t> r(n + 1);
+   cmpad::vector<size_t> c(n + 1);
+   for(size_t i= 0; i < n; i++)
    {  r[i] = i+1;
       c[i] = i+1;
    }
-   r[m] = 0;
-   c[m] = 0;
+   r[n] = 0;
+   c[n] = 0;
    //
    // n
    // size of minor that is the entire matrix A
-   size_t n = m;
+   size_t m = n;
    //
    // det
    // evaluate the determinant of A
-   double det = cmpad::det_of_minor(a, m, n, r, c);
+   double det = cmpad::det_of_minor(a, n, m, r, c);
    //
    // ok
    // check the value of the determinant of A
@@ -65,11 +65,11 @@ bool xam_det_of_minor(void)
    // minor where row 0 and column 1 are removed
    r[m] = 1;     // skip row index 0 by starting at row index 1
    c[0] = 2;     // skip column index 1 by pointing from index 0 to index 2
-   n    = m - 1; // dimension of the minor M
+   m    = n - 1; // dimension of the minor M
    //
    // det
    // evaluate determinant of the minor
-   det = cmpad::det_of_minor(a, m, n, r, c);
+   det = cmpad::det_of_minor(a, n, m, r, c);
    //
    // ok
    // check the value of the determinant of the minor
