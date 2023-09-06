@@ -44,7 +44,7 @@ csv_table
 #. csv_table[i].size() is the number of columns in the *i*-th row.
 
 {xrst_toc_hidden
-   xam/csv_read.cpp
+   c++/xam/csv_read.cpp
 }
 Example
 *******

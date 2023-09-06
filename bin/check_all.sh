@@ -51,8 +51,8 @@ then
 fi
 echo_eval bin/run_cmake.sh $flags
 #
-# build
-echo_eval cd build
+# c++/build
+echo_eval cd c++/build
 #
 # make
 echo_eval make

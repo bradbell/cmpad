@@ -14,9 +14,9 @@
 # Example and Test Using cmpad Main Program
 # #########################################
 #
-# src/xam_main.csv
-# ****************
-# This program create the file src/xam_main.csv.
+# c++/src/xam_main.csv
+# ********************
+# This program create the file c++/src/xam_main.csv.
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
 # Below is an example of the contents of this file:
@@ -24,7 +24,7 @@
 # ..  csv-table::
 #     :widths: auto
 #     :header-rows: 1
-#     :file: {xrst_dir src/xam_main.csv}
+#     :file: {xrst_dir c++/src/xam_main.csv}
 #
 # Source Code
 # ***********
@@ -92,7 +92,7 @@ def main() :
    cmpad_main = cmpad_main[index+1 :]
    #
    # file_name
-   file_name = '../src/xam_main.csv'
+   file_name = '../c++/src/xam_main.csv'
    if os.path.isfile(file_name) :
       os.remove(file_name)
    #

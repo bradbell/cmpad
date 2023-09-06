@@ -17,7 +17,7 @@ fi
 # ---------------------------------------------------------------------------
 ignore_list='
    .gitignore
-   src/xam_main.csv
+   c++/src/xam_main.csv
    .readthedocs.yaml
    readme.md
 '

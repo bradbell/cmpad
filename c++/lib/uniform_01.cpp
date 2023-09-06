@@ -43,7 +43,7 @@ Upon return, the elements of *x* are set to values
 uniformly sampled over the interval [0,1].
 
 {xrst_toc_hidden
-   xam/uniform_01.cpp
+   c++/xam/uniform_01.cpp
 }
 Example
 *******

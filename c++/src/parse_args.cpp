@@ -18,7 +18,7 @@ Prototype
 arguments_t
 ***********
 {xrst_literal
-   src/parse_args.hpp
+   c++/src/parse_args.hpp
    // BEGIN ARGUMENTS_T
    // END ARGUMENTS_T
 }

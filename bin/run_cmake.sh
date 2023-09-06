@@ -54,12 +54,12 @@ do
    esac
 done
 # -----------------------------------------------------------------------------
-# build
-if [ ! -e build ]
+# c++/build
+if [ ! -e c++/build ]
 then
-   mkdir build
+   mkdir c++/build
 fi
-cd build
+cd c++/build
 if [ -e CMakeCache.txt ]
 then
    rm CMakeCache.txt

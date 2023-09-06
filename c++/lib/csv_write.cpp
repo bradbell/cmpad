@@ -41,7 +41,7 @@ csv_table
 #. The character ``'\n'`` is added at the end of every line.
 
 {xrst_toc_hidden
-   xam/csv_write.cpp
+   c++/xam/csv_write.cpp
 }
 Example
 *******

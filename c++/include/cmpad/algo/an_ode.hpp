@@ -96,8 +96,8 @@ yf
 The return value *yf* is :math:`y(t)` at :math:`t = 2` .
 
 {xrst_toc_hidden after
-   xam/an_ode.cpp
-   include/cmpad/algo/runge_kutta.hpp
+   c++/xam/an_ode.cpp
+   c++/include/cmpad/algo/runge_kutta.hpp
 }
 Example
 *******

@@ -9,6 +9,7 @@ then
    exit 1
 fi
 # ---------------------------------------------------------------------------
+cd c++
 list=$(git ls-files *.hpp)
 different='no'
 for file_name in $list

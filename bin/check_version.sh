@@ -42,8 +42,8 @@ s|soversion *[0-9][0-9][.][0-9][0-9]*[.][0-9][0-9]*|soversion $version|
 s|cmpad-[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|cmpad-$version|
 EOF
 #
-# lib/CMakeLists.txt
-check_version lib/CMakeLists.txt
+# c++/lib/CMakeLists.txt
+check_version c++/lib/CMakeLists.txt
 #
 # cmpad.xrst
 check_version cmpad.xrst

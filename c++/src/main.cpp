@@ -102,7 +102,7 @@ Main Program Implementation
 Subroutines
 ***********
 {xrst_toc_table
-   src/parse_args.cpp
+   c++/src/parse_args.cpp
 }
 
 Source Code

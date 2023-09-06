@@ -144,7 +144,7 @@ d
 The return value *d* is equal to the determinant of the minor :math:`M`.
 
 {xrst_toc_table after
-   xam/det_of_minor.cpp
+   c++/xam/det_of_minor.cpp
 }
 
 Example

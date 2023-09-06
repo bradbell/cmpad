@@ -81,7 +81,7 @@ The return value *yf* has the same size as *yi* and is the approximation
 for :math:`y(t)` at *t* = *tf* .
 
 {xrst_toc_table after
-   xam/runge_kutta.cpp
+   c++/xam/runge_kutta.cpp
 }
 
 Example
