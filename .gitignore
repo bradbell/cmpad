@@ -11,6 +11,7 @@
 # used to cache and restore git changes
 /new/
 /new.*/
+#
 # ----------------------------------------------------------------------------
 # files
 #
@@ -29,3 +30,8 @@ git_commit.log
 # used as temporary files
 temp
 temp.*
+#
+# special python files and directories
+__init__.py
+__pycache__/
+*.pyq

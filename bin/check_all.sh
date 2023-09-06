@@ -63,7 +63,7 @@ echo "test/test"
    | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
 #
 # xam_main.py
-cd ..
+cd ../..
 echo_eval bin/xam_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'

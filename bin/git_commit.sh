@@ -39,7 +39,7 @@ fi
 set -u
 # -----------------------------------------------------------------------------
 # xam_main.csv
-csv_file='src/xam_main.csv'
+csv_file='c++/src/xam_main.csv'
 pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
 if git status --porcelain | grep "$pattern" > /dev/null
 then

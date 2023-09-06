@@ -41,6 +41,7 @@ import csv
 import re
 import subprocess
 def main() :
+   os.chdir('c++')
    #
    # cmpad_main
    cmpad_main = 'build/src/cmpad'
@@ -57,12 +58,12 @@ def main() :
       msg = 'bin/xam_main.py: must be executed from its parent directory'
       sys.exit(msg)
    if not os.path.isfile(configure_file) :
-      msg = f'bin/xam_main.py: {configure_file} does not exist'
-      msg = '\nmust use cmake to create it'
+      msg  = f'bin/xam_main.py: {configure_file} does not exist'
+      msg += '\nmust use cmake to create it'
       sys.exit(msg)
    if not os.path.isfile(cmpad_main) :
-      msg = f'bin/xam_main.py: {cmpad_main} does not exist'
-      msg = '\nmust use make to create it'
+      msg  = f'bin/xam_main.py: {cmpad_main} does not exist'
+      msg += '\nmust use make to create it'
       sys.exit(msg)
    #
    # package_list
@@ -92,7 +93,7 @@ def main() :
    cmpad_main = cmpad_main[index+1 :]
    #
    # file_name
-   file_name = '../c++/src/xam_main.csv'
+   file_name = '../src/xam_main.csv'
    if os.path.isfile(file_name) :
       os.remove(file_name)
    #
