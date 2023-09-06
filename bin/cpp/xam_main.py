@@ -104,14 +104,14 @@ def main() :
    # default_n_arg
    default_n_arg = 9
    #
-   for package in package_list :
+   # time_setup
+   for time_setup in [ True, False ] :
       #
       # algorithm
       algorithm_list = [ 'det_by_minor' , 'an_ode' ]
       for algorithm in algorithm_list :
          #
-         # time_setup
-         for time_setup in [ True, False ] :
+         for package in package_list :
             #
             # command
             command = [
