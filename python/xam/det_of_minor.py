@@ -18,27 +18,27 @@ def xam_det_of_minor () :
    #
    # m
    # dimension of the matrix A
-   m = 3
-   ok &= m * m ==  len(a)
+   n = 3
+   ok &= n * n ==  len(a)
    #
    # r, c
    # index vectors set so minor is the entire matrix A
-   r = (m + 1) * [0]
-   c = (m + 1) * [0]
-   for i in range(m) :
+   r = (n + 1) * [0]
+   c = (n + 1) * [0]
+   for i in range(n) :
       r[i] = i+1
       c[i] = i+1
 
-   r[m] = 0
-   c[m] = 0
+   r[n] = 0
+   c[n] = 0
    #
    # n
    # size of minor that is the entire matrix A
-   n = m
+   m = n
    #
    # det
    # evaluate the determinant of A
-   det = cmpad.det_of_minor(a, m, n, r, c)
+   det = cmpad.det_of_minor(a, n, m, r, c)
    #
    # ok
    # check the value of the determinant of A
@@ -46,13 +46,13 @@ def xam_det_of_minor () :
    #
    # M
    # minor where row 0 and column 1 are removed
-   r[m] = 1     # skip row index 0 by starting at row index 1
+   r[n] = 1     # skip row index 0 by starting at row index 1
    c[0] = 2     # skip column index 1 by pointing from index 0 to index 2
-   n    = m - 1 # dimension of the minor M
+   m    = n - 1 # dimension of the minor M
    #
    # det
    # evaluate determinant of the minor
-   det = cmpad.det_of_minor(a, m, n, r, c)
+   det = cmpad.det_of_minor(a, n, m, r, c)
    #
    # ok
    # check the value of the determinant of the minor
