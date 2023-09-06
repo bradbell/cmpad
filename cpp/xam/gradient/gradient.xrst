@@ -8,15 +8,15 @@ Example and Test of Gradient
 ############################
 
 {xrst_toc_table
-   c++/xam/gradient/check_grad_det.hpp
-   c++/xam/gradient/check_grad_ode.hpp
-   c++/xam/gradient/adept.cpp
-   c++/xam/gradient/adolc.cpp
-   c++/xam/gradient/autodiff.cpp
-   c++/xam/gradient/cppad.cpp
-   c++/xam/gradient/cppad_jit.cpp
-   c++/xam/gradient/cppadcg.cpp
-   c++/xam/gradient/sacado.cpp
+   cpp/xam/gradient/check_grad_det.hpp
+   cpp/xam/gradient/check_grad_ode.hpp
+   cpp/xam/gradient/adept.cpp
+   cpp/xam/gradient/adolc.cpp
+   cpp/xam/gradient/autodiff.cpp
+   cpp/xam/gradient/cppad.cpp
+   cpp/xam/gradient/cppad_jit.cpp
+   cpp/xam/gradient/cppadcg.cpp
+   cpp/xam/gradient/sacado.cpp
 }
 
 {xrst_end  xam_gradient}

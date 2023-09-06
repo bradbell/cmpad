@@ -49,10 +49,10 @@ if [ $(expr $RANDOM % 2) == 1 ]
 then
    flags="$flags --cppad_vector"
 fi
-echo_eval bin/c++/run_cmake.sh $flags
+echo_eval bin/cpp/run_cmake.sh $flags
 #
-# c++/build
-echo_eval cd c++/build
+# cpp/build
+echo_eval cd cpp/build
 #
 # make
 echo_eval make
@@ -64,7 +64,7 @@ echo "test/test"
 #
 # xam_main.py
 cd ../..
-echo_eval bin/c++/xam_main.py
+echo_eval bin/cpp/xam_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0

@@ -81,14 +81,14 @@ It is the gradient evaluated at the point *x* .
 Example and Derived Classes
 ***************************
 {xrst_toc_table
-   c++/xam/gradient/gradient.xrst
-   c++/include/cmpad/adept/gradient.hpp
-   c++/include/cmpad/adolc/gradient.hpp
-   c++/include/cmpad/autodiff/gradient.hpp
-   c++/include/cmpad/cppad/gradient.hpp
-   c++/include/cmpad/cppad_jit/gradient.hpp
-   c++/include/cmpad/cppadcg/gradient.hpp
-   c++/include/cmpad/sacado/gradient.hpp
+   cpp/xam/gradient/gradient.xrst
+   cpp/include/cmpad/adept/gradient.hpp
+   cpp/include/cmpad/adolc/gradient.hpp
+   cpp/include/cmpad/autodiff/gradient.hpp
+   cpp/include/cmpad/cppad/gradient.hpp
+   cpp/include/cmpad/cppad_jit/gradient.hpp
+   cpp/include/cmpad/cppadcg/gradient.hpp
+   cpp/include/cmpad/sacado/gradient.hpp
 }
 
 {xrst_end gradient}

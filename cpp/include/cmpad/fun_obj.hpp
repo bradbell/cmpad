@@ -72,7 +72,7 @@ This vector has size *m* and
 is the function value corresponding to *x*.
 
 {xrst_toc_hidden
-   c++/xam/fun_obj.cpp
+   cpp/xam/fun_obj.cpp
 }
 Example
 *******

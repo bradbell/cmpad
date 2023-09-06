@@ -85,7 +85,7 @@ print the help message on standard out and then exit program
 without any further processing.
 
 {xrst_toc_hidden before
-   bin/c++/xam_main.py
+   bin/cpp/xam_main.py
 }
 Example
 *******
@@ -102,7 +102,7 @@ Main Program Implementation
 Subroutines
 ***********
 {xrst_toc_table
-   c++/src/parse_args.cpp
+   cpp/src/parse_args.cpp
 }
 
 Source Code

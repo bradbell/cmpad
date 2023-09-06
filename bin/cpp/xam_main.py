@@ -14,9 +14,9 @@
 # Example and Test Using cmpad Main Program
 # #########################################
 #
-# c++/src/xam_main.csv
+# cpp/src/xam_main.csv
 # ********************
-# This program create the file c++/src/xam_main.csv.
+# This program create the file cpp/src/xam_main.csv.
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
 # Below is an example of the contents of this file:
@@ -24,7 +24,7 @@
 # ..  csv-table::
 #     :widths: auto
 #     :header-rows: 1
-#     :file: {xrst_dir c++/src/xam_main.csv}
+#     :file: {xrst_dir cpp/src/xam_main.csv}
 #
 # Source Code
 # ***********
@@ -43,13 +43,13 @@ import subprocess
 def main() :
    #
    # program
-   program = 'bin/c++/xam_main.py'
+   program = 'bin/cpp/xam_main.py'
    #
    # cmpad_main
-   cmpad_main = 'c++/build/src/cmpad'
+   cmpad_main = 'cpp/build/src/cmpad'
    #
    # configure_file
-   configure_file = 'c++/include/cmpad/configure.hpp'
+   configure_file = 'cpp/include/cmpad/configure.hpp'
    #
    # check
    if len(sys.argv) != 1 :
@@ -60,11 +60,11 @@ def main() :
       sys.exit(msg)
    if not os.path.isfile(configure_file) :
       msg  = f'{program}: {configure_file} does not exist.'
-      msg += '\nUse bin/c++/run_cmake.sh to create it.'
+      msg += '\nUse bin/cpp/run_cmake.sh to create it.'
       sys.exit(msg)
    if not os.path.isfile(cmpad_main) :
       msg  = f'{program}: {cmpad_main} does not exist.'
-      msg += '\nUse use make in c++/build to create it.'
+      msg += '\nUse use make in cpp/build to create it.'
       sys.exit(msg)
    #
    # package_list
@@ -87,10 +87,10 @@ def main() :
    print( f'package_list = {package_list}' )
    #
    # change directory
-   os.chdir('c++/build')
+   os.chdir('cpp/build')
    #
    # cmpad_main
-   index      = len('c++/build')
+   index      = len('cpp/build')
    cmpad_main = cmpad_main[index+1 :]
    #
    # file_name

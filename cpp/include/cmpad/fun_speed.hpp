@@ -67,7 +67,7 @@ This is the speed of one computation of the function object; i.e.,
 the number of times per second that the function object gets computed.
 
 {xrst_toc_hidden
-   c++/xam/fun_speed.cpp
+   cpp/xam/fun_speed.cpp
 }
 Example
 *******

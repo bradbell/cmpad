@@ -84,8 +84,8 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
-   c++/xam/det_by_minor.cpp
-   c++/include/cmpad/algo/det_of_minor.hpp
+   cpp/xam/det_by_minor.cpp
+   cpp/include/cmpad/algo/det_of_minor.hpp
 }
 
 Example

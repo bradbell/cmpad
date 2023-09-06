@@ -1,0 +1,13 @@
+rate,min_time,package,algorithm,n_arg,time_setup,date,compiler,debug
+7.5e+06,0.500,double,det_by_minor,9,true,2023-9-6,Clang-16.0.6,false
+7.8e+06,0.500,double,det_by_minor,9,false,2023-9-6,Clang-16.0.6,false
+1.1e+06,0.500,double,an_ode,9,true,2023-9-6,Clang-16.0.6,false
+1.1e+06,0.500,double,an_ode,9,false,2023-9-6,Clang-16.0.6,false
+1.2e+06,0.500,adept,det_by_minor,9,true,2023-9-6,Clang-16.0.6,false
+1.9e+06,0.500,adept,det_by_minor,9,false,2023-9-6,Clang-16.0.6,false
+9.0e+04,0.500,adept,an_ode,9,true,2023-9-6,Clang-16.0.6,false
+1.0e+05,0.500,adept,an_ode,9,false,2023-9-6,Clang-16.0.6,false
+3.1e+05,0.500,adolc,det_by_minor,9,true,2023-9-6,Clang-16.0.6,false
+6.1e+05,0.500,adolc,det_by_minor,9,false,2023-9-6,Clang-16.0.6,false
+2.4e+04,0.500,adolc,an_ode,9,true,2023-9-6,Clang-16.0.6,false
+9.0e+04,0.500,adolc,an_ode,9,false,2023-9-6,Clang-16.0.6,false

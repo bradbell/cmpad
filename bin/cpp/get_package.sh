@@ -24,7 +24,7 @@ set -e -u
 #
 # Syntax
 # ******
-# ``bin/c++/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# ``bin/cpp/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
 #
 # build_type
 # ==========
@@ -90,9 +90,9 @@ top_srcdir=$(pwd)
 # }
 # prefix
 # ******
-# This is the prefix for the packages installed by ``bin/c++/get_package.sh`` :
+# This is the prefix for the packages installed by ``bin/cpp/get_package.sh`` :
 # {xrst_code sh}
-prefix=$top_srcdir/c++/build/prefix
+prefix=$top_srcdir/cpp/build/prefix
 # {xrst_code}
 # Note that this is a local install and does not require any special
 # permissions.
@@ -119,7 +119,7 @@ echo_eval() {
    eval $*
 }
 # -----------------------------------------------------------------------------
-program='bin/c++/get_package.sh'
+program='bin/cpp/get_package.sh'
 #
 if [ ! -d '.git' ]
 then

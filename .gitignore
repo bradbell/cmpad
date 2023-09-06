@@ -3,7 +3,7 @@
 #
 # used to build and run the project
 /build/
-/c++/build/
+/cpp/build/
 #
 # used to install other packages
 /external/
@@ -22,7 +22,7 @@
 git_commit.log
 #
 # cmake creates this file from configure.hpp.in
-/c++/include/cmpad/configure.hpp
+/cpp/include/cmpad/configure.hpp
 #
 # used by vim to backup and restore changes
 *.swp

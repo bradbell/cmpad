@@ -23,7 +23,7 @@ cmpad-2023.9.6
 
 Example Speed Comparison
 ************************
-see :ref:`xam_main.py@c++/src/xam_main.csv`
+see :ref:`xam_main.py@cpp/src/xam_main.csv`
 
 Gradient Source Code Comparison
 *******************************
@@ -42,10 +42,10 @@ Documentation
 *************
 
 {xrst_toc_table before
-   bin/c++/get_package.sh
-   c++/src/main.cpp
-   c++/include/cmpad/configure.hpp.in
-   c++/include/cmpad/gradient.hpp
+   bin/cpp/get_package.sh
+   cpp/src/main.cpp
+   cpp/include/cmpad/configure.hpp.in
+   cpp/include/cmpad/gradient.hpp
 }
 
 {xrst_end cmpad}
@@ -56,10 +56,10 @@ Simple Types
 ############
 
 {xrst_toc_table
-   c++/include/cmpad/option_t.hpp
-   c++/include/cmpad/vector.hpp
-   c++/include/cmpad/vec_vec_str.hpp
-   c++/include/cmpad/fun_obj.hpp
+   cpp/include/cmpad/option_t.hpp
+   cpp/include/cmpad/vector.hpp
+   cpp/include/cmpad/vec_vec_str.hpp
+   cpp/include/cmpad/fun_obj.hpp
 }
 
 {xrst_end type}
@@ -70,8 +70,8 @@ Algorithms Used to Compare Packages
 ###################################
 
 {xrst_toc_table
-   c++/include/cmpad/algo/det_by_minor.hpp
-   c++/include/cmpad/algo/an_ode.hpp
+   cpp/include/cmpad/algo/det_by_minor.hpp
+   cpp/include/cmpad/algo/an_ode.hpp
 }
 
 {xrst_end algorithm}
@@ -82,12 +82,12 @@ General Purpose Utilities
 #########################
 
 {xrst_toc_table
-   c++/include/cmpad/fun_speed.hpp
-   c++/include/cmpad/near_equal.hpp
-   c++/lib/csv_read.cpp
-   c++/lib/csv_speed.cpp
-   c++/lib/csv_write.cpp
-   c++/lib/uniform_01.cpp
+   cpp/include/cmpad/fun_speed.hpp
+   cpp/include/cmpad/near_equal.hpp
+   cpp/lib/csv_read.cpp
+   cpp/lib/csv_speed.cpp
+   cpp/lib/csv_write.cpp
+   cpp/lib/uniform_01.cpp
 }
 
 {xrst_end utility}

@@ -4,9 +4,9 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
-if [ "$0" != 'bin/c++/run_cmake.sh' ]
+if [ "$0" != 'bin/cpp/run_cmake.sh' ]
 then
-   echo 'bin/c++/run_cmake.sh: must be executed the top source directory'
+   echo 'bin/cpp/run_cmake.sh: must be executed the top source directory'
    exit 1
 fi
 #
@@ -54,12 +54,12 @@ do
    esac
 done
 # -----------------------------------------------------------------------------
-# c++/build
-if [ ! -e c++/build ]
+# cpp/build
+if [ ! -e cpp/build ]
 then
-   mkdir -p c++/build
+   mkdir -p cpp/build
 fi
-cd c++/build
+cd cpp/build
 if [ -e CMakeCache.txt ]
 then
    rm CMakeCache.txt
