@@ -6,8 +6,8 @@
 /*
 {xrst_begin xam_det_of_minor.cpp}
 
-Example and Test of det_of_minor
-################################
+C++ Example and Test of det_of_minor
+####################################
 
 {xrst_literal
    // BEGIN C++
