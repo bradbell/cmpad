@@ -41,29 +41,30 @@ import csv
 import re
 import subprocess
 def main() :
-   os.chdir('c++')
+   #
+   # program
+   program = 'bin/c++/xam_main.py'
    #
    # cmpad_main
-   cmpad_main = 'build/src/cmpad'
+   cmpad_main = 'c++/build/src/cmpad'
    #
    # configure_file
-   configure_file = 'include/cmpad/configure.hpp'
+   configure_file = 'c++/include/cmpad/configure.hpp'
    #
    # check
-   usage = 'bin/xam_main.py'
    if len(sys.argv) != 1 :
-      msg = 'bin/xam_main.py: does not expect any arguments'
+      msg = f'{program}: does not expect any arguments'
       sys.exit(msg)
-   if sys.argv[0] != 'bin/xam_main.py' :
-      msg = 'bin/xam_main.py: must be executed from its parent directory'
+   if sys.argv[0] != program :
+      msg = f'{program}: must be executed from the top source directory'
       sys.exit(msg)
    if not os.path.isfile(configure_file) :
-      msg  = f'bin/xam_main.py: {configure_file} does not exist'
-      msg += '\nmust use cmake to create it'
+      msg  = f'{program}: {configure_file} does not exist.'
+      msg += '\nUse bin/c++/run_cmake.sh to create it.'
       sys.exit(msg)
    if not os.path.isfile(cmpad_main) :
-      msg  = f'bin/xam_main.py: {cmpad_main} does not exist'
-      msg += '\nmust use make to create it'
+      msg  = f'{program}: {cmpad_main} does not exist.'
+      msg += '\nUse use make in c++/build to create it.'
       sys.exit(msg)
    #
    # package_list
@@ -86,10 +87,10 @@ def main() :
    print( f'package_list = {package_list}' )
    #
    # change directory
-   os.chdir('build')
+   os.chdir('c++/build')
    #
    # cmpad_main
-   index = cmpad_main.find('/')
+   index      = len('c++/build')
    cmpad_main = cmpad_main[index+1 :]
    #
    # file_name

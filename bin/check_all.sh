@@ -64,7 +64,7 @@ echo "test/test"
 #
 # xam_main.py
 cd ../..
-echo_eval bin/xam_main.py
+echo_eval bin/c++/xam_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0
