@@ -18,7 +18,11 @@ if not os.path.isfile( file_in ) :
    msg = f'cpp2py.py: file_in = {file_in} is not a file'
    sys.exit(msg)
 if os.path.exists( file_out ) :
-   msg = f'cpp2py.py: file_out = {file_out} exists'
+   msg  = f'file_out = {file_out} exists. Replace it [y/n] ?'
+   ch   = input(msg)
+   if ch != 'y' :
+      msg = 'cpp2py.py: aborting becasue file_out already exists'
+      sys.exit(msg)
 #
 # file_data
 file_obj  = open(file_in, 'r')
@@ -66,6 +70,29 @@ pattern = r'if\((.*)\)'
 replace = r'if \1 :'
 file_data = re.sub(pattern, replace, file_data)
 #
+# else
+pattern = r'\n( *)else\n'
+replace = r'\n\1else :\n'
+file_data = re.sub(pattern, replace, file_data)
+#
+# {}
+pattern = r'\n *[{}] *\n'
+replace = r'\n'
+file_data = re.sub(pattern, replace, file_data)
+#
+# {
+pattern = r'{'
+replace = r' '
+file_data = re.sub(pattern, replace, file_data)
+#
+# types
+type_list = []
+replace   = r'\n\1'
+type_list.append( r'\n( *)size_t  *')
+type_list.append( r'\n( *)double  *')
+for pattern in type_list :
+   file_data = re.sub(pattern, replace, file_data)
+#
 # delete
 replace     = ''
 delete_list = []
@@ -78,13 +105,14 @@ delete_list.append( r'\n.*# END.*' )
 delete_list.append( r'\n[#] *include.*' )
 delete_list.append( r'const.*& *' )
 delete_list.append( r'cmpad::.*& *' )
-delete_list.append( r'size_t *' )
-delete_list.append( r'int *' )
 delete_list.append( r';' )
 for pattern in delete_list :
    file_data = re.sub(pattern, replace, file_data)
 #
+# file_out
+file_obj = open(file_out, 'w')
+file_obj.write(file_data)
+file_obj.close()
 #
 #
-print( file_data )
 print( 'cpp2py.py: OK' )

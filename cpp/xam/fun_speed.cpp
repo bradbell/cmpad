@@ -78,7 +78,7 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       // min_time
       double min_time = 0.1;
       //
-      // my_fun_obj
+      // my_fun
       my_fun_obj my_fun;
       //
       // option_one
