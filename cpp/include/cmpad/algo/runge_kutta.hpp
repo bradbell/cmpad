@@ -22,8 +22,8 @@ Fourth Order Runge Kutta Method
 
 Syntax
 ******
-| ``# include <cmpad/algo/runge_kutta.hpp>``
-| *yf* = ``cmpad::runge_kutta`` ( *fun* , *yi* , *tf*, *ns* )
+| |tab| ``# include <cmpad/algo/runge_kutta.hpp>``
+| |tab| *yf* = ``cmpad::runge_kutta`` ( *fun* , *yi* , *tf*, *ns* )
 
 Prototype
 *********

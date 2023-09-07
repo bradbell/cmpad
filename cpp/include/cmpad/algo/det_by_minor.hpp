@@ -12,10 +12,10 @@ C++ Determinant Using Expansion by Minors
 
 Syntax
 ******
-|  ``# include <cmpad/algo/det_by_minor.hpp>``
-|  ``cmpad::det_by_minor`` < *Scalar* > *det*
-| *det* . ``setup`` ( *option* )
-|  *y* = *det* ( *x* )
+| |tab| ``# include <cmpad/algo/det_by_minor.hpp>``
+| |tab| ``cmpad::det_by_minor`` < *Scalar* > *det*
+| |tab| *det* . ``setup`` ( *option* )
+| |tab| *y* = *det* ( *x* )
 
 Prototype
 *********

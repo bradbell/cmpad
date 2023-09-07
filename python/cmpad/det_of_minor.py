@@ -13,8 +13,7 @@ Python Determinant of a Minor
 
 Syntax
 ******
-
-| *d* = ``cmpad::det_of_minor`` ( *a* , *n* , *m* , *r* , *c* )
+| |tab| *d* = ``cmpad::det_of_minor`` ( *a* , *n* , *m* , *r* , *c* )
 
 Prototype
 *********

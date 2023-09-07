@@ -10,10 +10,9 @@ Python Determinant Using Expansion by Minors
 
 Syntax
 ******
-
-| *det* = ``cmpad.det_by_minor()``
-| *det* . ``setup`` ( *option* )
-| *y* = *det* ( *x* )
+| |tab| *det* = ``cmpad.det_by_minor()``
+| |tab| *det* . ``setup`` ( *option* )
+| |tab| *y* = *det* ( *x* )
 
 Prototype
 *********

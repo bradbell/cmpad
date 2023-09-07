@@ -15,9 +15,8 @@ C++ Determinant of a Minor
 
 Syntax
 ******
-
-| ``# include <cmpad/algo/det_of_minor.hpp>``
-| *d* = ``cmpad::det_of_minor`` ( *a* , *n* , *m* , *r* , *c* )
+| |tab| ``# include <cmpad/algo/det_of_minor.hpp>``
+| |tab| *d* = ``cmpad::det_of_minor`` ( *a* , *n* , *m* , *r* , *c* )
 
 Prototype
 *********

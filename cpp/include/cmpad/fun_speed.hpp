@@ -15,9 +15,9 @@ Determine Execution Speed of a Function Object
 
 Syntax
 ******
-|  ``# include <cmpad/fun_speed.hpp>``
-|  *y* = *fun_obj* ( *x* )
-|  *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *option*, *min_time* )
+| |tab| ``# include <cmpad/fun_speed.hpp>``
+| |tab| *y* = *fun_obj* ( *x* )
+| |tab| *rate* = ``cmpad::fun_speed`` ( *fun_obj*, *option*, *min_time* )
 
 Prototype
 *********

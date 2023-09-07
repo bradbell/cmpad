@@ -15,9 +15,9 @@ Calculate Gradient Using Sacado
 
 Syntax
 ******
-|  ``# include <cmpad/sacado/gradient.hpp>``
-|  ``cmpad::sacado::gradient`` < *TemplateAlgo* > *grad*
-|  *g* = *grad* ( *x* )
+| |tab| ``# include <cmpad/sacado/gradient.hpp>``
+| |tab| ``cmpad::sacado::gradient`` < *TemplateAlgo* > *grad*
+| |tab| *g* = *grad* ( *x* )
 
 
 Purpose

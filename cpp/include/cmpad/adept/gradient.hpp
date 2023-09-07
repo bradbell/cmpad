@@ -15,9 +15,9 @@ Calculate Gradient Using Adept
 
 Syntax
 ******
-|  ``# include <cmpad/adept/gradient.hpp>``
-|  ``cmpad::adept::gradient`` < *TemplateAlgo* > *grad*
-|  *g* = *grad* ( *x* )
+| |tab| ``# include <cmpad/adept/gradient.hpp>``
+| |tab| ``cmpad::adept::gradient`` < *TemplateAlgo* > *grad*
+| |tab| *g* = *grad* ( *x* )
 
 
 Purpose

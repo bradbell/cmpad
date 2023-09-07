@@ -17,7 +17,7 @@ The Option Type
 
 Syntax
 ******
-| ``# include <cmpad/option_t.hpp>``
+| |tab| ``# include <cmpad/option_t.hpp>``
 
 Source Code
 ***********

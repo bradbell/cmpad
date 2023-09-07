@@ -12,9 +12,8 @@ Check Gradient of Determinant
 
 Syntax
 ******
-
-| ``# include "check_grad_ode.hpp"``
-| *ok* = check_grad_ode( *grad_ode* )
+| |tab| ``# include "check_grad_ode.hpp"``
+| |tab| *ok* = check_grad_ode( *grad_ode* )
 
 
 Prototype

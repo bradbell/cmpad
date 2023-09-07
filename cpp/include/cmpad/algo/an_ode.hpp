@@ -19,10 +19,10 @@ Use Runge-Kutta Method to Solve an ODE
 
 Syntax
 ******
-| ``# include <cmpad/algo/an_ode.hpp>``
-| ``cmpad::an_ode`` < *Scalar* > *ode*
-| *ode* . ``setup`` ( *option* )
-| *yf* = *ode* ( *x* )
+| |tab| ``# include <cmpad/algo/an_ode.hpp>``
+| |tab| ``cmpad::an_ode`` < *Scalar* > *ode*
+| |tab| *ode* . ``setup`` ( *option* )
+| |tab| *yf* = *ode* ( *x* )
 
 Prototype
 *********

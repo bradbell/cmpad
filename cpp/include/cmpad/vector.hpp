@@ -17,9 +17,8 @@ The cmpad Vector Template Type
 
 Syntax
 ******
-
-| ``# include <cmpad/vector.hpp>``
-| ``cmpad::vector`` < *Scalar* > *vec*
+| |tab| ``# include <cmpad/vector.hpp>``
+| |tab| ``cmpad::vector`` < *Scalar* > *vec*
 
 Scalar
 ******

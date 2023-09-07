@@ -10,7 +10,7 @@ The cmpad Main Program
 
 Syntax
 ******
-| ``cmpad`` *options*
+| |tab| ``cmpad`` *options*
 
 Options
 *******

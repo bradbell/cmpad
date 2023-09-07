@@ -15,9 +15,9 @@ Calculate Gradient Using CppAD Compiled Derivative Calculation
 
 Syntax
 ******
-| ``# include <cmpad/cppad_jit/gradient.hpp>``
-|  ``cmpad::cppad_jit::gradient`` < *TemplateAlgo* > *grad*
-|  *g* = *grad* ( *x* )
+| |tab| ``# include <cmpad/cppad_jit/gradient.hpp>``
+| |tab| ``cmpad::cppad_jit::gradient`` < *TemplateAlgo* > *grad*
+| |tab| *g* = *grad* ( *x* )
 
 
 Purpose

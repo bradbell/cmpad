@@ -15,10 +15,9 @@ Simulate a [0,1] Uniform Random Variate
 
 Syntax
 ******
-
-|  ``# include <cmpad/speed/uniform_01.hpp>``
-|  ``std::srand`` ( *seed* )
-|  ``cmpad::uniform_01`` ( *x* )
+| |tab| ``# include <cmpad/speed/uniform_01.hpp>``
+| |tab| ``std::srand`` ( *seed* )
+| |tab| ``cmpad::uniform_01`` ( *x* )
 
 Prototype
 *********

@@ -15,9 +15,9 @@ Abstract Class for a Function Object
 
 Syntax
 ******
-|  ``# include <cmpad/fun_obj.hpp``
-|  ``cmpad::fun_obj`` < *Scalar* > *fun*
-|  *y* = *fun* ( *x* )
+| |tab| ``# include <cmpad/fun_obj.hpp``
+| |tab| ``cmpad::fun_obj`` < *Scalar* > *fun*
+| |tab| *y* = *fun* ( *x* )
 
 Source Code
 ***********
