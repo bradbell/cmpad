@@ -26,7 +26,7 @@ Prototype
 
 Purpose
 *******
-This implements the :ref:`fun_obj-name` interface.
+This implements the :ref:`cpp_fun_obj-name` interface.
 The function call computes
 the determinant of a square matrix using expansion by minors.
 
@@ -49,11 +49,11 @@ the type *Scalar* must support the following operations:
 
 value_type
 **********
-This is the same type as *Scalar* ; see :ref:`fun_obj@value_type` .
+This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@value_type` .
 
 det
 ***
-The object *det* corresponds to :ref:`fun_obj@fun` in the function
+The object *det* corresponds to :ref:`cpp_fun_obj@fun` in the function
 object interface.
 It computes the determinant of a square matrix.
 

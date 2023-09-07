@@ -28,8 +28,8 @@ the determinant of a square matrix using expansion by minors.
 
 Scalar
 ******
-We use *Scalar* for he type of he elements of *x*.
-If *v* is a *Scalar* or ``float`` ,
+We use *Scalar* for the type of he elements of *x*.
+If *v* is a *Scalar* and *u* is a *Scalar* or ``float`` ,
 the type *Scalar* must support the following operations:
 
 .. csv-table::
@@ -37,14 +37,14 @@ the type *Scalar* must support the following operations:
    :header-rows: 1
 
    Syntax,           Description,                                   Result Type
-   *x* = *y*,        set value of *x* to current value of *y*       *Scalar*
-   *x* + *y*,        value of *x* plus *y*,                         *Scalar*
-   *x* - *y*,        value of *x* minus *y*,                        *Scalar*
-   *x* * *y*,        value of *x* times value of *y*,               *Scalar*
+   *u* = *v*,        set value of *u* to current value of *v*       *Scalar*
+   *u* + *v*,        value of *u* plus *v*,                         *Scalar*
+   *u* - *v*,        value of *u* minus *v*,                        *Scalar*
+   *u* * *v*,        value of *u* times value of *v*,               *Scalar*
 
 det
 ***
-The object *det* computes the determinant of a square matrix.
+The :ref:`py_fun_obj-name` *det* computes the determinant of a square matrix.
 
 option
 ******

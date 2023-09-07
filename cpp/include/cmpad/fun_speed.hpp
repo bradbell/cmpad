@@ -5,13 +5,13 @@
 # ifndef CMPAD_FUN_SPEED_HPP
 # define CMPAD_FUN_SPEED_HPP
 /*
-{xrst_begin fun_speed}
+{xrst_begin cpp_fun_speed}
 {xrst_spell
    obj
 }
 
-Determine Execution Speed of a Function Object
-##############################################
+Determine C++ Execution Speed
+#############################
 
 Syntax
 ******
@@ -33,12 +33,12 @@ We are testing the speed of the evaluation of *y* by this function object.
 x
 *
 This is a ``cmpad::vector<double>`` object with size equal to the
-dimension of the :ref:`fun_obj@domain` space for the function object.
+dimension of the :ref:`cpp_fun_obj@domain` space for the function object.
 
 y
 *
 This is a ``cmpad::vector<double>`` object with size equal to the
-dimension of the :ref:`fun_obj@range` space for the function object.
+dimension of the :ref:`cpp_fun_obj@range` space for the function object.
 
 option
 ******
@@ -73,7 +73,7 @@ Example
 *******
 :ref:`xam_fun_speed.cpp-name` is an example and test that uses this function.
 
-{xrst_end fun_speed}
+{xrst_end cpp_fun_speed}
 -------------------------------------------------------------------------------
 */
 # include <chrono>

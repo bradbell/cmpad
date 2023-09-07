@@ -8,7 +8,9 @@ Python Algorithmic Differentiation
 ##################################
 
 {xrst_toc_table
+   python/cmpad/fun_obj.xrst
    python/cmpad/det_by_minor.py
+   python/cmpad/fun_speed.py
 }
 
 {xrst_end python}

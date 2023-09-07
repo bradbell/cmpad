@@ -33,7 +33,7 @@ Prototype
 
 Purpose
 *******
-This implements the :ref:`fun_obj-name` interface.
+This implements the :ref:`cpp_fun_obj-name` interface.
 The function call uses :ref:`runge_kutta-name` to
 compute the solution of the ODE defined below:
 
@@ -73,7 +73,7 @@ This initial value problem has the following analytic solution
 
 ode
 ***
-The object *ode* corresponding to :ref:`fun_obj@fun`
+The object *ode* corresponding to :ref:`cpp_fun_obj@fun`
 in the function object interface.
 It computes a Runge-Kutta approximation for :math:`y(t)` at :math:`t = 2` .
 Note that this approximation for :math:`y_i (t)` has no truncation error

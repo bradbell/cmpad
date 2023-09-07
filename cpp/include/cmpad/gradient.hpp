@@ -27,22 +27,22 @@ Source Code
 
 algo
 ****
-The *Algo* class is derived from the :ref:`fun_obj-name` class.
+The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class.
 The *algo* object is initialized using its
-:ref:`fun_obj@setup` member function.
+:ref:`cpp_fun_obj@setup` member function.
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*.range() can be greater than one.
 
 value_type
 **********
 There are two value function objects,
-and hence two :ref:`fun_obj@value_type` ,
+and hence two :ref:`cpp_fun_obj@value_type` ,
 associated with a gradient class.
 
 1. Algo::value_type is the scalar type used when evaluating the algorithm.
 2. cmpad::gradient<Algo>::value_type is the scalar type
    of the arguments and return value for the gradient object; i.e., double;
-   see :ref:`fun_obj@value_type` .
+   see :ref:`cpp_fun_obj@value_type` .
 
 grad
 ****
@@ -56,12 +56,12 @@ compute by *algo*.
 domain
 ******
 This returns the dimension of the
-:ref:`fun_obj@domain` space dimension for the function and gradient.
+:ref:`cpp_fun_obj@domain` space dimension for the function and gradient.
 
 range
 *****
 This returns the dimension of the
-:ref:`fun_obj@range` space dimension for the gradient.
+:ref:`cpp_fun_obj@range` space dimension for the gradient.
 The dimension of the range space for the gradient is equal
 to the dimension of the domain space for the gradient and function.
 Hence ``range`` is implemented by this interface and not virtual.

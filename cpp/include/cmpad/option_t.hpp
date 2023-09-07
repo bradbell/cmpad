@@ -32,7 +32,7 @@ namespace cmpad {
 
 n_arg
 *****
-is the dimension of the :ref:`fun_obj@domain` space for the algorithm.
+is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
 
 time_setup
 **********

@@ -27,7 +27,7 @@ This implements the :ref:`gradient-name` interface using autodiff.
 TemplateAlgo
 ************
 The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <fun_obj-name>` .
+:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
 
 value_type
 **********

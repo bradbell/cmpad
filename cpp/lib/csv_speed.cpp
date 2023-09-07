@@ -44,7 +44,7 @@ or a derivative of the algorithm, was calculated.
 
 min_time
 ********
-This is the :ref:`fun_speed@min_time` used
+This is the :ref:`cpp_fun_speed@min_time` used
 by fun_speed when it computed *rate*.
 
 package

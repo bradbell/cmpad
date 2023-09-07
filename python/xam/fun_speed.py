@@ -2,9 +2,22 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+r'''
+{xrst_begin xam_fun_speed.py}
 
+Example and Test of Python fun_speed
+####################################
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end xam_fun_speed.py}
+'''
+# BEGIN PYTHON
 import cmpad
-
+#
+# my_fun_obj
 class my_fun_obj :
    #
    # domain
@@ -27,6 +40,8 @@ class my_fun_obj :
          sum_xi += xi
       return [ sum_xi ]
 
+#
+# xam_fun_speed
 def xam_fun_speed() :
    #
    # ok
@@ -57,6 +72,8 @@ def xam_fun_speed() :
    ok   &= 1.7 < ratio and ratio < 2.3
    #
    return ok
-
+#
+# test_fun_speed
 def test_fun_speed() :
    assert xam_fun_speed() == True
+# END PYTHON

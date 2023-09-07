@@ -5,13 +5,13 @@
 # ifndef CMPAD_FUN_OBJ_HPP
 # define CMPAD_FUN_OBJ_HPP
 /*
-{xrst_begin fun_obj}
+{xrst_begin cpp_fun_obj}
 {xrst_spell
    obj
 }
 
-Abstract Class for a Function Object
-####################################
+Abstract Class for a C++ Function Object
+########################################
 
 Syntax
 ******
@@ -78,7 +78,7 @@ Example
 *******
 :ref:`xam_fun_obj.cpp-name` is an example and test that uses this function.
 
-{xrst_end fun_obj}
+{xrst_end cpp_fun_obj}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++

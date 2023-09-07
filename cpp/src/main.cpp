@@ -59,7 +59,7 @@ is reached.
 n_arg
 *****
 This is the size of the argument to the algorithm; i.e.,
-its the dimension of its :ref:`fun_obj@domain` space.
+its the dimension of its :ref:`cpp_fun_obj@domain` space.
 The default value for this option is ``9`` .
 
 package
