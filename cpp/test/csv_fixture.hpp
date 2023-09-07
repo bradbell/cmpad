@@ -90,8 +90,12 @@ public:
          "time_setup",
          "date",
          "compiler",
-         "debug"
+         "debug",
+         "language"
       };
+      //
+      // language
+      std::string language = "c++";
       //
       // n_row, n_time_setup
       size_t n_row     = csv_table.size();
@@ -113,12 +117,13 @@ public:
       BOOST_CHECK( csv_table[n_row-2][5] == "true"   );
       BOOST_CHECK( csv_table[n_row-1][5] == "false"  );
       //
-      // check column 3, 4, 7, 8
+      // check column 3, 4, 7-9
       for(size_t i = n_row-1; i < n_row; ++i)
       {  BOOST_CHECK( csv_table[i][3] == algorithm_ );
          BOOST_CHECK( csv_table[i][4] == std::to_string(n_arg_) );
          BOOST_CHECK( csv_table[i][7] == CMPAD_CXX_COMPILER );
          BOOST_CHECK( csv_table[1][8] == debug_ );
+         BOOST_CHECK( csv_table[1][9] == language );
       }
    }
 };

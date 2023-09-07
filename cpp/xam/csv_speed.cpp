@@ -86,6 +86,9 @@ bool xam_csv_speed(void)
    std::string debug = "false";
 # endif
    //
+   // language
+   std::string language = "c++"
+   //
    // col_name, n_col
    cmpad::vector<std::string> col_name = {
       "rate",
@@ -96,7 +99,8 @@ bool xam_csv_speed(void)
       "time_setup",
       "date",
       "compiler",
-      "debug"
+      "debug",
+      "language"
    };
    size_t n_col = col_name.size();
    //
@@ -111,7 +115,7 @@ bool xam_csv_speed(void)
    ok &=( csv_table[0] == col_name );
    //
    // ok
-   // check column 1-5, 7, 8
+   // check column 1-5, 7-9
    //
    ok &= ( std::atof( csv_table[1][1].c_str() ) == min_time );
    ok &= ( csv_table[1][2] == "double" );
@@ -120,6 +124,7 @@ bool xam_csv_speed(void)
    ok &= ( csv_table[1][5] == to_string(time_setup) );
    ok &= ( csv_table[1][7] == CMPAD_CXX_COMPILER );
    ok &= ( csv_table[1][8] == debug;
+   ok &= ( csv_table[1][9] == language;
    //
    return ok;
 }

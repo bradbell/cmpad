@@ -32,7 +32,7 @@ is the name of the file were the results will be recorded.
 #. If the file is empty on input, the following csv header line
    is written to the file before the result for this call::
 
-      rate,min_time,package,algorithm,n_arg,date,compiler,debug
+      rate,min_time,package,algorithm,n_arg,date,compiler,debug,language
 
 #. If the file is not empty on input, it is assumed that the header line
    for this file is as above.
@@ -86,6 +86,12 @@ The *debug* value is automatically determined and not an argument to csv_speed.
 {xrst_toc_hidden
    cpp/xam/csv_speed.cpp
 }
+
+language
+********
+This is always ``c++`` because this routine is for timing C++ functions.
+
+
 Example
 *******
 :ref:`xam_csv_speed.cpp-name` contains an example and test of this routine.
@@ -131,7 +137,8 @@ void csv_speed(
          "time_setup",
          "date",
          "compiler",
-         "debug"
+         "debug",
+         "language"
       };
       csv_table.push_back(row);
    }
@@ -169,6 +176,9 @@ void csv_speed(
    std::string debug = "false";
 # endif
    //
+   // language
+   std::string language = "c++";
+   //
    // n_arg
    std::string n_arg = std::to_string(option.n_arg);
    //
@@ -189,7 +199,8 @@ void csv_speed(
       time_setup,
       date,
       compiler,
-      debug
+      debug,
+      language
    };
    csv_table.push_back(row);
    //
