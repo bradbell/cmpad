@@ -50,4 +50,3 @@ def fun_speed(fun_obj, option, min_time) :
       t_diff  = t_end - t_start
    rate = repeat / t_diff
    return rate
-

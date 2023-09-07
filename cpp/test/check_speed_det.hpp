@@ -15,7 +15,7 @@ void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
    //
    // min_time
    // minimum time for test in seconds
-   double min_time = 0.2;
+   double min_time = 0.1;
    //
    // previous_rate, size
    double previous_rate = 0.0;

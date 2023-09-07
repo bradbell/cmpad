@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+# SPDX-FileContributor: 2023 Bradley M. Bell
+# ---------------------------------------------------------------------------
 
 import cmpad
 
@@ -56,4 +60,3 @@ def xam_fun_speed() :
 
 def test_fun_speed() :
    assert xam_fun_speed() == True
-   

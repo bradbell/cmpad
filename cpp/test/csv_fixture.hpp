@@ -35,7 +35,7 @@ public:
    // ctor
    // min_time_, debug_
    csv_fixture(void)
-   : min_time_(0.5)
+   : min_time_(0.1)
 # ifdef NDEBUG
    , debug_("false")
 # else
