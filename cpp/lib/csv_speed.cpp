@@ -55,7 +55,7 @@ but rather an evaluations of the algorithm using the C++ type double.
 
 algorithm
 *********
-This is the name of the algorithm; e.g., :ref:`det_by_minor-name` .
+This is the name of the algorithm; e.g., :ref:`cpp_det_by_minor-name` .
 
 n_arg
 *****

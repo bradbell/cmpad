@@ -3,7 +3,7 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ----------------------------------------------------------------------------
 r'''
-{xrst_begin xam_det_minor.py}
+{xrst_begin xam_det_of_minor.py}
 
 Python Example and Test of det_of_minor
 #######################################
@@ -13,7 +13,7 @@ Python Example and Test of det_of_minor
    # END PYTHON
 }
 
-{xrst_end xam_det_minor.py}
+{xrst_end xam_det_of_minor.py}
 '''
 # BEGIN PYTHON
 import cmpad

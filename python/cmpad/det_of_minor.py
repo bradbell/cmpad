@@ -144,7 +144,7 @@ The return value *d* is equal to the determinant of the minor :math:`M`.
 Example
 *******
 :ref:`det_of_minor.py-name`
-contains an example and test of ``py_det_of_minor`` .
+contains an example and test of ``det_of_minor`` .
 
 {xrst_end py_det_of_minor}
 ---------------------------------------------------------------------------

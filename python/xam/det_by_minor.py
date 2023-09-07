@@ -2,9 +2,23 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+r'''
+{xrst_begin xam_det_by_minor.py}
 
+Python Example and Test of det_by_of_minor
+##########################################
+
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end xam_det_by_minor.py}
+'''
+# BEGIN PYTHON
 import cmpad
-
+#
+# xam_det_by_minor
 def xam_det_by_minor() :
    #
    # ok
@@ -42,6 +56,8 @@ def xam_det_by_minor() :
    ok &= y[0] == check
    #
    return ok
-
+#
+# test_det_by_minor
 def test_det_by_minor() :
    assert xam_det_by_minor() == True
+# END PYTHON

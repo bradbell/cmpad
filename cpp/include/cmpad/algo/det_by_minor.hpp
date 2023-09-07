@@ -5,10 +5,10 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ----------------------------------------------------------------------------
 /*
-{xrst_begin_parent det_by_minor}
+{xrst_begin_parent cpp_det_by_minor}
 
-Determinant Using Expansion by Minors
-#####################################
+C++ Determinant Using Expansion by Minors
+#########################################
 
 Syntax
 ******
@@ -98,12 +98,12 @@ Source Code
 ***********
 :ref:`det_by_minor.hpp-name` is the source code for this algorithm.
 
-{xrst_end det_by_minor}
+{xrst_end cpp_det_by_minor}
 ---------------------------------------------------------------------------
 {xrst_begin det_by_minor.hpp}
 
-det_by_minor: Source Code
-#########################
+C++ det_by_minor: Source Code
+#############################
 {xrst_literal
    // BEGIN C++
    // END C++

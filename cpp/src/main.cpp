@@ -33,7 +33,7 @@ when the option is not present.
 
 algorithm
 *********
-The only choices (so far) for this option are :ref:`det_by_minor-name`
+The only choices (so far) for this option are :ref:`cpp_det_by_minor-name`
 and :ref:`an_ode-name` .
 The default value for this option is ``det_by_minor`` .
 

@@ -26,7 +26,7 @@ Prototype
 
 grad_det
 ********
-Is a :ref:`gradient-name` object for a :ref:`det_by_minor-name` algorithm.
+Is a :ref:`gradient-name` object for a :ref:`cpp_det_by_minor-name` algorithm.
 
 ok
 **
