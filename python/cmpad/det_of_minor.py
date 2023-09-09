@@ -17,9 +17,9 @@ Syntax
 
 Prototype
 *********
-{xrst_literal
-   # BEGIN PROTOTYPE
-   # END PROTOTYPE
+{xrst_literal ,
+   # BEGIN DEF, # END DEF
+   # BEGIN RETURN, # END RETURN
 }
 
 Purpose
@@ -161,12 +161,13 @@ Python det_of_minor: Source Code
 ---------------------------------------------------------------------------
 '''
 # BEGIN PYTHON
-# BEGIN PROTOTYPE
+# BEGIN DEF
 def det_of_minor(a, n, m, r, c) :
-   assert  len(a) == n * n
-   assert  len(r) == n + 1
-   assert  len(c) == n + 1
-   # END PROTOTYPE
+   assert m <= n
+   assert len(a) == n * n
+   assert len(r) == n + 1
+   assert len(c) == n + 1
+   # END DEF
    #
    # R0 = R(0)
    R0 = r[n]
@@ -180,9 +181,9 @@ def det_of_minor(a, n, m, r, c) :
    if  m == 1  :
       return a[ R0 * n + Cj ]
    #
-   # detM
+   # d
    # initialize determinant of the minor M
-   detM = 0
+   d = 0
    #
    # sign
    # initialize sign of factor for next sub-minor
@@ -215,12 +216,12 @@ def det_of_minor(a, n, m, r, c) :
       # restore column with index j in represenation of M as a minor of A
       c[Cj1] = Cj
       #
-      # detM
+      # d
       # include this sub-minor term in the summation
       if  sign > 0  :
-         detM = detM + M0j * detS
+         d = d + M0j * detS
       else :
-         detM = detM - M0j * detS
+         d = d - M0j * detS
       #
       # advance to next column of M
       Cj1  = Cj
@@ -232,5 +233,9 @@ def det_of_minor(a, n, m, r, c) :
    r[n] = R0
    #
    # return the determinant of the minor M
-   return detM
+   # BEGIN RETURN
+   # ...
+   assert type(d) == type(a[0])
+   return d
+   # END RETURN
 # END PYTHON

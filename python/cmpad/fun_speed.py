@@ -19,7 +19,7 @@ Syntax
 Prototype
 *********
 {xrst_literal ,
-   # BEGIN PROTOTYPE, # END PROTOTYPE
+   # BEGIN DEF, # END DEF
    # BEGIN RETURN, # END RETURN
 }
 
@@ -72,12 +72,12 @@ Example
 import timeit
 import numpy
 #
-# BEGIN PROTOTYPE
+# BEGIN DEF
 def fun_speed(fun_obj, option, min_time) :
    assert type(option) == dict
    assert type(option['time_setup'] ) == bool
    assert type(min_time) == float
-   # END PROTOTYPE
+   # END DEF
    #
    # rng
    rng = numpy.random.default_rng()
@@ -121,6 +121,7 @@ def fun_speed(fun_obj, option, min_time) :
       t_diff  = t_end - t_start
    rate = repeat / t_diff
    # BEGIN RETURN
+   # ...
    assert type(rate) == float
    return rate
    # END RETURN
