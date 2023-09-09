@@ -2,6 +2,22 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+r'''
+{xrst_begin xam_csv_speed.py}
+
+Example and Test of Python csv_speed
+####################################
+
+Source Code
+***********
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end xam_csv_speed.py}
+'''
+# BEGIN PYTHON
 import os
 import cmpad
 import pathlib
@@ -96,3 +112,4 @@ def xam_csv_speed() :
 # test_csv_speed
 def test_csv_speed() :
    assert xam_csv_speed() == True
+# END PYTHON

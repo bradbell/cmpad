@@ -11,6 +11,7 @@ Python Algorithmic Differentiation
    python/cmpad/fun_obj.xrst
    python/cmpad/det_by_minor.py
    python/cmpad/fun_speed.py
+   python/cmpad/csv_speed.py
 }
 
 {xrst_end python}

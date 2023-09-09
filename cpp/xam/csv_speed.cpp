@@ -5,8 +5,8 @@
 /*
 {xrst_begin xam_csv_speed.cpp}
 
-Example and Test of csv_speed
-#############################
+Example and Test of C++ csv_speed
+#################################
 
 Source Code
 ***********
