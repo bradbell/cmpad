@@ -76,6 +76,7 @@ Example
 {xrst_end cpp_fun_speed}
 -------------------------------------------------------------------------------
 */
+# include <iostream>
 # include <chrono>
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/option_t.hpp>

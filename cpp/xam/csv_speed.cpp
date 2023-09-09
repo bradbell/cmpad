@@ -17,16 +17,13 @@ Source Code
 
 {xrst_end  xam_csv_speed.cpp}
 */
-# if ! CMPAD_HAS_ADOLC
-bool xam_csv_speed(void)
-{  return true; }
-# else // CMPAD_HAS_ADOLC
 
 // BEGIN C++
 # include <filesystem>
 # include <cmpad/configure.hpp>
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/fun_speed.hpp>
+# include <cmpad/csv_read.hpp>
 # include <cmpad/csv_speed.hpp>
 
 namespace {
@@ -39,6 +36,9 @@ namespace {
 }
 bool xam_csv_speed(void)
 {  //
+   // ok
+   bool ok = true;
+   //
    // filesystem
    namespace filesystem =  std::filesystem;
    //
@@ -48,14 +48,14 @@ bool xam_csv_speed(void)
    // file_name
    std::string file_name = "csv_speed.csv";
    filesystem::path file_path(CMPAD_PROJECT_DIR);
-   file_path /= "xam";
+   file_path /= "build";
    file_path /= file_name;
    file_name = file_path.c_str();
    if( filesystem::exists( file_path )  )
       std::remove( file_name.c_str() );
    //
    // package
-   std::string package = "adolc";
+   std::string package = "double";
    //
    // algorithm
    std::string algorithm = "det_by_minor";
@@ -73,7 +73,7 @@ bool xam_csv_speed(void)
    //
    // csv_speed
    cmpad::csv_speed(
-      file_name, rate, min_time, "double", algorithm, option
+      file_name, rate, min_time, package, algorithm, option
    );
    //
    // csv_table
@@ -87,7 +87,7 @@ bool xam_csv_speed(void)
 # endif
    //
    // language
-   std::string language = "c++"
+   std::string language = "c++";
    //
    // col_name, n_col
    cmpad::vector<std::string> col_name = {
@@ -117,16 +117,15 @@ bool xam_csv_speed(void)
    // ok
    // check column 1-5, 7-9
    //
-   ok &= ( std::atof( csv_table[1][1].c_str() ) == min_time );
-   ok &= ( csv_table[1][2] == "double" );
-   ok &= ( csv_table[1][3] == "det_by_minor" );
-   ok &= ( csv_table[1][4] == std::to_string(n_arg) );
-   ok &= ( csv_table[1][5] == to_string(time_setup) );
-   ok &= ( csv_table[1][7] == CMPAD_CXX_COMPILER );
-   ok &= ( csv_table[1][8] == debug;
-   ok &= ( csv_table[1][9] == language;
+   ok &= std::atof( csv_table[1][1].c_str() ) == min_time;
+   ok &= csv_table[1][2] == package;
+   ok &= csv_table[1][3] == "det_by_minor";
+   ok &= csv_table[1][4] == std::to_string(option.n_arg);
+   ok &= csv_table[1][5] == to_string(option.time_setup);
+   ok &= csv_table[1][7] == CMPAD_CXX_COMPILER;
+   ok &= csv_table[1][8] == debug;
+   ok &= csv_table[1][9] == language;
    //
    return ok;
 }
 // END C++
-# endif // CPPAD_HAS_ADOLC
