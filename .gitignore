@@ -4,6 +4,7 @@
 # used to build and run the project
 /build/
 /cpp/build/
+/python/build/
 #
 # used to install other packages
 /external/

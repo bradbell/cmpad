@@ -35,6 +35,7 @@ do
    $check
 done
 # -----------------------------------------------------------------------------
+# cpp
 # run_cmake.sh
 flags=''
 if [ $(expr $RANDOM % 2) == 1 ]
@@ -65,6 +66,9 @@ echo "test/test"
 # xam_main.py
 cd ../..
 echo_eval bin/cpp/xam_main.py
+# -----------------------------------------------------------------------------
+# python
+echo_eval bin/python/run_pytest.sh
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0

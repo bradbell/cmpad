@@ -58,7 +58,7 @@ This vector specifies extra values to include when scaling the relative error.
 
 abs_error
 *********
-We define the absolute error *abs_error* by
+The absolute error used for the comparison, *abs_error* , is
 {xrst_literal
    // BEGIN ABS_ERROR
    // END ABS_ERROR

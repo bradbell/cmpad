@@ -110,7 +110,7 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    assert type(algorithm) == str
    assert type(option)    == dict
    assert type( option['n_arg'] )      == int
-   assert type( option['time_setup'] ) == bool 
+   assert type( option['time_setup'] ) == bool
    # END DEF
    # fieldnames
    filednames = [
@@ -160,4 +160,3 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    for row in csv_table :
       writer.writerow( row )
    file_obj.close()
-      
