@@ -16,6 +16,9 @@
 Preprocessor Definitions and Configured Types
 #############################################
 
+CMPAD_VERSION
+The cmpad version number (i.e. date) as a quoted string.
+
 CMPAD_PROJECT_DIR
 *****************
 The cmpad top source directory as a C-string; i.e., its project directory.
@@ -50,6 +53,9 @@ is present on the cmake command line.
 
 {xrst_end configure}
 */
+
+// CMPAD_VERSION
+# define CMPAD_VERSION "@cmpad_VERSION@"
 
 // CMPAD_PROJECT_DIR
 # define CMPAD_PROJECT_DIR "@CMAKE_SOURCE_DIR@"

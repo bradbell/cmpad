@@ -28,6 +28,7 @@ when the argument is not present.
    ``-n``  *n_arg*     , ``--n_arg``      *n_arg*
    ``-p``  *package*   , ``--package``    *package*
    ``-t``              , ``--time_setup``
+   ``-v``              , ``--version``
    ``-h``              , ``--help``
 
 Defaults
@@ -58,7 +59,7 @@ The results for this test are placed at the end of the file.
 
 min_time
 ********
-This is the minimum time in seconds for the timing of the computation.
+This is the minimum time in seconds to average the computation rate over.
 The computation will be repeated enough times so that this minimum time
 is reached.
 
@@ -80,6 +81,12 @@ If this argument is present, the setup time is included during the speed
 testing for this algorithm.
 Some AD packages may spend more setup time to use less evaluation time
 for each new argument value.
+
+version
+*******
+If this argument is present,
+print the cmpad version number on standard out and then exit program
+without any further processing.
 
 help
 ****
@@ -224,13 +231,15 @@ int main(int argc, char* argv[])
    //
    // n_arg
    size_t n_arg = arguments.n_arg;
-   size_t ell = size_t( std::sqrt( double(n_arg) ) );
-   if( ell * ell != n_arg )
-      ++ell;
-   if( ell * ell != n_arg )
-   {  std::cerr << "run_cmpad Error: n_arg = ";
-      std::cerr << n_arg << " is not a square.\n";
-      return 1;
+   if( algorithm == "det_by_minor" )
+   {  size_t ell = size_t( std::sqrt( double(n_arg) ) );
+      if( ell * ell != n_arg )
+         ++ell;
+      if( ell * ell != n_arg )
+      {  std::cerr << "run_cmpad Error: algorithm = " << algorithm
+                   << ": n_arg = " << n_arg << " is not a square.\n";
+         return 1;
+      }
    }
    //
    // time_setup

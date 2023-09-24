@@ -46,9 +46,15 @@ EOF
 # Currently, there is no version number in lib/CMakeLists.txt
 # check_version lib/CMakeLists.txt
 #
-# cmpad.xrst
-check_version cmpad.xrst
-check_version cpp/CMakeLists.txt
+# file_list
+file_list='
+   cmpad.xrst
+   cpp/CMakeLists.txt
+'
+for file in $file_list
+do
+   check_version $file
+done
 #
 # temp.sed
 # rm temp.sed

@@ -41,6 +41,7 @@ arguments_t
 # include <iostream>
 # include <stdlib.h>
 # include <getopt.h>
+# include <cmpad/configure.hpp>
 # include "parse_args.hpp"
 
 // BEGIN PROTOTYPE
@@ -66,6 +67,7 @@ arguments_t parse_args(int argc, char* argv[])
       { "n_arg",       required_argument,  0,                'n' },
       { "package",     required_argument,  0,                'p' },
       // flags
+      { "version",     no_argument,        0,                'v' },
       { "help",        no_argument,        0,                'h' },
       { "time_setup",  no_argument,        0,                't' },
       {0,              0,                  0,                 0  }
@@ -73,10 +75,13 @@ arguments_t parse_args(int argc, char* argv[])
    //
    // shortopts
    // one : means option is required.
-   const char* shortopts = "a:f:m:n:p:ht";
+   const char* shortopts = "a:f:m:n:p:vht";
    //
    // error_msg
    std::string error_msg = "";
+   //
+   // version
+   bool version = false;
    //
    // help
    bool help = false;
@@ -126,6 +131,11 @@ arguments_t parse_args(int argc, char* argv[])
          arguments.package = optarg;
          break;
          //
+         // version
+         case 'v':
+         version = true;
+         break;
+         //
          // help
          case 'h':
          help = true;
@@ -158,17 +168,23 @@ arguments_t parse_args(int argc, char* argv[])
          "-f: --file_name:  string: "
             "csv file that line is added to [cmpad.csv]\n"
          "-m: --min_time:   double: "
-            "csv file that line is added to [cmpad.csv]\n"
+            "minimum time in seconds to average computation rate [0.5]\n"
          "-n: --n_arg:      size_t: "
             "size of argument to algorithm [9]\n"
          "-p: --pakcage:    string: "
             "double or an AD packae name [double]\n"
          "-t: --time_setup:       : "
             "if present, include setup time in speed [false]\n"
+         "-v: --version:          : "
+            "if present, print the cmpad version number and halt [false]\n"
          "-h: --help:             : "
             "if present, print this message and halt [false]\n"
          "\nValues between '[' and ']' above are defaults.\n";
       std::cout << usage;
+      std::exit(0);
+   }
+   if( version )
+   {  std::cout << CMPAD_VERSION << "\n";
       std::exit(0);
    }
    //
