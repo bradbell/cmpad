@@ -113,8 +113,13 @@ def install_cppad_py(build_type) :
    file_obj  = open( 'bin/get_cppad.sh', 'r')
    get_cppad = file_obj.read()
    file_obj.close()
-   pattern = r'\ncmake_install_prefix=.*'
-   replace = f'\ncmake_install_prefix="{prefix}"'
+   #
+   # get_cppad
+   pattern   = r'\ncmake_install_prefix=.*'
+   replace   = f'\ncmake_install_prefix="{prefix}"'
+   get_cppad = re.sub(pattern, replace, get_cppad)
+   pattern   = r'\nbuild_type=.*'
+   replace   = f"\nbuild_type='{build_type}'"
    get_cppad = re.sub(pattern, replace, get_cppad)
    #
    # get_cppad.sh
