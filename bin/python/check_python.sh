@@ -6,7 +6,7 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # ----------------------------------------------------------------------------
-program='bin/python/run_pytest.sh'
+program='bin/python/check_python.sh'
 prefix="$(pwd)/python/build/prefix"
 #
 if [ ! -d .git ]

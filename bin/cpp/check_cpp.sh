@@ -12,30 +12,49 @@ echo_eval() {
 	eval $*
 }
 # -----------------------------------------------------------------------------
+program='bin/cpp/check_cpp.sh'
 #
 if [ $# != 0 ]
 then
-   echo 'usage: bin/check_all.sh: does not expect arugments'
+   echo "usage: $program: does not expect arugments"
    exit 1
 fi
-if [ "$0" != 'bin/check_all.sh' ]
+if [ ! -d .git ]
 then
-   echo 'bin/check_all.sh: must execute this script from its parent directory'
+   echo "$program: must be executed from the top source directory"
    exit 1
 fi
-if [ ! -e './.git' ]
+# 
+# run_cmake.sh
+flags=''
+if [ $(expr $RANDOM % 2) == 1 ]
 then
-   echo 'bin/check_all.sh: cannot find ./.git'
-   exit 1
+   flags="$flags --clang"
 fi
+if [ $(expr $RANDOM % 2) == 1 ]
+then
+   flags="$flags --debug"
+fi
+if [ $(expr $RANDOM % 2) == 1 ]
+then
+   flags="$flags --cppad_vector"
+fi
+echo_eval bin/cpp/run_cmake.sh $flags
+#
+# cpp/build
+echo_eval cd cpp/build
+#
+# make
+echo_eval make
+#
+# test
+echo "test/test"
+{ test/test --log_level=test_suite --no_color_output 2>&1 ; }\
+   | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
+#
+# xam_main.py
+cd ../..
+echo_eval bin/cpp/xam_main.py
 # -----------------------------------------------------------------------------
-list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
-for check in $list
-do
-   $check
-done
-bin/python/check_python.sh
-bin/cpp/check_cpp.sh
-# -----------------------------------------------------------------------------
-echo 'bin/check_all.sh: OK'
+echo "$program: OK"
 exit 0
