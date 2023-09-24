@@ -8,6 +8,12 @@ r'''
 Example and Test of cppad_py Gradient
 #####################################
 
+check_grad_det
+**************
+{xrst_toc_table
+   python/xam/check_grad_det.py
+}
+
 Source Code
 ***********
 {xrst_literal
@@ -15,7 +21,7 @@ Source Code
    # END PYTHON
 }
 
-{xrst_end grad_cppad_py.py}
+{xrst_end xam_grad_cppad_py.py}
 '''
 # BEGIN PYTHON
 import cmpad
@@ -26,7 +32,7 @@ def xam_grad_cppad_py() :
    ok = True
    #
    # algo
-   algo = cmpad.det_by_minor() 
+   algo = cmpad.det_by_minor()
    #
    # grad_det
    grad_det = cmpad.cppad_py.gradient( algo )
@@ -38,4 +44,4 @@ def xam_grad_cppad_py() :
 #
 def test_xam_grad_cppad_py() :
    assert xam_grad_cppad_py() == True
-# END PYTHON 
+# END PYTHON

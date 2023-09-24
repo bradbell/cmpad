@@ -5,15 +5,15 @@
 # ifndef XAM_GRADIENT_CHECK_GRAD_DET_HPP
 # define XAM_GRADIENT_CHECK_GRAD_DET_HPP
 /*
-{xrst_begin check_grad_det}
+{xrst_begin check_grad_det.hpp}
 
-Check Gradient of Determinant
-#############################
+Check C++ Gradient of Determinant
+#################################
 
 Syntax
 ******
 | |tab| ``# include "check_grad_det.hpp"``
-| |tab| *ok* = check_grad_det( *grad_det* )
+| |tab| *ok* = ``check_grad_det`` ( *grad_det* )
 
 
 Prototype
@@ -38,7 +38,7 @@ Source Code
    // END C++
 }
 
-{xrst_end  check_grad_det}
+{xrst_end  check_grad_det.hpp}
 */
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>

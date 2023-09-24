@@ -27,6 +27,10 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
+type
+****
+This is called a *type* - function object where *type* is
+the type of the elements of *x* and *y* (see below).
 
 setup
 *****
@@ -59,5 +63,6 @@ y
 is a vector like object that contains the function value
 corresponding to the argument *x* .
 It supports ``y[i]`` for indices *i* less than *m* .
+
 
 {xrst_end py_fun_obj}

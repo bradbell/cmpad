@@ -1,3 +1,40 @@
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+# SPDX-FileContributor: 2023 Bradley M. Bell
+# ---------------------------------------------------------------------------
+r'''
+{xrst_begin check_grad_det.py}
+
+Check Python Gradient of Determinant
+####################################
+
+Syntax
+******
+| |tab| *ok* = ``check_grad_det`` ( *grad_det* )
+
+grad_det
+********
+This is a ``float`` :ref:`py_fun_obj-title` .
+
+option
+******
+The domain and range dimensions for the function object
+are equal to the square of *option* [ ``'n_arg'`` ];
+see :ref:`py_fun_obj@option` .
+
+ok
+**
+is true (false) if the gradient passes (fails) the test.
+
+Source Code
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end check_grad_det.py}
+'''
+# BEGIN PYTHON
 import numpy
 import cmpad
 
@@ -84,5 +121,4 @@ def check_grad_det( grad_det ) :
             else :
                c[j-1] = j
    return ok
-
-
+# END PYTHON

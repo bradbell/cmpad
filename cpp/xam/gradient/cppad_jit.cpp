@@ -10,7 +10,7 @@ Example and Test of Gradient Using cppad_jit
 
 check_grad_det
 **************
-see :ref:`check_grad_det-name`
+see :ref:`check_grad_det.hpp-name`
 
 Source Code
 ***********

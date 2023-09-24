@@ -16,9 +16,9 @@ set -e -u
 # }
 # {xrst_comment_ch #}
 #
-# Getting Optional Packages
-# #########################
-# This bash shell script can be used to install optional AD packages
+# Getting Optional C++ Packages
+# #############################
+# This shell script can be used to install optional AD packages
 # that cmpad can test. In addition, it can be used to install packages
 # required by these optional packages.
 #
@@ -108,7 +108,7 @@ prefix=$top_srcdir/cpp/build/prefix
 # you may want to try the following:
 #
 # | |tab| ``rm external/``\ *package*\ .\ *build_type*
-# | |tab| ``bin/get_package`` *build_type* *package*
+# | |tab| ``bin/cpp/get_package`` *build_type* *package*
 #
 # {xrst_end get_package.sh}
 # -----------------------------------------------------------------------------
@@ -130,7 +130,7 @@ if [ "$#" -lt 2 ]
 then
    echo "$program: found $# arugments and expected 2 or more"
    echo
-   echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
+   echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo 'where build_type is debug or release and package_j is one of'
    echo "$package_set"
    exit 1
@@ -140,7 +140,7 @@ fi
 build_type="$1"
 if [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
 then
-   echo 'usage: bin/get_package build_type package_1 [package_2 [...] ]'
+   echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo "build_type=$build_type is not debug or release"
    exit 1
 fi
@@ -345,7 +345,7 @@ then
    if [ "$missing" != '' ]
    then
       missing=$(echo $missing | sed -e 's|, ||')
-      echo "bin/get_package.sh: $package requires following programs:"
+      echo "$program: $package requires following programs:"
       echo "$missing"
       exit 1
    fi
@@ -372,12 +372,12 @@ then
 else
    if [ "$package" != 'sacado' ]
    then
-      echo "bin/get_package.sh: $package: expected web_page to end with .git"
+      echo "$program: $package: expected web_page to end with .git"
       exit 1
    fi
    if [ "$package_top_srcdir" != 'sacado' ]
    then
-      echo 'bin/get_package.sh: program error'
+      echo "$program: program error"
       exit 1
    fi
    if [ ! -e sacado ]
@@ -432,5 +432,5 @@ then
    ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
 fi
 # -----------------------------------------------------------------------------
-echo "bin/get_package.sh $package $build_type: OK"
+echo "$program $package $build_type: OK"
 exit 0
