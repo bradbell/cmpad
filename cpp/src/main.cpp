@@ -10,12 +10,12 @@ The cmpad Main Program
 
 Syntax
 ******
-| |tab| ``cmpad`` *options*
+| |tab| ``cmpad`` *arguments*
 
-Options
-*******
-All of the options below have a default value that is used
-when the option is not present.
+Arguments
+*********
+All of the arguments below have a default value that is used
+when the argument is not present.
 
 .. csv-table::
    :widths: auto
@@ -30,12 +30,19 @@ when the option is not present.
    ``-t``              , ``--time_setup``
    ``-h``              , ``--help``
 
+Defaults
+========
+{xrst_literal
+   cpp/src/parse_args.cpp
+   // BEGIN DEFAULT ARGUMENTS
+   // END DEFAULT ARGUMENTS
+}
+
 
 algorithm
 *********
-The only choices (so far) for this option are :ref:`cpp_det_by_minor-name`
+The only choices (so far) for this argument are :ref:`cpp_det_by_minor-name`
 and :ref:`an_ode-name` .
-The default value for this option is ``det_by_minor`` .
 
 det_by_minor
 ============
@@ -48,7 +55,6 @@ is the csv file where the results of this test are placed.
 If the file does not exist,
 the file is created and it's header row is written.
 The results for this test are placed at the end of the file.
-The default value for this option is ``cmpad.csv`` .
 
 min_time
 ********
@@ -60,7 +66,6 @@ n_arg
 *****
 This is the size of the argument to the algorithm; i.e.,
 its the dimension of its :ref:`cpp_fun_obj@domain` space.
-The default value for this option is ``9`` .
 
 package
 *******
@@ -68,19 +73,17 @@ This is either ``double`` or the AD package used for this test.
 The possible AD packages are:
 double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
 Note that cppad_jit is the JIT compiled version of cppad derivatives.
-The default value for this option is ``double`` .
 
 time_setup
 **********
-If this option is present, the setup time is included during the speed
+If this argument is present, the setup time is included during the speed
 testing for this algorithm.
 Some AD packages may spend more setup time to use less evaluation time
 for each new argument value.
-The default value for this option is ``false`` .
 
 help
 ****
-If this option is present,
+If this argument is present,
 print the help message on standard out and then exit program
 without any further processing.
 

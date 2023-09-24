@@ -27,7 +27,7 @@ arguments_t
    :widths: auto
    :header-rows: 1
 
-   option name, meaning
+   argument, meaning
    algorithm,   see :ref:`main@algorithm`
    file_name,   see :ref:`main@file_name`
    min_time,    see :ref:`main@min_time`
@@ -47,8 +47,8 @@ arguments_t
 arguments_t parse_args(int argc, char* argv[])
 // END PROTOTYPE
 {
-   // BEGIN DEFAULT ARGUMENTS
    arguments_t arguments;
+   // BEGIN DEFAULT ARGUMENTS
    arguments.algorithm  = "det_by_minor";
    arguments.file_name  = "cmpad.csv";
    arguments.min_time   = 0.5;

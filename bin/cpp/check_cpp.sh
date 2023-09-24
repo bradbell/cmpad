@@ -24,7 +24,7 @@ then
    echo "$program: must be executed from the top source directory"
    exit 1
 fi
-# 
+#
 # run_cmake.sh
 flags=''
 if [ $(expr $RANDOM % 2) == 1 ]
