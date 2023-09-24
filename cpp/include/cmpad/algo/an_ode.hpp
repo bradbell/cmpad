@@ -69,7 +69,7 @@ This initial value problem has the following analytic solution
 
 .. math ::
 
-   y_i (t) = \frac{t^{i+1}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
+   y_i (t) = \frac{t^{i+1}}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
 
 ode
 ***
