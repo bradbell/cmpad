@@ -38,8 +38,8 @@ version=$(date +%Y.%m.%d | sed -e 's|\.0*|.|g')
 #
 # temp.sed
 cat << EOF > temp.sed
-s|soversion *[0-9][0-9][.][0-9][0-9]*[.][0-9][0-9]*|soversion $version|
 s|cmpad-[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|cmpad-$version|
+s|PROJECT( *cmpad *VERSION *[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|PROJECT(cmpad VERSION $version|
 EOF
 #
 # lib/CMakeLists.txt
@@ -48,6 +48,7 @@ EOF
 #
 # cmpad.xrst
 check_version cmpad.xrst
+check_version cpp/CMakeLists.txt
 #
 # temp.sed
 # rm temp.sed

@@ -3,9 +3,6 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
-# soversion: year.month.day
-SET(soversion 2023.8.14)
-#
 # example_list
 # examples that to not require AD packages
 SET(example_list
@@ -33,4 +30,4 @@ ENDFOREACH( )
 # xam
 # All the ./*.cpp files should be included below and in ../test/xam.cpp
 ADD_LIBRARY(xam SHARED ${example_list} )
-SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${soversion})
+SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${cmpad_VERSION})

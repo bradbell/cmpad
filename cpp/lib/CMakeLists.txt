@@ -3,9 +3,6 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
-# soversion: year.month.day
-SET(soversion 2023.8.14)
-#
 # cmpad
 ADD_LIBRARY(cmpad SHARED
    csv_read.cpp
@@ -13,4 +10,4 @@ ADD_LIBRARY(cmpad SHARED
    csv_write.cpp
    uniform_01.cpp
 )
-SET_TARGET_PROPERTIES(cmpad PROPERTIES SOVERSION ${soversion})
+SET_TARGET_PROPERTIES(cmpad PROPERTIES SOVERSION ${cmpad_VERSION})
