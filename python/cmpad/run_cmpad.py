@@ -6,7 +6,7 @@ import argparse
 import math
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.9.20'
+cmpad_version = 'cmpad-2023.9.24'
 # ----------------------------------------------------------------------------
 # grad_fun_obj
 def grad_fun_obj(algorithm, package) :
