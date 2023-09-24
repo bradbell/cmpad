@@ -45,8 +45,8 @@ def main() :
    # program
    program = 'bin/cpp/xam_main.py'
    #
-   # cmpad_main
-   cmpad_main = 'cpp/build/src/cmpad'
+   # run_cmpad
+   run_cmpad = 'cpp/build/src/run_cmpad'
    #
    # configure_file
    configure_file = 'cpp/include/cmpad/configure.hpp'
@@ -62,8 +62,8 @@ def main() :
       msg  = f'{program}: {configure_file} does not exist.'
       msg += '\nUse bin/cpp/run_cmake.sh to create it.'
       sys.exit(msg)
-   if not os.path.isfile(cmpad_main) :
-      msg  = f'{program}: {cmpad_main} does not exist.'
+   if not os.path.isfile(run_cmpad) :
+      msg  = f'{program}: {run_cmpad} does not exist.'
       msg += '\nUse use make in cpp/build to create it.'
       sys.exit(msg)
    #
@@ -89,9 +89,9 @@ def main() :
    # change directory
    os.chdir('cpp/build')
    #
-   # cmpad_main
+   # run_cmpad
    index      = len('cpp/build')
-   cmpad_main = cmpad_main[index+1 :]
+   run_cmpad  = run_cmpad[index+1 :]
    #
    # file_name
    file_name = '../src/xam_main.csv'
@@ -115,7 +115,7 @@ def main() :
             #
             # command
             command = [
-               cmpad_main,
+               run_cmpad,
                f'--package={package}',
                f'--algorithm={algorithm}',
                f'--file_name={file_name}',

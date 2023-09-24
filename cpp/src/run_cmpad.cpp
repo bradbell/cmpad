@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin_parent main}
+{xrst_begin_parent cpp_run_cmpad}
 
 The cmpad Main Program
 ######################
@@ -95,9 +95,9 @@ Example
 The file :ref:`xam_main.py-name`
 is an example and test that uses this program.
 
-{xrst_end main}
+{xrst_end cpp_run_cmpad}
 ------------------------------------------------------------------------------
-{xrst_begin main.cpp}
+{xrst_begin run_cmpad.cpp}
 
 Main Program Implementation
 ###########################
@@ -115,7 +115,7 @@ Source Code
    // END C++
 }
 
-{xrst_end main.cpp}
+{xrst_end run_cmpad.cpp}
 */
 // BEGIN C++
 # include <algorithm>
@@ -208,7 +208,7 @@ int main(int argc, char* argv[])
    std::string package = arguments.package;
    itr = std::find(package_vec.begin(), package_vec.end(), package);
    if( itr == package_vec.end() )
-   {  std::cerr << "cmpad Error: ";
+   {  std::cerr << "run_cmpad Error: ";
       std::cerr << "package = " << package << " is not available" << "\n";
       return 1;
    }
@@ -217,7 +217,7 @@ int main(int argc, char* argv[])
    std::string algorithm = arguments.algorithm;
    itr = std::find(algorithm_vec.begin(), algorithm_vec.end(), algorithm);
    if( itr == algorithm_vec.end() )
-   {  std::cerr << "cmpad Error: ";
+   {  std::cerr << "run_cmpad Error: ";
       std::cerr << "algorithm = " << algorithm << " is not available" << "\n";
       return 1;
    }
@@ -228,7 +228,7 @@ int main(int argc, char* argv[])
    if( ell * ell != n_arg )
       ++ell;
    if( ell * ell != n_arg )
-   {  std::cerr << "cmpad Error: n_arg = ";
+   {  std::cerr << "run_cmpad Error: n_arg = ";
       std::cerr << n_arg << " is not a square.\n";
       return 1;
    }
@@ -239,7 +239,7 @@ int main(int argc, char* argv[])
    // min_time
    double min_time = arguments.min_time;
    if( min_time <= 0.0 || 1.0 < min_time )
-   {  std::cerr << "cmpad Error: min_time = ";
+   {  std::cerr << "run_cmpad Error: min_time = ";
       std::cerr << min_time <<
          " is less than or equal zero or greater than one.\n";
       return 1;
