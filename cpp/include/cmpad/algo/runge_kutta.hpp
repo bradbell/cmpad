@@ -136,10 +136,9 @@ cmpad::vector<Scalar> runge_kutta(
    // k1, k2, k3, k4, y_tmp
    cmpad::vector<Scalar> k1(n), k2(n), k3(n), k4(n), y_tmp(n);
    //
-   // y
-   cmpad::vector<Scalar> yf = yi;
    //
-   // i_step
+   // i_step, yf
+   cmpad::vector<Scalar> yf = yi;
    for(size_t i_step = 0; i_step < ns; ++i_step)
    {  //
       // k1
@@ -160,7 +159,7 @@ cmpad::vector<Scalar> runge_kutta(
          y_tmp[i] = yf[i] + h * k3[i];
       k4 = fun(y_tmp);
       //
-      // y
+      // yf
       for(size_t i = 0; i < n; ++i)
          yf[i] = yf[i] + h * (k1[i] + two * k2[i] + two * k3[i] + k4[i]) / six;
    }
