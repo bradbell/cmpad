@@ -13,14 +13,17 @@ fi
 if [ ! -d .git ]
 then
    echo 'bin/check_sorted.sh: must be executed from top source directory'
-   exit 1 
+   exit 1
 fi
 # ---------------------------------------------------------------------------
 for file in $(git ls-files)
 do
-   if grep 'BEGIN_SORT_THIS_LINE_' $file > /dev/null
+   if [ "$file" != 'bin/check_sorted.sh' ] && [ "$file" != 'bin/sort_file.py' ]
    then
-      bin/sort_file.py $file
+      if grep 'BEGIN_SORT_THIS_LINE_' $file > /dev/null
+      then
+         bin/sort_file.py $file
+      fi
    fi
 done
 #

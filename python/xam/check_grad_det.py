@@ -38,14 +38,6 @@ Source Code
 import numpy
 import cmpad
 
-def near_equal(x, y, rel_error, vec) :
-   scale = max( abs(x), abs(y) )
-   for element in vec :
-      scale = max(scale, abs(element) )
-   tiny      = numpy.finfo(float).tiny
-   abs_error = max(rel_error * scale, tiny)
-   return abs(x - y) <= abs_error
-
 def check_grad_det( grad_det ) :
    #
    # ok
@@ -108,7 +100,7 @@ def check_grad_det( grad_det ) :
                check = - det_minor
             #
             # ok
-            ok &= near_equal(g[ i * ell + j ], check, rel_error, x)
+            ok &= cmpad.near_equal(g[ i * ell + j ], check, rel_error, x)
             #
             # r, c
             # restore to computing determinant of entire matrix

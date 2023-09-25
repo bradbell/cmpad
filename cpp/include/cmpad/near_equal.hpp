@@ -8,7 +8,7 @@
 # include <cmath>
 # include <iostream>
 /*
-{xrst_begin near_equal}
+{xrst_begin cpp_near_equal}
 {xrst_spell
    std
    fabs
@@ -18,8 +18,8 @@
    vec
 }
 
-Check That Values are Nearly Equal
-##################################
+C++ Check That Values are Nearly Equal
+######################################
 
 Prototype
 *********
@@ -56,25 +56,24 @@ vec
 ***
 This vector specifies extra values to include when scaling the relative error.
 
-abs_error
-*********
-The absolute error used for the comparison, *abs_error* , is
-{xrst_literal
-   // BEGIN ABS_ERROR
-   // END ABS_ERROR
-}
-
 os
 **
 If the values are not nearly equal,
 a messages is written to this stream describing the comparison failure.
+
+abs_error
+*********
+#. *scale* is the maximum of the absolute value of *x*, *y* ,
+   and the elements of *vec*
+#. *tiny* is the minimum positive normalized value of type *Scalar*
+#. *abs_error* is maximum of *tiny* and *rel_error* times *scale* .
 
 {xrst_toc_hidden
    cpp/xam/near_equal.cpp
 }
 :ref:`xam_near_equal.cpp-name` contains an example and test of this routine.
 
-{xrst_end near_equal}
+{xrst_end cpp_near_equal}
 */
 # include <cmpad/vector.hpp>
 

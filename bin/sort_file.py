@@ -1,4 +1,9 @@
 #! /usr/bin/env python3
+# ---------------------------------------------------------------------------
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+# SPDX-FileContributor: 2023 Bradley M. Bell
+# ---------------------------------------------------------------------------
 import sys
 import re
 import difflib
@@ -16,11 +21,11 @@ end_pattern   = re.compile( end_str )
 #
 # sort_file
 def sort_file(file_name) :
-   # 
+   #
    # file_data
    file_obj  = open(file_name, 'r')
    file_data = file_obj.read()
-   file_obj.close() 
+   file_obj.close()
    #
    # change
    change = False
@@ -87,7 +92,7 @@ def sort_file(file_name) :
          tofile   = f'{file_name}: after'
          diff = difflib.unified_diff(
             between_lines, sorted_lines, fromfile=fromfile, tofile=tofile
-         ) 
+         )
          sys.stdout.writelines(diff)
          print('\n')
       #

@@ -5,8 +5,8 @@
 /*
 {xrst_begin xam_near_equal.cpp}
 
-Example and Test of near_equal
-##############################
+Example and Test of C++ near_equal
+##################################
 {xrst_literal
    // BEGIN C++
    // END C++

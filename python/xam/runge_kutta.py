@@ -50,14 +50,6 @@ Source Code
 import numpy
 import cmpad
 #
-# near_equal
-def near_equal(x, y, rel_error) :
-   scale = max( abs(x), abs(y) )
-   tiny      = numpy.finfo(float).tiny
-   abs_error = max(rel_error * scale, tiny)
-   return abs(x - y) <= abs_error
-
-#
 # fun
 def fun(y) :
    # n
@@ -94,14 +86,14 @@ def xam_runge_kutta() :
    rel_error = numpy.finfo(float).eps * 100.0
    #
    # ok
-   ok &= near_equal( yf[0], yi[0], rel_error )
+   ok &= cmpad.near_equal( yf[0], yi[0], rel_error )
    #
    # factorial
    # Note that y_i (t) = t^i / i! has no truncation error for i < 5.
    factorial = 1.0
    for i in range( 1, len(yi) ) :
       factorial *= i
-      ok &= near_equal( yf[i], 1.0 / factorial, rel_error )
+      ok &= cmpad.near_equal( yf[i], 1.0 / factorial, rel_error )
    #
    return ok
 
