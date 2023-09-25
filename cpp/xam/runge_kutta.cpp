@@ -9,8 +9,8 @@
    kutta
 }
 
-Example and Test of runge_kutta
-###############################
+Example and Test of C++ runge_kutta
+###################################
 
 ODE
 ***
