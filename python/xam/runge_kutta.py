@@ -2,9 +2,53 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+r'''
+{xrst_begin xam_runge_kutta.py}
+{xrst_spell
+   runge
+   kutta
+}
+
+Example and Test of Python runge_kutta
+######################################
+
+ODE
+***
+
+.. math::
+
+   y_i '(t) & = 0           \; & \mbox{for} \; i = 0 \\
+   y_i '(t) & = y_{i-1} (t) \; & \mbox{for} \; i > 0
+
+Initial Value
+*************
+
+.. math::
+
+   y_i (0) & = 1   \; & \mbox{for} \; i = 0 \\
+   y_i (0) & = 0   \; & \mbox{for} \; i > 0 \\
+
+Solution
+********
+
+.. math::
+
+   y_0 (t) & = 1               \\
+   y_1 (t) & = t               \\
+   y_i (t) & = t^i / i !       \\
+
+Source Code
+***********
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end xam_runge_kutta.py}
+'''
+# BEGIN PYTHON
 import numpy
 import cmpad
-
 #
 # near_equal
 def near_equal(x, y, rel_error) :
@@ -65,3 +109,4 @@ def xam_runge_kutta() :
 # test_xam_runge_kutta
 def test_xam_runge_kutta() :
    assert xam_runge_kutta() == True
+# END PYTHON

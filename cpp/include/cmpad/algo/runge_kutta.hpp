@@ -17,8 +17,8 @@
    yt
 }
 
-Fourth Order Runge Kutta Method
-###############################
+C++ Fourth Order Runge Kutta Method
+###################################
 
 Syntax
 ******
@@ -83,7 +83,6 @@ for :math:`y(t)` at *t* = *tf* .
 {xrst_toc_table after
    cpp/xam/runge_kutta.cpp
 }
-
 Example
 *******
 :ref:`xam_runge_kutta.cpp-name`
@@ -97,8 +96,8 @@ contains an example and test of ``runge_kutta`` .
    kutta
 }
 
-runge_kutta: Source Code
-########################
+C++ runge_kutta Source Code
+###########################
 
 {xrst_literal
    // BEGIN C++

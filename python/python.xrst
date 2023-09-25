@@ -14,6 +14,7 @@ Python Algorithmic Differentiation
    python/cmpad/cppad_py/gradient.py
    python/cmpad/fun_speed.py
    python/cmpad/csv_speed.py
+   python/cmpad/runge_kutta.py
 }
 
 {xrst_end python}
