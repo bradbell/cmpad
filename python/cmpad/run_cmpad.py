@@ -14,13 +14,18 @@ def grad_fun_obj(algorithm, package) :
    # algo
    if algorithm == 'det_py_minor' :
       algo = cmpad.det_by_minor()
+
+   elif algorithm == 'an_ode' :
+      algo = cmpad.an_ode()
    else :
-      assert False
+      msg = f'algorithm = {algorithm} is not implemented'
+      assert msg, False
    #
    if package == 'cppad_py' :
       return cmpad.cppad_py.gradient(algo)
    else :
-      assert False
+      msg = f'package = {package} is not implemented'
+      assert msg, False
    #
    assert False
 # ----------------------------------------------------------------------------

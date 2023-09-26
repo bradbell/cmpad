@@ -4,19 +4,18 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-# {xrst_begin xam_main.py}
+# {xrst_begin xam_cpp_main.py}
 # {xrst_spell
-#     src
 #     xam
 # }
 # {xrst_comment_ch #}
 #
-# Example and Test Using cmpad Main Program
-# #########################################
+# Example and Test Using C++ Main Program
+# #######################################
 #
-# cpp/src/xam_main.csv
-# ********************
-# This program create the file cpp/src/xam_main.csv.
+# cpp/xam_main.csv
+# ****************
+# This program create the file cpp/xam_main.csv.
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
 # Below is an example of the contents of this file:
@@ -24,7 +23,7 @@
 # ..  csv-table::
 #     :widths: auto
 #     :header-rows: 1
-#     :file: {xrst_dir cpp/src/xam_main.csv}
+#     :file: {xrst_dir cpp/xam_main.csv}
 #
 # Source Code
 # ***********
@@ -32,7 +31,7 @@
 #     # BEGIN PYTHON
 #     # END PYTHON
 # }
-# {xrst_end xam_main.py}
+# {xrst_end xam_cpp_main.py}
 # -----------------------------------------------------------------------------
 # BEGIN PYTHON
 import sys
@@ -79,7 +78,7 @@ def main() :
       pattern = f'# *define *CMPAD_HAS_{PACKAGE} *[01]'
       match   = re.search(pattern, file_data)
       if match == None :
-         msg   = f'bin/xam_main.py: {configure_file} cannot find the pattern'
+         msg   = f'{program}: {configure_file} cannot find the pattern'
          msg += f'\n{pattern}'
          sys.exit(msg)
       if match.group(0)[-1] == '1' :
@@ -94,7 +93,7 @@ def main() :
    run_cmpad  = run_cmpad[index+1 :]
    #
    # file_name
-   file_name = '../src/xam_main.csv'
+   file_name = '../xam_main.csv'
    if os.path.isfile(file_name) :
       os.remove(file_name)
    #
@@ -139,7 +138,8 @@ def main() :
       assert row['package'] in package_list
       assert row['algorithm'] in algorithm_list
       assert row['time_setup'] in [ 'true', 'false' ]
+   #
+   print( f'{program}: OK')
 #
 main()
-print('bin/xam_main.py: OK')
 # END PYTHON
