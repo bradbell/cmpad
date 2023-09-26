@@ -43,7 +43,7 @@ Defaults
 algorithm
 *********
 The only choices (so far) for this argument are :ref:`cpp_det_by_minor-name`
-and :ref:`an_ode-name` .
+and :ref:`cpp_an_ode-name` .
 
 det_by_minor
 ============

@@ -54,5 +54,5 @@ def xam_near_equal() :
 #
 # test_xam_near_equal
 def test_xam_near_equal() :
-   assert xam_near_equal() == True 
+   assert xam_near_equal() == True
 # END PYTHON

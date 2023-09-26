@@ -118,7 +118,7 @@ class det_by_minor :
    #
    def setup(self, option) :
       assert type(option) == dict
-      assert 'n_arg' in option
+      assert type( option['n_arg'] ) == int
       # END PROTOTYPE
       #
       # option

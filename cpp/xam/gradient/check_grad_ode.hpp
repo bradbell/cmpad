@@ -5,10 +5,10 @@
 # ifndef XAM_GRADIENT_CHECK_GRAD_ODE_HPP
 # define XAM_GRADIENT_CHECK_GRAD_ODE_HPP
 /*
-{xrst_begin check_grad_ode}
+{xrst_begin check_grad_ode.hpp}
 
-Check Gradient of Determinant
-#############################
+C++ Check Gradient of an_ode
+############################
 
 Syntax
 ******
@@ -25,7 +25,7 @@ Prototype
 
 grad_ode
 ********
-Is a :ref:`gradient-name` object for an :ref:`an_ode-name` algorithm.
+Is a :ref:`gradient-name` object for an :ref:`cpp_an_ode-name` algorithm.
 
 ok
 **
@@ -53,7 +53,7 @@ Source Code
    // END C++
 }
 
-{xrst_end  check_grad_ode}
+{xrst_end  check_grad_ode.hpp}
 */
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>

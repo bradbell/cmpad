@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+# SPDX-FileContributor: 2023 Bradley M. Bell
+# ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_near_equal}
 {xrst_spell
@@ -9,8 +13,8 @@ r'''
    vec
 }
 
-Pyton: Check That Values are Nearly Equal
-#########################################
+Python: Check That Values are Nearly Equal
+##########################################
 
 Prototype
 *********
@@ -50,7 +54,7 @@ The default for this argument is an empty vector.
 
 abs_error
 *********
-#. *scale* is the maximum of the absolute value of *x*, *y* , 
+#. *scale* is the maximum of the absolute value of *x*, *y* ,
    and the elements of *vec*
 #. *tiny* is the minimum positive normalized value of type *Scalar*
 #. *abs_error* is maximum of *tiny* and *rel_error* times *scale* .
@@ -59,7 +63,7 @@ os
 **
 If the values are not nearly equal,
 a messages is written to this stream describing the comparison failure.
-The default for this arument is standard error.
+The default for this argument is standard error.
 
 {xrst_toc_hidden
    python/xam/near_equal.py
@@ -68,9 +72,11 @@ The default for this arument is standard error.
 
 {xrst_end py_near_equal}
 '''
-import sys
 import numpy
+import sys
+# BEGIN DEF
 def near_equal(x, y, rel_error, vec = [], os = sys.stderr ) :
+   # END DEF
    scale = max( abs(x), abs(y) )
    for element in vec :
       scale = max(scale, abs(element) )

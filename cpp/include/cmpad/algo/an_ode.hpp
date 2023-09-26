@@ -5,7 +5,7 @@
 # ifndef CMPAD_ALGO_AN_ODE_HPP
 # define CMPAD_ALGO_AN_ODE_HPP
 /*
-{xrst_begin_parent an_ode}
+{xrst_begin_parent cpp_an_ode}
 {xrst_spell
    Runge
    Kutta
@@ -14,8 +14,8 @@
    truncation
 }
 
-Use Runge-Kutta Method to Solve an ODE
-######################################
+Use C++ Runge-Kutta Method to Solve an ODE
+##########################################
 
 Syntax
 ******
@@ -89,7 +89,8 @@ This is the size of the vectors *x* and *yf* .
 
 x
 *
-This is the initial value for the vector :math:`y(0)` .
+This is the parameter vector that appears in the
+:ref:`cpp_an_ode@The ODE` above.
 
 yf
 **
@@ -107,7 +108,7 @@ Source Code
 ***********
 :ref:`an_ode.hpp-name` is the source code for this algorithm.
 
-{xrst_end an_ode}
+{xrst_end cpp_an_ode}
 ------------------------------------------------------------------------------
 {xrst_begin an_ode.hpp}
 
