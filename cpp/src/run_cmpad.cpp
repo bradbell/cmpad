@@ -3,117 +3,26 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin_parent cpp_run_cmpad}
-
-The cmpad Main Program
-######################
-
-Syntax
-******
-| |tab| ``cmpad`` *arguments*
-
-Arguments
-*********
-All of the arguments below have a default value that is used
-when the argument is not present.
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   short version, long version
-   ``-a``  *algorithm* , ``--algorithm``  *algorithm*
-   ``-f``  *file_name* , ``--file_name``  *file_name*
-   ``-m``  *min_time*  , ``--min_time``   *min_time*
-   ``-n``  *n_arg*     , ``--n_arg``      *n_arg*
-   ``-p``  *package*   , ``--package``    *package*
-   ``-t``              , ``--time_setup``
-   ``-v``              , ``--version``
-   ``-h``              , ``--help``
-
-Defaults
-========
-{xrst_literal
-   cpp/src/parse_args.cpp
-   // BEGIN DEFAULT ARGUMENTS
-   // END DEFAULT ARGUMENTS
-}
-
-
-algorithm
-*********
-The only choices (so far) for this argument are :ref:`cpp_det_by_minor-name`
-and :ref:`cpp_an_ode-name` .
-
-det_by_minor
-============
-If *algorithm* is ``det_by_minor``, *n_arg* must be a square
-and its square root is the row and column dimension of the matrix.
-
-file_name
-*********
-is the csv file where the results of this test are placed.
-If the file does not exist,
-the file is created and it's header row is written.
-The results for this test are placed at the end of the file.
-
-min_time
-********
-This is the minimum time in seconds to average the computation rate over.
-The computation will be repeated enough times so that this minimum time
-is reached.
-
-n_arg
-*****
-This is the size of the argument to the algorithm; i.e.,
-its the dimension of its :ref:`cpp_fun_obj@domain` space.
-
-package
-*******
-This is either ``double`` or the AD package used for this test.
-The possible AD packages are:
-double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
-Note that cppad_jit is the JIT compiled version of cppad derivatives.
-
-time_setup
-**********
-If this argument is present, the setup time is included during the speed
-testing for this algorithm.
-Some AD packages may spend more setup time to use less evaluation time
-for each new argument value.
-
-version
-*******
-If this argument is present,
-print the cmpad version number on standard out and then exit program
-without any further processing.
-
-help
-****
-If this argument is present,
-print the help message on standard out and then exit program
-without any further processing.
-
-{xrst_toc_hidden before
-   bin/cpp/xam_main.py
-}
-Example
-*******
-The file :ref:`cpp_xam_main.py-name`
-is an example and test that uses this program.
-
-{xrst_end cpp_run_cmpad}
-------------------------------------------------------------------------------
 {xrst_begin run_cmpad.cpp}
 
-Main Program Implementation
-###########################
+Main Program C++ Implementation
+###############################
 
+Documentation
+*************
+:ref:`run_cmpad-name`
+
+{xrst_toc_hidden
+   cpp/src/parse_args.cpp
+   bin/cpp/xam_main.py
+}
 Subroutines
 ***********
-{xrst_toc_table
-   cpp/src/parse_args.cpp
-}
+:ref:`parse_args-name`
+
+Example
+*******
+:ref:`cpp_xam_main.py-name`
 
 Source Code
 ***********

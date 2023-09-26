@@ -10,7 +10,7 @@ Python Algorithmic Differentiation
 {xrst_comment BEGIN_SORT_THIS_LINE_PLUS_2}
 {xrst_toc_table
    bin/python/get_package.py
-   bin/python/xam_main.py
+   bin/python/run_cmpad.py
    python/cmpad/an_ode.py
    python/cmpad/cppad_py/gradient.py
    python/cmpad/csv_speed.py

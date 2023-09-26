@@ -42,6 +42,7 @@ Documentation
 *************
 
 {xrst_toc_table
+   xrst/run_cmpad.xrst
    cpp/cpp.xrst
    python/python.xrst
 }

@@ -4,6 +4,33 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+r'''
+{xrst_begin run_cmpad.py}
+
+Main Program Python Implementation
+##################################
+
+Documentation
+*************
+:ref:`run_cmpad-name` .
+
+{xrst_toc_hidden
+   bin/python/xam_main.py
+}
+Example
+*******
+:ref:`py_xam_main.py-name`
+
+Source Code
+***********
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
+
+{xrst_end run_cmpad.py}
+'''
+# BEGIN PYTHON
 import argparse
 import math
 import sys
@@ -166,3 +193,4 @@ def main() :
    cmpad.csv_speed(file_name, rate, min_time, package, algorithm, option)
 #
 main()
+# END PYTHON

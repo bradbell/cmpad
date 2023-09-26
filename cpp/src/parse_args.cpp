@@ -28,12 +28,12 @@ arguments_t
    :header-rows: 1
 
    argument, meaning
-   algorithm,   see :ref:`cpp_run_cmpad@algorithm`
-   file_name,   see :ref:`cpp_run_cmpad@file_name`
-   min_time,    see :ref:`cpp_run_cmpad@min_time`
-   package,     see :ref:`cpp_run_cmpad@package`
-   n_arg,       see :ref:`cpp_run_cmpad@n_arg`
-   time_setup,  see :ref:`cpp_run_cmpad@time_setup`
+   algorithm,   see :ref:`run_cmpad@algorithm`
+   file_name,   see :ref:`run_cmpad@file_name`
+   min_time,    see :ref:`run_cmpad@min_time`
+   package,     see :ref:`run_cmpad@package`
+   n_arg,       see :ref:`run_cmpad@n_arg`
+   time_setup,  see :ref:`run_cmpad@time_setup`
 
 {xrst_end parse_args}
 */

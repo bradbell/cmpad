@@ -1,0 +1,107 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+---------------------------------------------------------------------------
+{xrst_begin run_cmpad}
+{xrst_spell
+   src
+}
+
+The cmpad Main Program
+######################
+
+Syntax
+******
+| |tab| *program* *arguments*
+
+program
+*******
+.. csv-table::
+   :header-rows: 1
+
+   program, source
+   ``cppad/build/src/run_cmpad`` , :ref:`run_cmpad.cpp-name`
+   ``bin/python/run_cmpad.py``   , :ref:`run_cmpad.py-name`
+
+Arguments
+*********
+All of the arguments below have a default value that is used
+when the argument is not present.
+
+.. csv-table::
+   :widths: auto
+   :header-rows: 1
+
+   short version, long version, default
+   ``-a``  *algorithm* , ``--algorithm``  *algorithm* , det_by_minor
+   ``-f``  *file_name* , ``--file_name``  *file_name* , cmpad.csv
+   ``-m``  *min_time*  , ``--min_time``   *min_time*  , 0.5
+   ``-n``  *n_arg*     , ``--n_arg``      *n_arg*     , double
+   ``-p``  *package*   , ``--package``    *package*   , 9
+   ``-t``              , ``--time_setup``             , false
+   ``-v``              , ``--version``
+   ``-h``              , ``--help``
+
+
+algorithm
+*********
+The only choices (so far) for this argument are :ref:`cpp_det_by_minor-name`
+and :ref:`cpp_an_ode-name` .
+
+det_by_minor
+============
+If *algorithm* is ``det_by_minor``, *n_arg* must be a square
+and its square root is the row and column dimension of the matrix.
+
+file_name
+*********
+is the csv file where the results of this test are placed.
+If the file does not exist,
+the file is created and it's header row is written.
+The results for this test are placed at the end of the file.
+
+min_time
+********
+This is the minimum time in seconds to average the computation rate over.
+The computation will be repeated enough times so that this minimum time
+is reached.
+
+n_arg
+*****
+This is the size of the argument to the algorithm; i.e.,
+its the dimension of its domain space.
+
+package
+*******
+This is either ``double`` or the AD package used for this test.
+
+C++
+===
+The possible C++ AD packages are:
+double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
+Note that cppad_jit is the JIT compiled version of cppad derivatives.
+
+Python
+======
+The possible Python AD packages are: cppad_py .
+
+time_setup
+**********
+If this argument is present, the setup time is included during the speed
+testing for this algorithm.
+Some AD packages may spend more setup time to use less evaluation time
+for each new argument value.
+
+version
+*******
+If this argument is present,
+print the cmpad version number on standard out and then exit program
+without any further processing.
+
+help
+****
+If this argument is present,
+print the help message on standard out and then exit program
+without any further processing.
+
+{xrst_end run_cmpad}
