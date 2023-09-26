@@ -90,6 +90,11 @@ then
    echo 'Aborting because you left documentation lines in commit log'
    exit 1
 fi
+if grep 'Below is a list of the files that will' git_commit.log > /dev/null
+then
+   echo 'Aborting because you left documentation lines in commit log'
+   exit 1
+fi
 # -----------------------------------------------------------------------------
 #
 # git add
