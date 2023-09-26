@@ -23,7 +23,7 @@ cmpad-2023.9.25
 
 Example Speed Comparison
 ************************
-see :ref:`xam_cpp_main.py@cpp/xam_main.csv`
+see :ref:`cpp_xam_main.py@cpp/xam_main.csv`
 
 C++ Gradient Source Code Comparison
 ***********************************

@@ -4,7 +4,7 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-# {xrst_begin xam_cpp_main.py}
+# {xrst_begin cpp_xam_main.py}
 # {xrst_spell
 #     xam
 # }
@@ -31,7 +31,7 @@
 #     # BEGIN PYTHON
 #     # END PYTHON
 # }
-# {xrst_end xam_cpp_main.py}
+# {xrst_end cpp_xam_main.py}
 # -----------------------------------------------------------------------------
 # BEGIN PYTHON
 import sys

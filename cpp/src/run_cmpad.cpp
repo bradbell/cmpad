@@ -99,7 +99,7 @@ without any further processing.
 }
 Example
 *******
-The file :ref:`xam_cpp_main.py-name`
+The file :ref:`cpp_xam_main.py-name`
 is an example and test that uses this program.
 
 {xrst_end cpp_run_cmpad}
