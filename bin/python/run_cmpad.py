@@ -65,8 +65,8 @@ for lib in [ 'lib', 'lib64' ] :
    if os.path.isdir(directory) :
       sys.path.insert(0, os.getcwd() + '/' + directory)
 # ----------------------------------------------------------------------------
-# float_fun_obj
-def float_fun_obj(algorithm) :
+# double_fun_obj
+def double_fun_obj(algorithm) :
    if algorithm == 'det_by_minor' :
       return cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
@@ -145,7 +145,7 @@ def main() :
    #
    # package
    package = arguments.package
-   if package not in [ 'float', 'cppad_py' ] :
+   if package not in [ 'double', 'cppad_py' ] :
       msg = f'{program}: package = {package} is not available'
       sys.exit(msg)
    #
@@ -181,8 +181,8 @@ def main() :
    }
    #
    # fun_obj
-   if package == 'float' :
-      fun_obj = float_fun_obj(algorithm)
+   if package == 'double' :
+      fun_obj = double_fun_obj(algorithm)
    else :
       fun_obj = grad_fun_obj(algorithm, package)
    #
