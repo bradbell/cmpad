@@ -73,10 +73,10 @@ class gradient :
    def option(self) :
       return self.optiion
    #
-   def domain() :
+   def domain(self) :
       return self.option['n_arg']
    #
-   def range() :
+   def range(self) :
       return self.option['n_arg']
    #
    #

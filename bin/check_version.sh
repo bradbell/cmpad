@@ -50,7 +50,7 @@ EOF
 file_list='
    cmpad.xrst
    cpp/CMakeLists.txt
-   python/cmpad/run_cmpad.py
+   bin/python/run_cmpad.py
 '
 for file in $file_list
 do

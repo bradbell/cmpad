@@ -20,6 +20,9 @@ site_packages=$(find -L $prefix -name 'site-packages')
 site_packages=$(echo $site_packages | sed -e 's|  *|:|' )
 export PYTHONPATH="$site_packages"
 #
+# xam_main.py
+bin/python/xam_main.py
+#
 # pytest
 cd python
 python -m pytest xam/*.py

@@ -101,6 +101,9 @@ import csv
 import datetime
 import platform
 #
+# bool_str
+bool_str = { True : 'true' , False : 'false' }
+#
 # BEGIN DEF
 def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    assert type(file_name) == str
@@ -139,15 +142,15 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    date = datetime.date.today().strftime('%Y-%m-%d')
    #
    row = {
-      'rate'       : rate,
+      'rate'       : '{:.1e}'.format(rate),
       'min_time'   : min_time,
       'package'    : package,
       'algorithm'  : algorithm,
       'n_arg'      : option['n_arg'],
-      'time_setup' : option['time_setup'],
+      'time_setup' : bool_str[ option['time_setup'] ],
       'date'       : date,
       'compiler'   : platform.python_version(),
-      'debug'      : __debug__,
+      'debug'      : bool_str[ __debug__ ],
       'language'   : 'python'
    }
    #

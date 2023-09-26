@@ -96,7 +96,7 @@ def xam_csv_speed() :
    ok = list( csv_table[0].keys() ) == col_names
    #
    # str2bool
-   str2bool = { 'True' : True, 'False' : False }
+   str2bool = { 'true' : True, 'false' : False }
    #
    # ok
    row = csv_table[0]
