@@ -84,6 +84,12 @@ Below is a list of the files that will be changed by this commit:
 EOF
 git status --porcelain >> git_commit.log
 $EDITOR git_commit.log
+#
+if grep 'If you delete all the lines in this file,' git_commit.log > /dev/null
+then
+   echo 'Aborting because you left documentation lines in commit log'
+   exit 1
+fi
 # -----------------------------------------------------------------------------
 #
 # git add
