@@ -26,7 +26,13 @@ check_version() {
    sed "$1" -f temp.sed > temp.out
    if ! diff "$1" temp.out > /dev/null
    then
-      mv temp.out "$1"
+      if [ -x "$1" ]
+      then
+         mv temp.out "$1"
+         chmod +x "$1"
+      else
+         mv temp.out "$1"
+      fi
       echo_eval git diff "$1"
    else
       rm temp.out

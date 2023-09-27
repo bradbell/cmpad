@@ -71,15 +71,18 @@ The *date* value is automatically determined and not an argument to csv_speed.
 
 compiler
 ********
-This is the version of python used for this test.
+This is a string identifying the version of python used for this test.
 The *compiler* value
 is automatically determined and not an argument to csv_speed.
 
 debug
 *****
-This is true (false) if python was not (was) executed with the ``-O`` flag.
-The assumption here is that this call to csv_speed uses the same python
-flags as when *rate* was determined.
+The *debug* value is automatically determined and not an argument to csv_speed.
+
+#. If *package* is ``double``, this is the empty string.
+#. If *package* is not ``double``,
+   this is true (false) if *package* was installed using the
+   debug (release) :ref:`get_package.py@Syntax@build_type` .
 
 {xrst_toc_hidden
    python/xam/csv_speed.py
@@ -141,6 +144,31 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    # date
    date = datetime.date.today().strftime('%Y-%m-%d')
    #
+   # debug
+   if package == 'double' :
+      debug = ''
+   else :
+      module        = __import__(package)
+      package_file  = module.__file__
+      package_path  = os.path.realpath(package_file)
+      debug_index   = package_path.find('/prefix.debug/')
+      release_index = package_path.find('/prefix.release/')
+      if 0 <= debug_index and 0 <= release_index :
+         msg  = f'package = {package}, path = {file_path}\n'
+         msg += 'Contains both /prefix.debug/ and /prefix.release/'
+         assert msg, False
+      if debug_index < 0 and release_index < 0 :
+         msg  = f'package = {package}, path = {file_path}\n'
+         msg += 'Does not contain /prefix.debug/ or /prefix.release/'
+         assert msg, False
+      if 0 < debug_index :
+         debug = 'true'
+      else :
+         debug = 'false'
+   #
+   # compiler
+   compiler = platform.python_implementation()+'-'+platform.python_version()
+   #
    row = {
       'rate'       : '{:.1e}'.format(rate),
       'min_time'   : min_time,
@@ -149,8 +177,8 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       'n_arg'      : option['n_arg'],
       'time_setup' : bool_str[ option['time_setup'] ],
       'date'       : date,
-      'compiler'   : platform.python_version(),
-      'debug'      : bool_str[ __debug__ ],
+      'compiler'   : compiler,
+      'debug'      : debug,
       'language'   : 'python'
    }
    #

@@ -1,9 +1,9 @@
 rate,min_time,package,algorithm,n_arg,time_setup,date,compiler,debug,language
-2.1e+05,0.5,float,det_by_minor,9,true,2023-09-26,3.11.5,true,python
-1.6e+04,0.5,cppad_py,det_by_minor,9,true,2023-09-26,3.11.5,true,python
-1.2e+04,0.5,float,an_ode,9,true,2023-09-26,3.11.5,true,python
-1.3e+03,0.5,cppad_py,an_ode,9,true,2023-09-26,3.11.5,true,python
-2.4e+05,0.5,float,det_by_minor,9,false,2023-09-26,3.11.5,true,python
-7.6e+04,0.5,cppad_py,det_by_minor,9,false,2023-09-26,3.11.5,true,python
-1.3e+04,0.5,float,an_ode,9,false,2023-09-26,3.11.5,true,python
-2.9e+04,0.5,cppad_py,an_ode,9,false,2023-09-26,3.11.5,true,python
+2.0e+05,0.5,double,det_by_minor,9,true,2023-09-27,CPython-3.11.5,,python
+1.6e+04,0.5,cppad_py,det_by_minor,9,true,2023-09-27,CPython-3.11.5,false,python
+1.2e+04,0.5,double,an_ode,9,true,2023-09-27,CPython-3.11.5,,python
+1.2e+03,0.5,cppad_py,an_ode,9,true,2023-09-27,CPython-3.11.5,false,python
+2.5e+05,0.5,double,det_by_minor,9,false,2023-09-27,CPython-3.11.5,,python
+7.7e+04,0.5,cppad_py,det_by_minor,9,false,2023-09-27,CPython-3.11.5,false,python
+1.2e+04,0.5,double,an_ode,9,false,2023-09-27,CPython-3.11.5,,python
+5.0e+04,0.5,cppad_py,an_ode,9,false,2023-09-27,CPython-3.11.5,false,python
