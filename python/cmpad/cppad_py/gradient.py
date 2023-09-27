@@ -3,7 +3,7 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin cppad_py_gradient}
+{xrst_begin_parent cppad_py_gradient}
 {xrst_spell
    obj
    numpy
@@ -45,7 +45,7 @@ g
 This is a numpy vector of ``float`` with length *option* [ ``'n_arg'`` ] .
 It is the value of the gradient ad *x* .
 
-{xrst_toc_hidden
+{xrst_toc_hidden before
    python/xam/grad_cppad_py.py
 }
 Example
@@ -53,14 +53,19 @@ Example
 The file :ref:`xam_grad_cppad_py.py-name`
 contains an example and test using this class.
 
-Source Code
-***********
+{xrst_end cppad_py_gradient}
+------------------------------------------------------------------------------
+{xrst_begin cppad_py_gradient.py}
+
+Gradient Using cppad_py: Source Code
+####################################
+
 {xrst_literal
    # BEGIN PYTHON
    # END PYTHON
 }
 
-{xrst_end cppad_py_gradient}
+{xrst_end cppad_py_gradient.py}
 '''
 # BEGIN PYTHON
 
