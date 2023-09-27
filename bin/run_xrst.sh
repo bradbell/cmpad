@@ -12,31 +12,20 @@ echo_eval() {
 	eval $*
 }
 # -----------------------------------------------------------------------------
-#
 if [ $# != 0 ]
 then
-   echo 'usage: bin/check_all.sh: does not expect arugments'
+   echo 'usage: bin/run_xrst.sh'
    exit 1
 fi
-if [ "$0" != 'bin/check_all.sh' ]
+if [ "$0" != 'bin/run_xrst.sh' ]
 then
-   echo 'bin/check_all.sh: must execute this script from its parent directory'
+   echo 'bin/run_xrst.sh: must execute this script from its parent directory'
    exit 1
 fi
-if [ ! -e './.git' ]
+if [ -e build/html ]
 then
-   echo 'bin/check_all.sh: cannot find ./.git'
-   exit 1
+   echo_eval rm -r build/html
 fi
-# -----------------------------------------------------------------------------
-list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
-for check in $list
-do
-   $check
-done
-bin/run_xrst.sh
-bin/python/check_python.sh
-bin/cpp/check_cpp.sh
-# -----------------------------------------------------------------------------
-echo 'bin/check_all.sh: OK'
+echo_eval xrst --local_toc --html_theme sphinx_rtd_theme
+echo 'bin/run_xrst.sh: OK'
 exit 0

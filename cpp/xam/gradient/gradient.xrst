@@ -1,0 +1,22 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+---------------------------------------------------------------------------
+{xrst_begin xam_gradient}
+
+Example and Test of Gradient
+############################
+
+{xrst_toc_table
+   cpp/xam/gradient/check_grad_det.hpp
+   cpp/xam/gradient/check_grad_ode.hpp
+   cpp/xam/gradient/adept.cpp
+   cpp/xam/gradient/adolc.cpp
+   cpp/xam/gradient/autodiff.cpp
+   cpp/xam/gradient/cppad.cpp
+   cpp/xam/gradient/cppad_jit.cpp
+   cpp/xam/gradient/cppadcg.cpp
+   cpp/xam/gradient/sacado.cpp
+}
+
+{xrst_end  xam_gradient}

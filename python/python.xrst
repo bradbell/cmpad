@@ -1,0 +1,24 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+---------------------------------------------------------------------------
+{xrst_begin python}
+
+Python Algorithmic Differentiation
+##################################
+
+{xrst_comment BEGIN_SORT_THIS_LINE_PLUS_2}
+{xrst_toc_table
+   bin/python/get_package.py
+   bin/python/run_cmpad.py
+   python/cmpad/an_ode.py
+   python/cmpad/cppad_py/gradient.py
+   python/cmpad/csv_speed.py
+   python/cmpad/det_by_minor.py
+   python/cmpad/fun_obj.xrst
+   python/cmpad/fun_speed.py
+   python/cmpad/near_equal.py
+}
+{xrst_comment END_SORT_THIS_LINE_MINUS_2}
+
+{xrst_end python}

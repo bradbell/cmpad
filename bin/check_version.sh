@@ -26,7 +26,13 @@ check_version() {
    sed "$1" -f temp.sed > temp.out
    if ! diff "$1" temp.out > /dev/null
    then
-      mv temp.out "$1"
+      if [ -x "$1" ]
+      then
+         mv temp.out "$1"
+         chmod +x "$1"
+      else
+         mv temp.out "$1"
+      fi
       echo_eval git diff "$1"
    else
       rm temp.out
@@ -38,16 +44,24 @@ version=$(date +%Y.%m.%d | sed -e 's|\.0*|.|g')
 #
 # temp.sed
 cat << EOF > temp.sed
-s|soversion *[0-9][0-9][.][0-9][0-9]*[.][0-9][0-9]*|soversion $version|
 s|cmpad-[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|cmpad-$version|
+s|PROJECT( *cmpad *VERSION *[0-9]\\{4\\}[.][0-9][0-9]*[.][0-9][0-9]*|PROJECT(cmpad VERSION $version|
 EOF
 #
 # lib/CMakeLists.txt
 # Currently, there is no version number in lib/CMakeLists.txt
 # check_version lib/CMakeLists.txt
 #
-# cmpad.xrst
-check_version cmpad.xrst
+# file_list
+file_list='
+   cmpad.xrst
+   cpp/CMakeLists.txt
+   bin/python/run_cmpad.py
+'
+for file in $file_list
+do
+   check_version $file
+done
 #
 # temp.sed
 # rm temp.sed

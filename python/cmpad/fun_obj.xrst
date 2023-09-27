@@ -1,0 +1,68 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+---------------------------------------------------------------------------
+
+{xrst_begin py_fun_obj}
+{xrst_spell
+   obj
+   len
+}
+
+Python Function Object
+######################
+
+Syntax
+******
+| |tab| *fun_obj*\ ``.setup`` ( *option* )
+| |tab| *n* = *fun_obj*\ ``.domain`` ( )
+| |tab| *m* = *fun_obj*\ ``.range`` ( )
+| |tab| *option* = *fun_obj*\ ``.option`` ()
+| |tab| *y* = *fun_obj* ( *x* )
+
+fun_obj
+*******
+This is the function object.
+The corresponding function call,
+*y* = *fun* ( *x* ),
+computes *y* as a function of *x* .
+
+type
+****
+This is called a *type* - function object where *type* is
+the type of the elements of *x* and *y* (see below).
+
+setup
+*****
+The function object is initialized using this syntax.
+
+option
+******
+This interface does not place any restrictions on the content of *option* .
+
+n
+*
+This return value is the dimension of the domain space for
+this function; i.e. the length of *x*.
+It likely depends on the value of *option*.
+
+m
+*
+This return value is the dimension of the range space for
+this function; i.e. the length of *y*.
+It likely depends on the value of *option*.
+
+x
+*
+is a vector like object such that
+*n* is equal ``len(x)`` .
+In addition is supports ``x[i]`` for indices *i* less than *n* .
+
+y
+*
+is a vector like object that contains the function value
+corresponding to the argument *x* .
+It supports ``y[i]`` for indices *i* less than *m* .
+
+
+{xrst_end py_fun_obj}

@@ -3,6 +3,8 @@
 #
 # used to build and run the project
 /build/
+/cpp/build/
+/python/build/
 #
 # used to install other packages
 /external/
@@ -10,6 +12,7 @@
 # used to cache and restore git changes
 /new/
 /new.*/
+#
 # ----------------------------------------------------------------------------
 # files
 #
@@ -20,7 +23,7 @@
 git_commit.log
 #
 # cmake creates this file from configure.hpp.in
-/include/cmpad/configure.hpp
+/cpp/include/cmpad/configure.hpp
 #
 # used by vim to backup and restore changes
 *.swp
@@ -28,3 +31,7 @@ git_commit.log
 # used as temporary files
 temp
 temp.*
+#
+# special python files and directories
+__pycache__/
+*.pyq

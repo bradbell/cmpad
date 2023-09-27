@@ -2,7 +2,7 @@ SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 SPDX-FileContributor: 2023 Bradley M. Bell
 ---------------------------------------------------------------------------
-{xrst_begin_parent cmpad}
+{xrst_begin cmpad}
 
 
 Compare Algorithmic Differentiation Packages
@@ -19,15 +19,18 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2023.9.4
+cmpad-2023.9.27
 
 Example Speed Comparison
 ************************
-see :ref:`xam_main.py@src/xam_main.csv`
+see the c++ :ref:`cpp_xam_main.py@cpp/xam_main.csv`
+and the python :ref:`py_xam_main.py@python/xam_main.csv` .
 
 Gradient Source Code Comparison
 *******************************
 
+C++
+===
 .. csv-table::
    :widths: auto
 
@@ -37,58 +40,21 @@ Gradient Source Code Comparison
    :ref:`autodiff_gradient.hpp-title`
    :ref:`cppad_jit_gradient.hpp-title`
 
+Python
+======
+.. csv-table::
+   :widths: auto
+
+   :ref:`cppad_py_gradient.py-title`
+
 
 Documentation
 *************
 
-{xrst_toc_table before
-   bin/get_package.sh
-   src/main.cpp
-   include/cmpad/configure.hpp.in
-   include/cmpad/gradient.hpp
+{xrst_toc_table
+   xrst/run_cmpad.xrst
+   cpp/cpp.xrst
+   python/python.xrst
 }
 
 {xrst_end cmpad}
------------------------------------------------------------------------------
-{xrst_begin type}
-
-Simple Types
-############
-
-{xrst_toc_table
-   include/cmpad/option_t.hpp
-   include/cmpad/vector.hpp
-   include/cmpad/vec_vec_str.hpp
-   include/cmpad/fun_obj.hpp
-}
-
-{xrst_end type}
------------------------------------------------------------------------------
-{xrst_begin algorithm}
-
-Algorithms Used to Compare Packages
-###################################
-
-{xrst_toc_table
-   include/cmpad/algo/det_by_minor.hpp
-   include/cmpad/algo/an_ode.hpp
-}
-
-{xrst_end algorithm}
------------------------------------------------------------------------------
-{xrst_begin utility}
-
-General Purpose Utilities
-#########################
-
-{xrst_toc_table
-   include/cmpad/fun_speed.hpp
-   include/cmpad/near_equal.hpp
-   lib/csv_read.cpp
-   lib/csv_speed.cpp
-   lib/csv_write.cpp
-   lib/uniform_01.cpp
-}
-
-{xrst_end utility}
------------------------------------------------------------------------------

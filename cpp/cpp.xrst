@@ -1,0 +1,61 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+---------------------------------------------------------------------------
+{xrst_begin_parent cpp}
+
+
+C++ Algorithmic Differentiation
+###############################
+
+{xrst_toc_table before
+   bin/cpp/get_package.sh
+   cpp/src/run_cmpad.cpp
+   cpp/include/cmpad/configure.hpp.in
+   cpp/include/cmpad/gradient.hpp
+}
+
+{xrst_end cpp}
+-----------------------------------------------------------------------------
+{xrst_begin type}
+
+Simple Types
+############
+
+{xrst_toc_table
+   cpp/include/cmpad/option_t.hpp
+   cpp/include/cmpad/vector.hpp
+   cpp/include/cmpad/vec_vec_str.hpp
+   cpp/include/cmpad/fun_obj.hpp
+}
+
+{xrst_end type}
+-----------------------------------------------------------------------------
+{xrst_begin algorithm}
+
+Algorithms Used to Compare Packages
+###################################
+
+{xrst_toc_table
+   cpp/include/cmpad/algo/det_by_minor.hpp
+   cpp/include/cmpad/algo/an_ode.hpp
+}
+
+{xrst_end algorithm}
+-----------------------------------------------------------------------------
+{xrst_begin utility}
+
+General Purpose Utilities
+#########################
+
+{xrst_toc_table
+   cpp/include/cmpad/fun_speed.hpp
+   cpp/include/cmpad/near_equal.hpp
+   cpp/lib/csv_read.cpp
+   cpp/lib/csv_speed.cpp
+   cpp/lib/csv_write.cpp
+   cpp/lib/uniform_01.cpp
+}
+
+{xrst_end utility}
+-----------------------------------------------------------------------------
