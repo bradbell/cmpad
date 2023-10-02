@@ -42,8 +42,8 @@ set -e -u
 # ***********
 # This is the set of the packages (so far) that can be installed:
 # {xrst_code sh}
-package_set=\
-'{ adept, adolc, autodiff, clad, cppad, cppad_jit, cppadcg, sacado, eigen }'
+package_set='{ adept, adolc, autodiff, clad, cppad, cppad_jit, cppadcg'
+package_set="$package_set,  fastad, eigen, sacado }"
 # {xrst_code}
 # If one of these packages is not install, it will not be included in
 # the cmpad testing.
@@ -55,6 +55,7 @@ package_set=\
 # .. _cppad:     https://github.com/coin-or/CppAD
 # .. _cppad_jit: https://github.com/coin-or/CppAD
 # .. _cppadcg:   https://github.com/joaoleal/CppADCodeGen
+# .. _fastad:    https://github.com/JamesYang007/FastAD
 # .. _sacado:    https://trilinos.github.io/sacado.html
 #
 # .. csv-table::
@@ -69,10 +70,11 @@ package_set=\
 #  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`
 #  `cppad_jit`_,  :ref:`gradient <cppad_jit_gradient.hpp-name>`
 #  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`
+#  `fastad`_,     Under Construction
 #  `sacado`_,     :ref:`gradient <sacado_gradient.hpp-name>`
 #
 # #. Implemented is the list of cmpad derivatives implemented so far
-# #. Installing autodiff also installs eigen.
+# #. Installing autodiff or fastad also installs eigen.
 # #. Installing cppad or cppad_jit has the same effect.
 # #. Installing cppadcg also installs cppad.
 #
@@ -159,7 +161,7 @@ then
 fi
 # ---------------------------------------------------------------------------
 #
-if [ "$package" == autodiff ]
+if [ "$package" == autodiff ] || [ "$package" == 'fastad' ]
 then
    # autodiff requires eigen
    $program $build_type eigen
@@ -211,6 +213,7 @@ case $package in
    version='master'
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure="$configure -D LLVM_EXTERNAL_LIT=$(which lit)"
    ;;
 
    cppad)
@@ -230,6 +233,20 @@ case $package in
    configure="$configure -D GOOGLETEST_GIT=ON"
    ;;
 
+   eigen)
+   web_page='https://gitlab.com/libeigen/$package.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
+   fastad)
+   web_page='https://github.com/JamesYang007/FastAD.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
    version='trilinos-release-14-4-0'
@@ -239,13 +256,6 @@ case $package in
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    configure="$configure -D BUILD_SHARED_LIBS=ON"
    # -D Trilinos_INSTALL_LIB_DIR=$prefix/$libdir
-   ;;
-
-   eigen)
-   web_page='https://gitlab.com/libeigen/$package.git'
-   version='master'
-   configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    *)
@@ -322,11 +332,14 @@ then
    #
    if [ "$package" == 'eigen' ]
    then
-      if [ -e $prefix/include/Eigen ]
-      then
-         rm $prefix/include/Eigen
-      fi
-      ln -s $prefix/include/eigen3/Eigen $prefix/include/Eigen
+      for link in Eigen unsupported
+      do
+         if [ -e $prefix/include/$link ]
+         then
+            rm $prefix/include/$link
+         fi
+         ln -s $prefix/include/eigen3/$link $prefix/include/$link
+      done
    fi
    echo "$program: $package OK"
    exit 0
@@ -368,6 +381,7 @@ then
    fi
    echo_eval cd $package_top_srcdir
    echo_eval git reset --hard
+   echo_eval git pull
    echo_eval git checkout --quiet $version
 else
    if [ "$package" != 'sacado' ]
@@ -396,7 +410,16 @@ fi
 # patch source
 if [ "$package" == 'adolc' ]
 then
+   # uni5_for.c
+   # missing definition of some loop indices
    sed -i ADOL-C/src/uni5_for.c -e 's|for (\([ij]\)=|for(int \1=|'
+   #
+   # remove extra print out when ADOLC_DEBUG is defined
+   list=$(git grep -l '^ *# *if *defined(ADOLC_DEBUG)')
+   for file in $list
+   do
+      sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
+   done
 fi
 # -----------------------------------------------------------------------------
 # build

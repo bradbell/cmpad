@@ -46,8 +46,9 @@ data = [
       adolc
       autodiff
       cppad
-      jit
       cppadcg
+      fastad
+      jit
       sacado
    ''',
    # option field names
