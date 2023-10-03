@@ -45,6 +45,8 @@ Source Code
 # include <cmpad/csv_speed.hpp>
 # include "parse_args.hpp"
 
+// BEGIN_SORT_THIS_LINE_PLUS_1
+# include <cmpad/clad/gradient.hpp>
 # include <cmpad/adept/gradient.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
@@ -52,6 +54,7 @@ Source Code
 # include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/cppadcg/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
+// END_SORT_THIS_LINE_MINUS_1
 
 // CMPAD_PACKAGE_TEST
 # define CMPAD_PACKAGE_TEST(package) \
@@ -85,6 +88,9 @@ cmpad::vector<std::string> get_package_available(void)
 # endif
 # if CMPAD_HAS_AUTODIFF
    package_available.push_back("autodiff");
+# endif
+# if CMPAD_HAS_CLAD
+   package_available.push_back("clad");
 # endif
 # if CMPAD_HAS_CPPAD
    package_available.push_back("cppad");
@@ -200,32 +206,26 @@ int main(int argc, char* argv[])
    else if( package == "adolc" )
    {  CMPAD_PACKAGE_TEST(adolc) }
 # endif
-   //
-   // file_name, case_found
 # if CMPAD_HAS_AUTODIFF
    else if( package == "autodiff" )
    {  CMPAD_PACKAGE_TEST(autodiff) }
 # endif
-   //
-   // file_name, case_found
+# if CMPAD_HAS_CLAD
+   else if( package == "clad" )
+   {  CMPAD_PACKAGE_TEST(clad) }
+# endif
 # if CMPAD_HAS_CPPAD
    else if( package == "cppad" )
    {  CMPAD_PACKAGE_TEST(cppad) }
 # endif
-   //
-   // file_name, case_found
 # if CMPAD_HAS_CPPAD_JIT
    else if( package == "cppad_jit" )
    {  CMPAD_PACKAGE_TEST(cppad_jit) }
 # endif
-   //
-   // file_name, case_found
 # if CMPAD_HAS_CPPADCG
    else if( package == "cppadcg" )
    {  CMPAD_PACKAGE_TEST(cppadcg) }
 # endif
-   //
-   // file_name, case_found
 # if CMPAD_HAS_SACADO
    else if( package == "sacado" )
    {  CMPAD_PACKAGE_TEST(sacado) }

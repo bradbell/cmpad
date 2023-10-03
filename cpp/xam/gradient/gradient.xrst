@@ -13,6 +13,7 @@ Example and Test of Gradient
    cpp/xam/gradient/adept.cpp
    cpp/xam/gradient/adolc.cpp
    cpp/xam/gradient/autodiff.cpp
+   cpp/xam/gradient/clad.cpp
    cpp/xam/gradient/cppad.cpp
    cpp/xam/gradient/cppad_jit.cpp
    cpp/xam/gradient/cppadcg.cpp

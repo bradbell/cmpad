@@ -64,15 +64,16 @@ is present on the cmake command line.
 # define CMPAD_CXX_COMPILER \
    "@CMAKE_CXX_COMPILER_ID@-@CMAKE_CXX_COMPILER_VERSION@"
 
-// CMPAD_HAS_package
+// BEGIN_SORT_THIS_LINE_PLUS_1
 # define CMPAD_HAS_ADEPT       @cmpad_has_adept@
 # define CMPAD_HAS_ADOLC       @cmpad_has_adolc@
 # define CMPAD_HAS_AUTODIFF    @cmpad_has_autodiff@
 # define CMPAD_HAS_CLAD        @cmpad_has_clad@
 # define CMPAD_HAS_CPPAD       @cmpad_has_cppad@
-# define CMPAD_HAS_CPPAD_JIT   @cmpad_has_cppad_jit@
 # define CMPAD_HAS_CPPADCG     @cmpad_has_cppadcg@
+# define CMPAD_HAS_CPPAD_JIT   @cmpad_has_cppad_jit@
 # define CMPAD_HAS_SACADO      @cmpad_has_sacado@
+// END_SORT_THIS_LINE_MINUS_1
 
 // CMPAD_COMPILER_IS_compiler
 # define CMPAD_COMPILER_IS_CLANG @cmpad_compiler_is_clang@

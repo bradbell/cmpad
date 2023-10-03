@@ -21,7 +21,7 @@ SET(example_list
 #
 # example_list
 # examples that require AD packages
-FOREACH(package adept adolc autodiff cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff clad cppad cppad_jit cppadcg sacado)
    IF( ${cmpad_has_${package}} )
       SET(example_list ${example_list} gradient/${package}.cpp)
    ENDIF( )

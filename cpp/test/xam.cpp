@@ -37,6 +37,9 @@ CMPAD_TEST_EXAMPLE(gradient_adolc)
 # if CMPAD_HAS_AUTODIFF
 CMPAD_TEST_EXAMPLE(gradient_autodiff)
 # endif
+# if CMPAD_HAS_CLAD
+CMPAD_TEST_EXAMPLE(gradient_clad)
+# endif
 # if CMPAD_HAS_CPPAD
 CMPAD_TEST_EXAMPLE(gradient_cppad)
 # endif
