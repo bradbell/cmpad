@@ -171,7 +171,7 @@ arguments_t parse_args(int argc, char* argv[])
             "minimum time in seconds to average computation rate [0.5]\n"
          "-n: --n_arg:      size_t: "
             "size of argument to algorithm [9]\n"
-         "-p: --pakcage:    string: "
+         "-p: --package:    string: "
             "double or an AD packae name [double]\n"
          "-t: --time_setup:       : "
             "if present, include setup time in speed [false]\n"
