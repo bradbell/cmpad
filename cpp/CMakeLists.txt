@@ -11,6 +11,9 @@ ENDMACRO( )
 # cmake requires version
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 #
+# CMAKE_CXX_STANDARG
+SET(CMAKE_CXX_STANDARD 17)
+#
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
 PROJECT(cmpad VERSION 2023.10.2)
 #
@@ -37,8 +40,10 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 #
 # Boost_UNIT_TEST_FRAMEWORK_LIBRARY
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
-#
+# ----------------------------------------------------------------------------
 # ${package}_LINK_LIBRARIES
+# for package = adolc, cppad, cppadcg, adept, clad, scacdo
+#
 FOREACH(package adolc cppad cppadcg)
    pkg_check_modules(${package} ${package})
    IF( ${package}_LINK_LIBRARIES )
@@ -60,6 +65,21 @@ FOREACH(dir lib lib64)
 ENDFOREACH( )
 print_variable( adept_LINK_LIBRARIES )
 #
+# clad_LINK_LIBRARIES
+SET( clad_LINK_LIBRARIES "")
+STRING( TOLOWER "${CMAKE_CXX_COMPILER_ID}" compiler )
+IF( ${compiler} STREQUAL "clang" )
+   FOREACH(dir lib lib64)
+      FOREACH(ext dll dylib so)
+         SET(tmp "${cmpad_install_prefix}/${dir}/clad.${ext}" )
+         IF( EXISTS  ${tmp} )
+            SET( clad_LINK_LIBRARIES "${tmp}" )
+         ENDIF( )
+      ENDFOREACH( )
+   ENDFOREACH( )
+ENDIF( )
+print_variable( clad_LINK_LIBRARIES )
+#
 # sacado_LINK_LIBRARIES
 FOREACH(dir lib lib64)
    IF( IS_DIRECTORY "${cmpad_install_prefix}/${dir}/cmake/Trilinos" )
@@ -73,6 +93,12 @@ ELSE( )
    SET(sacado_LINK_LIBRARIES "")
 ENDIF( )
 print_variable( sacado_LINK_LIBRARIES )
+# ----------------------------------------------------------------------------
+# include/cmpad/configure.hpp
+# cmpad_has_${package}
+# for package = adept, adolc, autodiff, clad, cppad, cppad_jig, cppadcg, sacado
+ADD_SUBDIRECTORY(include/cmpad)
+# ----------------------------------------------------------------------------
 #
 # Special compiler flag that makes Sacado faster
 IF( NOT ( "${sacado_LINK_LIBRARIES}" STREQUAL "" ) )
@@ -85,24 +111,20 @@ INCLUDE_DIRECTORIES(
    ${cmpad_install_prefix}/include
 )
 #
+# library directories
+ADD_SUBDIRECTORY(lib)
+ADD_SUBDIRECTORY(xam)
+#
 # link libraries
 LINK_LIBRARIES(
    ${adept_LINK_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
+   ${clad_LINK_LIBRARIES}
    ${cppad_LINK_LIBRARIES}
    ${sacado_LINK_LIBRARIES}
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 )
 #
-# CMAKE_CXX_STANDARG
-SET(CMAKE_CXX_STANDARD 17)
-#
-# include/cmpad/configure.hpp
-# cmpad_has_${package}
-ADD_SUBDIRECTORY(include/cmpad)
-#
 # other subdirectories
-ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(xam)
 ADD_SUBDIRECTORY(test)

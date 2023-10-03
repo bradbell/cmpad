@@ -2,9 +2,10 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-#
 # cmpad_has_${package}
-FOREACH(package adept adolc cppad cppadcg sacado)
+# for package = adept, adolc, clad, cppad, cppadcg, sacado, cppad_jit
+#
+FOREACH(package adept adolc clad cppad cppadcg sacado)
    IF( "${${package}_LINK_LIBRARIES}" STREQUAL "" )
       SET( cmpad_has_${package} 0 )
    ELSE( )
@@ -18,14 +19,6 @@ IF( EXISTS
    SET( cmpad_has_autodiff 1 )
 ELSE( )
    SET( cmpad_has_autodiff 0 )
-ENDIF( )
-#
-# cmpad_has_clad
-IF( EXISTS
-   "${cmpad_install_prefix}/include/clad/Differentiator/Differentiator.h" )
-   SET( cmpad_has_clad 1 )
-ELSE( )
-   SET( cmpad_has_clad 0 )
 ENDIF( )
 #
 # cmpad_compiler_is_clang
@@ -51,9 +44,10 @@ IF( NOT cmpad_compiler_is_clang )
       ENDIF( )
    ENDIF( )
 ENDIF( )
+# ---------------------------------------------------------------------------
+# cmpad_vector_${name}
+# for name = cppad, std
 #
-# cmpad_vector_<name>
-# for <name> equal to cppad or std
 SET(cmpad_vector std CACHE STRING
    "Is cmpad::vector a cppad or std vector ?"
 )
@@ -70,13 +64,15 @@ ENDIF( )
 IF( cmpad_vector_cppad AND NOT cmpad_has_cppad )
    MESSAGE(FATAL_ERROR "cmpad_vector is cppad but cppad is not installed.")
 ENDIF( )
+# ---------------------------------------------------------------------------
 #
 CONFIGURE_FILE(
    ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp.in
    ${CMAKE_CURRENT_SOURCE_DIR}/configure.hpp
 )
-#
+# ---------------------------------------------------------------------------
 # cmpad_has_${package} PARENT_SCOPE
+#
 FOREACH(package adept adolc autodiff clad cppad cppad_jit cppadcg sacado)
    print_variable( cmpad_has_${package} )
    SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
