@@ -32,7 +32,7 @@ This implements the :ref:`gradient-name` interface using clad.
 TemplateAlgo
 ************
 The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <fun_obj-name>` .
+:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
 
 value_type
 **********
@@ -75,7 +75,7 @@ private:
       //
       // setup
       void setup(size_t n, TemplateAlgo<double>* algo_ptr)
-      {  n_        = n; 
+      {  n_        = n;
          algo_ptr_ = algo_ptr;
       }
       //
@@ -137,7 +137,7 @@ public:
    {  //
       // n
       size_t n = algo_.domain();
-      //  
+      //
       // f_dx
       auto f_dx = ::clad::gradient(f_);
       //

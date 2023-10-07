@@ -31,3 +31,7 @@ ENDFOREACH( )
 # All the ./*.cpp files should be included below and in ../test/xam.cpp
 ADD_LIBRARY(xam SHARED ${example_list} )
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${cmpad_VERSION})
+#
+IF( ${cmpad_has_clad} )
+   TARGET_COMPILE_OPTIONS(xam PUBLIC -fplugin=${clad_LINK_LIBRARIES})
+ENDIF( )

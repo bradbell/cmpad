@@ -33,5 +33,5 @@ ADD_EXECUTABLE(test ${test_list})
 TARGET_LINK_LIBRARIES(test cmpad xam)
 #
 IF( ${cmpad_has_clad} )
-   TARGET_COMPILE_OPTIONS(run_cmpad PUBLIC -fplugin=${clad_LINK_LIBRARIES})
+   TARGET_COMPILE_OPTIONS(test PUBLIC -fplugin=${clad_LINK_LIBRARIES})
 ENDIF( )

@@ -46,10 +46,10 @@ Source Code
 # include "parse_args.hpp"
 
 // BEGIN_SORT_THIS_LINE_PLUS_1
-# include <cmpad/clad/gradient.hpp>
 # include <cmpad/adept/gradient.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
+# include <cmpad/clad/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/cppadcg/gradient.hpp>
