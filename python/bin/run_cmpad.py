@@ -15,7 +15,7 @@ Documentation
 :ref:`run_cmpad-name` .
 
 {xrst_toc_hidden
-   bin/python/xam_main.py
+   python/bin/xam_main.py
 }
 Example
 *******
@@ -38,11 +38,11 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.10.2'
+cmpad_version = 'cmpad-2023.10.9'
 # ----------------------------------------------------------------------------
 #
 # program
-program = 'bin/python/run_cmpad.py'
+program = 'python/bin/run_cmpad.py'
 if not os.path.isdir('.git') :
    msg = f'{program} must be run from top source directory'
    sys.exit(msg)

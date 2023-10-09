@@ -17,15 +17,15 @@ fi
 # ---------------------------------------------------------------------------
 ignore_list='
 '
-for file_name in $(git ls-files)
+for file_name in $( git ls-files | sed -e 's|^bin|./bin|' )
 do
    if ! echo "$ignore_list" | tr '\n' ' ' | grep " $file_name " > /dev/null
    then
-      if echo $file_name | grep '^bin/' > /dev/null
+      if echo $file_name | grep '/bin/' > /dev/null
       then
          if [ ! -x $file_name ]
          then
-            echo "$file_name is in bin directory and is not executable."
+            echo "$file_name is in a bin directory and is not executable."
             read -p 'make it executable [yes/no] ?' response
             if [ "$response" == 'yes' ]
             then
@@ -38,7 +38,7 @@ do
       else
          if [ -x $file_name ]
          then
-            echo "$file_name is not in bin directory and is executable."
+            echo "$file_name is not in a bin directory and is executable."
             read -p 'make it not executable [yes/no] ?' response
             if [ "$response" == 'yes' ]
             then

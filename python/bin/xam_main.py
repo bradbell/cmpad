@@ -42,7 +42,7 @@ import subprocess
 def main() :
    #
    # program
-   program = 'bin/python/xam_main.py'
+   program = 'python/bin/xam_main.py'
    #
    # check
    if len(sys.argv) != 1 :
@@ -78,7 +78,7 @@ def main() :
             #
             # command
             command = [
-               'bin/python/run_cmpad.py',
+               'python/bin/run_cmpad.py',
                f'--package={package}',
                f'--algorithm={algorithm}',
                f'--file_name={file_name}',

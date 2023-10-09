@@ -21,7 +21,7 @@ program
 
    program, source
    ``cppad/build/src/run_cmpad`` , :ref:`run_cmpad.cpp-name`
-   ``bin/python/run_cmpad.py``   , :ref:`run_cmpad.py-name`
+   ``python/bin/run_cmpad.py``   , :ref:`run_cmpad.py-name`
 
 Arguments
 *********
