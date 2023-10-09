@@ -12,7 +12,7 @@ echo_eval() {
 	eval $*
 }
 # -----------------------------------------------------------------------------
-program='bin/cpp/check_cpp.sh'
+program='cpp/bin/check_cpp.sh'
 #
 if [ $# != 0 ]
 then
@@ -39,7 +39,7 @@ if [ $(expr $RANDOM % 2) == 1 ]
 then
    flags="$flags --cppad_vector"
 fi
-echo_eval bin/cpp/run_cmake.sh $flags
+echo_eval cpp/bin/run_cmake.sh $flags
 #
 # cpp/build
 echo_eval cd cpp/build
@@ -54,7 +54,7 @@ echo "test/test"
 #
 # xam_main.py
 cd ../..
-echo_eval bin/cpp/xam_main.py
+echo_eval cpp/bin/xam_main.py
 # -----------------------------------------------------------------------------
 echo "$program: OK"
 exit 0

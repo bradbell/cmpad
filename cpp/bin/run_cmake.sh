@@ -4,9 +4,9 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
-if [ "$0" != 'bin/cpp/run_cmake.sh' ]
+if [ "$0" != 'cpp/bin/run_cmake.sh' ]
 then
-   echo 'bin/cpp/run_cmake.sh: must be executed the top source directory'
+   echo 'cpp/bin/run_cmake.sh: must be executed the top source directory'
    exit 1
 fi
 #

@@ -42,7 +42,7 @@ import subprocess
 def main() :
    #
    # program
-   program = 'bin/cpp/xam_main.py'
+   program = 'cpp/bin/xam_main.py'
    #
    # run_cmpad
    run_cmpad = 'cpp/build/src/run_cmpad'
@@ -59,7 +59,7 @@ def main() :
       sys.exit(msg)
    if not os.path.isfile(configure_file) :
       msg  = f'{program}: {configure_file} does not exist.'
-      msg += '\nUse bin/cpp/run_cmake.sh to create it.'
+      msg += '\nUse cpp/bin/run_cmake.sh to create it.'
       sys.exit(msg)
    if not os.path.isfile(run_cmpad) :
       msg  = f'{program}: {run_cmpad} does not exist.'
