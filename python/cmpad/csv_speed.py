@@ -154,11 +154,11 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       debug_index   = package_path.find('/prefix.debug/')
       release_index = package_path.find('/prefix.release/')
       if 0 <= debug_index and 0 <= release_index :
-         msg  = f'package = {package}, path = {file_path}\n'
+         msg  = f'package = {package}, path = {package_path}\n'
          msg += 'Contains both /prefix.debug/ and /prefix.release/'
          assert msg, False
       if debug_index < 0 and release_index < 0 :
-         msg  = f'package = {package}, path = {file_path}\n'
+         msg  = f'package = {package}, path = {package_path}\n'
          msg += 'Does not contain /prefix.debug/ or /prefix.release/'
          assert msg, False
       if 0 < debug_index :

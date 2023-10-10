@@ -83,7 +83,7 @@ Note that cppad_jit is the JIT compiled version of cppad derivatives.
 
 Python
 ======
-The possible Python AD packages are: cppad_py .
+The possible Python AD packages are: autograd, cppad_py .
 
 time_setup
 **********

@@ -53,7 +53,7 @@ def main() :
       sys.exit(msg)
    #
    # package_list
-   package_list = [ 'double', 'cppad_py' ]
+   package_list = [ 'double', 'autograd', 'cppad_py' ]
    print( f'package_list = {package_list}' )
    #
    # file_name

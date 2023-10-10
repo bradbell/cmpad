@@ -38,7 +38,7 @@ packages
 ********
 This is the set of the packages (so far) that can be installed::
 
-   { 'cppad_py' }
+   { 'cppad_py' , 'autograd' }
 
 If one of these packages is installed,
 it will be included in the cmpad testing.
@@ -106,6 +106,10 @@ def system_command(list_of_commands) :
          msg  = 'system command above failed'
          sys.exit(msg)
 #
+# install_autograd
+def install_autograd(build_type) :
+   system_command( f'pip instal autograd --prefix={prefix}' )
+#
 # install_cppad_py
 def install_cppad_py(build_type) :
    #
@@ -171,6 +175,7 @@ def main() :
    # package_install
    package_install = {
       'cppad_py' : install_cppad_py ,
+      'autograd' : install_autograd ,
    }
    #
    # package_webpage

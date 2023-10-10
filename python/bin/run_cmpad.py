@@ -38,7 +38,7 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.10.9'
+cmpad_version = 'cmpad-2023.10.10'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -87,6 +87,8 @@ def grad_fun_obj(algorithm, package) :
    #
    if package == 'cppad_py' :
       return cmpad.cppad_py.gradient(algo)
+   elif package == 'autograd' :
+      return cmpad.autograd.gradient(algo)
    else :
       assert False
    #
@@ -145,7 +147,7 @@ def main() :
    #
    # package
    package = arguments.package
-   if package not in [ 'double', 'cppad_py' ] :
+   if package not in [ 'double', 'autograd', 'cppad_py' ] :
       msg = f'{program}: package = {package} is not available'
       sys.exit(msg)
    #

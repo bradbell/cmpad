@@ -3,18 +3,18 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin_parent cppad_py_gradient}
+{xrst_begin_parent autograd_gradient}
 {xrst_spell
    obj
    numpy
 }
 
-Calculate Gradient Using cppad_py
+Calculate Gradient Using autograd
 #################################
 
 Syntax
 ******
-| |tab| *grad* ``cmpad.cppad_py.gradient`` ( *algo* )
+| |tab| *grad* ``cmpad.autograd.gradient`` ( *algo* )
 | |tab| *grad* . ``setup`` ( *option* )
 | |tab| *g* = *grad* ( *x* )
 
@@ -28,7 +28,7 @@ computed by *algo* .
 algo
 ****
 This is a py_fun_obj where the input and output vectors
-have elements of type ``cppad_py.a_double`` .
+have elements of type ``autograd.a_double`` .
 
 grad
 ****
@@ -46,18 +46,18 @@ This is a numpy vector of ``float`` with length *option* [ ``'n_arg'`` ] .
 It is the value of the gradient ad *x* .
 
 {xrst_toc_hidden before
-   python/xam/grad_cppad_py.py
+   python/xam/grad_autograd.py
 }
 Example
 *******
-The file :ref:`xam_grad_cppad_py.py-name`
+The file :ref:`xam_grad_autograd.py-name`
 contains an example and test using this class.
 
-{xrst_end cppad_py_gradient}
+{xrst_end autograd_gradient}
 ------------------------------------------------------------------------------
-{xrst_begin cppad_py_gradient.py}
+{xrst_begin autograd_gradient.py}
 
-Gradient Using cppad_py: Source Code
+Gradient Using autograd: Source Code
 ####################################
 
 {xrst_literal
@@ -65,9 +65,12 @@ Gradient Using cppad_py: Source Code
    # END PYTHON
 }
 
-{xrst_end cppad_py_gradient.py}
+{xrst_end autograd_gradient.py}
 '''
 # BEGIN PYTHON
+#
+# imports
+import autograd
 #
 # gradient
 class gradient :
@@ -85,14 +88,13 @@ class gradient :
    def range(self) :
       return self.option['n_arg']
    #
+   def wrapper(self, x) :
+      y = self.algo(x)
+      return y[0]
    #
    def setup(self, option) :
       assert type(option) == dict
       assert 'n_arg' in option
-      #
-      # imports
-      import numpy
-      import cppad_py
       #
       # self.option
       self.option = option
@@ -106,25 +108,16 @@ class gradient :
       # self.m
       m = self.algo.range()
       #
-      # self.w
-      self.w       = numpy.empty( (1, 1), dtype=float )
-      self.w[0, 0] = 1.0
-      #
       # self.tape
-      x  = numpy.empty(n, dtype=float)
-      ay = numpy.empty(1, dtype=cppad_py.a_double)
-      for i in range(n) :
-         x[i] = 0.
-      ax    = cppad_py.independent(x)
-      az    = self.algo(ax)
-      ay[0] = az[m-1]
-      self.tape = cppad_py.d_fun(ax, ay)
-      if not option['time_setup'] :
-         self.tape.optimize()
+      self.tape = autograd.grad(self.wrapper)
    #
    # call
    def __call__(self, x) :
-      self.tape.forward(0, x)
-      g = self.tape.reverse(1, self.w)
+      n_arg   = self.option['n_arg']
+      assert len(x) == n_arg
+      ax = autograd.numpy.empty(n_arg)
+      for i in range(n_arg) :
+         ax[i] = x[i]
+      g = self.tape( ax )
       return g
 # END PYTHON

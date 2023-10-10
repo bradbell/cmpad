@@ -12,6 +12,7 @@ Python Algorithmic Differentiation
    python/bin/get_package.py
    python/bin/run_cmpad.py
    python/cmpad/an_ode.py
+   python/cmpad/autograd/gradient.py
    python/cmpad/cppad_py/gradient.py
    python/cmpad/csv_speed.py
    python/cmpad/det_by_minor.py

@@ -45,6 +45,7 @@ data = [
    '''
       adolc
       autodiff
+      autograd
       cppad
       cppadcg
       fastad
