@@ -20,7 +20,7 @@ that cmpad can test.
 
 Syntax
 ******
-``bin/python/get_package.py`` *build_type* *package_1* [ *package_2* [ ... ] ]
+``python/bin/get_package.py`` *build_type* *package_1* [ *package_2* [ ... ] ]
 
 build_type
 ==========
@@ -65,7 +65,7 @@ r'''{xrst_code}
 prefix
 ******
 This is the prefix for the packages installed by
-``bin/python/get_package.py`` :
+``python/bin/get_package.py`` :
 {xrst_code py}'''
 prefix     = f'{top_srcdir}/python/build/prefix'
 r'''{xrst_code}

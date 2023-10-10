@@ -9,7 +9,7 @@ C++ Algorithmic Differentiation
 ###############################
 
 {xrst_toc_table before
-   bin/cpp/get_package.sh
+   cpp/bin/get_package.sh
    cpp/src/run_cmpad.cpp
    cpp/include/cmpad/configure.hpp.in
    cpp/include/cmpad/gradient.hpp

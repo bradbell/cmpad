@@ -6,7 +6,7 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # ----------------------------------------------------------------------------
-program='bin/python/check_python.sh'
+program='python/bin/check_python.sh'
 prefix="$(pwd)/python/build/prefix"
 #
 if [ ! -d .git ]
@@ -21,7 +21,7 @@ site_packages=$(echo $site_packages | sed -e 's|  *|:|' )
 export PYTHONPATH="$site_packages"
 #
 # xam_main.py
-bin/python/xam_main.py
+python/bin/xam_main.py
 #
 # pytest
 cd python

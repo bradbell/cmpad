@@ -24,7 +24,7 @@ set -e -u
 #
 # Syntax
 # ******
-# ``bin/cpp/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# ``cpp/bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
 #
 # build_type
 # ==========
@@ -92,7 +92,7 @@ top_srcdir=$(pwd)
 # }
 # prefix
 # ******
-# This is the prefix for the packages installed by ``bin/cpp/get_package.sh`` :
+# This is the prefix for the packages installed by ``cpp/bin/get_package.sh`` :
 # {xrst_code sh}
 prefix=$top_srcdir/cpp/build/prefix
 # {xrst_code}
@@ -121,7 +121,7 @@ echo_eval() {
    eval $*
 }
 # -----------------------------------------------------------------------------
-program='bin/cpp/get_package.sh'
+program='cpp/bin/get_package.sh'
 #
 if [ ! -d '.git' ]
 then

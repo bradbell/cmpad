@@ -35,8 +35,8 @@ do
    $check
 done
 bin/run_xrst.sh
-bin/python/check_python.sh
-bin/cpp/check_cpp.sh
+python/bin/check_python.sh
+cpp/bin/check_cpp.sh
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0
