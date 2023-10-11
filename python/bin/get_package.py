@@ -106,9 +106,32 @@ def system_command(list_of_commands) :
          msg  = 'system command above failed'
          sys.exit(msg)
 #
+# get_version
+def get_version() :
+   #
+   # pyproject
+   file_obj  = open('pyproject.toml', 'r')
+   file_data = file_obj.read()
+   pyproject = toml.loads(file_data)
+   file_obj.close()
+   #
+   # version
+   version = pyproject['project']['version']
+   #
+   return version
+#
 # install_autograd
 def install_autograd(build_type) :
-   system_command( f'pip instal autograd --prefix={prefix}' )
+   #
+   # version
+   version = get_version()
+   #
+   # list_of_commands
+   list_of_commands = [
+      'python -m build' ,
+      f'pip install dist/autograd-{version}.tar.gz --prefix={prefix}',
+   ]
+   system_command(list_of_commands)
 #
 # install_cppad_py
 def install_cppad_py(build_type) :
@@ -131,16 +154,10 @@ def install_cppad_py(build_type) :
    file_obj.write(get_cppad)
    file_obj.close()
    #
-   # pyproject
-   file_obj  = open('pyproject.toml', 'r')
-   file_data = file_obj.read()
-   pyproject = toml.loads(file_data)
-   file_obj.close()
-   #
    # version
-   version = pyproject['project']['version']
+   version = get_version()
    #
-   # get_cppad.sh
+   # list_of_commands
    list_of_commands = [
       'bin/get_cppad.sh',
       'python -m build' ,
@@ -180,7 +197,8 @@ def main() :
    #
    # package_webpage
    package_webpage = {
-      'cppad_py' : 'https://github.com/bradbell/cppad_py.git'
+      'cppad_py' : 'https://github.com/bradbell/cppad_py.git' ,
+      'autograd' : 'https://github.com/HIPS/autograd.git' ,
    }
    #
    # package
