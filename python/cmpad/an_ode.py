@@ -167,17 +167,14 @@ class an_ode :
    def __call__(self, x) :
       assert len(x) == self.n
       #
-      # Scalar
-      Scalar = type(x[0])
-      #
       # yi
-      yi = self.n * [ Scalar(0.0) ]
+      yi = self.n * [ 0.0 ]
       #
       # fun
       fun = an_ode_fun(x)
       #
       # tf
-      tf = Scalar(2.0)
+      tf = 2.0
       #
       # ns
       ns = self.n
