@@ -30,39 +30,39 @@ This routine returns an approximate solution
 for :math:`y( t^f )` where :math:`y(0) = y^i` and
 :math:`y' (t) = f(y)` .
 
+fun
+***
+This is a :ref:`py_fun_obj-name` .
+The syntax *dy* = *fun* ( *yt* ) ,
+were *yt* is :math:`y(t)` ,
+sets *dy* equal to the derivative :math:`y'(t)`  .
+
 Scalar
 ******
-We use *Scalar* for the type of the elements of *yi* and *yf* .
-If *a* and *b* are *Scalar* objects and *d* is a ``float`` ,
-the type *Scalar* must support the following operations:
+We use *Scalar* for the scalar type corresponding to this function object;
+see :ref:`py_fun_obj@Scalar Type` .
+This type must support the following operations where
+*a* and *b* have type *Scalar* or ``float`` .
 
 .. csv-table::
    :widths: auto
    :header-rows: 1
 
    Syntax,    Description,                                     Result Type
-   Scalar(d), constructs a *Scalar* with value d,              *Scalar*
-   a = b,     set value of *a* equal to current value of *b*
    a + b,     value of *a* plus *b*,                           *Scalar*
    a * b,     value of *a* times *b*,                          *Scalar*
    a / b,     value of *a* divided by *b*,                     *Scalar*
 
-fun
-***
-The syntax *dy* = *fun* ( *yt* ) ,
-were *yt* is :math:`y(t)` ,
-sets *dy* equal to the derivative :math:`y'(t)`  .
-Both *yt* and *dy* are vector like objects with elements of type *Scalar* .
-
 yi
 **
 is the value of :math:`y(t)` at :math:`t = 0` .
-This is a vector like object with elements of type *Scalar*.
+This is a vector like object with elements of type
+``float`` or *Scalar* .
 
 tf
 **
 is the value of *t* at which we wish to evaluate :math:`y(t)` .
-This is an object of type *Scalar* .
+This is an object of type ``float`` or *Scalar* .
 
 ns
 **
@@ -75,7 +75,7 @@ yf
 **
 The return value *yf* has the same size as *yi* and is the approximation
 for :math:`y(t)` at *t* = *tf* .
-This is a vector like object with elements of type *Scalar*.
+This is a vector like object with elements of type ``float`` or *Scalar* .
 
 {xrst_toc_table after
    python/xam/runge_kutta.py
@@ -107,19 +107,17 @@ Python runge_kutta Source Code
 # BEGIN PYTHON
 # BEGIN DEF
 def runge_kutta(fun, yi, tf, ns) :
-   Scalar = type(yi[0])
-   assert type(tf) == Scalar
    assert type(ns) == int
    # END DEF
    #
    # two, six
-   two = Scalar(2.0)
-   six = Scalar(6.0)
+   two = 2.0
+   six = 6.0
    # n
    n = len(yi)
    #
    # h
-   h = tf / Scalar(ns)
+   h = tf / float(ns)
    #
    # i_step, yf
    yf = yi
@@ -149,6 +147,12 @@ def runge_kutta(fun, yi, tf, ns) :
          yf[i] = yf[i] + h * (k1[i] + two * k2[i] + two * k3[i] + k4[i]) / six
    #
    # BEGIN RETURN
+   type_set = { float }
+   for i in range( len(yi) ) :
+      type_set.add( type(yi[i]) )
+      type_set.add( type(yf[i]) )
+   assert len( type_set ) <= 2
+   #
    assert len(yf) == len(yi)
    return yf
    # END RETURN

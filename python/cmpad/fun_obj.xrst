@@ -27,10 +27,13 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
-type
-****
-This is called a *type* - function object where *type* is
-the type of the elements of *x* and *y* (see below).
+Scalar Type
+***********
+We call this a *Scalar* function object where *Scalar* is defined as follows.
+If all of the elements of *x* and *y* have the type ``float`` ,
+*Scalar* is ``float`` .
+Otherwise, there can be at most one other type for elements of *x* and *y*
+and *Scalar* is that type.
 
 setup
 *****
