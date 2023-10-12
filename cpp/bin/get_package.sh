@@ -25,11 +25,15 @@ set -e -u
 # Syntax
 # ******
 # ``cpp/bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# ``cpp/bin/get_package.sh`` *build_type* ``all``
 #
 # build_type
 # ==========
 # This is either ``debug`` or ``release`` and determines if libraries,
 # built while installing the packages, are debug or release versions.
+#
+# all
+# If ``all`` is present, all of the possible packages are installed.
 #
 # package_j
 # =========
@@ -142,6 +146,7 @@ fi
 build_type="$1"
 if [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
 then
+   echo "usage: $program build_type all"
    echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo "build_type=$build_type is not debug or release"
    exit 1
@@ -151,10 +156,23 @@ fi
 while [ "$#" -gt 2 ]
 do
    package="$2"
+   if [ "$package" == 'all' ]
+   then
+      echo "usage: $program build_type package_1 [package_2 [...] ]"
+      echo 'package_j cannot be all'
+      exit 1
+   fi
    echo_eval $program $build_type $package
    shift
 done
 package="$2"
+if [ "$package" == 'all' ]
+then
+   package_list='adept adolc autodiff clad cppadcg fastad sacado'
+   echo_eval $program $build_type $package_list
+   echo "$program $package $build_type all: OK"
+   exit 0
+fi
 if [ "$package" == 'cppad_jit' ]
 then
    package='cppad'
@@ -259,7 +277,7 @@ case $package in
    ;;
 
    *)
-   echo "$progam: build_type package"
+   echo "$program: build_type package"
    echo "package = $package is not one of the following:"
    echo "$package_set"
    exit 1
@@ -334,7 +352,7 @@ then
    then
       for link in Eigen unsupported
       do
-         if [ -e $prefix/include/$link ]
+         if [ -e $prefix/include/$link ] || [ -L $prefix/include/$link ]
          then
             rm $prefix/include/$link
          fi

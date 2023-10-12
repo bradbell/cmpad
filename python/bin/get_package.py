@@ -136,22 +136,22 @@ def install_autograd(build_type) :
 # install_cppad_py
 def install_cppad_py(build_type) :
    #
-   # get_cppad
-   file_obj  = open( 'bin/get_cppad.sh', 'r')
-   get_cppad = file_obj.read()
+   # install_settings
+   file_obj         = open( 'bin/install_settings.py', 'r')
+   install_settings = file_obj.read()
    file_obj.close()
    #
-   # get_cppad
-   pattern   = r'\ncmake_install_prefix=.*'
-   replace   = f'\ncmake_install_prefix="{prefix}"'
-   get_cppad = re.sub(pattern, replace, get_cppad)
-   pattern   = r'\nbuild_type=.*'
-   replace   = f"\nbuild_type='{build_type}'"
-   get_cppad = re.sub(pattern, replace, get_cppad)
+   # install_settings
+   pattern          = r'\ncmake_install_prefix=.*'
+   replace          = f'\ncmake_install_prefix="{prefix}"'
+   install_settings = re.sub(pattern, replace, install_settings)
+   pattern          = r'\nbuild_type=.*'
+   replace          = f"\nbuild_type='{build_type}'"
+   install_settings = re.sub(pattern, replace, install_settings)
    #
-   # get_cppad.sh
-   file_obj  = open( 'bin/get_cppad.sh', 'w')
-   file_obj.write(get_cppad)
+   # install_settings.py
+   file_obj  = open( 'bin/install_settings.py', 'w')
+   file_obj.write(install_settings)
    file_obj.close()
    #
    # version
