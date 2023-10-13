@@ -5,7 +5,7 @@
 r'''
 {xrst_begin check_grad_ode.py}
 
-PYthon Check Gradient of an_ode
+Python Check Gradient of an_ode
 ###############################
 
 Syntax

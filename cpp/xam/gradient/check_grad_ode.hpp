@@ -98,12 +98,14 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // g
       cmpad::vector<double> g = grad_ode(x);
       //
-      // ok
+      // yi
       double tf  = 2.0;
       double yi  = x[0] * tf;
       for(size_t j = 1; j < n_arg; ++j)
       {  yi = x[j] * yi * tf / double(j+1);
       }
+      //
+      // ok
       for(size_t j = 0; j < n_arg; ++j)
          ok &= cmpad::near_equal( g[j], yi / x[j], rel_error );
    }

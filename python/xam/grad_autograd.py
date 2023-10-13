@@ -10,10 +10,15 @@ Example and Test of autograd Gradient
 
 {xrst_toc_hidden
    python/xam/check_grad_det.py
+   python/xam/check_grad_ode.py
 }
 check_grad_det
 **************
 see :ref:`check_grad_det.py-name` .
+
+check_grad_ode
+**************
+see :ref:`check_grad_ode.py-name` .
 
 Source Code
 ***********

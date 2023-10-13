@@ -12,6 +12,10 @@ check_grad_det
 **************
 see :ref:`check_grad_det.py-name` .
 
+check_grad_ode
+**************
+see :ref:`check_grad_ode.py-name` .
+
 Source Code
 ***********
 {xrst_literal
