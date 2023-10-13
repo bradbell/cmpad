@@ -77,10 +77,6 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
    // n_arg
    size_t n_arg = 4;
    //
-   // i
-   // component of y that gradient corresponds to
-   size_t i = n_arg - 1;
-   //
    // time_setup
    for(bool time_setup : { true, false } )
    {  //
@@ -102,14 +98,11 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // g
       cmpad::vector<double> g = grad_ode(x);
       //
-      // i
-      size_t i = n_arg - 1;
-      //
       // ok
       double tf  = 2.0;
       double yi  = x[0] * tf;
-      for(size_t i = 1; i < n_arg; ++i)
-      {  yi = x[i] * yi * tf / double(i+1);
+      for(size_t j = 1; j < n_arg; ++j)
+      {  yi = x[j] * yi * tf / double(j+1);
       }
       for(size_t j = 0; j < n_arg; ++j)
          ok &= cmpad::near_equal( g[j], yi / x[j], rel_error );

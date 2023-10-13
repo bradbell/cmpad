@@ -27,19 +27,25 @@ Source Code
 # BEGIN PYTHON
 import cmpad
 from check_grad_det import check_grad_det
+from check_grad_ode import check_grad_ode
 
 def xam_grad_autograd() :
    # ok
    ok = True
    #
-   # algo
-   algo = cmpad.det_by_minor()
-   #
    # grad_det
+   algo = cmpad.det_by_minor()
    grad_det = cmpad.autograd.gradient( algo )
    #
    # ok
    ok &= check_grad_det( grad_det )
+   #
+   # grad_ode
+   algo = cmpad.an_ode()
+   grad_ode = cmpad.autograd.gradient( algo )
+   #
+   # ok
+   ok &= check_grad_ode( grad_ode )
    #
    return ok
 #

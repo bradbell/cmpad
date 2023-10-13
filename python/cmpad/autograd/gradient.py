@@ -89,8 +89,9 @@ class gradient :
       return self.option['n_arg']
    #
    def wrapper(self, x) :
+      m = self.algo.range()
       y = self.algo(x)
-      return y[0]
+      return y[m-1]
    #
    def setup(self, option) :
       assert type(option) == dict
