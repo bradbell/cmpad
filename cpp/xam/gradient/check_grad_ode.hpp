@@ -83,6 +83,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // option
       cmpad::option_t option;
       option.n_arg      = n_arg;
+      option.g_index    = n_arg - 1;
       option.time_setup = time_setup;
       //
       // grad_ode

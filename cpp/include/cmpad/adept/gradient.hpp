@@ -96,6 +96,9 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // option_
+      option_ = option;
+      //
       // algo_
       if( algo_ != nullptr )
          delete algo_;
@@ -143,8 +146,11 @@ public:
       cmpad::vector<::adept::adouble> ay = (*algo_)(ax);
       assert( ay.size() == m );
       //
+      // g_index
+      size_t g_index = option_.g_index;
+      //
       // g_
-      ay[m-1].set_gradient(1.0);
+      ay[g_index].set_gradient(1.0);
       stack_->compute_adjoint();
       for(size_t j = 0; j < n; ++j)
          g_[j] = ax[j].get_gradient();

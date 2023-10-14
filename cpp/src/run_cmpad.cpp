@@ -120,6 +120,9 @@ int main(int argc, char* argv[])
    // file_name
    std::string file_name = arguments.file_name;
    //
+   // g_index
+   size_t g_index = arguments.g_index;
+   //
    // package
    std::string package = arguments.package;
    itr = std::find(package_vec.begin(), package_vec.end(), package);
@@ -149,6 +152,21 @@ int main(int argc, char* argv[])
                    << ": n_arg = " << n_arg << " is not a square.\n";
          return 1;
       }
+      if( g_index > 0 )
+      {  std::cerr << "run_cmpad Error: algorithm = " << algorithm
+                   << ": g_index = " << g_index << " is not zero.\n";
+         return 1;
+      }
+   }
+   if( algorithm == "an_ode" )
+   {  if( n_arg <= g_index )
+      {  std::cerr << "run_cmpad Error"
+                   << ": algorithm = " << algorithm
+                   << ": n_arg = " << n_arg
+                   << ": g_index = " << g_index
+                   << " is greater than or equal n_arg\n";
+         return 1;
+      }
    }
    //
    // time_setup
@@ -166,6 +184,7 @@ int main(int argc, char* argv[])
    // option
    cmpad::option_t option;
    option.n_arg       = n_arg;
+   option.g_index     = g_index;
    option.time_setup = time_setup;
    //
    // case_found

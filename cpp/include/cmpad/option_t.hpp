@@ -6,10 +6,12 @@
 # define CMPAD_OPTION_T_HPP
 
 # include <cstddef>
+# include <limits>
 /*
 {xrst_begin option_t}
-o{xrst_spell
+{xrst_spell
    struct
+   std
 }
 
 The Option Type
@@ -25,7 +27,13 @@ Source Code
 namespace cmpad {
    struct option_t {
       size_t n_arg;
+      size_t g_index;
       bool   time_setup;
+      option_t(void)
+      {  n_arg      = std::numeric_limits<size_t>::max();
+         g_index    = std::numeric_limits<size_t>::max();
+         time_setup = false;
+      }
    };
 }
 /* {xrst_code}
@@ -33,6 +41,11 @@ namespace cmpad {
 n_arg
 *****
 is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
+
+g_index
+*******
+is the index, in the algorithm :ref:`cpp_fun_obj@range` space,
+that defines the scalar valued function when computing gradients.
 
 time_setup
 **********

@@ -109,14 +109,17 @@ public:
       // string
       using std::string;
       //
+      // option_
+      option_ = option;
+      //
       // algo_
       algo_.setup(option);
       //
       // n
       size_t n = algo_.domain();
       //
-      // m
-      size_t m = algo_.range();
+      // g_index
+      size_t g_index = option_.g_index;
       //
       // g_
       g_.resize(n);
@@ -137,7 +140,7 @@ public:
          ax[i] = 0.;
       CppAD::Independent(ax);
       az    = algo_(ax);
-      ay[0] = az[m-1];
+      ay[0] = az[g_index];
       tapef.Dependent(ax, ay);
       if( ! option.time_setup )
          tapef.optimize(optimize_options);

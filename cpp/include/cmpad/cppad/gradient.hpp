@@ -87,14 +87,17 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // option_
+      option_ = option;
+      //
       // algo_
       algo_.setup(option);
       //
       // n
       size_t n = algo_.domain();
       //
-      // m
-      size_t m = algo_.range();
+      // g_index
+      size_t g_index = option_.g_index;
       //
       // w_
       w_.resize(1);
@@ -111,7 +114,7 @@ public:
       CppAD::Independent(ax);
       cmpad::vector< CppAD::AD<double> > ay(1), az;
       az    = algo_(ax);
-      ay[0] = az[m-1];
+      ay[0] = az[g_index];
       tape_.Dependent(ax, ay);
       if( ! option.time_setup )
          tape_.optimize(optimize_options);

@@ -85,6 +85,9 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // option_
+      option_ = option;
+      //
       // algo_
       algo_.setup(option);
       //
@@ -116,8 +119,9 @@ public:
       // ay_
       ay_ = algo_(ax_);
       //
-      size_t m = algo_.range();
-      Sacado::Rad::ADvar<double> az = ay_[m-1] + 0.0;
+      // az
+      size_t g_index = option_.g_index;
+      Sacado::Rad::ADvar<double> az = ay_[g_index] + 0.0;
       //
       // reverse mode computation of gradient for last computed value
       Sacado::Rad::ADvar<double>::Gradcomp();

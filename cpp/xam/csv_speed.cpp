@@ -63,6 +63,7 @@ bool xam_csv_speed(void)
    // option
    cmpad::option_t option;
    option.n_arg       = 4;
+   option.g_index     = 0;
    option.time_setup = false;
    //
    // det_double

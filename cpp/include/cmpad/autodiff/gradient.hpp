@@ -91,6 +91,9 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // option_
+      option_ = option;
+      //
       // algo_
       algo_.setup(option);
       //
@@ -126,7 +129,7 @@ public:
          for(int i = 0; i < ax.size(); ++i)
             ax_copy_[i] = ax[i];
          ay_ = algo_(ax_copy_);
-         return ay_[m-1];
+         return ay_[option_.g_index];
       };
       //
       // forward mode computation of gradient

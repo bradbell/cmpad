@@ -66,6 +66,7 @@ bool check_grad_det( cmpad::gradient<Algo>& grad_det )
       // option
       cmpad::option_t option;
       option.n_arg       = ell * ell;
+      option.g_index     = 0;
       option.time_setup = static_cast<bool>(ell % 2);
       //
       // grad_det

@@ -86,6 +86,9 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // option_
+      option_ = option;
+      //
       // algo_
       algo_.setup(option);
       //
@@ -110,9 +113,12 @@ public:
       // dependent variable
       cmpad::vector<adouble> ay = algo_(ax);
       //
+      // g_index
+      size_t g_index = option_.g_index;
+      //
       // create f : x -> y
       double f;
-      ay[m-1] >>= f;
+      ay[g_index] >>= f;
       trace_off();
       //
       // u_
