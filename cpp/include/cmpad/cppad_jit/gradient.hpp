@@ -22,7 +22,7 @@ Syntax
 
 Purpose
 *******
-This implements the :ref:`gradient-name` interface using
+This implements the :ref:`cpp_gradient-name` interface using
 CppAD just in time compilation.
 
 TemplateAlgo
@@ -33,7 +33,7 @@ The class TemplateAlgo<Scalar> must be a derived class for
 value_type
 **********
 The type cmpad::cppad_jit::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`gradient@value_type` .
+see :ref:`cpp_gradient@value_type` .
 
 Example
 *******

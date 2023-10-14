@@ -22,7 +22,7 @@ Syntax
 
 Purpose
 *******
-This implements the :ref:`gradient-name` interface using autodiff.
+This implements the :ref:`cpp_gradient-name` interface using autodiff.
 
 TemplateAlgo
 ************
@@ -32,7 +32,7 @@ The class TemplateAlgo<Scalar> must be a derived class for
 value_type
 **********
 The type cmpad::autodiff::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`gradient@value_type` .
+see :ref:`cpp_gradient@value_type` .
 
 Example
 *******

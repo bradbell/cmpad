@@ -26,7 +26,7 @@ py_run_cmpad = 'python/bin/run_cmpad.py'
 # The C++ main program is
 # {xrst_code py}
 cpp_run_cmpad = 'cpp/build/src/run_cmpad'
-# {xrst_code} 
+# {xrst_code}
 #
 # xam_main.csv
 # ************

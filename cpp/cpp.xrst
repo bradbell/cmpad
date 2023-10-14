@@ -31,7 +31,7 @@ Simple Types
 
 {xrst_end type}
 -----------------------------------------------------------------------------
-{xrst_begin algorithm}
+{xrst_begin cpp_algorithm}
 
 Algorithms Used to Compare Packages
 ###################################
@@ -41,12 +41,12 @@ Algorithms Used to Compare Packages
    cpp/include/cmpad/algo/an_ode.hpp
 }
 
-{xrst_end algorithm}
+{xrst_end cpp_algorithm}
 -----------------------------------------------------------------------------
-{xrst_begin utility}
+{xrst_begin cpp_utility}
 
-General Purpose Utilities
-#########################
+General Purpose C++ Utilities
+#############################
 
 {xrst_toc_table
    cpp/include/cmpad/fun_speed.hpp
@@ -57,5 +57,5 @@ General Purpose Utilities
    cpp/lib/uniform_01.cpp
 }
 
-{xrst_end utility}
+{xrst_end cpp_utility}
 -----------------------------------------------------------------------------

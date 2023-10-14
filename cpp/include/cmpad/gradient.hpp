@@ -5,10 +5,10 @@
 # ifndef CMPAD_GRADIENT_HPP
 # define CMPAD_GRADIENT_HPP
 /*
-{xrst_begin gradient}
+{xrst_begin cpp_gradient}
 
-Abstract Class For Calculating Gradient
-#######################################
+C++ Abstract Class For Calculating Gradient
+###########################################
 
 Syntax
 ******
@@ -91,7 +91,7 @@ Example and Derived Classes
    cpp/include/cmpad/sacado/gradient.hpp
 }
 
-{xrst_end gradient}
+{xrst_end cpp_gradient}
 -------------------------------------------------------------------------------
 */
 // BEGIN C++

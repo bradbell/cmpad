@@ -25,7 +25,7 @@ Prototype
 
 grad_ode
 ********
-Is a :ref:`gradient-name` object for an :ref:`cpp_an_ode-name` algorithm.
+Is a :ref:`cpp_gradient-name` object for an :ref:`cpp_an_ode-name` algorithm.
 
 ok
 **
