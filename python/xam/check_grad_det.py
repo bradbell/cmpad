@@ -19,7 +19,7 @@ This is a ``float`` :ref:`py_fun_obj-title` .
 option
 ******
 The domain and range dimensions for the function object
-are equal to the square of *option* [ ``'n_arg'`` ];
+are equal to *option* [ ``'n_arg'`` ];
 see :ref:`py_fun_obj@option` .
 
 ok
@@ -51,6 +51,7 @@ def check_grad_det( grad_det ) :
       # option
       option = {
          'n_arg'      : ell * ell       ,
+         'g_index'    : 0               ,
          'time_setup' : bool( ell % 2 ) ,
       }
       #

@@ -50,7 +50,7 @@ def xam_csv_speed() :
    algorithm = 'det_by_minor'
    #
    # option
-   option = { 'n_arg' : 4, 'time_setup' : False }
+   option = { 'n_arg' : 4, 'g_index' : 0, 'time_setup' : False }
    #
    # fun_obj
    fun_obj = cmpad.det_by_minor()

@@ -31,7 +31,7 @@ def xam_an_ode() :
    ode = cmpad.an_ode()
    #
    # ode.setup
-   option = { 'n_arg' : n }
+   option = { 'n_arg' : n, 'g_index' : n-1 }
    ode.setup(option)
    #
    # x
