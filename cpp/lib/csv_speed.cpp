@@ -59,15 +59,15 @@ This is the name of the algorithm; e.g., :ref:`cpp_det_by_minor-name` .
 
 n_arg
 *****
-This is the value of *option*\ .\ ``n_arg`` .
+This is the value of :ref:`option_t@n_arg` in *option* .
 
 r_index
 *******
-This is the value of *option*\ .\ ``r_index`` .
+This is the value of :ref:`option_t@r_index` in *option* .
 
 time_setup
 **********
-This is the value of *option*\ .\ ``time_setup`` .
+This is the value of :ref:`option_t@time_setup` in *option* .
 
 date
 ****

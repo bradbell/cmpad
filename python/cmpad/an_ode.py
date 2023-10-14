@@ -86,8 +86,11 @@ This is the size of the vectors *x* and *yf* .
 
 r_index
 =======
-is the index, in the algorithm range space,
-that defines the scalar function when computing gradients.
+is the special range index for the algorithm and must be less than its
+:ref:`py_fun_obj@range` .
+For example, if we are computing gradients or Hessians,
+it is the index in the algorithm range space that the gradient or Hessian
+corresponds to.
 
 x
 *

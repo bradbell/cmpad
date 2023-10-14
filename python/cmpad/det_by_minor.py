@@ -59,8 +59,9 @@ the number of rows and columns in the matrix.
 
 r_index
 =======
-This must be zero and is the index, in the algorithm range space,
-that defines the scalar function when computing gradients.
+This must be zero.
+(For other algorithms that have more than one range component,
+it is the special range index.)
 
 x
 *

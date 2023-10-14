@@ -68,13 +68,15 @@ is reached.
 
 n_arg
 *****
-This is the size of the argument to the algorithm; i.e.,
-its the dimension of its domain space.
+is the dimension of the domain space for the algorithm.
 
 r_index
 *******
-This is the index, in the range space of the algorithm,
-that defines the scalar valued function when computing gradients.
+is the special range index for the algorithm and must be less than the
+range space dimension for the algorithm.
+For example, if we are computing gradients or Hessians,
+it is the index in the algorithm range space that the gradient or Hessian
+corresponds to.
 
 package
 *******

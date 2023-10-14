@@ -35,6 +35,18 @@ If all of the elements of *x* and *y* have the type ``float`` ,
 Otherwise, there can be at most one other type for elements of *x* and *y*
 and *Scalar* is that type.
 
+domain
+******
+The return value is the dimension of the domain space for
+this function; i.e. the size of *x*.
+It likely depends on the value of *option*.
+
+range
+*****
+The return value is the dimension of the range space for
+this function; i.e. the size of *y*.
+It likely depends on the value of *option*.
+
 setup
 *****
 The function object is initialized using this syntax.
