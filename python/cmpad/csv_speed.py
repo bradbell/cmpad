@@ -60,6 +60,10 @@ n_arg
 *****
 This is the value of *option*\ ``[n_arg]`` .
 
+g_index
+*******
+This is the value of *option*\ ``[g_index]`` .
+
 time_setup
 **********
 This is the value of *option*\ ``[time_setup]`` .
@@ -116,6 +120,7 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    assert type(algorithm) == str
    assert type(option)    == dict
    assert type( option['n_arg'] )      == int
+   assert type( option['g_index'] )    == int
    assert type( option['time_setup'] ) == bool
    # END DEF
    # fieldnames
@@ -125,6 +130,7 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       'package',
       'algorithm',
       'n_arg',
+      'g_index',
       'time_setup',
       'date',
       'compiler',
@@ -175,6 +181,7 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       'package'    : package,
       'algorithm'  : algorithm,
       'n_arg'      : option['n_arg'],
+      'g_index'    : option['g_index'],
       'time_setup' : bool_str[ option['time_setup'] ],
       'date'       : date,
       'compiler'   : compiler,

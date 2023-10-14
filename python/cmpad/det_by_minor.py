@@ -59,7 +59,7 @@ the number of rows and columns in the matrix.
 
 g_index
 =======
-This must be zeor and is the index, in the algorithm range space,
+This must be zero and is the index, in the algorithm range space,
 that defines the scalar function when computing gradients.
 
 x

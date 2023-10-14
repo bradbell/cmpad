@@ -87,6 +87,7 @@ def xam_csv_speed() :
       'package',
       'algorithm',
       'n_arg',
+      'g_index',
       'time_setup',
       'date',
       'compiler',
@@ -103,6 +104,7 @@ def xam_csv_speed() :
    ok &= float( row['min_time'] )       == min_time
    ok &= row['package']                 == 'double'
    ok &= int( row['n_arg'] )            == option['n_arg']
+   ok &= int( row['g_index'] )          == option['g_index']
    ok &= str2bool[ row['time_setup'] ]  == option['time_setup']
    ok &= row['compiler']                == compiler
    ok &= row['language']                == 'python'

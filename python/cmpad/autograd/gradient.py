@@ -29,7 +29,7 @@ algo
 ****
 This is a py_fun_obj where the input and output vectors
 have elements of type ``autograd.a_double`` .
-The range space component *option* [ ``'g_index'`` ] 
+The range space component *option* [ ``'g_index'`` ]
 is used to define the scalar function that the gradient is for.
 
 grad
