@@ -179,14 +179,14 @@ public:
 # endif
 # if CMPAD_COMPILER_IS_GNU
 # ifndef NDEBUG
-      dll_options["compile"] = "gcc -c -r -fPIC";
+      dll_options["compile"] = "gcc -c -g -fPIC";
 # else
       dll_options["compile"] = "gcc -c -O2 -fPIC";
 # endif
 # endif
 # if CMPAD_COMPILER_IS_CLANG
 # ifndef NDEBUG
-      dll_options["compile"] = "clang -c -r -fPIC";
+      dll_options["compile"] = "clang -c -g -fPIC";
 # else
       dll_options["compile"] = "clang -c -O2 -fPIC";
 # endif
