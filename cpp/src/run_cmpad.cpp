@@ -120,8 +120,8 @@ int main(int argc, char* argv[])
    // file_name
    std::string file_name = arguments.file_name;
    //
-   // g_index
-   size_t g_index = arguments.g_index;
+   // r_index
+   size_t r_index = arguments.r_index;
    //
    // package
    std::string package = arguments.package;
@@ -152,18 +152,18 @@ int main(int argc, char* argv[])
                    << ": n_arg = " << n_arg << " is not a square.\n";
          return 1;
       }
-      if( g_index > 0 )
+      if( r_index > 0 )
       {  std::cerr << "run_cmpad Error: algorithm = " << algorithm
-                   << ": g_index = " << g_index << " is not zero.\n";
+                   << ": r_index = " << r_index << " is not zero.\n";
          return 1;
       }
    }
    if( algorithm == "an_ode" )
-   {  if( n_arg <= g_index )
+   {  if( n_arg <= r_index )
       {  std::cerr << "run_cmpad Error"
                    << ": algorithm = " << algorithm
                    << ": n_arg = " << n_arg
-                   << ": g_index = " << g_index
+                   << ": r_index = " << r_index
                    << " is greater than or equal n_arg\n";
          return 1;
       }
@@ -184,7 +184,7 @@ int main(int argc, char* argv[])
    // option
    cmpad::option_t option;
    option.n_arg       = n_arg;
-   option.g_index     = g_index;
+   option.r_index     = r_index;
    option.time_setup = time_setup;
    //
    // case_found

@@ -96,8 +96,8 @@ public:
       // n
       size_t n = algo_.domain();
       //
-      // g_index
-      size_t g_index = option_.g_index;
+      // r_index
+      size_t r_index = option_.r_index;
       //
       // w_
       w_.resize(1);
@@ -114,7 +114,7 @@ public:
       CppAD::Independent(ax);
       cmpad::vector< CppAD::AD<double> > ay(1), az;
       az    = algo_(ax);
-      ay[0] = az[g_index];
+      ay[0] = az[r_index];
       tape_.Dependent(ax, ay);
       if( ! option.time_setup )
          tape_.optimize(optimize_options);

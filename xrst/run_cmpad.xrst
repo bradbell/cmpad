@@ -71,7 +71,7 @@ n_arg
 This is the size of the argument to the algorithm; i.e.,
 its the dimension of its domain space.
 
-g_index
+r_index
 *******
 This is the index, in the range space of the algorithm,
 that defines the scalar valued function when computing gradients.

@@ -34,7 +34,7 @@ bool xam_an_ode(void)
    // ode.setup
    cmpad::option_t option;
    option.n_arg   = n;
-   option.g_index = n-1;
+   option.r_index = n-1;
    ode.setup(option);
    //
    // x

@@ -110,9 +110,9 @@ def main() :
       metavar='file_name', default='cmpad.csv',
       help = 'csv file that the line is added to'
    )
-   # --g_index
-   parser.add_argument('-g', '--g_index',
-      metavar='g_index', default='0',
+   # --r_index
+   parser.add_argument('-r', '--r_index',
+      metavar='r_index', default='0',
       help = 'algorithm range space index corresponding to gradient'
    )
    # --min_time
@@ -183,12 +183,12 @@ def main() :
    #
    # option
    if algorithm == 'det_by_minor' :
-      g_index = 0
+      r_index = 0
    else :
-      g_index = n_arg - 1
+      r_index = n_arg - 1
    option = {
       'n_arg'      : n_arg      ,
-      'g_index'    : g_index    ,
+      'r_index'    : r_index    ,
       'time_setup' : time_setup ,
    }
    #

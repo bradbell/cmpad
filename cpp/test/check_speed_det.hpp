@@ -23,7 +23,7 @@ void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
    {  //
       // option
       option.n_arg      = ell * ell;
-      option.g_index    = 0;
+      option.r_index    = 0;
       option.time_setup = false;
       //
       // grad_det

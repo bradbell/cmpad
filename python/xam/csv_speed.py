@@ -50,7 +50,7 @@ def xam_csv_speed() :
    algorithm = 'det_by_minor'
    #
    # option
-   option = { 'n_arg' : 4, 'g_index' : 0, 'time_setup' : False }
+   option = { 'n_arg' : 4, 'r_index' : 0, 'time_setup' : False }
    #
    # fun_obj
    fun_obj = cmpad.det_by_minor()
@@ -87,7 +87,7 @@ def xam_csv_speed() :
       'package',
       'algorithm',
       'n_arg',
-      'g_index',
+      'r_index',
       'time_setup',
       'date',
       'compiler',
@@ -104,7 +104,7 @@ def xam_csv_speed() :
    ok &= float( row['min_time'] )       == min_time
    ok &= row['package']                 == 'double'
    ok &= int( row['n_arg'] )            == option['n_arg']
-   ok &= int( row['g_index'] )          == option['g_index']
+   ok &= int( row['r_index'] )          == option['r_index']
    ok &= str2bool[ row['time_setup'] ]  == option['time_setup']
    ok &= row['compiler']                == compiler
    ok &= row['language']                == 'python'

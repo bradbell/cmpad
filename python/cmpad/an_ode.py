@@ -84,7 +84,7 @@ n_arg
 =====
 This is the size of the vectors *x* and *yf* .
 
-g_index
+r_index
 =======
 is the index, in the algorithm range space,
 that defines the scalar function when computing gradients.

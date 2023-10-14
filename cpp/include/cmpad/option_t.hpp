@@ -27,11 +27,11 @@ Source Code
 namespace cmpad {
    struct option_t {
       size_t n_arg;
-      size_t g_index;
+      size_t r_index;
       bool   time_setup;
       option_t(void)
       {  n_arg      = std::numeric_limits<size_t>::max();
-         g_index    = std::numeric_limits<size_t>::max();
+         r_index    = std::numeric_limits<size_t>::max();
          time_setup = false;
       }
    };
@@ -42,7 +42,7 @@ n_arg
 *****
 is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
 
-g_index
+r_index
 *******
 is the index, in the algorithm :ref:`cpp_fun_obj@range` space,
 that defines the scalar valued function when computing gradients.

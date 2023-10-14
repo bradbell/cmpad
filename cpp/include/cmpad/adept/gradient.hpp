@@ -146,11 +146,11 @@ public:
       cmpad::vector<::adept::adouble> ay = (*algo_)(ax);
       assert( ay.size() == m );
       //
-      // g_index
-      size_t g_index = option_.g_index;
+      // r_index
+      size_t r_index = option_.r_index;
       //
       // g_
-      ay[g_index].set_gradient(1.0);
+      ay[r_index].set_gradient(1.0);
       stack_->compute_adjoint();
       for(size_t j = 0; j < n; ++j)
          g_[j] = ax[j].get_gradient();

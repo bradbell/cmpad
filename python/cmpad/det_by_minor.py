@@ -57,7 +57,7 @@ This is the number of elements in the matrix
 It must be a square and we use :math:``\ell`` to denote its square root; i.e,
 the number of rows and columns in the matrix.
 
-g_index
+r_index
 =======
 This must be zero and is the index, in the algorithm range space,
 that defines the scalar function when computing gradients.
@@ -124,7 +124,7 @@ class det_by_minor :
    def setup(self, option) :
       assert type(option) == dict
       assert type( option['n_arg'] ) == int
-      assert option['g_index'] == 0
+      assert option['r_index'] == 0
       # END PROTOTYPE
       #
       # option

@@ -118,8 +118,8 @@ public:
       // n
       size_t n = algo_.domain();
       //
-      // g_index
-      size_t g_index = option_.g_index;
+      // r_index
+      size_t r_index = option_.r_index;
       //
       // g_
       g_.resize(n);
@@ -140,7 +140,7 @@ public:
          ax[i] = 0.;
       CppAD::Independent(ax);
       az    = algo_(ax);
-      ay[0] = az[g_index];
+      ay[0] = az[r_index];
       tapef.Dependent(ax, ay);
       if( ! option.time_setup )
          tapef.optimize(optimize_options);
@@ -179,14 +179,14 @@ public:
 # endif
 # if CMPAD_COMPILER_IS_GNU
 # ifndef NDEBUG
-      dll_options["compile"] = "gcc -c -g -fPIC";
+      dll_options["compile"] = "gcc -c -r -fPIC";
 # else
       dll_options["compile"] = "gcc -c -O2 -fPIC";
 # endif
 # endif
 # if CMPAD_COMPILER_IS_CLANG
 # ifndef NDEBUG
-      dll_options["compile"] = "clang -c -g -fPIC";
+      dll_options["compile"] = "clang -c -r -fPIC";
 # else
       dll_options["compile"] = "clang -c -O2 -fPIC";
 # endif

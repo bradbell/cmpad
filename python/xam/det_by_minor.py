@@ -32,7 +32,7 @@ def xam_det_by_minor() :
    det = cmpad.det_by_minor()
    #
    # det.setup
-   option = { 'n_arg' : ell * ell , 'g_index' : 0 }
+   option = { 'n_arg' : ell * ell , 'r_index' : 0 }
    det.setup(option)
    #
    # x

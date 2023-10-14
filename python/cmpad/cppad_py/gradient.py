@@ -103,8 +103,8 @@ class gradient :
       # n
       n = self.algo.domain()
       #
-      # g_index
-      g_index = option['g_index']
+      # r_index
+      r_index = option['r_index']
       #
       # self.w
       self.w       = numpy.empty( (1, 1), dtype=float )
@@ -117,7 +117,7 @@ class gradient :
          x[i] = 0.
       ax    = cppad_py.independent(x)
       az    = self.algo(ax)
-      ay[0] = az[g_index]
+      ay[0] = az[r_index]
       self.tape = cppad_py.d_fun(ax, ay)
       if not option['time_setup'] :
          self.tape.optimize()

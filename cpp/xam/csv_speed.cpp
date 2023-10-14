@@ -63,7 +63,7 @@ bool xam_csv_speed(void)
    // option
    cmpad::option_t option;
    option.n_arg       = 4;
-   option.g_index     = 0;
+   option.r_index     = 0;
    option.time_setup = false;
    //
    // det_double
@@ -97,7 +97,7 @@ bool xam_csv_speed(void)
       "package",
       "algorithm",
       "n_arg",
-      "g_index",
+      "r_index",
       "time_setup",
       "date",
       "compiler",
@@ -123,7 +123,7 @@ bool xam_csv_speed(void)
    ok &= csv_table[1][2] == package;
    ok &= csv_table[1][3] == "det_by_minor";
    ok &= csv_table[1][4] == std::to_string(option.n_arg);
-   ok &= csv_table[1][5] == std::to_string(option.g_index);
+   ok &= csv_table[1][5] == std::to_string(option.r_index);
    ok &= csv_table[1][6] == to_string(option.time_setup);
    ok &= csv_table[1][8] == CMPAD_CXX_COMPILER;
    ok &= csv_table[1][9] == debug;

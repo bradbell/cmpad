@@ -30,7 +30,7 @@ arguments_t
    argument, meaning
    algorithm,   see :ref:`run_cmpad@algorithm`
    file_name,   see :ref:`run_cmpad@file_name`
-   g_index,     see :ref:`run_cmpad@g_index`
+   r_index,     see :ref:`run_cmpad@r_index`
    min_time,    see :ref:`run_cmpad@min_time`
    package,     see :ref:`run_cmpad@package`
    n_arg,       see :ref:`run_cmpad@n_arg`
@@ -53,7 +53,7 @@ arguments_t parse_args(int argc, char* argv[])
    // BEGIN DEFAULT ARGUMENTS
    arguments.algorithm  = "det_by_minor";
    arguments.file_name  = "cmpad.csv";
-   arguments.g_index    = 0;
+   arguments.r_index    = 0;
    arguments.min_time   = 0.5;
    arguments.package    = "double";
    arguments.n_arg      = 9;
@@ -65,7 +65,7 @@ arguments_t parse_args(int argc, char* argv[])
    {  // name,         has_arg,            *flag,            val
       { "algorithm",   required_argument,  0,                'a' },
       { "file_name",   required_argument,  0,                'f' },
-      { "g_index",     required_argument,  0,                'g' },
+      { "r_index",     required_argument,  0,                'g' },
       { "min_time",    required_argument,  0,                'm' },
       { "n_arg",       required_argument,  0,                'n' },
       { "package",     required_argument,  0,                'p' },
@@ -119,9 +119,9 @@ arguments_t parse_args(int argc, char* argv[])
          arguments.file_name = optarg;
          break;
          //
-         // g_index
+         // r_index
          case 'g':
-         arguments.g_index   = size_t( std::atoi( optarg ) );
+         arguments.r_index   = size_t( std::atoi( optarg ) );
          break;
          //
          // min_time
@@ -175,7 +175,7 @@ arguments_t parse_args(int argc, char* argv[])
             "is one of { det_by_minor, an_ode} [det_by_minor]\n"
          "-f: --file_name:  string: "
             "csv file that line is added to [cmpad.csv]\n"
-         "-g: --g_index:  size_t: "
+         "-r: --r_index:  size_t: "
             "algorithm range space index corresponding to gradient [0]\n"
          "-m: --min_time:   double: "
             "minimum time in seconds to average computation rate [0.5]\n"
