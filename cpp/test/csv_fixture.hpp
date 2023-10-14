@@ -29,6 +29,9 @@ public:
    // n_arg_
    size_t n_arg_;
    //
+   // g_index_
+   size_t g_index_;
+   //
    // csv_file_path_
    std::string csv_file_path_;
    //
@@ -43,11 +46,12 @@ public:
 # endif
    { }
    // set_fixture
-   // package_, algorithm_, n_arg_, csv_file_path_
+   // package_, algorithm_, n_arg_, g_index_, csv_file_path_
    void set_fixture(
       const std::string& package   ,
       const std::string& algorithm ,
-      size_t             n_arg     )
+      size_t             n_arg     ,
+      size_t             g_index   )
    {  //
       // package_
       package_ = package;
@@ -57,6 +61,9 @@ public:
       //
       // n_arg_
       n_arg_     = n_arg;
+      //
+      // g_index_
+      g_index_     = g_index;
       //
       // csv_file
       std::string csv_file = package + ".csv";
@@ -87,6 +94,7 @@ public:
          "package",
          "algorithm",
          "n_arg",
+         "g_index",
          "time_setup",
          "date",
          "compiler",
@@ -112,18 +120,20 @@ public:
       BOOST_CHECK( csv_table[n_row-2][2] == package_ );
       BOOST_CHECK( csv_table[n_row-1][2] == package_ );
       //
-      // check column 5
+      // check column 6
       // time_setup is true and then false
-      BOOST_CHECK( csv_table[n_row-2][5] == "true"   );
-      BOOST_CHECK( csv_table[n_row-1][5] == "false"  );
+      BOOST_CHECK( csv_table[n_row-2][6] == "true"   );
+      BOOST_CHECK( csv_table[n_row-1][6] == "false"  );
       //
-      // check column 3, 4, 7-9
+      // check column 3-5, 8-10
       for(size_t i = n_row-1; i < n_row; ++i)
       {  BOOST_CHECK( csv_table[i][3] == algorithm_ );
          BOOST_CHECK( csv_table[i][4] == std::to_string(n_arg_) );
-         BOOST_CHECK( csv_table[i][7] == CMPAD_CXX_COMPILER );
-         BOOST_CHECK( csv_table[1][8] == debug_ );
-         BOOST_CHECK( csv_table[1][9] == language );
+         BOOST_CHECK( csv_table[i][5] == std::to_string(g_index_) );
+         //
+         BOOST_CHECK( csv_table[i][8] == CMPAD_CXX_COMPILER );
+         BOOST_CHECK( csv_table[1][9] == debug_ );
+         BOOST_CHECK( csv_table[1][10] == language );
       }
    }
 };
