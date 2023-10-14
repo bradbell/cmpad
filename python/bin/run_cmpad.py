@@ -14,12 +14,9 @@ Documentation
 *************
 :ref:`run_cmpad-name` .
 
-{xrst_toc_hidden
-   python/bin/xam_main.py
-}
 Example
 *******
-:ref:`py_xam_main.py-name`
+:ref:`xam_main.py-name`
 
 Source Code
 ***********

@@ -39,25 +39,22 @@ fi
 set -u
 # -----------------------------------------------------------------------------
 # xam_main.csv
-for lang in 'cpp' 'python'
-do
-   csv_file="$lang/xam_main.csv"
-   pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
-   if git status --porcelain | grep "$pattern" > /dev/null
+csv_file='xam_main.csv'
+pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
+if git status --porcelain | grep "$pattern" > /dev/null
+then
+   res=''
+   while [ "$res" != 'yes' ] && [ "$res" != 'no' ]
+   do
+      read -p "revert to old $csv_file [yes/no] ?" res
+   done
+   if [ "$res" == 'yes' ]
    then
-      res=''
-      while [ "$res" != 'yes' ] && [ "$res" != 'no' ]
-      do
-         read -p "revert to old $csv_file [yes/no] ?" res
-      done
-      if [ "$res" == 'yes' ]
-      then
-         echo "removing change to $csv_file"
-         git reset "$csv_file"   > /dev/null
-         git checkout "$csv_file" > /dev/null
-      fi
+      echo "removing change to $csv_file"
+      git reset "$csv_file"   > /dev/null
+      git checkout "$csv_file" > /dev/null
    fi
-done
+fi
 # -----------------------------------------------------------------------------
 # new files
 list=$(git status --porcelain | sed -n -e '/^?? /p' | sed -e 's|^?? ||')

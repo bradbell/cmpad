@@ -23,8 +23,7 @@ cmpad-2023.10.14
 
 Example Speed Comparison
 ************************
-see the c++ :ref:`cpp_xam_main.py@cpp/xam_main.csv`
-and the python :ref:`py_xam_main.py@python/xam_main.csv` .
+see the c++ :ref:`xam_main.py@xam_main.csv` .
 
 Gradient Source Code Comparison
 *******************************
@@ -45,6 +44,7 @@ Python
 .. csv-table::
    :widths: auto
 
+   :ref:`autograd_gradient.py-title`
    :ref:`cppad_py_gradient.py-title`
 
 

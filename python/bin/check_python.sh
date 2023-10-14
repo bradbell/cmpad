@@ -24,9 +24,5 @@ export PYTHONPATH="$site_packages"
 cd python
 python -m pytest xam/*.py
 #
-# xam_main.py
-cd ..
-python/bin/xam_main.py
-#
 echo "$program: OK"
 exit 0

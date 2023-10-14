@@ -52,9 +52,6 @@ echo "test/test"
 { test/test --log_level=test_suite --no_color_output 2>&1 ; }\
    | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
 #
-# xam_main.py
-cd ../..
-echo_eval cpp/bin/xam_main.py
 # -----------------------------------------------------------------------------
 echo "$program: OK"
 exit 0

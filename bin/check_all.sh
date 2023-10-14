@@ -37,6 +37,7 @@ done
 bin/run_xrst.sh
 python/bin/check_python.sh
 cpp/bin/check_cpp.sh
+bin/xam_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0

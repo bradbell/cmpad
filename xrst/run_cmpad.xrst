@@ -111,4 +111,13 @@ If this argument is present,
 print the help message on standard out and then exit program
 without any further processing.
 
+{xrst_toc_hidden
+   bin/xam_main.py
+}
+Example
+*******
+the file :ref:`xam_main.py-name` is an example and test
+of both the python and c++ versions of run_cmpad.
+
+
 {xrst_end run_cmpad}

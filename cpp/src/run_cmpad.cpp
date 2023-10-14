@@ -14,7 +14,6 @@ Documentation
 
 {xrst_toc_hidden
    cpp/src/parse_args.cpp
-   cpp/bin/xam_main.py
 }
 Subroutines
 ***********
@@ -22,7 +21,7 @@ Subroutines
 
 Example
 *******
-:ref:`cpp_xam_main.py-name`
+:ref:`xam_main.py-name`
 
 Source Code
 ***********
