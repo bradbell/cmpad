@@ -59,7 +59,7 @@ def check_grad_ode( grad_ode ) :
       # option
       option = {
          'n_arg'      : n_arg           ,
-         'r_index'    : n_arg - 1       ,
+         'r_index'    : n_arg - 2       ,
          'time_setup' : time_setup      ,
       }
       #
@@ -74,15 +74,20 @@ def check_grad_ode( grad_ode ) :
       # g
       g = grad_ode(x)
       #
-      # yi = y_{r_index} ( 2.0 )
-      tf = 2.0
-      yi = x[0] * tf
-      for k in range(n_arg - 1) :
-         j  = k + 1
-         yi = x[j] * yi * tf / float(j+1)
+      # r
+      r = option['r_index']
+      #
+      # y_r
+      tf  = 2.0
+      y_r = x[0] * tf
+      for k in range(r) :
+         j   = k + 1
+         y_r = y_r * x[j] * tf / float(j+1)
       #
       # ok
-      for j in range(n_arg) :
-         ok &= cmpad.near_equal( g[j], yi / x[j], rel_error )
+      for j in range(r+1) :
+         ok &= cmpad.near_equal( g[j], y_r / x[j], rel_error )
+      for j in range(r+1, n_arg) :
+         ok &= g[j] == 0.0
    return ok
 # END PYTHON
