@@ -38,19 +38,23 @@ packages
 ********
 This is the set of the packages (so far) that can be installed::
 
-   { 'cppad_py' , 'autograd' }
+   { 'augograd' , 'cppad_py' , 'pytorch' }
 
 If one of these packages is installed,
 it will be included in the cmpad testing.
 
+.. _autograd: https://github.com/HIPS/autograd.git
 .. _cppad_py: https://github.com/bradbell/cppad_py
+.. _pytorch:  https://github.com/pytorch/pytorch
 
 .. csv-table::
    :widths: auto
    :header-rows: 1
 
    Web Site,      Implemented
+   `autograd`_,   :ref:`autograd_gradient-name`
    `cppad_py`_,   :ref:`cppad_py_gradient-name`
+   `pytorch`_,    :ref:`pytorch_gradient-name`
 
 
 top_srcdir
@@ -106,8 +110,8 @@ def system_command(list_of_commands) :
          msg  = 'system command above failed'
          sys.exit(msg)
 #
-# get_version
-def get_version() :
+# pyproject_version
+def pyproject_version() :
    #
    # pyproject
    file_obj  = open('pyproject.toml', 'r')
@@ -120,11 +124,18 @@ def get_version() :
    #
    return version
 #
+# install_pytorch
+def install_pytorch() :
+   #
+   # list_of_commands
+   list_of_commands = [ f'pip install torch --prefix={prefix}' ] 
+   system_command(list_of_commands)
+#
 # install_autograd
 def install_autograd(build_type) :
    #
    # version
-   version = get_version()
+   version = pyproject_version()
    #
    # list_of_commands
    list_of_commands = [
@@ -155,7 +166,7 @@ def install_cppad_py(build_type) :
    file_obj.close()
    #
    # version
-   version = get_version()
+   version = pyproject_version()
    #
    # list_of_commands
    list_of_commands = [
@@ -191,38 +202,47 @@ def main() :
    #
    # package_install
    package_install = {
-      'cppad_py' : install_cppad_py ,
       'autograd' : install_autograd ,
+      'cppad_py' : install_cppad_py ,
+      'pytorch'  : install_pytorch ,
    }
    #
    # package_webpage
    package_webpage = {
-      'cppad_py' : 'https://github.com/bradbell/cppad_py.git' ,
       'autograd' : 'https://github.com/HIPS/autograd.git' ,
+      'cppad_py' : 'https://github.com/bradbell/cppad_py.git' ,
+      'pytorch'  : None ,
    }
    #
    # package
    for index in range(2, len(sys.argv), 1) :
+      #
+      # package
       package = sys.argv[index]
+      if package not in package_install :
+         msg  = f'{program}: package = {package} is not yet implemented'
+         sys.exit(msg)
       #
       # webpage
-      if package not in package_webpage :
-         msg  = f'{program}: package = {package} is not yet implemented'
       webpage = package_webpage[package]
-      #
-      # package.git
-      if not os.path.isdir( f'{package}.git' ) :
-         command_str = f'git clone {webpage} {package}.git'
+      if webpage == None :
+         #
+         # package_install
+         package_install[package]()
+      else :
+         # package.git
+         if not os.path.isdir( f'{package}.git' ) :
+            command_str = f'git clone {webpage} {package}.git'
+            system_command( [ command_str ] )
+         os.chdir( f'{package}.git' )
+         command_str = 'git pull'
          system_command( [ command_str ] )
-      os.chdir( f'{package}.git' )
-      command_str = 'git pull'
-      system_command( [ command_str ] )
-      #
-      # install
-      package_install[package](build_type)
-      #
-      # external
-      os.chdir( '..' )
+         #
+         # package_install
+         package_install[package](build_type)
+         #
+         # external
+         os.chdir( '..' )
    #
    command = ' '.join( sys.argv )
    print( f'{command}: OK' )

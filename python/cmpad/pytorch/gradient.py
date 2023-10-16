@@ -3,18 +3,18 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin_parent cppad_py_gradient}
+{xrst_begin_parent pytorch_gradient}
 {xrst_spell
    obj
    numpy
 }
 
-Calculate Gradient Using cppad_py
-#################################
+Calculate Gradient Using pytorch
+################################
 
 Syntax
 ******
-| |tab| *grad* ``cmpad.cppad_py.gradient`` ( *algo* )
+| |tab| *grad* ``cmpad.pytorch.gradient`` ( *algo* )
 | |tab| *grad* . ``setup`` ( *option* )
 | |tab| *g* = *grad* ( *x* )
 
@@ -25,10 +25,11 @@ This implements a :ref:`py_fun_obj-name`
 that computes the gradient of the last component of values
 computed by *algo* .
 
+
 algo
 ****
 This is a py_fun_obj where the input and output vectors
-have elements of type ``cppad_py.a_double`` .
+have elements of type ``pytorch.a_double`` .
 The range space component *option* [ ``'r_index'`` ]
 is used to define the scalar function that the gradient is for.
 
@@ -48,18 +49,18 @@ This is a numpy vector of ``float`` with length *option* [ ``'n_arg'`` ] .
 It is the value of the gradient ad *x* .
 
 {xrst_toc_hidden before
-   python/xam/grad_cppad_py.py
+   python/xam/grad_pytorch.py
 }
 Example
 *******
-The file :ref:`xam_grad_cppad_py.py-name`
+The file :ref:`xam_grad_pytorch.py-name`
 contains an example and test using this class.
 
-{xrst_end cppad_py_gradient}
+{xrst_end pytorch_gradient}
 ------------------------------------------------------------------------------
-{xrst_begin cppad_py_gradient.py}
+{xrst_begin pytorch_gradient.py}
 
-Gradient Using cppad_py: Source Code
+Gradient Using pytorch: Source Code
 ####################################
 
 {xrst_literal
@@ -67,9 +68,13 @@ Gradient Using cppad_py: Source Code
    # END PYTHON
 }
 
-{xrst_end cppad_py_gradient.py}
+{xrst_end pytorch_gradient.py}
 '''
 # BEGIN PYTHON
+#
+# imports
+import numpy
+import torch
 #
 # gradient
 class gradient :
@@ -92,10 +97,6 @@ class gradient :
       assert type(option) == dict
       assert 'n_arg' in option
       #
-      # imports
-      import numpy
-      import cppad_py
-      #
       # self.option
       self.option = option
       #
@@ -108,25 +109,25 @@ class gradient :
       # r_index
       r_index = option['r_index']
       #
-      # self.w
-      self.w       = numpy.empty( (1, 1), dtype=float )
-      self.w[0, 0] = 1.0
+      # self.ax
+      x       = numpy.random.uniform(0.0, 1.0, n)
+      self.ax = torch.tensor(x, requires_grad = True)
       #
       # self.tape
-      x  = numpy.empty(n, dtype=float)
-      ay = numpy.empty(1, dtype=cppad_py.a_double)
-      for i in range(n) :
-         x[i] = 0.
-      ax    = cppad_py.independent(x)
-      az    = self.algo(ax)
-      ay[0] = az[r_index]
-      self.tape = cppad_py.d_fun(ax, ay)
-      if not option['time_setup'] :
-         self.tape.optimize()
+      az        = self.algo(self.ax)
+      assert type(az) == list
+      az        = az[0]
+      assert len( az.size() ) == 0
+      self.tape = az
    #
    # call
    def __call__(self, x) :
-      self.tape.forward(0, x)
-      g = self.tape.reverse(1, self.w)
-      return g
+      assert len(x) == len(self.ax)
+      if self.ax.grad != None :
+         self.ax.grad.zero_()
+      n_arg = self.option['n_arg']
+      for i in range(n_arg) :
+         self.ax.data[i] = x[i]
+      self.tape.backward(retain_graph = True)
+      return self.ax.grad
 # END PYTHON
