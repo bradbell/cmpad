@@ -38,7 +38,7 @@ packages
 ********
 This is the set of the packages (so far) that can be installed::
 
-   { 'augograd' , 'cppad_py' , 'pytorch' }
+   { 'autograd' , 'cppad_py' , 'pytorch' }
 
 If one of these packages is installed,
 it will be included in the cmpad testing.
@@ -51,7 +51,7 @@ it will be included in the cmpad testing.
    :widths: auto
    :header-rows: 1
 
-   Web Site,      Implemented
+   Web Site,      Implementation
    `autograd`_,   :ref:`autograd_gradient-name`
    `cppad_py`_,   :ref:`cppad_py_gradient-name`
    `pytorch`_,    :ref:`pytorch_gradient-name`
@@ -128,7 +128,7 @@ def pyproject_version() :
 def install_pytorch() :
    #
    # list_of_commands
-   list_of_commands = [ f'pip install torch --prefix={prefix}' ] 
+   list_of_commands = [ f'pip install torch --prefix={prefix}' ]
    system_command(list_of_commands)
 #
 # install_autograd
@@ -184,8 +184,9 @@ def main() :
    #
    # usage
    usage  = f'{program} build_type package_1 [ package_2 [..] ]\n'
-   usage += 'buid_type: is debug or release\n'
-   usage += 'package_j: is the j-th package to install\n'
+   usage += 'build_type: is debug or release\n'
+   usage += 'package_j: is the j-th package to install and is one of:\n'
+   usage += 'autograd, cppad_py, pytorch'
    if len( sys.argv ) < 3 :
       sys.exit(usage)
    #

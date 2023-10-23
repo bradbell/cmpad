@@ -35,6 +35,7 @@ Python Gradient Calculation
 {xrst_toc_table
    python/cmpad/autograd/gradient.py
    python/cmpad/cppad_py/gradient.py
+   python/cmpad/pytorch/gradient.py
 }
 
 {xrst_end py_gradient}

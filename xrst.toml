@@ -50,6 +50,7 @@ data = [
       cppadcg
       fastad
       jit
+      pytorch
       sacado
    ''',
    # option field names

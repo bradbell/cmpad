@@ -61,7 +61,7 @@ contains an example and test using this class.
 {xrst_begin pytorch_gradient.py}
 
 Gradient Using pytorch: Source Code
-####################################
+###################################
 
 {xrst_literal
    # BEGIN PYTHON
@@ -103,31 +103,20 @@ class gradient :
       # self.algo
       self.algo.setup(option)
       #
-      # n
-      n = self.algo.domain()
+      # self.n
+      self.n = self.algo.domain()
+      assert self.n == option['n_arg']
       #
-      # r_index
-      r_index = option['r_index']
-      #
-      # self.ax
-      x       = numpy.random.uniform(0.0, 1.0, n)
-      self.ax = torch.tensor(x, requires_grad = True)
-      #
-      # self.tape
-      az        = self.algo(self.ax)
-      assert type(az) == list
-      az        = az[0]
-      assert len( az.size() ) == 0
-      self.tape = az
+      # self.r_index
+      self.r_index = option['r_index']
    #
    # call
    def __call__(self, x) :
-      assert len(x) == len(self.ax)
-      if self.ax.grad != None :
-         self.ax.grad.zero_()
-      n_arg = self.option['n_arg']
-      for i in range(n_arg) :
-         self.ax.data[i] = x[i]
-      self.tape.backward(retain_graph = True)
-      return self.ax.grad
+      # See https://discuss.pytorch.org/t/
+      #     how-does-one-reuse-the-autograd-computational-graph/190447/2
+      assert len(x) == self.n
+      ax = torch.tensor(x, requires_grad = True)
+      az = self.algo(ax)
+      az[self.r_index].backward()
+      return ax.grad
 # END PYTHON
