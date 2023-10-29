@@ -35,7 +35,7 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.10.23'
+cmpad_version = 'cmpad-2023.10.29'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -49,21 +49,19 @@ if not os.path.isdir('python/cmpad') :
 #
 # sys.path
 sys.path.insert(0, os.getcwd() + '/python')
+python_version  = platform.python_version()
 #
-# cmpad
-import cmpad
-# ----------------------------------------------------------------------------
-#
-# sys.path
-python_version        = platform.python_version()
 (major, minor, patch) = python_version.split('.')
 for lib in [ 'lib', 'lib64' ] :
    directory = f'python/build/prefix/{lib}/python{major}.{minor}/site-packages'
    if os.path.isdir(directory) :
       sys.path.insert(0, os.getcwd() + '/' + directory)
+# -----------------------------------------------------------------------------
+# cmpad
+import cmpad
 # ----------------------------------------------------------------------------
-# double_fun_obj
-def double_fun_obj(algorithm) :
+# none_fun_obj
+def none_fun_obj(algorithm) :
    if algorithm == 'det_by_minor' :
       return cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
@@ -82,10 +80,12 @@ def grad_fun_obj(algorithm, package) :
    else :
       assert False
    #
-   if package == 'cppad_py' :
-      return cmpad.cppad_py.gradient(algo)
-   elif package == 'autograd' :
+   if package == 'autograd' :
       return cmpad.autograd.gradient(algo)
+   elif package == 'cppad_py' :
+      return cmpad.cppad_py.gradient(algo)
+   elif package == 'pytorch' :
+      return cmpad.pytorch.gradient(algo)
    else :
       assert False
    #
@@ -120,12 +120,12 @@ def main() :
    # --n_arg
    parser.add_argument('-n', '--n_arg',
       metavar='n_arg', default='9',
-      help = 'double or an AD package name'
+      help = 'none or an AD package name'
    )
    # --package
    parser.add_argument('-p', '--package',
-      metavar='package', default='double',
-      help = 'double or an AD package name'
+      metavar='package', default='none',
+      help = 'none or an AD package name'
    )
    # --time_setup
    parser.add_argument('-t', '--time_setup', action='store_true',
@@ -149,7 +149,7 @@ def main() :
    #
    # package
    package = arguments.package
-   if package not in [ 'double', 'autograd', 'cppad_py' ] :
+   if package not in [ 'none', 'autograd', 'cppad_py', 'pytorch' ] :
       msg = f'{program}: package = {package} is not available'
       sys.exit(msg)
    #
@@ -190,8 +190,8 @@ def main() :
    }
    #
    # fun_obj
-   if package == 'double' :
-      fun_obj = double_fun_obj(algorithm)
+   if package == 'none' :
+      fun_obj = none_fun_obj(algorithm)
    else :
       fun_obj = grad_fun_obj(algorithm, package)
    #

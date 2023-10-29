@@ -36,8 +36,8 @@ when the argument is not present.
    ``-a``  *algorithm* , ``--algorithm``  *algorithm* , det_by_minor
    ``-f``  *file_name* , ``--file_name``  *file_name* , cmpad.csv
    ``-m``  *min_time*  , ``--min_time``   *min_time*  , 0.5
-   ``-n``  *n_arg*     , ``--n_arg``      *n_arg*     , double
-   ``-p``  *package*   , ``--package``    *package*   , 9
+   ``-n``  *n_arg*     , ``--n_arg``      *n_arg*     , 9
+   ``-p``  *package*   , ``--package``    *package*   , none
    ``-t``              , ``--time_setup``             , false
    ``-v``              , ``--version``
    ``-h``              , ``--help``
@@ -80,17 +80,19 @@ corresponds to.
 
 package
 *******
-This is either ``double`` or the AD package used for this test.
+This is either ``none`` or the AD package used for this test.
+If it is ``none`` , the function value (not a derivative) is tested.
 
 C++
 ===
-The possible C++ AD packages are:
-double, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
+The possible C++ AD packages so far are:
+none, adolc, autodiff, cppad, cppad_jit, cppadcg, or sacado.
 Note that cppad_jit is the JIT compiled version of cppad derivatives.
 
 Python
 ======
-The possible Python AD packages are: autograd, cppad_py .
+The possible Python AD packages so far are:
+none, autograd, cppad_py, and pytorch.
 
 time_setup
 **********

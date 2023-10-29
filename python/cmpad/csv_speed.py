@@ -83,8 +83,8 @@ debug
 *****
 The *debug* value is automatically determined and not an argument to csv_speed.
 
-#. If *package* is ``double``, this is the empty string.
-#. If *package* is not ``double``,
+#. If *package* is ``none``, this is the empty string.
+#. If *package* is not ``none``,
    this is true (false) if *package* was installed using the
    debug (release) :ref:`get_package.py@Syntax@build_type` .
 
@@ -151,7 +151,7 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    date = datetime.date.today().strftime('%Y-%m-%d')
    #
    # debug
-   if package == 'double' :
+   if package == 'none' :
       debug = ''
    else :
       module        = __import__(package)

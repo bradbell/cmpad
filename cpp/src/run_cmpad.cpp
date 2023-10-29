@@ -75,7 +75,7 @@ Source Code
 // get_package_available
 cmpad::vector<std::string> get_package_available(void)
 {  cmpad::vector<std::string> package_available;
-   package_available.push_back("double");
+   package_available.push_back("none");
 # if CMPAD_HAS_ADEPT
    package_available.push_back("adept");
 # endif
@@ -190,12 +190,12 @@ int main(int argc, char* argv[])
    bool case_found = false;
    //
    // file_name, case_found
-   if( package == "double" )
+   if( package == "none" )
    {  if( algorithm == "det_by_minor" )
       {  cmpad::det_by_minor<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
-            file_name, rate, min_time, "double", algorithm, option
+            file_name, rate, min_time, "none", algorithm, option
          );
          case_found = true;
       }
@@ -203,7 +203,7 @@ int main(int argc, char* argv[])
       {  cmpad::an_ode<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
-            file_name, rate, min_time, "double", algorithm, option
+            file_name, rate, min_time, "none", algorithm, option
          );
          case_found = true;
       }

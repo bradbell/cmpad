@@ -21,7 +21,7 @@ BOOST_FIXTURE_TEST_SUITE(csv_speed, csv_fixture)
 BOOST_AUTO_TEST_CASE(Double)
 {  //
    // package
-   std::string package = "double";
+   std::string package = "none";
    //
    // algorithm, n_arg, r_index
    std::string algorithm;

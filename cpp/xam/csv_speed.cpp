@@ -55,7 +55,7 @@ bool xam_csv_speed(void)
       std::remove( file_name.c_str() );
    //
    // package
-   std::string package = "double";
+   std::string package = "none";
    //
    // algorithm
    std::string algorithm = "det_by_minor";

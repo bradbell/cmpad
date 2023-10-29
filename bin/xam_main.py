@@ -104,7 +104,7 @@ def main() :
    major         = version[0]
    minor         = version[1]
    site_packages = f'python{major}.{minor}/site-packages'
-   for package in [ 'autograd', 'cppad_py' ] :
+   for package in [ 'autograd', 'cppad_py', 'pytorch' ] :
       for lib in [ 'lib' , 'lib64' ] :
          dir_path = f'python/build/prefix/{lib}/{site_packages}/{package}'
          if os.path.isdir(dir_path) :
@@ -113,7 +113,7 @@ def main() :
    print( f'python_package_list = {python_package_list}' )
    #
    # package_list
-   package_list = [ 'double' ] + cpp_package_list + python_package_list
+   package_list = [ 'none' ] + cpp_package_list + python_package_list
    #
    # file_name
    file_name = 'xam_main.csv'
@@ -143,7 +143,7 @@ def main() :
             for package in package_list :
                #
                # run_cmpad
-               if package == 'double' :
+               if package == 'none' :
                   run_cmpad_list = [ cpp_run_cmpad, py_run_cmpad ]
                elif package in cpp_package_list :
                   run_cmpad_list = [ cpp_run_cmpad ]

@@ -33,7 +33,10 @@ set -e -u
 # built while installing the packages, are debug or release versions.
 #
 # all
-# If ``all`` is present, all of the possible packages are installed.
+# ===
+# If *package_1* is ``all`` , all of the possible packages,
+# except fastad and clad (thoes under construction) are installed.
+# In this case, *package_2* .. must not be present on the command line.
 #
 # package_j
 # =========
@@ -136,6 +139,7 @@ if [ "$#" -lt 2 ]
 then
    echo "$program: found $# arugments and expected 2 or more"
    echo
+   echo "usage: $program build_type all"
    echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo 'where build_type is debug or release and package_j is one of'
    echo "$package_set"
@@ -146,10 +150,30 @@ fi
 build_type="$1"
 if [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
 then
+   echo
    echo "usage: $program build_type all"
    echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo "build_type=$build_type is not debug or release"
    exit 1
+fi
+#
+# package
+package="$2"
+#
+# all
+if [ "$package" == 'all' ]
+then
+   if [ "$#" -gt 2 ]
+   then
+      echo "usage: $program build_type all"
+      echo 'package_2, ..., must not be present when package_1 is all'
+      exit 1
+   fi
+   # exclude clad and fastad
+   package_list='adept adolc autodiff cppadcg sacado'
+   echo_eval $program $build_type $package_list
+   echo "$program $package $build_type all: OK"
+   exit 0
 fi
 #
 # package
@@ -158,21 +182,12 @@ do
    package="$2"
    if [ "$package" == 'all' ]
    then
-      echo "usage: $program build_type package_1 [package_2 [...] ]"
-      echo 'package_j cannot be all'
+      echo "usage: $program program error"
       exit 1
    fi
    echo_eval $program $build_type $package
    shift
 done
-package="$2"
-if [ "$package" == 'all' ]
-then
-   package_list='adept adolc autodiff clad cppadcg fastad sacado'
-   echo_eval $program $build_type $package_list
-   echo "$program $package $build_type all: OK"
-   exit 0
-fi
 if [ "$package" == 'cppad_jit' ]
 then
    package='cppad'

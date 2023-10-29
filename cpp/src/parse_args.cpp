@@ -55,8 +55,8 @@ arguments_t parse_args(int argc, char* argv[])
    arguments.file_name  = "cmpad.csv";
    arguments.r_index    = 0;
    arguments.min_time   = 0.5;
-   arguments.package    = "double";
    arguments.n_arg      = 9;
+   arguments.package    = "none";
    arguments.time_setup = false;
    // END DEFAULT ARGUMENTS
    //
@@ -182,7 +182,7 @@ arguments_t parse_args(int argc, char* argv[])
          "-n: --n_arg:      size_t: "
             "size of argument to algorithm [9]\n"
          "-p: --package:    string: "
-            "double or an AD packae name [double]\n"
+            "none or an AD packae name [none]\n"
          "-t: --time_setup:       : "
             "if present, include setup time in speed [false]\n"
          "-v: --version:          : "

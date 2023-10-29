@@ -8,7 +8,7 @@
 SET(test_list
    test.cpp
    xam.cpp
-   double.cpp
+   none.cpp
 )
 #
 # test_list

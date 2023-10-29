@@ -44,7 +44,7 @@ def xam_csv_speed() :
    min_time = 0.1
    #
    # package
-   package = 'double'
+   package = 'none'
    #
    # algorithm
    algorithm = 'det_by_minor'
@@ -102,7 +102,7 @@ def xam_csv_speed() :
    # ok
    row = csv_table[0]
    ok &= float( row['min_time'] )       == min_time
-   ok &= row['package']                 == 'double'
+   ok &= row['package']                 == 'none'
    ok &= int( row['n_arg'] )            == option['n_arg']
    ok &= int( row['r_index'] )          == option['r_index']
    ok &= str2bool[ row['time_setup'] ]  == option['time_setup']
