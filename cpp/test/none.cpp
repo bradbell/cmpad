@@ -23,17 +23,17 @@ BOOST_AUTO_TEST_CASE(Double)
    // package
    std::string package = "none";
    //
-   // algorithm, n_arg, r_index
+   // algorithm, n_arg, n_other
    std::string algorithm;
    size_t      n_arg;
-   size_t      r_index;
+   size_t      n_other;
    //
    // ------------------------------------------------------------------------
-   // package_, algorithm_, n_arg_, r_index_, csv_file_path_
+   // package_, algorithm_, n_arg_, n_other_, csv_file_path_
    algorithm = "det_by_minor";
    n_arg     = 16;
-   r_index   = 0;
-   set_fixture(package, algorithm, n_arg, r_index);
+   n_other   = 0;
+   set_fixture(package, algorithm, n_arg, n_other);
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(Double)
       // option
       cmpad::option_t option;
       option.n_arg       = n_arg_;
-      option.r_index     = r_index_;
+      option.n_other     = n_other_;
       option.time_setup = time_setup;
       //
       // csv_file_path
@@ -53,11 +53,11 @@ BOOST_AUTO_TEST_CASE(Double)
    }
    check();
    // ------------------------------------------------------------------------
-   // package_, algorithm_, n_arg_, r_index_, csv_file_path_
+   // package_, algorithm_, n_arg_, n_other_, csv_file_path_
    algorithm = "an_ode";
    n_arg     = 5;
-   r_index   = n_arg - 1;
-   set_fixture(package, algorithm, r_index, n_arg);
+   n_other   = n_arg - 1;
+   set_fixture(package, algorithm, n_other, n_arg);
    //
    // time_setup
    for(bool time_setup : {true, false} )
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(Double)
       // option
       cmpad::option_t option;
       option.n_arg       = n_arg_;
-      option.r_index     = r_index_;
+      option.n_other     = n_other_;
       option.time_setup = time_setup;
       //
       // csv_file_path

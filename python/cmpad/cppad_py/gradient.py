@@ -29,7 +29,7 @@ algo
 ****
 This is a py_fun_obj where the input and output vectors
 have elements of type ``cppad_py.a_double`` .
-The range space component *option* [ ``'r_index'`` ]
+The range space component *option* [ ``'n_other'`` ]
 is used to define the scalar function that the gradient is for.
 
 grad
@@ -105,8 +105,8 @@ class gradient :
       # n
       n = self.algo.domain()
       #
-      # r_index
-      r_index = option['r_index']
+      # n_other
+      n_other = option['n_other']
       #
       # self.w
       self.w       = numpy.empty( (1, 1), dtype=float )
@@ -119,7 +119,7 @@ class gradient :
          x[i] = 0.
       ax    = cppad_py.independent(x)
       az    = self.algo(ax)
-      ay[0] = az[r_index]
+      ay[0] = az[n_other]
       self.tape = cppad_py.d_fun(ax, ay)
       if not option['time_setup'] :
          self.tape.optimize()

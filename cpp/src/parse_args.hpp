@@ -12,7 +12,7 @@ struct arguments_t
 {
    std::string  algorithm;
    std::string  file_name;
-   size_t       r_index;
+   size_t       n_other;
    double       min_time;
    std::string  package;
    size_t       n_arg;

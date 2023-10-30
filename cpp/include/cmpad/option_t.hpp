@@ -27,11 +27,11 @@ Source Code
 namespace cmpad {
    struct option_t {
       size_t n_arg;
-      size_t r_index;
+      size_t n_other;
       bool   time_setup;
       option_t(void)
       {  n_arg      = std::numeric_limits<size_t>::max();
-         r_index    = std::numeric_limits<size_t>::max();
+         n_other    = std::numeric_limits<size_t>::max();
          time_setup = false;
       }
    };
@@ -42,7 +42,7 @@ n_arg
 *****
 is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
 
-r_index
+n_other
 *******
 is the special range index for the algorithm and must be less than its
 :ref:`cpp_fun_obj@range` .

@@ -134,11 +134,11 @@ def main() :
       algorithm_list = [ 'det_by_minor' , 'an_ode' ]
       for algorithm in algorithm_list :
          #
-         # r_index
-         r_index_list = [ 0 ]
+         # n_other
+         n_other_list = [ 0 ]
          if algorithm == 'an_ode' :
-            r_index_list = [ default_n_arg - 1 , default_n_arg - 2 ]
-         for r_index in r_index_list :
+            n_other_list = [ default_n_arg - 1 , default_n_arg - 2 ]
+         for n_other in n_other_list :
             #
             # package
             for package in package_list :
@@ -158,7 +158,7 @@ def main() :
                      run_cmpad,
                      f'--package={package}',
                      f'--algorithm={algorithm}',
-                     f'--r_index={r_index}',
+                     f'--n_other={n_other}',
                      f'--file_name={file_name}',
                   ]
                   if time_setup :
@@ -181,9 +181,9 @@ def main() :
       assert row['algorithm'] in algorithm_list
       assert row['time_setup'] in [ 'true', 'false' ]
       if row['algorithm'] == 'det_by_minor' :
-         assert int( row['r_index'] ) == 0
+         assert int( row['n_other'] ) == 0
       else :
-         assert int(row['r_index']) in [ default_n_arg - 1, default_n_arg - 2 ]
+         assert int(row['n_other']) in [ default_n_arg - 1, default_n_arg - 2 ]
    #
    print( f'{program}: OK')
 #

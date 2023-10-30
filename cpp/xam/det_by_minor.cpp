@@ -33,7 +33,7 @@ bool xam_det_by_minor(void)
    // det.setup
    cmpad::option_t option;
    option.n_arg   = ell * ell;
-   option.r_index = 0;
+   option.n_other = 0;
    det.setup(option);
    //
    // x

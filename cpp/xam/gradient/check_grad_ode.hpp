@@ -33,7 +33,7 @@ is true (false) if the gradient passes (fails) the test.
 
 Gradient
 ********
-We use :math:`r` to denote :ref:`option_t@r_index` ; i.e.,
+We use :math:`r` to denote :ref:`option_t@n_other` ; i.e.,
 the range space component of the an_ode algorithm that we are
 computing the gradient for.
 
@@ -86,7 +86,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // option
       cmpad::option_t option;
       option.n_arg      = n_arg;
-      option.r_index    = n_arg - 2;
+      option.n_other    = n_arg - 2;
       option.time_setup = time_setup;
       //
       // grad_ode
@@ -103,7 +103,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       cmpad::vector<double> g = grad_ode(x);
       //
       // r
-      size_t r = option.r_index;
+      size_t r = option.n_other;
       //
       // y_r
       double tf  = 2.0;

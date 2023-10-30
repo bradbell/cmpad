@@ -61,9 +61,9 @@ n_arg
 *****
 This is the value of :ref:`option_t@n_arg` in *option* .
 
-r_index
+n_other
 *******
-This is the value of :ref:`option_t@r_index` in *option* .
+This is the value of :ref:`option_t@n_other` in *option* .
 
 time_setup
 **********
@@ -138,7 +138,7 @@ void csv_speed(
          "package",
          "algorithm",
          "n_arg",
-         "r_index",
+         "n_other",
          "time_setup",
          "date",
          "compiler",
@@ -187,8 +187,8 @@ void csv_speed(
    // n_arg
    std::string n_arg = std::to_string(option.n_arg);
    //
-   // r_index
-   std::string r_index = std::to_string(option.r_index);
+   // n_other
+   std::string n_other = std::to_string(option.n_other);
    //
    // time_setup
    std::string time_setup;
@@ -204,7 +204,7 @@ void csv_speed(
       package,
       algorithm,
       n_arg,
-      r_index,
+      n_other,
       time_setup,
       date,
       compiler,

@@ -129,7 +129,7 @@ public:
          for(int i = 0; i < ax.size(); ++i)
             ax_copy_[i] = ax[i];
          ay_ = algo_(ax_copy_);
-         return ay_[option_.r_index];
+         return ay_[option_.n_other];
       };
       //
       // forward mode computation of gradient

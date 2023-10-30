@@ -70,7 +70,7 @@ n_arg
 *****
 is the dimension of the domain space for the algorithm.
 
-r_index
+n_other
 *******
 is the special range index for the algorithm and must be less than the
 range space dimension for the algorithm.

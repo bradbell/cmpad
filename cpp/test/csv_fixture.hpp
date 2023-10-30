@@ -29,8 +29,8 @@ public:
    // n_arg_
    size_t n_arg_;
    //
-   // r_index_
-   size_t r_index_;
+   // n_other_
+   size_t n_other_;
    //
    // csv_file_path_
    std::string csv_file_path_;
@@ -46,12 +46,12 @@ public:
 # endif
    { }
    // set_fixture
-   // package_, algorithm_, n_arg_, r_index_, csv_file_path_
+   // package_, algorithm_, n_arg_, n_other_, csv_file_path_
    void set_fixture(
       const std::string& package   ,
       const std::string& algorithm ,
       size_t             n_arg     ,
-      size_t             r_index   )
+      size_t             n_other   )
    {  //
       // package_
       package_ = package;
@@ -62,8 +62,8 @@ public:
       // n_arg_
       n_arg_     = n_arg;
       //
-      // r_index_
-      r_index_     = r_index;
+      // n_other_
+      n_other_     = n_other;
       //
       // csv_file
       std::string csv_file = package + ".csv";
@@ -94,7 +94,7 @@ public:
          "package",
          "algorithm",
          "n_arg",
-         "r_index",
+         "n_other",
          "time_setup",
          "date",
          "compiler",
@@ -129,7 +129,7 @@ public:
       for(size_t i = n_row-1; i < n_row; ++i)
       {  BOOST_CHECK( csv_table[i][3] == algorithm_ );
          BOOST_CHECK( csv_table[i][4] == std::to_string(n_arg_) );
-         BOOST_CHECK( csv_table[i][5] == std::to_string(r_index_) );
+         BOOST_CHECK( csv_table[i][5] == std::to_string(n_other_) );
          //
          BOOST_CHECK( csv_table[i][8] == CMPAD_CXX_COMPILER );
          BOOST_CHECK( csv_table[1][9] == debug_ );

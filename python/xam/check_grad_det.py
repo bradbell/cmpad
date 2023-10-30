@@ -51,7 +51,7 @@ def check_grad_det( grad_det ) :
       # option
       option = {
          'n_arg'      : ell * ell       ,
-         'r_index'    : 0               ,
+         'n_other'    : 0               ,
          'time_setup' : bool( ell % 2 ) ,
       }
       #

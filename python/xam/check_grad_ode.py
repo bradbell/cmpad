@@ -59,7 +59,7 @@ def check_grad_ode( grad_ode ) :
       # option
       option = {
          'n_arg'      : n_arg           ,
-         'r_index'    : n_arg - 2       ,
+         'n_other'    : n_arg - 2       ,
          'time_setup' : time_setup      ,
       }
       #
@@ -75,7 +75,7 @@ def check_grad_ode( grad_ode ) :
       g = grad_ode(x)
       #
       # r
-      r = option['r_index']
+      r = option['n_other']
       #
       # y_r
       tf  = 2.0

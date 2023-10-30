@@ -84,7 +84,7 @@ n_arg
 =====
 This is the size of the vectors *x* and *yf* .
 
-r_index
+n_other
 =======
 is the special range index for the algorithm and must be less than its
 :ref:`py_fun_obj@range` .
