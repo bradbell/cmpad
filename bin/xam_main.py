@@ -105,8 +105,9 @@ def main() :
    minor         = version[1]
    site_packages = f'python{major}.{minor}/site-packages'
    for package in [ 'autograd', 'cppad_py', 'pytorch' ] :
+      package_dir = 'torch' if package == 'pytorch' else package
       for lib in [ 'lib' , 'lib64' ] :
-         dir_path = f'python/build/prefix/{lib}/{site_packages}/{package}'
+         dir_path = f'python/build/prefix/{lib}/{site_packages}/{package_dir}'
          if os.path.isdir(dir_path) :
             assert package not in python_package_list
             python_package_list.append(package)

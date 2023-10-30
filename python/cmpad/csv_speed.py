@@ -154,7 +154,8 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    if package == 'none' :
       debug = ''
    else :
-      module        = __import__(package)
+      package_dir = 'torch' if package == 'pytorch' else package
+      module        = __import__(package_dir)
       package_file  = module.__file__
       package_path  = os.path.realpath(package_file)
       debug_index   = package_path.find('/prefix.debug/')
