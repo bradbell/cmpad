@@ -107,11 +107,6 @@ def main() :
       metavar='file_name', default='cmpad.csv',
       help = 'csv file that the line is added to'
    )
-   # --n_other
-   parser.add_argument('-r', '--n_other',
-      metavar='n_other', default='0',
-      help = 'algorithm range space index corresponding to gradient'
-   )
    # --min_time
    parser.add_argument('-m', '--min_time',
       metavar='min_time', default='0.5',
@@ -121,6 +116,11 @@ def main() :
    parser.add_argument('-n', '--n_arg',
       metavar='n_arg', default='9',
       help = 'none or an AD package name'
+   )
+   # --n_other
+   parser.add_argument('-o', '--n_other',
+      metavar='n_other', default='0',
+      help = 'The meaning of this integer is algorithm specific.'
    )
    # --package
    parser.add_argument('-p', '--package',
@@ -159,6 +159,15 @@ def main() :
       msg = f'{program}: algorithm = {algorithm} is not available'
       sys.exit(msg)
    #
+   # n_other
+   n_other = int( arguments.n_other )
+   if algorithm == 'det_by_minor' and n_other != 0 :
+      msg = f'{program}: algorithm = {algorithm}: n_other is not zero'
+      sys.exit(msg)
+   if algorithm == 'an_ode' and n_other <= 0 :
+      msg = f'{program}: algorithm = {algorithm}: n_other is <= zero'
+      sys.exit(msg)
+   #
    # n_arg
    n_arg = int( arguments.n_arg )
    if algorithm == 'det_by_minor' :
@@ -179,10 +188,6 @@ def main() :
    time_setup = arguments.time_setup
    #
    # option
-   if algorithm == 'det_by_minor' :
-      n_other = 0
-   else :
-      n_other = n_arg - 1
    option = {
       'n_arg'      : n_arg      ,
       'n_other'    : n_other    ,

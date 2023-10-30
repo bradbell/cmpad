@@ -30,10 +30,10 @@ arguments_t
    argument, meaning
    algorithm,   see :ref:`run_cmpad@algorithm`
    file_name,   see :ref:`run_cmpad@file_name`
-   n_other,     see :ref:`run_cmpad@n_other`
    min_time,    see :ref:`run_cmpad@min_time`
    package,     see :ref:`run_cmpad@package`
    n_arg,       see :ref:`run_cmpad@n_arg`
+   n_other,     see :ref:`run_cmpad@n_other`
    time_setup,  see :ref:`run_cmpad@time_setup`
 
 {xrst_end parse_args}
@@ -53,9 +53,9 @@ arguments_t parse_args(int argc, char* argv[])
    // BEGIN DEFAULT ARGUMENTS
    arguments.algorithm  = "det_by_minor";
    arguments.file_name  = "cmpad.csv";
-   arguments.n_other    = 0;
    arguments.min_time   = 0.5;
    arguments.n_arg      = 9;
+   arguments.n_other    = 0;
    arguments.package    = "none";
    arguments.time_setup = false;
    // END DEFAULT ARGUMENTS
@@ -65,9 +65,9 @@ arguments_t parse_args(int argc, char* argv[])
    {  // name,         has_arg,            *flag,            val
       { "algorithm",   required_argument,  0,                'a' },
       { "file_name",   required_argument,  0,                'f' },
-      { "n_other",     required_argument,  0,                'g' },
       { "min_time",    required_argument,  0,                'm' },
       { "n_arg",       required_argument,  0,                'n' },
+      { "n_other",     required_argument,  0,                'o' },
       { "package",     required_argument,  0,                'p' },
       // flags
       { "version",     no_argument,        0,                'v' },
@@ -119,11 +119,6 @@ arguments_t parse_args(int argc, char* argv[])
          arguments.file_name = optarg;
          break;
          //
-         // n_other
-         case 'g':
-         arguments.n_other   = size_t( std::atoi( optarg ) );
-         break;
-         //
          // min_time
          case 'm':
          arguments.min_time = std::atof( optarg );
@@ -132,6 +127,11 @@ arguments_t parse_args(int argc, char* argv[])
          // n_arg
          case 'n':
          arguments.n_arg = size_t( std::atoi( optarg ) );
+         break;
+         //
+         // n_other
+         case 'o':
+         arguments.n_other   = size_t( std::atoi( optarg ) );
          break;
          //
          // package
@@ -175,12 +175,12 @@ arguments_t parse_args(int argc, char* argv[])
             "is one of { det_by_minor, an_ode} [det_by_minor]\n"
          "-f: --file_name:  string: "
             "csv file that line is added to [cmpad.csv]\n"
-         "-r: --n_other:  size_t: "
-            "algorithm range space index corresponding to gradient [0]\n"
          "-m: --min_time:   double: "
             "minimum time in seconds to average computation rate [0.5]\n"
          "-n: --n_arg:      size_t: "
             "size of argument to algorithm [9]\n"
+         "-o: --n_other:  size_t: "
+            "an number with meaning that is algorithm specific [0]\n"
          "-p: --package:    string: "
             "none or an AD packae name [none]\n"
          "-t: --time_setup:       : "

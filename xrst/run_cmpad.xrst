@@ -37,6 +37,7 @@ when the argument is not present.
    ``-f``  *file_name* , ``--file_name``  *file_name* , cmpad.csv
    ``-m``  *min_time*  , ``--min_time``   *min_time*  , 0.5
    ``-n``  *n_arg*     , ``--n_arg``      *n_arg*     , 9
+   ``-o``  *n_other*   , ``--n_other``    *n_other*   , 0
    ``-p``  *package*   , ``--package``    *package*   , none
    ``-t``              , ``--time_setup``             , false
    ``-v``              , ``--version``
@@ -72,11 +73,7 @@ is the dimension of the domain space for the algorithm.
 
 n_other
 *******
-is the special range index for the algorithm and must be less than the
-range space dimension for the algorithm.
-For example, if we are computing gradients or Hessians,
-it is the index in the algorithm range space that the gradient or Hessian
-corresponds to.
+the meaning of this integer is algorithm specific.
 
 package
 *******

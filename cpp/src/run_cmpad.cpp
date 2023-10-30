@@ -158,12 +158,9 @@ int main(int argc, char* argv[])
       }
    }
    if( algorithm == "an_ode" )
-   {  if( n_arg <= n_other )
-      {  std::cerr << "run_cmpad Error"
-                   << ": algorithm = " << algorithm
-                   << ": n_arg = " << n_arg
-                   << ": n_other = " << n_other
-                   << " is greater than or equal n_arg\n";
+   {  if( n_other <= 0 )
+      {  std::cerr << "run_cmpad Error: algorithm = " << algorithm
+                   << ": n_other = " << n_other << " is <= zero.\n";
          return 1;
       }
    }
