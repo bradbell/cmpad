@@ -30,7 +30,7 @@ algo
 ****
 This is a py_fun_obj where the input and output vectors
 have elements of type ``pytorch.a_double`` .
-The range space component *option* [ ``'n_other'`` ]
+The last range space component
 is used to define the scalar function that the gradient is for.
 
 grad
@@ -107,8 +107,6 @@ class gradient :
       self.n = self.algo.domain()
       assert self.n == option['n_arg']
       #
-      # self.n_other
-      self.n_other = option['n_other']
    #
    # call
    def __call__(self, x) :
@@ -117,6 +115,6 @@ class gradient :
       assert len(x) == self.n
       ax = torch.tensor(x, requires_grad = True)
       az = self.algo(ax)
-      az[self.n_other].backward()
+      az[-1].backward()
       return ax.grad
 # END PYTHON

@@ -29,7 +29,7 @@ algo
 ****
 This is a py_fun_obj where the input and output vectors
 have elements of type ``autograd.a_double`` .
-The range space component *option* [ ``'n_other'`` ]
+The last range space component
 is used to define the scalar function that the gradient is for.
 
 grad
@@ -92,7 +92,7 @@ class gradient :
    #
    def wrapper(self, x) :
       y = self.algo(x)
-      return y[self.n_other]
+      return y[-1]
    #
    def setup(self, option) :
       assert type(option) == dict
@@ -103,9 +103,6 @@ class gradient :
       #
       # self.algo
       self.algo.setup(option)
-      #
-      # self.n_other
-      self.n_other = option['n_other']
       #
       # self.tape
       self.tape = autograd.grad(self.wrapper)

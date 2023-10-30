@@ -86,11 +86,8 @@ This is the size of the vectors *x* and *yf* .
 
 n_other
 =======
-is the special range index for the algorithm and must be less than its
-:ref:`py_fun_obj@range` .
-For example, if we are computing gradients or Hessians,
-it is the index in the algorithm range space that the gradient or Hessian
-corresponds to.
+This is the number of Runge-Kutta steps used to approximate the
+solution of the ODE.
 
 x
 *
@@ -133,6 +130,7 @@ import cmpad
 class an_ode_fun :
    #
    # __init__
+   # self.x, self.n
    def __init__(self, x) :
       self.x = x
       self.n = len(x)
@@ -156,10 +154,10 @@ class an_ode :
       return self.option
    #
    def domain(self) :
-      return self.n
+      return self.n_arg
    #
    def range(self) :
-      return self.n
+      return self.n_arg
    #
    def setup(self, option) :
       assert type(option) == dict
@@ -169,14 +167,17 @@ class an_ode :
       # option
       self.option = option
       #
-      # n
-      self.n = option['n_arg']
+      # self.n_arg
+      self.n_arg = option['n_arg']
+      #
+      # self.n_other
+      self.n_other = option['n_other']
    #
    def __call__(self, x) :
-      assert len(x) == self.n
+      assert len(x) == self.n_arg
       #
       # yi
-      yi = self.n * [ 0.0 ]
+      yi = self.n_arg * [ 0.0 ]
       #
       # fun
       fun = an_ode_fun(x)
@@ -185,11 +186,11 @@ class an_ode :
       tf = 2.0
       #
       # ns
-      ns = self.n
+      ns = self.n_other
       #
       # yf
       yf = cmpad.runge_kutta(fun, yi, tf, ns)
       #
-      assert  len(yf) == self.n
+      assert  len(yf) == self.n_arg
       return yf
 # END PYTHON
