@@ -120,8 +120,8 @@ public:
       ay_ = algo_(ax_);
       //
       // az
-      size_t n_other = option_.n_other;
-      Sacado::Rad::ADvar<double> az = ay_[n_other] + 0.0;
+      size_t m = algo_.range();
+      Sacado::Rad::ADvar<double> az = ay_[m-1] + 0.0;
       //
       // reverse mode computation of gradient for last computed value
       Sacado::Rad::ADvar<double>::Gradcomp();

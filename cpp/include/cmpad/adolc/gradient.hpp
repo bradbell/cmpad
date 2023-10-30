@@ -113,12 +113,9 @@ public:
       // dependent variable
       cmpad::vector<adouble> ay = algo_(ax);
       //
-      // n_other
-      size_t n_other = option_.n_other;
-      //
       // create f : x -> y
       double f;
-      ay[n_other] >>= f;
+      ay[m-1] >>= f;
       trace_off();
       //
       // u_

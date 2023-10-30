@@ -86,7 +86,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // option
       cmpad::option_t option;
       option.n_arg      = n_arg;
-      option.n_other    = n_arg - 2;
+      option.n_other    = 0;
       option.time_setup = time_setup;
       //
       // grad_ode
@@ -103,7 +103,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       cmpad::vector<double> g = grad_ode(x);
       //
       // r
-      size_t r = option.n_other;
+      size_t r = n_arg - 1;
       //
       // y_r
       double tf  = 2.0;

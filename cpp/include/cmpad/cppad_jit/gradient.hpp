@@ -118,8 +118,8 @@ public:
       // n
       size_t n = algo_.domain();
       //
-      // n_other
-      size_t n_other = option_.n_other;
+      // m
+      size_t m = algo_.range();
       //
       // g_
       g_.resize(n);
@@ -140,7 +140,7 @@ public:
          ax[i] = 0.;
       CppAD::Independent(ax);
       az    = algo_(ax);
-      ay[0] = az[n_other];
+      ay[0] = az[m-1];
       tapef.Dependent(ax, ay);
       if( ! option.time_setup )
          tapef.optimize(optimize_options);
