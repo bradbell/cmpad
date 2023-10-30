@@ -8,6 +8,7 @@
 {xrst_begin cppad_jit_gradient.hpp}
 {xrst_spell
    obj
+   dll
 }
 
 Calculate Gradient Using CppAD Compiled Derivative Calculation
@@ -34,6 +35,13 @@ value_type
 **********
 The type cmpad::cppad_jit::gradient<TemplateAlgo>::value_type is ``double`` ;
 see :ref:`cpp_gradient@value_type` .
+
+Side Effect
+***********
+This routine uses the following files in the C++ temporary directory:
+``grad_cppad_jit.``\ *ext* were *ext* is the file extension for
+C source files and dll object files.
+In particular this routine is not thread safe.
 
 Example
 *******
@@ -162,6 +170,16 @@ public:
       if( ! option.time_setup )
          tapeg.optimize(optimize_options);
       //
+      // path
+      using std::filesystem::path;
+      //
+      // original_path
+      path original_path = std::filesystem::current_path();
+      //
+      // current_path
+      path temp_path = std::filesystem::temp_directory_path();
+      std::filesystem::current_path(temp_path);
+      //
       // csrc_file
       string type = "double";
       string csrc_file = function_name + ".c";
@@ -230,6 +248,9 @@ public:
          }
       }
       grad_cppad_jit_ = reinterpret_cast<CppAD::jit_double>(void_ptr);
+      //
+      // current_path
+      std::filesystem::current_path(original_path);
    }
    // domain
    size_t domain(void) const override
