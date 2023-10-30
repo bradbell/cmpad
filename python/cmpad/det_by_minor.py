@@ -60,8 +60,6 @@ the number of rows and columns in the matrix.
 n_other
 =======
 This must be zero.
-(For other algorithms that have more than one range component,
-it is the special range index.)
 
 x
 *

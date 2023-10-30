@@ -5,6 +5,8 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 {xrst_begin run_cmpad}
 {xrst_spell
    src
+   Runge
+   Kutta
 }
 
 The cmpad Main Program
@@ -73,7 +75,15 @@ is the dimension of the domain space for the algorithm.
 
 n_other
 *******
-the meaning of this integer is algorithm specific.
+the meaning of this integer is algorithm specific:
+
+.. csv-table::
+   :header-rows: 1
+
+   *algorithm*, *n_other*
+   det_by_minor, must be zero and is not used
+   an_ode, number of Runge-Kutta steps used to approximate ODE
+
 
 package
 *******
