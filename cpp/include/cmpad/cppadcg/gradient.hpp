@@ -39,7 +39,7 @@ see :ref:`cpp_gradient@value_type` .
 Side Effect
 ***********
 This routine uses the following file in the C++ temporary directory:
-``cppad_cg_model.``\ *ext* were *ext* is the file extension for 
+``cppad_cg_model.``\ *ext* were *ext* is the file extension for
 dll object files.
 In particular this routine is not thread safe.
 
