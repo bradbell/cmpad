@@ -8,6 +8,8 @@
 {xrst_begin cppadcg_gradient.hpp}
 {xrst_spell
    obj
+   cg
+   dll
 }
 
 Calculate Gradient Using CppAD
@@ -34,6 +36,13 @@ value_type
 The type cmpad::cppadcg::gradient<TemplateAlgo>::value_type is ``double`` ;
 see :ref:`cpp_gradient@value_type` .
 
+Side Effect
+***********
+This routine uses the following file in the C++ temporary directory:
+``cppad_cg_model.``\ *ext* were *ext* is the file extension for 
+dll object files.
+In particular this routine is not thread safe.
+
 Example
 *******
 The file :ref:`xam_gradient_cppadcg.cpp-name`
@@ -51,6 +60,7 @@ Source Code
 // BEGIN C++
 # if CMPAD_HAS_CPPADCG
 
+# include <filesystem>
 # include <cppad/cg/cppadcg.hpp>
 # include <cmpad/gradient.hpp>
 
@@ -128,6 +138,16 @@ public:
       if( ! option.time_setup )
          tape.optimize(optimize_options);
       //
+      // path
+      using std::filesystem::path;
+      //
+      // original_path
+      path original_path = std::filesystem::current_path();
+      //
+      // current_path
+      path temp_path = std::filesystem::temp_directory_path();
+      std::filesystem::current_path(temp_path);
+      //
       // cgen
       CppAD::cg::ModelCSourceGen<double> cgen(tape, "model");
       cgen.setCreateJacobian(true);
@@ -143,6 +163,9 @@ public:
       // model_
       model_ = nullptr;
       model_ = dynamic_lib_->model("model");
+      //
+      // current_path
+      std::filesystem::current_path(original_path);
    }
    // domain
    size_t domain(void) const override
