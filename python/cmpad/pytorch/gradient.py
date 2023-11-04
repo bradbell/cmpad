@@ -103,16 +103,16 @@ class gradient :
       # self.algo
       self.algo.setup(option)
       #
-      # self.n
-      self.n = self.algo.domain()
-      assert self.n == option['n_arg']
+      # self.n_arg
+      self.n_arg = self.algo.domain()
+      assert self.n_arg == option['n_arg']
       #
    #
    # call
    def __call__(self, x) :
       # See https://discuss.pytorch.org/t/
       #     how-does-one-reuse-the-autograd-computational-graph/190447/2
-      assert len(x) == self.n
+      assert len(x) == self.n_arg
       ax = torch.tensor(x, requires_grad = True)
       az = self.algo(ax)
       az[-1].backward()
