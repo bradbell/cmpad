@@ -41,13 +41,12 @@ def xam_grad_pytorch() :
    # ok
    ok &= check_grad_det( grad_det )
    #
-   if False :
-      # grad_ode
-      algo     = cmpad.an_ode()
-      grad_ode = cmpad.pytorch.gradient(algo)
-      #
-      # ok
-      ok &= check_grad_ode( grad_ode )
+   # grad_ode
+   algo     = cmpad.an_ode()
+   grad_ode = cmpad.pytorch.gradient(algo)
+   #
+   # ok
+   ok &= check_grad_ode( grad_ode )
    #
    return ok
 #
