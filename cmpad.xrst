@@ -46,6 +46,7 @@ Python
 
    :ref:`autograd_gradient.py-title`
    :ref:`cppad_py_gradient.py-title`
+   :ref:`pytorch_gradient.py-title`
 
 
 Documentation
