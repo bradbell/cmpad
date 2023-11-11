@@ -82,7 +82,8 @@ def near_equal(x, y, rel_error, vec = [], os = sys.stderr ) :
       scale = max(scale, abs(element) )
    tiny      = numpy.finfo(float).tiny
    abs_error = max(rel_error * scale, tiny)
-   if abs(x - y) <= abs_error :
+   abs_diff  = abs(x - y)
+   if abs_diff <= abs_error :
       return True
-   os.write( f'|{x} - {y}| > {abs_error}' )
+   os.write( f'|{x} - {y}| = {abs_diff} > {abs_error}\n' )
    return False

@@ -3,3 +3,4 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 from .gradient      import gradient
+from .llsq_obj      import llsq_obj

@@ -27,8 +27,9 @@ Source Code
 '''
 # BEGIN PYTHON
 import cmpad
-from check_grad_det import check_grad_det
-from check_grad_ode import check_grad_ode
+from check_grad_det  import check_grad_det
+from check_grad_ode  import check_grad_ode
+from check_grad_llsq import check_grad_llsq
 
 def xam_grad_pytorch() :
    # ok
@@ -47,6 +48,13 @@ def xam_grad_pytorch() :
    #
    # ok
    ok &= check_grad_ode( grad_ode )
+   #
+   # grad_llsq
+   algo      = cmpad.pytorch.llsq_obj()
+   grad_llsq = cmpad.pytorch.gradient( algo )
+   #
+   # ok
+   ok &= check_grad_llsq( grad_llsq )
    #
    return ok
 #
