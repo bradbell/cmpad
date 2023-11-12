@@ -1,0 +1,34 @@
+
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+# SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+# SPDX-FileContributor: 2023 Bradley M. Bell
+# ---------------------------------------------------------------------------
+{xrst_begin llsq_obj}
+
+Least Squares Linear Regression Objective
+#########################################
+
+.. math:
+
+   y(x) = \frac{1}{2} \sum_i^n \left(
+      s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
+   \right)^2
+
+where *s* and *t* in :math:`{\bf R}^m` are given by:
+
+.. math:
+
+   t_j & = -1 + j * 2 / (m - 1)
+   \\
+   s_j & = \sign ( t_j )
+.. math:
+
+   \frac{ \partial y} { \partial x(j) } = - \sum_i^, \left(
+      s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
+   \right) t_j^{i-1}
+
+{xrst_toc_table
+   python/cmpad/pytorch/llsq_obj.py
+}
+
+{xrst_end llsq_obj}

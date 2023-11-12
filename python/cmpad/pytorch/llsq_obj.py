@@ -49,26 +49,28 @@ class llsq_obj :
       else :
          t = numpy.linspace(-1.0, 1.0, n_other)
       #
-      # s
-      s = -1.0 * (t < 0) + 1.0 * (t > 0)
+      # q
+      q = -1.0 * (t < 0) + 1.0 * (t > 0)
       #
       # self
       self.n_arg = n_arg
-      self.t     = torch.tensor(t)
-      self.s     = torch.tensor(s)
+      self.t     = torch.tensor(t, dtype=float)
+      self.q     = torch.tensor(q, dtype=float)
    #
    def __call__(self, ax) :
       assert len(ax) == self.n_arg
       #
-      # as_
-      as_ = 0.0
-      ti  = torch.tensor( len(self.t) * [1.0] )
-      for j in range(self.n_arg) :
-         as_ = as_ + ax[j] * ti
-         ti  = ti * self.t
+      # model
+      model = 0.0
+      ti  = torch.tensor( len(self.t) * [1.0], dtype=float)
+      for i in range(self.n_arg) :
+         model = model + ax[i] * ti
+         ti    = ti * self.t
       #
-      # ay
-      ay = 0.5 * torch.square(self.s - as_).sum()
-      ay = ay.view(1)
+      # squared_residual
+      squared_residual = torch.square(model - self.q)
       #
-      return ay
+      # objective
+      objective = 0.5 * squared_residual.sum()
+      #
+      return objective.view(1)

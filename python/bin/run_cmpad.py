@@ -35,7 +35,7 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.11.11'
+cmpad_version = 'cmpad-2023.11.12'
 # ----------------------------------------------------------------------------
 #
 # program

@@ -50,14 +50,11 @@ def check_grad_llsq( grad_llsq ) :
    # rel_error
    rel_error = 100. * numpy.finfo(float).eps
    #
-   # see https://discuss.pytorch.org/t/191681
-   rel_error = 1e-7
-   #
    # n_arg
-   n_arg = 1
+   n_arg = 4
    #
    # n_other
-   n_other = 1
+   n_other = 10
    #
    # t
    if n_other == 1 :
@@ -65,8 +62,8 @@ def check_grad_llsq( grad_llsq ) :
    else :
       t = numpy.linspace(-1.0, 1.0, n_other)
    #
-   # s
-   s = -1.0 * (t < 0) + 1.0 * (t > 0)
+   # q
+   q = -1.0 * (t < 0) + 1.0 * (t > 0)
    #
    # time_setup
    for time_setup in [ False, True ] :
@@ -87,22 +84,25 @@ def check_grad_llsq( grad_llsq ) :
       # g
       g = grad_llsq(x)
       #
-      # r, ti
-      r  = copy.copy(s)
-      ti = numpy.ones(n_other)
+      # model
+      model = 0.0
+      ti   = numpy.ones(n_other)
       for i in range(n_arg) :
-         r  -= x[i] * ti
-         ti *= t
+         model +=  x[i] * ti
+         ti    *= t
       #
-      # dr_dx
-      dr_dx = numpy.empty( (n_arg, n_other) )
-      ti    = numpy.ones(n_other)
+      # residual
+      residual = model - q
+      #
+      # residual_dx
+      residual_dx = numpy.empty( (n_arg, n_other) )
+      ti          = numpy.ones(n_other)
       for i in range(n_arg) :
-         dr_dx[i,:] =  - r * ti
-         ti        *= t
+         residual_dx[i,:] =  residual * ti
+         ti              *= t
       #
       # check
-      check = dr_dx.sum(1)
+      check = residual_dx.sum(1)
       #
       # check
       for i in range(n_arg) :
