@@ -8,6 +8,7 @@ from .csv_speed      import csv_speed
 from .det_by_minor   import det_by_minor
 from .det_of_minor   import det_of_minor
 from .fun_speed      import fun_speed
+from .llsq_obj       import llsq_obj
 from .near_equal     import near_equal
 from .runge_kutta    import runge_kutta
 # END_SORT_THIS_LINE_MINUS_1

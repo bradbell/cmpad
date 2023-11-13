@@ -23,7 +23,7 @@ Python Algorithms Used to Compare Packages
 {xrst_toc_table
    python/cmpad/det_by_minor.py
    python/cmpad/an_ode.py
-   python/llsq_obj.xrst
+   python/cmpad/llsq_obj.py
 }
 
 {xrst_end py_algorithm}

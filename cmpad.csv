@@ -1,0 +1,4 @@
+rate,min_time,package,algorithm,n_arg,n_other,time_setup,date,compiler,debug,language
+2.6e+05,0.5,none,det_by_minor,9,0,false,2023-11-13,CPython-3.11.6,,python
+7.4e+04,0.5,none,llsq_obj,9,100,false,2023-11-13,CPython-3.11.6,,python
+1.9e+03,0.5,pytorch,llsq_obj,9,0,false,2023-11-13,CPython-3.11.6,false,python

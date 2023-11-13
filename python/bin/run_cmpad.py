@@ -35,7 +35,7 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.11.12'
+cmpad_version = 'cmpad-2023.11.13'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -66,17 +66,23 @@ def none_fun_obj(algorithm) :
       return cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
       return cmpad.an_ode()
+   elif algorithm == 'llsq_obj' :
+      return cmpad.llsq_obj()
    else :
       assert False
 #
 # grad_fun_obj
 def grad_fun_obj(algorithm, package) :
    #
+   #
    # algo
    if algorithm == 'det_by_minor' :
       algo = cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
       algo = cmpad.an_ode()
+   elif algorithm == 'llsq_obj' :
+      assert package == 'pytorch'
+      algo = cmpad.pytorch.llsq_obj()
    else :
       assert False
    #
@@ -155,7 +161,12 @@ def main() :
    #
    # algorithm
    algorithm = arguments.algorithm
-   if algorithm not in [ 'det_by_minor', 'an_ode' ] :
+   if algorithm == 'llsq_obj' :
+      if package not in [ 'none' , 'pytorch' ] :
+         msg  = f'{program}: algorithm = {algorithm} is not available '
+         msg += f'for package = {package}'
+         sys.exit(msg)
+   elif algorithm not in [ 'det_by_minor', 'an_ode' ] :
       msg = f'{program}: algorithm = {algorithm} is not available'
       sys.exit(msg)
    #

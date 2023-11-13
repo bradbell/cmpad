@@ -127,49 +127,57 @@ def main() :
    # default_n_arg
    default_n_arg = 9
    #
+   # n_other_dict
+   n_other_dict = {
+      'det_by_minor' : 0 ,
+      'an_ode'       : default_n_arg ,
+      'llsq_obj'     : 100
+   }
+   #
    # time_setup
    for time_setup in [ True, False ] :
       #
       # algorithm
-      algorithm_list = [ 'det_by_minor' , 'an_ode' ]
+      algorithm_list = [ 'det_by_minor' , 'an_ode' , 'llsq_obj' ]
       for algorithm in algorithm_list :
          #
          # n_other
-         n_other_list = [ 0 ]
-         if algorithm == 'an_ode' :
-            n_other_list = [ default_n_arg - 1 , default_n_arg - 2 ]
-         for n_other in n_other_list :
+         n_other = n_other_dict[algorithm]
+         #
+         # package
+         for package in package_list :
             #
-            # package
-            for package in package_list :
-               #
-               # run_cmpad
-               if package == 'none' :
-                  run_cmpad_list = [ cpp_run_cmpad, py_run_cmpad ]
-               elif package in cpp_package_list :
-                  run_cmpad_list = [ cpp_run_cmpad ]
-               else :
-                  assert package in python_package_list
+            # run_cmpad
+            if algorithm == 'llsq_obj' :
+               run_cmpad_list = list()
+               if package in [ 'none', 'pytorch' ] :
                   run_cmpad_list = [ py_run_cmpad ]
-               for run_cmpad in run_cmpad_list :
-                  #
-                  # command
-                  command = [
-                     run_cmpad,
-                     f'--package={package}',
-                     f'--algorithm={algorithm}',
-                     f'--n_other={n_other}',
-                     f'--file_name={file_name}',
-                  ]
-                  if time_setup :
-                     command.append('--time_setup')
-                  #
-                  # run command
-                  print( ' '.join(command) )
-                  result = subprocess.run(command)
-                  if result.returncode != 0 :
-                     msg  = 'command above failed\n'
-                     sys.exit(msg)
+            elif package == 'none' :
+               run_cmpad_list = [ cpp_run_cmpad, py_run_cmpad ]
+            elif package in cpp_package_list :
+               run_cmpad_list = [ cpp_run_cmpad ]
+            else :
+               assert package in python_package_list
+               run_cmpad_list = [ py_run_cmpad ]
+            for run_cmpad in run_cmpad_list :
+               #
+               # command
+               command = [
+                  run_cmpad,
+                  f'--package={package}',
+                  f'--algorithm={algorithm}',
+                  f'--n_other={n_other}',
+                  f'--file_name={file_name}',
+               ]
+               if time_setup :
+                  command.append('--time_setup')
+               #
+               # run command
+               print( ' '.join(command) )
+               result = subprocess.run(command)
+               if result.returncode != 0 :
+                  msg  = 'command above failed\n'
+                  sys.exit(msg)
    #
    # file_obj
    file_obj = open(file_name)
@@ -180,10 +188,8 @@ def main() :
       assert row['package'] in package_list
       assert row['algorithm'] in algorithm_list
       assert row['time_setup'] in [ 'true', 'false' ]
-      if row['algorithm'] == 'det_by_minor' :
-         assert int( row['n_other'] ) == 0
-      else :
-         assert int(row['n_other']) in [ default_n_arg - 1, default_n_arg - 2 ]
+      algorithm = row['algorithm']
+      assert int( row['n_other'] ) == n_other_dict[algorithm]
    #
    print( f'{program}: OK')
 #
