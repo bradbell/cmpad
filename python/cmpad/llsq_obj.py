@@ -11,7 +11,7 @@ Python Least Squares Linear Regression Objective
 Function
 ********
 
-.. math:
+.. math::
 
    y(x) = \frac{1}{2} \sum_i^n \left(
       s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
@@ -19,14 +19,23 @@ Function
 
 where *s* and *t* in :math:`{\bf R}^n` are given by:
 
-.. math:
+.. math::
 
    t_j & = -1 + i * 2 / (n - 1)
    \\
-   s_j & = \sign ( t_j )
-.. math:
+   s_j & = \mathrm{sign} ( t_j )
+   =
+   \cases{
+      -1 & if $t_j < 0$ \\
+       0 & if $t_j = 0$ \\
+      +1 & if $t_j > 0$ 
+   }
 
-   \frac{ \partial y} { \partial x(i) } = \sum_j^n \left(
+.. math::
+
+   \frac{ \partial y} { \partial x(i) } 
+   = 
+   \sum_j^n \left(
       s_j - x_0 - x_1 t_j - x_2 t_j^2 - \cdots
    \right) t_j^{i-1}
 
