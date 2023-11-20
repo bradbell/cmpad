@@ -19,7 +19,7 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2023.11.13
+cmpad-2023.11.20
 
 Example Speed Comparison
 ************************
@@ -54,6 +54,7 @@ Documentation
 
 {xrst_toc_table
    xrst/run_cmpad.xrst
+   xrst/algorithm.xrst
    cpp/cpp.xrst
    python/python.xrst
 }

@@ -28,13 +28,13 @@ where *s* and *t* in :math:`{\bf R}^n` are given by:
    \cases{
       -1 & if $t_j < 0$ \\
        0 & if $t_j = 0$ \\
-      +1 & if $t_j > 0$ 
+      +1 & if $t_j > 0$
    }
 
 .. math::
 
-   \frac{ \partial y} { \partial x(i) } 
-   = 
+   \frac{ \partial y} { \partial x(i) }
+   =
    \sum_j^n \left(
       s_j - x_0 - x_1 t_j - x_2 t_j^2 - \cdots
    \right) t_j^i

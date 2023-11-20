@@ -1,0 +1,166 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+-----------------------------------------------------------------------------
+{xrst_begin_parent algorithm}
+
+Algorithms Used to Compare Packages
+###################################
+
+{xrst_end algorithm}
+------------------------------------------------------------------------------
+{xrst_begin det_by_minor}
+{xrst_spell
+   th
+}
+
+Determinant Using Expansion by Minors
+#####################################
+
+Algorithm
+*********
+This algorithm computes :math:`|A|` the determinant of a square matrix 
+:math:`A \in \B{R}^{n \times n}` .
+In the special case where *n* is one, the determinant
+is just the element of the matrix.
+Otherwise, the determinant is computed using the formula
+
+.. math::
+
+   | A | = + | A(0,0) | - | A(0,1) |  + | A(0,2) | \cdots \pm  | A(0,n-1) |
+
+where the last term is + (-) if *n* is odd (even) and
+where :math:`A(i,j) \in \B{R}^{(n-1) \times (n-1)}` is the 
+:math:`(i,j)` minor of *A*\ ; i.e., the square sub-matrix formed by deleting
+the *i*\ -th row and *j*\ -th column of *A* .
+
+Derivative
+**********
+The partial derivative of :math:`|A|` with respect to 
+the :math:`(i,j)`\ -th element :math:`A_{i,j}` is
+
+.. math::
+
+   \frac{ \partial |A| }{ \partial A_{i,j} } = (-1)^{i+j} | A(i,j) |
+
+{xrst_end det_by_minor}
+------------------------------------------------------------------------------
+{xrst_begin an_ode}
+{xrst_spell
+   Runge
+   Kutta
+   llll
+   truncation
+}
+
+An ODE Solution
+###############
+
+ODE
+***
+
+.. math::
+
+   \begin{array}{llll}
+   y_i '(t) & = & x_0                          & \mbox{for} \; i = 0 \\
+   y_i '(t) & = & \sum_{j=1}^i x_j y_{i-1} (t) & \mbox{for} \; i > 0  \\
+   \end{array}
+
+Initial Value
+*************
+
+.. math::
+
+   y_i (0) = 0  \; \mbox{for all} \; i
+
+Solution
+********
+This initial value problem has the following analytic solution
+(which can be used to check function values and derivatives):
+
+.. math::
+
+   \begin{array}{llll}
+   y_0 (t) & = & x_0 t \\
+   y_1 (t) & = & x_0 x_1 t^2 / 2 ! \\
+   y_2 (t) & = & x_0 x_1 x_2 t^3 / 3 !
+   \end{array}
+
+.. math ::
+
+   y_i (t) = 
+      \frac{t^{i+1}}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
+
+Algorithm
+*********
+The classic Runge-Kutta method RK4 is used to approximate
+the solution of this ODE.
+Note that this approximation for :math:`y_i (t)` 
+has no truncation error for :math:`i < 4` .
+
+Derivative
+**********
+The partial of :math:`y_i (t)` with respect to :math:`x_j` is
+
+.. math::
+
+   \frac{ \partial y_i (t) }{  \partial x_j } = \begin{cases}
+      y_i (t) / x_j   & \text{if} \; j \leq i  \\
+      0               & \text{otherwise}
+   \end{cases}
+
+{xrst_end an_ode}
+------------------------------------------------------------------------------
+{xrst_begin llsq_obj}
+
+Least Squares Linear Regression Objective
+#########################################
+
+Function
+********
+
+.. math::
+
+   y(x) = \frac{1}{2} \sum_i^n \left(
+      s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
+   \right)^2
+
+where *s* and *t* in :math:`{\bf R}^n` are given by:
+
+.. math::
+
+   t_j & = -1 + i * 2 / (n - 1)
+   \\
+   s_j & = \mathrm{sign} ( t_j )
+   =
+   \cases{
+      -1 & if $t_j < 0$ \\
+       0 & if $t_j = 0$ \\
+      +1 & if $t_j > 0$ 
+   }
+
+
+Algorithm
+*********
+The algorithm for this case is AD package specific.
+The intent is to enable AD packages that have vector operators,
+or other special operators,
+to use them to speed up the calculation of derivatives.
+Using AD package specific operations requires re-writing
+source code and my not be feasible in some cases.
+
+Derivative
+**********
+The partial derivative of :math:`y(x)` with respect to :math:`x_j` is
+
+.. math::
+
+   \frac{ \partial y(x)} { \partial x_j } 
+   = 
+   - \sum_i^n \left(
+      s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
+   \right) t_i^j
+
+
+{xrst_end llsq_obj}
+------------------------------------------------------------------------------
