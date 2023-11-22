@@ -21,10 +21,10 @@ Prototype
    # END PROTOTYPE
 }
 
-Purpose
-*******
-This computes
-the determinant of a square matrix using expansion by minors.
+Algorithm
+*********
+This is a Python implementation of the
+det_by_minor :ref:`det_by_minor@Algorithm` .
 
 Scalar
 ******

@@ -10,8 +10,6 @@
    Runge
    Kutta
    yf
-   llll
-   truncation
 }
 
 Use C++ Runge-Kutta Method to Solve an ODE
@@ -31,53 +29,15 @@ Prototype
    // END PROTOTYPE
 }
 
-Purpose
-*******
-This implements the :ref:`cpp_fun_obj-name` interface.
-The function call uses :ref:`runge_kutta-name` to
-compute the solution of the ODE defined below:
-
-The ODE
-*******
-
-.. math::
-
-   \begin{array}{llll}
-   y_i '(t) & = & x_0                          & \mbox{for} \; i = 0 \\
-   y_i '(t) & = & \sum_{j=1}^i x_j y_{i-1} (t) & \mbox{for} \; i > 0  \\
-   \end{array}
-
-Initial Value
-*************
-
-.. math::
-
-   y_i (0) = 0  \; \mbox{for all} \; i
-
-Solution
-********
-This initial value problem has the following analytic solution
-(which can be used to check function values and derivatives):
-
-.. math::
-
-   \begin{array}{llll}
-   y_0 (t) & = & x_0 t \\
-   y_1 (t) & = & x_0 x_1 t^2 / 2 ! \\
-   y_2 (t) & = & x_0 x_1 x_2 t^3 / 3 !
-   \end{array}
-
-.. math ::
-
-   y_i (t) = \frac{t^{i+1}}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
+Algorithm
+*********
+This is a :ref:`cpp_fun_obj-name` interface
+to the :ref:`an_ode@Algorithm` .
 
 ode
 ***
 The object *ode* corresponding to :ref:`cpp_fun_obj@fun`
 in the function object interface.
-It computes a Runge-Kutta approximation for :math:`y(t)` at :math:`t = 2` .
-Note that this approximation for :math:`y_i (t)` has no truncation error
-for :math:`i < 4` (because it is a fourth order method).
 
 option
 ******
@@ -89,8 +49,7 @@ This is the size of the vectors *x* and *yf* .
 
 x
 *
-This is the parameter vector that appears in the
-:ref:`cpp_an_ode@The ODE` above.
+This is the :ref:`an_ode@ODE@Parameter Vector` that appears in the ODE.
 
 yf
 **

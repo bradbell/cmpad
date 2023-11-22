@@ -15,19 +15,6 @@ Python Algorithmic Differentiation
 
 {xrst_end python}
 ---------------------------------------------------------------------------
-{xrst_begin py_algorithm}
-
-Python Algorithms Used to Compare Packages
-##########################################
-
-{xrst_toc_table
-   python/cmpad/det_by_minor.py
-   python/cmpad/an_ode.py
-   python/cmpad/llsq_obj.py
-}
-
-{xrst_end py_algorithm}
----------------------------------------------------------------------------
 {xrst_begin py_gradient}
 
 Python Gradient Calculation

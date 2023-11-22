@@ -19,7 +19,7 @@ Determinant Using Expansion by Minors
 
 Algorithm
 *********
-This algorithm computes :math:`|A|` the determinant of a square matrix 
+This algorithm computes :math:`|A|` the determinant of a square matrix
 :math:`A \in \B{R}^{n \times n}` .
 In the special case where *n* is one, the determinant
 is just the element of the matrix.
@@ -30,13 +30,20 @@ Otherwise, the determinant is computed using the formula
    | A | = + | A(0,0) | - | A(0,1) |  + | A(0,2) | \cdots \pm  | A(0,n-1) |
 
 where the last term is + (-) if *n* is odd (even) and
-where :math:`A(i,j) \in \B{R}^{(n-1) \times (n-1)}` is the 
+:math:`A(i,j) \in \B{R}^{(n-1) \times (n-1)}` is the
 :math:`(i,j)` minor of *A*\ ; i.e., the square sub-matrix formed by deleting
 the *i*\ -th row and *j*\ -th column of *A* .
 
+Implementation
+==============
+{xrst_toc_table
+   cpp/include/cmpad/algo/det_by_minor.hpp
+   python/cmpad/det_by_minor.py
+}
+
 Derivative
 **********
-The partial derivative of :math:`|A|` with respect to 
+The partial derivative of :math:`|A|` with respect to
 the :math:`(i,j)`\ -th element :math:`A_{i,j}` is
 
 .. math::
@@ -66,6 +73,10 @@ ODE
    y_i '(t) & = & \sum_{j=1}^i x_j y_{i-1} (t) & \mbox{for} \; i > 0  \\
    \end{array}
 
+Parameter Vector
+================
+We refer to :math:`x` as the parameter vector in the ode.
+
 Initial Value
 *************
 
@@ -88,15 +99,22 @@ This initial value problem has the following analytic solution
 
 .. math ::
 
-   y_i (t) = 
+   y_i (t) =
       \frac{t^{i+1}}{(i+1)!} \prod_{j=0}^i x_j \; \; \mbox{for all} \; i
 
 Algorithm
 *********
 The classic Runge-Kutta method RK4 is used to approximate
-the solution of this ODE.
-Note that this approximation for :math:`y_i (t)` 
+the solution for :math:`y(t)` at :math:`t = 2` .
+Note that this approximation for :math:`y_i (2)`
 has no truncation error for :math:`i < 4` .
+
+Implementation
+==============
+{xrst_toc_table
+   cpp/include/cmpad/algo/an_ode.hpp
+   python/cmpad/an_ode.py
+}
 
 Derivative
 **********
@@ -108,6 +126,7 @@ The partial of :math:`y_i (t)` with respect to :math:`x_j` is
       y_i (t) / x_j   & \text{if} \; j \leq i  \\
       0               & \text{otherwise}
    \end{cases}
+
 
 {xrst_end an_ode}
 ------------------------------------------------------------------------------
@@ -136,7 +155,7 @@ where *s* and *t* in :math:`{\bf R}^n` are given by:
    \cases{
       -1 & if $t_j < 0$ \\
        0 & if $t_j = 0$ \\
-      +1 & if $t_j > 0$ 
+      +1 & if $t_j > 0$
    }
 
 
@@ -149,14 +168,20 @@ to use them to speed up the calculation of derivatives.
 Using AD package specific operations requires re-writing
 source code and my not be feasible in some cases.
 
+Implementation
+==============
+{xrst_toc_table
+   python/cmpad/llsq_obj.py
+}
+
 Derivative
 **********
 The partial derivative of :math:`y(x)` with respect to :math:`x_j` is
 
 .. math::
 
-   \frac{ \partial y(x)} { \partial x_j } 
-   = 
+   \frac{ \partial y(x)} { \partial x_j }
+   =
    - \sum_i^n \left(
       s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
    \right) t_i^j

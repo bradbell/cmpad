@@ -24,11 +24,10 @@ Prototype
    // END DET_BY_MINOR
 }
 
-Purpose
-*******
-This implements the :ref:`cpp_fun_obj-name` interface.
-The function call computes
-the determinant of a square matrix using expansion by minors.
+Algorithm
+*********
+This is a  :ref:`cpp_fun_obj-name` interface
+to the det_by_minor :ref:`det_by_minor@Algorithm` .
 
 Scalar
 ******

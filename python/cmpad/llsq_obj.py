@@ -4,45 +4,24 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_llsq_obj}
+{xrst_spell
+   llsq
+   obj
+}
 
 Python Least Squares Linear Regression Objective
 ################################################
 
-Function
-********
-
-.. math::
-
-   y(x) = \frac{1}{2} \sum_i^n \left(
-      s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
-   \right)^2
-
-where *s* and *t* in :math:`{\bf R}^n` are given by:
-
-.. math::
-
-   t_j & = -1 + i * 2 / (n - 1)
-   \\
-   s_j & = \mathrm{sign} ( t_j )
-   =
-   \cases{
-      -1 & if $t_j < 0$ \\
-       0 & if $t_j = 0$ \\
-      +1 & if $t_j > 0$
-   }
-
-.. math::
-
-   \frac{ \partial y} { \partial x(i) }
-   =
-   \sum_j^n \left(
-      s_j - x_0 - x_1 t_j - x_2 t_j^2 - \cdots
-   \right) t_j^i
+Algorithm
+*********
+This is a Python implementation of the
+llsq_obj :ref:`llsq_obj@Algorithm` .
 
 Packages
 ********
 The pages below contain the implementation of this function
-that is used when :ref:`run_cmpad@package` is not ``none`` .
+that is used when computing derivatives; i.e.,
+when :ref:`run_cmpad@package` is not ``none`` .
 {xrst_toc_table
    python/cmpad/pytorch/llsq_obj.py
 }
@@ -50,7 +29,8 @@ that is used when :ref:`run_cmpad@package` is not ``none`` .
 Source Code
 ***********
 The code below is the implementation of this function
-that is used when :ref:`run_cmpad@package` is ``none`` .
+that is used when compute the function value; i.e.,
+when :ref:`run_cmpad@package` is ``none`` .
 {xrst_literal
    # BEGIN PYTHON
    # END PYTHON

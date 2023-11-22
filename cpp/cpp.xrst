@@ -31,18 +31,6 @@ Simple Types
 
 {xrst_end type}
 -----------------------------------------------------------------------------
-{xrst_begin cpp_algorithm}
-
-Algorithms Used to Compare Packages
-###################################
-
-{xrst_toc_table
-   cpp/include/cmpad/algo/det_by_minor.hpp
-   cpp/include/cmpad/algo/an_ode.hpp
-}
-
-{xrst_end cpp_algorithm}
------------------------------------------------------------------------------
 {xrst_begin cpp_utility}
 
 General Purpose C++ Utilities
