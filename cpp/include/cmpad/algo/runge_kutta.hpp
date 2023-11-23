@@ -17,8 +17,8 @@
    yt
 }
 
-C++ Fourth Order Runge Kutta Method
-###################################
+A C++ Fourth Order Runge Kutta Solver
+#####################################
 
 Syntax
 ******
@@ -71,7 +71,7 @@ is the value of *t* at which we wish to evaluate :math:`y(t)` .
 
 ns
 **
-is the number of Runge-Kutta steps to use.
+is the number of :ref:`Runge-Kutta steps<rk4_step-name>` to use.
 The more steps the smaller the step size and the more accurate
 the solution.
 

@@ -112,6 +112,7 @@ has no truncation error for :math:`i < 4` .
 Implementation
 ==============
 {xrst_toc_table
+   xrst/rk4_step.xrst
    cpp/include/cmpad/algo/an_ode.hpp
    python/cmpad/an_ode.py
 }

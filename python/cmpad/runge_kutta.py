@@ -66,7 +66,7 @@ This is an object of type ``float`` or *Scalar* .
 
 ns
 **
-is the number of Runge-Kutta steps to use.
+is the number of :ref:`Runge-Kutta steps<rk4_step-name>` to use.
 The more steps the smaller the step size and the more accurate
 the solution.
 This is an ``int`` .

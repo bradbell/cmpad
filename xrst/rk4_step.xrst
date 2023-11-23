@@ -1,0 +1,40 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+-----------------------------------------------------------------------------
+{xrst_begin rk4_step}
+{xrst_spell
+   Runge
+   Kutta
+}
+
+
+A Fourth Runge-Kutta ODE Step
+#############################
+
+Problem
+*******
+Given 
+:math:`f : \B{R}^n \rightarrow \B{R}^n` ,
+:math:`y(0) = y_0 \in \B{R}^n` , and
+:math:`y^{(1)} (t) = f( y(t) )` for all :math:`t` .
+Approximate :math:`y(h)` for some :math:`h \neq 0` .
+
+Method
+******
+The following algorithm computes 
+the approximation :math:`y^1 = y(h) + O( h^5 )` where
+:math:`O( h^5 )` means that the error in the approximation is order
+:math:`h` to the fifth power. 
+
+.. math::
+
+   k_1 & = f \left( y_0 \right) \\
+   k_2 & = f \left( y_0 + \frac{h}{2} k_1  \right) \\
+   k_3 & = f \left( y_0 + \frac{h}{2} k_2  \right) \\
+   k_4 & = f \left( y_0 + h k_3 \right) \\
+   y_1 & = y_0 + \frac{h}{6} \left( k_1 + 2 k_2 + 2 k_3 + k_4 \right)
+
+
+
+{xrst_end rk4_step}
