@@ -14,7 +14,7 @@ A Fourth Runge-Kutta ODE Step
 
 Problem
 *******
-Given 
+Given
 :math:`f : \B{R}^n \rightarrow \B{R}^n` ,
 :math:`y(0) = y_0 \in \B{R}^n` , and
 :math:`y^{(1)} (t) = f( y(t) )` for all :math:`t` .
@@ -22,10 +22,10 @@ Approximate :math:`y(h)` for some :math:`h \neq 0` .
 
 Method
 ******
-The following algorithm computes 
+The following algorithm computes
 the approximation :math:`y^1 = y(h) + O( h^5 )` where
 :math:`O( h^5 )` means that the error in the approximation is order
-:math:`h` to the fifth power. 
+:math:`h` to the fifth power.
 
 .. math::
 

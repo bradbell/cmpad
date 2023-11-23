@@ -35,18 +35,13 @@ ode
 The object *ode* corresponding to :ref:`py_fun_obj@fun_obj`
 in the function object interface.
 
-option
-******
-This contains the options that are used to setup the function object.
-
 n_arg
-=====
-This is the size of the vectors *x* and *yf* .
+*****
+see :ref:`an_ode@option@n_arg` .
 
 n_other
 =======
-This is the number of Runge-Kutta steps used to approximate the
-solution of the ODE.
+see :ref:`an_ode@option@n_other` .
 
 x
 *

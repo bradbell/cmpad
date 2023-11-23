@@ -17,22 +17,37 @@ Algorithms Used to Compare Packages
 Determinant Using Expansion by Minors
 #####################################
 
+ell
+***
+We use :math:`\ell` to denote the row and column dimension
+of the square matrix under consideration.
+
 Algorithm
 *********
 This algorithm computes :math:`|A|` the determinant of a square matrix
-:math:`A \in \B{R}^{n \times n}` .
-In the special case where *n* is one, the determinant
+:math:`A \in \B{R}^{\ell \times \ell}` .
+In the special case where *\ell* is one, the determinant
 is just the element of the matrix.
 Otherwise, the determinant is computed using the formula
 
 .. math::
 
-   | A | = + | A(0,0) | - | A(0,1) |  + | A(0,2) | \cdots \pm  | A(0,n-1) |
+   | A | = + | A(0,0) | - | A(0,1) |  + | A(0,2) | \cdots \pm  | A(0,\ell-1) |
 
-where the last term is + (-) if *n* is odd (even) and
-:math:`A(i,j) \in \B{R}^{(n-1) \times (n-1)}` is the
+where the last term is + (-) if *\ell* is odd (even) and
+:math:`A(i,j) \in \B{R}^{(\ell-1) \times (\ell-1)}` is the
 :math:`(i,j)` minor of *A*\ ; i.e., the square sub-matrix formed by deleting
 the *i*\ -th row and *j*\ -th column of *A* .
+
+option
+******
+The only option used by this algorithm is ``n_arg`` ; see below:
+
+n_arg
+=====
+This is the number of arguments to the algorithm
+which is the number of elements in the matrix; i.e., math:`\ell^2` .
+
 
 Implementation
 ==============
@@ -104,10 +119,22 @@ This initial value problem has the following analytic solution
 
 Algorithm
 *********
-The classic Runge-Kutta method RK4 is used to approximate
+The :ref:`rk4_step-name` method is used to approximate
 the solution for :math:`y(t)` at :math:`t = 2` .
-Note that this approximation for :math:`y_i (2)`
-has no truncation error for :math:`i < 4` .
+Note that this approximation has no truncation error for :math:`i < 4` .
+
+option
+******
+This algorithm uses the ``n_arg`` and ``n_other`` options; see below:
+
+n_arg
+=====
+This is the size of the vectors *x* and *y* above .
+
+n_other
+=======
+This is the number of :ref:`Runge-Kutta steps<rk4_step-name>`
+used to approximate the solution of the ODE :math:`y(2)` .
 
 Implementation
 ==============
@@ -168,6 +195,18 @@ or other special operators,
 to use them to speed up the calculation of derivatives.
 Using AD package specific operations requires re-writing
 source code and my not be feasible in some cases.
+
+option
+******
+This algorithm uses the ``n_arg`` and ``n_other`` options; see below:
+
+n_arg
+=====
+This is the size of the vector *x* above .
+
+n_other
+=======
+This is the size of the vector *t* above .
 
 Implementation
 ==============

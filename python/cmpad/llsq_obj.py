@@ -12,19 +12,39 @@ r'''
 Python Least Squares Linear Regression Objective
 ################################################
 
+Syntax
+******
+| |tab| *llsq* = ``cmpad.llsq_obj()``
+| |tab| *llsq* . ``setup`` ( *option* )
+| |tab| *obj* = *llsq* ( *x* )
+
+Prototype
+*********
+{xrst_literal
+   # BEGIN PROTOTYPE
+   # END PROTOTYPE
+}
+
 Algorithm
 *********
-This is a Python implementation of the
-llsq_obj :ref:`llsq_obj@Algorithm` .
+This is a python implementation of the an_ode :ref:`an_ode@Algorithm` .
 
-Packages
-********
+Derivatives
+***********
 The pages below contain the implementation of this function
 that is used when computing derivatives; i.e.,
 when :ref:`run_cmpad@package` is not ``none`` .
 {xrst_toc_table
    python/cmpad/pytorch/llsq_obj.py
 }
+
+n_arg
+*****
+see :ref:`llsq_obj@option@n_arg` .
+
+n_other
+*******
+see :ref:`llsq_obj@option@n_other` .
 
 Source Code
 ***********
@@ -41,6 +61,8 @@ when :ref:`run_cmpad@package` is ``none`` .
 '''
 # BEGIN PYTHON
 import numpy
+
+# BEGIN PROTOTYPE
 class llsq_obj :
    def domain(self) :
       return self.n_arg
@@ -48,6 +70,10 @@ class llsq_obj :
       return 1
    #
    def setup(self, option) :
+      assert type(option) == dict
+      assert type(option['n_arg']) == int
+      assert type(option['n_other']) == int
+      # END PROTOTYPE
       #
       # n_arg, n_other
       n_arg   = option['n_arg']

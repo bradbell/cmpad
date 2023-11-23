@@ -56,16 +56,13 @@ The object *det* corresponds to :ref:`cpp_fun_obj@fun` in the function
 object interface.
 It computes the determinant of a square matrix.
 
-option
-******
-This contains options thats that are used to setup the function object.
+ell
+***
+see :ref:`det_by_minor@ell` .
 
 n_arg
-=====
-This is the number of elements in the matrix
-(number of arguments to the algorithm).
-It must be a square and we use :math:``\ell`` to denote its square root; i.e,
-the number of rows and columns in the matrix.
+*****
+see :ref:`det_by_minor@option@n_arg` .
 
 x
 *

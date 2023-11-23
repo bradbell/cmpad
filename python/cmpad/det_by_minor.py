@@ -46,16 +46,13 @@ det
 ***
 The :ref:`py_fun_obj-name` *det* computes the determinant of a square matrix.
 
-option
-******
-This contains options thats that are used to setup the function object.
+ell
+***
+see :ref:`det_by_minor@ell` .
 
 n_arg
-=====
-This is the number of elements in the matrix
-(number of arguments to the algorithm).
-It must be a square and we use :math:``\ell`` to denote its square root; i.e,
-the number of rows and columns in the matrix.
+*****
+see :ref:`det_by_minor@option@n_arg` .
 
 n_other
 =======

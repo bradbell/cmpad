@@ -39,13 +39,13 @@ ode
 The object *ode* corresponding to :ref:`cpp_fun_obj@fun`
 in the function object interface.
 
-option
-******
-This contains the options that are used to setup the function object.
-
 n_arg
-=====
-This is the size of the vectors *x* and *yf* .
+*****
+see :ref:`an_ode@option@n_arg` .
+
+n_other
+=======
+see :ref:`an_ode@option@n_other` .
 
 x
 *
@@ -172,7 +172,7 @@ public:
       Scalar tf = Scalar(2);
       //
       // ns
-      size_t ns = option_.n_arg;
+      size_t ns = option_.n_other;
       //
       // yf
       const cmpad::vector<Scalar>& yi = zero_;
