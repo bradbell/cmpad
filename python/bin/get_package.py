@@ -20,6 +20,7 @@ that cmpad can test.
 
 Syntax
 ******
+``python/bin/get_package.py`` *build_type* ``all`
 ``python/bin/get_package.py`` *build_type* *package_1* [ *package_2* [ ... ] ]
 
 build_type
@@ -55,6 +56,11 @@ it will be included in the cmpad testing.
    `autograd`_,   :ref:`autograd_gradient-name`
    `cppad_py`_,   :ref:`cppad_py_gradient-name`
    `pytorch`_,    :ref:`pytorch_gradient-name`
+
+all
+***
+If the ``all`` version of the syntax is used,
+all the python packages will be installed.
 
 
 top_srcdir
@@ -183,7 +189,8 @@ def main() :
       sys.exit(msg)
    #
    # usage
-   usage  = f'{program} build_type package_1 [ package_2 [..] ]\n'
+   usage  = f'{program} build_type all\n'
+   usage  = f'{program} build_type package_1 [ package_2 [..] ]\n\n'
    usage += 'build_type: is debug or release\n'
    usage += 'package_j: is the j-th package to install and is one of:\n'
    usage += 'autograd, cppad_py, pytorch'
@@ -215,11 +222,20 @@ def main() :
       'pytorch'  : None ,
    }
    #
+   # package_list
+   if sys.argv[2] == 'all' :
+      if len(sys.argv) != 3 :
+         msg  = f'{program}: all is the second arugment '
+         msg += 'and there are other arguments after it.'
+         sys.exit(msg)
+      package_list = list( package_install.keys() )
+   else :
+      package_list = sys.argv[2 :]
+   #
    # package
-   for index in range(2, len(sys.argv), 1) :
+   for package in package_list :
       #
       # package
-      package = sys.argv[index]
       if package not in package_install :
          msg  = f'{program}: package = {package} is not yet implemented'
          sys.exit(msg)

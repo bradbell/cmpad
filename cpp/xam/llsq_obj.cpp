@@ -33,7 +33,7 @@ bool xam_llsq_obj(void)
    //
    // llsq.setup
    cmpad::option_t option;
-   option.n_arg   = 3; 
+   option.n_arg   = 3;
    option.n_other = 4;
    llsq.setup(option);
    //
@@ -49,7 +49,7 @@ bool xam_llsq_obj(void)
    //
    for(size_t j = 0; j < option.n_other; ++j)
    {  //
-      // t_j  
+      // t_j
       double t_j = -1.0 + 2.0 * double(j) / double(option.n_other - 1);
       //
       // q_j
@@ -59,7 +59,7 @@ bool xam_llsq_obj(void)
       //
       // r_j
       double m_j = x[0] + x[1] * t_j + x[2] * t_j * t_j;
-      double r_j = m_j - q_j;  
+      double r_j = m_j - q_j;
       //
       // sumsq
       sumsq += r_j * r_j;
