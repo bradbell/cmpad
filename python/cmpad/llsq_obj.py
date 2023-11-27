@@ -56,7 +56,6 @@ when :ref:`run_cmpad@package` is ``none`` .
    # END PYTHON
 }
 
-
 {xrst_end py_llsq_obj}
 '''
 # BEGIN PYTHON
@@ -93,14 +92,14 @@ class llsq_obj :
       self.t     = t
       self.q     = q
    #
-   def __call__(self, ax) :
-      assert len(ax) == self.n_arg
+   def __call__(self, x) :
+      assert len(x) == self.n_arg
       #
       # model
       model = 0.0
       ti  = numpy.ones( len(self.t) )
       for i in range(self.n_arg) :
-         model = model + ax[i] * ti
+         model = model + x[i] * ti
          ti    = ti * self.t
       #
       # squared_residual

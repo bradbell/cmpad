@@ -16,16 +16,28 @@ then
    exit 1
 fi
 # ---------------------------------------------------------------------------
+change='no'
 for file in $(git ls-files)
 do
    if [ "$file" != 'bin/check_sorted.sh' ] && [ "$file" != 'bin/sort_file.py' ]
    then
       if grep 'BEGIN_SORT_THIS_LINE_' $file > /dev/null
       then
-         bin/sort_file.py $file
+         difference=$(bin/sort_file.py $file)
+         if [ "$difference" != '' ]
+         then
+            echo "$difference"
+            change='yes'
+         fi
       fi
    fi
 done
 #
+if [ "$change" == 'yes' ]
+then
+   echo 'check_sorted.sh: See differences above'
+   echo 'This has been fixed so running check_sorted.sh again should work'
+   exit 1
+fi
 echo 'check_sorted.sh: OK'
 exit 0

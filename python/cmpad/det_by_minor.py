@@ -86,7 +86,7 @@ contains an example and test of ``det_by_minor`` .
 
 Source Code
 ***********
-:ref:`det_by_minor.py-name` is the source code for this algorithm.
+:ref:`det_by_minor.py-name` displays the source code for this algorithm.
 
 {xrst_end py_det_by_minor}
 ---------------------------------------------------------------------------

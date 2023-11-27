@@ -116,11 +116,13 @@ def main() :
    #
    # n_file
    n_file = len(sys.argv) - 1
-   if n_file == 0 :
-      usage = f'{program} file_name_1 [ file_name_2 [ ... ] ]'
+   if n_file != 1 :
+      usage   = f'{program} file_name\n'
+      usage  += 'There is no output if original file is sorted.\n'
+      usage  += 'Otherwise this program sorts the file and outputs '
+      usage  += 'the difference.'
       sys.exit(usage)
    #
-   for i in range(n_file) :
-      sort_file( sys.argv[i + 1] )
+   sort_file( sys.argv[1] )
 #
 main()

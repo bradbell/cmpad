@@ -32,7 +32,15 @@ Prototype
 Algorithm
 *********
 This is a :ref:`cpp_fun_obj-name` interface
-to the :ref:`an_ode@Algorithm` .
+to the an_ode :ref:`an_ode@Algorithm` .
+
+Scalar
+******
+This is the type of the elements of *x* and *y* .
+
+value_type
+**********
+This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@value_type` .
 
 ode
 ***
@@ -65,7 +73,7 @@ Example
 
 Source Code
 ***********
-:ref:`an_ode.hpp-name` is the source code for this algorithm.
+:ref:`an_ode.hpp-name` displays the source code for this algorithm.
 
 {xrst_end cpp_an_ode}
 ------------------------------------------------------------------------------

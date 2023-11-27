@@ -19,6 +19,8 @@ Python Algorithmic Differentiation
 
 Python Gradient Calculation
 ###########################
+The gradient is for the last component of the range space of the algorithm
+(the algorithm can have a range space dimension greater than one.)
 
 {xrst_toc_table
    python/cmpad/autograd/gradient.py

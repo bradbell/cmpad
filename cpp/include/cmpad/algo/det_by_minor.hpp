@@ -26,25 +26,12 @@ Prototype
 
 Algorithm
 *********
-This is a  :ref:`cpp_fun_obj-name` interface
+This is an  :ref:`cpp_fun_obj-name` interface
 to the det_by_minor :ref:`det_by_minor@Algorithm` .
 
 Scalar
 ******
-If *u* and *v* are *Scalar* objects,
-the type *Scalar* must support the following operations:
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Syntax,      Description,                                      Result Type
-   Scalar(0),   constructor for *Scalar* object equal to zero,    *Scalar*
-   Scalar(u),   constructor for *Scalar* object equal to *u*,     *Scalar*
-   *u* + *v*,   value of *u* plus *v*,                            *Scalar*
-   *u* - *v*,   value of *u* minus *v*,                           *Scalar*
-   *u* * *v*,   value of *u* times value of *v*,                  *Scalar*
-   *u* = *v*,   set value of *u* to current value of *v*,
+This is the type of the elements of *x* and *y* .
 
 value_type
 **********
@@ -92,7 +79,7 @@ contains an example and test of ``det_by_minor`` .
 
 Source Code
 ***********
-:ref:`det_by_minor.hpp-name` is the source code for this algorithm.
+:ref:`det_by_minor.hpp-name` displays the source code for this algorithm.
 
 {xrst_end cpp_det_by_minor}
 ---------------------------------------------------------------------------

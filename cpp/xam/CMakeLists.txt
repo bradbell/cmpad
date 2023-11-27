@@ -4,7 +4,8 @@
 # ---------------------------------------------------------------------------
 #
 # example_list
-# examples that to not require AD packages
+# examples that do to not use any AD packages
+# BEGIN_SORT_THIS_LINE_PLUS_2
 SET(example_list
    an_ode.cpp
    csv_read.cpp
@@ -14,10 +15,12 @@ SET(example_list
    det_of_minor.cpp
    fun_obj.cpp
    fun_speed.cpp
+   llsq_obj.cpp
    near_equal.cpp
    runge_kutta.cpp
    uniform_01.cpp
 )
+# END_SORT_THIS_LINE_MINUS_2
 #
 # example_list
 # examples that require AD packages

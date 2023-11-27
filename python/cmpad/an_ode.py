@@ -61,7 +61,7 @@ Example
 
 Source Code
 ***********
-:ref:`an_ode.py-name` is the source code for this algorithm.
+:ref:`an_ode.py-name` displays the source code for this algorithm.
 
 {xrst_end py_an_ode}
 ------------------------------------------------------------------------------
