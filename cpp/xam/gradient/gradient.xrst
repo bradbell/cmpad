@@ -10,6 +10,7 @@ Example and Test of Gradient
 {xrst_toc_table
    cpp/xam/gradient/check_grad_det.hpp
    cpp/xam/gradient/check_grad_ode.hpp
+   cpp/xam/gradient/check_grad_llsq.hpp
    cpp/xam/gradient/adept.cpp
    cpp/xam/gradient/adolc.cpp
    cpp/xam/gradient/autodiff.cpp

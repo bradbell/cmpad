@@ -173,10 +173,10 @@ public:
       size_t n_other = option_.n_other;
       //
       // sumsq
-      Scalar sumsq  = 0.0;
+      Scalar sumsq(0.0);
       for(size_t j = 0; j < n_other; ++j)
-      {  Scalar model = 0.0;
-         Scalar tij   = 1.0;
+      {  Scalar model(0.0);
+         Scalar tij(1.0);
          for(size_t i = 0; i < n_arg; ++i)
          {  model += x[i] * tij;
             tij   *= t_[j];

@@ -28,6 +28,7 @@ Source Code
 # include <cmpad/cppad_jit/gradient.hpp>
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
+# include "check_grad_llsq.hpp"
 
 bool xam_gradient_cppad_jit(void)
 {  //
@@ -42,6 +43,11 @@ bool xam_gradient_cppad_jit(void)
    // ok
    {  cmpad::cppad_jit::gradient<cmpad::an_ode> grad_ode;
       ok &= check_grad_ode(grad_ode);
+   }
+   //
+   // ok
+   {  cmpad::cppad_jit::gradient<cmpad::llsq_obj> grad_llsq;
+      ok &= check_grad_llsq(grad_llsq);
    }
    //
    return ok;

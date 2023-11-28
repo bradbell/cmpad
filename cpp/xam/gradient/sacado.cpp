@@ -28,6 +28,7 @@ Source Code
 # include <cmpad/sacado/gradient.hpp>
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
+# include "check_grad_llsq.hpp"
 
 bool xam_gradient_sacado(void)
 {  //
@@ -41,6 +42,10 @@ bool xam_gradient_sacado(void)
    // ok
    cmpad::sacado::gradient<cmpad::an_ode> grad_ode;
    ok &= check_grad_ode(grad_ode);
+   //
+   // ok
+   cmpad::sacado::gradient<cmpad::llsq_obj> grad_llsq;
+   ok &= check_grad_llsq(grad_llsq);
    //
    return ok;
 }

@@ -28,6 +28,7 @@ Source Code
 # include <cmpad/autodiff/gradient.hpp>
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
+# include "check_grad_llsq.hpp"
 
 bool xam_gradient_autodiff(void)
 {  //
@@ -41,6 +42,10 @@ bool xam_gradient_autodiff(void)
    // ok
    cmpad::autodiff::gradient<cmpad::an_ode> grad_ode;
    ok &= check_grad_ode(grad_ode);
+   //
+   // ok
+   cmpad::autodiff::gradient<cmpad::llsq_obj> grad_llsq;
+   ok &= check_grad_llsq(grad_llsq);
    //
    return ok;
 }

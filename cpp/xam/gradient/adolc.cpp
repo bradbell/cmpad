@@ -28,6 +28,7 @@ Source Code
 # include <cmpad/adolc/gradient.hpp>
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
+# include "check_grad_llsq.hpp"
 
 bool xam_gradient_adolc(void)
 {  //
@@ -41,6 +42,10 @@ bool xam_gradient_adolc(void)
    // ok
    cmpad::adolc::gradient<cmpad::an_ode> grad_ode;
    ok &= check_grad_ode(grad_ode);
+   //
+   // ok
+   cmpad::adolc::gradient<cmpad::llsq_obj> grad_llsq;
+   ok &= check_grad_llsq(grad_llsq);
    //
    return ok;
 }

@@ -25,7 +25,8 @@ Prototype
 
 grad_ode
 ********
-Is a :ref:`cpp_gradient-name` object for an :ref:`cpp_an_ode-name` algorithm.
+Is a :ref:`cpp_gradient-name` object for
+the :ref:`cpp_an_ode-name` algorithm.
 
 ok
 **
@@ -86,7 +87,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // option
       cmpad::option_t option;
       option.n_arg      = n_arg;
-      option.n_other    = 2;
+      option.n_other    = 0;
       option.time_setup = time_setup;
       //
       // grad_ode
