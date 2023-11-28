@@ -2,6 +2,10 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# In this module
+
 # BEGIN_SORT_THIS_LINE_PLUS_1
 from .an_ode         import an_ode
 from .csv_speed      import csv_speed
@@ -13,6 +17,23 @@ from .near_equal     import near_equal
 from .runge_kutta    import runge_kutta
 # END_SORT_THIS_LINE_MINUS_1
 
-from . import autograd
-from . import cppad_py
-from . import pytorch
+# ---------------------------------------------------------------------------
+# Submodules
+#
+# autograd
+try :
+   from . import autograd
+except :
+   pass
+#
+# cppad_py
+try :
+   from . import cppad_py
+except :
+   pass
+#
+# pytorch
+try :
+   from . import pytorch
+except :
+   pass

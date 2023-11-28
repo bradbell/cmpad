@@ -14,6 +14,12 @@ then
    echo "$program: must be run from the top soruce directory"
    exit 1
 fi
+if [ ! -e "$prefix" ]
+then
+   echo "$program: prefix =$prefix"
+   echo 'prefix does not exists, so not testing any python packages.'
+   exit 0
+fi
 #
 # PYTHONPATH
 site_packages=$(find -L $prefix -name 'site-packages')

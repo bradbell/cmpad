@@ -155,6 +155,10 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // n_arg, n_other
+      assert( option.n_arg > 0 );
+      assert( option.n_other > 0 );
+      //
       // option_
       option_ = option;
       //

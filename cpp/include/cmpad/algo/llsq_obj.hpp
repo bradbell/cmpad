@@ -90,8 +90,8 @@ C++ llsq_obj: Source Code
 ------------------------------------------------------------------------------
 */
 // BEGIN C++
+# include <cassert>
 # include <cmpad/fun_obj.hpp>
-# include <Eigen/Dense>
 
 namespace cmpad { // BEGIN cmpad namespace
 
@@ -126,6 +126,10 @@ public:
    // setup
    void setup(const option_t& option) override
    {  //
+      // n_arg, n_other
+      assert( option.n_arg > 0 );
+      assert( option.n_other > 0 );
+      //
       // option_
       option_ = option;
       //
@@ -152,7 +156,7 @@ public:
       {  for(size_t j = 0; j < n_other; ++j)
             if( t_[j] == 0.0 )
                q_[j] = 0.0;
-            else if( std::signbit( t_[j] ) )
+            else if( t_[j] < 0.0 )
                q_[j] = -1.0;
             else
                q_[j] = +1.0;

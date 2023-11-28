@@ -28,19 +28,7 @@ det_by_minor :ref:`det_by_minor@Algorithm` .
 
 Scalar
 ******
-We use *Scalar* for the type of he elements of *x*.
-If *v* is a *Scalar* and *u* is a *Scalar* or ``float`` ,
-the type *Scalar* must support the following operations:
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Syntax,           Description,                                   Result Type
-   *u* = *v*,        set value of *u* to current value of *v*       *Scalar*
-   *u* + *v*,        value of *u* plus *v*,                         *Scalar*
-   *u* - *v*,        value of *u* minus *v*,                        *Scalar*
-   *u* * *v*,        value of *u* times value of *v*,               *Scalar*
+We use *Scalar* for the type of the elements of *x* and *y*.
 
 det
 ***
@@ -56,7 +44,7 @@ see :ref:`det_by_minor@option@n_arg` .
 
 n_other
 =======
-This must be zero.
+see :ref:`det_by_minor@option@n_other` .
 
 x
 *
@@ -120,6 +108,8 @@ class det_by_minor :
    def setup(self, option) :
       assert type(option) == dict
       assert type( option['n_arg'] ) == int
+      assert type( option['n_other'] ) == int
+      assert option['n_arg'] > 0
       assert option['n_other'] == 0
       # END PROTOTYPE
       #

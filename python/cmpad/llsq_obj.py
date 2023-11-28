@@ -72,6 +72,8 @@ class llsq_obj :
       assert type(option) == dict
       assert type(option['n_arg']) == int
       assert type(option['n_other']) == int
+      assert option['n_arg'] > 0
+      assert option['n_other'] > 0
       # END PROTOTYPE
       #
       # n_arg, n_other
