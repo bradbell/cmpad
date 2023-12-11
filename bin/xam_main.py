@@ -49,11 +49,21 @@ cpp_run_cmpad = 'cpp/build/src/run_cmpad'
 # -----------------------------------------------------------------------------
 # BEGIN PYTHON
 import sys
-import platform
 import os
 import csv
 import re
 import subprocess
+import importlib
+import platform
+#
+# sys.path
+python_version  = platform.python_version()
+(major, minor, patch) = python_version.split('.')
+for lib in [ 'lib', 'lib64' ] :
+   directory = f'python/build/prefix/{lib}/python{major}.{minor}/site-packages'
+   if os.path.isdir(directory) :
+      sys.path.insert(0, os.getcwd() + '/' + directory)
+#
 def main() :
    #
    # program
@@ -99,17 +109,13 @@ def main() :
    #
    # python_package_list
    python_package_list = list()
-   version       = platform.python_version_tuple()
-   major         = version[0]
-   minor         = version[1]
-   site_packages = f'python{major}.{minor}/site-packages'
    for package in [ 'autograd', 'cppad_py', 'pytorch' ] :
-      package_dir = 'torch' if package == 'pytorch' else package
-      for lib in [ 'lib' , 'lib64' ] :
-         dir_path = f'python/build/prefix/{lib}/{site_packages}/{package_dir}'
-         if os.path.isdir(dir_path) :
-            assert package not in python_package_list
-            python_package_list.append(package)
+      import_name = 'torch' if package == 'pytorch' else package
+      try :
+         importlib.import_module(import_name)
+         python_package_list.append(package)
+      except :
+         pass
    print( f'python_package_list = {python_package_list}' )
    #
    # package_list

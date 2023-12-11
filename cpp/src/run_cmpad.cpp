@@ -33,17 +33,24 @@ Source Code
 {xrst_end run_cmpad.cpp}
 */
 // BEGIN C++
+
+// std namespace
 # include <algorithm>
 # include <string>
 # include <iostream>
+
+// cmpad utilities
 # include <cmpad/vector.hpp>
 # include <cmpad/option_t.hpp>
-# include <cmpad/algo/det_by_minor.hpp>
-# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
-# include "parse_args.hpp"
-
+//
+// cmpad algorithms
+# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
+//
+// cmpad gradients
 # include <cmpad/adept/gradient.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
@@ -51,6 +58,9 @@ Source Code
 # include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/cppadcg/gradient.hpp>
 # include <cmpad/sacado/gradient.hpp>
+//
+// local
+# include "parse_args.hpp"
 
 // CMPAD_PACKAGE_TEST
 # define CMPAD_PACKAGE_TEST(package) \
@@ -64,6 +74,14 @@ Source Code
    } \
    else if( algorithm == "an_ode" ) \
    {  cmpad::package::gradient<cmpad::an_ode> grad_det; \
+      double rate = cmpad::fun_speed(grad_det, option, min_time); \
+      cmpad::csv_speed( \
+         file_name, rate, min_time, #package , algorithm, option \
+      ); \
+      case_found = true; \
+   } \
+   else if( algorithm == "llsq_obj" ) \
+   {  cmpad::package::gradient<cmpad::llsq_obj> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, option \
