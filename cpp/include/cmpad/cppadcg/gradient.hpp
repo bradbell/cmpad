@@ -7,9 +7,9 @@
 /*
 {xrst_begin cppadcg_gradient.hpp}
 {xrst_spell
-   obj
    cg
    dll
+   obj
 }
 
 Calculate Gradient Using CppAD

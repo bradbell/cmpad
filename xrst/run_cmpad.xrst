@@ -4,9 +4,9 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 ---------------------------------------------------------------------------
 {xrst_begin run_cmpad}
 {xrst_spell
+   kutta
+   runge
    src
-   Runge
-   Kutta
 }
 
 The cmpad Main Program

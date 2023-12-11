@@ -8,11 +8,10 @@ set -e -u
 # -----------------------------------------------------------------------------
 # {xrst_begin get_package.sh}
 # {xrst_spell
-#     sh
 #     eigen
-#     srcdir
 #     pwd
 #     rm
+#     srcdir
 # }
 # {xrst_comment_ch #}
 #

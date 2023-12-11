@@ -5,10 +5,10 @@
 /*
 {xrst_begin csv_read}
 {xrst_spell
-   vec
-   str
    newlines
+   str
    th
+   vec
 }
 
 Read a Csv File

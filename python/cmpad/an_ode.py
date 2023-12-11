@@ -5,8 +5,8 @@
 r'''
 {xrst_begin_parent py_an_ode}
 {xrst_spell
-   Runge
-   Kutta
+   kutta
+   runge
    yf
 }
 

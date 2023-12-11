@@ -5,10 +5,6 @@
 
 /*
 {xrst_begin xam_llsq_obj.cpp}
-{xrst_spell
-   llsq
-   obj
-}
 
 Example and Test of llsq_obj
 ############################

@@ -10,11 +10,11 @@
 /*
 {xrst_begin cpp_near_equal}
 {xrst_spell
-   std
    fabs
    operand
    operands
    rel
+   std
    vec
 }
 

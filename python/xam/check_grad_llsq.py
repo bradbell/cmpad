@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin check_grad_llsq.py}
-{xrst_spell
-   llsq
-}
 
 Python Check Gradient of Linear Least Squares Objective
 #######################################################

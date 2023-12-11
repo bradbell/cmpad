@@ -7,8 +7,8 @@
 /*
 {xrst_begin cppad_jit_gradient.hpp}
 {xrst_spell
-   obj
    dll
+   obj
 }
 
 Calculate Gradient Using CppAD Compiled Derivative Calculation

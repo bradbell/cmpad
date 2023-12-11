@@ -5,12 +5,10 @@
 r'''
 {xrst_begin_parent py_runge_kutta}
 {xrst_spell
-   Runge
-   Kutta
+   ns
+   tf
    yf
    yi
-   tf
-   ns
    yt
 }
 
@@ -88,10 +86,6 @@ contains an example and test of ``py_runge_kutta`` .
 {xrst_end py_runge_kutta}
 ---------------------------------------------------------------------------
 {xrst_begin runge_kutta.py}
-{xrst_spell
-   runge
-   kutta
-}
 
 Python runge_kutta Source Code
 ##############################

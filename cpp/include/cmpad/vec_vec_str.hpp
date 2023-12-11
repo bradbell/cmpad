@@ -8,8 +8,6 @@
 {xrst_begin vec_vec_str}
 {xrst_spell
    std
-   vec
-   str
    typedef
 }
 

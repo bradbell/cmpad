@@ -8,12 +8,10 @@
 /*
 {xrst_begin_parent runge_kutta}
 {xrst_spell
-   Runge
-   Kutta
+   ns
+   tf
    yf
    yi
-   tf
-   ns
    yt
 }
 
@@ -91,10 +89,6 @@ contains an example and test of ``runge_kutta`` .
 {xrst_end runge_kutta}
 ---------------------------------------------------------------------------
 {xrst_begin runge_kutta.hpp}
-{xrst_spell
-   runge
-   kutta
-}
 
 C++ runge_kutta Source Code
 ###########################

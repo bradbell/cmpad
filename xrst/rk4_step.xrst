@@ -4,8 +4,8 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 -----------------------------------------------------------------------------
 {xrst_begin rk4_step}
 {xrst_spell
-   Runge
-   Kutta
+   kutta
+   runge
 }
 
 

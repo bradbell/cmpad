@@ -5,8 +5,8 @@
 /*
 {xrst_begin uniform_01}
 {xrst_spell
-   std
    srand
+   std
    variate
 }
 

@@ -6,9 +6,6 @@
 # define CMPAD_FUN_OBJ_HPP
 /*
 {xrst_begin cpp_fun_obj}
-{xrst_spell
-   obj
-}
 
 Abstract Class for a C++ Function Object
 ########################################

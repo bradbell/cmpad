@@ -7,8 +7,8 @@
 /*
 {xrst_begin_parent cpp_an_ode}
 {xrst_spell
-   Runge
-   Kutta
+   kutta
+   runge
    yf
 }
 

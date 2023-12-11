@@ -7,9 +7,9 @@
 /*
 {xrst_begin vector}
 {xrst_spell
+   cmake
    std
    vec
-   cmake
 }
 
 The cmpad Vector Template Type

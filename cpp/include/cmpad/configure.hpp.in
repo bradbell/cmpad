@@ -9,8 +9,8 @@
 {xrst_spell
    cmake
    preprocessor
-   std
    sh
+   std
 }
 
 Preprocessor Definitions and Configured Types

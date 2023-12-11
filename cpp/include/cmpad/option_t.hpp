@@ -10,8 +10,8 @@
 /*
 {xrst_begin option_t}
 {xrst_spell
-   struct
    std
+   struct
 }
 
 The Option Type

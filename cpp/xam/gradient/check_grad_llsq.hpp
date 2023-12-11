@@ -6,9 +6,6 @@
 # define XAM_GRADIENT_CHECK_GRAD_LLSQ_HPP
 /*
 {xrst_begin check_grad_llsq.hpp}
-{xrst_spell
-   llsq
-}
 
 Check C++ Gradient of Determinant
 #################################

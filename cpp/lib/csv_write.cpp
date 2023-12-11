@@ -5,10 +5,10 @@
 /*
 {xrst_begin csv_write}
 {xrst_spell
-   vec
-   str
    newlines
+   str
    th
+   vec
 }
 
 Write a Csv File

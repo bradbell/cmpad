@@ -4,10 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin xam_runge_kutta.py}
-{xrst_spell
-   runge
-   kutta
-}
 
 Example and Test of Python runge_kutta
 ######################################

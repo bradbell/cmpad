@@ -4,10 +4,6 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_runge_kutta.cpp}
-{xrst_spell
-   runge
-   kutta
-}
 
 Example and Test of C++ runge_kutta
 ###################################

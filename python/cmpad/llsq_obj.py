@@ -4,10 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_llsq_obj}
-{xrst_spell
-   llsq
-   obj
-}
 
 Python Least Squares Linear Regression Objective
 ################################################

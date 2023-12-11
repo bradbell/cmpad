@@ -6,10 +6,6 @@
 # define CMPAD_ALGO_LLSQ_OBJ_HPP
 /*
 {xrst_begin_parent cpp_llsq_obj}
-{xrst_spell
-   llsq
-   obj
-}
 
 C++ Least Squares Linear Regression Objective
 #############################################
@@ -73,10 +69,6 @@ Source Code
 {xrst_end cpp_llsq_obj}
 ------------------------------------------------------------------------------
 {xrst_begin cpp_llsq_obj.hpp}
-{xrst_spell
-   llsq
-   obj
-}
 
 
 C++ llsq_obj: Source Code

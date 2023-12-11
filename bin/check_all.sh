@@ -29,7 +29,7 @@ then
    exit 1
 fi
 # -----------------------------------------------------------------------------
-list=$( ls bin/check_* | sed -e '/check_all.sh/d' )
+list=$( ls bin/check_* | sed -e '/check_all.sh/d' -e '/check_main.py/d'  )
 for check in $list
 do
    $check
@@ -37,7 +37,7 @@ done
 bin/run_xrst.sh
 python/bin/check_python.sh
 cpp/bin/check_cpp.sh
-bin/xam_main.py
+bin/check_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'
 exit 0

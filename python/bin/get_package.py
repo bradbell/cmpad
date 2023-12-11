@@ -8,9 +8,9 @@ import os
 r'''
 {xrst_begin get_package.py}
 {xrst_spell
-   srcdir
    getcwd
    rm
+   srcdir
 }
 
 Getting Option Python Packages
