@@ -67,6 +67,7 @@ data = [
       cpp
       py
       rst
+      sh
    ''',
    # language keywords
    '''

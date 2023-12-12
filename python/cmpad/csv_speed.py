@@ -86,7 +86,7 @@ The *debug* value is automatically determined and not an argument to csv_speed.
 #. If *package* is ``none``, this is the empty string.
 #. If *package* is not ``none``,
    this is true (false) if *package* was installed using the
-   debug (release) :ref:`get_package.py@Syntax@build_type` .
+   debug (release) :ref:`get_package@Syntax@build_type` .
 
 {xrst_toc_hidden
    python/xam/csv_speed.py

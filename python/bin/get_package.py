@@ -6,96 +6,30 @@
 # ---------------------------------------------------------------------------
 import os
 r'''
-{xrst_begin get_package.py}
-{xrst_spell
-   getcwd
-   rm
-   srcdir
-}
+{xrst_begin py_get_package}
 
-Getting Option Python Packages
-##############################
-This script can be used to install optional python AD packages
-that cmpad can test.
+Getting Optional Python Packages
+################################
 
 Syntax
 ******
-``python/bin/get_package.py`` *build_type* ``all`
-``python/bin/get_package.py`` *build_type* *package_1* [ *package_2* [ ... ] ]
+``python/bin/get_package.py`` *build_type* *package*
 
 build_type
 ==========
 This is either ``debug`` or ``release`` and determines if libraries,
 built while installing the packages, are debug or release versions.
 
-package_j
-=========
-The packages *package_1* , *package_2*, ...
-are the list of packages that will be installed.
-This list must have at least one package ; i.e.,
-*package_2* , *package_3* , ... are optional.
+package
+=======
+The is one of the packages in the following list
+{xrst_literal
+   bin/get_package.sh
+   # BEGIN PYTHON_PACKAGE_LIST
+   # END PYTHON_PACKAGE_LIST
+}
 
-packages
-********
-This is the set of the packages (so far) that can be installed::
-
-   { 'autograd' , 'cppad_py' , 'pytorch' }
-
-If one of these packages is installed,
-it will be included in the cmpad testing.
-
-.. _autograd: https://github.com/HIPS/autograd.git
-.. _cppad_py: https://github.com/bradbell/cppad_py
-.. _pytorch:  https://github.com/pytorch/pytorch
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Web Site,      Implementation
-   `autograd`_,   :ref:`autograd_gradient-name`
-   `cppad_py`_,   :ref:`cppad_py_gradient-name`
-   `pytorch`_,    :ref:`pytorch_gradient-name`
-
-all
-***
-If the ``all`` version of the syntax is used,
-all the python packages will be installed.
-
-
-top_srcdir
-**********
-The working directory, when this command is executed, must be the
-top source directory for cmpad; i.e.,
-the directory containing the ``.git`` directory for cmpad.
-{xrst_code py}'''
-top_srcdir = os.getcwd()
-r'''{xrst_code}
-
-prefix
-******
-This is the prefix for the packages installed by
-``python/bin/get_package.py`` :
-{xrst_code py}'''
-prefix     = f'{top_srcdir}/python/build/prefix'
-r'''{xrst_code}
-Note that this is a local install and does not require any special
-permissions.
-
-external
-********
-The source code, and corresponding builds, for all installed packages
-is in the *top_srcdir*\ ``/external`` directory.
-Thus you can remove the *prefix* directory and reinstall a new list
-of packages quickly.
-If you have trouble with a particular *package* ,
-and ``external/``\ *package*\ .\ *build_type* exists,
-you may want to try the following:
-
-| |tab| ``rm -r external/``\ *package*\ .\ *build_type*
-| |tab| ``bin/get_package`` *build_type* *package*
-
-{xrst_end get_package.py}
+{xrst_end py_get_package}
 '''
 #
 import toml
@@ -105,6 +39,12 @@ import subprocess
 #
 # program
 program = 'bin/python/get_pacakge.py'
+#
+# top_srcdir
+top_srcdir = os.getcwd()
+#
+# prefix
+prefix     = f'{top_srcdir}/python/build/prefix'
 #
 # system_command
 def system_command(list_of_commands) :

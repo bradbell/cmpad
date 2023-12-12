@@ -53,6 +53,7 @@ Documentation
 *************
 
 {xrst_toc_table
+   bin/get_package.sh
    xrst/run_cmpad.xrst
    xrst/algorithm.xrst
    cpp/cpp.xrst

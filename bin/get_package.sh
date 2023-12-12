@@ -6,10 +6,9 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # -----------------------------------------------------------------------------
-# \{xrst_begin get_package.sh}
+# {xrst_begin get_package}
 # {xrst_spell
 #     eigen
-#     pwd
 #     rm
 #     srcdir
 # }
@@ -28,8 +27,9 @@ set -e -u
 #
 # build_type
 # ==========
-# This is either ``debug`` or ``release`` and determines if C++ and Clibraries,
-# built while installing the packages, are debug or release versions.
+# This is either ``debug`` or ``release`` and determines if C++ and C 
+# libraries, built while installing the packages, 
+# are debug or release versions.
 #
 # all
 # ===
@@ -70,7 +70,7 @@ set -e -u
 #  :widths: auto
 #  :header-rows: 1
 #
-#  Web Site,      Implemented,                                    Lanuage
+#  Web Site,      Implemented,                                    Language
 #  `adept`_,      :ref:`gradient <adept_gradient.hpp-name>`,      cpp
 #  `adolc`_,      :ref:`gradient <adolc_gradient.hpp-name>`,      cpp
 #  `autodiff`_,   :ref:`gradient <autodiff_gradient.hpp-name>`,   cpp
@@ -97,7 +97,7 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 #
 # prefix
 # ******
-# The is the prefix for the packages installed by ``bin/get_package.sh`` is
+# The prefix for the packages installed by ``bin/get_package.sh`` is
 # 
 # | |tab| *top_srcdir* / *language* ``/build/prefix``
 #
@@ -117,10 +117,19 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 # pytorch
 # =======
 # The pytorch package is special because it is installed a remote copy
-# of its source; i.e., it does not have a local copy of its soruce below
+# of its source; i.e., it does not have a local copy of its source below
 # the external directory.
 #
-# {xrst_end get_package.sh}
+# {xrst_toc_hidden
+#     cpp/bin/get_package.sh
+#     python/bin/get_package.py
+# }
+# Language Specific
+# *****************
+# The scripts :ref:`cpp_get_package-name` and :ref:`py_get_package-name`
+# can be used to get individual C++ and Python AD packages.
+#
+# {xrst_end get_package}
 # -----------------------------------------------------------------------------
 # echo_eval
 # bash function that echos and executes a command
@@ -133,7 +142,7 @@ program='bin/get_package.sh'
 #
 if [ ! -d '.git' ]
 then
-   echo "$program: must be executed from cmpad top soruce directory"
+   echo "$program: must be executed from cmpad top source directory"
    exit 1
 fi
 if [ "$#" -lt 2 ]
@@ -192,11 +201,15 @@ do
 
    case $package in
 
+   # BEGIN CPP_PACKAGE_LIST
    adept|adolc|autodiff|clad|cppad_jit|cppad|cppadcg|fastad|sacado)
+   # END CPP_PACKAGE_LIST
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;
 
+   # BEGIN PYTHON_PACKAGE_LIST
    autograd|cppad_py|pytorch)
+   # END PYTHON_PACKAGE_LIST
    echo_eval python/bin/get_package.py $build_type $package
    ;;
 
