@@ -152,18 +152,19 @@ def main() :
          # package
          for package in package_list :
             #
-            # run_cmpad
-            if algorithm == 'llsq_obj' :
-               run_cmpad_list = list()
-               if package in [ 'none', 'pytorch' ] :
-                  run_cmpad_list = [ py_run_cmpad ]
-            elif package == 'none' :
+            # run_cmpad_list
+            if package == 'none' :
                run_cmpad_list = [ cpp_run_cmpad, py_run_cmpad ]
             elif package in cpp_package_list :
                run_cmpad_list = [ cpp_run_cmpad ]
             else :
                assert package in python_package_list
                run_cmpad_list = [ py_run_cmpad ]
+               if algorithm == 'llsq_obj' :
+                  if package not in [ 'pytorch' ] :
+                     run_cmpad_list = list()
+            #
+            # run_cmpad
             for run_cmpad in run_cmpad_list :
                #
                # command

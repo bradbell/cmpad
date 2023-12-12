@@ -130,6 +130,7 @@ int main(int argc, char* argv[])
    cmpad::vector<std::string> algorithm_vec;
    algorithm_vec.push_back("det_by_minor");
    algorithm_vec.push_back("an_ode");
+   algorithm_vec.push_back("llsq_obj");
    //
    // itr
    cmpad::vector<std::string>::iterator itr;
@@ -214,9 +215,17 @@ int main(int argc, char* argv[])
          );
          case_found = true;
       }
-      if( algorithm == "an_ode" )
+      else if( algorithm == "an_ode" )
       {  cmpad::an_ode<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
+         cmpad::csv_speed(
+            file_name, rate, min_time, "none", algorithm, option
+         );
+         case_found = true;
+      }
+      else if( algorithm == "llsq_obj" )
+      {  cmpad::llsq_obj<double> llsq;
+         double rate = cmpad::fun_speed(llsq, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, option
          );
