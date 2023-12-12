@@ -48,9 +48,13 @@ echo_eval cd cpp/build
 echo_eval make
 #
 # test
-echo "test/test"
-{ test/test --log_level=test_suite --no_color_output 2>&1 ; }\
-   | sed -e 's|.*Entering test case ||' -e '/Leaving test case/d'
+echo "cpp/build/test/test >& cpp/build/test.log"
+if ! test/test --log_level=test_suite --no_color_output >& test.log
+then
+   sed -e 's|.*Entering test case ||' -e '/Leaving test case/d' test.log
+   exit 1
+fi
+sed -e 's|.*Entering test case ||' -e '/Leaving test case/d' test.log
 #
 # -----------------------------------------------------------------------------
 echo "$program: OK"

@@ -34,7 +34,7 @@ is true (false) if the gradient passes (fails) the test.
 
 Gradient
 ********
-We use :math:`r` to denote :ref:`option_t@n_other` ; i.e.,
+We use :math:`r` to denote
 the range space component of the an_ode algorithm that we are
 computing the gradient for.
 
@@ -87,7 +87,7 @@ bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
       // option
       cmpad::option_t option;
       option.n_arg      = n_arg;
-      option.n_other    = 0;
+      option.n_other    = 10;
       option.time_setup = time_setup;
       //
       // grad_ode

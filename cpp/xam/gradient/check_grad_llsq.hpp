@@ -94,7 +94,11 @@ bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
          for(size_t j = 0; j < n_other; ++j)
          {  //
             // tj
-            double tj = -1.0 + 2.0 * double(j) / double(n_other-1);
+            double tj;
+            if( n_other == 1 )
+               tj = 0.0;
+            else
+               tj = -1.0 + 2.0 * double(j) / double(n_other-1);
             //
             // qj
             double qj = std::copysign(1.0, tj);
@@ -102,7 +106,7 @@ bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
                qj = 0.0;
             //
             // rj
-            double mj = x[0] + x[1] * tj + x[2] * tj * tj;
+            double mj = x[0] + x[1] * tj + x[2] * tj*tj + x[3] * tj*tj*tj;
             double rj = mj - qj;
             //
             // tj_i
@@ -112,10 +116,9 @@ bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
             //
             // dobj_dxi
             dobj_dxi += rj * tj_i;
-            //
-            // ok
-            ok &= near_equal(g[i], dobj_dxi, rel_error);
          }
+         // ok
+         ok &= near_equal(g[i], dobj_dxi, rel_error);
       }
    }
    return ok;

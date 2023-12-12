@@ -39,7 +39,15 @@ echo_eval() {
    eval $*
 }
 # -----------------------------------------------------------------------------
+#
+# program
 program='cpp/bin/get_package.sh'
+#
+# top_srcdir
+top_srcdir=$(pwd)
+#
+# prefix
+prefix="$top_srcdir/cpp/build/prefix"
 #
 if [ ! -d '.git' ]
 then
