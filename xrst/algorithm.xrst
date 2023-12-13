@@ -167,6 +167,9 @@ The partial of :math:`y_i (t)` with respect to :math:`x_j` is
 {xrst_end an_ode}
 ------------------------------------------------------------------------------
 {xrst_begin llsq_obj}
+{xrst_spell
+   vectorized
+}
 
 Least Squares Linear Regression Objective
 #########################################
@@ -195,17 +198,17 @@ where *s* and *t* in :math:`{\bf R}^n` are given by:
    }
 
 
-Package Specific
-****************
-The algorithm for objective may be AD package specific.
-The intent is to enable AD packages that have vector operators,
-or other special operators,
+Vector Operations
+*****************
+The calculation of this objective can be vectorized
+with respect to the index *j* above.
+The intent is to enable AD packages that have vector operators
 to use them to speed up the calculation of derivatives.
-Using AD package specific operations requires re-writing
-source code and my not be feasible in some cases.
 For example, :ref:`py_llsq_obj-name` can be used by any of
 the AD packages while :ref:`pytorch_llsq_obj-name` can
 only be used by the pytorch package.
+Using AD package specific operations requires re-writing
+source code and is not be feasible in some cases.
 
 option
 ******

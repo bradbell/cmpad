@@ -45,11 +45,10 @@ def xam_grad_pytorch() :
    grad_ode = cmpad.pytorch.gradient(algo)
    ok      &= check_grad_ode( grad_ode )
    #
-   # 2DO: make this work
    # grad_llsq, ok
-   # algo      = cmpad.llsq_obj()
-   # grad_llsq = cmpad.pytorch.gradient( algo )
-   # ok       &= check_grad_llsq( grad_llsq )
+   algo      = cmpad.llsq_obj()
+   grad_llsq = cmpad.pytorch.gradient( algo )
+   ok       &= check_grad_llsq( grad_llsq )
    #
    # grad_llsq_pytorch, ok
    algo              = cmpad.pytorch.llsq_obj()

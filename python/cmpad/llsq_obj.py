@@ -4,6 +4,10 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_llsq_obj}
+{xrst_spell
+   numpy
+   vectorized
+}
 
 Python Least Squares Linear Regression Objective
 ################################################
@@ -33,6 +37,13 @@ n_other
 *******
 see :ref:`llsq_obj@option@n_other` .
 
+Vector Operations
+*****************
+This algorithm cannot be vectorized using numpy
+because pytorch would not be able to use it to compute derivatives.
+The autograd and cppad_py packages can compute derivatives using
+a numpy vectorized version of this algorithm
+
 Source Code
 ***********
 The code below is the implementation of this function:
@@ -44,8 +55,6 @@ The code below is the implementation of this function:
 {xrst_end py_llsq_obj}
 '''
 # BEGIN PYTHON
-import numpy
-
 # BEGIN PROTOTYPE
 class llsq_obj :
    def domain(self) :
@@ -65,35 +74,56 @@ class llsq_obj :
       n_arg   = option['n_arg']
       n_other = option['n_other']
       #
-      # t
+      # t, q
       if n_other == 1 :
-         t = numpy.array( [0.0 ] )
+         t = [ 0.0 ]
+         q = [ 0.0 ]
       else :
-         t = numpy.linspace(-1.0, 1.0, n_other)
-      #
-      # q
-      q = -1.0 * (t < 0) + 1.0 * (t > 0)
+         t = list()
+         q = list()
+         for j in range(n_other) :
+            #
+            t_j = -1.0 + 2.0 * j / (n_other - 1)
+            if t_j == 0.0 :
+               q_j = 0.0
+            elif t_j < 0.0 :
+               q_j = -1.0
+            else :
+               q_j = +1.0
+            #
+            t.append(t_j)
+            q.append(q_j)
       #
       # self
-      self.n_arg = n_arg
-      self.t     = t
-      self.q     = q
+      self.n_arg   = n_arg
+      self.n_other = n_other
+      self.t       = t
+      self.q       = q
    #
    def __call__(self, x) :
       assert len(x) == self.n_arg
       #
-      # model
-      model = 0.0
-      ti  = numpy.ones( len(self.t) )
-      for i in range(self.n_arg) :
-         model = model + x[i] * ti
-         ti    = ti * self.t
+      #  n_arg, n_other
+      n_arg   = self.n_arg
+      n_other = self.n_other
       #
-      # squared_residual
-      squared_residual = numpy.square(model - self.q)
+      # sumsq
+      sumsq = 0.0
+      for j in range(n_other) :
+         #
+         # model
+         model = 0.0
+         ti_j  = 1.0
+         for i in range(n_arg) :
+            model += x[i] * ti_j
+            ti_j  *= self.t[j]
+         #
+         # sumsq
+         residual = model - self.q[j]
+         sumsq   += residual * residual
       #
       # objective
-      objective = 0.5 * squared_residual.sum()
+      objective = 0.5 * sumsq
       #
-      return numpy.asarray(objective).reshape(1)
+      return [ objective ]
 # END PYTHON
