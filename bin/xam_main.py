@@ -160,9 +160,6 @@ def main() :
             else :
                assert package in python_package_list
                run_cmpad_list = [ py_run_cmpad ]
-               if algorithm == 'llsq_obj' :
-                  if package not in [ 'pytorch' ] :
-                     run_cmpad_list = list()
             #
             # run_cmpad
             for run_cmpad in run_cmpad_list :

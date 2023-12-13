@@ -81,8 +81,10 @@ def grad_fun_obj(algorithm, package) :
    elif algorithm == 'an_ode' :
       algo = cmpad.an_ode()
    elif algorithm == 'llsq_obj' :
-      assert package == 'pytorch'
-      algo = cmpad.pytorch.llsq_obj()
+      if package == 'pytorch' :
+         algo = cmpad.pytorch.llsq_obj()
+      else :
+         algo = cmpad.llsq_obj()
    else :
       assert False
    #
@@ -161,12 +163,7 @@ def main() :
    #
    # algorithm
    algorithm = arguments.algorithm
-   if algorithm == 'llsq_obj' :
-      if package not in [ 'none' , 'pytorch' ] :
-         msg  = f'{program}: algorithm = {algorithm} is not available '
-         msg += f'for package = {package}'
-         sys.exit(msg)
-   elif algorithm not in [ 'det_by_minor', 'an_ode' ] :
+   if algorithm not in [ 'det_by_minor', 'an_ode', 'llsq_obj' ] :
       msg = f'{program}: algorithm = {algorithm} is not available'
       sys.exit(msg)
    #

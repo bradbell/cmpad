@@ -195,14 +195,17 @@ where *s* and *t* in :math:`{\bf R}^n` are given by:
    }
 
 
-Algorithm
-*********
-The algorithm for this case is AD package specific.
+Package Specific
+****************
+The algorithm for objective may be AD package specific.
 The intent is to enable AD packages that have vector operators,
 or other special operators,
 to use them to speed up the calculation of derivatives.
 Using AD package specific operations requires re-writing
 source code and my not be feasible in some cases.
+For example, :ref:`py_llsq_obj-name` can be used by any of
+the AD packages while :ref:`pytorch_llsq_obj-name` can
+only be used by the pytorch package.
 
 option
 ******
@@ -221,8 +224,9 @@ There is an assert checking that *n_other* > 0.
 Implementation
 ==============
 {xrst_toc_table
-   python/cmpad/llsq_obj.py
    cpp/include/cmpad/algo/llsq_obj.hpp
+   python/cmpad/llsq_obj.py
+   python/cmpad/pytorch/llsq_obj.py
 }
 
 Derivative

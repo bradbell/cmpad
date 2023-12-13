@@ -27,7 +27,7 @@ Prototype
 Algorithm
 *********
 This is a :ref:`cpp_fun_obj-name` interface
-to the llsq_obj :ref:`llsq_obj@Algorithm` .
+to the :ref:`llsq_obj-name` algorithm .
 
 Scalar
 ******

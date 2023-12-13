@@ -23,16 +23,7 @@ Prototype
 
 Algorithm
 *********
-This is a python implementation of the an_ode :ref:`an_ode@Algorithm` .
-
-Derivatives
-***********
-The pages below contain the implementation of this function
-that is used when computing derivatives; i.e.,
-when :ref:`run_cmpad@package` is not ``none`` .
-{xrst_toc_table
-   python/cmpad/pytorch/llsq_obj.py
-}
+This is a python implementation of the :ref:`llsq_obj-name` algorithm .
 
 n_arg
 *****
@@ -44,9 +35,7 @@ see :ref:`llsq_obj@option@n_other` .
 
 Source Code
 ***********
-The code below is the implementation of this function
-that is used when compute the function value; i.e.,
-when :ref:`run_cmpad@package` is ``none`` .
+The code below is the implementation of this function:
 {xrst_literal
    # BEGIN PYTHON
    # END PYTHON

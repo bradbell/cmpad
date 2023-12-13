@@ -8,22 +8,48 @@ r'''
 Pytorch Least Squares Linear Regression Objective
 #################################################
 
-Function
-********
-see :ref:`py_llsq_obj-name` .
+Syntax
+******
+| |tab| *llsq* = ``cmpad.pytorch.llsq_obj()``
+| |tab| *llsq* . ``setup`` ( *option* )
+| |tab| *obj* = *llsq* ( *x* )
+
+Prototype
+*********
+{xrst_literal
+   # BEGIN PROTOTYPE
+   # END PROTOTYPE
+}
+
+Algorithm
+*********
+This is a python implementation of the :ref:`llsq_obj-name` algorithm .
+that specialized for the pytorch package.
+
+n_arg
+*****
+see :ref:`llsq_obj@option@n_arg` .
+
+n_other
+*******
+see :ref:`llsq_obj@option@n_other` .
 
 Source Code
 ***********
+The code below is the implementation of this function:
 {xrst_literal
    # BEGIN PYTHON
    # END PYTHON
 }
+
 
 {xrst_end pytorch_llsq_obj}
 '''
 # BEGIN PYTHON
 import numpy
 import torch
+#
+# BEGIN PROTOTYPE
 class llsq_obj :
    def domain(self) :
       return self.n_arg
@@ -31,6 +57,12 @@ class llsq_obj :
       return 1
    #
    def setup(self, option) :
+      assert type(option) == dict
+      assert type(option['n_arg']) == int
+      assert type(option['n_other']) == int
+      assert option['n_arg'] > 0
+      assert option['n_other'] > 0
+      # END PROTOTYPE
       #
       # n_arg, n_other
       n_arg   = option['n_arg']

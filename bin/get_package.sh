@@ -27,8 +27,8 @@ set -e -u
 #
 # build_type
 # ==========
-# This is either ``debug`` or ``release`` and determines if C++ and C 
-# libraries, built while installing the packages, 
+# This is either ``debug`` or ``release`` and determines if C++ and C
+# libraries, built while installing the packages,
 # are debug or release versions.
 #
 # all
@@ -98,7 +98,7 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 # prefix
 # ******
 # The prefix for the packages installed by ``bin/get_package.sh`` is
-# 
+#
 # | |tab| *top_srcdir* / *language* ``/build/prefix``
 #
 # external
