@@ -6,26 +6,25 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # ----------------------------------------------------------------------------
-program='python/bin/check_python.sh'
-prefix='python/build/prefix'
+# program
+program='python/bin/environment.sh'
 #
 if [ ! -d .git ]
 then
    echo "$program: must be run from the top soruce directory"
    exit 1
 fi
-if [ ! -e "$prefix" ]
-then
-   echo "$program: prefix =$prefix"
-   echo 'prefix does not exists, so not testing any python packages.'
-   exit 0
-fi
+#
+# python_dir
+python_dir="$(pwd)/python"
+#
+# prefix
+prefix="$python_dir/build/prefix"
 #
 # PYTHONPATH
-$(python/bin/pythonpath.sh)
+site_packages=$(find -L $prefix -name 'site-packages')
+site_packages=$(echo $site_packages | sed -e 's|  *|:|' )
+PYTHONPATH="$python_dir:$site_packages"
+echo "export PYTHONPATH=$PYTHONPATH"
 #
-# pytest
-pytest $(ls python/xam/*.py | sed -e '/\/temp.py$/d' )
-#
-echo "$program: OK"
 exit 0

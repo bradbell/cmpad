@@ -7,7 +7,6 @@
 set -e -u
 # ----------------------------------------------------------------------------
 program='python/bin/run_xam.sh'
-prefix="$(pwd)/python/build/prefix"
 #
 if [ ! -d .git ]
 then
@@ -40,13 +39,11 @@ then
 fi
 # ----------------------------------------------------------
 #
-site_packages=$(find -L $prefix -name 'site-packages')
-site_packages=$(echo $site_packages | sed -e 's|  *|:|' )
-export PYTHONPATH="$(pwd)/python:$site_packages"
+# PYTHONPATH
+$(python/bin/pythonpath.sh)
 #
 # temp.py
 sed -e 's|^def test_.*|if True :|'  python/xam/$file > python/xam/temp.py
-#
 if [ "$debug" == 'true' ]
 then
    python3 -m pdb python/xam/temp.py
