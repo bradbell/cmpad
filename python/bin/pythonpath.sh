@@ -6,12 +6,15 @@
 # ---------------------------------------------------------------------------
 set -e -u
 # ----------------------------------------------------------------------------
+# Use this script inside a bash script as follows to set PYTHONPATH:
+# $(python/bin/pythonpath.sh)
+#
 # program
-program='python/bin/environment.sh'
+program='python/bin/pythonpath.sh'
 #
 if [ ! -d .git ]
 then
-   echo "$program: must be run from the top soruce directory"
+   echo "${program}_must_be_run_from_the_top_soruce_directory"
    exit 1
 fi
 #
