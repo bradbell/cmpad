@@ -151,27 +151,28 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    date = datetime.date.today().strftime('%Y-%m-%d')
    #
    # debug
-   if package == 'none' :
+   if package != 'cppad_py' :
       debug = ''
    else :
-      package_dir = 'torch' if package == 'pytorch' else package
-      module        = __import__(package_dir)
+      module        = __import__(package)
       package_file  = module.__file__
       package_path  = os.path.realpath(package_file)
-      debug_index   = package_path.find('/prefix.debug/')
-      release_index = package_path.find('/prefix.release/')
-      if 0 <= debug_index and 0 <= release_index :
+      index         = package_path.find('/python/build/prefix/')
+      if index < 0 :
          msg  = f'package = {package}, path = {package_path}\n'
-         msg += 'Contains both /prefix.debug/ and /prefix.release/'
-         assert msg, False
-      if debug_index < 0 and release_index < 0 :
-         msg  = f'package = {package}, path = {package_path}\n'
-         msg += 'Does not contain /prefix.debug/ or /prefix.release/'
-         assert msg, False
-      if 0 < debug_index :
-         debug = 'true'
+         msg += 'is not using version installed by cmpad get_package.sh'
+         assert False, msg
+      top_srcdir   = package_path[ : index]
+      external_dir = f'{top_srcdir}/external'
+      if os.path.exists( f'{external_dir}/{package}.debug' ) :
+         debug = True
+      elif os.path.exists( f'{external_dir}/{package}.release' ) :
+         debug = False
       else :
-         debug = 'false'
+         msg  = f'Using package = {package} but cannot find either of:\n'
+         msg += f'{external_dir}/{package}.debug\n'
+         msg += f'{external_dir}/{package}.release\n'
+         assert False, msg
    #
    # compiler
    compiler = platform.python_implementation()+'-'+platform.python_version()

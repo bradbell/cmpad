@@ -16,13 +16,22 @@ Syntax
 ``python/bin/get_package.py`` *build_type* *package*
 
 build_type
-==========
+**********
 This is either ``debug`` or ``release`` and determines if libraries,
 built while installing the packages, are debug or release versions.
 
+cppad_py
+========
+Currently, cppad_py is the only python package that uses the *build_type*
+during its install. The file
+
+   external/cppad_py.\ *build_type*
+
+indicates the build type for the previous install of cppad_py.
+
 package
-=======
-The is one of the packages in the following list
+*******
+The is one of the packages in the following list:
 {xrst_literal
    bin/get_package.sh
    # BEGIN PYTHON_PACKAGE_LIST
@@ -36,6 +45,7 @@ import toml
 import sys
 import re
 import subprocess
+import pathlib
 #
 # program
 program = 'bin/python/get_pacakge.py'
@@ -129,12 +139,10 @@ def main() :
       sys.exit(msg)
    #
    # usage
-   usage  = f'{program} build_type all\n'
-   usage  = f'{program} build_type package_1 [ package_2 [..] ]\n\n'
-   usage += 'build_type: is debug or release\n'
-   usage += 'package_j: is the j-th package to install and is one of:\n'
+   usage  = f'{program} build_type package\n'
+   usage += 'build_type: is debug or release and package is one of:\n'
    usage += 'autograd, cppad_py, pytorch'
-   if len( sys.argv ) < 3 :
+   if len( sys.argv ) != 3 :
       sys.exit(usage)
    #
    # build_type
@@ -162,44 +170,44 @@ def main() :
       'pytorch'  : None ,
    }
    #
-   # package_list
-   if sys.argv[2] == 'all' :
-      if len(sys.argv) != 3 :
-         msg  = f'{program}: all is the second arugment '
-         msg += 'and there are other arguments after it.'
-         sys.exit(msg)
-      package_list = list( package_install.keys() )
-   else :
-      package_list = sys.argv[2 :]
-   #
    # package
-   for package in package_list :
+   package = sys.argv[2]
+   if package not in package_install :
+      msg  = f'{program}: package = {package} is not yet implemented'
+      sys.exit(msg)
+   #
+   # build_flag
+   for build_type_tmp in [ 'debug', 'release' ] :
+      build_flag = f'{package}.{build_type_tmp}'
+      if os.path.exists(build_flag) :
+         os.remove(build_flag)
+   build_flag = f'{package}.{build_type}'
+   #
+   # webpage
+   webpage = package_webpage[package]
+   #
+   # install
+   if webpage == None :
       #
-      # package
-      if package not in package_install :
-         msg  = f'{program}: package = {package} is not yet implemented'
-         sys.exit(msg)
-      #
-      # webpage
-      webpage = package_webpage[package]
-      if webpage == None :
-         #
-         # package_install
-         package_install[package]()
-      else :
-         # package.git
-         if not os.path.isdir( f'{package}.git' ) :
-            command_str = f'git clone {webpage} {package}.git'
-            system_command( [ command_str ] )
-         os.chdir( f'{package}.git' )
-         command_str = 'git pull'
+      # package_install
+      package_install[package]()
+   else :
+      # package.git
+      if not os.path.isdir( f'{package}.git' ) :
+         command_str = f'git clone {webpage} {package}.git'
          system_command( [ command_str ] )
-         #
-         # package_install
-         package_install[package](build_type)
-         #
-         # external
-         os.chdir( '..' )
+      os.chdir( f'{package}.git' )
+      command_str = 'git pull'
+      system_command( [ command_str ] )
+      #
+      # package_install
+      package_install[package](build_type)
+      #
+      # external
+      os.chdir( '..' )
+   #
+   # build_flag
+   pathlib.Path(build_flag).touch()
    #
    command = ' '.join( sys.argv )
    print( f'{command}: OK' )
