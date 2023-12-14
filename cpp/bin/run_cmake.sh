@@ -4,9 +4,11 @@
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
-if [ "$0" != 'cpp/bin/run_cmake.sh' ]
+# ---------------------------------------------------------------------------
+program='cpp/bin/run_cmake.sh'
+if [ "$0" != "$program" ]
 then
-   echo 'cpp/bin/run_cmake.sh: must be executed the top source directory'
+   echo "$program: must be executed the top source directory"
    exit 1
 fi
 #
@@ -42,11 +44,11 @@ do
       ;;
 
       *)
-      echo 'usage: bin/run_cmake.sh \\'
-      echo '   [--clang] \\'
-      echo '   [--debug] \\'
-      echo '   [--ninja ] \\ '
-      echo '   [--cppad_vector] \\'
+      echo "usage: $program \\"
+      echo '   [--clang] \'
+      echo '   [--debug] \'
+      echo '   [--ninja ] \ '
+      echo '   [--cppad_vector] \'
       echo '   [--verbose]'
       exit 0
       ;;

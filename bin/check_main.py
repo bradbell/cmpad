@@ -28,7 +28,8 @@ def main() :
    print( ' '.join(command) )
    result = subprocess.run(command)
    if result.returncode != 0 :
-      msg  = 'command above failed\n'
+      msg  = ' '.join(command)
+      msg += f'\n{program}: command above failed'
       sys.exit(msg)
    old_table = list()
    file_obj  = open( file_name, 'r')
@@ -42,7 +43,8 @@ def main() :
    print( ' '.join(command) )
    result = subprocess.run(command)
    if result.returncode != 0 :
-      msg  = 'command above failed\n'
+      msg  = ' '.join(command)
+      msg += f'\n{program}: command above failed'
       sys.exit(msg)
    #
    # new_table

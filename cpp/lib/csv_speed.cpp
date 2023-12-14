@@ -105,9 +105,70 @@ Example
 # include <ctime>
 # include <filesystem>
 # include <sstream>
+# include <iostream>
 # include <cmpad/csv_speed.hpp>
 # include <cmpad/csv_read.hpp>
 # include <cmpad/csv_write.hpp>
+
+namespace {
+   void check_build_type(const std::string& package, const std::string& debug)
+   {  // path
+      using std::filesystem::path;
+      //
+      // none
+      if( package == "none" )
+         return;
+      //
+      // top_srcdir
+      path current_dir = std::filesystem::current_path();
+      path top_srcdir  = current_dir;
+      path git_dir     = current_dir;
+      git_dir         /= ".git";
+      while ( ! std::filesystem::exists( git_dir  )  )
+      {  path parent = top_srcdir.parent_path();  
+         if( parent == top_srcdir )
+         {  std::cerr 
+            << "csv_speed: Can't find .git above current working directory:\n"
+            << current_dir << "\n";
+            std::exit(1);
+         }
+         top_srcdir = parent;
+         git_dir    = top_srcdir;
+         git_dir   /= ".git";
+      }
+      //
+      // build_type
+      std::string build_type;
+      if( debug == "true" )
+         build_type = "debug";
+      else
+         build_type = "release";
+      //
+      // configure_flag
+      path configure_flag = top_srcdir;
+      configure_flag     /= "external";
+      if( package == "cppad_jit" )
+         configure_flag /= "cppad." + build_type;
+      else 
+         configure_flag /= package + "." + build_type;
+      //
+      if ( ! std::filesystem::exists( configure_flag ) )
+      {  std::cerr 
+         << "csv_speed: Cannot find " << configure_flag << "\n"
+         << "and for this cmpad compile NDEBUG ";
+         if( debug == "true" )
+            std::cerr << "is not defined\n";
+         else
+            std::cerr << "is defined\n";
+         std::cerr 
+         << "Perhaps you should run the following commands:\n";
+         std::cerr 
+         << "   bin/get_package.sh " + build_type + " " + package + "\n"
+         << "   cd cpp/build; make; cd ../..\n\n";
+         std::exit(1);
+      }
+   }
+}
 
 namespace cmpad { // BEGIN_CMPAD_NAMESPACE
 
@@ -180,6 +241,7 @@ void csv_speed(
 # else
    std::string debug = "false";
 # endif
+   check_build_type(package, debug);
    //
    // language
    std::string language = "c++";

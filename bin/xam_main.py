@@ -179,7 +179,8 @@ def main() :
                print( ' '.join(command) )
                result = subprocess.run(command)
                if result.returncode != 0 :
-                  msg  = 'command above failed\n'
+                  msg  = ' '.join(command)
+                  msg += '\nxam_main.py: command above failed'
                   sys.exit(msg)
    #
    # file_obj
