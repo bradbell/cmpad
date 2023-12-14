@@ -25,6 +25,44 @@ then
    exit 1
 fi
 #
+package_list='
+   adept
+   adolc
+   autodiff
+   cppadcg
+   cppad
+   cppad_py
+   eigen
+   sacado
+'
+build_type=''
+for package in $package_list
+do
+   if [ -e external/$package.debug ]
+   then
+      if [ "$build_type" == '' ]
+      then
+         build_type='debug'
+      fi
+      if [ "$build_type" != 'debug' ]
+      then
+         'Mixing build types in external directory'
+         exit 1
+      fi
+   elif [ -e external/$package.release ]
+   then
+      if [ "$build_type" == '' ]
+      then
+         build_type='release'
+      fi
+      if [ "$build_type" != 'release' ]
+      then
+         'Mixing debug and release in external directory'
+         exit 1
+      fi
+   fi
+done
+#
 # run_cmake.sh
 flags=''
 if [ $(expr $RANDOM % 2) == 1 ]
@@ -33,11 +71,11 @@ then
 fi
 if [ $(expr $RANDOM % 2) == 1 ]
 then
-   flags="$flags --debug"
-fi
-if [ $(expr $RANDOM % 2) == 1 ]
-then
    flags="$flags --cppad_vector"
+fi
+if [ "$build_type" == 'debug' ]
+then
+   flags="$flags --debug"
 fi
 echo_eval cpp/bin/run_cmake.sh $flags
 #

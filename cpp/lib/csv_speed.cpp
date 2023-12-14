@@ -19,12 +19,12 @@ Prototype
 file_name
 *********
 This is the name of the file were the results will be recorded.
-This file uses the :ref:`cmpad_csv-name` format.
+This file uses the :ref:`csv_column-name` format.
 
 #. If the file is empty on input, the following csv header line
    is written as the first line of the file; i.e.,
    {xrst_literal
-      xrst/cmpad_csv.xrst
+      xrst/csv_column.xrst
       BEGIN HEADER_LINE
       END HEADER_LINE
    }
@@ -34,34 +34,34 @@ This file uses the :ref:`cmpad_csv-name` format.
 
 rate
 ****
-see :ref:`cmpad_csv@rate`
+see :ref:`csv_column@rate`
 
 min_time
 ********
-see :ref:`cmpad_csv@min_time`
+see :ref:`csv_column@min_time`
 
 package
 *******
-see :ref:`cmpad_csv@package`
+see :ref:`csv_column@package`
 
 algorithm
 *********
-see :ref:`cmpad_csv@algorithm`
+see :ref:`csv_column@algorithm`
 
 option
 ******
 
 n_arg
 =====
-see :ref:`cmpad_csv@n_arg`
+see :ref:`csv_column@n_arg`
 
 n_other
 =======
-see :ref:`cmpad_csv@n_other`
+see :ref:`csv_column@n_other`
 
 time_setup
 ==========
-see :ref:`cmpad_csv@time_setup`
+see :ref:`csv_column@time_setup`
 
 {xrst_toc_hidden
    cpp/xam/csv_speed.cpp

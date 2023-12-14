@@ -46,37 +46,37 @@ when the argument is not present.
 
 algorithm
 *********
-see :ref:`cmpad_csv@algorithm` .
+see :ref:`csv_column@algorithm` .
 
 file_name
 *********
 is the csv file where the results of this test are placed;
-see :ref:`cmpad_csv-name` .
+see :ref:`csv_column-name` .
 If the file does not exist,
 the file is created and it's header line is written.
 The results for this test are placed at the end of the file.
 
 min_time
 ********
-see :ref:`cmpad_csv@min_time` .
+see :ref:`csv_column@min_time` .
 
 n_arg
 *****
-see :ref:`cmpad_csv@n_arg` .
+see :ref:`csv_column@n_arg` .
 
 n_other
 *******
-see :ref:`cmpad_csv@n_other` .
+see :ref:`csv_column@n_other` .
 
 package
 *******
-see :ref:`cmpad_csv@package` .
+see :ref:`csv_column@package` .
 
 
 time_setup
 **********
 If this argument is present (is not present) ,
-:ref:`cmpad_csv@time_setup` is ``true`` (is ``false`` ).
+:ref:`csv_column@time_setup` is ``true`` (is ``false`` ).
 
 version
 *******
@@ -91,7 +91,7 @@ print the help message on standard out and then exit program
 without any further processing.
 
 {xrst_toc_table
-   xrst/cmpad_csv.xrst
+   xrst/csv_column.xrst
    bin/xam_main.py
 }
 Example

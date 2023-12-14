@@ -32,7 +32,7 @@ cpp_run_cmpad = 'cpp/build/src/run_cmpad'
 # This program create the file xam_main.csv
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
-# The meaning of the columns are described in :ref:`cmpad_csv-name` .
+# The meaning of the columns are described in :ref:`csv_column-name` .
 # Below is an example of the contents of this file:
 #
 # ..  csv-table::
