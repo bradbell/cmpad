@@ -74,17 +74,13 @@ def none_fun_obj(algorithm) :
 # grad_fun_obj
 def grad_fun_obj(algorithm, package) :
    #
-   #
    # algo
    if algorithm == 'det_by_minor' :
       algo = cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
       algo = cmpad.an_ode()
    elif algorithm == 'llsq_obj' :
-      if package == 'pytorch' :
-         algo = cmpad.pytorch.llsq_obj()
-      else :
-         algo = cmpad.llsq_obj()
+      algo = cmpad.llsq_obj()
    else :
       assert False
    #

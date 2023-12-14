@@ -201,6 +201,12 @@ do
 
    case $package in
 
+   # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
+   clad|fastad)
+   # END CPP_PACKAGE_NOT_IMPLEMENTED
+   echo_eval cpp/bin/get_package.sh $build_type $package
+   ;;
+
    # BEGIN CPP_PACKAGE_LIST
    adept|adolc|autodiff|clad|cppad_jit|cppad|cppadcg|fastad|sacado)
    # END CPP_PACKAGE_LIST

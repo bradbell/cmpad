@@ -1,0 +1,111 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023 Bradley M. Bell
+-----------------------------------------------------------------------------
+{xrst_begin cmpad_csv}
+{xrst_spell
+   kutta
+   newline
+   runge
+   llsq obj
+   yyyy mm dd
+}
+
+The cmpad Csv File Format
+#########################
+
+#. The comma character is used to terminate each column.
+#. The newline character is used to terminate each row.
+#. The first line (the header)
+   contains the column names in the following order::
+   {xrst_comment BEGIN HEADER_LINE}
+   rate,min_time,package,algorithm,n_arg,date,compiler,debug,language
+   {xrst_comment END HEADER_LINE}
+
+
+rate
+****
+This floating point value is the number of times per second that the algorithm,
+or a derivative of the algorithm, was calculated.
+
+min_time
+********
+This floating point value is the minimum time
+in seconds to average the computation rate over.
+The computation is repeated enough times so that this minimum time is reached.
+
+package
+*******
+This string is the name of the AD package that *rate* corresponds to.
+If *package* is ``none`` , this is not a derivative calculation
+but rather an evaluations of the function using the algorithm.
+Otherwise *package* is one of the following:
+{xrst_literal ,
+   bin/get_package.sh
+   # BEGIN CPP_PACKAGE_LIST, # END CPP_PACKAGE_LIST
+   # BEGIN PYTHON_PACKAGE_LIST, # END PYTHON_PACKAGE_LIST
+}
+
+algorithm
+*********
+The algorithm used by this test.
+The possible values (so far) are
+:ref:`det_by_minor-name` ,
+:ref:`an_ode-name` , and
+:ref:`llsq_obj-name` .
+
+n_arg
+*****
+This is the value of then *n_arg* integer and is always the dimension of
+the argument space for the function and algorithm; e.g.,
+:ref:`det_by_minor@option@n_arg` for the det_by_minor algorithm.
+If *algorithm* is ``det_by_minor``, *n_arg* must be a square
+and its square root is the row and column dimension of the matrix.
+
+
+n_other
+*******
+the meaning of this integer is algorithm specific:
+
+.. csv-table::
+   :header-rows: 1
+
+   *algorithm*, *n_other*
+   det_by_minor, must be zero and is not used
+   an_ode, number of Runge-Kutta steps used to approximate ODE
+   llsq_obj, is the number of data points in the least squares fit.
+
+time_setup
+**********
+If *time_setup* is ``true`` ( ``false`` ) ,
+the setup time was included (was not included)
+during the speed testing for this algorithm.
+Some AD packages may spend more setup time to use less evaluation time
+for each new argument value.
+
+date
+****
+This is the date when the timing test was run in yyyy-mm-dd format.
+
+compiler
+********
+This is a string identifying the version of the C++ or python
+used to compile or interpret the algorithm.
+2DO: We should ensure that same compiler is used to compile
+libraries used by the AD package.
+
+debug
+*****
+If this is ``ture`` ( ``false`` ),
+the algorithm, and AD package libraries, where compiled for debugging
+(for release).
+If it is the empty string, there is no choice for compiling the algorithm
+or AD package; e.g., if *package* is ``none`` and *language* is ``python`` ,
+then *debug* is empty.
+
+language
+********
+This is the language used to compile or interpret the algorithm and
+its derivatives. The possible values so far are ``python`` and ``c++`` .
+
+{xrst_end cmpad_csv}

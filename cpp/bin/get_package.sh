@@ -24,10 +24,10 @@ set -e -u
 # package
 # =======
 # The is one of the packages in the following list
-# {xrst_literal
+# {xrst_literal ,
 #     bin/get_package.sh
-#     # BEGIN CPP_PACKAGE_LIST
-#     # END CPP_PACKAGE_LIST
+#     # BEGIN CPP_PACKAGE_LIST, # END CPP_PACKAGE_LIST
+#     # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED, # END CPP_PACKAGE_NOT_IMPLEMENTED
 # }
 #
 # {xrst_end cpp_get_package}

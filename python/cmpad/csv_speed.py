@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_csv_speed}
-{xrst_spell
-   newlines
-}
 
 Record a Python Speed Result in a Csv File
 ##########################################
@@ -20,83 +17,55 @@ Prototype
 
 file_name
 *********
-is the name of the file were the results will be recorded.
-
-#. This is a csv file. To be specific commas separate columns
-   and newlines terminate rows.
-
-#. A line is added to this file corresponding to
-   rate in this call to csv_speed.
+This is the name of the file were the results will be recorded.
+This file uses the :ref:`cmpad_csv-name` format.
 
 #. If the file is empty on input, the following csv header line
-   is written to the file before the result for this call::
+   is written as the first line of the file; i.e.,
+   {xrst_literal
+      xrst/cmpad_csv.xrst
+      BEGIN HEADER_LINE
+      END HEADER_LINE
+   }
 
-      rate,min_time,package,algorithm,n_arg,date,compiler,debug,language
-
-#. If the file is not empty on input, it is assumed that the header line
-   for this file is as above.
+#. A line is added to this file corresponding to
+   this call to csv_speed.
 
 rate
 ****
-This is the number of times per second that the algorithm,
-or a derivative of the algorithm, was calculated.
+see :ref:`cmpad_csv@rate`
 
 min_time
 ********
-This is the :ref:`cpp_fun_speed@min_time` used
-by fun_speed when it computed *rate*.
+see :ref:`cmpad_csv@min_time`
 
 package
 *******
-This is the name of the AD package that *rate* corresponds to.
-If *package* is ``float`` , this is not a derivative calculation
-but rather an evaluations of the algorithm using the python type float.
+see :ref:`cmpad_csv@package`
 
 algorithm
 *********
-This is the name of the algorithm; e.g., :ref:`py_det_by_minor-name` .
+see :ref:`cmpad_csv@algorithm`
+
+option
+******
 
 n_arg
-*****
-This is the value of *option*\ ``[n_arg]`` .
+=====
+see :ref:`cmpad_csv@n_arg`
 
 n_other
-*******
-This is the value of *option*\ ``[n_other]`` .
+=======
+see :ref:`cmpad_csv@n_other`
 
 time_setup
-**********
-This is the value of *option*\ ``[time_setup]`` .
+==========
+see :ref:`cmpad_csv@time_setup`
 
-date
-****
-This is the date when csv_speed is called.
-The *date* value is automatically determined and not an argument to csv_speed.
-
-compiler
-********
-This is a string identifying the version of python used for this test.
-The *compiler* value
-is automatically determined and not an argument to csv_speed.
-
-debug
-*****
-The *debug* value is automatically determined and not an argument to csv_speed.
-
-#. If *package* is ``none``, this is the empty string.
-#. If *package* is not ``none``,
-   this is true (false) if *package* was installed using the
-   debug (release) :ref:`get_package@Syntax@build_type` .
 
 {xrst_toc_hidden
    python/xam/csv_speed.py
 }
-
-language
-********
-This is always ``python`` because this routine is for timing Python functions.
-
-
 Example
 *******
 :ref:`xam_csv_speed.py-name` contains an example and test of this routine.
@@ -116,13 +85,17 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
    assert type(file_name) == str
    assert type(rate)      == float
    assert type(min_time)  == float
-   assert type(package)   == str
    assert type(algorithm) == str
+   #
+   assert type(package)   == str
+   assert package in [ 'none', 'autograd', 'cppad_py', 'pytorch' ]
+   #
    assert type(option)    == dict
    assert type( option['n_arg'] )      == int
    assert type( option['n_other'] )    == int
    assert type( option['time_setup'] ) == bool
    # END DEF
+   #
    # fieldnames
    filednames = [
       'rate',

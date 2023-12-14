@@ -4,9 +4,6 @@
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin cpp_csv_speed}
-{xrst_spell
-   newlines
-}
 
 Record a C++ Speed Result in a Csv File
 #######################################
@@ -18,84 +15,57 @@ Prototype
    // END PROTOTYPE
 }
 
+
 file_name
 *********
-is the name of the file were the results will be recorded.
-
-#. This is a csv file. To be specific commas separate columns
-   and newlines terminate rows; see :ref:`csv_read-name` and
-   :ref:`csv_write-name` .
-
-#. A line is added to this file corresponding to
-   rate in this call to csv_speed.
+This is the name of the file were the results will be recorded.
+This file uses the :ref:`cmpad_csv-name` format.
 
 #. If the file is empty on input, the following csv header line
-   is written to the file before the result for this call::
+   is written as the first line of the file; i.e.,
+   {xrst_literal
+      xrst/cmpad_csv.xrst
+      BEGIN HEADER_LINE
+      END HEADER_LINE
+   }
 
-      rate,min_time,package,algorithm,n_arg,date,compiler,debug,language
-
-#. If the file is not empty on input, it is assumed that the header line
-   for this file is as above.
+#. A line is added to this file corresponding to
+   this call to csv_speed.
 
 rate
 ****
-This is the number of times per second that the algorithm,
-or a derivative of the algorithm, was calculated.
+see :ref:`cmpad_csv@rate`
 
 min_time
 ********
-This is the :ref:`cpp_fun_speed@min_time` used
-by fun_speed when it computed *rate*.
+see :ref:`cmpad_csv@min_time`
 
 package
 *******
-This is the name of the AD package that *rate* corresponds to.
-If *package* is ``double`` , this is not a derivative calculation
-but rather an evaluations of the algorithm using the C++ type double.
+see :ref:`cmpad_csv@package`
 
 algorithm
 *********
-This is the name of the algorithm; e.g., :ref:`cpp_det_by_minor-name` .
+see :ref:`cmpad_csv@algorithm`
+
+option
+******
 
 n_arg
-*****
-This is the value of :ref:`option_t@n_arg` in *option* .
+=====
+see :ref:`cmpad_csv@n_arg`
 
 n_other
-*******
-This is the value of :ref:`option_t@n_other` in *option* .
+=======
+see :ref:`cmpad_csv@n_other`
 
 time_setup
-**********
-This is the value of :ref:`option_t@time_setup` in *option* .
-
-date
-****
-This is the date when csv_speed is called.
-The *date* value is automatically determined and not an argument to csv_speed.
-
-compiler
-********
-This is the compiler used for this test.
-The *compiler* value
-is automatically determined and not an argument to csv_speed.
-
-debug
-*****
-This is true (false) if  csv_speed eas compiled with (without) debugging.
-The assumption here is that all the cmpad routines get compiled
-with debugging (for speed) when this is true (false).
-The *debug* value is automatically determined and not an argument to csv_speed.
+==========
+see :ref:`cmpad_csv@time_setup`
 
 {xrst_toc_hidden
    cpp/xam/csv_speed.cpp
 }
-
-language
-********
-This is always ``c++`` because this routine is for timing C++ functions.
-
-
 Example
 *******
 :ref:`xam_csv_speed.cpp-name` contains an example and test of this routine.
@@ -125,9 +95,9 @@ namespace {
       path git_dir     = current_dir;
       git_dir         /= ".git";
       while ( ! std::filesystem::exists( git_dir  )  )
-      {  path parent = top_srcdir.parent_path();  
+      {  path parent = top_srcdir.parent_path();
          if( parent == top_srcdir )
-         {  std::cerr 
+         {  std::cerr
             << "csv_speed: Can't find .git above current working directory:\n"
             << current_dir << "\n";
             std::exit(1);
@@ -149,20 +119,20 @@ namespace {
       configure_flag     /= "external";
       if( package == "cppad_jit" )
          configure_flag /= "cppad." + build_type;
-      else 
+      else
          configure_flag /= package + "." + build_type;
       //
       if ( ! std::filesystem::exists( configure_flag ) )
-      {  std::cerr 
+      {  std::cerr
          << "csv_speed: Cannot find " << configure_flag << "\n"
          << "and for this cmpad compile NDEBUG ";
          if( debug == "true" )
             std::cerr << "is not defined\n";
          else
             std::cerr << "is defined\n";
-         std::cerr 
+         std::cerr
          << "Perhaps you should run the following commands:\n";
-         std::cerr 
+         std::cerr
          << "   bin/get_package.sh " + build_type + " " + package + "\n"
          << "   cd cpp/build; make; cd ../..\n\n";
          std::exit(1);

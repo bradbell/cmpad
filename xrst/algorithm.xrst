@@ -51,9 +51,7 @@ There is an assert checking that *n_arg* > 0.
 
 n_other
 =======
-This option is only checked to make sure it is zero.
-There is an assert checking that *n_other* == 0.
-
+This option is not used except that it may be checked to make sure it is zero.
 
 Implementation
 ==============
@@ -225,7 +223,7 @@ This is the size of the vector *t* above .
 There is an assert checking that *n_other* > 0.
 
 Implementation
-==============
+**************
 {xrst_toc_table
    cpp/include/cmpad/algo/llsq_obj.hpp
    python/cmpad/llsq_obj.py
