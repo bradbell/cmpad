@@ -51,9 +51,10 @@ BOOST_AUTO_TEST_CASE(@package@)
       //
       // csv_file_path_
       cmpad::@package@::gradient<cmpad::det_by_minor> grad_det;
-      double rate = cmpad::fun_speed(grad_det, option, min_time_);
+      double rate    = cmpad::fun_speed(grad_det, option, min_time_);
+      bool   special = false;
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm_, special, option
       );
    }
    check();
@@ -75,9 +76,10 @@ BOOST_AUTO_TEST_CASE(@package@)
       //
       // csv_file_path_
       cmpad::@package@::gradient<cmpad::an_ode> grad_ode;
-      double rate = cmpad::fun_speed(grad_ode, option, min_time_);
+      double rate    = cmpad::fun_speed(grad_ode, option, min_time_);
+      bool   special = false;
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm_, special, option
       );
    }
    check();

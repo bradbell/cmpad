@@ -99,7 +99,8 @@ public:
          "date",
          "compiler",
          "debug",
-         "language"
+         "language",
+         "special"
       };
       //
       // language

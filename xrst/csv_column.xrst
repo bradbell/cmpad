@@ -108,4 +108,12 @@ language
 This is the language used to compile or interpret the algorithm and
 its derivatives. The possible values so far are ``python`` and ``c++`` .
 
+special
+*******
+If this is ``true`` ,
+a special version of the algorithm for this particular *package* was used;
+e.g., :ref:`pytorch_llsq_obj-name` .
+Otherwise it is ``false`` and the algorithm can be used
+by any of the packages for this *language* .
+
 {xrst_end csv_column}

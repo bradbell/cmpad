@@ -49,6 +49,9 @@ def xam_csv_speed() :
    # algorithm
    algorithm = 'det_by_minor'
    #
+   # special
+   special = False
+   #
    # option
    option = { 'n_arg' : 4, 'n_other' : 0, 'time_setup' : False }
    #
@@ -60,7 +63,7 @@ def xam_csv_speed() :
    #
    # csv_speed
    cmpad.csv_speed(
-      file_name, rate, min_time, package, algorithm, option
+      file_name, rate, min_time, package, algorithm, special, option
    )
    #
    # csv_table

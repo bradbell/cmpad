@@ -75,6 +75,15 @@ def main() :
             print_error = True
          print( f'( {package}, {algorithm}, {time_setup} ) ' )
    #
+   # print_error
+   for key in old_table[0].keys() :
+      if not key in new_table[0].keys() :
+         msg = f'The column {key} is in the old but not new {file_name}'
+         if print_error :
+            print()
+         print(msg)
+         print_error = True
+   #
    if print_error :
       sys.exit( f'{program}: Erorr' )
    #
@@ -97,6 +106,15 @@ def main() :
             print(msg)
             print_warning = True
          print( f'( {package}, {algorithm}, {time_setup} ) ' )
+   #
+   # print_warning
+   for key in new_table[0].keys() :
+      if not key in old_table[0].keys() :
+         msg = f'The column {key} is in the new but not old {file_name}'
+         if print_warning :
+            print()
+         print(msg)
+         print_warning = True
    #
    print( f'{program}.py: OK')
 #

@@ -46,9 +46,10 @@ BOOST_AUTO_TEST_CASE(Double)
       //
       // csv_file_path
       cmpad::det_by_minor<double> det;
-      double rate = cmpad::fun_speed(det, option, min_time_);
+      double rate    = cmpad::fun_speed(det, option, min_time_);
+      bool   special = false;
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm_, special, option
       );
    }
    check();
@@ -70,9 +71,10 @@ BOOST_AUTO_TEST_CASE(Double)
       //
       // csv_file_path
       cmpad::an_ode<double> ode;
-      double rate = cmpad::fun_speed(ode, option, min_time_);
+      double rate    = cmpad::fun_speed(ode, option, min_time_);
+      bool   special = false;
       cmpad::csv_speed(
-         csv_file_path_, rate, min_time_, package, algorithm_, option
+         csv_file_path_, rate, min_time_, package, algorithm_, special, option
       );
    }
    check();

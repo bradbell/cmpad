@@ -47,6 +47,10 @@ algorithm
 *********
 see :ref:`csv_column@algorithm`
 
+special
+*******
+see :ref:`csv_column@special`
+
 option
 ******
 
@@ -81,16 +85,19 @@ import platform
 bool_str = { True : 'true' , False : 'false' }
 #
 # BEGIN DEF
-def csv_speed(file_name, rate, min_time, package, algorithm, option) :
+def csv_speed(
+   file_name, rate, min_time, package, algorithm, special, option
+   ) :
    assert type(file_name) == str
    assert type(rate)      == float
    assert type(min_time)  == float
-   assert type(algorithm) == str
-   #
    assert type(package)   == str
+   assert type(algorithm) == str
+   assert type(special)   == bool
+   assert type(option)    == dict
+   #
    assert package in [ 'none', 'autograd', 'cppad_py', 'pytorch' ]
    #
-   assert type(option)    == dict
    assert type( option['n_arg'] )      == int
    assert type( option['n_other'] )    == int
    assert type( option['time_setup'] ) == bool
@@ -108,7 +115,8 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       'date',
       'compiler',
       'debug',
-      'language'
+      'language',
+      'special'
    ]
    #
    # csv_table
@@ -161,7 +169,8 @@ def csv_speed(file_name, rate, min_time, package, algorithm, option) :
       'date'       : date,
       'compiler'   : compiler,
       'debug'      : debug,
-      'language'   : 'python'
+      'language'   : 'python',
+      'special'    : bool_str[special]
    }
    #
    csv_table.append(row)

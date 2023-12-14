@@ -68,7 +68,7 @@ Source Code
    {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, option \
+         file_name, rate, min_time, #package , algorithm, special, option \
       ); \
       case_found = true; \
    } \
@@ -76,7 +76,7 @@ Source Code
    {  cmpad::package::gradient<cmpad::an_ode> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, option \
+         file_name, rate, min_time, #package , algorithm, special, option \
       ); \
       case_found = true; \
    } \
@@ -84,7 +84,7 @@ Source Code
    {  cmpad::package::gradient<cmpad::llsq_obj> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, option \
+         file_name, rate, min_time, #package , algorithm, special, option \
       ); \
       case_found = true; \
    }
@@ -196,6 +196,10 @@ int main(int argc, char* argv[])
       return 1;
    }
    //
+   // special
+   // as yet there are no special C++ algorithms.
+   bool special = false;
+   //
    // option
    cmpad::option_t option;
    option.n_arg       = n_arg;
@@ -211,7 +215,7 @@ int main(int argc, char* argv[])
       {  cmpad::det_by_minor<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
-            file_name, rate, min_time, "none", algorithm, option
+            file_name, rate, min_time, "none", algorithm, special, option
          );
          case_found = true;
       }
@@ -219,7 +223,7 @@ int main(int argc, char* argv[])
       {  cmpad::an_ode<double> det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
-            file_name, rate, min_time, "none", algorithm, option
+            file_name, rate, min_time, "none", algorithm, special, option
          );
          case_found = true;
       }
@@ -227,7 +231,7 @@ int main(int argc, char* argv[])
       {  cmpad::llsq_obj<double> llsq;
          double rate = cmpad::fun_speed(llsq, option, min_time);
          cmpad::csv_speed(
-            file_name, rate, min_time, "none", algorithm, option
+            file_name, rate, min_time, "none", algorithm, special, option
          );
          case_found = true;
       }

@@ -60,6 +60,9 @@ bool xam_csv_speed(void)
    // algorithm
    std::string algorithm = "det_by_minor";
    //
+   // special
+   bool special = false;
+   //
    // option
    cmpad::option_t option;
    option.n_arg       = 4;
@@ -74,7 +77,7 @@ bool xam_csv_speed(void)
    //
    // csv_speed
    cmpad::csv_speed(
-      file_name, rate, min_time, package, algorithm, option
+      file_name, rate, min_time, package, algorithm, special, option
    );
    //
    // csv_table
@@ -102,7 +105,8 @@ bool xam_csv_speed(void)
       "date",
       "compiler",
       "debug",
-      "language"
+      "language",
+      "special"
    };
    size_t n_col = col_name.size();
    //
@@ -117,8 +121,6 @@ bool xam_csv_speed(void)
    ok &=( csv_table[0] == col_name );
    //
    // ok
-   // check column 1-5, 7-9
-   //
    ok &= std::atof( csv_table[1][1].c_str() ) == min_time;
    ok &= csv_table[1][2] == package;
    ok &= csv_table[1][3] == "det_by_minor";
@@ -128,6 +130,7 @@ bool xam_csv_speed(void)
    ok &= csv_table[1][8] == CMPAD_CXX_COMPILER;
    ok &= csv_table[1][9] == debug;
    ok &= csv_table[1][10] == language;
+   ok &= csv_table[1][11] == "false";
    //
    return ok;
 }

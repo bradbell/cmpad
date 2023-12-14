@@ -15,6 +15,7 @@ namespace cmpad {
       double             min_time  ,
       const std::string& package   ,
       const std::string& algorithm ,
+      bool               special   ,
       const option_t&    option
    );
 }

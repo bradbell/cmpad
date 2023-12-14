@@ -198,17 +198,25 @@ def main() :
       'time_setup' : time_setup ,
    }
    #
-   # fun_obj
+   # csv_speed
    if package == 'none' :
       fun_obj = none_fun_obj(algorithm)
    else :
       fun_obj = grad_fun_obj(algorithm, package)
-   #
-   # rate
    rate    = cmpad.fun_speed(fun_obj, option, min_time)
+   special = False
+   cmpad.csv_speed(
+      file_name, rate, min_time, package, algorithm, special, option
+   )
    #
    # csv_speed
-   cmpad.csv_speed(file_name, rate, min_time, package, algorithm, option)
+   if package == 'pytorch' and algorithm == 'llsq_obj' :
+      fun_obj = cmpad.pytorch.llsq_obj()
+      rate    = cmpad.fun_speed(fun_obj, option, min_time)
+      special = True
+      cmpad.csv_speed(
+         file_name, rate, min_time, package, algorithm, special, option
+      )
 #
 main()
 # END PYTHON

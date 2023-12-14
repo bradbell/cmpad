@@ -95,7 +95,8 @@ namespace cmpad {
       // END ABS_ERROR
       if( std::fabs(x - y) < abs_error )
          return true;
-      os << "| " << x << " - " << y << " | > " << abs_error << "\n";
+      os << "| " << x << " - " << y << " | = " << std::fabs(x - y);
+      os << " > " << abs_error << "\n";
       return false;
    }
 

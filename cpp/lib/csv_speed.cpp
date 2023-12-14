@@ -48,6 +48,10 @@ algorithm
 *********
 see :ref:`csv_column@algorithm`
 
+special
+*******
+see :ref:`csv_column@special`
+
 option
 ******
 
@@ -81,6 +85,15 @@ Example
 # include <cmpad/csv_write.hpp>
 
 namespace {
+   //
+   // bool2string
+   std::string bool2string(bool value)
+   {  if( value )
+         return "true";
+      return "false";
+   }
+   //
+   // check_build_type
    void check_build_type(const std::string& package, const std::string& debug)
    {  // path
       using std::filesystem::path;
@@ -149,6 +162,7 @@ void csv_speed(
    double             min_time  ,
    const std::string& package   ,
    const std::string& algorithm ,
+   bool               special   ,
    const option_t&    option    )
 // END PROTOTYPE
 {  //
@@ -174,7 +188,8 @@ void csv_speed(
          "date",
          "compiler",
          "debug",
-         "language"
+         "language",
+         "special"
       };
       csv_table.push_back(row);
    }
@@ -241,7 +256,8 @@ void csv_speed(
       date,
       compiler,
       debug,
-      language
+      language,
+      bool2string(special)
    };
    csv_table.push_back(row);
    //
