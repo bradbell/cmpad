@@ -95,7 +95,8 @@ def xam_csv_speed() :
       'date',
       'compiler',
       'debug',
-      'language'
+      'language',
+      'special'
    ]
    ok = list( csv_table[0].keys() ) == col_names
    #
@@ -111,6 +112,7 @@ def xam_csv_speed() :
    ok &= str2bool[ row['time_setup'] ]  == option['time_setup']
    ok &= row['compiler']                == compiler
    ok &= row['language']                == 'python'
+   ok &= row['special']                 == 'false'
    #
    return ok
 #
