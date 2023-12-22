@@ -54,14 +54,14 @@ set -e -u
 # .. _adept:     https://github.com/rjhogan/Adept-2
 # .. _adolc:     https://github.com/coin-or/ADOL-C
 # .. _autodiff:  https://github.com/autodiff/autodiff
-# .. _autograd: https://github.com/HIPS/autograd.git
+# .. _autograd:  https://github.com/HIPS/autograd.git
 # .. _clad:      https://github.com/vgvassilev/clad
 # .. _cppad:     https://github.com/coin-or/CppAD
 # .. _cppad_jit: https://github.com/coin-or/CppAD
-# .. _cppad_py: https://github.com/bradbell/cppad_py
+# .. _cppad_py:  https://github.com/bradbell/cppad_py
 # .. _cppadcg:   https://github.com/joaoleal/CppADCodeGen
 # .. _fastad:    https://github.com/JamesYang007/FastAD
-# .. _pytorch:  https://github.com/pytorch/pytorch
+# .. _pytorch:   https://github.com/pytorch/pytorch
 # .. _sacado:    https://trilinos.github.io/sacado.html
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #
