@@ -137,16 +137,18 @@ def main() :
    if not ( os.path.isdir( '.git' ) and sys.argv[0] == program ) :
       msg = f'{program}: must be executed from cmpad top source directory'
       sys.exit(msg)
-   if not os.path.isdir( 'venv' ) :
+   if not os.path.isdir( 'python/venv' ) :
       msg  = f'{program}: must first execute the following commands:\n'
-      msg += 'python3.11 -m venv venv\n'
-      msg += 'source venv/bin/activate'
-      msg += 'pip install toml build\n'
+      msg += '   python3.11 -m venv python/venv\n'
+      msg += '   source python/venv/bin/activate\n'
+      msg += '   pip install toml build\n'
+      msg += 'where python3.11 can be replaced by '
+      msg += 'any version of python on your system'
       sys.exit(msg)
-   ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'venv' )
+   ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'python/venv' )
    if not ok :
       msg  = f'{program}: must first execute the following commands:\n'
-      msg += 'source venv/bin/activate'
+      msg += 'source python/venv/bin/activate'
       sys.exit(msg)
    #
    # usage

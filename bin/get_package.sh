@@ -11,6 +11,8 @@ set -e -u
 #     eigen
 #     rm
 #     srcdir
+#     venv
+#     prefixes
 # }
 # {xrst_comment_ch #}
 #
@@ -97,9 +99,18 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 #
 # prefix
 # ******
-# The prefix for the packages installed by ``bin/get_package.sh`` is
+# The prefixes for the packages installed by ``bin/get_package.sh`` are
 #
 # | |tab| *top_srcdir* / *language* ``/build/prefix``
+#
+# where *language* is ``cpp`` or ``python`` .
+#
+# venv
+# ****
+# Some of the python packages are installed in
+# the following python virtual environment:
+#
+# | |tab| *top_srcdir* ``/python/venv``
 #
 # external
 # ********

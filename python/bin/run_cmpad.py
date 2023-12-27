@@ -44,16 +44,16 @@ if not ( os.path.isdir('.git') and sys.argv[0] == program ) :
    msg = f'{program} must be run from cmpad top source directory'
    sys.exit(msg)
 #
-# venv
-if not os.path.isdir( 'venv' ) :
+# python/venv
+if not os.path.isdir( 'python/venv' ) :
    msg  = f'{program}: python packages not installed uinsg bin/get_package.sh'
    sys.exit(msg)
 #
 # sys.prefix
-ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'venv' )
+ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'python/venv' )
 if not ok :
    msg  = f'{program}: must first execute the following commands:\n'
-   msg += 'source venv/bin/activate'
+   msg += 'source python/venv/bin/activate'
    sys.exit(msg)
 #
 if not os.path.isdir('python/cmpad') :

@@ -7,7 +7,7 @@
 /python/build/
 #
 # python virtual environment
-/venv/
+/python/venv/
 #
 # used to install other packages
 /external/
