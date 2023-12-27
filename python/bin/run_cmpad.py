@@ -35,14 +35,27 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2023.12.14'
+cmpad_version = 'cmpad-2023.12.27'
 # ----------------------------------------------------------------------------
 #
 # program
 program = 'python/bin/run_cmpad.py'
-if not os.path.isdir('.git') :
-   msg = f'{program} must be run from top source directory'
+if not ( os.path.isdir('.git') and sys.argv[0] == program ) :
+   msg = f'{program} must be run from cmpad top source directory'
    sys.exit(msg)
+#
+# venv
+if not os.path.isdir( 'venv' ) :
+   msg  = f'{program}: python packages not installed uinsg bin/get_package.sh'
+   sys.exit(msg)
+#
+# sys.prefix
+ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'venv' )
+if not ok :
+   msg  = f'{program}: must first execute the following commands:\n'
+   msg += 'source venv/bin/activate'
+   sys.exit(msg)
+#
 if not os.path.isdir('python/cmpad') :
    msg = 'expected python/cmpad below top source directory'
    sys.exit(msg)

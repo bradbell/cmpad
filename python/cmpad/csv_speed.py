@@ -138,7 +138,9 @@ def csv_speed(
       module        = __import__(package)
       package_file  = module.__file__
       package_path  = os.path.realpath(package_file)
-      index         = package_path.find('/python/build/prefix/')
+      index         = package_path.find('/python/build/prefix.release/')
+      if index < 0 :
+         index      = package_path.find('/python/build/prefix.debug/')
       if index < 0 :
          msg  = f'package = {package}, path = {package_path}\n'
          msg += 'is not using version installed by cmpad get_package.sh'

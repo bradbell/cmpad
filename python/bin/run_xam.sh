@@ -39,9 +39,6 @@ then
 fi
 # ----------------------------------------------------------
 #
-# PYTHONPATH
-$(python/bin/pythonpath.sh)
-#
 # temp.py
 sed -e 's|^def test_.*|if True :|'  python/xam/$file > python/xam/temp.py
 if [ "$debug" == 'true' ]

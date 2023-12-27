@@ -48,7 +48,7 @@ import subprocess
 import pathlib
 #
 # program
-program = 'bin/python/get_pacakge.py'
+program = 'python/bin/get_package.py'
 #
 # top_srcdir
 top_srcdir = os.getcwd()
@@ -84,7 +84,7 @@ def pyproject_version() :
 def install_pytorch() :
    #
    # list_of_commands
-   list_of_commands = [ f'pip install torch --prefix={prefix}' ]
+   list_of_commands = [ f'pip install torch' ]
    system_command(list_of_commands)
 #
 # install_autograd
@@ -96,7 +96,7 @@ def install_autograd(build_type) :
    # list_of_commands
    list_of_commands = [
       'python -m build' ,
-      f'pip install dist/autograd-{version}.tar.gz --prefix={prefix}',
+      f'pip install dist/autograd-{version}.tar.gz',
    ]
    system_command(list_of_commands)
 #
@@ -109,11 +109,11 @@ def install_cppad_py(build_type) :
    file_obj.close()
    #
    # install_settings
-   pattern          = r'\ncmake_install_prefix=.*'
-   replace          = f'\ncmake_install_prefix="{prefix}"'
+   pattern          = r'\ncmake_install_prefix *=.*'
+   replace          = f"\ncmake_install_prefix = '{prefix}'"
    install_settings = re.sub(pattern, replace, install_settings)
-   pattern          = r'\nbuild_type=.*'
-   replace          = f"\nbuild_type='{build_type}'"
+   pattern          = r'\nbuild_type *=.*'
+   replace          = f"\nbuild_type = '{build_type}'"
    install_settings = re.sub(pattern, replace, install_settings)
    #
    # install_settings.py
@@ -128,14 +128,25 @@ def install_cppad_py(build_type) :
    list_of_commands = [
       'bin/get_cppad.sh',
       'python -m build' ,
-      f'pip install dist/cppad_py-{version}.tar.gz --prefix={prefix}',
+      f'pip install dist/cppad_py-{version}.tar.gz',
    ]
    system_command(list_of_commands)
 #
 # main
 def main() :
-   if not os.path.isdir( '.git' ) :
+   if not ( os.path.isdir( '.git' ) and sys.argv[0] == program ) :
       msg = f'{program}: must be executed from cmpad top source directory'
+      sys.exit(msg)
+   if not os.path.isdir( 'venv' ) :
+      msg  = f'{program}: must first execute the following commands:\n'
+      msg += 'python3.11 -m venv venv\n'
+      msg += 'source venv/bin/activate'
+      msg += 'pip install toml build\n'
+      sys.exit(msg)
+   ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'venv' )
+   if not ok :
+      msg  = f'{program}: must first execute the following commands:\n'
+      msg += 'source venv/bin/activate'
       sys.exit(msg)
    #
    # usage
