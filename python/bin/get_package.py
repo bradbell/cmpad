@@ -80,28 +80,32 @@ def pyproject_version() :
    #
    return version
 #
-# install_pytorch
-def install_pytorch() :
-   #
-   # list_of_commands
-   list_of_commands = [ f'pip install torch' ]
-   system_command(list_of_commands)
-#
-# install_autograd
-def install_autograd(build_type) :
-   #
-   # version
-   version = pyproject_version()
-   #
-   # list_of_commands
-   list_of_commands = [
-      'python -m build' ,
-      f'pip install dist/autograd-{version}.tar.gz',
-   ]
-   system_command(list_of_commands)
-#
 # install_cppad_py
 def install_cppad_py(build_type) :
+   #
+   # external
+   if not os.path.isdir( 'external' ) :
+      os.mkdir('external')
+   os.chdir('external')
+   #
+   # package_webpage
+   webpage = 'https://github.com/bradbell/cppad_py.git'
+   #
+   # build_flag
+   for build_type_tmp in [ 'debug', 'release' ] :
+      build_flag = f'cppad.{build_type_tmp}'
+      if os.path.exists(build_flag) :
+         os.remove(build_flag)
+   build_flag = f'cppad.{build_type}'
+   #
+   # cppad.git
+   if not os.path.isdir( f'cppad_py.git' ) :
+      command_str = f'git clone {webpage} cppad_py.git'
+      system_command( [ command_str ] )
+   #
+   os.chdir( f'cppad_py.git' )
+   command_str = 'git pull'
+   system_command( [ command_str ] )
    #
    # install_settings
    file_obj         = open( 'bin/install_settings.py', 'r')
@@ -131,6 +135,10 @@ def install_cppad_py(build_type) :
       f'pip install dist/cppad_py-{version}.tar.gz',
    ]
    system_command(list_of_commands)
+   #
+   # build_flag
+   os.chdir('..')
+   pathlib.Path(build_flag).touch()
 #
 # main
 def main() :
@@ -151,10 +159,13 @@ def main() :
       msg += 'source python/venv/bin/activate'
       sys.exit(msg)
    #
+   # package_list
+   package_list = [ 'autograd', 'cppad_py', 'jax', 'pytorch' ]
+   #
    # usage
    usage  = f'{program} build_type package\n'
    usage += 'build_type: is debug or release and package is one of:\n'
-   usage += 'autograd, cppad_py, pytorch'
+   usage += ','.join(package_list)
    if len( sys.argv ) != 3 :
       sys.exit(usage)
    #
@@ -164,64 +175,25 @@ def main() :
       msg = f'{program}: build_type = {build_type} is not debug or release'
       sys.exit(msg)
    #
-   # external
-   if not os.path.isdir( 'external' ) :
-      os.mkdir('external')
-   os.chdir('external')
-   #
-   # package_install
-   package_install = {
-      'autograd' : install_autograd ,
-      'cppad_py' : install_cppad_py ,
-      'pytorch'  : install_pytorch ,
-   }
-   #
-   # package_webpage
-   package_webpage = {
-      'autograd' : 'https://github.com/HIPS/autograd.git' ,
-      'cppad_py' : 'https://github.com/bradbell/cppad_py.git' ,
-      'pytorch'  : None ,
-   }
-   #
    # package
-   package = sys.argv[2]
-   if package not in package_install :
+   package      = sys.argv[2]
+   if package not in package_list :
       msg  = f'{program}: package = {package} is not yet implemented'
       sys.exit(msg)
-   #
-   # build_flag
-   for build_type_tmp in [ 'debug', 'release' ] :
-      build_flag = f'{package}.{build_type_tmp}'
-      if os.path.exists(build_flag) :
-         os.remove(build_flag)
-   build_flag = f'{package}.{build_type}'
-   #
-   # webpage
-   webpage = package_webpage[package]
-   #
    # install
-   if webpage == None :
-      #
-      # package_install
-      package_install[package]()
+   if package == 'cppad_py' :
+      install_cppad_py(build_type)
    else :
-      # package.git
-      if not os.path.isdir( f'{package}.git' ) :
-         command_str = f'git clone {webpage} {package}.git'
-         system_command( [ command_str ] )
-      os.chdir( f'{package}.git' )
-      command_str = 'git pull'
-      system_command( [ command_str ] )
-      #
-      # package_install
-      package_install[package](build_type)
-      #
-      # external
-      os.chdir( '..' )
+      pypi_name = {
+         'autograd' : 'autograd' ,
+         'pytorch'  : 'torch'    ,
+         'jax'      : 'jax[cpu]' ,
+      }
+      name  = pypi_name[package]
+      list_of_commands = [ f'pip install {name}' ]
+      system_command(list_of_commands)
    #
-   # build_flag
-   pathlib.Path(build_flag).touch()
-   #
+   # command
    command = ' '.join( sys.argv )
    print( f'{command}: OK' )
 #

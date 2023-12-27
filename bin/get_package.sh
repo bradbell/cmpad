@@ -63,6 +63,7 @@ set -e -u
 # .. _cppad_py:  https://github.com/bradbell/cppad_py
 # .. _cppadcg:   https://github.com/joaoleal/CppADCodeGen
 # .. _fastad:    https://github.com/JamesYang007/FastAD
+# .. _jax:       https://github.com/google/jax
 # .. _pytorch:   https://github.com/pytorch/pytorch
 # .. _sacado:    https://trilinos.github.io/sacado.html
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
@@ -83,6 +84,7 @@ set -e -u
 #  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`,      cpp
 #  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`,    cpp
 #  `fastad`_,     Under Construction,                             cpp
+#  `jax`_,        Under Construction,
 #  `pytorch`_,    :ref:`pytorch_gradient-name`,                   python
 #  `sacado`_,     :ref:`gradient <sacado_gradient.hpp-name>`,     cpp
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
@@ -94,7 +96,7 @@ set -e -u
 #
 # {xrst_suspend}
 pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
-   cppadcg, fastad, pytorch, sacado'
+   cppadcg, fastad, jax, pytorch, sacado'
 # {xrst_resume}
 #
 # prefix
@@ -114,7 +116,8 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 #
 # external
 # ********
-# The source code, and corresponding builds, for all packages
+# The source code, and corresponding builds, for all the c++ packages,
+# and the python package cppad_py,
 # is in the *top_srcdir*\ ``/external`` directory.
 # Thus you can remove the *prefix* directory and reinstall a new list
 # of packages quickly.
@@ -125,16 +128,18 @@ pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
 # | |tab| ``rm external/``\ *package*\ .\ *build_type*
 # | |tab| ``bin/cpp/get_package`` *build_type* *package*
 #
-# pytorch
-# =======
-# The pytorch package is special because it is installed a remote copy
-# of its source; i.e., it does not have a local copy of its source below
-# the external directory.
+# Python venv
+# ===========
+# Most python packages are installed by pip in the following
+# python virtual environment:
+#
+# | |tab| ``python/venv``
 #
 # {xrst_toc_hidden
 #     cpp/bin/get_package.sh
 #     python/bin/get_package.py
 # }
+#
 # Language Specific
 # *****************
 # The scripts :ref:`cpp_get_package-name` and :ref:`py_get_package-name`
@@ -225,7 +230,7 @@ do
    ;;
 
    # BEGIN PYTHON_PACKAGE_LIST
-   autograd|cppad_py|pytorch)
+   autograd|cppad_py|jax|pytorch)
    # END PYTHON_PACKAGE_LIST
    echo_eval python/bin/get_package.py $build_type $package
    ;;
