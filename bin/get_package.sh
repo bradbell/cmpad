@@ -84,7 +84,7 @@ set -e -u
 #  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`,      cpp
 #  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`,    cpp
 #  `fastad`_,     Under Construction,                             cpp
-#  `jax`_,        Under Construction,
+#  `jax`_,        :ref:`jax_gradient-name`,                       python
 #  `pytorch`_,    :ref:`pytorch_gradient-name`,                   python
 #  `sacado`_,     :ref:`gradient <sacado_gradient.hpp-name>`,     cpp
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}

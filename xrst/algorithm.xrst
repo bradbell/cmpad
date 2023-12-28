@@ -227,6 +227,7 @@ Implementation
 {xrst_toc_table
    cpp/include/cmpad/algo/llsq_obj.hpp
    python/cmpad/llsq_obj.py
+   python/cmpad/jax/llsq_obj.py
    python/cmpad/pytorch/llsq_obj.py
 }
 

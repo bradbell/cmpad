@@ -51,9 +51,9 @@ def xam_grad_jax() :
    ok       &= check_grad_llsq( grad_llsq )
    #
    # grad_llsq_jax, ok
-   # algo              = cmpad.jax.llsq_obj()
-   # grad_llsq_jax = cmpad.jax.gradient( algo )
-   # ok               &= check_grad_llsq( grad_llsq_jax )
+   algo              = cmpad.jax.llsq_obj()
+   grad_llsq_jax = cmpad.jax.gradient( algo )
+   ok               &= check_grad_llsq( grad_llsq_jax )
    #
    return ok
 #

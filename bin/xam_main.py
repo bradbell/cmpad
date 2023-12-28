@@ -110,7 +110,7 @@ def main() :
    #
    # python_package_list
    python_package_list = list()
-   for package in [ 'autograd', 'cppad_py', 'pytorch' ] :
+   for package in [ 'autograd', 'cppad_py', 'jax', 'pytorch' ] :
       import_name = 'torch' if package == 'pytorch' else package
       try :
          importlib.import_module(import_name)

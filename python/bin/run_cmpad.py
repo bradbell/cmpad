@@ -101,6 +101,8 @@ def grad_fun_obj(algorithm, package) :
       return cmpad.autograd.gradient(algo)
    elif package == 'cppad_py' :
       return cmpad.cppad_py.gradient(algo)
+   elif package == 'jax' :
+      return cmpad.jax.gradient(algo)
    elif package == 'pytorch' :
       return cmpad.pytorch.gradient(algo)
    else :
@@ -166,7 +168,7 @@ def main() :
    #
    # package
    package = arguments.package
-   if package not in [ 'none', 'autograd', 'cppad_py', 'pytorch' ] :
+   if package not in [ 'none', 'autograd', 'cppad_py', 'jax', 'pytorch' ] :
       msg = f'{program}: package = {package} is not available'
       sys.exit(msg)
    #
@@ -223,13 +225,21 @@ def main() :
    )
    #
    # csv_speed
-   if package == 'pytorch' and algorithm == 'llsq_obj' :
-      fun_obj = cmpad.pytorch.llsq_obj()
-      rate    = cmpad.fun_speed(fun_obj, option, min_time)
-      special = True
-      cmpad.csv_speed(
-         file_name, rate, min_time, package, algorithm, special, option
-      )
+   if algorithm == 'llsq_obj' :
+      if package == 'pytorch' :
+         fun_obj = cmpad.pytorch.llsq_obj()
+         rate    = cmpad.fun_speed(fun_obj, option, min_time)
+         special = True
+         cmpad.csv_speed(
+            file_name, rate, min_time, package, algorithm, special, option
+         )
+      if package == 'jax' :
+         fun_obj = cmpad.jax.llsq_obj()
+         rate    = cmpad.fun_speed(fun_obj, option, min_time)
+         special = True
+         cmpad.csv_speed(
+            file_name, rate, min_time, package, algorithm, special, option
+         )
 #
 main()
 # END PYTHON
