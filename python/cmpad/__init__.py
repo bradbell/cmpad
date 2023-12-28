@@ -32,6 +32,12 @@ try :
 except :
    pass
 #
+# jax
+try :
+   from . import jax
+except :
+   pass
+#
 # pytorch
 try :
    from . import pytorch

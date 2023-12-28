@@ -24,6 +24,7 @@ The gradient is for the last component of the range space of the algorithm
 {xrst_toc_table
    python/cmpad/autograd/gradient.py
    python/cmpad/cppad_py/gradient.py
+   python/cmpad/jax/gradient.py
    python/cmpad/pytorch/gradient.py
    python/xam/check_grad_det.py
    python/xam/check_grad_ode.py
