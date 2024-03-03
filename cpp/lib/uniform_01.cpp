@@ -7,7 +7,6 @@
 {xrst_spell
    srand
    std
-   variate
 }
 
 Simulate a [0,1] Uniform Random Variate

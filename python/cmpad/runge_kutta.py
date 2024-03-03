@@ -5,6 +5,8 @@
 r'''
 {xrst_begin_parent py_runge_kutta}
 {xrst_spell
+   dy
+   int
    ns
    tf
    yf

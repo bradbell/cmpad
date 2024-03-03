@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin_parent py_det_of_minor}
-{xrst_spell
-   factorization
-}
 
 Python Determinant of a Minor
 #############################

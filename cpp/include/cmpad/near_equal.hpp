@@ -11,8 +11,7 @@
 {xrst_begin cpp_near_equal}
 {xrst_spell
    fabs
-   operand
-   operands
+   os
    rel
    std
    vec

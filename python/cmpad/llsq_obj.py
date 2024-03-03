@@ -6,7 +6,6 @@ r'''
 {xrst_begin py_llsq_obj}
 {xrst_spell
    numpy
-   vectorized
 }
 
 Python Least Squares Linear Regression Objective

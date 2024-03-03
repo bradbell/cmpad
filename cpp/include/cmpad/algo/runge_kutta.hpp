@@ -8,6 +8,7 @@
 /*
 {xrst_begin_parent runge_kutta}
 {xrst_spell
+   dy
    ns
    tf
    yf

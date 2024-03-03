@@ -9,6 +9,7 @@
 {xrst_spell
    cg
    dll
+   ext
    obj
 }
 

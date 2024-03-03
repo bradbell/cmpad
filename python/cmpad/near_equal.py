@@ -6,8 +6,7 @@ r'''
 {xrst_begin py_near_equal}
 {xrst_spell
    fabs
-   operand
-   operands
+   os
    rel
    std
    vec

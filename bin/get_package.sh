@@ -9,10 +9,10 @@ set -e -u
 # {xrst_begin get_package}
 # {xrst_spell
 #     eigen
+#     jax
 #     rm
 #     srcdir
 #     venv
-#     prefixes
 # }
 # {xrst_comment_ch #}
 #
@@ -36,7 +36,7 @@ set -e -u
 # all
 # ===
 # If *package_1* is ``all`` , all of the possible packages,
-# except fastad and clad (thoes under construction) are installed.
+# except fastad and clad (those under construction) are installed.
 # In this case, *package_2* .. must not be present on the command line.
 #
 # package_j

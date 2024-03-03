@@ -10,6 +10,7 @@
 /*
 {xrst_begin option_t}
 {xrst_spell
+   max
    std
    struct
 }

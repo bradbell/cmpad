@@ -4,11 +4,15 @@ SPDX-FileContributor: 2023 Bradley M. Bell
 -----------------------------------------------------------------------------
 {xrst_begin csv_column}
 {xrst_spell
+   dd
    kutta
+   llsq
+   mm
    newline
+   obj
    runge
-   llsq obj
-   yyyy mm dd
+   ture
+   yyyy
 }
 
 The cmpad Csv File Columns

@@ -6,9 +6,6 @@
 # define CMPAD_ALGO_DET_OF_MINOR_HPP
 /*
 {xrst_begin_parent cpp_det_of_minor}
-{xrst_spell
-   factorization
-}
 
 C++ Determinant of a Minor
 ##########################

@@ -76,7 +76,6 @@ the :math:`(i,j)`\ -th element :math:`A_{i,j}` is
    kutta
    llll
    runge
-   truncation
 }
 
 An ODE Solution
@@ -165,9 +164,6 @@ The partial of :math:`y_i (t)` with respect to :math:`x_j` is
 {xrst_end an_ode}
 ------------------------------------------------------------------------------
 {xrst_begin llsq_obj}
-{xrst_spell
-   vectorized
-}
 
 Least Squares Linear Regression Objective
 #########################################

@@ -74,13 +74,19 @@ data = [
       bool
       namespace
    ''',
+   # abbreviations used by this package
+   '''
+      algo
+      det
+      min
+      ok
+   ''',
    # words that do not begin with backslash and used in latex
    '''
       eqnarray
    ''',
    # valid words not in some dictionaries
    '''
-      determinant
       factorial
    ''',
 ]
