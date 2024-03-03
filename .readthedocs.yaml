@@ -10,6 +10,7 @@ build:
       - pip install xrst
       - pip uninstall -y xrst
       - pip install --index-url https://test.pypi.org/simple/ xrst
+      - xrst --version
       #
       # build/html
       # The xsrst html_directory for this configuration is build/html.
@@ -19,6 +20,7 @@ build:
          --html_theme furo
          --group_list default
          --index_page_name cmpad
+         --suppress_spell_warnings
       #
       # _readthedocs/html
       # The directory that Read the Docs uploads when commands is used.
