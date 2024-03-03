@@ -13,7 +13,7 @@ Syntax
 | |tab| *ok* = ``check_grad_llsq`` ( *grad_llsq* )
 
 grad_llsq
-8********
+*********
 This is a ``float`` :ref:`py_fun_obj-title` .
 
 option
