@@ -131,8 +131,7 @@ def install_cppad_py(build_type) :
    # list_of_commands
    list_of_commands = [
       'bin/get_cppad.sh',
-      'python -m build' ,
-      f'pip install dist/cppad_py-{version}.tar.gz',
+      f'pip .',
    ]
    system_command(list_of_commands)
    #

@@ -58,7 +58,7 @@ fi
 # convert spaces in file names to @@
 list=$(
    git status --porcelain | sed -n -e '/^?? /p' |  \
-      sed -e 's|^?? ||' -e 's|"||g' -e 's| |@@|g' 
+      sed -e 's|^?? ||' -e 's|"||g' -e 's| |@@|g'
 )
 for file in $list
 do
