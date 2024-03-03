@@ -1,18 +1,16 @@
 #! /usr/bin/env bash
+set -e -u
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-set -e -u
-# -----------------------------------------------------------------------------
 # bash function that echos and executes a command
 echo_eval() {
-	echo $*
-	eval $*
+   echo $*
+   eval $*
 }
 # -----------------------------------------------------------------------------
-#
 if [ $# != 0 ]
 then
    echo 'usage: bin/git_commit.sh: does not expect arugments'
@@ -57,9 +55,15 @@ then
 fi
 # -----------------------------------------------------------------------------
 # new files
-list=$(git status --porcelain | sed -n -e '/^?? /p' | sed -e 's|^?? ||')
+# convert spaces in file names to @@
+list=$(
+   git status --porcelain | sed -n -e '/^?? /p' |  \
+      sed -e 's|^?? ||' -e 's|"||g' -e 's| |@@|g' 
+)
 for file in $list
 do
+   # convert @@ in file names back to spaces
+   file=$(echo $file | sed -e 's|@@| |g')
    res=''
    while [ "$res" != 'delete' ] && [ "$res" != 'add' ] && [ "$res" != 'abort' ]
    do
@@ -67,7 +71,9 @@ do
    done
    if [ "$res" == 'delete' ]
    then
-      echo_eval rm $file
+      # may be spaces in file name so do not use echo_eval
+      echo "rm '$file'"
+      rm "$file"
    elif [ "$res" == 'abort' ]
    then
       echo 'bin/git_commit.sh: aborting'
@@ -78,25 +84,29 @@ done
 # git_commit.log
 branch=$(git branch --show-current)
 cat << EOF > git_commit.log
-$branch: Comments about this commit go in this file.
-If you delete all the lines in this file, this commit will abort.
-Below is a list of the files that will be changed by this commit:
+$branch:
+# Enter the commit message for your changes above.
+# This commit will abort if the first line does not begin with "$branch:"
+# because $branch is the branch for this commit.
+# Lines starting with '#' are not included in the message.
+# Below is a list of the files for this commit:
 EOF
-git status --porcelain >> git_commit.log
+git status --porcelain | sed -e 's|^|# |' >> git_commit.log
 $EDITOR git_commit.log
-#
-if grep 'If you delete all the lines in this file,' git_commit.log > /dev/null
+sed -i git_commit.log -e '/^#/d'
+if ! head -1 git_commit.log | grep "^$branch:" > /dev/null
 then
-   echo 'Aborting because you left documentation lines in commit log'
+   echo "Aborting because first line does not begin with $branch:"
+   echo 'See ./git_commit.log'
    exit 1
 fi
-if grep 'Below is a list of the files that will' git_commit.log > /dev/null
+if ! head -1 git_commit.log | grep "^$branch:.*[^ \t]" > /dev/null
 then
-   echo 'Aborting because you left documentation lines in commit log'
+   echo "Aborting because only white space follow $branch: in first line"
+   echo 'See ./git_commit.log'
    exit 1
 fi
 # -----------------------------------------------------------------------------
-#
 # git add
 echo_eval git add --all
 #
