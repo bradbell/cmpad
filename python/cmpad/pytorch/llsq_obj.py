@@ -21,9 +21,9 @@ Prototype
    # END PROTOTYPE
 }
 
-Algorithm
-*********
-This is a python implementation of the :ref:`llsq_obj-name` algorithm .
+Special
+*******
+This is a python implementation of the :ref:`llsq_obj-name` algorithm
 that specialized for the pytorch package.
 
 n_arg
