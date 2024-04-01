@@ -9,7 +9,6 @@ set -e -u
 # {xrst_begin get_package}
 # {xrst_spell
 #     eigen
-#     jax
 #     rm
 #     srcdir
 #     venv
@@ -216,6 +215,12 @@ do
    shift
 
    case $package in
+
+   # BEGIN CPP_PACKAGE_SUPPORT
+   eigen)
+   # END CPP_PACKAGE_SUPPORT
+   echo_eval cpp/bin/get_package.sh $build_type $package
+   ;;
 
    # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
    clad|fastad)

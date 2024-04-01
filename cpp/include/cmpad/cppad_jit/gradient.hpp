@@ -74,8 +74,8 @@ Source Code
 namespace cmpad { namespace cppad_jit { // BEGIN cmpad::cppad_jit namespace
 
 static_assert(
-   CPPAD_C_COMPILER_GNU || CPPAD_C_COMPILER_MSVC,
-   "C compiler is not GNU or MCVC"
+   CPPAD_C_COMPILER_GNU_FLAGS || CPPAD_C_COMPILER_MSVC_FLAGS,
+   "C compiler does not use same flags as GNU or MCVC"
 );
 
 // cmpad::cppad_jit::gradient

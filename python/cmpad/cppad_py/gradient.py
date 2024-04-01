@@ -6,7 +6,6 @@ r'''
 {xrst_begin_parent cppad_py_gradient}
 {xrst_spell
    numpy
-   obj
 }
 
 Calculate Gradient Using cppad_py

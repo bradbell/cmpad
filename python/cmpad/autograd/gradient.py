@@ -6,7 +6,6 @@ r'''
 {xrst_begin_parent autograd_gradient}
 {xrst_spell
    numpy
-   obj
 }
 
 Calculate Gradient Using autograd

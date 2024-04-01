@@ -28,6 +28,7 @@ set -e -u
 #     bin/get_package.sh
 #     # BEGIN CPP_PACKAGE_LIST, # END CPP_PACKAGE_LIST
 #     # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED, # END CPP_PACKAGE_NOT_IMPLEMENTED
+#     # BEGIN CPP_PACKAGE_SUPPORT, # END CPP_PACKAGE_SUPPORT
 # }
 #
 # {xrst_end cpp_get_package}
@@ -155,7 +156,7 @@ case $package in
 
    eigen)
    web_page='https://gitlab.com/libeigen/$package.git'
-   version='master'
+   version='3.4.0'
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;

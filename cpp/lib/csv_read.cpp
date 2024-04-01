@@ -6,9 +6,7 @@
 {xrst_begin csv_read}
 {xrst_spell
    newlines
-   str
    th
-   vec
 }
 
 Read a Csv File

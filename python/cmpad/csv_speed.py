@@ -146,15 +146,18 @@ def csv_speed(
          msg += 'is not using version installed by cmpad get_package.sh'
          assert False, msg
       top_srcdir   = package_path[ : index]
-      external_dir = f'{top_srcdir}/external'
-      if os.path.exists( f'{external_dir}/{package}.debug' ) :
+      package_dir  = f'{top_srcdir}/external/{package}.git'
+      debug        = False
+      if os.path.exists( f'{package_dir}/build.debug' ) :
          debug = True
-      elif os.path.exists( f'{external_dir}/{package}.release' ) :
-         debug = False
+      elif os.path.exists( f'{package_dir}/build.release' ) :
+         msg  = f'Both build.debug and build.release exists in\n'
+         msg += package_dir
+         assert not debug, msg
       else :
-         msg  = f'Using package = {package} but cannot find either of:\n'
-         msg += f'{external_dir}/{package}.debug\n'
-         msg += f'{external_dir}/{package}.release\n'
+         msg  = f'Using package = {package} but cannot find either '
+         msg += 'build.debug or build.release in\n'
+         msg += package_dir
          assert False, msg
    #
    # compiler

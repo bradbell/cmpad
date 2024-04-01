@@ -6,7 +6,6 @@ r'''
 {xrst_begin_parent jax_gradient}
 {xrst_spell
    numpy
-   obj
 }
 
 Calculate Gradient Using jax

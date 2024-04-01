@@ -46,7 +46,8 @@ do
       fi
       if [ "$build_type" != 'debug' ]
       then
-         'Mixing build types in external directory'
+         echo 'Mixing build types in external directory:'
+         ls external/*.debug external/*.release
          exit 1
       fi
    elif [ -e external/$package.release ]
@@ -57,7 +58,8 @@ do
       fi
       if [ "$build_type" != 'release' ]
       then
-         'Mixing debug and release in external directory'
+         echo 'Mixing build types in external directory:'
+         ls external/*.debug external/*.release
          exit 1
       fi
    fi

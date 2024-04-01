@@ -104,8 +104,13 @@ def install_cppad_py(build_type) :
       system_command( [ command_str ] )
    #
    os.chdir( f'cppad_py.git' )
-   command_str = 'git pull'
-   system_command( [ command_str ] )
+   #
+   # list_of_commands
+   list_of_commands = [
+      'git reset --hard' ,
+      'git pull',
+   ]
+   system_command( list_of_commands )
    #
    # install_settings
    file_obj         = open( 'bin/install_settings.py', 'r')
@@ -131,7 +136,7 @@ def install_cppad_py(build_type) :
    # list_of_commands
    list_of_commands = [
       'bin/get_cppad.sh',
-      f'pip .',
+      f'pip install .',
    ]
    system_command(list_of_commands)
    #

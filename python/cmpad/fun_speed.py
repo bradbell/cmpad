@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_fun_speed}
-{xrst_spell
-   obj
-}
 
 Determine Python Execution Speed
 ################################
