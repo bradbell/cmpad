@@ -24,7 +24,7 @@ Prototype
 Special
 *******
 This is a python implementation of the :ref:`llsq_obj-name` algorithm
-that specialized for the jax package.
+that is specialized for the jax package.
 
 n_arg
 *****

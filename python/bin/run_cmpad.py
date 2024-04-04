@@ -226,15 +226,13 @@ def main() :
    #
    # csv_speed
    if algorithm == 'llsq_obj' :
-      if package == 'pytorch' :
-         fun_obj = cmpad.pytorch.llsq_obj()
-         rate    = cmpad.fun_speed(fun_obj, option, min_time)
-         special = True
-         cmpad.csv_speed(
-            file_name, rate, min_time, package, algorithm, special, option
-         )
-      if package == 'jax' :
-         fun_obj = cmpad.jax.llsq_obj()
+      if package in [ 'pytorch' , 'jax' ] :
+         if package == 'pytorch' :
+            special_algo = cmpad.pytorch.llsq_obj()
+            fun_obj      = cmpad.pytorch.gradient(special_algo)
+         else :
+            special_algo = cmpad.jax.llsq_obj()
+            fun_obj      = cmpad.jax.gradient(special_algo)
          rate    = cmpad.fun_speed(fun_obj, option, min_time)
          special = True
          cmpad.csv_speed(
