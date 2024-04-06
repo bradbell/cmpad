@@ -4,19 +4,28 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023 Bradley M. Bell
 # ---------------------------------------------------------------------------
-set -e -u
-# ----------------------------------------------------------------------------
-# Use this script inside a bash script as follows to set PYTHONPATH:
-# $(python/bin/pythonpath.sh)
+# Use source this script to set the python environment and path.
 #
 # program
-program='python/bin/pythonpath.sh'
+program='python/bin/python_env.sh'
 #
-if [ ! -d .git ]
+if echo "$0" | grep '/python_env.sh' > /dev/null
 then
-   echo "${program}_must_be_run_from_the_top_soruce_directory"
+   echo "$program: must source this file, not execute it"
    exit 1
 fi
+if [ ! -d .git ]
+then
+   echo "${program}_must_source_from_the_top_soruce_directory"
+   exit 1
+fi
+#
+# VIRTUAL_ENV
+if printenv | grep '^VIRTUAL_ENV=' > /dev/null
+then
+   deactivate
+fi
+source python/venv/bin/activate
 #
 # python_dir
 python_dir="$(pwd)/python"
@@ -27,7 +36,4 @@ prefix="$python_dir/build/prefix"
 # PYTHONPATH
 site_packages=$(find -L $prefix -name 'site-packages')
 site_packages=$(echo $site_packages | sed -e 's|  *|:|' )
-PYTHONPATH="$python_dir:$site_packages"
-echo "export PYTHONPATH=$PYTHONPATH"
-#
-exit 0
+export PYTHONPATH="$python_dir:$site_packages"

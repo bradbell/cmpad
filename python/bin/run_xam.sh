@@ -38,7 +38,9 @@ then
    exit 1
 fi
 # ----------------------------------------------------------
-$(python/bin/pythonpath.sh)
+#
+# python_env
+source python/bin/python_env.sh
 #
 # temp.py
 sed -e 's|^def test_.*|if True :|'  python/xam/$file > python/xam/temp.py

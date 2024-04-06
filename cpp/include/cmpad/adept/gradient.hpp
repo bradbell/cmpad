@@ -6,44 +6,12 @@
 # define CMPAD_ADEPT_GRADIENT_HPP
 /*
 {xrst_begin adept_gradient.hpp}
-{xrst_spell
-   obj
-}
 
-Calculate Gradient Using Adept
-##############################
-
-Syntax
-******
-| |tab| ``# include <cmpad/adept/gradient.hpp>``
-| |tab| ``cmpad::adept::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using Adept.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::adept::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Example
-*******
-The file :ref:`xam_gradient_adept.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , Adept
+   @#######@ , #####
+   @package@ , adept
 }
 
 {xrst_end adept_gradient.hpp}

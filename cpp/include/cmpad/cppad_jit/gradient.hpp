@@ -6,59 +6,27 @@
 # define CMPAD_CPPAD_JIT_GRADIENT_HPP
 /*
 {xrst_begin cppad_jit_gradient.hpp}
-{xrst_spell
-   dll
-   ext
-   obj
-}
 
-Calculate Gradient Using CppAD Compiled Derivative Calculation
-##############################################################
-
-Syntax
-******
-| |tab| ``# include <cmpad/cppad_jit/gradient.hpp>``
-| |tab| ``cmpad::cppad_jit::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using
-CppAD just in time compilation.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::cppad_jit::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Side Effect
-***********
-This routine uses the following files in the C++ temporary directory:
-``grad_cppad_jit.``\ *ext* were *ext* is the file extension for
-C source files and dll object files.
-In particular this routine is not thread safe.
-
-Example
-*******
-The file :ref:`xam_gradient_cppad_jit.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , CppAD Jit
+   @#######@ , #########
+   @package@ , cppad_jit
 }
 
 {xrst_end cppad_jit_gradient.hpp}
 */
 // BEGIN C++
+/*
+Side Effect
+***********
+This routine uses the following files in the C++ temporary directory:
+   grad_cppad_jit. *ext*
+were *ext* is the file extension for C source files and dll object files.
+In particular this routine is not thread safe.
+*/
+
+
 # if CMPAD_HAS_CPPAD
 
 # include <filesystem>

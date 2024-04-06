@@ -6,44 +6,12 @@
 # define CMPAD_AUTODIFF_GRADIENT_HPP
 /*
 {xrst_begin autodiff_gradient.hpp}
-{xrst_spell
-   obj
-}
 
-Calculate Gradient Using autodiff
-#################################
-
-Syntax
-******
-| |tab| ``# include <cmpad/autodiff/gradient.hpp>``
-| |tab| ``cmpad::autodiff::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using autodiff.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::autodiff::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Example
-*******
-The file :ref:`xam_gradient_autodiff.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , autodiff
+   @#######@ , ########
+   @package@ , autodiff
 }
 
 {xrst_end autodiff_gradient.hpp}

@@ -20,9 +20,10 @@ then
    echo 'prefix does not exists, so not testing any python packages.'
    exit 0
 fi
+# -----------------------------------------------------------------------------
 #
-# PYTHONPATH
-$(python/bin/pythonpath.sh)
+# python_env
+source python/bin/python_env.sh
 #
 # pytest
 pytest $(ls python/xam/*.py | sed -e '/\/temp.py$/d' )

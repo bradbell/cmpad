@@ -7,53 +7,14 @@
 /*
 {xrst_begin cppadcg_gradient.hpp}
 {xrst_spell
-   cg
-   dll
-   ext
-   obj
+   gen
 }
 
-Calculate Gradient Using CppAD
-##############################
-
-Syntax
-******
-| |tab| ``# include <cmpad/cppadcg/gradient.hpp>``
-| |tab| ``cmpad::cppadcg::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using CppAD.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::cppadcg::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Side Effect
-***********
-This routine uses the following file in the C++ temporary directory:
-``cppad_cg_model.``\ *ext* were *ext* is the file extension for
-dll object files.
-In particular this routine is not thread safe.
-
-Example
-*******
-The file :ref:`xam_gradient_cppadcg.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , CppAD CodeGen
+   @#######@ , #############
+   @package@ , cppadcg
 }
 
 {xrst_end cppadcg_gradient.hpp}

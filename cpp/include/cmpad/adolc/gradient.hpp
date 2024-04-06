@@ -6,44 +6,12 @@
 # define CMPAD_ADOLC_GRADIENT_HPP
 /*
 {xrst_begin adolc_gradient.hpp}
-{xrst_spell
-   obj
-}
 
-Calculate Gradient Using ADOL-C
-###############################
-
-Syntax
-******
-| |tab| ``# include <cmpad/adolc/gradient.hpp>``
-| |tab| ``cmpad::adolc::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using ADOL-C.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::adolc::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Example
-*******
-The file :ref:`xam_gradient_adolc.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , ADOL-C
+   @#######@ , ######
+   @package@ , adolc
 }
 
 {xrst_end adolc_gradient.hpp}

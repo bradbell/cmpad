@@ -37,6 +37,8 @@ done
 bin/run_xrst.sh
 python/bin/check_python.sh
 cpp/bin/check_cpp.sh
+#
+source python/bin/python_env.sh
 bin/check_main.py
 # -----------------------------------------------------------------------------
 echo 'bin/check_all.sh: OK'

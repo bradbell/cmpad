@@ -1,0 +1,47 @@
+{xrst_comment:
+
+This template file has the following parameters:
+   @Package@ : the name of this packages (used in a page title).
+   @#######@ : the rst underlining for the package name.
+   @package@ : is a lower case version of @Package@. This used used for the 
+               corresponding namespace, directories, and file names.
+
+This template uses // BEGIN C++ and // END C++ for the source code limits
+in the page file that implementes the gradient.
+}
+
+Calculate Gradient Using @Package@
+#########################@#######@
+
+Syntax
+******
+| |tab| ``# include <cmpad/@package@/gradient.hpp>``
+| |tab| ``cmpad::@package@::gradient`` < *TemplateAlgo* > *grad*
+| |tab| *g* = *grad* ( *x* )
+
+
+Purpose
+*******
+This implements the :ref:`cpp_gradient-name` interface using @Package@.
+
+TemplateAlgo
+************
+The class TemplateAlgo<Scalar> must be a derived class for
+:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
+
+value_type
+**********
+The type cmpad::@package@::gradient<TemplateAlgo>::value_type is ``double`` ;
+see :ref:`cpp_gradient@value_type` .
+
+Example
+*******
+The file :ref:`xam_gradient_@package@.cpp-name`
+contains an example and test using this class.
+
+Source Code
+***********
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}

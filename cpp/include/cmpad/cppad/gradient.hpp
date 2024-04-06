@@ -6,44 +6,12 @@
 # define CMPAD_CPPAD_GRADIENT_HPP
 /*
 {xrst_begin cppad_gradient.hpp}
-{xrst_spell
-   obj
-}
 
-Calculate Gradient Using CppAD
-##############################
-
-Syntax
-******
-| |tab| ``# include <cmpad/cppad/gradient.hpp>``
-| |tab| ``cmpad::cppad::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using CppAD.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::cppad::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Example
-*******
-The file :ref:`xam_gradient_cppad.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , CppAD
+   @#######@ , #####
+   @package@ , cppad
 }
 
 {xrst_end cppad_gradient.hpp}

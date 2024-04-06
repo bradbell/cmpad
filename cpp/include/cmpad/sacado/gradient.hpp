@@ -6,45 +6,14 @@
 # define CMPAD_SACADO_GRADIENT_HPP
 /*
 {xrst_begin sacado_gradient.hpp}
-{xrst_spell
-   obj
+
+{xrst_template ,
+   cpp/include/cmpad/gradient.xrst
+   @Package@ , Sacado
+   @#######@ , ######
+   @package@ , sacado
 }
 
-Calculate Gradient Using Sacado
-###############################
-
-Syntax
-******
-| |tab| ``# include <cmpad/sacado/gradient.hpp>``
-| |tab| ``cmpad::sacado::gradient`` < *TemplateAlgo* > *grad*
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements the :ref:`cpp_gradient-name` interface using Sacado.
-
-TemplateAlgo
-************
-The class TemplateAlgo<Scalar> must be a derived class for
-:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
-
-value_type
-**********
-The type cmpad::sacado::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
-
-Example
-*******
-The file :ref:`xam_gradient_sacado.cpp-name`
-contains an example and test using this class.
-
-Source Code
-***********
-{xrst_literal
-   // BEGIN C++
-   // END C++
-}
 
 {xrst_end sacado_gradient.hpp}
 */
