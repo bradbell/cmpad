@@ -53,6 +53,7 @@ data = [
       cppadcg
       fastad
       jit
+      numpy
       pytorch
       sacado
    ''',
@@ -62,12 +63,8 @@ data = [
    ''',
    # file extensions
    '''
-      csv
       hpp
       cpp
-      py
-      rst
-      sh
    ''',
    # language keywords
    '''
@@ -84,10 +81,6 @@ data = [
    # words that do not begin with backslash and used in latex
    '''
       eqnarray
-   ''',
-   # valid words not in some dictionaries
-   '''
-      factorial
    ''',
 ]
 

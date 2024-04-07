@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_llsq_obj}
-{xrst_spell
-   numpy
-}
 
 Python Linear Least Squares Objective
 #####################################

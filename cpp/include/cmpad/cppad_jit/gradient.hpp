@@ -7,8 +7,8 @@
 /*
 {xrst_begin cppad_jit_gradient.hpp}
 {xrst_spell
-   ext
    dll
+   ext
 }
 
 {xrst_template ,

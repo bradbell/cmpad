@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin jax_gradient.py}
-{xrst_spell
-   numpy
-}
 
 {xrst_template ,
    python/cmpad/gradient.xrst

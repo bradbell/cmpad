@@ -4,9 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin cppad_py_gradient.py}
-{xrst_spell
-   numpy
-}
 {xrst_template ,
    python/cmpad/gradient.xrst
    @Package@    , cppad_py
