@@ -9,9 +9,10 @@
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@ , Adept
-   @#######@ , #####
-   @package@ , adept
+   @Package@       , Adept
+   @#######@       , #####
+   @package@       , adept
+   @not_cppad_jit@ , true
 }
 
 {xrst_end adept_gradient.hpp}

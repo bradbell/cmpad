@@ -9,9 +9,10 @@
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@ , ADOL-C
-   @#######@ , ######
-   @package@ , adolc
+   @Package@       , ADOL-C
+   @#######@       , ######
+   @package@       , adolc
+   @not_cppad_jit@ , true
 }
 
 {xrst_end adolc_gradient.hpp}

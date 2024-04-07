@@ -12,9 +12,10 @@
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@ , CppAD CodeGen
-   @#######@ , #############
-   @package@ , cppadcg
+   @Package@       , CppAD CodeGen
+   @#######@       , #############
+   @package@       , cppadcg
+   @not_cppad_jit@ , true
 }
 
 {xrst_end cppadcg_gradient.hpp}

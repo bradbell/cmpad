@@ -9,9 +9,10 @@
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@ , Sacado
-   @#######@ , ######
-   @package@ , sacado
+   @Package@       , Sacado
+   @#######@       , ######
+   @package@       , sacado
+   @not_cppad_jit@ , true
 }
 
 

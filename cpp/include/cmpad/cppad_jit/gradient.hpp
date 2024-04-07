@@ -6,27 +6,22 @@
 # define CMPAD_CPPAD_JIT_GRADIENT_HPP
 /*
 {xrst_begin cppad_jit_gradient.hpp}
+{xrst_spell
+   ext
+   dll
+}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@ , CppAD Jit
-   @#######@ , #########
-   @package@ , cppad_jit
+   @Package@       , CppAD Jit
+   @#######@       , #########
+   @package@       , cppad_jit
+   @not_cppad_jit@ , false
 }
 
 {xrst_end cppad_jit_gradient.hpp}
 */
 // BEGIN C++
-/*
-Side Effect
-***********
-This routine uses the following files in the C++ temporary directory:
-   grad_cppad_jit. *ext*
-were *ext* is the file extension for C source files and dll object files.
-In particular this routine is not thread safe.
-*/
-
-
 # if CMPAD_HAS_CPPAD
 
 # include <filesystem>

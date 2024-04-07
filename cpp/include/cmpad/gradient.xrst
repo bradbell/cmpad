@@ -34,6 +34,17 @@ value_type
 The type cmpad::@package@::gradient<TemplateAlgo>::value_type is ``double`` ;
 see :ref:`cpp_gradient@value_type` .
 
+{xrst_suspend @not_cppad_jit@}
+Side Effect
+***********
+This routine uses the following files in the C++ temporary directory:
+
+   ``grad_cppad_jit.``\ *ext*
+
+were *ext* is the file extension for C source files and dll object files.
+In particular this routine is not thread safe.
+{xrst_resume}
+
 Example
 *******
 The file :ref:`xam_gradient_@package@.cpp-name`
