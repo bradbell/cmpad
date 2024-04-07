@@ -237,6 +237,7 @@ do
    # BEGIN PYTHON_PACKAGE_LIST
    autograd|cppad_py|jax|pytorch)
    # END PYTHON_PACKAGE_LIST
+   source python/bin/python_env.sh
    echo_eval python/bin/get_package.py $build_type $package
    ;;
 

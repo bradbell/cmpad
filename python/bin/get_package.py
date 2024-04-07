@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 import os
 r'''
@@ -150,17 +150,12 @@ def main() :
       msg = f'{program}: must be executed from cmpad top source directory'
       sys.exit(msg)
    if not os.path.isdir( 'python/venv' ) :
-      msg  = f'{program}: must first execute the following commands:\n'
-      msg += '   python3.11 -m venv python/venv\n'
-      msg += '   source python/venv/bin/activate\n'
-      msg += '   pip install toml build\n'
-      msg += 'where python3.11 can be replaced by '
-      msg += 'any version of python on your system'
+      msg  = f'{program}: The python/venv virtual environment does not exist'
       sys.exit(msg)
-   ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'python/venv' )
+   ok = sys.prefix.startswith( os.getcwd() )
+   ok &= sys.prefix.endswith( 'python/venv' )
    if not ok :
-      msg  = f'{program}: must first execute the following commands:\n'
-      msg += 'source python/venv/bin/activate'
+      msg  = f'{program}: The python/venv virtual environment note active'
       sys.exit(msg)
    #
    # package_list
