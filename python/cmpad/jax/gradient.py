@@ -41,6 +41,9 @@ class gradient :
    def range(self) :
       return self.option['n_arg']
    #
+   def func(self, x) :
+      v = self.algo(x)
+      return v[-1]
    #
    def setup(self, option) :
       assert type(option) == dict
@@ -56,15 +59,13 @@ class gradient :
       self.n_arg = self.algo.domain()
       assert self.n_arg == option['n_arg']
       #
+      # self.grad
+      self.grad = jax.grad(self.func)
    #
-   def func(self, x) :
-      v = self.algo(x)
-      return v[-1]
    #
    # call
    def __call__(self, x) :
-      grad = jax.grad(self.func)
       x    = jax.numpy.array(x, dtype=float)
-      z    = grad(x)
+      z    = self.grad(x)
       return z
 # END PYTHON

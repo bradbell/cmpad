@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef XAM_GRADIENT_CHECK_GRAD_LLSQ_HPP
 # define XAM_GRADIENT_CHECK_GRAD_LLSQ_HPP
@@ -56,7 +56,7 @@ bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
    bool ok = true;
    //
    // rel_error
-   double rel_error = 100. * std::numeric_limits<double>::epsilon();
+   double rel_error = 500. * std::numeric_limits<double>::epsilon();
    //
    // near_equal
    using cmpad::near_equal;

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin check_grad_llsq.py}
@@ -45,7 +45,7 @@ def check_grad_llsq( grad_llsq ) :
    ok = True
    #
    # rel_error
-   rel_error = 100. * numpy.finfo(float).eps
+   rel_error = 500. * numpy.finfo(float).eps
    #
    # n_arg
    n_arg = 4

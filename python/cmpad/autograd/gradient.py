@@ -39,7 +39,7 @@ class gradient :
    def range(self) :
       return self.option['n_arg']
    #
-   def wrapper(self, x) :
+   def func(self, x) :
       y = self.algo(x)
       return y[-1]
    #
@@ -53,8 +53,8 @@ class gradient :
       # self.algo
       self.algo.setup(option)
       #
-      # self.tape
-      self.tape = autograd.grad(self.wrapper)
+      # self.grad
+      self.grad = autograd.grad(self.func)
    #
    # call
    def __call__(self, x) :
@@ -63,6 +63,6 @@ class gradient :
       ax = autograd.numpy.empty(n_arg)
       for i in range(n_arg) :
          ax[i] = x[i]
-      g = self.tape( ax )
+      g = self.grad( ax )
       return g
 # END PYTHON
