@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_LLSQ_OBJ_HPP
 # define CMPAD_ALGO_LLSQ_OBJ_HPP
 /*
 {xrst_begin_parent cpp_llsq_obj}
 
-C++ Least Squares Linear Regression Objective
-#############################################
+C++ Linear Least Squares Objective
+##################################
 
 Syntax
 ******

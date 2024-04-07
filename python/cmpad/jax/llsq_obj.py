@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin jax_llsq_obj}
 
-Jax Least Squares Linear Regression Objective
-#############################################
+Jax Linear Least Squares Objective
+##################################
 
 Syntax
 ******
