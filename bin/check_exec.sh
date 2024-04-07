@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ----------------------------------------------------------------------------
 set -e -u
 if [ $# != 0 ]
@@ -16,6 +16,7 @@ then
 fi
 # ---------------------------------------------------------------------------
 ignore_list='
+   python/bin/python_env.sh
 '
 for file_name in $( git ls-files | sed -e 's|^bin|./bin|' )
 do

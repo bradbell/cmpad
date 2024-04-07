@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin run_cmpad.py}
@@ -35,7 +35,7 @@ import os
 import platform
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.5'
+cmpad_version = 'cmpad-2024.4.7'
 # ----------------------------------------------------------------------------
 #
 # program

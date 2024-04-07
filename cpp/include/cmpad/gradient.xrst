@@ -1,9 +1,12 @@
 {xrst_comment:
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023-24 Bradley M. Bell
 
 This template file has the following parameters:
    @Package@ : the name of this packages (used in a page title).
    @#######@ : the rst underlining for the package name.
-   @package@ : is a lower case version of @Package@. This used used for the 
+   @package@ : is a lower case version of @Package@. This used used for the
                corresponding namespace, directories, and file names.
 
 This template uses // BEGIN C++ and // END C++ for the source code limits

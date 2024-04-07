@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -e -u
 # -----------------------------------------------------------------------------
@@ -73,19 +73,19 @@ set -e -u
 #  :header-rows: 1
 #
 #  Web Site,      Implemented,                                    Language
-#  `adept`_,      :ref:`gradient <adept_gradient.hpp-name>`,      cpp
-#  `adolc`_,      :ref:`gradient <adolc_gradient.hpp-name>`,      cpp
-#  `autodiff`_,   :ref:`gradient <autodiff_gradient.hpp-name>`,   cpp
-#  `autograd`_,   :ref:`autograd_gradient-name`,                  python
+#  `adept`_,      :ref:`adept_gradient.hpp-name`,                 cpp
+#  `adolc`_,      :ref:`adolc_gradient.hpp-name`,                 cpp
+#  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,              cpp
+#  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
 #  `clad`_,       Under Construction,                             cpp
-#  `cppad_jit`_,  :ref:`gradient <cppad_jit_gradient.hpp-name>`,  cpp
-#  `cppad_py`_,   :ref:`cppad_py_gradient-name`,                  python
-#  `cppad`_,      :ref:`gradient <cppad_gradient.hpp-name>`,      cpp
-#  `cppadcg`_,    :ref:`gradient <cppadcg_gradient.hpp-name>`,    cpp
+#  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,             cpp
+#  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
+#  `cppad`_,      :ref:`cppad_gradient.hpp-name`,                 cpp
+#  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,               cpp
 #  `fastad`_,     Under Construction,                             cpp
-#  `jax`_,        :ref:`jax_gradient-name`,                       python
-#  `pytorch`_,    :ref:`pytorch_gradient-name`,                   python
-#  `sacado`_,     :ref:`gradient <sacado_gradient.hpp-name>`,     cpp
+#  `jax`_,        :ref:`jax_gradient.py-name`,                    python
+#  `pytorch`_,    :ref:`pytorch_gradient.py-name`,                python
+#  `sacado`_,     :ref:`sacado_gradient.hpp-name`,                cpp
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #
 # #. Implemented is the list of cmpad derivatives implemented so far

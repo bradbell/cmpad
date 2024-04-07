@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 #
 # print_variable
@@ -15,7 +15,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 SET(CMAKE_CXX_STANDARD 17)
 #
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
-PROJECT(cmpad VERSION 2024.4.5)
+PROJECT(cmpad VERSION 2024.4.7)
 #
 # cmpad_install_prefix
 SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/build/prefix" )

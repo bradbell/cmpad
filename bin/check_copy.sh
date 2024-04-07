@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ----------------------------------------------------------------------------
 set -e -u
 if [ $# != 0 ]
@@ -15,21 +15,53 @@ then
    exit 1
 fi
 # ---------------------------------------------------------------------------
-ignore_list='
-   .gitignore
-   xam_main.csv
-   .readthedocs.yaml
-   readme.md
-'
+license='SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later'
 missing='no'
-for file_name in $(git ls-files)
+changed='no'
+for file_name in $(git ls-files | sed \
+   -e '/^.gitignore$/d' \
+   -e '/^.readthedocs.yaml$/d' \
+   -e '/^readm.md$/d' \
+   -e '/^xam_main.csv$/d' \
+)
 do
-   if ! echo "$ignore_list" | tr '\n' ' ' | grep " $file_name " > /dev/null
+   if ! grep "$license\$" $file_name > /dev/null
    then
-      if ! grep 'SPDX-FileCopyrightText:' $file_name > /dev/null
+      if [ "$missing" == 'no' ]
       then
-         echo "missing SPDX-FileCopyrightText: $file_name"
-         missing='yes'
+         echo "Cannot find line that ends with:"
+         echo "   $license"
+         echo "In the following files:"
+      fi
+      echo "$file_name"
+      missing='yes'
+   fi
+done
+for file_name in $(git status --porcelain | sed -e 's|^...||' )
+do
+   if [ -e $file_name ]
+   then
+      sed \
+      -e 's|\(SPDX-FileContributor\): *\([0-9]\{4\}\)[-0-9]* |\1: \2-24 |' \
+      -e 's|\(SPDX-FileContributor\): 2024-24 |\1: 2024 |' \
+      $file_name > temp.$$
+      if diff $file_name temp.$$ > /dev/null
+      then
+         rm temp.$$
+      else
+         if [ "$changed" == 'no' ]
+         then
+            echo 'The following file contributor dates have been updated'
+         fi
+         echo $file_name
+         changed='yes'
+         if [ -x $file_name ]
+         then
+            mv temp.$$ $file_name
+            chmod +x $file_name
+         else
+            mv temp.$$ $file_name
+         fi
       fi
    fi
 done

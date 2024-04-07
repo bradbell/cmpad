@@ -1,69 +1,19 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin_parent autograd_gradient}
+{xrst_begin autograd_gradient.py}
 {xrst_spell
    numpy
 }
 
-Calculate Gradient Using autograd
-#################################
-
-Syntax
-******
-| |tab| *grad* ``cmpad.autograd.gradient`` ( *algo* )
-| |tab| *grad* . ``setup`` ( *option* )
-| |tab| *g* = *grad* ( *x* )
-
-
-Purpose
-*******
-This implements a :ref:`py_fun_obj-name`
-that computes the gradient of the last component of values
-computed by *algo* .
-
-algo
-****
-This is a py_fun_obj where the input and output vectors
-have elements of type ``autograd.a_double`` .
-The last range space component
-is used to define the scalar function that the gradient is for.
-
-grad
-****
-This is a py_fun_obj where the input and output vectors
-have elements of type ``float`` .
-
-x
-*
-This is a numpy vector of ``float`` with length *option* [ ``'n_arg'`` ] .
-It is the argument value at which to compute the gradient.
-
-g
-*
-This is a numpy vector of ``float`` with length *option* [ ``'n_arg'`` ] .
-It is the value of the gradient ad *x* .
-
-{xrst_toc_hidden before
-   python/xam/grad_autograd.py
-}
-Example
-*******
-The file :ref:`xam_grad_autograd.py-name`
-contains an example and test using this class.
-
-{xrst_end autograd_gradient}
-------------------------------------------------------------------------------
-{xrst_begin autograd_gradient.py}
-
-Gradient Using autograd: Source Code
-####################################
-
-{xrst_literal
-   # BEGIN PYTHON
-   # END PYTHON
+{xrst_template ,
+   python/cmpad/gradient.xrst
+   @Package@    , Autograd
+   @#######@    , ########
+   @package@    , autograd
+   @algo_type@  , ``autograd.numpy.array`` with ``float`` elements
 }
 
 {xrst_end autograd_gradient.py}

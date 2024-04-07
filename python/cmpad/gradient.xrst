@@ -1,0 +1,68 @@
+{xrst_comment:
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023-24 Bradley M. Bell
+
+This template file has the following parameters:
+   @Package@   : the name of this packages (used in a page title).
+   @#######@   : the rst underlining for the package name.
+   @package@   : is a lower case version of @Package@. This used used for the
+                 corresponding module name, directories, and file names.
+   @algo_type@ : is the AD type of the vectors used by the algorithm
+
+This template uses // BEGIN PYTHON and // END PYTHON for the source code limits
+in the page file that uses this template file.
+}
+
+Calculate Gradient Using @Package@
+#########################@#######@
+
+Syntax
+******
+| |tab| *grad* ``cmpad.@package@.gradient`` ( *algo* )
+| |tab| *grad* . ``setup`` ( *option* )
+| |tab| *g* = *grad* ( *x* )
+
+
+Purpose
+*******
+This uses @Package@ to implement a :ref:`py_fun_obj-name`
+that computes the gradient of the last component of values
+computed by *algo* .
+
+algo
+****
+This is a py_fun_obj where the
+input and output vectors have type @algo_type@ .
+The last range space component, computed by *algo* ,
+defines the scalar function that the gradient is for.
+
+grad
+****
+This is a py_fun_obj where the input and output vectors
+have elements of type ``float`` .
+
+x
+*
+This is a ``numpy`` vector of ``float`` with length *option* [ ``'n_arg'`` ] .
+It is the argument value at which to compute the gradient.
+
+g
+*
+This is a ``numpy`` vector of ``float`` with length *option* [ ``'n_arg'`` ] .
+It is the value of the gradient ad *x* .
+
+{xrst_toc_hidden
+   python/xam/grad_@package@.py
+}
+Example
+*******
+The file :ref:`xam_grad_@package@.py-name`
+contains an example and test using this class.
+
+Source Code
+***********
+{xrst_literal
+   # BEGIN PYTHON
+   # END PYTHON
+}
