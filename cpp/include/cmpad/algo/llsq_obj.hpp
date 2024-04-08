@@ -43,7 +43,7 @@ All of the C++ packages currently use this algorithm
 to compute derivatives of the llsq_obj function.
 Perhaps in the future, there will C++ package specific versions of the
 algorithm that have vector operations in manner similar to
-:ref:`pytorch_llsq_obj-name` .
+:ref:`py_llsq_obj-name` .
 
 n_arg
 *****

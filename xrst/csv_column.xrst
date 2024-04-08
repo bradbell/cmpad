@@ -1,6 +1,6 @@
 SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-SPDX-FileContributor: 2023 Bradley M. Bell
+SPDX-FileContributor: 2023-24 Bradley M. Bell
 -----------------------------------------------------------------------------
 {xrst_begin csv_column}
 {xrst_spell
@@ -113,8 +113,7 @@ its derivatives. The possible values so far are ``python`` and ``c++`` .
 special
 *******
 If this is ``true`` ,
-a special version of the algorithm for this particular *package* was used;
-e.g., :ref:`pytorch_llsq_obj-name` .
+a special version of the algorithm for this particular *package* was used.
 Otherwise it is ``false`` and the algorithm can be used
 by any of the packages for this *language* .
 

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin xam_grad_pytorch.py}
@@ -46,14 +46,9 @@ def xam_grad_pytorch() :
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj()
+   algo      = cmpad.llsq_obj(cmpad.pytorch.like_numpy)
    grad_llsq = cmpad.pytorch.gradient( algo )
    ok       &= check_grad_llsq( grad_llsq )
-   #
-   # grad_llsq_pytorch, ok
-   algo              = cmpad.pytorch.llsq_obj()
-   grad_llsq_pytorch = cmpad.pytorch.gradient( algo )
-   ok               &= check_grad_llsq( grad_llsq_pytorch )
    #
    return ok
 #

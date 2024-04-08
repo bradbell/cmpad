@@ -197,12 +197,7 @@ Vector Operations
 The calculation of this objective can be vectorized
 with respect to the index *j* above.
 The intent is to enable AD packages that have vector operators
-to use them to speed up the calculation of derivatives.
-For example, :ref:`py_llsq_obj-name` can be used by any of
-the AD packages while :ref:`pytorch_llsq_obj-name` can
-only be used by the pytorch package.
-Using AD package specific operations requires re-writing
-source code and is not be feasible in some cases.
+to use them reduce memory and speed up the calculation of derivatives.
 
 option
 ******
@@ -223,8 +218,6 @@ Implementation
 {xrst_toc_table
    cpp/include/cmpad/algo/llsq_obj.hpp
    python/cmpad/llsq_obj.py
-   python/cmpad/jax/llsq_obj.py
-   python/cmpad/pytorch/llsq_obj.py
 }
 
 Derivative

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin xam_grad_jax.py}
@@ -27,6 +27,7 @@ Source Code
 '''
 # BEGIN PYTHON
 import cmpad
+import jax
 from check_grad_det  import check_grad_det
 from check_grad_ode  import check_grad_ode
 from check_grad_llsq import check_grad_llsq
@@ -46,14 +47,9 @@ def xam_grad_jax() :
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj()
+   algo      = cmpad.llsq_obj(jax.numpy)
    grad_llsq = cmpad.jax.gradient( algo )
    ok       &= check_grad_llsq( grad_llsq )
-   #
-   # grad_llsq_jax, ok
-   algo              = cmpad.jax.llsq_obj()
-   grad_llsq_jax = cmpad.jax.gradient( algo )
-   ok               &= check_grad_llsq( grad_llsq_jax )
    #
    return ok
 #

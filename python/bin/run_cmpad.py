@@ -33,9 +33,13 @@ import math
 import sys
 import os
 import platform
+import numpy
+import autograd
+import jax
+import torch
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.7'
+cmpad_version = 'cmpad-2024.4.8'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -80,7 +84,7 @@ def none_fun_obj(algorithm) :
    elif algorithm == 'an_ode' :
       return cmpad.an_ode()
    elif algorithm == 'llsq_obj' :
-      return cmpad.llsq_obj()
+      return cmpad.llsq_obj(numpy)
    else :
       assert False
 #
@@ -93,9 +97,16 @@ def grad_fun_obj(algorithm, package) :
    elif algorithm == 'an_ode' :
       algo = cmpad.an_ode()
    elif algorithm == 'llsq_obj' :
-      algo = cmpad.llsq_obj()
-   else :
-      assert False
+      if package == 'autograd' :
+         algo = cmpad.llsq_obj(autograd.numpy)
+      elif package == 'cppad_py' :
+         algo = cmpad.llsq_obj(numpy)
+      elif package == 'jax' :
+         algo = cmpad.llsq_obj(jax.numpy)
+      elif package == 'pytorch' :
+         algo = cmpad.llsq_obj(cmpad.pytorch.like_numpy)
+      else :
+         assert False
    #
    if package == 'autograd' :
       return cmpad.autograd.gradient(algo)
@@ -224,20 +235,6 @@ def main() :
       file_name, rate, min_time, package, algorithm, special, option
    )
    #
-   # csv_speed
-   if algorithm == 'llsq_obj' :
-      if package in [ 'pytorch' , 'jax' ] :
-         if package == 'pytorch' :
-            special_algo = cmpad.pytorch.llsq_obj()
-            fun_obj      = cmpad.pytorch.gradient(special_algo)
-         else :
-            special_algo = cmpad.jax.llsq_obj()
-            fun_obj      = cmpad.jax.gradient(special_algo)
-         rate    = cmpad.fun_speed(fun_obj, option, min_time)
-         special = True
-         cmpad.csv_speed(
-            file_name, rate, min_time, package, algorithm, special, option
-         )
 #
 main()
 # END PYTHON
