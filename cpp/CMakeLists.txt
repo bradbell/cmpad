@@ -17,33 +17,30 @@ SET(CMAKE_CXX_STANDARD 17)
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
 PROJECT(cmpad VERSION 2024.4.11)
 #
-# cmpad_install_prefix
-SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/../build/${CMAKE_BUILD_TYPE}" )
-#
-# PKG_CONFIG_PATH
-IF( "$ENV{PKG_CONFIG_PATH}" STREQUAL "" )
-   SET(tmp "")
-   FOREACH(dir lib lib64 share)
-      IF( EXISTS ${cmpad_install_prefix}/${dir}/pkgconfig )
-         IF( NOT tmp STREQUAL "" )
-            SET(tmp "${tmp};")
-         ENDIF( )
-         SET(tmp "${tmp}${cmpad_install_prefix}/${dir}/pkgconfig")
-      ENDIF( )
-   ENDFOREACH( )
-   SET(ENV{PKG_CONFIG_PATH} "${tmp}")
-ENDIF( )
-MESSAGE(STATUS "PKG_CONFIG_PATH = $ENV{PKG_CONFIG_PATH}")
-#
 # pkg_check_modules
 FIND_PACKAGE(PkgConfig REQUIRED)
 #
 # Boost_UNIT_TEST_FRAMEWORK_LIBRARY
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
-# ----------------------------------------------------------------------------
-# ${package}_LINK_LIBRARIES
-# for package = adolc, cppad, cppadcg, adept, clad, scacdo
 #
+# cmpad_install_prefix
+SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/../build/${CMAKE_BUILD_TYPE}" )
+#
+# PKG_CONFIG_PATH
+SET(tmp "$ENV{PKG_CONFIG_PATH}" )
+FOREACH(dir lib lib64 share)
+   IF( EXISTS ${cmpad_install_prefix}/${dir}/pkgconfig )
+      IF( NOT tmp STREQUAL "" )
+         SET(tmp "${tmp}:")
+      ENDIF( )
+      SET(tmp "${tmp}${cmpad_install_prefix}/${dir}/pkgconfig")
+   ENDIF( )
+ENDFOREACH( )
+SET(ENV{PKG_CONFIG_PATH} "${tmp}")
+MESSAGE(STATUS "PKG_CONFIG_PATH = $ENV{PKG_CONFIG_PATH}")
+#
+# ${package}_LINK_LIBRARIES
+# for package = adolc, cppad, cppadcg
 FOREACH(package adolc cppad cppadcg)
    pkg_check_modules(${package} ${package})
    IF( ${package}_LINK_LIBRARIES )
