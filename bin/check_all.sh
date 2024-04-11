@@ -45,11 +45,11 @@ do
 done
 echo_eval bin/run_xrst.sh
 #
-echo_eval python/bin/check_python.sh $build_type
-echo_eval cpp/bin/check_cpp.sh  $build_type
-#
 echo "source bin/environment.sh build_type=$build_type"
 source bin/environment.sh
+#
+echo_eval python/bin/check_python.py $build_type
+echo_eval cpp/bin/check_cpp.sh  $build_type
 #
 echo_eval bin/check_main.py
 # -----------------------------------------------------------------------------

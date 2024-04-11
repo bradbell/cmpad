@@ -20,7 +20,7 @@ else
 cat << EOF > environment.$$
 python3.11 -m venv build/$build_type
 source build/$build_type/bin/activate
-for package in toml pytest
+for package in toml pytest numpy
 do
    echo "pip install \$package"
    if ! pip install \$package >& environment.log

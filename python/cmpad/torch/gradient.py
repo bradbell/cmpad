@@ -18,7 +18,6 @@ r'''
 # BEGIN PYTHON
 #
 # imports
-import numpy
 import torch
 #
 # gradient

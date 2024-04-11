@@ -140,9 +140,12 @@ class llsq_obj :
       # objective
       objective = 0.5 * self.like_numpy.sum(squared_residual)
       #
-      if self.like_numpy == cmpad.torch.like_numpy :
-         objective = objective.flatten()
-      else :
+      done = False
+      if cmpad.has_package['torch'] :
+         if self.like_numpy == cmpad.torch.like_numpy :
+            objective = objective.flatten()
+            done = True
+      if not done :
          objective = self.like_numpy.array( [ objective ] )
       return objective
 # END PYTHON

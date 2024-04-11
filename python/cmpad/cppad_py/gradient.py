@@ -16,6 +16,10 @@ r'''
 '''
 # BEGIN PYTHON
 #
+# imports
+import numpy
+import cppad_py
+#
 # gradient
 class gradient :
    #
@@ -36,10 +40,6 @@ class gradient :
    def setup(self, option) :
       assert type(option) == dict
       assert 'n_arg' in option
-      #
-      # imports
-      import numpy
-      import cppad_py
       #
       # self.option
       self.option = option

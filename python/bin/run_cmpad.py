@@ -34,9 +34,6 @@ import sys
 import os
 import platform
 import numpy
-import autograd
-import jax
-import torch
 #
 # cmpad_version
 cmpad_version = 'cmpad-2024.4.11'
@@ -48,11 +45,13 @@ if not ( os.path.isdir('.git') and sys.argv[0] == program ) :
    msg = f'{program} must be run from cmpad top source directory'
    sys.exit(msg)
 #
-# sys.prefix
+# cwd
 cwd = os.getcwd()
+#
+# sys.prefix
 if not sys.prefix in [ f'{cwd}/build/debug' , f'{cwd}/build/release' ] :
    msg  = f'{program}: sys.prefix does is not build/debug or build/release\n'
-   msq += 'must define build_type and then execute the following command:'
+   msg += 'must define build_type and then execute the following command:'
    msg += 'source bin/environment.sh'
    sys.exit(msg)
 #
@@ -86,6 +85,14 @@ def none_fun_obj(algorithm) :
 #
 # grad_fun_obj
 def grad_fun_obj(algorithm, package) :
+   #
+   # imports
+   if cmpad.has_package['autograd'] :
+      import autograd
+   if cmpad.has_package['jax'] :
+      import jax
+   if cmpad.has_package['torch'] :
+      import torch
    #
    # algo
    if algorithm == 'det_by_minor' :

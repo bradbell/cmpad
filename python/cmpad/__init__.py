@@ -20,26 +20,32 @@ from .runge_kutta    import runge_kutta
 # ---------------------------------------------------------------------------
 # Submodules
 #
+has_package = dict()
+#
 # autograd
+has_package['autograd'] = True
 try :
    from . import autograd
 except :
-   pass
+   has_package['autograd'] = False
 #
 # cppad_py
+has_package['cppad_py'] = True
 try :
    from . import cppad_py
 except :
-   pass
+   has_package['cppad_py'] = False
 #
 # jax
+has_package['jax'] = True
 try :
    from . import jax
 except :
-   pass
+   has_package['jax'] = False
 #
 # torch
+has_package['torch'] = True
 try :
    from . import torch
 except :
-   pass
+   has_package['torch'] = False
