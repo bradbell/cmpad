@@ -1,6 +1,6 @@
 SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-SPDX-FileContributor: 2023 Bradley M. Bell
+SPDX-FileContributor: 2023-24 Bradley M. Bell
 ---------------------------------------------------------------------------
 {xrst_begin_parent python}
 
@@ -25,7 +25,7 @@ The gradient is for the last component of the range space of the algorithm
    python/cmpad/autograd/gradient.py
    python/cmpad/cppad_py/gradient.py
    python/cmpad/jax/gradient.py
-   python/cmpad/pytorch/gradient.py
+   python/cmpad/torch/gradient.py
    python/xam/check_grad_det.py
    python/xam/check_grad_ode.py
    python/xam/check_grad_llsq.py

@@ -19,7 +19,7 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2024.4.10
+cmpad-2024.4.11
 
 Example Speed Comparison
 ************************
@@ -47,7 +47,7 @@ Python
    :ref:`autograd_gradient.py-title`
    :ref:`cppad_py_gradient.py-title`
    :ref:`jax_gradient.py-title`
-   :ref:`pytorch_gradient.py-title`
+   :ref:`torch_gradient.py-title`
 
 
 Documentation

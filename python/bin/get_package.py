@@ -152,7 +152,7 @@ def main() :
       sys.exit(msg)
    #
    # package_list
-   package_list = [ 'autograd', 'cppad_py', 'jax', 'pytorch' ]
+   package_list = [ 'autograd', 'cppad_py', 'jax', 'torch' ]
    #
    # usage
    usage  = f'{program} build_type package\n'
@@ -182,7 +182,7 @@ def main() :
    else :
       pypi_name = {
          'autograd' : 'autograd' ,
-         'pytorch'  : 'torch'    ,
+         'torch'    : 'torch'    ,
          'jax'      : 'jax[cpu]' ,
       }
       name  = pypi_name[package]

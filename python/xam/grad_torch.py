@@ -3,10 +3,10 @@
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin xam_grad_pytorch.py}
+{xrst_begin xam_grad_torch.py}
 
-Example and Test of pytorch Gradient
-####################################
+Example and Test of Torch Gradient
+##################################
 
 check_grad_det
 **************
@@ -23,7 +23,7 @@ Source Code
    # END PYTHON
 }
 
-{xrst_end xam_grad_pytorch.py}
+{xrst_end xam_grad_torch.py}
 '''
 # BEGIN PYTHON
 import cmpad
@@ -31,27 +31,27 @@ from check_grad_det  import check_grad_det
 from check_grad_ode  import check_grad_ode
 from check_grad_llsq import check_grad_llsq
 
-def xam_grad_pytorch() :
+def xam_grad_torch() :
    # ok
    ok = True
    #
    # grad_det, ok
    algo     = cmpad.det_by_minor()
-   grad_det = cmpad.pytorch.gradient( algo )
+   grad_det = cmpad.torch.gradient( algo )
    ok      &= check_grad_det( grad_det )
    #
    # grad_ode, ok
    algo     = cmpad.an_ode()
-   grad_ode = cmpad.pytorch.gradient(algo)
+   grad_ode = cmpad.torch.gradient(algo)
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj(cmpad.pytorch.like_numpy)
-   grad_llsq = cmpad.pytorch.gradient( algo )
+   algo      = cmpad.llsq_obj(cmpad.torch.like_numpy)
+   grad_llsq = cmpad.torch.gradient( algo )
    ok       &= check_grad_llsq( grad_llsq )
    #
    return ok
 #
-def test_xam_grad_pytorch() :
-   assert xam_grad_pytorch() == True
+def test_xam_grad_torch() :
+   assert xam_grad_torch() == True
 # END PYTHON

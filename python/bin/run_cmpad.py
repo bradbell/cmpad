@@ -39,7 +39,7 @@ import jax
 import torch
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.10'
+cmpad_version = 'cmpad-2024.4.11'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -99,8 +99,8 @@ def grad_fun_obj(algorithm, package) :
          algo = cmpad.llsq_obj(numpy)
       elif package == 'jax' :
          algo = cmpad.llsq_obj(jax.numpy)
-      elif package == 'pytorch' :
-         algo = cmpad.llsq_obj(cmpad.pytorch.like_numpy)
+      elif package == 'torch' :
+         algo = cmpad.llsq_obj(cmpad.torch.like_numpy)
       else :
          assert False
    #
@@ -110,8 +110,8 @@ def grad_fun_obj(algorithm, package) :
       return cmpad.cppad_py.gradient(algo)
    elif package == 'jax' :
       return cmpad.jax.gradient(algo)
-   elif package == 'pytorch' :
-      return cmpad.pytorch.gradient(algo)
+   elif package == 'torch' :
+      return cmpad.torch.gradient(algo)
    else :
       assert False
    #
@@ -175,7 +175,7 @@ def main() :
    #
    # package
    package = arguments.package
-   if package not in [ 'none', 'autograd', 'cppad_py', 'jax', 'pytorch' ] :
+   if package not in [ 'none', 'autograd', 'cppad_py', 'jax', 'torch' ] :
       msg = f'{program}: package = {package} is not available'
       sys.exit(msg)
    #

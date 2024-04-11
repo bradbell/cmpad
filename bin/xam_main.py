@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 # {xrst_begin xam_main.py}
 # {xrst_spell
@@ -110,10 +110,9 @@ def main() :
    #
    # python_package_list
    python_package_list = list()
-   for package in [ 'autograd', 'cppad_py', 'jax', 'pytorch' ] :
-      import_name = 'torch' if package == 'pytorch' else package
+   for package in [ 'autograd', 'cppad_py', 'jax', 'torch' ] :
       try :
-         importlib.import_module(import_name)
+         importlib.import_module(package)
          python_package_list.append(package)
       except :
          pass

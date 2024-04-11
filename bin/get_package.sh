@@ -63,8 +63,8 @@ set -e -u
 # .. _cppadcg:   https://github.com/joaoleal/CppADCodeGen
 # .. _fastad:    https://github.com/JamesYang007/FastAD
 # .. _jax:       https://github.com/google/jax
-# .. _pytorch:   https://github.com/pytorch/pytorch
 # .. _sacado:    https://trilinos.github.io/sacado.html
+# .. _torch:     https://github.com/pytorch/pytorch
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #
 # {xrst_comment BEGIN_SORT_THIS_LINE_PLUS_6}
@@ -84,8 +84,8 @@ set -e -u
 #  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,               cpp
 #  `fastad`_,     Under Construction,                             cpp
 #  `jax`_,        :ref:`jax_gradient.py-name`,                    python
-#  `pytorch`_,    :ref:`pytorch_gradient.py-name`,                python
 #  `sacado`_,     :ref:`sacado_gradient.hpp-name`,                cpp
+#  `torch`_,      :ref:`torch_gradient.py-name`,                  python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #
 # #. Implemented is the list of cmpad derivatives implemented so far
@@ -96,7 +96,7 @@ set -e -u
 # {xrst_suspend}
 pkg_available='adept, adolc, autodiff, autograd'
 pkg_available="$pkg_available, clad, cppad_jit, cppad_py, cppadcg"
-pkg_available="$pkg_available, fastad, jax, pytorch, sacado"
+pkg_available="$pkg_available, fastad, jax, torch, sacado"
 # {xrst_resume}
 #
 # prefix
@@ -236,7 +236,7 @@ do
    ;;
 
    # BEGIN PYTHON_PACKAGE_LIST
-   autograd|cppad_py|jax|pytorch)
+   autograd|cppad_py|jax|torch)
    # END PYTHON_PACKAGE_LIST
    echo "source bin/environment.sh build_type=$build_type"
    source bin/environment.sh

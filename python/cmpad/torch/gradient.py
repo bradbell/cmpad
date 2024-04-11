@@ -3,17 +3,17 @@
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
-{xrst_begin pytorch_gradient.py}
+{xrst_begin torch_gradient.py}
 
 {xrst_template ,
    python/cmpad/gradient.xrst
    @Package@    , PyTorch
    @#######@    , #######
-   @package@    , pytorch
+   @package@    , torch
    @algo_type@  , ``torch.tensor`` with ``float`` elements
 }
 
-{xrst_end pytorch_gradient.py}
+{xrst_end torch_gradient.py}
 '''
 # BEGIN PYTHON
 #
@@ -55,7 +55,7 @@ class gradient :
    #
    # call
    def __call__(self, x) :
-      # See https://discuss.pytorch.org/t/
+      # See https://discuss.torch.org/t/
       #     how-does-one-reuse-the-autograd-computational-graph/190447/2
       assert len(x) == self.n_arg
       ax = torch.tensor(x, requires_grad = True)

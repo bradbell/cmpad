@@ -53,7 +53,7 @@ Syntax
 #. The argument *vec* is a 1-d numpy like array.
 #. The results *vec* , *ones* , *linspace*  and *square*
    are numpy like 1-d arrays.
-#. if *like_numpy* is ``cmpad.pytorch.like_numpy`` , *sum* . ``flatten()``
+#. if *like_numpy* is ``cmpad.torch.like_numpy`` , *sum* . ``flatten()``
    is a 1-d numpy like array with one element.
    Otherwise *like_numpy* . ``array`` ( [ *sum* ] )
    is a 1-d numpy like array with one element.
@@ -62,7 +62,7 @@ Syntax
 Example
 =======
 {xrst_literal
-   python/cmpad/pytorch/like_numpy.py
+   python/cmpad/torch/like_numpy.py
    # BEGIN LIKE_NUMPY
    # END LIKE_NUMPY
 }
@@ -140,7 +140,7 @@ class llsq_obj :
       # objective
       objective = 0.5 * self.like_numpy.sum(squared_residual)
       #
-      if self.like_numpy == cmpad.pytorch.like_numpy :
+      if self.like_numpy == cmpad.torch.like_numpy :
          objective = objective.flatten()
       else :
          objective = self.like_numpy.array( [ objective ] )

@@ -97,7 +97,7 @@ def csv_speed(
    assert type(special)   == bool
    assert type(option)    == dict
    #
-   assert package in [ 'none', 'autograd', 'cppad_py', 'jax', 'pytorch' ]
+   assert package in [ 'none', 'autograd', 'cppad_py', 'jax', 'torch' ]
    #
    assert type( option['n_arg'] )      == int
    assert type( option['n_other'] )    == int
