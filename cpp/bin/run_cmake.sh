@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -u -e
 # ---------------------------------------------------------------------------
@@ -14,7 +14,7 @@ fi
 #
 # compiler, build_type, vector
 compiler=''
-build_type='-D CMAKE_BUILD_TYPE=release'
+build_type='release'
 code_generator=""
 vector='-D cmpad_vector=std'
 verbose='-D CMAKE_VERBOSE_MAKEFILE=NO'
@@ -28,7 +28,7 @@ do
       ;;
 
       --debug)
-      build_type='-D CMAKE_BUILD_TYPE=debug'
+      build_type='debug'
       ;;
 
       --ninja)
@@ -74,11 +74,14 @@ PKG_CONFIG_PATH=''
 # for_sacado
 for_sacado='-DCMAKE_CXX_EXTENSIONS=Off'
 #
+# cmake_build_type
+cmake_build_type="-D CMAKE_BUILD_TYPE=$build_type"
+#
 # make
 echo cmake -B . -S .. \
-   $code_generator $for_sacado $compiler $build_type $vector $verbose
+   $code_generator $for_sacado $compiler $cmake_build_type $vector $verbose
 cmake -B . -S .. \
-   $code_generator $for_sacado $compiler $build_type $vector $verbose
+   $code_generator $for_sacado $compiler $cmake_build_type $vector $verbose
 # -----------------------------------------------------------------------------
 echo 'bin/run_cmake.sh: OK'
 exit 0

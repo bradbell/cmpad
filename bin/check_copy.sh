@@ -39,7 +39,7 @@ do
 done
 for file_name in $(git status --porcelain | sed -e 's|^...||' )
 do
-   if [ -e $file_name ]
+   if [ -f $file_name ]
    then
       sed \
       -e 's|\(SPDX-FileContributor\): *\([0-9]\{4\}\)[-0-9]* |\1: \2-24 |' \

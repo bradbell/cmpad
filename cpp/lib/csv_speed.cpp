@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin cpp_csv_speed}
@@ -127,27 +127,19 @@ namespace {
       else
          build_type = "release";
       //
-      // configure_flag
-      path configure_flag = top_srcdir;
-      configure_flag     /= "external";
-      if( package == "cppad_jit" )
-         configure_flag /= "cppad." + build_type;
-      else
-         configure_flag /= package + "." + build_type;
+      // build_dir
+      path build_dir = top_srcdir;
+      build_dir     /= "build";
+      build_dir     /= build_type;
       //
-      if ( ! std::filesystem::exists( configure_flag ) )
+      if ( ! std::filesystem::exists( build_dir ) )
       {  std::cerr
-         << "csv_speed: Cannot find " << configure_flag << "\n"
+         << "csv_speed: Cannot find " << build_dir << "\n"
          << "and for this cmpad compile NDEBUG ";
          if( debug == "true" )
             std::cerr << "is not defined\n";
          else
             std::cerr << "is defined\n";
-         std::cerr
-         << "Perhaps you should run the following commands:\n";
-         std::cerr
-         << "   bin/get_package.sh " + build_type + " " + package + "\n"
-         << "   cd cpp/build; make; cd ../..\n\n";
          std::exit(1);
       }
    }

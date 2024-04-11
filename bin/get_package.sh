@@ -94,8 +94,9 @@ set -e -u
 # #. Installing cppadcg also installs cppad.
 #
 # {xrst_suspend}
-pkg_available='   adept, adolc, autodiff, autograd, clad, cppad_jit, cppad_py,
-   cppadcg, fastad, jax, pytorch, sacado'
+pkg_available='adept, adolc, autodiff, autograd'
+pkg_available="$pkg_available, clad, cppad_jit, cppad_py, cppadcg"
+pkg_available="$pkg_available, fastad, jax, pytorch, sacado"
 # {xrst_resume}
 #
 # prefix
@@ -237,7 +238,8 @@ do
    # BEGIN PYTHON_PACKAGE_LIST
    autograd|cppad_py|jax|pytorch)
    # END PYTHON_PACKAGE_LIST
-   source python/bin/python_env.sh
+   echo "source bin/environment.sh build_type=$build_type"
+   source bin/environment.sh
    echo_eval python/bin/get_package.py $build_type $package
    ;;
 

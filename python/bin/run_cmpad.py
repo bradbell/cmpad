@@ -39,7 +39,7 @@ import jax
 import torch
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.8'
+cmpad_version = 'cmpad-2024.4.10'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -48,16 +48,12 @@ if not ( os.path.isdir('.git') and sys.argv[0] == program ) :
    msg = f'{program} must be run from cmpad top source directory'
    sys.exit(msg)
 #
-# python/venv
-if not os.path.isdir( 'python/venv' ) :
-   msg  = f'{program}: python packages not installed uinsg bin/get_package.sh'
-   sys.exit(msg)
-#
 # sys.prefix
-ok = sys.prefix.startswith( os.getcwd() ) and sys.prefix.endswith( 'python/venv' )
-if not ok :
-   msg  = f'{program}: must first execute the following commands:\n'
-   msg += 'source python/venv/bin/activate'
+cwd = os.getcwd()
+if not sys.prefix in [ f'{cwd}/build/debug' , f'{cwd}/build/release' ] :
+   msg  = f'{program}: sys.prefix does is not build/debug or build/release\n'
+   msq += 'must define build_type and then execute the following command:'
+   msg += 'source bin/environment.sh'
    sys.exit(msg)
 #
 if not os.path.isdir('python/cmpad') :

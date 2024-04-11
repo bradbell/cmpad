@@ -3,11 +3,7 @@
 #
 # used to build and run the project
 /build/
-/cpp/build/
-/python/build/
-#
-# python virtual environment
-/python/venv/
+/cpp/build
 #
 # used to install other packages
 /external/
@@ -24,6 +20,9 @@
 #
 # used by bin/git_commit.sh for git logs
 git_commit.log
+#
+# used bin bin/environment.sh for install logs
+environment.log
 #
 # cmake creates this file from configure.hpp.in
 /cpp/include/cmpad/configure.hpp

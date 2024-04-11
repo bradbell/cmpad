@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_csv_speed}
@@ -76,6 +76,7 @@ Example
 
 {xrst_end py_csv_speed}
 '''
+import sys
 import os
 import csv
 import datetime
@@ -135,29 +136,13 @@ def csv_speed(
    if package != 'cppad_py' :
       debug = ''
    else :
-      module        = __import__(package)
-      package_file  = module.__file__
-      package_path  = os.path.realpath(package_file)
-      index         = package_path.find('/python/build/prefix.release/')
-      if index < 0 :
-         index      = package_path.find('/python/build/prefix.debug/')
-      if index < 0 :
-         msg  = f'package = {package}, path = {package_path}\n'
-         msg += 'is not using version installed by cmpad get_package.sh'
-         assert False, msg
-      top_srcdir   = package_path[ : index]
-      package_dir  = f'{top_srcdir}/external/{package}.git'
-      debug        = False
-      if os.path.exists( f'{package_dir}/build.debug' ) :
+      if sys.prefix.endswith('/build/debug') :
          debug = True
-      elif os.path.exists( f'{package_dir}/build.release' ) :
-         msg  = f'Both build.debug and build.release exists in\n'
-         msg += package_dir
-         assert not debug, msg
+      elif sys.prefix.endswith('/build/release') :
+         debug = False
       else :
-         msg  = f'Using package = {package} but cannot find either '
-         msg += 'build.debug or build.release in\n'
-         msg += package_dir
+         msg  = f'csv_speed.py: sys.prefix = {sys.prefix}\n'
+         msg += 'does not end with /build/debug or /build/release'
          assert False, msg
    #
    # compiler

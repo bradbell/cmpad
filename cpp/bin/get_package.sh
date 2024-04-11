@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -e -u
 # -----------------------------------------------------------------------------
@@ -47,9 +47,6 @@ program='cpp/bin/get_package.sh'
 # top_srcdir
 top_srcdir=$(pwd)
 #
-# prefix
-prefix="$top_srcdir/cpp/build/prefix"
-#
 if [ ! -d '.git' ]
 then
    echo "$program: must be executed from cmpad top soruce directory"
@@ -72,6 +69,9 @@ then
    echo "build_type=$build_type is not debug or release"
    exit 1
 fi
+#
+# prefix
+prefix="$top_srcdir/build/$build_type"
 #
 # package
 package="$2"
@@ -301,8 +301,11 @@ then
    fi
    echo_eval cd $package_top_srcdir
    echo_eval git reset --hard
-   echo_eval git pull
    echo_eval git checkout --quiet $version
+   if [ "$(git branch --show-current)" != '' ]
+   then
+      echo_eval git pull
+   fi
 else
    if [ "$package" != 'sacado' ]
    then

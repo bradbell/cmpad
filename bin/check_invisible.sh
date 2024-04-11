@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 set -e -u
 if [ $# != 0 ]
@@ -20,8 +20,12 @@ do
    #
    if ! diff $file check_invisible.$$
    then
-      read -p "remove invisible white space from $file [y/n] ?" response
-      if [ "$response" == 'y' ]
+      response=''
+      while [ "$response" != 'yes' ] && [ "$response" != 'no' ]
+      do
+         read -p "remove invisible white space from $file [yes/no] ?" response
+      done
+      if [ "$response" == 'yes' ]
       then
          if [ -x $file ]
          then

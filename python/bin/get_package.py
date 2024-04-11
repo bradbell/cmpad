@@ -53,9 +53,6 @@ program = 'python/bin/get_package.py'
 # top_srcdir
 top_srcdir = os.getcwd()
 #
-# prefix
-prefix     = f'{top_srcdir}/python/build/prefix'
-#
 # system_command
 def system_command(list_of_commands) :
    for command_str in list_of_commands :
@@ -118,11 +115,15 @@ def install_cppad_py(build_type) :
    file_obj.close()
    #
    # install_settings
+   prefix           = f'{top_srcdir}/build/{build_type}'
    pattern          = r'\ncmake_install_prefix *=.*'
    replace          = f"\ncmake_install_prefix = '{prefix}'"
    install_settings = re.sub(pattern, replace, install_settings)
    pattern          = r'\nbuild_type *=.*'
    replace          = f"\nbuild_type = '{build_type}'"
+   install_settings = re.sub(pattern, replace, install_settings)
+   pattern          = r'\nsymbolic_link *=.*'
+   replace          = f"\nsymbolic_link = 'false'"
    install_settings = re.sub(pattern, replace, install_settings)
    #
    # install_settings.py
@@ -149,14 +150,6 @@ def main() :
    if not ( os.path.isdir( '.git' ) and sys.argv[0] == program ) :
       msg = f'{program}: must be executed from cmpad top source directory'
       sys.exit(msg)
-   if not os.path.isdir( 'python/venv' ) :
-      msg  = f'{program}: The python/venv virtual environment does not exist'
-      sys.exit(msg)
-   ok = sys.prefix.startswith( os.getcwd() )
-   ok &= sys.prefix.endswith( 'python/venv' )
-   if not ok :
-      msg  = f'{program}: The python/venv virtual environment note active'
-      sys.exit(msg)
    #
    # package_list
    package_list = [ 'autograd', 'cppad_py', 'jax', 'pytorch' ]
@@ -172,6 +165,10 @@ def main() :
    build_type = sys.argv[1]
    if build_type not in [ 'debug', 'release' ] :
       msg = f'{program}: build_type = {build_type} is not debug or release'
+      sys.exit(msg)
+   ok  = sys.prefix.endswith( f'/build/{build_type}' )
+   if not ok :
+      msg  = f'{program}: The sys.prefix does not end with /build/{build_type}'
       sys.exit(msg)
    #
    # package
