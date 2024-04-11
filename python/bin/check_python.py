@@ -61,6 +61,6 @@ for file in glob_list :
       test_list.append(file)
 #
 # pytest
-pytest.main(test_list) 
+pytest.main(test_list)
 #
 print( f'{program}: OK' )

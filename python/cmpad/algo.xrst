@@ -1,0 +1,16 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2024 Bradley M. Bell
+-----------------------------------------------------------------------------
+{xrst_begin python_algo}
+
+Python Algorithms Used to Compare Packages
+##########################################
+
+{xrst_toc_table
+   python/cmpad/det_by_minor.py
+   python/cmpad/an_ode.py
+   python/cmpad/llsq_obj.py
+}
+
+{xrst_end python_algo}

@@ -55,10 +55,7 @@ This option is not used except that it may be checked to make sure it is zero.
 
 Implementation
 ==============
-{xrst_toc_table
-   cpp/include/cmpad/algo/det_by_minor.hpp
-   python/cmpad/det_by_minor.py
-}
+:ref:`cpp_det_by_minor-name` , :ref:`py_det_by_minor-name` .
 
 Derivative
 **********
@@ -141,13 +138,12 @@ This is the number of :ref:`Runge-Kutta steps<rk4_step-name>`
 used to approximate the solution of the ODE :math:`y(2)` .
 There is an assert checking that *n_other* > 0.
 
+{xrst_toc_hidden
+   xrst/rk4_step.xrst
+}
 Implementation
 ==============
-{xrst_toc_table
-   xrst/rk4_step.xrst
-   cpp/include/cmpad/algo/an_ode.hpp
-   python/cmpad/an_ode.py
-}
+:ref:`rk4_step-name` , :ref:`cpp_an_ode-name` , :ref:`py_an_ode-name` .
 
 Derivative
 **********
@@ -215,10 +211,7 @@ There is an assert checking that *n_other* > 0.
 
 Implementation
 **************
-{xrst_toc_table
-   cpp/include/cmpad/algo/llsq_obj.hpp
-   python/cmpad/llsq_obj.py
-}
+:ref:`cpp_llsq_obj-name` , :ref:`py_llsq_obj-name` .
 
 Derivative
 **********
