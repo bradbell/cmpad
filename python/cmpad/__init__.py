@@ -19,6 +19,7 @@ from .runge_kutta    import runge_kutta
 
 # ---------------------------------------------------------------------------
 # Submodules
+from . import torch
 #
 has_package = dict()
 #

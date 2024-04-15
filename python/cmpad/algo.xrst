@@ -11,6 +11,7 @@ Python Algorithms Used to Compare Packages
    python/cmpad/det_by_minor.py
    python/cmpad/an_ode.py
    python/cmpad/llsq_obj.py
+   python/cmpad/like_numpy.xrst
 }
 
 {xrst_end python_algo}

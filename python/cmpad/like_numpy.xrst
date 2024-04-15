@@ -1,0 +1,88 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2024 Bradley M. Bell
+------------------------------------------------------------------------------
+{xrst_begin like_numpy}
+{xrst_spell
+   th
+   op
+   vec
+   ndarray
+}
+
+The Like Numpy Vector Concept
+#############################
+The *like_numpy* concept enables various packages to
+interface to the same vectorized algorithm code.
+It that has the following properties:
+
+Syntax
+******
+
+| |tab| *vec*    = *like_numpy* . ``array`` ( *like_vec* )
+| |tab| *vec*    = *left* *op* *right* 
+| |tab| *scalar* = *vec*.sum()
+
+like_vec
+********
+This can be a non-empty ``list`` or ``numpy.ndarray`` with numeric values.
+
+array
+*****
+This syntax constructs a *like_numpy* object.
+The *i*-th element of *vec* 
+has the same precision as ``float`` 
+and its value corresponds to the *i*-element of *like_vec* .
+
+*vec*
+*****
+is a *like_numpy* object.
+
+*left*
+******
+is a *like_numpy* object.
+
+*right*
+*******
+is a *like_numpy* object.
+
+op
+**
+The operator *op* can be ``+`` , ``-`` , ``*`` , or ``/`` .
+Either the size of *left* is one,
+the size of *right* is one,
+or the size of *left* is equal the size of *right* .
+
+
+#. If the size of *left* and *right* are equal:
+
+   | |tab| *vec* [ *i* ] = *left* [ *i* ] *op* *right* [ *i* ]
+
+#. If the size of *left* is one:
+
+   | |tab| *vec* [ *i* ] = *left* [0] *op* *right* [ *i* ]
+
+#. If the size of *right* is one:
+
+   | |tab| *vec* [ *i* ] = *left* [ *i* ] *op* *right* [0]
+
+
+sum
+***
+This sums the elements of *vec* .
+
+scalar
+******
+This is a scalar value with the same type
+as the elements of *like_vec* .
+
+Example
+=======
+{xrst_literal
+   python/cmpad/torch/like_numpy.py
+   # BEGIN LIKE_NUMPY
+   # END LIKE_NUMPY
+}
+
+
+{xrst_end like_numpy}

@@ -4,12 +4,6 @@
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin py_llsq_obj}
-{xrst_spell
-   linspace
-   num
-   vec
-   int
-}
 
 Python Linear Least Squares Objective
 #####################################
@@ -35,37 +29,7 @@ Different array types are used by the different AD packages.
 
 like_numpy
 **********
-The llsq_obj algorithm is vectorized using this type which must support
-the following operations (similar to how numpy supports them):
-
-Syntax
-======
-
-| |tab| *vec*  = *like_numpy* . ``array`` ( *list* )
-| |tab| *ones* = *like_numpy* . ``ones`` ( *n* )
-| |tab| *linspace* = *like_numpy* . ``linspace`` ( *start* , *stop* , *num* )
-| |tab| *square* = *like_numpy* . ``square`` ( *vec* )
-| |tab| *sum* = *like_numpy* . ``sum`` ( *vec* )
-
-#. The argument *list* is a list with ``float`` elements.
-#. The arguments *n* and *num* are positive ``int`` .
-#. The arguments *start* and *stop* are ``float`` .
-#. The argument *vec* is a 1-d numpy like array.
-#. The results *vec* , *ones* , *linspace*  and *square*
-   are numpy like 1-d arrays.
-#. if *like_numpy* is ``cmpad.torch.like_numpy`` , *sum* . ``flatten()``
-   is a 1-d numpy like array with one element.
-   Otherwise *like_numpy* . ``array`` ( [ *sum* ] )
-   is a 1-d numpy like array with one element.
-#. All the result vectors have the same precision as ``float`` .
-
-Example
-=======
-{xrst_literal
-   python/cmpad/torch/like_numpy.py
-   # BEGIN LIKE_NUMPY
-   # END LIKE_NUMPY
-}
+see :ref:`like_numpy-name` .
 
 n_arg
 *****
@@ -88,6 +52,7 @@ The code below is the implementation of this function:
 '''
 # BEGIN PYTHON
 import cmpad
+import numpy
 #
 # BEGIN PROTOTYPE
 class llsq_obj :
@@ -112,9 +77,9 @@ class llsq_obj :
       #
       # t
       if n_other == 1 :
-         t = self.like_numpy.array( [0.0 ] )
+         t = numpy.array( [ 0.0 ] )
       else :
-         t = self.like_numpy.linspace(-1.0, 1.0, n_other)
+         t = numpy.linspace(-1.0, 1.0, n_other)
       #
       # q
       q = -1.0 * (t < 0) + 1.0 * (t > 0)
@@ -127,25 +92,29 @@ class llsq_obj :
    def __call__(self, ax) :
       assert len(ax) == self.n_arg
       #
+      # like_numpy
+      like_numpy = self.like_numpy
+      #
       # model
-      model = 0.0
-      ti  = self.like_numpy.ones( len(self.t) )
+      model = like_numpy.array( [ 0.0 ] )
+      ti    = numpy.ones( len(self.t) )
       for i in range(self.n_arg) :
-         model = model + ax[i] * ti
+         model = model + like_numpy.array( ax[i] ) * like_numpy.array(ti)
          ti    = ti * self.t
       #
       # squared_residual
-      squared_residual = self.like_numpy.square(model - self.q)
+      residual         = model - like_numpy.array( self.q )
+      squared_residual = residual * residual
       #
       # objective
-      objective = 0.5 * self.like_numpy.sum(squared_residual)
+      objective = 0.5 * squared_residual.sum()
       #
       done = False
       if cmpad.has_package['torch'] :
-         if self.like_numpy == cmpad.torch.like_numpy :
+         if like_numpy == cmpad.torch.like_numpy :
             objective = objective.flatten()
             done = True
       if not done :
-         objective = self.like_numpy.array( [ objective ] )
+         objective = like_numpy.array( [ objective ] )
       return objective
 # END PYTHON

@@ -6,18 +6,30 @@
 import torch
 #
 class like_numpy :
+   #
+   def __init__(self, like_vec) :
+      if type(like_vec) == torch.Tensor :
+         self.vec = like_vec
+      else :
+         assert len(like_vec) != 0
+         self.vec = torch.tensor(like_vec, dtype=float)
+   #
+   def __add__(self, other) :
+      return like_numpy( self.vec + other.vec )
+   #
+   def __sub__(self, other) :
+      return like_numpy( self.vec - other.vec )
+   #
+   def __mul__(self, other) :
+      return like_numpy( self.vec * other.vec )
+   #
+   def __truediv__(self, other) :
+      return like_numpy( self.vec / other.vec )
+   #
    def array(vec) :
-      torch.tensor(vec, dtype=float)
+      return like_numpy(vec)
    #
-   def ones(n) :
-      return torch.ones(n, dtype=float)
+   def sum(self) :
+      return self.vec.sum()
    #
-   def linspace(start, stop, num) :
-      return torch.linspace(start, stop, num, dtype=float)
-   #
-   def square(vec) :
-      return torch.square(vec)
-   #
-   def sum(vec) :
-      return vec.sum()
 # END LIKE_NUMPY
