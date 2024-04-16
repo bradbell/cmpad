@@ -6,18 +6,18 @@ import numpy
 import cppad_py
 #
 class like_numpy :
-   type_list =  [ numpy.ndarray ]
+   vector_type_list   =  [ numpy.ndarray ]
    #
    def __init__(self, like_vec) :
-      if type(like_vec) in self.type_list :
+      if type(like_vec) in self.vector_type_list :
          self.vec = like_vec
       elif type(like_vec) == cppad_py.a_double :
-         self.vec = numpy.array(like_vec, dtype=cppad_py.a_double)
+         self.vec     = numpy.array(like_vec, dtype=cppad_py.a_double)
       else :
-         assert len(like_vec) != 0
-         if type(like_vec) != list :
-            breakpoint()
-         self.vec = numpy.array(like_vec, dtype=float)
+         if type( like_vec[0] ) == cppad_py.a_double :
+            self.vec = numpy.array(like_vec, dtype=cppad_py.a_double)
+         else :
+            self.vec = numpy.array(like_vec, dtype=float)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )

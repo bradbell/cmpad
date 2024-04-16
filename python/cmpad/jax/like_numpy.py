@@ -15,7 +15,6 @@ class like_numpy :
       if type(like_vec) in self.type_list :
          self.vec = like_vec
       else :
-         assert len(like_vec) != 0
          self.vec = jax.numpy.array(like_vec, dtype=float)
    #
    def __add__(self, other) :

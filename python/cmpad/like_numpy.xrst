@@ -8,6 +8,8 @@ SPDX-FileContributor: 2024 Bradley M. Bell
    op
    vec
    ndarray
+   jax
+   py
 }
 
 The Like Numpy Vector Concept
@@ -73,8 +75,18 @@ This sums the elements of *vec* .
 
 scalar
 ******
-This is a scalar value with the same type
-as the elements of *like_vec* .
+This is a vector of length one .
+The type of this vector
+depends on the package that *like_numpy* corresponds to:
+
+.. csv-table::
+   :header:   package, constructor
+
+   autograd,  autograd.numpy.array
+   cppad_py,  numpy.array
+   jax,       jax.numpy.array
+   torch,     torch.tensor
+
 
 Example
 =======
