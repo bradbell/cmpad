@@ -3,3 +3,4 @@
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 from .gradient      import gradient
+from .like_numpy    import like_numpy

@@ -20,7 +20,7 @@ Syntax
 ******
 
 | |tab| *vec*    = *like_numpy* . ``array`` ( *like_vec* )
-| |tab| *vec*    = *left* *op* *right* 
+| |tab| *vec*    = *left* *op* *right*
 | |tab| *scalar* = *vec*.sum()
 
 like_vec
@@ -30,8 +30,8 @@ This can be a non-empty ``list`` or ``numpy.ndarray`` with numeric values.
 array
 *****
 This syntax constructs a *like_numpy* object.
-The *i*-th element of *vec* 
-has the same precision as ``float`` 
+The *i*-th element of *vec*
+has the same precision as ``float``
 and its value corresponds to the *i*-element of *like_vec* .
 
 *vec*

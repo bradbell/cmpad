@@ -47,7 +47,7 @@ def xam_grad_jax() :
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj(jax.numpy)
+   algo      = cmpad.llsq_obj(cmpad.jax.like_numpy)
    grad_llsq = cmpad.jax.gradient( algo )
    ok       &= check_grad_llsq( grad_llsq )
    #

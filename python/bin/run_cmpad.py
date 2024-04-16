@@ -36,7 +36,7 @@ import platform
 import numpy
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.15'
+cmpad_version = 'cmpad-2024.4.16'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -101,11 +101,11 @@ def grad_fun_obj(algorithm, package) :
       algo = cmpad.an_ode()
    elif algorithm == 'llsq_obj' :
       if package == 'autograd' :
-         algo = cmpad.llsq_obj(autograd.numpy)
+         algo = cmpad.llsq_obj(cmpad.autograd.like_numpy)
       elif package == 'cppad_py' :
-         algo = cmpad.llsq_obj(numpy)
+         algo = cmpad.llsq_obj(cmpad.cppad_py.like_numpy)
       elif package == 'jax' :
-         algo = cmpad.llsq_obj(jax.numpy)
+         algo = cmpad.llsq_obj(cmpad.jax.like_numpy)
       elif package == 'torch' :
          algo = cmpad.llsq_obj(cmpad.torch.like_numpy)
       else :

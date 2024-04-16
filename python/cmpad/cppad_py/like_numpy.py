@@ -2,19 +2,22 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
-# BEGIN LIKE_NUMPY
-import torch
+import numpy
+import cppad_py
 #
 class like_numpy :
-   #
-   type_list = [ torch.Tensor ]
+   type_list =  [ numpy.ndarray ]
    #
    def __init__(self, like_vec) :
       if type(like_vec) in self.type_list :
          self.vec = like_vec
+      elif type(like_vec) == cppad_py.a_double :
+         self.vec = numpy.array(like_vec, dtype=cppad_py.a_double)
       else :
          assert len(like_vec) != 0
-         self.vec = torch.tensor(like_vec, dtype=float)
+         if type(like_vec) != list :
+            breakpoint()
+         self.vec = numpy.array(like_vec, dtype=float)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )
@@ -32,6 +35,5 @@ class like_numpy :
       return like_numpy(vec)
    #
    def sum(self) :
-      return self.vec.sum().reshape(1)
+      return numpy.array( self.vec.sum() ).reshape(1)
    #
-# END LIKE_NUMPY

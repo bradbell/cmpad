@@ -47,7 +47,7 @@ def xam_grad_autograd() :
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj(autograd.numpy)
+   algo      = cmpad.llsq_obj(cmpad.autograd.like_numpy)
    grad_llsq = cmpad.autograd.gradient( algo )
    ok       &= check_grad_llsq( grad_llsq )
    #

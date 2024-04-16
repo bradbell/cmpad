@@ -47,7 +47,7 @@ def xam_grad_cppad_py() :
    ok      &= check_grad_ode( grad_ode )
    #
    # grad_llsq, ok
-   algo      = cmpad.llsq_obj(numpy)
+   algo      = cmpad.llsq_obj(cmpad.cppad_py.like_numpy)
    grad_llsq = cmpad.cppad_py.gradient(algo)
    ok       &= check_grad_llsq( grad_llsq )
    #

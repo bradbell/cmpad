@@ -2,19 +2,21 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
-# BEGIN LIKE_NUMPY
-import torch
+import jax
+import jaxlib
 #
 class like_numpy :
-   #
-   type_list = [ torch.Tensor ]
+   type_list =  [
+      jaxlib.xla_extension.ArrayImpl     ,
+      jax._src.interpreters.ad.JVPTracer ,
+   ]
    #
    def __init__(self, like_vec) :
       if type(like_vec) in self.type_list :
          self.vec = like_vec
       else :
          assert len(like_vec) != 0
-         self.vec = torch.tensor(like_vec, dtype=float)
+         self.vec = jax.numpy.array(like_vec, dtype=float)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )
@@ -33,5 +35,3 @@ class like_numpy :
    #
    def sum(self) :
       return self.vec.sum().reshape(1)
-   #
-# END LIKE_NUMPY
