@@ -78,8 +78,9 @@ do
    then
       echo 'bin/git_commit.sh: aborting'
       exit 1
+   else
+      git add "$file"
    fi
-   git add "$file"
 done
 # -----------------------------------------------------------------------------
 # temp.log

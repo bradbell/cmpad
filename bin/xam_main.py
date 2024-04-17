@@ -129,13 +129,17 @@ def main() :
    # default_min_time
    default_min_time = 0.5
    #
-   # default_n_arg
-   default_n_arg = 9
+   # n_arg_dict
+   n_arg_dict = {
+      'det_by_minor' : 9 ,
+      'an_ode'       : 100 ,
+      'llsq_obj'     : 9,
+   }
    #
    # n_other_dict
    n_other_dict = {
       'det_by_minor' : 0 ,
-      'an_ode'       : default_n_arg ,
+      'an_ode'       : 9 ,
       'llsq_obj'     : 100
    }
    #
@@ -145,6 +149,9 @@ def main() :
       # algorithm
       algorithm_list = [ 'det_by_minor' , 'an_ode' , 'llsq_obj' ]
       for algorithm in algorithm_list :
+         #
+         # n_arg
+         n_arg  = n_arg_dict[algorithm]
          #
          # n_other
          n_other = n_other_dict[algorithm]
@@ -169,6 +176,7 @@ def main() :
                   run_cmpad,
                   f'--package={package}',
                   f'--algorithm={algorithm}',
+                  f'--n_arg={n_arg}',
                   f'--n_other={n_other}',
                   f'--file_name={file_name}',
                ]
@@ -187,12 +195,12 @@ def main() :
    file_obj = open(file_name)
    reader = csv.DictReader(file_obj)
    for row in reader :
+      algorithm = row['algorithm']
       assert float(row['min_time']) == default_min_time
-      assert int(row['n_arg']) == default_n_arg
+      assert int(row['n_arg']) == n_arg_dict[algorithm]
       assert row['package'] in package_list
       assert row['algorithm'] in algorithm_list
       assert row['time_setup'] in [ 'true', 'false' ]
-      algorithm = row['algorithm']
       assert int( row['n_other'] ) == n_other_dict[algorithm]
    #
    print( f'{program}: OK')
