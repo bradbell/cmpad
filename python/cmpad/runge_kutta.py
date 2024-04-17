@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin_parent py_runge_kutta}
@@ -102,18 +102,16 @@ Python runge_kutta Source Code
 '''
 # BEGIN PYTHON
 # BEGIN DEF
-def runge_kutta(fun, yi, tf, ns) :
+def runge_kutta(like_numpy, fun, yi, tf, ns) :
    assert type(ns) == int
    # END DEF
    #
    # two, six
-   two = 2.0
-   six = 6.0
-   # n
-   n = len(yi)
+   two = like_numpy.array( 2.0 )
+   six = like_numpy.array( 6.0 )
    #
    # h
-   h = tf / float(ns)
+   h = like_numpy.array( tf / float(ns) )
    #
    # i_step, yf
    yf = yi
@@ -123,33 +121,21 @@ def runge_kutta(fun, yi, tf, ns) :
       k1 = fun(yf)
       #
       # k2
-      y_tmp = n * [0.0]
-      for i in range(n) :
-         y_tmp[i] = yf[i] + h * k1[i] / two
-      k2 = fun(y_tmp)
+      y_tmp = yf + k1 * (h / two)
+      k2    = fun(y_tmp)
       #
       # k3
-      for i in range(n) :
-         y_tmp[i] = yf[i] + h * k2[i] / two
-      k3 = fun(y_tmp)
+      y_tmp = yf + k2 * (h / two)
+      k3    = fun(y_tmp)
       #
       # k4
-      for i in range(n) :
-         y_tmp[i] = yf[i] + h * k3[i]
-      k4 = fun(y_tmp)
+      y_tmp = yf + k3 * h
+      k4    = fun(y_tmp)
       #
       # yf
-      for i in range(n) :
-         yf[i] = yf[i] + h * (k1[i] + two * k2[i] + two * k3[i] + k4[i]) / six
+      yf = yf + (k1 + two * k2 + two * k3 + k4) * (h / six)
    #
    # BEGIN RETURN
-   type_set = { float }
-   for i in range( len(yi) ) :
-      type_set.add( type(yi[i]) )
-      type_set.add( type(yf[i]) )
-   assert len( type_set ) <= 2
-   #
-   assert len(yf) == len(yi)
    return yf
    # END RETURN
 # END PYTHON

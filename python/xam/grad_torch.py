@@ -41,7 +41,7 @@ def xam_grad_torch() :
    ok      &= check_grad_det( grad_det )
    #
    # grad_ode, ok
-   algo     = cmpad.an_ode()
+   algo     = cmpad.an_ode(cmpad.torch.like_numpy)
    grad_ode = cmpad.torch.gradient(algo)
    ok      &= check_grad_ode( grad_ode )
    #

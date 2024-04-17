@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin xam_an_ode.py}
@@ -28,7 +28,7 @@ def xam_an_ode() :
    n = 4
    #
    # ode
-   ode = cmpad.an_ode()
+   ode = cmpad.an_ode(numpy)
    #
    # ode.setup
    option = { 'n_arg' : n, 'n_other' : n-1 }
@@ -58,3 +58,4 @@ def xam_an_ode() :
 def test_xam_an_ode() :
    assert xam_an_ode() == True
 # END PYTHON
+test_xam_an_ode()

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin xam_runge_kutta.py}
@@ -56,6 +56,7 @@ def fun(y) :
    dy[0] = 0.0
    for i in range(1, n) :
       dy[i] = y[i-1]
+   dy = numpy.array(dy)
    #
    return dy
 
@@ -67,7 +68,7 @@ def xam_runge_kutta() :
    ok = True
    #
    # yi
-   yi = [ 1.0, 0.0, 0.0, 0.0, 0.0 ]
+   yi = numpy.array( [ 1.0, 0.0, 0.0, 0.0, 0.0 ] )
    #
    # tf
    tf = 1.0
@@ -76,7 +77,7 @@ def xam_runge_kutta() :
    ns = 1
    #
    # yf
-   yf = cmpad.runge_kutta(fun, yi, tf, ns)
+   yf = cmpad.runge_kutta(numpy, fun, yi, tf, ns)
    #
    # rel_error
    rel_error = numpy.finfo(float).eps * 100.0

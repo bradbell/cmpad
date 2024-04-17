@@ -11,13 +11,15 @@ class like_numpy :
    def __init__(self, like_vec) :
       if type(like_vec) in self.vector_type_list :
          self.vec = like_vec
-      elif type(like_vec) == cppad_py.a_double :
-         self.vec     = numpy.array(like_vec, dtype=cppad_py.a_double)
       else :
-         if type( like_vec[0] ) == cppad_py.a_double :
-            self.vec = numpy.array(like_vec, dtype=cppad_py.a_double)
+         try :
+            element_type = type( like_vec[0] )
+         except :
+            element_type = type( like_vec )
+         if element_type == cppad_py.a_double :
+            self.vec = numpy.array(like_vec, dtype=element_type).reshape(-1)
          else :
-            self.vec = numpy.array(like_vec, dtype=float)
+            self.vec = numpy.array(like_vec, dtype=float).reshape(-1)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )
@@ -37,3 +39,19 @@ class like_numpy :
    def sum(self) :
       return numpy.array( self.vec.sum() ).reshape(1)
    #
+   def __len__(self) :
+      return len(self.vec)
+   #
+   def __getitem__(self, index) :
+      return self.vec[index]
+   #
+   def concatenate(like_list) :
+      vec_list = list()
+      for like in like_list :
+         vec_list.append(like.vec)
+      return like_numpy( numpy.concatenate(vec_list) )
+   #
+   def reshape(self, shape) :
+      assert shape == -1
+      assert self.vec.shape == ( len(self.vec), )
+      return like_numpy( self.vec )

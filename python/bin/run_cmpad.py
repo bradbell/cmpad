@@ -36,7 +36,7 @@ import platform
 import numpy
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.4.16'
+cmpad_version = 'cmpad-2024.4.17'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -77,7 +77,7 @@ def none_fun_obj(algorithm) :
    if algorithm == 'det_by_minor' :
       return cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
-      return cmpad.an_ode()
+      return cmpad.an_ode(numpy)
    elif algorithm == 'llsq_obj' :
       return cmpad.llsq_obj(numpy)
    else :
@@ -94,22 +94,27 @@ def grad_fun_obj(algorithm, package) :
    if cmpad.has_package['torch'] :
       import torch
    #
+   # like_numpy
+   if package == 'autograd' :
+      like_numpy = cmpad.autograd.like_numpy
+   elif package == 'cppad_py' :
+      like_numpy = cmpad.cppad_py.like_numpy
+   elif package == 'jax' :
+      like_numpy = cmpad.jax.like_numpy
+   elif package == 'torch' :
+      like_numpy = cmpad.torch.like_numpy
+   else :
+      assert False
+   #
    # algo
    if algorithm == 'det_by_minor' :
       algo = cmpad.det_by_minor()
    elif algorithm == 'an_ode' :
-      algo = cmpad.an_ode()
+      algo = cmpad.an_ode(like_numpy)
    elif algorithm == 'llsq_obj' :
-      if package == 'autograd' :
-         algo = cmpad.llsq_obj(cmpad.autograd.like_numpy)
-      elif package == 'cppad_py' :
-         algo = cmpad.llsq_obj(cmpad.cppad_py.like_numpy)
-      elif package == 'jax' :
-         algo = cmpad.llsq_obj(cmpad.jax.like_numpy)
-      elif package == 'torch' :
-         algo = cmpad.llsq_obj(cmpad.torch.like_numpy)
-      else :
-         assert False
+      algo = cmpad.llsq_obj(like_numpy)
+   else :
+      assert False
    #
    if package == 'autograd' :
       return cmpad.autograd.gradient(algo)

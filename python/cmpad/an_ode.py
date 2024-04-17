@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 r'''
 {xrst_begin_parent py_an_ode}
@@ -78,30 +78,38 @@ an_ode: Python Source Code
 '''
 # BEGIN PYTHON
 import cmpad
+import numpy
 #
 # an_ode_fun
 class an_ode_fun :
    #
    # __init__
    # self.x, self.n
-   def __init__(self, x) :
-      self.x = x
-      self.n = len(x)
+   def __init__(self, like_numpy, x) :
+      self.like_numpy = like_numpy
+      self.x          = x
+      self.n          = len(x)
    #
    # __call__
    def __call__ (self, y) :
       assert len(y) == self.n
       assert len(self.x) == self.n
       #
+      # like_numpy
+      like_numpy  = self.like_numpy
+      #
       # dy
-      dy    = [ self.x[0] ]
+      dy    = [ like_numpy.array( self.x[0] ).reshape(-1) ]
       for i in range(1, self.n) :
-         dy.append( self.x[i] * y[i-1] )
+         dy.append( like_numpy.array( self.x[i] * y[i-1] ).reshape(-1) )
+      dy = like_numpy.concatenate( dy )
       #
       return dy
 #
 # BEGIN PROTOTYPE
 class an_ode :
+   def __init__(self, like_numpy) :
+      self.like_numpy = like_numpy
    #
    def option(self) :
       return self.option
@@ -132,11 +140,14 @@ class an_ode :
    def __call__(self, x) :
       assert len(x) == self.n_arg
       #
+      # like_numpy
+      like_numpy = self.like_numpy
+      #
       # yi
-      yi = self.n_arg * [ 0.0 ]
+      yi = like_numpy.array( self.n_arg * [ 0.0 ] )
       #
       # fun
-      fun = an_ode_fun(x)
+      fun = an_ode_fun(like_numpy, x)
       #
       # tf
       tf = 2.0
@@ -145,8 +156,10 @@ class an_ode :
       ns = self.n_other
       #
       # yf
-      yf = cmpad.runge_kutta(fun, yi, tf, ns)
+      yf = cmpad.runge_kutta(like_numpy, fun, yi, tf, ns)
       #
       assert  len(yf) == self.n_arg
-      return yf
+      if like_numpy == numpy :
+         return yf
+      return yf.vec
 # END PYTHON
