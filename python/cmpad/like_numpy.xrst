@@ -10,6 +10,7 @@ SPDX-FileContributor: 2024 Bradley M. Bell
    ndarray
    jax
    py
+   len
 }
 
 The Like Numpy Vector Concept
@@ -22,31 +23,46 @@ Syntax
 ******
 
 | |tab| *vec*    = *like_numpy* . ``array`` ( *like_vec* )
+| |tab| *vec*    = *like_numpy* . ``concatenate`` ( *vec_list* )
 | |tab| *vec*    = *left* *op* *right*
+| |tab| *size*   = ``len`` ( *vec* )
 | |tab| *scalar* = *vec*.sum()
+| |tab| *scalar* = *vec* [ *index* ]
+| |tab| *vec*    = *vec*. ``reshape(-1)``
 
 like_vec
 ********
-This can be a non-empty ``list`` or ``numpy.ndarray`` with numeric values.
+This can be a numeric value, a non-empty ``list`` of numeric values,
+or non-empty ``numpy.ndarray`` of numeric values.
 
 array
 *****
-This syntax constructs a *like_numpy* object.
+This syntax constructs a *like_numpy* vector.
 The *i*-th element of *vec*
 has the same precision as ``float``
 and its value corresponds to the *i*-element of *like_vec* .
+In th special case where *like_numpy* is ``numpy`` ; see
+:ref:`like_numpy@reshape` below.
 
 *vec*
 *****
-is a *like_numpy* object.
+is a *like_numpy* vector.
 
 *left*
 ******
-is a *like_numpy* object.
+is a *like_numpy* vector.
 
 *right*
 *******
-is a *like_numpy* object.
+is a *like_numpy* vector.
+
+concatenate
+***********
+The concatenates a list of vectors into one long vector.
+
+vec_list
+********
+is a ``list`` of *like_numpy* vectors.
 
 op
 **
@@ -75,7 +91,20 @@ This sums the elements of *vec* .
 
 scalar
 ******
-This is a vector of length one .
+This object has the same (or similar) type as the elements of *like_vec* .
+You can convert it to a *like_numpy* vector using
+
+| |tab| *vec* = *like_numpy* . ``array`` ( *scalar*  )  ``.reshape(-1)``
+
+Note that in the  ``.reshape(-1)`` is only necessary when
+*like_numpy* is ``numpy`` .
+
+reshape
+*******
+Normally, this will check that *vec* is a vector; i.e, it has one dimension.
+In he special case where *like_numpy* is ``numpy`` ,
+this converts the numpy array to a vector.
+
 The type of this vector
 depends on the package that *like_numpy* corresponds to:
 

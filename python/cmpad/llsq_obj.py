@@ -107,7 +107,8 @@ class llsq_obj :
       squared_residual = residual * residual
       #
       # objective
-      objective = 0.5 * squared_residual.sum()
+      objective = like_numpy.array( 0.5 * squared_residual.sum() )
+      objective = objective.reshape(-1)
       #
       return objective
 # END PYTHON

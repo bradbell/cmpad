@@ -29,7 +29,7 @@ class like_numpy :
       return like_numpy(vec)
    #
    def sum(self) :
-      return self.vec.sum().reshape(1)
+      return self.vec.sum()
    #
    def __len__(self) :
       return len(self.vec)
