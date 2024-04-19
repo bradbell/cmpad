@@ -15,7 +15,7 @@ Use Python Runge-Kutta Method to Solve an ODE
 
 Syntax
 ******
-| |tab| *ode* = ``cmpad.an_ode()``
+| |tab| *ode* = ``cmpad.an_ode( *like_numpy* )``
 | |tab| *ode* . ``setup`` ( *option* )
 | |tab| *yf* = *ode* ( *x* )
 
@@ -29,6 +29,10 @@ Prototype
 Algorithm
 *********
 This is a python implementation of the an_ode :ref:`an_ode@Algorithm` .
+
+like_numpy
+**********
+This is a :ref:`like_numpy-name` class.
 
 ode
 ***

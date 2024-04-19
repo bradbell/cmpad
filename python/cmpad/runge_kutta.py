@@ -30,28 +30,16 @@ This routine returns an approximate solution
 for :math:`y( t^f )` where :math:`y(0) = y^i` and
 :math:`y' (t) = f(y)` .
 
+like_numpy
+**********
+This is a :ref:`like_numpy-name` class.
+
 fun
 ***
 This is a :ref:`py_fun_obj-name` .
 The syntax *dy* = *fun* ( *yt* ) ,
 were *yt* is :math:`y(t)` ,
 sets *dy* equal to the derivative :math:`y'(t)`  .
-
-Scalar
-******
-We use *Scalar* for the scalar type corresponding to this function object;
-see :ref:`py_fun_obj@Scalar Type` .
-This type must support the following operations where
-*a* and *b* have type *Scalar* or ``float`` .
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Syntax,    Description,                                     Result Type
-   a + b,     value of *a* plus *b*,                           *Scalar*
-   a * b,     value of *a* times *b*,                          *Scalar*
-   a / b,     value of *a* divided by *b*,                     *Scalar*
 
 yi
 **
@@ -77,9 +65,15 @@ The return value *yf* has the same size as *yi* and is the approximation
 for :math:`y(t)` at *t* = *tf* .
 This is a vector like object with elements of type ``float`` or *Scalar* .
 
-{xrst_toc_table after
+{xrst_toc_hidden after
    python/xam/runge_kutta.py
 }
+
+Source Code
+***********
+:ref:`runge_kutta.py-name`
+
+
 Example
 *******
 :ref:`xam_runge_kutta.py-name`
@@ -104,6 +98,7 @@ Python runge_kutta Source Code
 # BEGIN DEF
 def runge_kutta(like_numpy, fun, yi, tf, ns) :
    assert type(ns) == int
+   assert type(yi) == type( like_numpy.array(1.0) )
    # END DEF
    #
    # two, six
