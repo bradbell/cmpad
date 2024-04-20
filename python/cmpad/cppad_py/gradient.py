@@ -55,10 +55,8 @@ class gradient :
       self.w[0, 0] = 1.0
       #
       # self.tape
-      x  = numpy.empty(n, dtype=float)
-      ay = numpy.empty(1, dtype=cppad_py.a_double)
-      for i in range(n) :
-         x[i] = 0.
+      x     = numpy.zeros(n, dtype=float)
+      ay    = numpy.empty(1, dtype=cppad_py.a_double)
       ax    = cppad_py.independent(x)
       az    = self.algo(ax)
       ay[0] = az[-1]

@@ -57,9 +57,7 @@ class gradient :
    def __call__(self, x) :
       n_arg   = self.option['n_arg']
       assert len(x) == n_arg
-      ax = autograd.numpy.empty(n_arg)
-      for i in range(n_arg) :
-         ax[i] = x[i]
+      ax = autograd.numpy.array(x, dtype=float)
       g = self.grad( ax )
       return g
 # END PYTHON

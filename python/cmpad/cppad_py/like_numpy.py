@@ -17,9 +17,11 @@ class like_numpy :
          except :
             element_type = type( like_vec )
          if element_type == cppad_py.a_double :
-            self.vec = numpy.array(like_vec, dtype=element_type).reshape(-1)
+            self.vec = numpy.array(like_vec, dtype=element_type)
          else :
-            self.vec = numpy.array(like_vec, dtype=float).reshape(-1)
+            self.vec = numpy.array(like_vec, dtype=float)
+      if len( self.vec.shape ) != 1 :
+         self.vec = self.vec.reshape(-1)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )

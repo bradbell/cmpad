@@ -10,9 +10,11 @@ class like_numpy :
    #
    def __init__(self, like_vec) :
       if type(like_vec) in self.type_list :
-         self.vec = like_vec.reshape(-1)
+         self.vec = like_vec
       else :
-         self.vec = torch.tensor(like_vec, dtype=float).reshape(-1)
+         self.vec = torch.tensor(like_vec, dtype=float)
+      if len( self.vec.shape ) != 1 :
+         self.vec = self.vec.reshape(-1)
    #
    def __add__(self, other) :
       return like_numpy( self.vec + other.vec )
