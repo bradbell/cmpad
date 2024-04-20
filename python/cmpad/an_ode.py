@@ -33,6 +33,7 @@ This is a python implementation of the an_ode :ref:`an_ode@Algorithm` .
 like_numpy
 **********
 This is a :ref:`like_numpy-name` class.
+It is used to vectorize the :ref:`rk4_step-name` algorithm.
 
 ode
 ***
@@ -42,6 +43,8 @@ in the function object interface.
 n_arg
 *****
 see :ref:`an_ode@option@n_arg` .
+This is the number of elements that are computed by one *like_numpy* operation
+in the r4k_step algorithm
 
 n_other
 =======

@@ -29,7 +29,8 @@ Different array types are used by the different AD packages.
 
 like_numpy
 **********
-see :ref:`like_numpy-name` .
+This is a :ref:`like_numpy-name` class.
+It is used to vectorize this algorithm. 
 
 n_arg
 *****
@@ -38,6 +39,8 @@ see :ref:`llsq_obj@option@n_arg` .
 n_other
 *******
 see :ref:`llsq_obj@option@n_other` .
+This is the number of elements that are computed by one *like_numpy* operation
+of the llsq_obj algorithm.
 
 Source Code
 ***********

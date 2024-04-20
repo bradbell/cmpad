@@ -33,6 +33,7 @@ for :math:`y( t^f )` where :math:`y(0) = y^i` and
 like_numpy
 **********
 This is a :ref:`like_numpy-name` class.
+It is used to vectorize the :ref:`rk4_step-name` algorithm.
 
 fun
 ***

@@ -57,10 +57,6 @@ data = [
       torch
       sacado
    ''',
-   # option field names
-   '''
-      arg
-   ''',
    # file extensions
    '''
       hpp
@@ -71,12 +67,14 @@ data = [
       bool
       namespace
    ''',
-   # abbreviations used by this package
+   # abbreviations and special words used by this package
    '''
       algo
+      arg
       det
       min
       ok
+      vectorize
    ''',
    # words that do not begin with backslash and used in latex
    '''
