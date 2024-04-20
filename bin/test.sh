@@ -6,7 +6,7 @@
 # ---------------------------------------------------------------------------
 set -e -u
 #
-job='xam_main'
+job='debug'
 build_type='release'
 #
 # environment.sh
@@ -14,7 +14,7 @@ source bin/environment.sh
 #
 if [ "$job" == 'debug' ]
 then
-   file='python/xam/grad_torch.py'
+   file='python/xam/llsq_obj.py'
    git checkout $file
    sed -i -e 's|assert \(.*\)() == True|&\n\1()|' $file
    python -m pdb $file
