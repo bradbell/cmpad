@@ -14,6 +14,7 @@ SET(example_list
    det_by_minor.cpp
    det_of_minor.cpp
    fun_obj.cpp
+   fun_object.cpp
    fun_speed.cpp
    llsq_obj.cpp
    near_equal.cpp

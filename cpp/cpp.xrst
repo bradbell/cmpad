@@ -27,6 +27,7 @@ Simple Types
    cpp/include/cmpad/vector.hpp
    cpp/include/cmpad/vec_vec_str.hpp
    cpp/include/cmpad/fun_obj.hpp
+   cpp/include/cmpad/fun_object.hpp
 }
 
 {xrst_end type}

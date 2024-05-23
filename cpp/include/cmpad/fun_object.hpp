@@ -2,18 +2,23 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ----------------------------------------------------------------------------
-# ifndef CMPAD_FUN_OBJ_HPP
-# define CMPAD_FUN_OBJ_HPP
+# ifndef CMPAD_FUN_OBJECT_HPP
+# define CMPAD_FUN_OBJECT_HPP
 /*
-{xrst_begin cpp_fun_obj}
+{xrst_begin cpp_fun_object}
+{xrst_spell
+   resize
+   th
+   vec
+}
 
-Abstract Class for a C++ Function Object
-########################################
+The New Abstract Class for a C++ Function Object
+################################################
 
 Syntax
 ******
-| |tab| ``# include <cmpad/fun_obj.hpp``
-| |tab| ``cmpad::fun_obj`` < *Scalar* > *fun*
+| |tab| ``# include <cmpad/fun_object.hpp``
+| |tab| ``cmpad::fun_object`` < *Vector* > *fun*
 | |tab| *fun* . ``setup`` ( *option* ) 
 | |tab| *fun* . ``domain`` ( ) 
 | |tab| *fun* . ``range`` ( ) 
@@ -26,6 +31,28 @@ Source Code
    // END C++
 }
 
+Vector
+******
+The *Vector* class must support the following where *vec* is a *Vector*
+object:
+
+Vector::value_type
+==================
+is the type of the elements of *vec* . 
+
+vec.resize(n)
+=============
+resize the vector to have size *n* where *n* is a ``size_t`` object.
+
+vec.size()
+==========
+returns a ``size_t`` that is the current size of the vector.
+
+vec[i]
+======
+returns a reference, or constant reference, to the i-th element of *vec*
+where *i* is an ``size_t`` .
+
 fun
 ***
 This is the function object.
@@ -33,11 +60,12 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
-value_type
-**********
-A derived class must define *value_type* to be the same as *Scalar* .
+vector_type
+***********
+A derived class must define *vector_type* to be the same as *Vector* .
 This is intended for use when derived class type
 is passed as a template parameter.
+
 
 setup
 *****
@@ -63,46 +91,48 @@ It likely depends on the value of *option*.
 
 x
 *
-This vector has size *n* and
+This *Vector* has size *n* and
 is the point at which the function is evaluated.
 
 y
 *
-This vector has size *m* and
+This *Vector* has size *m* and
 is the function value corresponding to *x*.
 
 {xrst_toc_hidden
-   cpp/xam/fun_obj.cpp
+   cpp/xam/fun_object.cpp
 }
 Example
 *******
-:ref:`xam_fun_obj.cpp-name` is an example and test that uses this function.
+:ref:`xam_fun_object.cpp-name` is an example and test that uses this function.
 
-{xrst_end cpp_fun_obj}
+{xrst_end cpp_fun_object}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
 
-# include <cmpad/vector.hpp>
 # include <cmpad/option_t.hpp>
 namespace cmpad {
-   template <class Scalar> struct fun_obj {
+   template <class Vector> struct fun_object {
       //
       // value_type
-      typedef Scalar value_type;
+      typedef typename Vector::value_type value_type;
       //
       // setup
       virtual void setup(const option_t& option) = 0;
+      //
       // option
       virtual const option_t& option(void) const = 0;
+      //
       // domain
       virtual size_t domain(void) const = 0;
+      //
       // range
+      //
       virtual size_t range(void) const = 0;
+      //
       // operator()
-      virtual const cmpad::vector<Scalar>& operator()(
-         const cmpad::vector<Scalar>& x
-      ) = 0;
+      virtual const Vector& operator()(const Vector& x) = 0;
    };
 }
 // END C++

@@ -3,31 +3,35 @@
 // SPDX-FileContributor: 2023 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_fun_obj.cpp}
+{xrst_begin xam_fun_object.cpp}
 
-Example and Test of fun_obj
-###########################
+Example and Test of fun_object
+##############################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_fun_obj.cpp}
+{xrst_end xam_fun_object.cpp}
 */
 // BEGIN C++
 # include <cassert>
 # include <iostream>
-# include <cmpad/fun_obj.hpp>
+# include <cmpad/vector.hpp>
+# include <cmpad/fun_object.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace {
-
-   // my_fun_obj
-   class my_fun_obj : public cmpad::fun_obj<float> {
+   //
+   // Vector
+   typedef cmpad::vector<float> Vector;
+   //
+   // my_fun_object
+   class my_fun_object : public cmpad::fun_object<Vector> {
    private:
       //
       // y_
-      cmpad::vector<float> y_;
+      Vector y_;
       //
       // option_
       cmpad::option_t option_;
@@ -35,7 +39,7 @@ namespace {
    public:
       //
       // value_type
-      typedef float value_type;
+      typedef Vector::value_type value_type;
       //
       // setup
       void setup(const cmpad::option_t& option) override
@@ -54,9 +58,7 @@ namespace {
       {  return 1;
       }
       // operator()
-      const cmpad::vector<float>& operator()(
-         const cmpad::vector<float>& x
-      ) override
+      const Vector& operator()(const Vector& x) override
       {  assert( x.size() == 1 );
          y_[0] = x[0] * x[0];
          return y_;
@@ -64,7 +66,7 @@ namespace {
    };
 }
 
-bool xam_fun_obj(void)
+bool xam_fun_object(void)
 {  //
    // ok
    bool ok = true;
@@ -74,14 +76,14 @@ bool xam_fun_obj(void)
    cmpad::option_t option;
    //
    // my_fun
-   my_fun_obj my_fun;
+   my_fun_object my_fun;
    my_fun.setup(option);
    //
    // x
-   cmpad::vector<float> x = { 2.0 };
+   Vector x = { 2.0 };
    //
    // y
-   const cmpad::vector<float>& y = my_fun(x);
+   const Vector& y = my_fun(x);
    //
    // ok
    ok &= y[0] == x[0] * x[0];
