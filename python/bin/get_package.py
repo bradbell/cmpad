@@ -169,6 +169,7 @@ def main() :
    ok  = sys.prefix.endswith( f'/build/{build_type}' )
    if not ok :
       msg  = f'{program}: The sys.prefix does not end with /build/{build_type}'
+      msg += 'Need to source bin/environment.sh before runing {program}.'
       sys.exit(msg)
    #
    # package
