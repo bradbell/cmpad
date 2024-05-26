@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 # ifndef CMPAD_FUN_OBJECT_HPP
 # define CMPAD_FUN_OBJECT_HPP
@@ -10,6 +10,8 @@
    resize
    th
    vec
+   typedef
+   typename
 }
 
 The New Abstract Class for a C++ Function Object
@@ -19,9 +21,9 @@ Syntax
 ******
 | |tab| ``# include <cmpad/fun_object.hpp``
 | |tab| ``cmpad::fun_object`` < *Vector* > *fun*
-| |tab| *fun* . ``setup`` ( *option* ) 
-| |tab| *fun* . ``domain`` ( ) 
-| |tab| *fun* . ``range`` ( ) 
+| |tab| *fun* . ``setup`` ( *option* )
+| |tab| *fun* . ``domain`` ( )
+| |tab| *fun* . ``range`` ( )
 | |tab| *y* = *fun* ( *x* )
 
 Source Code
@@ -36,9 +38,21 @@ Vector
 The *Vector* class must support the following where *vec* is a *Vector*
 object:
 
-Vector::value_type
-==================
-is the type of the elements of *vec* . 
+Scalar
+======
+We use *Scalar* to denote the type of the elements of *vec* :
+{xrst_code cpp}
+   typedef typename Vector::value_type Scalar
+{xrst_code}
+If *s* and *t* are *Scalar* objects, the following operations must be defined:
+
+#. The constructors: *Scalar* (0),  *Scalar* (s) .
+#. This binary operations:
+   *s* + *t* ,
+   *s* - *t* ,
+   *s* * *t* ,
+   *s* / *t* .
+
 
 vec.resize(n)
 =============

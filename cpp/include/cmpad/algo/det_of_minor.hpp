@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_DET_OF_MINOR_HPP
 # define CMPAD_ALGO_DET_OF_MINOR_HPP
@@ -60,23 +60,14 @@ will return the determinant of :math:`A`:
 #. for :math:`j = 0 , \ldots , n-1`, :math:`c[j] = j+1`,
    and :math:`c[n] = 0`.
 
-Scalar
-******
-This is the type of the elements of *a* .
-If *x* and *y* are *Scalar* objects,
-the type *Scalar* must support the following operations:
+FloatVector
+***********
+This type satisfies the conditions for :ref:`cpp_fun_object@Vector` .
 
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Syntax,           Description,                                   Result Type
-   *Scalar* (0.0),   constructor for *Scalar* object equal to zero, *Scalar*
-   *Scalar* ( *x* ), constructor for *Scalar* object equal to *x* , *Scalar*
-   *x* = *y*,        set value of *x* to current value of *y*
-   *x* + *y*,        value of *x* plus *y*,                         *Scalar*
-   *x* - *y*,        value of *x* minus *y*,                        *Scalar*
-   *x* * *y*,        value of *x* times value of *y*,               *Scalar*
+SizeVector
+**********
+This type satisfies the conditions for :ref:`cpp_fun_object@Vector`
+with elements of type ``size_t`` .
 
 a
 *
@@ -137,7 +128,8 @@ and restored to their original value before the return from ``det_of_minor`` .
 
 d
 *
-The return value *d* is equal to the determinant of the minor :math:`M`.
+The return value *d* is equal to the determinant of the minor :math:`M`
+and has the same type as the elements of *a*.
 
 {xrst_toc_table after
    cpp/xam/det_of_minor.cpp
@@ -166,22 +158,24 @@ det_of_minor: Source Code
 // BEGIN C++
 # include <cassert>
 # include <cstddef>
-# include <cmpad/vector.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
-template <class Scalar>
-Scalar det_of_minor(
-   const cmpad::vector<Scalar>&    a  ,
+template <class FloatVector, class SizeVector>
+typename FloatVector::value_type det_of_minor(
+   const FloatVector&              a  ,
    size_t                          n  ,
    size_t                          m  ,
-   cmpad::vector<size_t>&          r  ,
-   cmpad::vector<size_t>&          c  )
+   SizeVector&                     r  ,
+   SizeVector&                     c  )
 {  assert( a.size() == n * n );
    assert( r.size() == n + 1 );
    assert( c.size() == n + 1 );
    // END PROTOTYPE
+   //
+   // Scalar
+   typedef typename FloatVector::value_type Scalar;
    //
    // R0 = R(0)
    size_t R0 = r[n];
@@ -197,7 +191,7 @@ Scalar det_of_minor(
    //
    // detM
    // initialize determinant of the minor M
-   Scalar detM(0.0);
+   Scalar detM(0);
    //
    // sign
    // initialize sign of factor for next sub-minor

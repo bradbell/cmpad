@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 
 /*
@@ -18,6 +18,7 @@ C++ Example and Test of det_of_minor
 */
 // BEGIN C++
 # include <cstddef>
+# include <cmpad/vector.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
 bool xam_det_of_minor(void)
