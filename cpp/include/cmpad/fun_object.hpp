@@ -35,18 +35,19 @@ Source Code
 
 Vector
 ******
-The *Vector* class must support the following where *vec* is a *Vector*
-object:
+The fun_object *Vector* class must support the following
+where *vec* is a *Vector* object:
 
-Scalar
-======
-We use *Scalar* to denote the type of the elements of *vec* :
+value_type
+==========
+We use *value_type* to denote the type of the elements of *vec* :
 {xrst_code cpp}
-   typedef typename Vector::value_type Scalar
+   typedef typename Vector::value_type value_type
 {xrst_code}
-If *s* and *t* are *Scalar* objects, the following operations must be defined:
+If *s* and *t* are *value_type* objects,
+the following operations must be defined:
 
-#. The constructors: *Scalar* (0),  *Scalar* (s) .
+#. The constructors: *value_type* (0),  *value_type* (s) .
 #. This binary operations:
    *s* + *t* ,
    *s* - *t* ,

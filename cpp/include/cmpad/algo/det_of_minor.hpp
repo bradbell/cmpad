@@ -60,14 +60,10 @@ will return the determinant of :math:`A`:
 #. for :math:`j = 0 , \ldots , n-1`, :math:`c[j] = j+1`,
    and :math:`c[n] = 0`.
 
-FloatVector
-***********
-This type satisfies the conditions for :ref:`cpp_fun_object@Vector` .
-
-SizeVector
-**********
-This type satisfies the conditions for :ref:`cpp_fun_object@Vector`
-with elements of type ``size_t`` .
+Vector
+******
+This type satisfies the conditions for a
+fun_object :ref:`cpp_fun_object@Vector` .
 
 a
 *
@@ -158,24 +154,25 @@ det_of_minor: Source Code
 // BEGIN C++
 # include <cassert>
 # include <cstddef>
+# include <cmpad/vector.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
-template <class FloatVector, class SizeVector>
-typename FloatVector::value_type det_of_minor(
-   const FloatVector&              a  ,
+template <class Vector>
+typename Vector::value_type det_of_minor(
+   const Vector&                   a  ,
    size_t                          n  ,
    size_t                          m  ,
-   SizeVector&                     r  ,
-   SizeVector&                     c  )
+   cmpad::vector<size_t>&          r  ,
+   cmpad::vector<size_t>&          c  )
 {  assert( a.size() == n * n );
    assert( r.size() == n + 1 );
    assert( c.size() == n + 1 );
    // END PROTOTYPE
    //
-   // Scalar
-   typedef typename FloatVector::value_type Scalar;
+   // value_type
+   typedef typename Vector::value_type value_type;
    //
    // R0 = R(0)
    size_t R0 = r[n];
@@ -191,7 +188,7 @@ typename FloatVector::value_type det_of_minor(
    //
    // detM
    // initialize determinant of the minor M
-   Scalar detM(0);
+   value_type detM(0);
    //
    // sign
    // initialize sign of factor for next sub-minor
@@ -211,7 +208,7 @@ typename FloatVector::value_type det_of_minor(
       // M[0,j] = A[ R0, Cj ]
       // element with index (0, j) in the minor M
       assert( Cj < n );
-      Scalar M0j = a[ R0 * n + Cj ];
+      value_type M0j = a[ R0 * n + Cj ];
       //
       // remove column with index j in M to form next sub-minor S of M
       c[Cj1] = c[Cj];
@@ -219,7 +216,7 @@ typename FloatVector::value_type det_of_minor(
       // detS
       // compute determinant of S, the sub-minor of M with
       // row R(0) and column C(j) removed.
-      Scalar detS = det_of_minor(a, n, m - 1, r, c);
+      value_type detS = det_of_minor(a, n, m - 1, r, c);
       //
       // restore column with index j in represenation of M as a minor of A
       c[Cj1] = Cj;
