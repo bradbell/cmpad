@@ -1,0 +1,62 @@
+{xrst_comment:
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023-24 Bradley M. Bell
+
+This template file has the following parameters:
+   @Package@ : the name of this packages (used in a page title).
+   @#######@ : the rst underlining for the package name.
+   @package@ : is a lower case version of @Package@. This used used for the
+               corresponding namespace, directories, and file names.
+   @not_cppad_jit@ : is false (true) if package is cppad_jit (not cppad_jit).
+
+This template uses // BEGIN C++ and // END C++ for the source code limits
+in the page file that implementes the gradient.
+}
+
+Calculate Gradient Using @Package@
+#########################@#######@
+
+Syntax
+******
+| |tab| ``# include <cmpad/@package@/gradient.hpp>``
+| |tab| ``cmpad::@package@::gradient`` < *TemplateAlgo* > *grad*
+| |tab| *g* = *grad* ( *x* )
+
+
+Purpose
+*******
+This implements the :ref:`cpp_gradient_vec-name` interface using @Package@.
+
+TemplateAlgo
+************
+The class TemplateAlgo<Vector> must be a derived class for
+:ref:`fun_obj_vec\<Vector\> <cpp_fun_obj_vec-name>` .
+
+value_type
+**********
+The type cmpad::@package@::gradient<TemplateAlgo>::value_type is ``double`` ;
+see :ref:`cpp_gradient@value_type` .
+
+{xrst_suspend @not_cppad_jit@}
+Side Effect
+***********
+This routine uses the following files in the C++ temporary directory:
+
+   ``grad_cppad_jit.``\ *ext*
+
+were *ext* is the file extension for C source files and dll object files.
+In particular this routine is not thread safe.
+{xrst_resume}
+
+Example
+*******
+The file :ref:`xam_gradient_vec@package@.cpp-name`
+contains an example and test using this class.
+
+Source Code
+***********
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
