@@ -19,6 +19,7 @@ SET(example_list
    fun_obj_vec.cpp
    fun_speed.cpp
    llsq_obj.cpp
+   llsq_obj_vec.cpp
    near_equal.cpp
    runge_kutta.cpp
    uniform_01.cpp

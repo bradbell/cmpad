@@ -13,6 +13,7 @@ C++ Algorithms Used to Compare Packages
    cpp/include/cmpad/algo/an_ode.hpp
    cpp/include/cmpad/algo/an_ode_vec.hpp
    cpp/include/cmpad/algo/llsq_obj.hpp
+   cpp/include/cmpad/algo/llsq_obj_vec.hpp
 }
 
 {xrst_end cpp_algo}

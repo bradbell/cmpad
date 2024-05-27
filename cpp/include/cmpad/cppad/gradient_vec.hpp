@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_CPPAD_GRADIENT_VEC_HPP
 # define CMPAD_CPPAD_GRADIENT_VEC_HPP
@@ -30,7 +30,7 @@ namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 // cmpad::cppad::gradient_vec
 template < template<class Vector> class TemplateAlgo> class gradient_vec
 : public
-::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
+::cmpad::gradient_vec< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
    // Vector
    typedef typename cmpad::vector< CppAD::AD<double> >   Vector;

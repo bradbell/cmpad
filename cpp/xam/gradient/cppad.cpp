@@ -23,10 +23,12 @@ Source Code
 */
 // BEGIN C++
 # include <cmpad/configure.hpp>
+# include <cmpad/cppad/gradient_vec.hpp>
+//
 # include <cmpad/algo/det_by_minor_vec.hpp>
 # include <cmpad/algo/an_ode_vec.hpp>
-# include <cmpad/cppad/gradient.hpp>
-# include <cmpad/cppad/gradient_vec.hpp>
+# include <cmpad/algo/llsq_obj_vec.hpp>
+//
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
 # include "check_grad_llsq.hpp"
@@ -45,7 +47,7 @@ bool xam_gradient_cppad(void)
    ok &= check_grad_ode(grad_ode);
    //
    // ok
-   cmpad::cppad::gradient<cmpad::llsq_obj> grad_llsq;
+   cmpad::cppad::gradient_vec<cmpad::llsq_obj_vec> grad_llsq;
    ok &= check_grad_llsq(grad_llsq);
    //
    return ok;

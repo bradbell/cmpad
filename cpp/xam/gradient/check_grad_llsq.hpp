@@ -48,8 +48,8 @@ Source Code
 # include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
+template <class Gradient>
+bool check_grad_llsq( Gradient& grad_llsq )
 // END PROTOTYPE
 {  //
    // ok

@@ -48,8 +48,8 @@ Source Code
 # include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_det( cmpad::gradient<Algo>& grad_det )
+template <class Gradient>
+bool check_grad_det( Gradient& grad_det )
 // END PROTOTYPE
 {  //
    // ok

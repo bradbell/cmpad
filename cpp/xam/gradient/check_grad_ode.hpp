@@ -65,8 +65,8 @@ Source Code
 # include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
+template <class Gradient>
+bool check_grad_ode( Gradient& grad_ode )
 // END PROTOTYPE
 {  //
    // ok
