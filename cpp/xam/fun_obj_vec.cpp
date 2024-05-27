@@ -1,24 +1,24 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_fun_object.cpp}
+{xrst_begin xam_fun_obj_vec.cpp}
 
-Example and Test of fun_object
-##############################
+Example and Test of fun_obj_vec
+###############################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_fun_object.cpp}
+{xrst_end xam_fun_obj_vec.cpp}
 */
 // BEGIN C++
 # include <cassert>
 # include <iostream>
 # include <cmpad/vector.hpp>
-# include <cmpad/fun_object.hpp>
+# include <cmpad/fun_obj_vec.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace {
@@ -26,8 +26,8 @@ namespace {
    // Vector
    typedef cmpad::vector<float> Vector;
    //
-   // my_fun_object
-   class my_fun_object : public cmpad::fun_object<Vector> {
+   // my_fun_obj_vec
+   class my_fun_obj_vec : public cmpad::fun_obj_vec<Vector> {
    private:
       //
       // y_
@@ -66,7 +66,7 @@ namespace {
    };
 }
 
-bool xam_fun_object(void)
+bool xam_fun_obj_vec(void)
 {  //
    // ok
    bool ok = true;
@@ -76,7 +76,7 @@ bool xam_fun_object(void)
    cmpad::option_t option;
    //
    // my_fun
-   my_fun_object my_fun;
+   my_fun_obj_vec my_fun;
    my_fun.setup(option);
    //
    // x

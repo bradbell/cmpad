@@ -4,21 +4,21 @@
 // ----------------------------------------------------------------------------
 
 /*
-{xrst_begin xam_det_of_matrix.cpp}
+{xrst_begin xam_det_by_minor_vec.cpp}
 
-Example and Test of det_of_matrix
-#################################
+Example and Test of det_by_minor_vec
+####################################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_det_of_matrix.cpp}
+{xrst_end xam_det_by_minor_vec.cpp}
 */
 // BEGIN C++
-# include <cmpad/algo/det_of_matrix.hpp>
+# include <cmpad/algo/det_by_minor_vec.hpp>
 
-bool xam_det_of_matrix(void)
+bool xam_det_by_minor_vec(void)
 {  // ok
    bool ok = true;
    //
@@ -28,7 +28,7 @@ bool xam_det_of_matrix(void)
    //
    // det
    typedef cmpad::vector<double> Vector;
-   cmpad::det_of_matrix<Vector>  det;
+   cmpad::det_by_minor_vec<Vector>  det;
    //
    // det.setup
    cmpad::option_t option;

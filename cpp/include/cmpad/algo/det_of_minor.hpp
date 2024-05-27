@@ -6,6 +6,10 @@
 # define CMPAD_ALGO_DET_OF_MINOR_HPP
 /*
 {xrst_begin_parent cpp_det_of_minor}
+{xrst_spell
+   obj
+   vec
+}
 
 C++ Determinant of a Minor
 ##########################
@@ -63,7 +67,7 @@ will return the determinant of :math:`A`:
 Vector
 ******
 This type satisfies the conditions for a
-fun_object :ref:`cpp_fun_object@Vector` .
+fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` .
 
 a
 *

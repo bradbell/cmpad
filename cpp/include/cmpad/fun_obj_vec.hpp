@@ -2,14 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
-# ifndef CMPAD_FUN_OBJECT_HPP
-# define CMPAD_FUN_OBJECT_HPP
+# ifndef CMPAD_FUN_OBJ_VEC_HPP
+# define CMPAD_FUN_OBJ_VEC_HPP
 /*
-{xrst_begin cpp_fun_object}
+{xrst_begin cpp_fun_obj_vec}
 {xrst_spell
    resize
    th
-   vec
    typedef
    typename
 }
@@ -19,8 +18,8 @@ The New Abstract Class for a C++ Function Object
 
 Syntax
 ******
-| |tab| ``# include <cmpad/fun_object.hpp``
-| |tab| ``cmpad::fun_object`` < *Vector* > *fun*
+| |tab| ``# include <cmpad/fun_obj_vec.hpp``
+| |tab| ``cmpad::fun_obj_vec`` < *Vector* > *fun*
 | |tab| *fun* . ``setup`` ( *option* )
 | |tab| *fun* . ``domain`` ( )
 | |tab| *fun* . ``range`` ( )
@@ -35,7 +34,7 @@ Source Code
 
 Vector
 ******
-The fun_object *Vector* class must support the following
+The fun_obj_vec *Vector* class must support the following
 where *vec* is a *Vector* object:
 
 value_type
@@ -115,20 +114,20 @@ This *Vector* has size *m* and
 is the function value corresponding to *x*.
 
 {xrst_toc_hidden
-   cpp/xam/fun_object.cpp
+   cpp/xam/fun_obj_vec.cpp
 }
 Example
 *******
-:ref:`xam_fun_object.cpp-name` is an example and test that uses this function.
+:ref:`xam_fun_obj_vec.cpp-name` is an example and test that uses this function.
 
-{xrst_end cpp_fun_object}
+{xrst_end cpp_fun_obj_vec}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
 
 # include <cmpad/option_t.hpp>
 namespace cmpad {
-   template <class Vector> struct fun_object {
+   template <class Vector> struct fun_obj_vec {
       //
       // value_type
       typedef typename Vector::value_type value_type;

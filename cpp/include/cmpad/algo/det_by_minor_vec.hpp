@@ -1,19 +1,19 @@
-# ifndef CMPAD_ALGO_DET_OF_MATRIX_HPP
-# define CMPAD_ALGO_DET_OF_MATRIX_HPP
+# ifndef CMPAD_ALGO_DET_BY_MINOR_VEC_HPP
+# define CMPAD_ALGO_DET_BY_MINOR_VEC_HPP
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 /*
-{xrst_begin_parent cpp_det_of_matrix}
+{xrst_begin_parent cpp_det_by_minor_vec}
 
 C++ Determinant Using Expansion by Minors
 #########################################
 
 Syntax
 ******
-| |tab| ``# include <cmpad/algo/det_of_matrix`.hpp>``
-| |tab| ``cmpad::det_of_matrix``` < *Vector* > *det*
+| |tab| ``# include <cmpad/algo/det_by_minor_vec`.hpp>``
+| |tab| ``cmpad::det_by_minor_vec``` < *Vector* > *det*
 | |tab| *det* . ``setup`` ( *option* )
 | |tab| *y* = *det* ( *x* )
 
@@ -26,12 +26,12 @@ Prototype
 
 Algorithm
 *********
-This is an  :ref:`cpp_fun_object-name` interface
+This is an  :ref:`cpp_fun_obj_vec-name` interface
 to the det_by_minor :ref:`det_by_minor@Algorithm` .
 
 Vector
 ******
-This is a fun_object :ref:`cpp_fun_object@Vector` type.
+This is a fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` type.
 
 det
 ***
@@ -63,42 +63,42 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
-   cpp/xam/det_of_matrix.cpp
+   cpp/xam/det_by_minor_vec.cpp
 }
 
 Example
 *******
 The file
-:ref:`xam_det_of_matrix.cpp-name`
-contains an example and test of ``det_of_matrix`` .
+:ref:`xam_det_by_minor_vec.cpp-name`
+contains an example and test of ``det_by_minor_vec`` .
 
 Source Code
 ***********
-:ref:`det_of_matrix.hpp-name` displays the source code for this algorithm.
+:ref:`det_by_minor_vec.hpp-name` displays the source code for this algorithm.
 
-{xrst_end cpp_det_of_matrix}
+{xrst_end cpp_det_by_minor_vec}
 ---------------------------------------------------------------------------
-{xrst_begin det_of_matrix.hpp}
+{xrst_begin det_by_minor_vec.hpp}
 
-C++ det_of_matrix: Source Code
-##############################
+C++ det_by_minor_vec: Source Code
+#################################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end det_of_matrix.hpp}
+{xrst_end det_by_minor_vec.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
 # include <cmath> // for std::sqrt
-# include <cmpad/fun_object.hpp>
+# include <cmpad/fun_obj_vec.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN DET_BY_MINOR
-template <class Vector> class det_of_matrix : public fun_object<Vector>
+template <class Vector> class det_by_minor_vec : public fun_obj_vec<Vector>
 // END DET_BY_MINOR
 {
 private:

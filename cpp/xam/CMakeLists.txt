@@ -12,10 +12,10 @@ SET(example_list
    csv_speed.cpp
    csv_write.cpp
    det_by_minor.cpp
-   det_of_matrix.cpp
+   det_by_minor_vec.cpp
    det_of_minor.cpp
    fun_obj.cpp
-   fun_object.cpp
+   fun_obj_vec.cpp
    fun_speed.cpp
    llsq_obj.cpp
    near_equal.cpp
