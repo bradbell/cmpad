@@ -8,6 +8,7 @@ This template file has the following parameters:
    @#######@ : the rst underlining for the package name.
    @package@ : is a lower case version of @Package@. This used used for the
                corresponding namespace, directories, and file names.
+   @not_cppad_jit@ : is false (true) if package is cppad_jit (not cppad_jit).
 
 This template uses // BEGIN C++ and // END C++ for the source code limits
 in the page file that implementes the gradient.
