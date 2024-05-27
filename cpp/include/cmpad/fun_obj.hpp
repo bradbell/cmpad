@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023-24 Bradley M. Bell
+// SPDX-FileContributor: 2023 Bradley M. Bell
 // ----------------------------------------------------------------------------
 # ifndef CMPAD_FUN_OBJ_HPP
 # define CMPAD_FUN_OBJ_HPP
@@ -14,9 +14,6 @@ Syntax
 ******
 | |tab| ``# include <cmpad/fun_obj.hpp``
 | |tab| ``cmpad::fun_obj`` < *Scalar* > *fun*
-| |tab| *fun* . ``setup`` ( *option* )
-| |tab| *fun* . ``domain`` ( )
-| |tab| *fun* . ``range`` ( )
 | |tab| *y* = *fun* ( *x* )
 
 Source Code
@@ -33,9 +30,9 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
-value_type
-**********
-A derived class must define *value_type* to be the same as *Scalar* .
+scalar_type
+***********
+A derived class must define *scalar_type* to be the same as *Scalar* .
 This is intended for use when derived class type
 is passed as a template parameter.
 
@@ -88,8 +85,8 @@ Example
 namespace cmpad {
    template <class Scalar> struct fun_obj {
       //
-      // value_type
-      typedef Scalar value_type;
+      // scalar_type
+      typedef Scalar scalar_type;
       //
       // setup
       virtual void setup(const option_t& option) = 0;

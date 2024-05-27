@@ -37,16 +37,17 @@ Vector
 The fun_obj_vec *Vector* class must support the following
 where *vec* is a *Vector* object:
 
-value_type
-==========
-We use *value_type* to denote the type of the elements of *vec* :
+scalar_type
+==========*
+We use *scalar_type* to denote the type of the elements of *vec* :
 {xrst_code cpp}
-   typedef typename Vector::value_type value_type
+   typedef typename Vector::value_type scalar_type
 {xrst_code}
-If *s* and *t* are *value_type* objects,
+If *i* is a positive integer constant and
+*s*, *t* are *scalar_type* objects,
 the following operations must be defined:
 
-#. The constructors: *value_type* (0),  *value_type* (s) .
+#. The constructors: *scalar_type* (i),  *scalar_type* (s) .
 #. This binary operations:
    *s* + *t* ,
    *s* - *t* ,
@@ -129,8 +130,8 @@ Example
 namespace cmpad {
    template <class Vector> struct fun_obj_vec {
       //
-      // value_type
-      typedef typename Vector::value_type value_type;
+      // scalar_type
+      typedef typename Vector::value_type scalar_type;
       //
       // setup
       virtual void setup(const option_t& option) = 0;

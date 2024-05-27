@@ -117,8 +117,8 @@ private:
    Vector y_;
    //
 public:
-   // value_type
-   typedef typename Vector::value_type value_type;
+   // scalar_type
+   typedef typename Vector::value_type scalar_type;
    //
    // option
    const option_t& option(void) const override

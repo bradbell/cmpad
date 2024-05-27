@@ -38,8 +38,8 @@ namespace {
       //
    public:
       //
-      // value_type
-      typedef Vector::value_type value_type;
+      // scalar_type
+      typedef Vector::value_type scalar_type;
       //
       // setup
       void setup(const cmpad::option_t& option) override

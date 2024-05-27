@@ -175,8 +175,8 @@ typename Vector::value_type det_of_minor(
    assert( c.size() == n + 1 );
    // END PROTOTYPE
    //
-   // value_type
-   typedef typename Vector::value_type value_type;
+   // scalar_type
+   typedef typename Vector::value_type scalar_type;
    //
    // R0 = R(0)
    size_t R0 = r[n];
@@ -192,7 +192,7 @@ typename Vector::value_type det_of_minor(
    //
    // detM
    // initialize determinant of the minor M
-   value_type detM(0);
+   scalar_type detM(0);
    //
    // sign
    // initialize sign of factor for next sub-minor
@@ -212,7 +212,7 @@ typename Vector::value_type det_of_minor(
       // M[0,j] = A[ R0, Cj ]
       // element with index (0, j) in the minor M
       assert( Cj < n );
-      value_type M0j = a[ R0 * n + Cj ];
+      scalar_type M0j = a[ R0 * n + Cj ];
       //
       // remove column with index j in M to form next sub-minor S of M
       c[Cj1] = c[Cj];
@@ -220,7 +220,7 @@ typename Vector::value_type det_of_minor(
       // detS
       // compute determinant of S, the sub-minor of M with
       // row R(0) and column C(j) removed.
-      value_type detS = det_of_minor(a, n, m - 1, r, c);
+      scalar_type detS = det_of_minor(a, n, m - 1, r, c);
       //
       // restore column with index j in represenation of M as a minor of A
       c[Cj1] = Cj;

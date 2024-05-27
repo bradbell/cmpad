@@ -33,10 +33,10 @@ TemplateAlgo
 The class TemplateAlgo<Vector> must be a derived class for
 :ref:`fun_obj_vec\<Vector\> <cpp_fun_obj_vec-name>` .
 
-value_type
-**********
-The type cmpad::@package@::gradient<TemplateAlgo>::value_type is ``double`` ;
-see :ref:`cpp_gradient@value_type` .
+scalar_type
+***********
+The type cmpad::@package@::gradient<TemplateAlgo>::scalar_type is ``double`` ;
+see :ref:`cpp_gradient@scalar_type` .
 
 {xrst_suspend @not_cppad_jit@}
 Side Effect

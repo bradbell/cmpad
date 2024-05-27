@@ -33,16 +33,15 @@ The *algo* object is initialized using its
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*.range() can be greater than one.
 
-value_type
-**********
-There are two value function objects,
-and hence two :ref:`cpp_fun_obj@value_type` ,
+scalar_type
+***********
+There are two function objects,
+and hence two :ref:`cpp_fun_obj@scalar_type` ,
 associated with a gradient class.
 
-1. Algo::value_type is the scalar type used when evaluating the algorithm.
-2. cmpad::gradient<Algo>::value_type is the scalar type
-   of the arguments and return value for the gradient object; i.e., double;
-   see :ref:`cpp_fun_obj@value_type` .
+1. Algo::scalar_type is the scalar type used when evaluating the algorithm.
+2. cmpad::gradient<Algo>::scalar_type is the scalar type
+   of the arguments and return value for the gradient object; i.e., double.
 
 grad
 ****
@@ -101,8 +100,8 @@ namespace cmpad {
    // gradient
    template <class Algo> class gradient : public fun_obj<double> {
    public:
-      // value_type
-      typedef double value_type;
+      // scalar_type
+      typedef double scalar_type;
       // setup
       virtual void setup(const option_t& option) override = 0;
       // option

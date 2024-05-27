@@ -34,8 +34,8 @@ namespace {
       //
    public:
       //
-      // value_type
-      typedef float value_type;
+      // scalar_type
+      typedef float scalar_type;
       //
       // setup
       void setup(const cmpad::option_t& option) override
