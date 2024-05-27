@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+// SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
+// ----------------------------------------------------------------------------
+
+/*
+{xrst_begin xam_det_of_matrix.cpp}
+
+Example and Test of det_of_matrix
+#################################
+{xrst_literal
+   // BEGIN C++
+   // END C++
+}
+
+{xrst_end xam_det_of_matrix.cpp}
+*/
+// BEGIN C++
+# include <cmpad/algo/det_of_matrix.hpp>
+
+bool xam_det_of_matrix(void)
+{  // ok
+   bool ok = true;
+   //
+   // ell
+   // dimension of the matrix
+   size_t ell = 3;
+   //
+   // det
+   typedef cmpad::vector<double> Vector;
+   cmpad::det_of_matrix<Vector>  det;
+   //
+   // det.setup
+   cmpad::option_t option;
+   option.n_arg   = ell * ell;
+   option.n_other = 0;
+   det.setup(option);
+   //
+   // x
+   cmpad::vector<double>  x = {
+      1., 2., 3.,  // x[0] x[1] x[2]
+      3., 2., 1.,  // x[3] x[4] x[5]
+      2., 1., 2.   // x[6] x[7] x[8]
+   };
+   ok &= x.size() == ell * ell;
+   //
+   // y
+   const cmpad::vector<double>& y = det(x);
+   ok &= y.size() == 1;
+   //
+   // check
+   double check =
+      + x[0]*(x[4]*x[8] - x[5]*x[7])
+      - x[1]*(x[3]*x[8] - x[5]*x[6])
+      + x[2]*(x[3]*x[7] - x[4]*x[6]);
+   //
+   // ok
+   ok &= y[0] == check;
+   //
+   return ok;
+}
+
+// END C++
