@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_RUNGE_KUTTA_HPP
 # define CMPAD_ALGO_RUNGE_KUTTA_HPP
@@ -14,6 +14,8 @@
    yf
    yi
    yt
+   obj
+   vec
 }
 
 A C++ Fourth Order Runge Kutta Solver
@@ -40,7 +42,7 @@ for :math:`y( t^f )` where :math:`y(0) = y^i` and
 Vector
 ******
 The vectors *yi* and *yf* have this
-fun_obj_vec :ref:`fun_obj_vec@Vector` type. 
+fun_obj_vec :ref:`cpp_fun_obj_vec@vector_type` .
 
 fun
 ***

@@ -12,6 +12,7 @@ C++ Algorithmic Differentiation
    cpp/src/run_cmpad.cpp
    cpp/include/cmpad/configure.hpp.in
    cpp/include/cmpad/gradient.hpp
+   cpp/include/cmpad/gradient_vec.hpp
    cpp/include/cmpad/algo/algo.xrst
 }
 

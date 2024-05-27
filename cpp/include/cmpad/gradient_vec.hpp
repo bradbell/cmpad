@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_GRADIENT_VEC_HPP
 # define CMPAD_GRADIENT_VEC_HPP
@@ -80,12 +80,11 @@ It is the gradient evaluated at the point *x* .
 
 Example and Derived Classes
 ***************************
-{xrst_toc_table
-   cpp/xam/gradient/gradient_vec.xrst
-   cpp/include/cmpad/cppad/gradient_vec.hpp
+{xrst_comment
+   see toc command in cpp/include/cmpad/gradient.hpp
 }
 
-{xrst_end cpp_gradient}
+{xrst_end cpp_gradient_vec}
 -------------------------------------------------------------------------------
 */
 // BEGIN C++

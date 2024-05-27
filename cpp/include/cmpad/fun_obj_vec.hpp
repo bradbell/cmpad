@@ -20,6 +20,7 @@ Syntax
 ******
 | |tab| ``# include <cmpad/fun_obj_vec.hpp``
 | |tab| ``cmpad::fun_obj_vec`` < *Vector* > *fun*
+| |tab| ``cmpad::fun_obj_vec`` < *Vector* > :: ``scalar_type``
 | |tab| *fun* . ``setup`` ( *option* )
 | |tab| *fun* . ``domain`` ( )
 | |tab| *fun* . ``range`` ( )
@@ -32,14 +33,15 @@ Source Code
    // END C++
 }
 
-Vector
-******
-The fun_obj_vec *Vector* class must support the following
-where *vec* is a *Vector* object:
+vector_type
+***********
+A derived class must define *vector_type* to be the same as *Vector* .
+This is intended for use when derived class type
+is passed as a template parameter.
 
 scalar_type
-==========*
-We use *scalar_type* to denote the type of the elements of *vec* :
+***********
+We use *scalar_type* to denote the type of the elements of *vec* ; i.e.,
 {xrst_code cpp}
    typedef typename Vector::value_type scalar_type
 {xrst_code}
@@ -54,6 +56,10 @@ the following operations must be defined:
    *s* * *t* ,
    *s* / *t* .
 
+Vector
+******
+The fun_obj_vec *Vector* class must support the following
+where *vec* is a *Vector* object:
 
 vec.resize(n)
 =============
@@ -75,11 +81,6 @@ The corresponding function call,
 *y* = *fun* ( *x* ),
 computes *y* as a function of *x* .
 
-vector_type
-***********
-A derived class must define *vector_type* to be the same as *Vector* .
-This is intended for use when derived class type
-is passed as a template parameter.
 
 
 setup

@@ -29,7 +29,7 @@ namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // cmpad::cppad::gradient_vec
 template < template<class Vector> class TemplateAlgo> class gradient_vec
-: public 
+: public
 ::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
    // Vector

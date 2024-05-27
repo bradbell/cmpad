@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_GRADIENT_HPP
 # define CMPAD_GRADIENT_HPP
@@ -85,6 +85,7 @@ Example and Derived Classes
    cpp/include/cmpad/adolc/gradient.hpp
    cpp/include/cmpad/autodiff/gradient.hpp
    cpp/include/cmpad/cppad/gradient.hpp
+   cpp/include/cmpad/cppad/gradient_vec.hpp
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
    cpp/include/cmpad/sacado/gradient.hpp

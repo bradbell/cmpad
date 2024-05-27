@@ -8,7 +8,6 @@ This template file has the following parameters:
    @#######@ : the rst underlining for the package name.
    @package@ : is a lower case version of @Package@. This used used for the
                corresponding namespace, directories, and file names.
-   @not_cppad_jit@ : is false (true) if package is cppad_jit (not cppad_jit).
 
 This template uses // BEGIN C++ and // END C++ for the source code limits
 in the page file that implementes the gradient.
@@ -19,25 +18,24 @@ Calculate Gradient Using @Package@
 
 Syntax
 ******
-| |tab| ``# include <cmpad/@package@/gradient_vec.hpp>``
-| |tab| ``cmpad::@package@::gradient_vec`` < *TemplateAlgo* > *grad*
+| |tab| ``# include <cmpad/@package@/gradient.hpp>``
+| |tab| ``cmpad::@package@::gradient`` < *TemplateAlgo* > *grad*
 | |tab| *g* = *grad* ( *x* )
 
 
 Purpose
 *******
-This implements the :ref:`cpp_gradient_vec-name` interface using @Package@.
+This implements the :ref:`cpp_gradient-name` interface using @Package@.
 
 TemplateAlgo
 ************
-The class TemplateAlgo<Vector> must be a derived class for
-:ref:`fun_obj_vec\<Vector\> <cpp_fun_obj_vec-name>` .
+The class TemplateAlgo<Scalar> must be a derived class for
+:ref:`fun_obj\<Scalar\> <cpp_fun_obj-name>` .
 
 scalar_type
 ***********
-The type
-cmpad::@package@::gradient_vec<TemplateAlgo>::scalar_type is ``double`` ;
-see :ref:`cpp_gradient_vec@scalar_type` .
+The type cmpad::@package@::gradient<TemplateAlgo>::scalar_type is ``double`` ;
+see :ref:`cpp_gradient@scalar_type` .
 
 {xrst_suspend @not_cppad_jit@}
 Side Effect
