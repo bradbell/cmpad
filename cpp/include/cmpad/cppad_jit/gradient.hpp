@@ -70,8 +70,8 @@ public:
    {  if( dll_linker_ != nullptr )
          delete dll_linker_;
    }
-   // value_type
-   typedef double value_type;
+   // scalar_type
+   typedef double scalar_type;
    // option
    const option_t& option(void) const override
    {  return option_; }

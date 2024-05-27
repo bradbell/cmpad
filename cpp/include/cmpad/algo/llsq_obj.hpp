@@ -33,9 +33,9 @@ Scalar
 ******
 This is the type of the elements of *x* and *y* .
 
-value_type
-**********
-This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@value_type` .
+scalar_type
+***********
+This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@scalar_type` .
 
 Derivatives
 ***********
@@ -100,8 +100,8 @@ private:
    cmpad::vector<Scalar> t_, q_, y_;
    //
 public:
-   // value_type
-   typedef Scalar value_type;
+   // scalar_type
+   typedef Scalar scalar_type;
    //
    // option
    const option_t& option(void) const override

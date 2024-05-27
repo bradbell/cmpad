@@ -36,8 +36,8 @@ namespace { // BEGIN_EMPTY_NAMESPACE
       cmpad::vector<double> y_;
    public:
       //
-      // value_type
-      typedef double value_type;
+      // scalar_type
+      typedef double scalar_type;
       //
       // setup
       void setup(const cmpad::option_t& option) override
