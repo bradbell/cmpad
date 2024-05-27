@@ -7,7 +7,8 @@ set -e -u
 # ---------------------------------------------------------------------------
 if [[ ! -v build_type ]]
 then
-   echo 'bin/environment.sh: build_type is not defined'
+   echo 'usage: build_type=(debug or release)'
+   echo '       source bin/environment.sh'
 elif [ "$build_type" != 'debug' ] && [ "$build_type" != 'release' ]
 then
    echo 'bin/environment.sh: build_type is not debug or release'

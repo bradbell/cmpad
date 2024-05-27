@@ -11,7 +11,6 @@ set -e -u
 #     eigen
 #     rm
 #     srcdir
-#     venv
 # }
 # {xrst_comment_ch #}
 #
@@ -101,18 +100,20 @@ pkg_available="$pkg_available, fastad, jax, torch, sacado"
 #
 # prefix
 # ******
-# The prefixes for the packages installed by ``bin/get_package.sh`` are
+# The prefixes for the packages installed by ``bin/get_package.sh`` is
 #
-# | |tab| *top_srcdir* / *language* ``/build/prefix``
+# | |tab| *top_srcdir* / ``build`` *build_type*
 #
-# where *language* is ``cpp`` or ``python`` .
+# where *build_type* is ``debug`` or ``release`` .
 #
-# venv
-# ****
-# Some of the python packages are installed in
-# the following python virtual environment:
+# Virtual Environment
+# *******************
+# The following commands set the prefix as a virtual environment:
 #
-# | |tab| *top_srcdir* ``/python/venv``
+# | build_type=\ *build_type*
+# | source bin/environment.sh
+#
+# where *build_type* is ``debug`` or ``release``.
 #
 # external
 # ********
@@ -127,13 +128,6 @@ pkg_available="$pkg_available, fastad, jax, torch, sacado"
 #
 # | |tab| ``rm external/``\ *package*\ .\ *build_type*
 # | |tab| ``bin/cpp/get_package`` *build_type* *package*
-#
-# Python venv
-# ===========
-# Most python packages are installed by pip in the following
-# python virtual environment:
-#
-# | |tab| ``python/venv``
 #
 # {xrst_toc_hidden
 #     cpp/bin/get_package.sh
