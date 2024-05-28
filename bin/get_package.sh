@@ -79,7 +79,7 @@ set -e -u
 #  `clad`_,       Under Construction,                             cpp
 #  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,             cpp
 #  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
-#  `cppad`_,      :ref:`cppad_gradient.hpp-name`,                 cpp
+#  `cppad`_,      :ref:`cppad_gradient_vec.hpp-name`,             cpp
 #  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,               cpp
 #  `fastad`_,     Under Construction,                             cpp
 #  `jax`_,        :ref:`jax_gradient.py-name`,                    python

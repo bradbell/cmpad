@@ -84,7 +84,6 @@ Example and Derived Classes
    cpp/include/cmpad/adept/gradient.hpp
    cpp/include/cmpad/adolc/gradient.hpp
    cpp/include/cmpad/autodiff/gradient.hpp
-   cpp/include/cmpad/cppad/gradient.hpp
    cpp/include/cmpad/cppad/gradient_vec.hpp
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
