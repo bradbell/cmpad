@@ -1,17 +1,20 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # include <boost/test/unit_test.hpp>
+# include <cmpad/csv_speed.hpp>
+//
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
+//
 # include <cmpad/@package@/gradient.hpp>
-# include <cmpad/csv_speed.hpp>
 
-// These files are in the current source directory, not the binary directory
-// where CMake will put the diffferent configurations of this file.
-// The current source directory will be an include directory added by CMake
-// when the different configurations are compiled.
+// The source code for this file is in cpp/test/package.cpp.in
+// CMake creates cpp/build/test/<package>.cpp for each available package.
+// The source directory, cpp/test, is an include directory added by CMake
+// when <package>.cpp is compiled.
 # include <check_speed_det.hpp>
 # include <csv_fixture.hpp>
 
@@ -34,7 +37,7 @@ BOOST_AUTO_TEST_CASE(@package@)
    size_t      n_other;
    //
    // ------------------------------------------------------------------------
-   // package_, algorithm_, n_arg_, n_other_, csv_file_path_
+   // package_, algorithm_, n_arg_, n_other_
    algorithm = "det_by_minor";
    n_arg     = 16;
    n_other   = 0;
@@ -59,7 +62,7 @@ BOOST_AUTO_TEST_CASE(@package@)
    }
    check();
    // ------------------------------------------------------------------------
-   // package_, algorithm_, n_arg_, n_other_, csv_file_path_
+   // package_, algorithm_, n_arg_, n_other_
    algorithm = "an_ode";
    n_arg     = 5;
    n_other   = n_arg - 1;
@@ -77,6 +80,31 @@ BOOST_AUTO_TEST_CASE(@package@)
       // csv_file_path_
       cmpad::@package@::gradient<cmpad::an_ode> grad_ode;
       double rate    = cmpad::fun_speed(grad_ode, option, min_time_);
+      bool   special = false;
+      cmpad::csv_speed(
+         csv_file_path_, rate, min_time_, package, algorithm_, special, option
+      );
+   }
+   check();
+   // ------------------------------------------------------------------------
+   // package_, algorithm_, n_arg_, n_other_
+   algorithm = "llsq_obj";
+   n_arg     = 3;
+   n_other   = 10;
+   set_fixture(package, algorithm, n_arg, n_other);
+   //
+   // time_setup
+   for(bool time_setup : {true, false} )
+   {
+      // option
+      cmpad::option_t option;
+      option.n_arg       = n_arg_;
+      option.n_other     = 10;
+      option.time_setup  = time_setup;
+      //
+      // csv_file_path_
+      cmpad::@package@::gradient<cmpad::llsq_obj> grad_llsq;
+      double rate    = cmpad::fun_speed(grad_llsq, option, min_time_);
       bool   special = false;
       cmpad::csv_speed(
          csv_file_path_, rate, min_time_, package, algorithm_, special, option
