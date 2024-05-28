@@ -73,16 +73,16 @@ Source Code
       case_found = true; \
    } \
    else if( algorithm == "an_ode" ) \
-   {  cmpad::package::gradient<cmpad::an_ode> grad_det; \
-      double rate = cmpad::fun_speed(grad_det, option, min_time); \
+   {  cmpad::package::gradient<cmpad::an_ode> grad_ode; \
+      double rate = cmpad::fun_speed(grad_ode, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, special, option \
       ); \
       case_found = true; \
    } \
    else if( algorithm == "llsq_obj" ) \
-   {  cmpad::package::gradient<cmpad::llsq_obj> grad_det; \
-      double rate = cmpad::fun_speed(grad_det, option, min_time); \
+   {  cmpad::package::gradient<cmpad::llsq_obj> grad_llsq; \
+      double rate = cmpad::fun_speed(grad_llsq, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, special, option \
       ); \
