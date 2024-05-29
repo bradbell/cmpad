@@ -10,11 +10,11 @@
 # include <boost/test/unit_test.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <check_speed_det.hpp>
-# include <cmpad/@package@/gradient.hpp>
+# include <cmpad/@package@/gradient_vec.hpp>
 //
-# include <cmpad/algo/det_by_minor.hpp>
-# include <cmpad/algo/an_ode.hpp>
-# include <cmpad/algo/llsq_obj.hpp>
+# include <cmpad/algo/det_by_minor_vec.hpp>
+# include <cmpad/algo/an_ode_vec.hpp>
+# include <cmpad/algo/llsq_obj_vec.hpp>
 //
 # include <csv_fixture.hpp>
 //
@@ -35,7 +35,7 @@
       option.time_setup = time_setup; \
       /* \
       csv_file_path_ */ \
-      cmpad::@package@::gradient<cmpad::algorithm_value> grad; \
+      cmpad::@package@::gradient_vec<cmpad::algorithm_value##_vec> grad; \
       double rate    = cmpad::fun_speed(grad, option, min_time_); \
       bool   special = false; \
       cmpad::csv_speed( csv_file_path_,  \
@@ -46,7 +46,7 @@
 
 BOOST_AUTO_TEST_SUITE(fun_speed)
 BOOST_AUTO_TEST_CASE(@package@)
-{  cmpad::@package@::gradient<cmpad::det_by_minor> grad_det;
+{  cmpad::@package@::gradient_vec<cmpad::det_by_minor_vec> grad_det;
    check_speed_det(grad_det);
 }
 BOOST_AUTO_TEST_SUITE_END()
