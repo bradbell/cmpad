@@ -73,7 +73,7 @@ set -e -u
 #
 #  Web Site,      Implemented,                                    Language
 #  `adept`_,      :ref:`adept_gradient_vec.hpp-name`,             cpp
-#  `adolc`_,      :ref:`adolc_gradient.hpp-name`,                 cpp
+#  `adolc`_,      :ref:`adolc_gradient_vec.hpp-name`,             cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,              cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
 #  `clad`_,       Under Construction,                             cpp

@@ -1,41 +1,45 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_ADOLC_GRADIENT_HPP
-# define CMPAD_ADOLC_GRADIENT_HPP
+# ifndef CMPAD_ADOLC_GRADIENT_VEC_HPP
+# define CMPAD_ADOLC_GRADIENT_VEC_HPP
 /*
-{xrst_begin adolc_gradient.hpp}
+{xrst_begin adolc_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient.xrst
+   cpp/include/cmpad/gradient_vec.xrst
    @Package@       , ADOL-C
    @#######@       , ######
    @package@       , adolc
    @not_cppad_jit@ , true
 }
 
-{xrst_end adolc_gradient.hpp}
+{xrst_end adolc_gradient_vec.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_ADOLC
 
 # include <type_traits>
 # include <adolc/adolc.h>
-# include <cmpad/gradient.hpp>
+# include <cmpad/gradient_vec.hpp>
 
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
-// cmpad::adolc::gradient
-template < template<class Scalar> class TemplateAlgo > class gradient
-: public ::cmpad::gradient< TemplateAlgo<adouble> > {
+// cmpad::adolc::gradient_vec
+template < template<class Vector> class TemplateAlgo > class gradient_vec
+: public
+cmpad::gradient_vec< TemplateAlgo< cmpad::vector<adouble> > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector<adouble> Vector;
    //
    // option_
    option_t                      option_;
    //
    // algo_
-   TemplateAlgo<adouble>         algo_;
+   TemplateAlgo<Vector>          algo_;
    //
    // tag_
    int                           tag_;
@@ -47,8 +51,13 @@ private:
    cmpad::vector<double>         g_;
 //
 public:
+   //
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -74,13 +83,13 @@ public:
       // independent variables
       int keep = 0;
       trace_on(tag_, keep);
-      cmpad::vector<adouble> ax(n);
+      Vector ax(n);
       for(size_t j = 0; j < n; ++j)
          ax[j] <<= 0.0;
       //
       // ay
       // dependent variable
-      cmpad::vector<adouble> ay = algo_(ax);
+      Vector ay = algo_(ax);
       //
       // create f : x -> y
       double f;

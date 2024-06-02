@@ -56,7 +56,7 @@ Source Code
 //
 // cmpad gradients
 # include <cmpad/adept/gradient_vec.hpp>
-# include <cmpad/adolc/gradient.hpp>
+# include <cmpad/adolc/gradient_vec.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/cppad/gradient_vec.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
@@ -275,7 +275,7 @@ int main(int argc, char* argv[])
 # endif
 # if CMPAD_HAS_ADOLC
    else if( package == "adolc" )
-   {  CMPAD_PACKAGE_TEST(adolc) }
+   {  CMPAD_PACKAGE_TEST_VEC(adolc) }
 # endif
    //
    // file_name, case_found

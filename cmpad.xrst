@@ -33,7 +33,8 @@ C++
 .. csv-table::
    :widths: auto
 
-   :ref:`adolc_gradient.hpp-title`
+   :ref:`adept_gradient_vec.hpp-title`
+   :ref:`adolc_gradient_vec.hpp-title`
    :ref:`cppad_gradient_vec.hpp-title`
    :ref:`sacado_gradient.hpp-title`
    :ref:`autodiff_gradient.hpp-title`
