@@ -37,7 +37,7 @@ C++
    :ref:`adolc_gradient_vec.hpp-title`
    :ref:`cppad_gradient_vec.hpp-title`
    :ref:`sacado_gradient.hpp-title`
-   :ref:`autodiff_gradient.hpp-title`
+   :ref:`autodiff_gradient_vec.hpp-title`
    :ref:`cppad_jit_gradient.hpp-title`
 
 Python

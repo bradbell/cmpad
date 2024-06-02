@@ -57,7 +57,7 @@ Source Code
 // cmpad gradients
 # include <cmpad/adept/gradient_vec.hpp>
 # include <cmpad/adolc/gradient_vec.hpp>
-# include <cmpad/autodiff/gradient.hpp>
+# include <cmpad/autodiff/gradient_vec.hpp>
 # include <cmpad/cppad/gradient_vec.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/cppadcg/gradient.hpp>
@@ -281,7 +281,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_AUTODIFF
    else if( package == "autodiff" )
-   {  CMPAD_PACKAGE_TEST(autodiff) }
+   {  CMPAD_PACKAGE_TEST_VEC(autodiff) }
 # endif
    //
    // file_name, case_found

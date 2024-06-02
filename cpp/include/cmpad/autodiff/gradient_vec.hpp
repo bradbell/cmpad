@@ -1,51 +1,55 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_AUTODIFF_GRADIENT_HPP
-# define CMPAD_AUTODIFF_GRADIENT_HPP
+# ifndef CMPAD_AUTODIFF_GRADIENT_VEC_HPP
+# define CMPAD_AUTODIFF_GRADIENT_VEC_HPP
 /*
-{xrst_begin autodiff_gradient.hpp}
+{xrst_begin autodiff_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient.xrst
+   cpp/include/cmpad/gradient_vec.xrst
    @Package@       , autodiff
    @#######@       , ########
    @package@       , autodiff
    @not_cppad_jit@ , true
 }
 
-{xrst_end autodiff_gradient.hpp}
+{xrst_end autodiff_gradient_vec.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_AUTODIFF
 
 # include <autodiff/forward/real.hpp>
 # include <autodiff/forward/real/eigen.hpp>
-# include <cmpad/gradient.hpp>
+# include <cmpad/gradient_vec.hpp>
 
 namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 
 typedef ::autodiff::real          real;
 typedef ::autodiff::VectorXreal   VectorXreal;
 
-// gradient
-template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo<real> > {
+// gradient_vec
+template < template<class Vector> class TemplateAlgo> class gradient_vec
+: public
+cmpad::gradient_vec< TemplateAlgo< cmpad::vector<::autodiff::real> > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector<::autodiff::real> Vector;
    //
    // option_
    option_t              option_;
    //
    // algo_
-   TemplateAlgo<real>    algo_;
+   TemplateAlgo<Vector>  algo_;
    //
    // ax_, ax_copy_
    VectorXreal           ax_;
-   cmpad::vector<real>   ax_copy_;
+   Vector                ax_copy_;
    //
    // ay_
-   cmpad::vector<real>   ay_;
+   Vector                 ay_;
    //
    // g_, g_copy_
    Eigen::VectorXd       g_;
@@ -54,6 +58,10 @@ private:
 public:
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -101,8 +109,8 @@ public:
          return ay_[m-1];
       };
       //
-      // forward mode computation of gradient
-      real y;
+      // forward mode computation of gradient_vec
+      ::autodiff::real y;
       g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y);
       //
       // g_
