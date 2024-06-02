@@ -51,8 +51,12 @@ private:
    cmpad::vector<double> g_;
 //
 public:
+   //
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
    //
    // option
    const option_t& option(void) const override

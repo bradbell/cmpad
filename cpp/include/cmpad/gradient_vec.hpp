@@ -6,6 +6,9 @@
 # define CMPAD_GRADIENT_VEC_HPP
 /*
 {xrst_begin cpp_gradient_vec}
+{xrst_spell
+   typedef
+}
 
 C++ Abstract Class For Calculating Gradient
 ###########################################
@@ -25,7 +28,7 @@ Source Code
 }
 
 
-algo
+Algo
 ****
 The *Algo* class is derived from the :ref:`cpp_fun_obj_vec-name` class.
 The *algo* object is initialized using its
@@ -33,25 +36,37 @@ The *algo* object is initialized using its
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*.range() can be greater than one.
 
-scalar_type
-***********
-There are two value function objects,
-and hence two :ref:`cpp_fun_obj_vec@scalar_type` ,
-associated with a gradient class.
-
-1. Algo::scalar_type is the scalar type used when evaluating the algorithm.
-2. cmpad::gradient_vec<Algo>::scalar_type is the scalar type
-   of the arguments and return value for the gradient object; i.e., double;
-   see :ref:`cpp_fun_obj_vec@scalar_type` .
-
 grad
 ****
-This object is initialized using its ``setup`` member function
+This is a :ref:`cpp_fun_obj_vec-name` interface to the
+gradient of the function corresponding to *algo* .
+It calculates the gradient of the last component of the vector
+returned by *algo*.
+It is initialized using its ``setup`` member function
 (which in turn will initialize *algo* with its ``setup`` syntax).
 The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
-It calculates the gradient of the last component of the values
-compute by *algo*.
+We use *Grad* to denote the type of *grad* ; i.e.,
+
+| |tab| ``typedef cmpad::gradient_vec`` < *Algo* > *Grad*
+
+
+vector_type
+***********
+The type of the vectors *x* and *g* is
+
+| |tab| ``typedef cmpad::vector<double>`` *Grad* :: ``vector_type``
+
+(This is different from *Algo* :: ``vector_type`` .)
+
+scalar_type
+***********
+The type of the elements of *x* and *g* is
+
+| |tab| ``typedef double`` *Grad* :: ``scalar_type``
+
+(This is different from *Algo* :: ``scalar_type`` .)
+
 
 domain
 ******

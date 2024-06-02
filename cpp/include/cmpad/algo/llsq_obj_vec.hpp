@@ -10,28 +10,12 @@
 C++ Linear Least Squares Objective
 ##################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/llsq_obj_vec.hpp>``
-| |tab| ``cmpad::llsq_obj_vec < *Vector* >`` *llsq*
-| |tab| *llsq* . ``setup`` ( *option* )
-| |tab| *obj* = *llsq* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN PROTOTYPE
-   // END PROTOTYPE
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , llsq_obj
+   $obj_name$       , llsq
+   $********$       , ****
 }
-
-Algorithm
-*********
-This is a :ref:`cpp_fun_obj-name` interface
-to the :ref:`llsq_obj-name` algorithm .
-
-Vector
-******
-This is a fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` type.
 
 Derivatives
 ***********
@@ -83,9 +67,9 @@ C++ llsq_obj_vec: Source Code
 
 namespace cmpad { // BEGIN cmpad namespace
 
-// BEGIN PROTOTYPE
+// BEGIN CLASS_DECLARE
 template <class Vector> class llsq_obj_vec : public fun_obj_vec<Vector>
-// END PROTOTYPE
+// END CLASS_DECLARE
 {
 private:
    //
@@ -98,6 +82,9 @@ private:
 public:
    // scalar_type
    typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override

@@ -15,33 +15,12 @@
 Use C++ Runge-Kutta Method to Solve an ODE
 ##########################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/an_ode_vec.hpp>``
-| |tab| ``cmpad::an_ode_vec`` < *Vector* > *ode*
-| |tab| *ode* . ``setup`` ( *option* )
-| |tab| *yf* = *ode* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN PROTOTYPE
-   // END PROTOTYPE
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , an_ode
+   $obj_name$       , ode
+   $********$       , ***
 }
-
-Algorithm
-*********
-This is a :ref:`cpp_fun_obj_vec-name` interface
-to the an_ode :ref:`an_ode@Algorithm` .
-
-Vector
-******
-This is a fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` type.
-
-ode
-***
-The object *ode* corresponding to :ref:`cpp_fun_obj_vec@fun`
-in the function object interface.
 
 n_arg
 *****
@@ -115,9 +94,9 @@ public:
    }
 };
 
-// BEGIN PROTOTYPE
+// BEGIN CLASS_DECLARE
 template <class Vector> class an_ode_vec : public fun_obj_vec<Vector>
-// END PROTOTYPE
+// END CLASS_DECLARE
 {
 private:
    // option_
@@ -134,6 +113,9 @@ private:
 public:
    // scalar type
    typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override

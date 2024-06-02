@@ -10,34 +10,12 @@
 C++ Determinant Using Expansion by Minors
 #########################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/det_by_minor_vec`.hpp>``
-| |tab| ``cmpad::det_by_minor_vec``` < *Vector* > *det*
-| |tab| *det* . ``setup`` ( *option* )
-| |tab| *y* = *det* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN DET_BY_MINOR
-   // END DET_BY_MINOR
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , det_by_minor
+   $obj_name$       , det
+   $********$       , ***
 }
-
-Algorithm
-*********
-This is an  :ref:`cpp_fun_obj_vec-name` interface
-to the det_by_minor :ref:`det_by_minor@Algorithm` .
-
-Vector
-******
-This is a fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` type.
-
-det
-***
-The object *det* corresponds to :ref:`cpp_fun_obj@fun` in the function
-object interface.
-It computes the determinant of a square matrix.
 
 ell
 ***
@@ -97,9 +75,9 @@ C++ det_by_minor_vec: Source Code
 
 namespace cmpad { // BEGIN cmpad namespace
 
-// BEGIN DET_BY_MINOR
+// BEGIN CLASS_DECLARE
 template <class Vector> class det_by_minor_vec : public fun_obj_vec<Vector>
-// END DET_BY_MINOR
+// END CLASS_DECLARE
 {
 private:
    // option_
@@ -117,8 +95,12 @@ private:
    Vector y_;
    //
 public:
+   //
    // scalar_type
    typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override

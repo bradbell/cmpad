@@ -41,7 +41,8 @@ is passed as a template parameter.
 
 scalar_type
 ***********
-We use *scalar_type* to denote the type of the elements of *vec* ; i.e.,
+A derived class must also define *scalar_type* to be the type
+of the elements of *vec* ; i.e.,
 {xrst_code cpp}
    typedef typename Vector::value_type scalar_type
 {xrst_code}
@@ -60,6 +61,10 @@ Vector
 ******
 The fun_obj_vec *Vector* class must support the following
 where *vec* is a *Vector* object:
+
+Vector::value_type
+==================
+is the type of the elements of *vec* .
 
 vec.resize(n)
 =============
