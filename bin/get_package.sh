@@ -72,7 +72,7 @@ set -e -u
 #  :header-rows: 1
 #
 #  Web Site,      Implemented,                                    Language
-#  `adept`_,      :ref:`adept_gradient.hpp-name`,                 cpp
+#  `adept`_,      :ref:`adept_gradient_vec.hpp-name`,             cpp
 #  `adolc`_,      :ref:`adolc_gradient.hpp-name`,                 cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,              cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,               python

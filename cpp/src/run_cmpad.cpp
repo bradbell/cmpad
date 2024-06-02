@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin run_cmpad.cpp}
@@ -55,7 +55,7 @@ Source Code
 # include <cmpad/algo/llsq_obj_vec.hpp>
 //
 // cmpad gradients
-# include <cmpad/adept/gradient.hpp>
+# include <cmpad/adept/gradient_vec.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
 # include <cmpad/cppad/gradient_vec.hpp>
@@ -271,7 +271,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_ADEPT
    else if( package == "adept" )
-   {  CMPAD_PACKAGE_TEST(adept) }
+   {  CMPAD_PACKAGE_TEST_VEC(adept) }
 # endif
 # if CMPAD_HAS_ADOLC
    else if( package == "adolc" )

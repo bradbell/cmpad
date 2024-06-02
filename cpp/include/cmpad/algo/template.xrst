@@ -1,4 +1,8 @@
 {xrst_comment:
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2024 Bradley M. Bell
+
 This template file has the following parameters:
    $algo_name$   : is the name of this algorithm; e.g., det_by_minor
    $obj_name$    : is the name used for this algorithm's object; e.g., det
@@ -17,7 +21,7 @@ Syntax
 Class Declaration
 *****************
 {xrst_literal
-   // BEGIN CLASS_DECLARE 
+   // BEGIN CLASS_DECLARE
    // END CLASS_DECLARE
 }
 
@@ -48,6 +52,5 @@ This is also useful when *Algo* is a template parameter.
 
 $obj_name$
 $********$
-The object *$obj_name$* is a :ref:`cpp_fun_obj_vec@fun` 
+The object *$obj_name$* is a :ref:`cpp_fun_obj_vec@fun`
 that computes the function corresponding to the $algo_name$ algorithm.
-

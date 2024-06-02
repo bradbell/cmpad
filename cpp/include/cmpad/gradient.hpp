@@ -81,10 +81,8 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    cpp/xam/gradient/gradient.xrst
-   cpp/include/cmpad/adept/gradient.hpp
    cpp/include/cmpad/adolc/gradient.hpp
    cpp/include/cmpad/autodiff/gradient.hpp
-   cpp/include/cmpad/cppad/gradient_vec.hpp
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
    cpp/include/cmpad/sacado/gradient.hpp
