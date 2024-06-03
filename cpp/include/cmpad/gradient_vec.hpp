@@ -96,6 +96,7 @@ It is the gradient evaluated at the point *x* .
 Example and Derived Classes
 ***************************
 {xrst_toc_table
+   cpp/include/cmpad/cppad_jit/gradient_vec.hpp
    cpp/include/cmpad/cppadcg/gradient_vec.hpp
    cpp/include/cmpad/autodiff/gradient_vec.hpp
    cpp/include/cmpad/adolc/gradient_vec.hpp

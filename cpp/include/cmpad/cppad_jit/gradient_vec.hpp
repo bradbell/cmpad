@@ -1,32 +1,32 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CPPAD_JIT_GRADIENT_HPP
-# define CMPAD_CPPAD_JIT_GRADIENT_HPP
+# ifndef CMPAD_CPPAD_JIT_GRADIENT_VEC_HPP
+# define CMPAD_CPPAD_JIT_GRADIENT_VEC_HPP
 /*
-{xrst_begin cppad_jit_gradient.hpp}
+{xrst_begin cppad_jit_gradient_vec.hpp}
 {xrst_spell
    dll
    ext
 }
 
 {xrst_template ,
-   cpp/include/cmpad/gradient.xrst
+   cpp/include/cmpad/gradient_vec.xrst
    @Package@       , CppAD Jit
    @#######@       , #########
    @package@       , cppad_jit
    @not_cppad_jit@ , false
 }
 
-{xrst_end cppad_jit_gradient.hpp}
+{xrst_end cppad_jit_gradient_vec.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
 
 # include <filesystem>
 # include <cppad/cppad.hpp>
-# include <cmpad/gradient.hpp>
+# include <cmpad/gradient_vec.hpp>
 
 # ifdef _WIN32
 # define CMPAD_DLL_EXT ".dll"
@@ -42,15 +42,19 @@ static_assert(
 );
 
 // cmpad::cppad_jit::gradient
-template < template<class Scalar> class TemplateAlgo > class gradient
-: public ::cmpad::gradient< TemplateAlgo< CppAD::AD<double> > > {
+template < template<class Vector> class TemplateAlgo > class gradient_vec
+: public
+cmpad::gradient_vec< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector< CppAD::AD<double> > Vector;
    //
    // option_
    option_t                          option_;
    //
    // algo_
-   TemplateAlgo< CppAD::AD<double> > algo_;
+   TemplateAlgo<Vector>  algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -64,14 +68,18 @@ private:
 //
 public:
    // ctor, dtor
-   gradient(void)
+   gradient_vec(void)
    {  dll_linker_ = nullptr; }
-   ~gradient(void)
+   ~gradient_vec(void)
    {  if( dll_linker_ != nullptr )
          delete dll_linker_;
    }
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -97,7 +105,7 @@ public:
       g_.resize(n);
       //
       // ax, ay, az, aw
-      cmpad::vector< CppAD::AD<double> > ax(n), ay(1), az, aw(1), ag(n);
+      Vector ax(n), ay(1), az, aw(1), ag(n);
       //
       // function_name
       string function_name = "grad_cppad_jit";

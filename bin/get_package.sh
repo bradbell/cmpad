@@ -77,7 +77,7 @@ set -e -u
 #  `autodiff`_,   :ref:`autodiff_gradient_vec.hpp-name`,          cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
 #  `clad`_,       Under Construction,                             cpp
-#  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,             cpp
+#  `cppad_jit`_,  :ref:`cppad_jit_gradient_vec.hpp-name`,         cpp
 #  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
 #  `cppad`_,      :ref:`cppad_gradient_vec.hpp-name`,             cpp
 #  `cppadcg`_,    :ref:`cppadcg_gradient_vec.hpp-name`,           cpp
