@@ -60,7 +60,7 @@ Source Code
 # include <cmpad/autodiff/gradient_vec.hpp>
 # include <cmpad/cppad/gradient_vec.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
-# include <cmpad/cppadcg/gradient.hpp>
+# include <cmpad/cppadcg/gradient_vec.hpp>
 # include <cmpad/sacado/gradient.hpp>
 //
 // local
@@ -299,7 +299,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_CPPADCG
    else if( package == "cppadcg" )
-   {  CMPAD_PACKAGE_TEST(cppadcg) }
+   {  CMPAD_PACKAGE_TEST_VEC(cppadcg) }
 # endif
    //
    // file_name, case_found

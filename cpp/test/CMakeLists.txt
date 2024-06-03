@@ -13,14 +13,14 @@ SET(test_list
 #
 # test_list
 # tests that depend on AD packages
-FOREACH(package cppad_jit cppadcg sacado)
+FOREACH(package cppad_jit sacado)
    SET(package_cpp "${CMAKE_CURRENT_BINARY_DIR}/${package}.cpp" )
    IF( ${cmpad_has_${package}} )
       CONFIGURE_FILE( package.cpp.in ${package_cpp} )
       SET(test_list ${test_list} ${package_cpp} )
    ENDIF( )
 ENDFOREACH( )
-FOREACH(package adept adolc autodiff cppad)
+FOREACH(package adept adolc autodiff cppadcg cppad)
    SET(package_cpp "${CMAKE_CURRENT_BINARY_DIR}/${package}.cpp" )
    IF( ${cmpad_has_${package}} )
       CONFIGURE_FILE( package_vec.cpp.in ${package_cpp} )
