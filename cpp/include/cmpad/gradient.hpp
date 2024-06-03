@@ -81,7 +81,6 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    cpp/xam/gradient/gradient.xrst
-   cpp/include/cmpad/sacado/gradient.hpp
 }
 
 {xrst_end cpp_gradient}

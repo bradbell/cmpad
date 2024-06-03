@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_SACADO_GRADIENT_HPP
-# define CMPAD_SACADO_GRADIENT_HPP
+# ifndef CMPAD_SACADO_GRADIENT_VEC_HPP
+# define CMPAD_SACADO_GRADIENT_VEC_HPP
 /*
-{xrst_begin sacado_gradient.hpp}
+{xrst_begin sacado_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient.xrst
+   cpp/include/cmpad/gradient_vec.xrst
    @Package@       , Sacado
    @#######@       , ######
    @package@       , sacado
@@ -16,32 +16,38 @@
 }
 
 
-{xrst_end sacado_gradient.hpp}
+{xrst_end sacado_gradient_vec.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_SACADO
 
 # include <Sacado.hpp>
-# include <cmpad/gradient.hpp>
+# include <cmpad/gradient_vec.hpp>
 
 namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 
-// gradient
-template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo< Sacado::Rad::ADvar<double> > > {
+using Sacado::Rad::ADvar;
+
+// gradient_vec
+template < template<class Vector> class TemplateAlgo> class gradient_vec
+: public
+cmpad::gradient_vec< TemplateAlgo< cmpad::vector< ADvar<double> > > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector< ADvar<double> > Vector;
    //
    // option_
    option_t                                            option_;
    //
    // algo_
-   TemplateAlgo< Sacado::Rad::ADvar<double> >          algo_;
+   TemplateAlgo<Vector>           algo_;
    //
    // ax_
-   cmpad::vector< Sacado::Rad::ADvar<double> >         ax_;
+   Vector         ax_;
    //
    // ay_
-   cmpad::vector< Sacado::Rad::ADvar<double> >         ay_;
+   Vector         ay_;
    //
    // g_
    cmpad::vector<double>                               g_;
@@ -49,6 +55,10 @@ private:
 public:
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -91,10 +101,10 @@ public:
       //
       // az
       size_t m = algo_.range();
-      Sacado::Rad::ADvar<double> az = ay_[m-1] + 0.0;
+      ADvar<double> az = ay_[m-1] + 0.0;
       //
-      // reverse mode computation of gradient for last computed value
-      Sacado::Rad::ADvar<double>::Gradcomp();
+      // reverse mode computation of gradient_vec for last computed value
+      ADvar<double>::Gradcomp();
       //
       // g_
       for(size_t j = 0; j < domain(); ++j)

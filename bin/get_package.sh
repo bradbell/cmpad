@@ -83,7 +83,7 @@ set -e -u
 #  `cppadcg`_,    :ref:`cppadcg_gradient_vec.hpp-name`,           cpp
 #  `fastad`_,     Under Construction,                             cpp
 #  `jax`_,        :ref:`jax_gradient.py-name`,                    python
-#  `sacado`_,     :ref:`sacado_gradient.hpp-name`,                cpp
+#  `sacado`_,     :ref:`sacado_gradient_vec.hpp-name`,            cpp
 #  `torch`_,      :ref:`torch_gradient.py-name`,                  python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #

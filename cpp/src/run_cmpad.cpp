@@ -61,7 +61,7 @@ Source Code
 # include <cmpad/cppad/gradient_vec.hpp>
 # include <cmpad/cppad_jit/gradient_vec.hpp>
 # include <cmpad/cppadcg/gradient_vec.hpp>
-# include <cmpad/sacado/gradient.hpp>
+# include <cmpad/sacado/gradient_vec.hpp>
 //
 // local
 # include "parse_args.hpp"
@@ -305,7 +305,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_SACADO
    else if( package == "sacado" )
-   {  CMPAD_PACKAGE_TEST(sacado) }
+   {  CMPAD_PACKAGE_TEST_VEC(sacado) }
 # endif
    //
    if( case_found )
