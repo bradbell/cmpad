@@ -37,15 +37,15 @@ bool xam_gradient_adolc(void)
    bool ok = true;
    //
    // ok
-   cmpad::adolc::gradient_vec<cmpad::det_by_minor_vec> grad_det;
+   cmpad::adolc::gradient<cmpad::det_by_minor> grad_det;
    ok &= check_grad_det(grad_det);
    //
    // ok
-   cmpad::adolc::gradient_vec<cmpad::an_ode_vec> grad_ode;
+   cmpad::adolc::gradient<cmpad::an_ode> grad_ode;
    ok &= check_grad_ode(grad_ode);
    //
    // ok
-   cmpad::adolc::gradient_vec<cmpad::llsq_obj_vec> grad_llsq;
+   cmpad::adolc::gradient<cmpad::llsq_obj> grad_llsq;
    ok &= check_grad_llsq(grad_llsq);
    //
    return ok;

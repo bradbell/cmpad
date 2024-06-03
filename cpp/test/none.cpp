@@ -30,7 +30,7 @@
       option.time_setup = time_setup; \
       /* \
       csv_file_path_ */ \
-      cmpad::algorithm_value ##_vec< cmpad::vector<double> > fun; \
+      cmpad::algorithm_value< cmpad::vector<double> > fun; \
       double rate    = cmpad::fun_speed(fun, option, min_time_); \
       bool   special = false; \
       cmpad::csv_speed( csv_file_path_,  \
@@ -41,7 +41,7 @@
 
 BOOST_AUTO_TEST_SUITE(fun_speed)
 BOOST_AUTO_TEST_CASE(Double)
-{  cmpad::det_by_minor_vec< cmpad::vector<double> > det;
+{  cmpad::det_by_minor< cmpad::vector<double> > det;
    check_speed_det(det);
 }
 BOOST_AUTO_TEST_SUITE_END()

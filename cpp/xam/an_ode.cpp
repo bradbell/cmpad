@@ -3,16 +3,16 @@
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_an_ode_vec.cpp}
+{xrst_begin xam_an_ode.cpp}
 
-Example and Test of an_ode_vec
-##############################
+Example and Test of an_ode
+##########################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_an_ode_vec.cpp}
+{xrst_end xam_an_ode.cpp}
 */
 // BEGIN C++
 # include <ctime>
@@ -20,7 +20,7 @@ Example and Test of an_ode_vec
 # include <cmpad/near_equal.hpp>
 # include <limits>
 
-bool xam_an_ode_vec(void)
+bool xam_an_ode(void)
 {  //
    // ok
    bool ok = true;
@@ -30,7 +30,7 @@ bool xam_an_ode_vec(void)
    //
    // ode
    typedef cmpad::vector<double> Vector;
-   cmpad::an_ode_vec<Vector>     ode;
+   cmpad::an_ode<Vector>     ode;
    //
    // ode.setup
    cmpad::option_t option;

@@ -25,7 +25,7 @@ Prototype
 
 grad_ode
 ********
-Is a :ref:`cpp_fun_obj_vec-name`
+Is a :ref:`cpp_fun_obj-name`
 object that computes the gradient for the ref:`cpp_an_ode-name` algorithm.
 
 ok

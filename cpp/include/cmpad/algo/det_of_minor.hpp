@@ -8,7 +8,6 @@
 {xrst_begin_parent cpp_det_of_minor}
 {xrst_spell
    obj
-   vec
 }
 
 C++ Determinant of a Minor
@@ -67,7 +66,7 @@ will return the determinant of :math:`A`:
 Vector
 ******
 This type satisfies the conditions for a
-fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` .
+fun_obj :ref:`cpp_fun_obj@Vector` .
 
 a
 *

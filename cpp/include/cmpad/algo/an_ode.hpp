@@ -5,7 +5,7 @@
 # ifndef CMPAD_ALGO_AN_ODE_HPP
 # define CMPAD_ALGO_AN_ODE_HPP
 /*
-{xrst_begin_parent cpp_an_ode_vec}
+{xrst_begin_parent cpp_an_ode}
 {xrst_spell
    kutta
    runge
@@ -44,24 +44,24 @@ The return value *yf* is :math:`y(t)` at :math:`t = 2` .
 }
 Example
 *******
-:ref:`xam_an_ode_vec.cpp-name` contains an example and test of ``an_ode_vec`` .
+:ref:`xam_an_ode.cpp-name` contains an example and test of ``an_ode`` .
 
 Source Code
 ***********
-:ref:`an_ode_vec.hpp-name` displays the source code for this algorithm.
+:ref:`an_ode.hpp-name` displays the source code for this algorithm.
 
-{xrst_end cpp_an_ode_vec}
+{xrst_end cpp_an_ode}
 ------------------------------------------------------------------------------
-{xrst_begin an_ode_vec.hpp}
+{xrst_begin an_ode.hpp}
 
-an_ode_vec: Source Code
-#######################
+an_ode: Source Code
+###################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end an_ode_vec.hpp}
+{xrst_end an_ode.hpp}
 */
 // BEGIN C++
 # include <cassert>
@@ -96,7 +96,7 @@ public:
 };
 
 // BEGIN CLASS_DECLARE
-template <class Vector> class an_ode_vec : public fun_obj_vec<Vector>
+template <class Vector> class an_ode : public fun_obj<Vector>
 // END CLASS_DECLARE
 {
 private:

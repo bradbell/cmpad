@@ -5,7 +5,7 @@
 # ifndef CMPAD_ADOLC_GRADIENT_HPP
 # define CMPAD_ADOLC_GRADIENT_HPP
 /*
-{xrst_begin adolc_gradient_vec.hpp}
+{xrst_begin adolc_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
@@ -15,7 +15,7 @@
    @not_cppad_jit@ , true
 }
 
-{xrst_end adolc_gradient_vec.hpp}
+{xrst_end adolc_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_ADOLC
@@ -26,10 +26,10 @@
 
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
-// cmpad::adolc::gradient_vec
-template < template<class Vector> class TemplateAlgo > class gradient_vec
+// cmpad::adolc::gradient
+template < template<class Vector> class TemplateAlgo > class gradient
 : public
-cmpad::gradient_vec< TemplateAlgo< cmpad::vector<adouble> > > {
+cmpad::gradient< TemplateAlgo< cmpad::vector<adouble> > > {
 private:
    //
    // Vector

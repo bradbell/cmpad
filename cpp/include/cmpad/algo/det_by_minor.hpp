@@ -5,7 +5,7 @@
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 /*
-{xrst_begin_parent cpp_det_by_minor_vec}
+{xrst_begin_parent cpp_det_by_minor}
 
 C++ Determinant Using Expansion by Minors
 #########################################
@@ -48,25 +48,25 @@ is equal to the determinant of :math:`A(x)`.
 Example
 *******
 The file
-:ref:`xam_det_by_minor_vec.cpp-name`
-contains an example and test of ``det_by_minor_vec`` .
+:ref:`xam_det_by_minor.cpp-name`
+contains an example and test of ``det_by_minor`` .
 
 Source Code
 ***********
-:ref:`det_by_minor_vec.hpp-name` displays the source code for this algorithm.
+:ref:`det_by_minor.hpp-name` displays the source code for this algorithm.
 
-{xrst_end cpp_det_by_minor_vec}
+{xrst_end cpp_det_by_minor}
 ---------------------------------------------------------------------------
-{xrst_begin det_by_minor_vec.hpp}
+{xrst_begin det_by_minor.hpp}
 
-C++ det_by_minor_vec: Source Code
-#################################
+C++ det_by_minor: Source Code
+#############################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end det_by_minor_vec.hpp}
+{xrst_end det_by_minor.hpp}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
@@ -77,7 +77,7 @@ C++ det_by_minor_vec: Source Code
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN CLASS_DECLARE
-template <class Vector> class det_by_minor_vec : public fun_obj_vec<Vector>
+template <class Vector> class det_by_minor : public fun_obj<Vector>
 // END CLASS_DECLARE
 {
 private:

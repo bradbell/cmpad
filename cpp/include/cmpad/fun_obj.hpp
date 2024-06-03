@@ -5,8 +5,9 @@
 # ifndef CMPAD_FUN_OBJ_HPP
 # define CMPAD_FUN_OBJ_HPP
 /*
-{xrst_begin cpp_fun_obj_vec}
+{xrst_begin cpp_fun_obj}
 {xrst_spell
+   vec
    resize
    th
    typedef
@@ -18,9 +19,9 @@ The New Abstract Class for a C++ Function Object
 
 Syntax
 ******
-| |tab| ``# include <cmpad/fun_obj_vec.hpp``
-| |tab| ``cmpad::fun_obj_vec`` < *Vector* > *fun*
-| |tab| ``cmpad::fun_obj_vec`` < *Vector* > :: ``scalar_type``
+| |tab| ``# include <cmpad/fun_obj.hpp``
+| |tab| ``cmpad::fun_obj`` < *Vector* > *fun*
+| |tab| ``cmpad::fun_obj`` < *Vector* > :: ``scalar_type``
 | |tab| *fun* . ``setup`` ( *option* )
 | |tab| *fun* . ``domain`` ( )
 | |tab| *fun* . ``range`` ( )
@@ -59,7 +60,7 @@ the following operations must be defined:
 
 Vector
 ******
-The fun_obj_vec *Vector* class must support the following
+The fun_obj *Vector* class must support the following
 where *vec* is a *Vector* object:
 
 Vector::value_type
@@ -125,16 +126,16 @@ is the function value corresponding to *x*.
 }
 Example
 *******
-:ref:`xam_fun_obj_vec.cpp-name` is an example and test that uses this function.
+:ref:`xam_fun_obj.cpp-name` is an example and test that uses this function.
 
-{xrst_end cpp_fun_obj_vec}
+{xrst_end cpp_fun_obj}
 ---------------------------------------------------------------------------
 */
 // BEGIN C++
 
 # include <cmpad/option_t.hpp>
 namespace cmpad {
-   template <class Vector> struct fun_obj_vec {
+   template <class Vector> struct fun_obj {
       //
       // scalar_type
       typedef typename Vector::value_type scalar_type;

@@ -5,7 +5,7 @@
 # ifndef CMPAD_GRADIENT_HPP
 # define CMPAD_GRADIENT_HPP
 /*
-{xrst_begin cpp_gradient_vec}
+{xrst_begin cpp_gradient}
 {xrst_spell
    typedef
 }
@@ -15,9 +15,9 @@ C++ Abstract Class For Calculating Gradient
 
 Syntax
 ******
-| |tab| ``# include <cmpad/gradient_vec.hpp``
+| |tab| ``# include <cmpad/gradient.hpp``
 | |tab| *Algo* *algo*
-| |tab| ``cmpad::gradient_vec`` < *Algo* > *grad*
+| |tab| ``cmpad::gradient`` < *Algo* > *grad*
 | |tab| *g* = *grad* ( *x* )
 
 Source Code
@@ -30,15 +30,15 @@ Source Code
 
 Algo
 ****
-The *Algo* class is derived from the :ref:`cpp_fun_obj_vec-name` class.
+The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class.
 The *algo* object is initialized using its
-:ref:`cpp_fun_obj_vec@setup` member function.
+:ref:`cpp_fun_obj@setup` member function.
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*.range() can be greater than one.
 
 grad
 ****
-This is a :ref:`cpp_fun_obj_vec-name` interface to the
+This is a :ref:`cpp_fun_obj-name` interface to the
 gradient of the function corresponding to *algo* .
 It calculates the gradient of the last component of the vector
 returned by *algo*.
@@ -48,7 +48,7 @@ The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
 We use *Grad* to denote the type of *grad* ; i.e.,
 
-| |tab| ``typedef cmpad::gradient_vec`` < *Algo* > *Grad*
+| |tab| ``typedef cmpad::gradient`` < *Algo* > *Grad*
 
 
 vector_type
@@ -71,12 +71,12 @@ The type of the elements of *x* and *g* is
 domain
 ******
 This returns the dimension of the
-:ref:`cpp_fun_obj_vec@domain` space dimension for the function and gradient.
+:ref:`cpp_fun_obj@domain` space dimension for the function and gradient.
 
 range
 *****
 This returns the dimension of the
-:ref:`cpp_fun_obj_vec@range` space dimension for the gradient.
+:ref:`cpp_fun_obj@range` space dimension for the gradient.
 The dimension of the range space for the gradient is equal
 to the dimension of the domain space for the gradient and function.
 Hence ``range`` is implemented by this interface and not virtual.
@@ -106,7 +106,7 @@ Example and Derived Classes
    cpp/include/cmpad/cppad/gradient.hpp
 }
 
-{xrst_end cpp_gradient_vec}
+{xrst_end cpp_gradient}
 -------------------------------------------------------------------------------
 */
 // BEGIN C++
@@ -114,9 +114,9 @@ Example and Derived Classes
 # include <cmpad/fun_obj.hpp>
 
 namespace cmpad {
-   // gradient_vec
-   template <class Algo> class gradient_vec
-      : public fun_obj_vec< cmpad::vector<double> > {
+   // gradient
+   template <class Algo> class gradient
+      : public fun_obj< cmpad::vector<double> > {
    public:
       // scalar_type
       typedef double scalar_type;

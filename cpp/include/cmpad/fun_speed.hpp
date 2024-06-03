@@ -33,12 +33,12 @@ We are testing the speed of the evaluation of *y* by this function object.
 x
 *
 This is a ``cmpad::vector<double>`` object with size equal to the
-dimension of the :ref:`cpp_fun_obj_vec@domain` space for the function object.
+dimension of the :ref:`cpp_fun_obj@domain` space for the function object.
 
 y
 *
 This is a ``cmpad::vector<double>`` object with size equal to the
-dimension of the :ref:`cpp_fun_obj_vec@range` space for the function object.
+dimension of the :ref:`cpp_fun_obj@range` space for the function object.
 
 option
 ******

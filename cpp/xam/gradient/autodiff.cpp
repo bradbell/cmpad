@@ -37,15 +37,15 @@ bool xam_gradient_autodiff(void)
    bool ok = true;
    //
    // ok
-   cmpad::autodiff::gradient_vec<cmpad::det_by_minor_vec> grad_det;
+   cmpad::autodiff::gradient<cmpad::det_by_minor> grad_det;
    ok &= check_grad_det(grad_det);
    //
    // ok
-   cmpad::autodiff::gradient_vec<cmpad::an_ode_vec> grad_ode;
+   cmpad::autodiff::gradient<cmpad::an_ode> grad_ode;
    ok &= check_grad_ode(grad_ode);
    //
    // ok
-   cmpad::autodiff::gradient_vec<cmpad::llsq_obj_vec> grad_llsq;
+   cmpad::autodiff::gradient<cmpad::llsq_obj> grad_llsq;
    ok &= check_grad_llsq(grad_llsq);
    //
    return ok;

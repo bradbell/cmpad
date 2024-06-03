@@ -24,7 +24,7 @@ Example and Test of fun_speed
 namespace { // BEGIN_EMPTY_NAMESPACE
 
    // my_fun_obj
-   class my_fun_obj : public cmpad::fun_obj_vec< cmpad::vector<double> > {
+   class my_fun_obj : public cmpad::fun_obj< cmpad::vector<double> > {
    private:
       // size_
       size_t n_arg_;

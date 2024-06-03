@@ -5,7 +5,7 @@
 # ifndef CMPAD_SACADO_GRADIENT_HPP
 # define CMPAD_SACADO_GRADIENT_HPP
 /*
-{xrst_begin sacado_gradient_vec.hpp}
+{xrst_begin sacado_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
@@ -16,7 +16,7 @@
 }
 
 
-{xrst_end sacado_gradient_vec.hpp}
+{xrst_end sacado_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_SACADO
@@ -28,10 +28,10 @@ namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 
 using Sacado::Rad::ADvar;
 
-// gradient_vec
-template < template<class Vector> class TemplateAlgo> class gradient_vec
+// gradient
+template < template<class Vector> class TemplateAlgo> class gradient
 : public
-cmpad::gradient_vec< TemplateAlgo< cmpad::vector< ADvar<double> > > > {
+cmpad::gradient< TemplateAlgo< cmpad::vector< ADvar<double> > > > {
 private:
    //
    // Vector
@@ -103,7 +103,7 @@ public:
       size_t m = algo_.range();
       ADvar<double> az = ay_[m-1] + 0.0;
       //
-      // reverse mode computation of gradient_vec for last computed value
+      // reverse mode computation of gradient for last computed value
       ADvar<double>::Gradcomp();
       //
       // g_

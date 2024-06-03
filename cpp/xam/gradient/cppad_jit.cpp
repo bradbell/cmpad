@@ -37,17 +37,17 @@ bool xam_gradient_cppad_jit(void)
    bool ok = true;
    //
    // ok
-   {  cmpad::cppad_jit::gradient_vec<cmpad::det_by_minor_vec> grad_det;
+   {  cmpad::cppad_jit::gradient<cmpad::det_by_minor> grad_det;
       ok &= check_grad_det(grad_det);
    }
    //
    // ok
-   {  cmpad::cppad_jit::gradient_vec<cmpad::an_ode_vec> grad_ode;
+   {  cmpad::cppad_jit::gradient<cmpad::an_ode> grad_ode;
       ok &= check_grad_ode(grad_ode);
    }
    //
    // ok
-   {  cmpad::cppad_jit::gradient_vec<cmpad::llsq_obj_vec> grad_llsq;
+   {  cmpad::cppad_jit::gradient<cmpad::llsq_obj> grad_llsq;
       ok &= check_grad_llsq(grad_llsq);
    }
    //

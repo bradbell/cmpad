@@ -5,7 +5,7 @@
 # ifndef CMPAD_ADEPT_GRADIENT_HPP
 # define CMPAD_ADEPT_GRADIENT_HPP
 /*
-{xrst_begin adept_gradient_vec.hpp}
+{xrst_begin adept_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
@@ -15,7 +15,7 @@
    @not_cppad_jit@ , true
 }
 
-{xrst_end adept_gradient_vec.hpp}
+{xrst_end adept_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_ADEPT
@@ -25,10 +25,10 @@
 
 namespace cmpad { namespace adept { // BEGIN cmpad::adept namespace
 
-// cmpad::adept::gradient_vec
-template < template<class Vector> class TemplateAlgo> class gradient_vec
+// cmpad::adept::gradient
+template < template<class Vector> class TemplateAlgo> class gradient
 : public
-::cmpad::gradient_vec< TemplateAlgo< cmpad::vector<::adept::adouble> > > {
+::cmpad::gradient< TemplateAlgo< cmpad::vector<::adept::adouble> > > {
 private:
    //
    // Vector
@@ -55,12 +55,12 @@ public:
    typedef cmpad::vector<double> vector_type;
    //
    // default ctor
-   gradient_vec(void)
+   gradient(void)
    : stack_(nullptr)
    , algo_(nullptr)
    { }
    //
-   ~gradient_vec(void)
+   ~gradient(void)
    {  if( algo_ != nullptr )
          delete algo_;
       if( stack_ != nullptr )

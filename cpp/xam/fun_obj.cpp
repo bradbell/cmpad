@@ -3,16 +3,16 @@
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_begin xam_fun_obj_vec.cpp}
+{xrst_begin xam_fun_obj.cpp}
 
-Example and Test of fun_obj_vec
-###############################
+Example and Test of fun_obj
+###########################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_fun_obj_vec.cpp}
+{xrst_end xam_fun_obj.cpp}
 */
 // BEGIN C++
 # include <cassert>
@@ -26,8 +26,8 @@ namespace {
    // Vector
    typedef cmpad::vector<float> Vector;
    //
-   // my_fun_obj_vec
-   class my_fun_obj_vec : public cmpad::fun_obj_vec<Vector> {
+   // my_fun_obj
+   class my_fun_obj : public cmpad::fun_obj<Vector> {
    private:
       //
       // y_
@@ -66,7 +66,7 @@ namespace {
    };
 }
 
-bool xam_fun_obj_vec(void)
+bool xam_fun_obj(void)
 {  //
    // ok
    bool ok = true;
@@ -76,7 +76,7 @@ bool xam_fun_obj_vec(void)
    cmpad::option_t option;
    //
    // my_fun
-   my_fun_obj_vec my_fun;
+   my_fun_obj my_fun;
    my_fun.setup(option);
    //
    // x

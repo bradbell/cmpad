@@ -5,7 +5,7 @@
 # ifndef CMPAD_CPPAD_JIT_GRADIENT_HPP
 # define CMPAD_CPPAD_JIT_GRADIENT_HPP
 /*
-{xrst_begin cppad_jit_gradient_vec.hpp}
+{xrst_begin cppad_jit_gradient.hpp}
 {xrst_spell
    dll
    ext
@@ -19,7 +19,7 @@
    @not_cppad_jit@ , false
 }
 
-{xrst_end cppad_jit_gradient_vec.hpp}
+{xrst_end cppad_jit_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
@@ -42,9 +42,9 @@ static_assert(
 );
 
 // cmpad::cppad_jit::gradient
-template < template<class Vector> class TemplateAlgo > class gradient_vec
+template < template<class Vector> class TemplateAlgo > class gradient
 : public
-cmpad::gradient_vec< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
+cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
    //
    // Vector
@@ -68,9 +68,9 @@ private:
 //
 public:
    // ctor, dtor
-   gradient_vec(void)
+   gradient(void)
    {  dll_linker_ = nullptr; }
-   ~gradient_vec(void)
+   ~gradient(void)
    {  if( dll_linker_ != nullptr )
          delete dll_linker_;
    }

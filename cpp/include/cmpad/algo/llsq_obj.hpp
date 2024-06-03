@@ -5,7 +5,7 @@
 # ifndef CMPAD_ALGO_LLSQ_OBJ_HPP
 # define CMPAD_ALGO_LLSQ_OBJ_HPP
 /*
-{xrst_begin_parent cpp_llsq_obj_vec}
+{xrst_begin_parent cpp_llsq_obj}
 
 C++ Linear Least Squares Objective
 ##################################
@@ -39,26 +39,26 @@ see :ref:`llsq_obj@option@n_other` .
 
 Example
 *******
-The file :ref:`xam_llsq_obj_vec.cpp-name`
-contains an example and test of ``llsq_obj_vec`` .
+The file :ref:`xam_llsq_obj.cpp-name`
+contains an example and test of ``llsq_obj`` .
 
 Source Code
 ***********
-:ref:`cpp_llsq_obj_vec.hpp-name` is the source code for this algorithm.
+:ref:`cpp_llsq_obj.hpp-name` is the source code for this algorithm.
 
-{xrst_end cpp_llsq_obj_vec}
+{xrst_end cpp_llsq_obj}
 ------------------------------------------------------------------------------
-{xrst_begin cpp_llsq_obj_vec.hpp}
+{xrst_begin cpp_llsq_obj.hpp}
 
 
-C++ llsq_obj_vec: Source Code
-#############################
+C++ llsq_obj: Source Code
+#########################
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end cpp_llsq_obj_vec.hpp}
+{xrst_end cpp_llsq_obj.hpp}
 ------------------------------------------------------------------------------
 */
 // BEGIN C++
@@ -68,7 +68,7 @@ C++ llsq_obj_vec: Source Code
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN CLASS_DECLARE
-template <class Vector> class llsq_obj_vec : public fun_obj_vec<Vector>
+template <class Vector> class llsq_obj : public fun_obj<Vector>
 // END CLASS_DECLARE
 {
 private:

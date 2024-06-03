@@ -5,7 +5,7 @@
 # ifndef CMPAD_CPPAD_GRADIENT_HPP
 # define CMPAD_CPPAD_GRADIENT_HPP
 /*
-{xrst_begin cppad_gradient_vec.hpp}
+{xrst_begin cppad_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
@@ -15,7 +15,7 @@
    @not_cppad_jit@ , true
 }
 
-{xrst_end cppad_gradient_vec.hpp}
+{xrst_end cppad_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
@@ -27,10 +27,10 @@
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
-// cmpad::cppad::gradient_vec
-template < template<class Vector> class TemplateAlgo> class gradient_vec
+// cmpad::cppad::gradient
+template < template<class Vector> class TemplateAlgo> class gradient
 : public
-::cmpad::gradient_vec< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
+::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
    // Vector
    typedef typename cmpad::vector< CppAD::AD<double> >   Vector;

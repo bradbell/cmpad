@@ -15,7 +15,6 @@
    yi
    yt
    obj
-   vec
 }
 
 A C++ Fourth Order Runge Kutta Solver
@@ -42,7 +41,7 @@ for :math:`y( t^f )` where :math:`y(0) = y^i` and
 Vector
 ******
 The vectors *yi* and *yf* have this
-fun_obj_vec :ref:`cpp_fun_obj_vec@vector_type` .
+fun_obj :ref:`cpp_fun_obj@vector_type` .
 
 fun
 ***

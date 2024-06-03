@@ -4,29 +4,29 @@
 // ----------------------------------------------------------------------------
 
 /*
-{xrst_begin xam_llsq_obj_vec.cpp}
+{xrst_begin xam_llsq_obj.cpp}
 
-Example and Test of llsq_obj_vec
-################################
+Example and Test of llsq_obj
+############################
 
 {xrst_literal
    // BEGIN C++
    // END C++
 }
 
-{xrst_end xam_llsq_obj_vec.cpp}
+{xrst_end xam_llsq_obj.cpp}
 */
 // BEGIN C++
 # include <cmpad/algo/llsq_obj.hpp>
 # include <cmpad/near_equal.hpp>
 
-bool xam_llsq_obj_vec(void)
+bool xam_llsq_obj(void)
 {  // ok
    bool ok = true;
    //
    // llsq
    typedef typename cmpad::vector<double> Vector;
-   cmpad::llsq_obj_vec<Vector>            llsq;
+   cmpad::llsq_obj<Vector>            llsq;
    //
    // llsq.setup
    cmpad::option_t option;

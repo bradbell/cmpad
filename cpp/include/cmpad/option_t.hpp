@@ -41,12 +41,12 @@ namespace cmpad {
 
 n_arg
 *****
-is the dimension of the :ref:`cpp_fun_obj_vec@domain` space for the algorithm.
+is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
 
 n_other
 *******
 is the special range index for the algorithm and must be less than its
-:ref:`cpp_fun_obj_vec@range` .
+:ref:`cpp_fun_obj@range` .
 For example, if we are computing gradients or Hessians,
 it is the index in the algorithm range space that the gradient or Hessian
 corresponds to.

@@ -93,7 +93,7 @@ Source Code
 // CMPAD_PACKAGE_TEST_VEC
 # define CMPAD_PACKAGE_TEST_VEC(package) \
    if( algorithm == "det_by_minor" ) \
-   {  cmpad::package::gradient_vec<cmpad::det_by_minor_vec> grad_det; \
+   {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
       double rate = cmpad::fun_speed(grad_det, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, special, option \
@@ -101,7 +101,7 @@ Source Code
       case_found = true; \
    } \
    else if( algorithm == "an_ode" ) \
-   {  cmpad::package::gradient_vec<cmpad::an_ode_vec> grad_ode; \
+   {  cmpad::package::gradient<cmpad::an_ode> grad_ode; \
       double rate = cmpad::fun_speed(grad_ode, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, special, option \
@@ -109,7 +109,7 @@ Source Code
       case_found = true; \
    } \
    else if( algorithm == "llsq_obj" ) \
-   {  cmpad::package::gradient_vec<cmpad::llsq_obj_vec> grad_llsq; \
+   {  cmpad::package::gradient<cmpad::llsq_obj> grad_llsq; \
       double rate = cmpad::fun_speed(grad_llsq, option, min_time); \
       cmpad::csv_speed( \
          file_name, rate, min_time, #package , algorithm, special, option \
@@ -240,7 +240,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
    if( package == "none" )
    {  if( algorithm == "det_by_minor" )
-      {  cmpad::det_by_minor_vec< cmpad::vector<double> > det;
+      {  cmpad::det_by_minor< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -248,7 +248,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "an_ode" )
-      {  cmpad::an_ode_vec< cmpad::vector<double> > det;
+      {  cmpad::an_ode< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -256,7 +256,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "llsq_obj" )
-      {  cmpad::llsq_obj_vec< cmpad::vector<double> > llsq;
+      {  cmpad::llsq_obj< cmpad::vector<double> > llsq;
          double rate = cmpad::fun_speed(llsq, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option

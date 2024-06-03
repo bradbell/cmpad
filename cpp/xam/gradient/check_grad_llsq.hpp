@@ -25,7 +25,7 @@ Prototype
 
 grad_llsq
 *********
-Is a :ref:`cpp_fun_obj_vec-name`
+Is a :ref:`cpp_fun_obj-name`
 object that computes the gradient for the ref:`cpp_llsq_obj-name` algorithm.
 
 ok

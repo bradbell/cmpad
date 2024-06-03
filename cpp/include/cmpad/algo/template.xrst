@@ -13,8 +13,8 @@ This template file has the following parameters:
 
 Syntax
 ******
-| |tab| ``# include <cmpad/algo/$algo_name$_vec`.hpp>``
-| |tab| ``cmpad::$algo_name$_vec`` < *Vector* > *$obj_name$*
+| |tab| ``# include <cmpad/algo/$algo_name$.hpp>``
+| |tab| ``cmpad::$algo_name$`` < *Vector* > *$obj_name$*
 | |tab| *$obj_name$* . ``setup`` ( *option* )
 | |tab| *y* = *$obj_name$* ( *x* )
 
@@ -27,17 +27,17 @@ Class Declaration
 
 Algo
 ****
-This is an :ref:`cpp_fun_obj_vec-name` interface
+This is an :ref:`cpp_fun_obj-name` interface
 to the $algo_name$ :ref:`$algo_name$-name` Algorithm .
 We use *Algo* for the type of this algorithm; i.e.,
 
 {xrst_spell_off}
-| |tab| ``typedef cmpad::$algo_name$_vec`` < *Vector* > *Algo*
+| |tab| ``typedef cmpad::$algo_name$`` < *Vector* > *Algo*
 {xrst_spell_on}
 
 Vector
 ******
-This is a fun_obj_vec :ref:`cpp_fun_obj_vec@Vector` type.
+This is a fun_obj :ref:`cpp_fun_obj@Vector` type.
 
 vector_type
 ***********
@@ -52,5 +52,5 @@ This is also useful when *Algo* is a template parameter.
 
 $obj_name$
 $********$
-The object *$obj_name$* is a :ref:`cpp_fun_obj_vec@fun`
+The object *$obj_name$* is a :ref:`cpp_fun_obj@fun`
 that computes the function corresponding to the $algo_name$ algorithm.

@@ -5,7 +5,7 @@
 # ifndef CMPAD_AUTODIFF_GRADIENT_HPP
 # define CMPAD_AUTODIFF_GRADIENT_HPP
 /*
-{xrst_begin autodiff_gradient_vec.hpp}
+{xrst_begin autodiff_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
@@ -15,7 +15,7 @@
    @not_cppad_jit@ , true
 }
 
-{xrst_end autodiff_gradient_vec.hpp}
+{xrst_end autodiff_gradient.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_AUTODIFF
@@ -29,10 +29,10 @@ namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 typedef ::autodiff::real          real;
 typedef ::autodiff::VectorXreal   VectorXreal;
 
-// gradient_vec
-template < template<class Vector> class TemplateAlgo> class gradient_vec
+// gradient
+template < template<class Vector> class TemplateAlgo> class gradient
 : public
-cmpad::gradient_vec< TemplateAlgo< cmpad::vector<::autodiff::real> > > {
+cmpad::gradient< TemplateAlgo< cmpad::vector<::autodiff::real> > > {
 private:
    //
    // Vector
@@ -109,7 +109,7 @@ public:
          return ay_[m-1];
       };
       //
-      // forward mode computation of gradient_vec
+      // forward mode computation of gradient
       ::autodiff::real y;
       g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y);
       //

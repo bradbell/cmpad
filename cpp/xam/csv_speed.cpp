@@ -70,7 +70,7 @@ bool xam_csv_speed(void)
    option.time_setup = false;
    //
    // det_double
-   cmpad::det_by_minor_vec< cmpad::vector<double> > det_double;
+   cmpad::det_by_minor< cmpad::vector<double> > det_double;
    //
    // rate
    double rate = cmpad::fun_speed(det_double, option, min_time);

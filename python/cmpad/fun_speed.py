@@ -23,19 +23,19 @@ Prototype
 fun_obj
 *******
 We are testing the speed of the evaluation of this
-:ref:`cpp_fun_obj_vec-name` .
+:ref:`cpp_fun_obj-name` .
 
 x
 *
-This is a vector like  object :ref:`cpp_fun_obj_vec@x` for the function object.
+This is a vector like  object :ref:`cpp_fun_obj@x` for the function object.
 
 y
 *
-This is the vector like object :ref:`cpp_fun_obj_vec@y` for the function object.
+This is the vector like object :ref:`cpp_fun_obj@y` for the function object.
 
 option
 ******
-This python dictionary is used to :ref:`cpp_fun_obj_vec@setup` the function object.
+This python dictionary is used to :ref:`cpp_fun_obj@setup` the function object.
 
 time_setup
 ==========
