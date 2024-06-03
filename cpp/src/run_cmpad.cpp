@@ -90,33 +90,6 @@ Source Code
       case_found = true; \
    }
 
-// CMPAD_PACKAGE_TEST_VEC
-# define CMPAD_PACKAGE_TEST_VEC(package) \
-   if( algorithm == "det_by_minor" ) \
-   {  cmpad::package::gradient<cmpad::det_by_minor> grad_det; \
-      double rate = cmpad::fun_speed(grad_det, option, min_time); \
-      cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, special, option \
-      ); \
-      case_found = true; \
-   } \
-   else if( algorithm == "an_ode" ) \
-   {  cmpad::package::gradient<cmpad::an_ode> grad_ode; \
-      double rate = cmpad::fun_speed(grad_ode, option, min_time); \
-      cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, special, option \
-      ); \
-      case_found = true; \
-   } \
-   else if( algorithm == "llsq_obj" ) \
-   {  cmpad::package::gradient<cmpad::llsq_obj> grad_llsq; \
-      double rate = cmpad::fun_speed(grad_llsq, option, min_time); \
-      cmpad::csv_speed( \
-         file_name, rate, min_time, #package , algorithm, special, option \
-      ); \
-      case_found = true; \
-   }
-
 
 // get_package_available
 cmpad::vector<std::string> get_package_available(void)
@@ -268,41 +241,41 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_ADEPT
    else if( package == "adept" )
-   {  CMPAD_PACKAGE_TEST_VEC(adept) }
+   {  CMPAD_PACKAGE_TEST(adept) }
 # endif
 # if CMPAD_HAS_ADOLC
    else if( package == "adolc" )
-   {  CMPAD_PACKAGE_TEST_VEC(adolc) }
+   {  CMPAD_PACKAGE_TEST(adolc) }
 # endif
    //
    // file_name, case_found
 # if CMPAD_HAS_AUTODIFF
    else if( package == "autodiff" )
-   {  CMPAD_PACKAGE_TEST_VEC(autodiff) }
+   {  CMPAD_PACKAGE_TEST(autodiff) }
 # endif
    //
    // file_name, case_found
 # if CMPAD_HAS_CPPAD
    else if( package == "cppad" )
-   {  CMPAD_PACKAGE_TEST_VEC(cppad) }
+   {  CMPAD_PACKAGE_TEST(cppad) }
 # endif
    //
    // file_name, case_found
 # if CMPAD_HAS_CPPAD_JIT
    else if( package == "cppad_jit" )
-   {  CMPAD_PACKAGE_TEST_VEC(cppad_jit) }
+   {  CMPAD_PACKAGE_TEST(cppad_jit) }
 # endif
    //
    // file_name, case_found
 # if CMPAD_HAS_CPPADCG
    else if( package == "cppadcg" )
-   {  CMPAD_PACKAGE_TEST_VEC(cppadcg) }
+   {  CMPAD_PACKAGE_TEST(cppadcg) }
 # endif
    //
    // file_name, case_found
 # if CMPAD_HAS_SACADO
    else if( package == "sacado" )
-   {  CMPAD_PACKAGE_TEST_VEC(sacado) }
+   {  CMPAD_PACKAGE_TEST(sacado) }
 # endif
    //
    if( case_found )
