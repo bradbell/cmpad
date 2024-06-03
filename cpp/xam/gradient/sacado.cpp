@@ -23,10 +23,10 @@ Source Code
 */
 // BEGIN C++
 # include <cmpad/configure.hpp>
-# include <cmpad/algo/det_by_minor_vec.hpp>
-# include <cmpad/algo/an_ode_vec.hpp>
-# include <cmpad/algo/llsq_obj_vec.hpp>
-# include <cmpad/sacado/gradient_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
+# include <cmpad/sacado/gradient.hpp>
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
 # include "check_grad_llsq.hpp"

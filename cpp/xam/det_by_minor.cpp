@@ -16,7 +16,7 @@ Example and Test of det_by_minor_vec
 {xrst_end xam_det_by_minor_vec.cpp}
 */
 // BEGIN C++
-# include <cmpad/algo/det_by_minor_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
 
 bool xam_det_by_minor_vec(void)
 {  // ok

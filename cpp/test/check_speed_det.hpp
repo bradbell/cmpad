@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------------
 # ifndef TEST_CHECK_SPEED_DET_HPP
 # define TEST_CHECK_SPEED_DET_HPP
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/fun_speed.hpp>
 
 template <class Fun_Obj>

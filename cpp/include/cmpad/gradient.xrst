@@ -19,7 +19,7 @@ Calculate Gradient Using @Package@
 
 Syntax
 ******
-| |tab| ``# include <cmpad/@package@/gradient_vec.hpp>``
+| |tab| ``# include <cmpad/@package@/gradient.hpp>``
 | |tab| ``cmpad::@package@::gradient_vec`` < *TemplateAlgo* > *grad*
 | |tab| *g* = *grad* ( *x* )
 

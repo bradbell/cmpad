@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_AUTODIFF_GRADIENT_VEC_HPP
-# define CMPAD_AUTODIFF_GRADIENT_VEC_HPP
+# ifndef CMPAD_AUTODIFF_GRADIENT_HPP
+# define CMPAD_AUTODIFF_GRADIENT_HPP
 /*
 {xrst_begin autodiff_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , autodiff
    @#######@       , ########
    @package@       , autodiff
@@ -22,7 +22,7 @@
 
 # include <autodiff/forward/real.hpp>
 # include <autodiff/forward/real/eigen.hpp>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 

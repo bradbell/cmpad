@@ -47,18 +47,18 @@ Source Code
 //
 // cmpad algorithms
 #
-# include <cmpad/algo/det_by_minor_vec.hpp>
-# include <cmpad/algo/an_ode_vec.hpp>
-# include <cmpad/algo/llsq_obj_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 //
 // cmpad gradients
-# include <cmpad/adept/gradient_vec.hpp>
-# include <cmpad/adolc/gradient_vec.hpp>
-# include <cmpad/autodiff/gradient_vec.hpp>
-# include <cmpad/cppad/gradient_vec.hpp>
-# include <cmpad/cppad_jit/gradient_vec.hpp>
-# include <cmpad/cppadcg/gradient_vec.hpp>
-# include <cmpad/sacado/gradient_vec.hpp>
+# include <cmpad/adept/gradient.hpp>
+# include <cmpad/adolc/gradient.hpp>
+# include <cmpad/autodiff/gradient.hpp>
+# include <cmpad/cppad/gradient.hpp>
+# include <cmpad/cppad_jit/gradient.hpp>
+# include <cmpad/cppadcg/gradient.hpp>
+# include <cmpad/sacado/gradient.hpp>
 //
 // local
 # include "parse_args.hpp"

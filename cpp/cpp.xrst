@@ -11,7 +11,7 @@ C++ Algorithmic Differentiation
 {xrst_toc_table before
    cpp/src/run_cmpad.cpp
    cpp/include/cmpad/configure.hpp.in
-   cpp/include/cmpad/gradient_vec.hpp
+   cpp/include/cmpad/gradient.hpp
    cpp/include/cmpad/algo/algo.xrst
 }
 
@@ -26,7 +26,7 @@ Simple Types
    cpp/include/cmpad/option_t.hpp
    cpp/include/cmpad/vector.hpp
    cpp/include/cmpad/vec_vec_str.hpp
-   cpp/include/cmpad/fun_obj_vec.hpp
+   cpp/include/cmpad/fun_obj.hpp
 }
 
 {xrst_end type}

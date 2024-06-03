@@ -1,5 +1,5 @@
-# ifndef CMPAD_ALGO_DET_BY_MINOR_VEC_HPP
-# define CMPAD_ALGO_DET_BY_MINOR_VEC_HPP
+# ifndef CMPAD_ALGO_DET_BY_MINOR_HPP
+# define CMPAD_ALGO_DET_BY_MINOR_HPP
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
@@ -42,7 +42,7 @@ is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
    cpp/include/cmpad/algo/det_of_minor.hpp
-   cpp/xam/det_by_minor_vec.cpp
+   cpp/xam/det_by_minor.cpp
 }
 
 Example
@@ -71,7 +71,7 @@ C++ det_by_minor_vec: Source Code
 */
 // BEGIN C++
 # include <cmath> // for std::sqrt
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace

@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_ALGO_LLSQ_OBJ_VEC_HPP
-# define CMPAD_ALGO_LLSQ_OBJ_VEC_HPP
+# ifndef CMPAD_ALGO_LLSQ_OBJ_HPP
+# define CMPAD_ALGO_LLSQ_OBJ_HPP
 /*
 {xrst_begin_parent cpp_llsq_obj_vec}
 
@@ -34,7 +34,7 @@ n_other
 see :ref:`llsq_obj@option@n_other` .
 
 {xrst_toc_hidden after
-   cpp/xam/llsq_obj_vec.cpp
+   cpp/xam/llsq_obj.cpp
 }
 
 Example
@@ -63,7 +63,7 @@ C++ llsq_obj_vec: Source Code
 */
 // BEGIN C++
 # include <cassert>
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 

@@ -9,9 +9,9 @@
 # include "check_speed_det.hpp"
 # include "csv_fixture.hpp"
 //
-# include <cmpad/algo/det_by_minor_vec.hpp>
-# include <cmpad/algo/an_ode_vec.hpp>
-# include <cmpad/algo/llsq_obj_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 //
 // CMPAD_TEST_ONE_ALGORITHM
 # define CMPAD_TEST_ONE_ALGORITHM(algorithm_value, n_arg_value, n_other_value) \

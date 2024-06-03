@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
-# ifndef CMPAD_FUN_OBJ_VEC_HPP
-# define CMPAD_FUN_OBJ_VEC_HPP
+# ifndef CMPAD_FUN_OBJ_HPP
+# define CMPAD_FUN_OBJ_HPP
 /*
 {xrst_begin cpp_fun_obj_vec}
 {xrst_spell
@@ -121,7 +121,7 @@ This *Vector* has size *m* and
 is the function value corresponding to *x*.
 
 {xrst_toc_hidden
-   cpp/xam/fun_obj_vec.cpp
+   cpp/xam/fun_obj.cpp
 }
 Example
 *******

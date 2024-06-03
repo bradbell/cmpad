@@ -18,7 +18,7 @@ Example and Test of fun_obj_vec
 # include <cassert>
 # include <iostream>
 # include <cmpad/vector.hpp>
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace {

@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_GRADIENT_VEC_HPP
-# define CMPAD_GRADIENT_VEC_HPP
+# ifndef CMPAD_GRADIENT_HPP
+# define CMPAD_GRADIENT_HPP
 /*
 {xrst_begin cpp_gradient_vec}
 {xrst_spell
@@ -97,13 +97,13 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    cpp/xam/gradient/gradient.xrst
-   cpp/include/cmpad/sacado/gradient_vec.hpp
-   cpp/include/cmpad/cppad_jit/gradient_vec.hpp
-   cpp/include/cmpad/cppadcg/gradient_vec.hpp
-   cpp/include/cmpad/autodiff/gradient_vec.hpp
-   cpp/include/cmpad/adolc/gradient_vec.hpp
-   cpp/include/cmpad/adept/gradient_vec.hpp
-   cpp/include/cmpad/cppad/gradient_vec.hpp
+   cpp/include/cmpad/sacado/gradient.hpp
+   cpp/include/cmpad/cppad_jit/gradient.hpp
+   cpp/include/cmpad/cppadcg/gradient.hpp
+   cpp/include/cmpad/autodiff/gradient.hpp
+   cpp/include/cmpad/adolc/gradient.hpp
+   cpp/include/cmpad/adept/gradient.hpp
+   cpp/include/cmpad/cppad/gradient.hpp
 }
 
 {xrst_end cpp_gradient_vec}
@@ -111,7 +111,7 @@ Example and Derived Classes
 */
 // BEGIN C++
 # include <cmpad/vector.hpp>
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 
 namespace cmpad {
    // gradient_vec

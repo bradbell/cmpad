@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_SACADO_GRADIENT_VEC_HPP
-# define CMPAD_SACADO_GRADIENT_VEC_HPP
+# ifndef CMPAD_SACADO_GRADIENT_HPP
+# define CMPAD_SACADO_GRADIENT_HPP
 /*
 {xrst_begin sacado_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , Sacado
    @#######@       , ######
    @package@       , sacado
@@ -22,7 +22,7 @@
 # if CMPAD_HAS_SACADO
 
 # include <Sacado.hpp>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 

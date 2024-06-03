@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_ADEPT_GRADIENT_VEC_HPP
-# define CMPAD_ADEPT_GRADIENT_VEC_HPP
+# ifndef CMPAD_ADEPT_GRADIENT_HPP
+# define CMPAD_ADEPT_GRADIENT_HPP
 /*
 {xrst_begin adept_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , Adept
    @#######@       , #####
    @package@       , adept
@@ -21,7 +21,7 @@
 # if CMPAD_HAS_ADEPT
 
 # include <adept.h>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace adept { // BEGIN cmpad::adept namespace
 

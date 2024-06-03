@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_ADOLC_GRADIENT_VEC_HPP
-# define CMPAD_ADOLC_GRADIENT_VEC_HPP
+# ifndef CMPAD_ADOLC_GRADIENT_HPP
+# define CMPAD_ADOLC_GRADIENT_HPP
 /*
 {xrst_begin adolc_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , ADOL-C
    @#######@       , ######
    @package@       , adolc
@@ -22,7 +22,7 @@
 
 # include <type_traits>
 # include <adolc/adolc.h>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 

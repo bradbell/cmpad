@@ -17,7 +17,7 @@ Example and Test of llsq_obj_vec
 {xrst_end xam_llsq_obj_vec.cpp}
 */
 // BEGIN C++
-# include <cmpad/algo/llsq_obj_vec.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 # include <cmpad/near_equal.hpp>
 
 bool xam_llsq_obj_vec(void)

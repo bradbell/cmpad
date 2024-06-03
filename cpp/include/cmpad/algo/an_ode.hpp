@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_ALGO_AN_ODE_VEC_HPP
-# define CMPAD_ALGO_AN_ODE_VEC_HPP
+# ifndef CMPAD_ALGO_AN_ODE_HPP
+# define CMPAD_ALGO_AN_ODE_HPP
 /*
 {xrst_begin_parent cpp_an_ode_vec}
 {xrst_spell
@@ -39,7 +39,7 @@ yf
 The return value *yf* is :math:`y(t)` at :math:`t = 2` .
 
 {xrst_toc_hidden after
-   cpp/xam/an_ode_vec.cpp
+   cpp/xam/an_ode.cpp
    cpp/include/cmpad/algo/runge_kutta.hpp
 }
 Example
@@ -65,7 +65,7 @@ an_ode_vec: Source Code
 */
 // BEGIN C++
 # include <cassert>
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/algo/runge_kutta.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace

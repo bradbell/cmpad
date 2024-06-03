@@ -16,7 +16,7 @@ Example and Test of an_ode_vec
 */
 // BEGIN C++
 # include <ctime>
-# include <cmpad/algo/an_ode_vec.hpp>
+# include <cmpad/algo/an_ode.hpp>
 # include <cmpad/near_equal.hpp>
 # include <limits>
 

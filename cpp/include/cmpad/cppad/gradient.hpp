@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CPPAD_GRADIENT_VEC_HPP
-# define CMPAD_CPPAD_GRADIENT_VEC_HPP
+# ifndef CMPAD_CPPAD_GRADIENT_HPP
+# define CMPAD_CPPAD_GRADIENT_HPP
 /*
 {xrst_begin cppad_gradient_vec.hpp}
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , CppAD
    @#######@       , #####
    @package@       , cppad
@@ -23,7 +23,7 @@
 # include <cppad/cg/cppadcg.hpp>
 # endif
 # include <cppad/cppad.hpp>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 

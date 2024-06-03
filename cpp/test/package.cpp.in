@@ -10,11 +10,11 @@
 # include <boost/test/unit_test.hpp>
 # include <cmpad/csv_speed.hpp>
 # include <check_speed_det.hpp>
-# include <cmpad/@package@/gradient_vec.hpp>
+# include <cmpad/@package@/gradient.hpp>
 //
-# include <cmpad/algo/det_by_minor_vec.hpp>
-# include <cmpad/algo/an_ode_vec.hpp>
-# include <cmpad/algo/llsq_obj_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/an_ode.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 //
 # include <csv_fixture.hpp>
 //

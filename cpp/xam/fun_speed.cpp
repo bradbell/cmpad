@@ -18,7 +18,7 @@ Example and Test of fun_speed
 # include <cassert>
 # include <iostream>
 # include <cmpad/fun_speed.hpp>
-# include <cmpad/fun_obj_vec.hpp>
+# include <cmpad/fun_obj.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace { // BEGIN_EMPTY_NAMESPACE

@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CPPAD_JIT_GRADIENT_VEC_HPP
-# define CMPAD_CPPAD_JIT_GRADIENT_VEC_HPP
+# ifndef CMPAD_CPPAD_JIT_GRADIENT_HPP
+# define CMPAD_CPPAD_JIT_GRADIENT_HPP
 /*
 {xrst_begin cppad_jit_gradient_vec.hpp}
 {xrst_spell
@@ -12,7 +12,7 @@
 }
 
 {xrst_template ,
-   cpp/include/cmpad/gradient_vec.xrst
+   cpp/include/cmpad/gradient.xrst
    @Package@       , CppAD Jit
    @#######@       , #########
    @package@       , cppad_jit
@@ -26,7 +26,7 @@
 
 # include <filesystem>
 # include <cppad/cppad.hpp>
-# include <cmpad/gradient_vec.hpp>
+# include <cmpad/gradient.hpp>
 
 # ifdef _WIN32
 # define CMPAD_DLL_EXT ".dll"

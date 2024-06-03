@@ -21,7 +21,7 @@ Source Code
 // BEGIN C++
 # include <filesystem>
 # include <cmpad/configure.hpp>
-# include <cmpad/algo/det_by_minor_vec.hpp>
+# include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_read.hpp>
 # include <cmpad/csv_speed.hpp>
