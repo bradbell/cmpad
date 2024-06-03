@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef TEST_CHECK_SPEED_DET_HPP
 # define TEST_CHECK_SPEED_DET_HPP
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/fun_speed.hpp>
 
-template <class Algo>
-void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
+template <class Fun_Obj>
+void check_speed_det(Fun_Obj& grad_det )
 {  //
    // option
    cmpad::option_t option;

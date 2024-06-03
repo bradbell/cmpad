@@ -1,0 +1,56 @@
+{xrst_comment:
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2024 Bradley M. Bell
+
+This template file has the following parameters:
+   $algo_name$   : is the name of this algorithm; e.g., det_by_minor
+   $obj_name$    : is the name used for this algorithm's object; e.g., det
+   $********$    : used to underline the algorithm object name.
+
+   BEGIN/EN CLASS_DECLARE surround the class declaration line
+}
+
+Syntax
+******
+| |tab| ``# include <cmpad/algo/$algo_name$.hpp>``
+| |tab| ``cmpad::$algo_name$`` < *Vector* > *$obj_name$*
+| |tab| *$obj_name$* . ``setup`` ( *option* )
+| |tab| *y* = *$obj_name$* ( *x* )
+
+Class Declaration
+*****************
+{xrst_literal
+   // BEGIN CLASS_DECLARE
+   // END CLASS_DECLARE
+}
+
+Algo
+****
+This is an :ref:`cpp_fun_obj-name` interface
+to the $algo_name$ :ref:`$algo_name$-name` Algorithm .
+We use *Algo* for the type of this algorithm; i.e.,
+
+{xrst_spell_off}
+| |tab| ``typedef cmpad::$algo_name$`` < *Vector* > *Algo*
+{xrst_spell_on}
+
+Vector
+******
+This is a fun_obj :ref:`cpp_fun_obj@Vector` type.
+
+vector_type
+***********
+The type *Algo* :: ``vector_type`` is the same as *Vector* .
+This is useful when *Algo* is a template parameter.
+
+scalar_type
+***********
+The type *Algo* :: ``scalar_type`` is the type of the elements of *Vector* ;
+i.e., *Vector* :: ``value_type`` .
+This is also useful when *Algo* is a template parameter.
+
+$obj_name$
+$********$
+The object *$obj_name$* is a :ref:`cpp_fun_obj@fun`
+that computes the function corresponding to the $algo_name$ algorithm.

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 
 /*
@@ -25,7 +25,8 @@ bool xam_llsq_obj(void)
    bool ok = true;
    //
    // llsq
-   cmpad::llsq_obj<double> llsq;
+   typedef typename cmpad::vector<double> Vector;
+   cmpad::llsq_obj<Vector>            llsq;
    //
    // llsq.setup
    cmpad::option_t option;
@@ -34,10 +35,10 @@ bool xam_llsq_obj(void)
    llsq.setup(option);
    //
    // x
-   cmpad::vector<double>  x = { 1.0, 2.0, 3.0 };
+   Vector x = { 1.0, 2.0, 3.0 };
    //
    // y
-   const cmpad::vector<double>& y = llsq(x);
+   const Vector& y = llsq(x);
    ok &= y.size() == 1;
    //
    // sumsq

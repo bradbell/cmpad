@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_fun_obj.cpp}
@@ -17,17 +17,21 @@ Example and Test of fun_obj
 // BEGIN C++
 # include <cassert>
 # include <iostream>
+# include <cmpad/vector.hpp>
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace {
-
+   //
+   // Vector
+   typedef cmpad::vector<float> Vector;
+   //
    // my_fun_obj
-   class my_fun_obj : public cmpad::fun_obj<float> {
+   class my_fun_obj : public cmpad::fun_obj<Vector> {
    private:
       //
       // y_
-      cmpad::vector<float> y_;
+      Vector y_;
       //
       // option_
       cmpad::option_t option_;
@@ -35,7 +39,7 @@ namespace {
    public:
       //
       // scalar_type
-      typedef float scalar_type;
+      typedef Vector::value_type scalar_type;
       //
       // setup
       void setup(const cmpad::option_t& option) override
@@ -54,9 +58,7 @@ namespace {
       {  return 1;
       }
       // operator()
-      const cmpad::vector<float>& operator()(
-         const cmpad::vector<float>& x
-      ) override
+      const Vector& operator()(const Vector& x) override
       {  assert( x.size() == 1 );
          y_[0] = x[0] * x[0];
          return y_;
@@ -73,15 +75,15 @@ bool xam_fun_obj(void)
    // option is not used by this example
    cmpad::option_t option;
    //
-   // my_fun_obj
+   // my_fun
    my_fun_obj my_fun;
    my_fun.setup(option);
    //
    // x
-   cmpad::vector<float> x = { 2.0 };
+   Vector x = { 2.0 };
    //
    // y
-   const cmpad::vector<float>& y = my_fun(x);
+   const Vector& y = my_fun(x);
    //
    // ok
    ok &= y[0] == x[0] * x[0];

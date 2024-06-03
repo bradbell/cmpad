@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 
 /*
@@ -8,7 +8,6 @@
 
 Example and Test of det_by_minor
 ################################
-
 {xrst_literal
    // BEGIN C++
    // END C++
@@ -28,7 +27,8 @@ bool xam_det_by_minor(void)
    size_t ell = 3;
    //
    // det
-   cmpad::det_by_minor<double> det;
+   typedef cmpad::vector<double> Vector;
+   cmpad::det_by_minor<Vector>  det;
    //
    // det.setup
    cmpad::option_t option;

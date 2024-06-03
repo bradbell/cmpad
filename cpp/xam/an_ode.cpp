@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_an_ode.cpp}
@@ -29,7 +29,8 @@ bool xam_an_ode(void)
    size_t n = 4;
    //
    // ode
-   cmpad::an_ode<double> ode;
+   typedef cmpad::vector<double> Vector;
+   cmpad::an_ode<Vector>     ode;
    //
    // ode.setup
    cmpad::option_t option;
@@ -38,11 +39,11 @@ bool xam_an_ode(void)
    ode.setup(option);
    //
    // x
-   cmpad::vector<double> x = { 1.0, 2.0, 3.0, 4.0 };
+   Vector x = { 1.0, 2.0, 3.0, 4.0 };
    ok &= x.size() == n;
    //
    // yf
-   cmpad::vector<double> yf = ode(x);
+   Vector yf = ode(x);
    //
    // rel_error
    double rel_error = std::numeric_limits<double>::epsilon() * 100.0;

@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_GRADIENT_HPP
 # define CMPAD_GRADIENT_HPP
 /*
 {xrst_begin cpp_gradient}
+{xrst_spell
+   typedef
+}
 
 C++ Abstract Class For Calculating Gradient
 ###########################################
@@ -25,7 +28,7 @@ Source Code
 }
 
 
-algo
+Algo
 ****
 The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class.
 The *algo* object is initialized using its
@@ -33,24 +36,37 @@ The *algo* object is initialized using its
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*.range() can be greater than one.
 
-scalar_type
-***********
-There are two function objects,
-and hence two :ref:`cpp_fun_obj@scalar_type` ,
-associated with a gradient class.
-
-1. Algo::scalar_type is the scalar type used when evaluating the algorithm.
-2. cmpad::gradient<Algo>::scalar_type is the scalar type
-   of the arguments and return value for the gradient object; i.e., double.
-
 grad
 ****
-This object is initialized using its ``setup`` member function
+This is a :ref:`cpp_fun_obj-name` interface to the
+gradient of the function corresponding to *algo* .
+It calculates the gradient of the last component of the vector
+returned by *algo*.
+It is initialized using its ``setup`` member function
 (which in turn will initialize *algo* with its ``setup`` syntax).
 The ``setup`` should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
-It calculates the gradient of the last component of the values
-compute by *algo*.
+We use *Grad* to denote the type of *grad* ; i.e.,
+
+| |tab| ``typedef cmpad::gradient`` < *Algo* > *Grad*
+
+
+vector_type
+***********
+The type of the vectors *x* and *g* is
+
+| |tab| ``typedef cmpad::vector<double>`` *Grad* :: ``vector_type``
+
+(This is different from *Algo* :: ``vector_type`` .)
+
+scalar_type
+***********
+The type of the elements of *x* and *g* is
+
+| |tab| ``typedef double`` *Grad* :: ``scalar_type``
+
+(This is different from *Algo* :: ``scalar_type`` .)
+
 
 domain
 ******
@@ -81,24 +97,26 @@ Example and Derived Classes
 ***************************
 {xrst_toc_table
    cpp/xam/gradient/gradient.xrst
-   cpp/include/cmpad/adept/gradient.hpp
-   cpp/include/cmpad/adolc/gradient.hpp
-   cpp/include/cmpad/autodiff/gradient.hpp
-   cpp/include/cmpad/cppad/gradient.hpp
+   cpp/include/cmpad/sacado/gradient.hpp
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
-   cpp/include/cmpad/sacado/gradient.hpp
+   cpp/include/cmpad/autodiff/gradient.hpp
+   cpp/include/cmpad/adolc/gradient.hpp
+   cpp/include/cmpad/adept/gradient.hpp
+   cpp/include/cmpad/cppad/gradient.hpp
 }
 
 {xrst_end cpp_gradient}
 -------------------------------------------------------------------------------
 */
 // BEGIN C++
+# include <cmpad/vector.hpp>
 # include <cmpad/fun_obj.hpp>
 
 namespace cmpad {
    // gradient
-   template <class Algo> class gradient : public fun_obj<double> {
+   template <class Algo> class gradient
+      : public fun_obj< cmpad::vector<double> > {
    public:
       // scalar_type
       typedef double scalar_type;

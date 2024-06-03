@@ -151,7 +151,7 @@ case $package in
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    configure="$configure -D EIGEN3_INCLUDE_DIR=$prefix/include"
-   configure="$configure -D GOOGLETEST_GIT=ON"
+   configure="$configure -D GOOGLETEST_GIT=OFF"
    ;;
 
    eigen)

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_CPPAD_JIT_GRADIENT_HPP
 # define CMPAD_CPPAD_JIT_GRADIENT_HPP
@@ -42,15 +42,19 @@ static_assert(
 );
 
 // cmpad::cppad_jit::gradient
-template < template<class Scalar> class TemplateAlgo > class gradient
-: public ::cmpad::gradient< TemplateAlgo< CppAD::AD<double> > > {
+template < template<class Vector> class TemplateAlgo > class gradient
+: public
+cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector< CppAD::AD<double> > Vector;
    //
    // option_
    option_t                          option_;
    //
    // algo_
-   TemplateAlgo< CppAD::AD<double> > algo_;
+   TemplateAlgo<Vector>  algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -72,6 +76,10 @@ public:
    }
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -97,7 +105,7 @@ public:
       g_.resize(n);
       //
       // ax, ay, az, aw
-      cmpad::vector< CppAD::AD<double> > ax(n), ay(1), az, aw(1), ag(n);
+      Vector ax(n), ay(1), az, aw(1), ag(n);
       //
       // function_name
       string function_name = "grad_cppad_jit";

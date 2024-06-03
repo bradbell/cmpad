@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_CPPAD_GRADIENT_HPP
 # define CMPAD_CPPAD_GRADIENT_HPP
@@ -28,31 +28,40 @@
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // cmpad::cppad::gradient
-template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo< CppAD::AD<double> > > {
+template < template<class Vector> class TemplateAlgo> class gradient
+: public
+::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
+   // Vector
+   typedef typename cmpad::vector< CppAD::AD<double> >   Vector;
    //
    // option_
-   option_t                          option_;
+   option_t              option_;
    //
    // algo_
-   TemplateAlgo< CppAD::AD<double> > algo_;
+   TemplateAlgo<Vector>  algo_;
    //
    // w_
-   cmpad::vector<double>             w_;
+   cmpad::vector<double> w_;
    //
    // tape_
-   CppAD::ADFun<double>              tape_;
+   CppAD::ADFun<double>  tape_;
    //
    // g_
-   cmpad::vector<double>             g_;
+   cmpad::vector<double> g_;
 //
 public:
+   //
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
+   //
    // setup
    void setup(const option_t& option) override
    {  //
@@ -77,11 +86,11 @@ public:
       "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
       //
       // tape_
-      cmpad::vector< CppAD::AD<double> > ax(n);
+      Vector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      cmpad::vector< CppAD::AD<double> > ay(1), az;
+      Vector ay(1), az;
       az    = algo_(ax);
       ay[0] = az[m-1];
       tape_.Dependent(ax, ay);

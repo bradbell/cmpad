@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_AUTODIFF_GRADIENT_HPP
 # define CMPAD_AUTODIFF_GRADIENT_HPP
@@ -30,22 +30,26 @@ typedef ::autodiff::real          real;
 typedef ::autodiff::VectorXreal   VectorXreal;
 
 // gradient
-template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo<real> > {
+template < template<class Vector> class TemplateAlgo> class gradient
+: public
+cmpad::gradient< TemplateAlgo< cmpad::vector<::autodiff::real> > > {
 private:
+   //
+   // Vector
+   typedef cmpad::vector<::autodiff::real> Vector;
    //
    // option_
    option_t              option_;
    //
    // algo_
-   TemplateAlgo<real>    algo_;
+   TemplateAlgo<Vector>  algo_;
    //
    // ax_, ax_copy_
    VectorXreal           ax_;
-   cmpad::vector<real>   ax_copy_;
+   Vector                ax_copy_;
    //
    // ay_
-   cmpad::vector<real>   ay_;
+   Vector                 ay_;
    //
    // g_, g_copy_
    Eigen::VectorXd       g_;
@@ -54,6 +58,10 @@ private:
 public:
    // scalar_type
    typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
+   //
    // option
    const option_t& option(void) const override
    {  return option_; }
@@ -102,7 +110,7 @@ public:
       };
       //
       // forward mode computation of gradient
-      real y;
+      ::autodiff::real y;
       g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y);
       //
       // g_

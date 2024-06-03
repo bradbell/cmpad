@@ -25,8 +25,8 @@ Prototype
 
 grad_det
 ********
-Is a :ref:`cpp_gradient-name` object for
-the :ref:`cpp_det_by_minor-name` algorithm.
+Is a :ref:`cpp_fun_obj-name`
+object that computes the gradient for the ref:`cpp_det_by_minor-name` algorithm.
 
 ok
 **
@@ -45,11 +45,10 @@ Source Code
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/near_equal.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
-# include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_det( cmpad::gradient<Algo>& grad_det )
+template <class Gradient>
+bool check_grad_det( Gradient& grad_det )
 // END PROTOTYPE
 {  //
    // ok

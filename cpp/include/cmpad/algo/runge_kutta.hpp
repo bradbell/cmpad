@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_RUNGE_KUTTA_HPP
 # define CMPAD_ALGO_RUNGE_KUTTA_HPP
@@ -14,6 +14,7 @@
    yf
    yi
    yt
+   obj
 }
 
 A C++ Fourth Order Runge Kutta Solver
@@ -37,28 +38,17 @@ This routine returns an approximate solution
 for :math:`y( t^f )` where :math:`y(0) = y^i` and
 :math:`y' (t) = f(y)` .
 
-Scalar
+Vector
 ******
-This is the type of the elements of *yi* and *yf* .
-If *a* and *b* are *Scalar* objects and *d* is a double,
-the type *Scalar* must support the following operations:
-
-.. csv-table::
-   :widths: auto
-   :header-rows: 1
-
-   Syntax,    Description,                                     Result Type
-   Scalar(d), constructs a *Scalar* with value d,              *Scalar*
-   a = b,     set value of *a* equal to current value of *b*
-   a + b,     value of *a* plus *b*,                           *Scalar*
-   a * b,     value of *a* times *b*,                          *Scalar*
-   a / b,     value of *a* divided by *b*,                     *Scalar*
+The vectors *yi* and *yf* have this
+fun_obj :ref:`cpp_fun_obj@vector_type` .
 
 fun
 ***
 The syntax *dy* = *fun* ( *yt* ) ,
 were *yt* is :math:`y(t)` ,
 sets *dy* equal to the derivative :math:`y'(t)`  .
+Both *yt* and *dy* are represented as *Vector* objects.
 
 yi
 **
@@ -109,30 +99,32 @@ C++ runge_kutta Source Code
 namespace cmpad { // BEGIN cmpad namespace
 
 // BEGIN PROTOTYPE
-template <class Scalar, class Fun>
-cmpad::vector<Scalar> runge_kutta(
-   const Fun&                  fun ,
-   const cmpad::vector<Scalar> yi  ,
-   const Scalar&               tf  ,
-   size_t                      ns  )
+template <class Vector, class Fun>
+Vector runge_kutta(
+   const Fun&                           fun ,
+   const Vector&                        yi  ,
+   const typename Vector::value_type    tf  ,
+   size_t                               ns  )
 // END PROTOTYPE
 {
+   // scalar_type
+   typedef typename Vector::value_type scalar_type;
    //
    // two, six
-   Scalar two = Scalar(2.0);
-   Scalar six = Scalar(6.0);
+   scalar_type two = scalar_type(2.0);
+   scalar_type six = scalar_type(6.0);
    // n
    size_t n = yi.size();
    //
    // h
-   Scalar h  = tf / Scalar( double(ns) );
+   scalar_type h  = tf / scalar_type( double(ns) );
    //
    // k1, k2, k3, k4, y_tmp
-   cmpad::vector<Scalar> k1(n), k2(n), k3(n), k4(n), y_tmp(n);
+   Vector k1(n), k2(n), k3(n), k4(n), y_tmp(n);
    //
    //
    // i_step, yf
-   cmpad::vector<Scalar> yf = yi;
+   Vector yf = yi;
    for(size_t i_step = 0; i_step < ns; ++i_step)
    {  //
       // k1

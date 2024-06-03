@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ALGO_AN_ODE_HPP
 # define CMPAD_ALGO_AN_ODE_HPP
@@ -15,37 +15,12 @@
 Use C++ Runge-Kutta Method to Solve an ODE
 ##########################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/an_ode.hpp>``
-| |tab| ``cmpad::an_ode`` < *Scalar* > *ode*
-| |tab| *ode* . ``setup`` ( *option* )
-| |tab| *yf* = *ode* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN PROTOTYPE
-   // END PROTOTYPE
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , an_ode
+   $obj_name$       , ode
+   $********$       , ***
 }
-
-Algorithm
-*********
-This is a :ref:`cpp_fun_obj-name` interface
-to the an_ode :ref:`an_ode@Algorithm` .
-
-Scalar
-******
-This is the type of the elements of *x* and *y* .
-
-scalar_type
-***********
-This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@scalar_type` .
-
-ode
-***
-The object *ode* corresponding to :ref:`cpp_fun_obj@fun`
-in the function object interface.
 
 n_arg
 *****
@@ -96,18 +71,18 @@ an_ode: Source Code
 namespace cmpad { // BEGIN cmpad namespace
 
 // an_ode_fun
-template <class Scalar> class an_ode_fun
+template <class Vector> class an_ode_fun_vec
 {
 private:
    // x_
-   cmpad::vector<Scalar> x_;
+   Vector x_;
 public:
    //
    // operator
-   cmpad::vector<Scalar> operator()(const cmpad::vector<Scalar>& y) const
+   Vector operator()(const Vector& y) const
    {  size_t n = y.size();
       assert( x_.size() == n );
-      cmpad::vector<Scalar> dy(n);
+      Vector dy(n);
       dy[0] = x_[0];
       for(size_t i = 1; i < n; ++i)
          dy[i] = x_[i] * y[i-1];
@@ -115,30 +90,33 @@ public:
    }
    //
    // set_x
-   void set_x(const cmpad::vector<Scalar>& x)
+   void set_x(const Vector& x)
    {  x_ = x;
    }
 };
 
-// BEGIN PROTOTYPE
-template <class Scalar> class an_ode : public fun_obj<Scalar>
-// END PROTOTYPE
+// BEGIN CLASS_DECLARE
+template <class Vector> class an_ode : public fun_obj<Vector>
+// END CLASS_DECLARE
 {
 private:
    // option_
    option_t option_;
    //
    // zero_
-   cmpad::vector<Scalar> zero_;
+   Vector zero_;
    //
    // yf_
-   cmpad::vector<Scalar> yf_;
+   Vector yf_;
    //
    // fun_
-   an_ode_fun<Scalar> fun_;
+   an_ode_fun_vec<Vector> fun_;
 public:
-   // scalar_type
-   typedef Scalar scalar_type;
+   // scalar type
+   typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override
@@ -165,29 +143,27 @@ public:
       // zero_
       zero_.resize(option.n_arg);
       for(size_t i = 0; i < zero_.size(); ++i)
-         zero_[i] = Scalar(0.0);
+         zero_[i] = scalar_type(0.0);
       //
       // yf_
       yf_.resize(option.n_arg);
    }
    //
    // operator
-   const cmpad::vector<Scalar>& operator()(
-      const cmpad::vector<Scalar>& x
-   ) override
+   const Vector& operator()(const Vector& x) override
    {  //
       // x
       assert( x.size() == domain() );
       fun_.set_x(x);
       //
       // tf
-      Scalar tf = Scalar(2);
+      scalar_type tf = scalar_type(2.0);
       //
       // ns
       size_t ns = option_.n_other;
       //
       // yf
-      const cmpad::vector<Scalar>& yi = zero_;
+      const Vector& yi = zero_;
       yf_ = cmpad::runge_kutta(fun_, yi, tf, ns);
       assert( yf_.size() == domain() );
       //

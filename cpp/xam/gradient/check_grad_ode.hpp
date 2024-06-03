@@ -25,8 +25,8 @@ Prototype
 
 grad_ode
 ********
-Is a :ref:`cpp_gradient-name` object for
-the :ref:`cpp_an_ode-name` algorithm.
+Is a :ref:`cpp_fun_obj-name`
+object that computes the gradient for the ref:`cpp_an_ode-name` algorithm.
 
 ok
 **
@@ -62,11 +62,10 @@ Source Code
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/near_equal.hpp>
-# include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_ode( cmpad::gradient<Algo>& grad_ode )
+template <class Gradient>
+bool check_grad_ode( Gradient& grad_ode )
 // END PROTOTYPE
 {  //
    // ok

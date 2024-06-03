@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_ADEPT_GRADIENT_HPP
 # define CMPAD_ADEPT_GRADIENT_HPP
@@ -26,9 +26,13 @@
 namespace cmpad { namespace adept { // BEGIN cmpad::adept namespace
 
 // cmpad::adept::gradient
-template < template<class Scalar> class TemplateAlgo> class gradient
-: public ::cmpad::gradient< TemplateAlgo<::adept::adouble> > {
+template < template<class Vector> class TemplateAlgo> class gradient
+: public
+::cmpad::gradient< TemplateAlgo< cmpad::vector<::adept::adouble> > > {
 private:
+   //
+   // Vector
+   typedef typename cmpad::vector<::adept::adouble> Vector;
    //
    // option_
    option_t                          option_;
@@ -37,12 +41,18 @@ private:
    ::adept::Stack*                   stack_;
    //
    // algo_
-   TemplateAlgo<::adept::adouble>*   algo_;
+   TemplateAlgo<Vector>*             algo_;
    //
    // g_
    cmpad::vector<double>             g_;
 //
 public:
+   //
+   // scalar_type
+   typedef double scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<double> vector_type;
    //
    // default ctor
    gradient(void)
@@ -57,11 +67,10 @@ public:
          delete stack_;
    }
    //
-   // scalar_type
-   typedef double scalar_type;
    // option
    const option_t& option(void) const override
    {  return option_; }
+   //
    // setup
    void setup(const option_t& option) override
    {  //
@@ -78,7 +87,7 @@ public:
       stack_ = new ::adept::Stack;
       //
       // algo_
-      algo_ = new TemplateAlgo<::adept::adouble>();
+      algo_ = new TemplateAlgo<Vector>();
       //
       // algo_
       algo_->setup(option);
@@ -104,7 +113,7 @@ public:
       size_t m = algo_->range();
       //
       // ax
-      cmpad::vector<::adept::adouble> ax(n);
+      Vector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = x[i];
       //
@@ -112,7 +121,7 @@ public:
       stack_->new_recording();
       //
       // ay
-      cmpad::vector<::adept::adouble> ay = (*algo_)(ax);
+      Vector ay = (*algo_)(ax);
       assert( ay.size() == m );
       //
       // g_

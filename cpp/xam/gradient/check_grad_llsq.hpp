@@ -25,8 +25,8 @@ Prototype
 
 grad_llsq
 *********
-Is a :ref:`cpp_gradient-name`
-object for the :ref:`cpp_llsq_obj-name` algorithm.
+Is a :ref:`cpp_fun_obj-name`
+object that computes the gradient for the ref:`cpp_llsq_obj-name` algorithm.
 
 ok
 **
@@ -44,12 +44,10 @@ Source Code
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/near_equal.hpp>
-# include <cmpad/algo/llsq_obj.hpp>
-# include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
-template <class Algo>
-bool check_grad_llsq( cmpad::gradient<Algo>& grad_llsq )
+template <class Gradient>
+bool check_grad_llsq( Gradient& grad_llsq )
 // END PROTOTYPE
 {  //
    // ok

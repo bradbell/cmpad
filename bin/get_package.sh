@@ -72,18 +72,18 @@ set -e -u
 #  :header-rows: 1
 #
 #  Web Site,      Implemented,                                    Language
-#  `adept`_,      :ref:`adept_gradient.hpp-name`,                 cpp
-#  `adolc`_,      :ref:`adolc_gradient.hpp-name`,                 cpp
-#  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,              cpp
+#  `adept`_,      :ref:`adept_gradient.hpp-name`,             cpp
+#  `adolc`_,      :ref:`adolc_gradient.hpp-name`,             cpp
+#  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,          cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
 #  `clad`_,       Under Construction,                             cpp
-#  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,             cpp
+#  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,         cpp
 #  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
-#  `cppad`_,      :ref:`cppad_gradient.hpp-name`,                 cpp
-#  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,               cpp
+#  `cppad`_,      :ref:`cppad_gradient.hpp-name`,             cpp
+#  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,           cpp
 #  `fastad`_,     Under Construction,                             cpp
 #  `jax`_,        :ref:`jax_gradient.py-name`,                    python
-#  `sacado`_,     :ref:`sacado_gradient.hpp-name`,                cpp
+#  `sacado`_,     :ref:`sacado_gradient.hpp-name`,            cpp
 #  `torch`_,      :ref:`torch_gradient.py-name`,                  python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #

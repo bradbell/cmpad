@@ -2,7 +2,7 @@
 # define CMPAD_ALGO_DET_BY_MINOR_HPP
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ----------------------------------------------------------------------------
 /*
 {xrst_begin_parent cpp_det_by_minor}
@@ -10,38 +10,12 @@
 C++ Determinant Using Expansion by Minors
 #########################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/det_by_minor.hpp>``
-| |tab| ``cmpad::det_by_minor`` < *Scalar* > *det*
-| |tab| *det* . ``setup`` ( *option* )
-| |tab| *y* = *det* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN DET_BY_MINOR
-   // END DET_BY_MINOR
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , det_by_minor
+   $obj_name$       , det
+   $********$       , ***
 }
-
-Algorithm
-*********
-This is an  :ref:`cpp_fun_obj-name` interface
-to the det_by_minor :ref:`det_by_minor@Algorithm` .
-
-Scalar
-******
-This is the type of the elements of *x* and *y* .
-
-scalar_type
-***********
-This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@scalar_type` .
-
-det
-***
-The object *det* corresponds to :ref:`cpp_fun_obj@fun` in the function
-object interface.
-It computes the determinant of a square matrix.
 
 ell
 ***
@@ -67,8 +41,8 @@ The return value *y* has size :math:`m = 1` and its element
 is equal to the determinant of :math:`A(x)`.
 
 {xrst_toc_hidden after
-   cpp/xam/det_by_minor.cpp
    cpp/include/cmpad/algo/det_of_minor.hpp
+   cpp/xam/det_by_minor.cpp
 }
 
 Example
@@ -102,9 +76,9 @@ C++ det_by_minor: Source Code
 
 namespace cmpad { // BEGIN cmpad namespace
 
-// BEGIN DET_BY_MINOR
-template <class Scalar> class det_by_minor : public fun_obj<Scalar>
-// END DET_BY_MINOR
+// BEGIN CLASS_DECLARE
+template <class Vector> class det_by_minor : public fun_obj<Vector>
+// END CLASS_DECLARE
 {
 private:
    // option_
@@ -119,11 +93,15 @@ private:
    cmpad::vector<size_t> c_;
    //
    // y_
-   cmpad::vector<Scalar> y_;
+   Vector y_;
    //
 public:
+   //
    // scalar_type
-   typedef Scalar scalar_type;
+   typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override
@@ -165,9 +143,7 @@ public:
       c_[ell_] = 0;
    }
    // operator
-   const cmpad::vector<Scalar>& operator()(
-      const cmpad::vector<Scalar>& x
-   ) override
+   const Vector& operator()(const Vector& x) override
    {  //
       // y_
       // compute determinant of entire matrix

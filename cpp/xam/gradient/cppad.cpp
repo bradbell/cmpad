@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_gradient_cppad.cpp}
@@ -23,9 +23,12 @@ Source Code
 */
 // BEGIN C++
 # include <cmpad/configure.hpp>
+# include <cmpad/cppad/gradient.hpp>
+//
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/algo/an_ode.hpp>
-# include <cmpad/cppad/gradient.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
+//
 # include "check_grad_det.hpp"
 # include "check_grad_ode.hpp"
 # include "check_grad_llsq.hpp"

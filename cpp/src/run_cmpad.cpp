@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin run_cmpad.cpp}
@@ -46,6 +46,7 @@ Source Code
 # include <cmpad/csv_speed.hpp>
 //
 // cmpad algorithms
+#
 # include <cmpad/algo/det_by_minor.hpp>
 # include <cmpad/algo/an_ode.hpp>
 # include <cmpad/algo/llsq_obj.hpp>
@@ -212,7 +213,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
    if( package == "none" )
    {  if( algorithm == "det_by_minor" )
-      {  cmpad::det_by_minor<double> det;
+      {  cmpad::det_by_minor< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -220,7 +221,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "an_ode" )
-      {  cmpad::an_ode<double> det;
+      {  cmpad::an_ode< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -228,7 +229,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "llsq_obj" )
-      {  cmpad::llsq_obj<double> llsq;
+      {  cmpad::llsq_obj< cmpad::vector<double> > llsq;
          double rate = cmpad::fun_speed(llsq, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option

@@ -10,32 +10,12 @@
 C++ Linear Least Squares Objective
 ##################################
 
-Syntax
-******
-| |tab| ``# include <cmpad/algo/llsq_obj.hpp>``
-| |tab| ``cmpad::llsq_obj < *Scalar* >`` *llsq*
-| |tab| *llsq* . ``setup`` ( *option* )
-| |tab| *obj* = *llsq* ( *x* )
-
-Prototype
-*********
-{xrst_literal
-   // BEGIN PROTOTYPE
-   // END PROTOTYPE
+{xrst_template ,
+   cpp/include/cmpad/algo/template.xrst
+   $algo_name$      , llsq_obj
+   $obj_name$       , llsq
+   $********$       , ****
 }
-
-Algorithm
-*********
-This is a :ref:`cpp_fun_obj-name` interface
-to the :ref:`llsq_obj-name` algorithm .
-
-Scalar
-******
-This is the type of the elements of *x* and *y* .
-
-scalar_type
-***********
-This is the same type as *Scalar* ; see :ref:`cpp_fun_obj@scalar_type` .
 
 Derivatives
 ***********
@@ -87,9 +67,9 @@ C++ llsq_obj: Source Code
 
 namespace cmpad { // BEGIN cmpad namespace
 
-// BEGIN PROTOTYPE
-template <class Scalar> class llsq_obj : public fun_obj<Scalar>
-// END PROTOTYPE
+// BEGIN CLASS_DECLARE
+template <class Vector> class llsq_obj : public fun_obj<Vector>
+// END CLASS_DECLARE
 {
 private:
    //
@@ -97,11 +77,14 @@ private:
    option_t option_;
    //
    // t_, q_, y_
-   cmpad::vector<Scalar> t_, q_, y_;
+   Vector t_, q_, y_;
    //
 public:
    // scalar_type
-   typedef Scalar scalar_type;
+   typedef typename Vector::value_type scalar_type;
+   //
+   // vector_type
+   typedef Vector vector_type;
    //
    // option
    const option_t& option(void) const override
@@ -156,25 +139,23 @@ public:
    }
    //
    // operator
-   const cmpad::vector<Scalar>& operator()(
-      const cmpad::vector<Scalar>& x
-   ) override
+   const Vector& operator()(const Vector& x) override
    {  //
       // n_arg, n_other
       size_t n_arg   = option_.n_arg;
       size_t n_other = option_.n_other;
       //
       // sumsq
-      Scalar sumsq(0.0);
+      scalar_type sumsq(0.0);
       for(size_t j = 0; j < n_other; ++j)
-      {  Scalar model(0.0);
-         Scalar tij(1.0);
+      {  scalar_type model(0.0);
+         scalar_type tij(1.0);
          for(size_t i = 0; i < n_arg; ++i)
          {  model += x[i] * tij;
             tij   *= t_[j];
          }
-         Scalar residual = model - q_[j];
-         sumsq          += residual * residual;
+         scalar_type residual = model - q_[j];
+         sumsq               += residual * residual;
       }
       //
       y_[0] = 0.5 * sumsq;

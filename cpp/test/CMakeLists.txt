@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 # test_list
 # tests that to not depend on AD packages
@@ -13,7 +13,7 @@ SET(test_list
 #
 # test_list
 # tests that depend on AD packages
-FOREACH(package adept adolc autodiff cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff cppadcg cppad_jit sacado cppad)
    SET(package_cpp "${CMAKE_CURRENT_BINARY_DIR}/${package}.cpp" )
    IF( ${cmpad_has_${package}} )
       CONFIGURE_FILE( package.cpp.in ${package_cpp} )
