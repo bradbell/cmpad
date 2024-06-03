@@ -96,6 +96,7 @@ It is the gradient evaluated at the point *x* .
 Example and Derived Classes
 ***************************
 {xrst_toc_table
+   cpp/xam/gradient/gradient.xrst
    cpp/include/cmpad/sacado/gradient_vec.hpp
    cpp/include/cmpad/cppad_jit/gradient_vec.hpp
    cpp/include/cmpad/cppadcg/gradient_vec.hpp
@@ -109,12 +110,13 @@ Example and Derived Classes
 -------------------------------------------------------------------------------
 */
 // BEGIN C++
-# include <cmpad/fun_obj.hpp>
+# include <cmpad/vector.hpp>
 # include <cmpad/fun_obj_vec.hpp>
 
 namespace cmpad {
    // gradient_vec
-   template <class Algo> class gradient_vec : public fun_obj<double> {
+   template <class Algo> class gradient_vec
+      : public fun_obj_vec< cmpad::vector<double> > {
    public:
       // scalar_type
       typedef double scalar_type;

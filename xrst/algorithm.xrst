@@ -55,7 +55,7 @@ This option is not used except that it may be checked to make sure it is zero.
 
 Implementation
 ==============
-:ref:`cpp_det_by_minor-name` , :ref:`py_det_by_minor-name` .
+:ref:`cpp_det_by_minor_vec-name` , :ref:`py_det_by_minor-name` .
 
 Derivative
 **********
@@ -143,7 +143,7 @@ There is an assert checking that *n_other* > 0.
 }
 Implementation
 ==============
-:ref:`rk4_step-name` , :ref:`cpp_an_ode-name` , :ref:`py_an_ode-name` .
+:ref:`rk4_step-name` , :ref:`cpp_an_ode_vec-name` , :ref:`py_an_ode-name` .
 
 Derivative
 **********
@@ -211,7 +211,7 @@ There is an assert checking that *n_other* > 0.
 
 Implementation
 **************
-:ref:`cpp_llsq_obj-name` , :ref:`py_llsq_obj-name` .
+:ref:`cpp_llsq_obj_vec-name` , :ref:`py_llsq_obj-name` .
 
 Derivative
 **********

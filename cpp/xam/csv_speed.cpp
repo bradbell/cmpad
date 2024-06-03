@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_csv_speed.cpp}
@@ -21,7 +21,7 @@ Source Code
 // BEGIN C++
 # include <filesystem>
 # include <cmpad/configure.hpp>
-# include <cmpad/algo/det_by_minor.hpp>
+# include <cmpad/algo/det_by_minor_vec.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_read.hpp>
 # include <cmpad/csv_speed.hpp>
@@ -70,7 +70,7 @@ bool xam_csv_speed(void)
    option.time_setup = false;
    //
    // det_double
-   cmpad::det_by_minor<double>        det_double;
+   cmpad::det_by_minor_vec< cmpad::vector<double> > det_double;
    //
    // rate
    double rate = cmpad::fun_speed(det_double, option, min_time);

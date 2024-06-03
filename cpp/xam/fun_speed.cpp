@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin xam_fun_speed.cpp}
@@ -18,13 +18,13 @@ Example and Test of fun_speed
 # include <cassert>
 # include <iostream>
 # include <cmpad/fun_speed.hpp>
-# include <cmpad/fun_obj.hpp>
+# include <cmpad/fun_obj_vec.hpp>
 # include <cmpad/option_t.hpp>
 
 namespace { // BEGIN_EMPTY_NAMESPACE
 
    // my_fun_obj
-   class my_fun_obj : public cmpad::fun_obj<double> {
+   class my_fun_obj : public cmpad::fun_obj_vec< cmpad::vector<double> > {
    private:
       // size_
       size_t n_arg_;

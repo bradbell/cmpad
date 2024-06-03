@@ -8,11 +8,8 @@ C++ Algorithms Used to Compare Packages
 #######################################
 
 {xrst_toc_table
-   cpp/include/cmpad/algo/det_by_minor.hpp
    cpp/include/cmpad/algo/det_by_minor_vec.hpp
-   cpp/include/cmpad/algo/an_ode.hpp
    cpp/include/cmpad/algo/an_ode_vec.hpp
-   cpp/include/cmpad/algo/llsq_obj.hpp
    cpp/include/cmpad/algo/llsq_obj_vec.hpp
 }
 

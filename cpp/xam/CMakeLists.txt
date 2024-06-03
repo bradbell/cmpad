@@ -7,18 +7,14 @@
 # examples that do to not use any AD packages
 # BEGIN_SORT_THIS_LINE_PLUS_2
 SET(example_list
-   an_ode.cpp
    an_ode_vec.cpp
    csv_read.cpp
    csv_speed.cpp
    csv_write.cpp
-   det_by_minor.cpp
    det_by_minor_vec.cpp
    det_of_minor.cpp
-   fun_obj.cpp
    fun_obj_vec.cpp
    fun_speed.cpp
-   llsq_obj.cpp
    llsq_obj_vec.cpp
    near_equal.cpp
    runge_kutta.cpp

@@ -46,9 +46,6 @@ Source Code
 # include <cmpad/csv_speed.hpp>
 //
 // cmpad algorithms
-# include <cmpad/algo/det_by_minor.hpp>
-# include <cmpad/algo/an_ode.hpp>
-# include <cmpad/algo/llsq_obj.hpp>
 #
 # include <cmpad/algo/det_by_minor_vec.hpp>
 # include <cmpad/algo/an_ode_vec.hpp>
@@ -243,7 +240,7 @@ int main(int argc, char* argv[])
    // file_name, case_found
    if( package == "none" )
    {  if( algorithm == "det_by_minor" )
-      {  cmpad::det_by_minor<double> det;
+      {  cmpad::det_by_minor_vec< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -251,7 +248,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "an_ode" )
-      {  cmpad::an_ode<double> det;
+      {  cmpad::an_ode_vec< cmpad::vector<double> > det;
          double rate = cmpad::fun_speed(det, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option
@@ -259,7 +256,7 @@ int main(int argc, char* argv[])
          case_found = true;
       }
       else if( algorithm == "llsq_obj" )
-      {  cmpad::llsq_obj<double> llsq;
+      {  cmpad::llsq_obj_vec< cmpad::vector<double> > llsq;
          double rate = cmpad::fun_speed(llsq, option, min_time);
          cmpad::csv_speed(
             file_name, rate, min_time, "none", algorithm, special, option

@@ -44,8 +44,6 @@ Source Code
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/near_equal.hpp>
-# include <cmpad/algo/llsq_obj.hpp>
-# include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
 template <class Gradient>

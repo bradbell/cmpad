@@ -40,6 +40,7 @@ The return value *yf* is :math:`y(t)` at :math:`t = 2` .
 
 {xrst_toc_hidden after
    cpp/xam/an_ode_vec.cpp
+   cpp/include/cmpad/algo/runge_kutta.hpp
 }
 Example
 *******

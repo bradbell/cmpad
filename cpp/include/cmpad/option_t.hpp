@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 # ifndef CMPAD_OPTION_T_HPP
 # define CMPAD_OPTION_T_HPP
@@ -41,12 +41,12 @@ namespace cmpad {
 
 n_arg
 *****
-is the dimension of the :ref:`cpp_fun_obj@domain` space for the algorithm.
+is the dimension of the :ref:`cpp_fun_obj_vec@domain` space for the algorithm.
 
 n_other
 *******
 is the special range index for the algorithm and must be less than its
-:ref:`cpp_fun_obj@range` .
+:ref:`cpp_fun_obj_vec@range` .
 For example, if we are computing gradients or Hessians,
 it is the index in the algorithm range space that the gradient or Hessian
 corresponds to.

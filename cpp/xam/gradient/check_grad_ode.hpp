@@ -62,7 +62,6 @@ Source Code
 // BEGIN C++
 # include <cmpad/uniform_01.hpp>
 # include <cmpad/near_equal.hpp>
-# include <cmpad/gradient.hpp>
 
 // BEGIN PROTOTYPE
 template <class Gradient>
