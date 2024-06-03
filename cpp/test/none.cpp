@@ -5,12 +5,13 @@
 # include <boost/test/unit_test.hpp>
 # include <cmpad/fun_speed.hpp>
 # include <cmpad/csv_speed.hpp>
+# include <cmpad/vector.hpp>
 # include "check_speed_det.hpp"
 # include "csv_fixture.hpp"
 //
-# include <cmpad/algo/det_by_minor.hpp>
-# include <cmpad/algo/an_ode.hpp>
-# include <cmpad/algo/llsq_obj.hpp>
+# include <cmpad/algo/det_by_minor_vec.hpp>
+# include <cmpad/algo/an_ode_vec.hpp>
+# include <cmpad/algo/llsq_obj_vec.hpp>
 //
 // CMPAD_TEST_ONE_ALGORITHM
 # define CMPAD_TEST_ONE_ALGORITHM(algorithm_value, n_arg_value, n_other_value) \
@@ -29,7 +30,7 @@
       option.time_setup = time_setup; \
       /* \
       csv_file_path_ */ \
-      cmpad::algorithm_value<double> fun; \
+      cmpad::algorithm_value ##_vec< cmpad::vector<double> > fun; \
       double rate    = cmpad::fun_speed(fun, option, min_time_); \
       bool   special = false; \
       cmpad::csv_speed( csv_file_path_,  \
@@ -40,7 +41,7 @@
 
 BOOST_AUTO_TEST_SUITE(fun_speed)
 BOOST_AUTO_TEST_CASE(Double)
-{  cmpad::det_by_minor<double> det;
+{  cmpad::det_by_minor_vec< cmpad::vector<double> > det;
    check_speed_det(det);
 }
 BOOST_AUTO_TEST_SUITE_END()

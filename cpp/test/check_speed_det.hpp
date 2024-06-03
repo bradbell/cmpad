@@ -7,8 +7,8 @@
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/fun_speed.hpp>
 
-template <class Algo>
-void check_speed_det(cmpad::fun_obj<Algo>& grad_det )
+template <class Fun_Obj>
+void check_speed_det(Fun_Obj& grad_det )
 {  //
    // option
    cmpad::option_t option;
