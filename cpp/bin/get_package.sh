@@ -345,7 +345,7 @@ then
       sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
    done
 fi
-if [ "$package" == 'clad' ] 
+if [ "$package" == 'clad' ]
 then
    if ! grep 'lib64' CMakeLists.txt
    then

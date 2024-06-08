@@ -26,17 +26,15 @@
 
 namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 
-typedef ::autodiff::real          real;
-typedef ::autodiff::VectorXreal   VectorXreal;
 
 // gradient
 template < template<class Vector> class TemplateAlgo> class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector<::autodiff::real> > > {
+cmpad::gradient< TemplateAlgo<::autodiff::VectorXreal> > {
 private:
    //
    // Vector
-   typedef cmpad::vector<::autodiff::real> Vector;
+   typedef ::autodiff::VectorXreal Vector;
    //
    // option_
    option_t              option_;
@@ -44,17 +42,16 @@ private:
    // algo_
    TemplateAlgo<Vector>  algo_;
    //
-   // ax_, ax_copy_
-   VectorXreal           ax_;
-   Vector                ax_copy_;
-   //
-   // ay_
-   Vector                 ay_;
+   // ax_, ay_
+   Vector                ax_;
+   Vector                ay_;
    //
    // g_, g_copy_
    Eigen::VectorXd       g_;
    cmpad::vector<double> g_copy_;
    //
+   // y_
+   ::autodiff::real      y_;
 public:
    // scalar_type
    typedef double scalar_type;
@@ -78,9 +75,8 @@ public:
       size_t n = algo_.domain();
       size_t m = algo_.range();
       //
-      // ax_, ax_copy_
+      // ax_
       ax_.resize(n);
-      ax_copy_.resize(n);
       //
       // ay_
       ay_.resize(m);
@@ -101,17 +97,14 @@ public:
       for(size_t j = 0; j < domain(); ++j)
          ax_[j] = x[j];
       //
-      auto f = [&](const VectorXreal& ax)
+      auto f = [&](const Vector& ax)
       {  size_t m = algo_.range();
-         for(int i = 0; i < ax.size(); ++i)
-            ax_copy_[i] = ax[i];
-         ay_ = algo_(ax_copy_);
+         ay_ = algo_(ax_);
          return ay_[m-1];
       };
       //
       // forward mode computation of gradient
-      ::autodiff::real y;
-      g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y);
+      g_ = ::autodiff::gradient(f, wrt(ax_), at(ax_), y_);
       //
       // g_
       for(size_t j = 0; j < domain(); ++j)

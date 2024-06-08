@@ -15,7 +15,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 SET(CMAKE_CXX_STANDARD 17)
 #
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
-PROJECT(cmpad VERSION 2024.6.3)
+PROJECT(cmpad VERSION 2024.6.8)
 #
 # pkg_check_modules
 FIND_PACKAGE(PkgConfig REQUIRED)
@@ -64,6 +64,7 @@ print_variable( adept_LINK_LIBRARIES )
 #
 # clad_LINK_LIBRARIES
 SET( clad_LINK_LIBRARIES "")
+#[[ clad is not yet working
 STRING( TOLOWER "${CMAKE_CXX_COMPILER_ID}" compiler )
 IF( ${compiler} STREQUAL "clang" )
    FOREACH(dir lib lib64)
@@ -76,6 +77,7 @@ IF( ${compiler} STREQUAL "clang" )
    ENDFOREACH( )
 ENDIF( )
 print_variable( clad_LINK_LIBRARIES )
+]]
 #
 # sacado_LINK_LIBRARIES
 FOREACH(dir lib lib64)
