@@ -134,6 +134,7 @@ case $package in
    version='master'
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure="$configure -D CLAD_INCLUDE_DOCS=OFF"
    configure="$configure -D LLVM_EXTERNAL_LIT=$(which lit)"
    ;;
 
@@ -343,6 +344,27 @@ then
    do
       sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
    done
+fi
+if [ "$package" == 'clad' ] 
+then
+   if ! grep 'lib64' CMakeLists.txt
+   then
+      if [ ! -d build ]
+      then
+         echo_eval mkdir build
+      fi
+      cd build
+      if ! $configure >& /dev/null
+      then
+         echo 'configure clad failed. Attempting to patch clad CMakeLists.txt'
+         for file in $(find .. -name CMakeLists.txt)
+         do
+            # does not handel case where libraries are in /lib64/
+            sed -i -e "s|/lib/|/lib64/|g" $file
+         done
+      fi
+      cd ..
+   fi
 fi
 # -----------------------------------------------------------------------------
 # build
