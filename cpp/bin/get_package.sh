@@ -152,7 +152,7 @@ case $package in
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
    configure="$configure -D EIGEN3_INCLUDE_DIR=$prefix/include"
-   configure="$configure -D GOOGLETEST_GIT=OFF"
+   configure="$configure -D GOOGLETEST_GIT=ON"
    ;;
 
    eigen)
@@ -343,6 +343,15 @@ then
    for file in $list
    do
       sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
+   done
+   #
+   # remove extra print out when ADOLC_LOCDEBUG ADOLC_DEBUB are defined
+   list='ADOL-C/src/storemanager.cpp'
+   for file in $list
+   do
+      sed -i $file \
+         -e 's|^\( *\)# *ifdef *\(ADOLC_LOCDEBUG\)|\1#if 0 // \2|' \
+         -e 's|^\( *\)# *ifdef *\(ADOLC_DEBUG\)|\1#if 0 // \2|'
    done
 fi
 if [ "$package" == 'clad' ]
