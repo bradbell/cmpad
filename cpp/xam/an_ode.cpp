@@ -30,7 +30,7 @@ bool xam_an_ode(void)
    //
    // ode
    typedef cmpad::vector<double> Vector;
-   cmpad::an_ode<Vector>     ode;
+   cmpad::an_ode<Vector>         ode;
    //
    // ode.setup
    cmpad::option_t option;

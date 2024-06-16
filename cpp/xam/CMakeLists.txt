@@ -8,6 +8,7 @@
 # BEGIN_SORT_THIS_LINE_PLUS_2
 SET(example_list
    an_ode.cpp
+   cppad/llsq_obj.cpp
    csv_read.cpp
    csv_speed.cpp
    csv_write.cpp

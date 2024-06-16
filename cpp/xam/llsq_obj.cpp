@@ -26,7 +26,7 @@ bool xam_llsq_obj(void)
    //
    // llsq
    typedef typename cmpad::vector<double> Vector;
-   cmpad::llsq_obj<Vector>            llsq;
+   cmpad::llsq_obj<Vector>                llsq;
    //
    // llsq.setup
    cmpad::option_t option;

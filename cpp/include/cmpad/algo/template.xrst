@@ -28,7 +28,7 @@ Class Declaration
 Algo
 ****
 This is an :ref:`cpp_fun_obj-name` interface
-to the $algo_name$ :ref:`$algo_name$-name` Algorithm .
+to the :ref:`$algo_name$-name` Algorithm .
 We use *Algo* for the type of this algorithm; i.e.,
 
 {xrst_spell_off}

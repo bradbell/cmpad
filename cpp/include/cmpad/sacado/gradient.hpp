@@ -38,19 +38,19 @@ private:
    typedef cmpad::vector< ADvar<double> > Vector;
    //
    // option_
-   option_t                                            option_;
+   option_t                option_;
    //
    // algo_
-   TemplateAlgo<Vector>           algo_;
+   TemplateAlgo<Vector>    algo_;
    //
    // ax_
-   Vector         ax_;
+   Vector                  ax_;
    //
    // ay_
-   Vector         ay_;
+   Vector                  ay_;
    //
    // g_
-   cmpad::vector<double>                               g_;
+   cmpad::vector<double>   g_;
 //
 public:
    // scalar_type

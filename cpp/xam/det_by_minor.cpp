@@ -28,7 +28,7 @@ bool xam_det_by_minor(void)
    //
    // det
    typedef cmpad::vector<double> Vector;
-   cmpad::det_by_minor<Vector>  det;
+   cmpad::det_by_minor<Vector>   det;
    //
    // det.setup
    cmpad::option_t option;
