@@ -33,8 +33,8 @@ bool xam_cppad_llsq_obj(void)
    cmpad::cppad::llsq_obj<Vector>              llsq;
    //
    // n_arg, n_other
-   size_t n_arg   = 1;
-   size_t n_other = 2;
+   size_t n_arg   = 3;
+   size_t n_other = 4;
    //
    // llsq.setup
    cmpad::option_t option;
