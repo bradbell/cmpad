@@ -20,7 +20,7 @@ algorithm that has vector operations in manner similar to
 Syntax
 ******
 | |tab| ``# include <cmpad/cppad/llsq_obj.hpp>``
-| |tab| ``cmpad::cppad::llsq_obj`` < *Vector* > *llsq*
+| |tab| ``cmpad::cppad::llsq_obj`` *llsq*
 | |tab| *llsq* . ``setup`` ( *option* )
 | |tab| *y* = *llsq* ( *x* )
 
@@ -37,27 +37,23 @@ This is an :ref:`cpp_fun_obj-name` interface
 to the :ref:`llsq_obj-name` Algorithm .
 We use *Algo* for the type of this algorithm; i.e.,
 
-| |tab| ``typedef cmpad::cppad::llsq_obj`` < *Vector* > *Algo*
-
-Vector
-******
-This is a fun_obj :ref:`cpp_fun_obj@Vector` type.
-
-vector_type
-***********
-The type *Algo* :: ``vector_type`` is the same as *Vector* .
-This is useful when *Algo* is a template parameter.
+| |tab| ``typedef cmpad::cppad::llsq_obj`` *Algo*
 
 scalar_type
 ***********
-The type *Algo* :: ``scalar_type`` is the type of the elements of *Vector* ;
-i.e., *Vector* :: ``value_type`` .
-It must be the same as the following definition:
-{xrst_code cpp}
-   # include <cppad/example/valvector/class.hpp>
-   typedef CppAD::AD<valvector> scalar_type
-{xrst_code}
-This is also useful when *Algo* is a template parameter.
+The type ``cmpad::cppad::llsq_obj::scalar_type`` is
+``CppAD::AD<valvector>`` .
+This is the type of the elements of the vectors passed
+when *llsq* is used as a function object.
+This definition is useful when *Algo* is a template parameter.
+
+vector_type
+***********
+The type ``cmpad::cppad::llsq_obj::vector_type`` is
+``cmpad::vector`` < *scalar_type* > (where *scalar_type* is define above) .
+This is the type of the vectors passed
+when *llsq* is used as a function object.
+This definition is useful when *Algo* is a template parameter.
 
 llsq
 ****
@@ -103,21 +99,22 @@ C++ llsq_obj: CppAD Special Source Code
 // BEGIN C++
 # include <cassert>
 # include <cmpad/fun_obj.hpp>
+# include <cmpad/vector.hpp>
 # include <cppad/example/valvector/sum.hpp>
 # include <cppad/example/valvector/class.hpp>
 
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // BEGIN CLASS_DECLARE
-template <class Vector> class llsq_obj : public fun_obj<Vector>
+class llsq_obj : public fun_obj< cmpad::vector< CppAD::AD<valvector> > >
 // END CLASS_DECLARE
 {
 public:
    // scalar_type
-   typedef typename Vector::value_type scalar_type;
+   typedef typename CppAD::AD<valvector>  scalar_type;
    //
    // vector_type
-   typedef Vector vector_type;
+   typedef cmpad::vector<scalar_type>      vector_type;
 private:
    //
    // asum
@@ -187,7 +184,7 @@ public:
    }
    //
    // operator
-   const Vector& operator()(const Vector& ax) override
+   const vector_type& operator()(const vector_type& ax) override
    {  //
       // n_arg, n_other
       size_t n_arg   = option_.n_arg;

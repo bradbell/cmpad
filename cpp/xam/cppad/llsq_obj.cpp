@@ -25,12 +25,11 @@ bool xam_cppad_llsq_obj(void)
 {  // ok
    bool ok = true;
    //
-   // scalar_type
-   typedef CppAD::AD<valvector> scalar_type;
-   //
    // llsq
-   typedef typename cmpad::vector<scalar_type> Vector;
-   cmpad::cppad::llsq_obj<Vector>              llsq;
+   cmpad::cppad::llsq_obj   llsq;
+   //
+   // Vector
+   typedef cmpad::vector< CppAD::AD<valvector> > Vector;
    //
    // n_arg, n_other
    size_t n_arg   = 3;
