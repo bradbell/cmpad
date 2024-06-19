@@ -100,13 +100,16 @@ C++ llsq_obj: CppAD Special Source Code
 # include <cassert>
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/vector.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 # include <cppad/example/valvector/sum.hpp>
 # include <cppad/example/valvector/class.hpp>
 
-namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
+namespace cmpad {
 
 // BEGIN CLASS_DECLARE
-class llsq_obj : public fun_obj< cmpad::vector< CppAD::AD<valvector> > >
+template <>
+class llsq_obj  < cmpad::vector< CppAD::AD<valvector> > >
+: public fun_obj< cmpad::vector< CppAD::AD<valvector> > >
 // END CLASS_DECLARE
 {
 public:
@@ -209,7 +212,7 @@ public:
    }
 };
 
-} } // END cmapd::cppad namespace
+} // END cmapd namespace
 
 // END C++
 # endif
