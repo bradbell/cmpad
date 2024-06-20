@@ -25,8 +25,8 @@
 # if CMPAD_HAS_CPPAD
 
 # include <filesystem>
-# include <cppad/cppad.hpp>
 # include <cmpad/gradient.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 # ifdef _WIN32
 # define CMPAD_DLL_EXT ".dll"

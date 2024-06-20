@@ -19,7 +19,7 @@ Example and Test of CppAD Special llsq_obj
 // BEGIN C++
 # include <cmpad/cppad/llsq_obj.hpp>
 # include <cmpad/near_equal.hpp>
-# include <cppad/example/valvector/class.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 bool xam_cppad_llsq_obj(void)
 {  // ok

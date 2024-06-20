@@ -24,8 +24,8 @@
 # if CMPAD_HAS_CPPADCG
 
 # include <filesystem>
-# include <cppad/cg/cppadcg.hpp>
 # include <cmpad/gradient.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 namespace cmpad { namespace cppadcg { // BEGIN cmpad::cppadcg namespace
 //

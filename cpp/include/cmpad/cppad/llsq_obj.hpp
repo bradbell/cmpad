@@ -101,8 +101,7 @@ C++ llsq_obj: CppAD Special Source Code
 # include <cmpad/fun_obj.hpp>
 # include <cmpad/vector.hpp>
 # include <cmpad/algo/llsq_obj.hpp>
-# include <cppad/example/valvector/sum.hpp>
-# include <cppad/example/valvector/class.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 namespace cmpad {
 
