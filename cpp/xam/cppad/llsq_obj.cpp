@@ -17,7 +17,7 @@ Example and Test of CppAD Special llsq_obj
 {xrst_end xam_cppad_llsq_obj.cpp}
 */
 // BEGIN C++
-# include <cmpad/cppad/llsq_obj.hpp>
+# include <cmpad/algo/llsq_obj.hpp>
 # include <cmpad/near_equal.hpp>
 # include <cmpad/cppad/cppad.hpp>
 

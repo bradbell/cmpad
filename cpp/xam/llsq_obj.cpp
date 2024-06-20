@@ -9,6 +9,9 @@
 Example and Test of llsq_obj
 ############################
 
+{xrst_toc_hidden
+   cpp/xam/cppad/llsq_obj.cpp
+}
 {xrst_literal
    // BEGIN C++
    // END C++

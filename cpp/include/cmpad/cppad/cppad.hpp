@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 // SPDX-FileContributor: 24 Bradley M. Bell
 // ---------------------------------------------------------------------------
-# ifndef CMPAD_CPPAD_HPP
-# define CMPAD_CPPAD_HPP
+# ifndef CMPAD_CPPAD_CPPAD_HPP
+# define CMPAD_CPPAD_CPPAD_HPP
 /*
 {xrst_begin include_cppad}
 {xrst_spell
@@ -31,7 +31,7 @@ Source Code
 // define utilities to make it easier to define an AD base type
 # include <cppad/base_require.hpp>
 //
-// define the valvector AD base type 
+// define the valvector AD base type
 # include <cppad/example/valvector/class.hpp>
 //
 // If the CppADCodeGen package has been installed,
@@ -46,7 +46,7 @@ Source Code
 // define the valvector summation atomic function (requires cppad.hpp)
 # include <cppad/example/valvector/sum.hpp>
 //
-# endif 
+# endif
 /* {xrst_code}
 {xrst_spell_on}
 
@@ -54,4 +54,3 @@ Source Code
 */
 
 # endif
-

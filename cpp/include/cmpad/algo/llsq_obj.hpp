@@ -9,9 +9,6 @@
 
 C++ Linear Least Squares Objective
 ##################################
-All of the C++ packages currently use this algorithm
-to compute derivatives of the llsq_obj function.
-The CppAD package can also use :ref:`cppad_llsq_obj-name`.
 
 {xrst_template ,
    cpp/include/cmpad/algo/template.xrst
@@ -50,16 +47,32 @@ Source Code
 C++ llsq_obj: Source Code
 #########################
 {xrst_literal
-   // BEGIN C++
-   // END C++
+   // BEGIN TEMPLATE_CLASS
+   // END TEMPLATE_CLASS
 }
 
 {xrst_end cpp_llsq_obj.hpp}
 ------------------------------------------------------------------------------
+{xrst_begin valvector_llsq_obj.hpp}
+
+
+C++ valvector Special Version of llsq_obj
+#########################################
+{xrst_literal
+   // BEGIN VALVECTOR_SPECIALIZATION
+   // END VALVECTOR_SPECIALIZATION
+}
+
+{xrst_end valvector_llsq_obj.hpp}
 */
-// BEGIN C++
+// ----------------------------------------------------------------------------
+// BEGIN TEMPLATE_CLASS
+// ----------------------------------------------------------------------------
 # include <cassert>
 # include <cmpad/fun_obj.hpp>
+//
+# include <cmpad/vector.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
@@ -162,6 +175,117 @@ public:
 };
 
 } // END cmapd namespace
+// END TEMPLATE_CLASS
+// ----------------------------------------------------------------------------
+// BEGIN VALVECTOR_SPECIALIZATION
+// ----------------------------------------------------------------------------
+namespace cmpad { // BEGIN cmpad namespace
 
-// END C++
+template <>
+class llsq_obj  < cmpad::vector< CppAD::AD<valvector> > >
+: public fun_obj< cmpad::vector< CppAD::AD<valvector> > >
+{
+public:
+   // scalar_type
+   typedef typename CppAD::AD<valvector>  scalar_type;
+   //
+   // vector_type
+   typedef cmpad::vector<scalar_type>      vector_type;
+private:
+   //
+   // asum
+   valvector_ad_sum asum;
+   //
+   // option_
+   option_t option_;
+   //
+   // ay_
+   vector_type ay_;
+   //
+   // t_, q_
+   valvector t_, q_;
+   //
+public:
+   //
+   // option
+   const option_t& option(void) const override
+   {  return option_; }
+   //
+   // domain
+   size_t domain(void) const override
+   {  return option_.n_arg; }
+   //
+   // range
+   size_t range(void) const override
+   {  return 1; }
+   //
+   // setup
+   void setup(const option_t& option) override
+   {  //
+      // n_arg, n_other
+      assert( option.n_arg > 0 );
+      assert( option.n_other > 0 );
+      //
+      // option_
+      option_ = option;
+      //
+      // n_other
+      size_t n_other = option.n_other;
+      //
+      // ay_
+      ay_.resize(1);
+      //
+      // t_
+      t_.resize(n_other);
+      if( n_other == 1 )
+         t_[0] = 0.0;
+      else
+      {  for(size_t j = 0; j < n_other; ++j)
+            t_[j] = -1.0 + 2.0 * double(j) / double(n_other-1);
+      }
+      //
+      // q_
+      q_.resize(n_other);
+      if( n_other == 1 )
+         q_[0] = 0.0;
+      else
+      {  for(size_t j = 0; j < n_other; ++j)
+            if( t_[j] == 0.0 )
+               q_[j] = 0.0;
+            else if( t_[j] < 0.0 )
+               q_[j] = -1.0;
+            else
+               q_[j] = +1.0;
+      }
+   }
+   //
+   // operator
+   const vector_type& operator()(const vector_type& ax) override
+   {  //
+      // n_arg, n_other
+      size_t n_arg   = option_.n_arg;
+      size_t n_other = option_.n_other;
+      //
+      // sumsq
+      scalar_type amodel = valvector(0.0);
+      valvector   ti     = valvector(1.0);
+      for(size_t i = 0; i < n_arg; ++i)
+      {  amodel += ax[i] * ti;
+         ti     *= t_;
+      }
+      scalar_type aresidual = amodel - q_;
+      scalar_type asquare   = aresidual * aresidual;
+      //
+      // ay_
+      scalar_type asumsq;
+      asum(asquare, asumsq);
+      ay_[0] = valvector(0.5) * asumsq;
+      //
+      return ay_;
+   }
+};
+
+} // END cmapd namespace
+
+// END VALVECTOR_SPECIALIZATION
 # endif
