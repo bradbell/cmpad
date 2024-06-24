@@ -28,32 +28,34 @@ namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 template < template<class Vector> class TemplateAlgo> class gradient
 : public
 ::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
-private:
-   // Vector
-   typedef typename cmpad::vector< CppAD::AD<double> >   Vector;
-   //
-   // option_
-   option_t              option_;
-   //
-   // algo_
-   TemplateAlgo<Vector>  algo_;
-   //
-   // w_
-   cmpad::vector<double> w_;
-   //
-   // tape_
-   CppAD::ADFun<double>  tape_;
-   //
-   // g_
-   cmpad::vector<double> g_;
-//
 public:
    //
    // scalar_type
    typedef double scalar_type;
    //
    // vector_type
-   typedef cmpad::vector<double> vector_type;
+   typedef ::cmpad::vector<scalar_type> vector_type;
+   //
+private:
+   // ad_vector_type
+   typedef typename ::cmpad::vector< CppAD::AD<scalar_type> >  ad_vector_type;
+   //
+   // option_
+   option_t                      option_;
+   //
+   // algo_
+   TemplateAlgo<ad_vector_type>  algo_;
+   //
+   // w_
+   vector_type                   w_;
+   //
+   // tape_
+   CppAD::ADFun<double>          tape_;
+   //
+   // g_
+   vector_type                   g_;
+   //
+public:
    //
    // option
    const option_t& option(void) const override
@@ -83,11 +85,11 @@ public:
       "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
       //
       // tape_
-      Vector ax(n);
+      ad_vector_type ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      Vector ay(1), az;
+      ad_vector_type ay(1), az;
       az    = algo_(ax);
       ay[0] = az[m-1];
       tape_.Dependent(ax, ay);
@@ -102,9 +104,7 @@ public:
    {  return algo_.domain(); };
    //
    // operator
-   const cmpad::vector<double>& operator()(
-      const cmpad::vector<double>& x
-   ) override
+   const vector_type& operator()(const vector_type& x) override
    {  tape_.Forward(0, x);
       g_ =  tape_.Reverse(1, w_);
       return g_;
