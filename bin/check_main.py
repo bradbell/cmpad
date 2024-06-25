@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 import sys
 import csv
@@ -61,19 +61,21 @@ def main() :
       package    = old_row['package']
       algorithm  = old_row['algorithm']
       time_setup = old_row['time_setup']
+      special    = old_row['special']
       found     = False
       for new_row in new_table :
          if package == new_row['package'] :
             if algorithm == new_row['algorithm'] :
                if time_setup == new_row['time_setup'] :
-                  found = True
+                  if special == new_row['special' ] :
+                     found = True
       if not found :
          if not print_error :
-            msg  = 'following (packages, algorithm, time_setup) are in '
+            msg  = 'following package, algorithm, time_setup, special is in '
             msg += f'the old but not new {file_name}'
             print(msg)
             print_error = True
-         print( f'( {package}, {algorithm}, {time_setup} ) ' )
+         print( f'{package}, {algorithm}, {time_setup}, {special}' )
    #
    # print_error
    for key in old_table[0].keys() :
@@ -93,19 +95,21 @@ def main() :
       package    = new_row['package']
       algorithm  = new_row['algorithm']
       time_setup = new_row['time_setup']
+      special    = new_row['special']
       found     = False
       for old_row in old_table :
          if package == old_row['package'] :
             if algorithm == old_row['algorithm'] :
                if time_setup == old_row['time_setup'] :
-                  found = True
+                  if special == old_row['special'] :
+                     found = True
       if not found :
          if not print_warning :
-            msg  = 'following (packages, algorithm, time_setup) are in '
+            msg  = 'following package, algorithm, time_setup, special is in '
             msg += f'the new but not old {file_name}'
             print(msg)
             print_warning = True
-         print( f'( {package}, {algorithm}, {time_setup} ) ' )
+         print( f'{package}, {algorithm}, {time_setup}, {special}' )
    #
    # print_warning
    for key in new_table[0].keys() :

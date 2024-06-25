@@ -5,6 +5,14 @@
 # ifndef CMPAD_CPPAD_GRADIENT_HPP
 # define CMPAD_CPPAD_GRADIENT_HPP
 /*
+------------------------------------------------------------------------------
+{xrst_begin_parent cppad_gradient}
+
+Gradients Using CppAD
+#####################
+
+{xrst_end cppad_gradient}
+------------------------------------------------------------------------------
 {xrst_begin cppad_gradient.hpp}
 
 {xrst_template ,
@@ -14,8 +22,35 @@
    @package@       , cppad
    @not_cppad_jit@ , true
 }
-
 {xrst_end cppad_gradient.hpp}
+------------------------------------------------------------------------------
+{xrst_begin cppad_gradient_special.hpp}
+{xrst_spell
+   valvector
+   std
+   valarray
+}
+
+Special Version of Gradient Using CppAD
+#######################################
+
+valvector
+*********
+This version of the CppAD gradient handles the case where the base type
+for differentiation is ``valvector`` instead of ``double``.
+This is a CppAD example type that evaluates numerical operations on vectors
+(similar to ``std::valarray`` numerical operators).
+One important difference is that a scalar (one element vector) does
+not allocate any memory and can operate with any sized vector.
+
+Source Code
+***********
+{xrst_literal
+   BEGIN SPECIAL
+   END SPECIAL
+}
+
+{xrst_end cppad_gradient_special.hpp}
 */
 // BEGIN C++
 # if CMPAD_HAS_CPPAD
@@ -112,6 +147,14 @@ public:
 };
 
 } } // END cmpad::cppad namespace
+
+# endif // CMPAD_HAS_CPPAD
+// END C++
+// ---------------------------------------------------------------------------
+// BEGIN SPECIAL
+# if CMPAD_HAS_CPPAD
+# include <cmpad/gradient.hpp>
+# include <cmpad/cppad/cppad.hpp>
 
 // BEGIN cmpad::cppad::special namespace
 namespace cmpad { namespace cppad { namespace special {
@@ -233,5 +276,6 @@ public:
 } } } // END cmpad::cppad::special namespace
 
 # endif // CMPAD_HAS_CPPAD
-// END C++
+// END SPECIAL
+
 # endif

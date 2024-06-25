@@ -198,7 +198,7 @@ int main(int argc, char* argv[])
    }
    //
    // special
-   // as yet there are no special C++ algorithms.
+   // The only special case (so far) is for package = cppad and algo = llsq_obj.
    bool special = false;
    //
    // option
@@ -257,7 +257,18 @@ int main(int argc, char* argv[])
    // file_name, case_found
 # if CMPAD_HAS_CPPAD
    else if( package == "cppad" )
-   {  CMPAD_PACKAGE_TEST(cppad) }
+   {  CMPAD_PACKAGE_TEST(cppad)
+      //
+      if( algorithm == "llsq_obj" )
+      {  cmpad::cppad::special::gradient<cmpad::llsq_obj> special_grad_llsq;
+         double rate = cmpad::fun_speed(special_grad_llsq, option, min_time);
+         special = true;
+         cmpad::csv_speed(
+            file_name, rate, min_time, "cppad" , algorithm, special, option
+         );
+         special = false;
+      }
+   }
 # endif
    //
    // file_name, case_found
