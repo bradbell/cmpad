@@ -50,6 +50,10 @@ bool xam_gradient_cppad(void)
    cmpad::cppad::gradient<cmpad::llsq_obj> grad_llsq;
    ok &= check_grad_llsq(grad_llsq);
    //
+   // ok
+   cmpad::cppad::special::gradient<cmpad::llsq_obj> special_grad_llsq;
+   ok &= check_grad_llsq(special_grad_llsq);
+   //
    return ok;
 }
 // END C++
