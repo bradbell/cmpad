@@ -49,6 +49,7 @@ data = [
       adolc
       autodiff
       autograd
+      codipack
       cppad
       cppadcg
       fastad

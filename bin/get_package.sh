@@ -56,6 +56,7 @@ set -e -u
 # .. _autodiff:  https://github.com/autodiff/autodiff
 # .. _autograd:  https://github.com/HIPS/autograd.git
 # .. _clad:      https://github.com/vgvassilev/clad
+# .. _codipack:  https://github.com/scicompkl/codipack
 # .. _cppad:     https://github.com/coin-or/CppAD
 # .. _cppad_jit: https://github.com/coin-or/CppAD
 # .. _cppad_py:  https://github.com/bradbell/cppad_py
@@ -76,26 +77,37 @@ set -e -u
 #  `adolc`_,      :ref:`adolc_gradient.hpp-name`,             cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,          cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
-#  `clad`_,       Under Construction,                             cpp
 #  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,         cpp
 #  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
 #  `cppad`_,      :ref:`cppad_gradient.hpp-name`,             cpp
 #  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,           cpp
-#  `fastad`_,     Under Construction,                             cpp
 #  `jax`_,        :ref:`jax_gradient.py-name`,                    python
 #  `sacado`_,     :ref:`sacado_gradient.hpp-name`,            cpp
 #  `torch`_,      :ref:`torch_gradient.py-name`,                  python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
+# {xrst_suspend}
+pkg_available=' adept adolc autodiff autograd'
+pkg_available="$pkg_available cppad_jit cppad_py cppadcg"
+pkg_available="$pkg_available torch sacado "
+# {xrst_resume}
 #
 # #. Implemented is the list of cmpad derivatives implemented so far
 # #. Installing autodiff or fastad also installs eigen.
 # #. Installing cppad or cppad_jit has the same effect.
 # #. Installing cppadcg also installs cppad.
 #
+# Under Construction
+# ==================
+# .. csv-table::
+#  :widths: auto
+#  :header-rows: 1
+#
+#  Web Site,      Language
+#  `clad`_,       cpp
+#  `fastad`_,     cpp
+#  `codipack`_,   cpp
 # {xrst_suspend}
-pkg_available='adept, adolc, autodiff, autograd'
-pkg_available="$pkg_available, clad, cppad_jit, cppad_py, cppadcg"
-pkg_available="$pkg_available, fastad, jax, torch, sacado"
+under_construction='clad codipack fastad'
 # {xrst_resume}
 #
 # prefix
@@ -162,7 +174,7 @@ then
    echo "usage: $program build_type all"
    echo "usage: $program build_type package_1 [package_2 [...] ]"
    echo 'where build_type is debug or release and package_j is one of'
-   echo "$pkg_available"
+   echo "$pkg_available $under_construction"
    exit 1
 fi
 #
@@ -190,11 +202,7 @@ then
       echo 'package_2, ..., must not be present when package_1 is all'
       exit 1
    fi
-   # exclude clad and fastad
    pkg_list=$(echo $pkg_available | sed \
-      -e 's/, *clad *,/, /'  \
-      -e 's/, *fastad *,/, /' \
-      -e 's/,/ /g'  \
       -e 's/\n/ /g'  \
       -e 's/  */ /g' \
    )
@@ -218,7 +226,7 @@ do
    ;;
 
    # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
-   clad|fastad)
+   clad|codipack|fastad)
    # END CPP_PACKAGE_NOT_IMPLEMENTED
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;

@@ -138,6 +138,13 @@ case $package in
    configure="$configure -D LLVM_EXTERNAL_LIT=$(which lit)"
    ;;
 
+   codipack)
+   web_page='https://github.com/scicompkl/codipack.git'
+   version='master'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
    cppad)
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
@@ -182,7 +189,7 @@ case $package in
 
    *)
    echo "$program: build_type package"
-   echo "package = $package is not available"
+   echo "package = '$package' is not available"
    exit 1
    ;;
 
