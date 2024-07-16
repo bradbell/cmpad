@@ -20,7 +20,6 @@
 // BEGIN C++
 # if CMPAD_HAS_ADOLC
 
-# include <type_traits>
 # include <adolc/adolc.h>
 # include <cmpad/gradient.hpp>
 

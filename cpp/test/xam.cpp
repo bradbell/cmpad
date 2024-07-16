@@ -41,6 +41,10 @@ CMPAD_TEST_EXAMPLE(gradient_adolc)
 # if CMPAD_HAS_AUTODIFF
 CMPAD_TEST_EXAMPLE(gradient_autodiff)
 # endif
+# if CMPAD_HAS_CODI
+// 2DO: get ths to work
+// CMPAD_TEST_EXAMPLE(gradient_codi)
+# endif
 # if CMPAD_HAS_CPPAD
 CMPAD_TEST_EXAMPLE(gradient_cppad)
 # endif

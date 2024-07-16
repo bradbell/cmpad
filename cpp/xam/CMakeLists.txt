@@ -25,11 +25,12 @@ SET(example_list
 #
 # example_list
 # examples that require AD packages
-FOREACH(package adept adolc autodiff cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff codi cppad cppad_jit cppadcg sacado)
    IF( ${cmpad_has_${package}} )
       SET(example_list ${example_list} gradient/${package}.cpp)
    ENDIF( )
 ENDFOREACH( )
+print_variable(example_list)
 #
 # xam
 # All the ./*.cpp files should be included below and in ../test/xam.cpp

@@ -95,16 +95,19 @@ It is the gradient evaluated at the point *x* .
 
 Example and Derived Classes
 ***************************
+{xrst_comment BEGIN_SORT_THIS_LINE_PLUS_3}
 {xrst_toc_table
    cpp/xam/gradient/gradient.xrst
-   cpp/include/cmpad/sacado/gradient.hpp
+   cpp/include/cmpad/adept/gradient.hpp
+   cpp/include/cmpad/adolc/gradient.hpp
+   cpp/include/cmpad/autodiff/gradient.hpp
+   cpp/include/cmpad/codi/gradient.hpp
+   cpp/include/cmpad/cppad/gradient.hpp
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
-   cpp/include/cmpad/autodiff/gradient.hpp
-   cpp/include/cmpad/adolc/gradient.hpp
-   cpp/include/cmpad/adept/gradient.hpp
-   cpp/include/cmpad/cppad/gradient.hpp
+   cpp/include/cmpad/sacado/gradient.hpp
 }
+{xrst_comment END_SORT_THIS_LINE_MINUS_2}
 
 {xrst_end cpp_gradient}
 -------------------------------------------------------------------------------

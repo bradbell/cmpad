@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
 # cmpad_has_${package}
 # for package = adept, adolc, clad, cppad, cppadcg, sacado, cppad_jit
@@ -12,6 +12,14 @@ FOREACH(package adept adolc clad cppad cppadcg sacado)
       SET( cmpad_has_${package} 1 )
    ENDIF( )
 ENDFOREACH( )
+#
+# cmpad_has_codi
+IF( EXISTS "${cmpad_install_prefix}/include/codi.h" )
+   SET( cmpad_has_codi 1 )
+ELSE( )
+   SET( cmpad_has_codi 0 )
+ENDIF( )
+   SET( cmpad_has_codi 1 )
 #
 # cmpad_has_autodiff
 IF( EXISTS
@@ -73,7 +81,7 @@ CONFIGURE_FILE(
 # ---------------------------------------------------------------------------
 # cmpad_has_${package} PARENT_SCOPE
 #
-FOREACH(package adept adolc autodiff clad cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff clad codi cppad cppad_jit cppadcg sacado)
    print_variable( cmpad_has_${package} )
    SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
 ENDFOREACH( )

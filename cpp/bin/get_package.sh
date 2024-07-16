@@ -138,7 +138,7 @@ case $package in
    configure="$configure -D LLVM_EXTERNAL_LIT=$(which lit)"
    ;;
 
-   codipack)
+   codi)
    web_page='https://github.com/scicompkl/codipack.git'
    version='master'
    configure='cmake -S .. -B .'

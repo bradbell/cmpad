@@ -56,7 +56,7 @@ set -e -u
 # .. _autodiff:  https://github.com/autodiff/autodiff
 # .. _autograd:  https://github.com/HIPS/autograd.git
 # .. _clad:      https://github.com/vgvassilev/clad
-# .. _codipack:  https://github.com/scicompkl/codipack
+# .. _codi:      https://github.com/scicompkl/codipack
 # .. _cppad:     https://github.com/coin-or/CppAD
 # .. _cppad_jit: https://github.com/coin-or/CppAD
 # .. _cppad_py:  https://github.com/bradbell/cppad_py
@@ -72,18 +72,18 @@ set -e -u
 #  :widths: auto
 #  :header-rows: 1
 #
-#  Web Site,      Implemented,                                    Language
+#  Web Site,      Implemented,                                Language
 #  `adept`_,      :ref:`adept_gradient.hpp-name`,             cpp
 #  `adolc`_,      :ref:`adolc_gradient.hpp-name`,             cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,          cpp
-#  `autograd`_,   :ref:`autograd_gradient.py-name`,               python
+#  `autograd`_,   :ref:`autograd_gradient.py-name`,           python
 #  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,         cpp
-#  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,               python
+#  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,           python
 #  `cppad`_,      :ref:`cppad_gradient.hpp-name`,             cpp
 #  `cppadcg`_,    :ref:`cppadcg_gradient.hpp-name`,           cpp
-#  `jax`_,        :ref:`jax_gradient.py-name`,                    python
+#  `jax`_,        :ref:`jax_gradient.py-name`,                python
 #  `sacado`_,     :ref:`sacado_gradient.hpp-name`,            cpp
-#  `torch`_,      :ref:`torch_gradient.py-name`,                  python
+#  `torch`_,      :ref:`torch_gradient.py-name`,              python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 # {xrst_suspend}
 pkg_available=' adept adolc autodiff autograd'
@@ -105,9 +105,9 @@ pkg_available="$pkg_available jax torch sacado "
 #  Web Site,      Language
 #  `clad`_,       cpp
 #  `fastad`_,     cpp
-#  `codipack`_,   cpp
+#  `codi`_,       cpp
 # {xrst_suspend}
-under_construction='clad codipack fastad'
+under_construction='clad codi fastad'
 # {xrst_resume}
 #
 # prefix
@@ -226,7 +226,7 @@ do
    ;;
 
    # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
-   clad|codipack|fastad)
+   clad|codi|fastad)
    # END CPP_PACKAGE_NOT_IMPLEMENTED
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;
