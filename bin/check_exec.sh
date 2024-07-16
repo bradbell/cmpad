@@ -16,7 +16,7 @@ then
 fi
 # ---------------------------------------------------------------------------
 ignore_list='
-   python/bin/python_env.sh
+   ./bin/environment.sh
 '
 for file_name in $( git ls-files | sed -e 's|^bin|./bin|' )
 do

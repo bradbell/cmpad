@@ -88,7 +88,7 @@ set -e -u
 # {xrst_suspend}
 pkg_available=' adept adolc autodiff autograd'
 pkg_available="$pkg_available cppad_jit cppad_py cppadcg"
-pkg_available="$pkg_available torch sacado "
+pkg_available="$pkg_available jax torch sacado "
 # {xrst_resume}
 #
 # #. Implemented is the list of cmpad derivatives implemented so far
