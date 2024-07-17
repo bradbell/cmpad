@@ -25,32 +25,29 @@
 
 namespace cmpad { namespace codi { // BEGIN cmpad::codi namespace
 
-typedef ::codi::RealReverseVec<1> Real;
+typedef ::codi::RealReverseVec<1> ADScalar;
 
 // cmpad::codi::gradient
 template < template<class ADVector> class TemplateAlgo > class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector<Real> > > {
+cmpad::gradient< TemplateAlgo< cmpad::vector<ADScalar> > > {
 private:
    //
    // ADVector
-   typedef cmpad::vector<Real> ADVector;
+   typedef cmpad::vector<ADScalar> ADVector;
    //
    // option_
-   option_t                    option_;
+   option_t                        option_;
    //
    // algo_
-   TemplateAlgo<ADVector>      algo_;
-   //
-   // tape_
-   Real::Tape                  tape_;
+   TemplateAlgo<ADVector>          algo_;
    //
    // ax_, ay_
-   ADVector                    ax_;
-   ADVector                    ay_;
+   ADVector                        ax_;
+   ADVector                        ay_;
    //
    // g_
-   cmpad::vector<double>       g_;
+   cmpad::vector<double>           g_;
 //
 public:
    //
@@ -106,30 +103,31 @@ public:
       for(size_t j = 0; j < n; ++j)
          ax_[j] = x[j];
       //
-      // tape_
-      tape_.setActive();
+      // tape
+      ADScalar::Tape& tape = ADScalar::getTape();
+      tape.setActive();
       for(size_t j = 0; j < n; ++j)
-         tape_.registerInput( ax_[j] );
+         tape.registerInput( ax_[j] );
       //
       // az
       // dependent variable
       ay_      = algo_(ax_);
-      Real az = ay_[m-1];
+      ADScalar az = ay_[m-1];
       //
-      // tape_
-      tape_.registerOutput(az);
-      tape_.setPassive();
+      // tape
+      tape.registerOutput(az);
+      tape.setPassive();
       //
-      // tape_, az, ax_
+      // tape, az, ax_
       az.gradient()[0] = 1.0;
-      tape_.evaluate();
+      tape.evaluate();
       //
       // g_
       for(size_t j = 0; j < n; ++j)
          g_[j] = ax_[j].getGradient()[0];
       //
       // clean tape and adjoints
-      tape_.reset();
+      tape.reset();
       //
       return g_;
    }
