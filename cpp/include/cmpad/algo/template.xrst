@@ -54,3 +54,7 @@ $obj_name$
 $********$
 The object *$obj_name$* is a :ref:`cpp_fun_obj@fun`
 that computes the function corresponding to the $algo_name$ algorithm.
+
+option
+******
+This is an :ref:`option_t-name` object that specifies *n_arg* and *n_other* .

@@ -60,7 +60,7 @@ Source Code
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // cmpad::cppad::gradient
-template < template<class ADvector> class TemplateAlgo> class gradient
+template < template<class ADVector> class TemplateAlgo> class gradient
 : public
 ::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 public:
@@ -160,7 +160,7 @@ public:
 namespace cmpad { namespace cppad { namespace special {
 
 // cmpad::cppad::gradient
-template < template<class ADvector> class TemplateAlgo> class gradient
+template < template<class ADVector> class TemplateAlgo> class gradient
 : public
 ::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<valvector> > > > {
 public:

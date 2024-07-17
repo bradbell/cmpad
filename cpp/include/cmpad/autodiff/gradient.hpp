@@ -28,23 +28,23 @@ namespace cmpad { namespace autodiff { // BEGIN cmpad::autodiff namespace
 
 
 // gradient
-template < template<class ADvector> class TemplateAlgo> class gradient
+template < template<class ADVector> class TemplateAlgo> class gradient
 : public
 cmpad::gradient< TemplateAlgo<::autodiff::VectorXreal> > {
 private:
    //
-   // ADvector
-   typedef ::autodiff::VectorXreal ADvector;
+   // ADVector
+   typedef ::autodiff::VectorXreal ADVector;
    //
    // option_
    option_t                option_;
    //
    // algo_
-   TemplateAlgo<ADvector>  algo_;
+   TemplateAlgo<ADVector>  algo_;
    //
    // ax_, ay_
-   ADvector                ax_;
-   ADvector                ay_;
+   ADVector                ax_;
+   ADVector                ay_;
    //
    // g_, g_copy_
    Eigen::VectorXd         g_;
@@ -97,7 +97,7 @@ public:
       for(size_t j = 0; j < domain(); ++j)
          ax_[j] = x[j];
       //
-      auto f = [&](const ADvector& ax)
+      auto f = [&](const ADVector& ax)
       {  size_t m = algo_.range();
          ay_ = algo_(ax_);
          return ay_[m-1];

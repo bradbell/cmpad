@@ -25,6 +25,10 @@ n_arg
 *****
 see :ref:`det_by_minor@option@n_arg` .
 
+n_other
+*******
+see :ref:`det_by_minor@option@n_other` .
+
 x
 *
 The argument *x* has size *n_arg* = :math:`\ell * \ell` .

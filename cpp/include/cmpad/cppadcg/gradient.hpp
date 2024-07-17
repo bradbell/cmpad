@@ -33,19 +33,19 @@ namespace cmpad { namespace cppadcg { // BEGIN cmpad::cppadcg namespace
 typedef CppAD::cg::CG<double>  cg_double;
 //
 // cmpad::cppadcg::gradient
-template < template<class ADvector> class TemplateAlgo> class gradient
+template < template<class ADVector> class TemplateAlgo> class gradient
 : public
 cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<cg_double> > > > {
 private:
    //
-   // ADvector
-   typedef cmpad::vector< CppAD::AD<cg_double> >      ADvector;
+   // ADVector
+   typedef cmpad::vector< CppAD::AD<cg_double> >      ADVector;
    //
    // option_
    option_t                                           option_;
    //
    // algo_
-   TemplateAlgo<ADvector>                             algo_;
+   TemplateAlgo<ADVector>                             algo_;
    //
    // w_
    cmpad::vector<double>                              w_;
@@ -98,11 +98,11 @@ public:
       //
       // tape
       CppAD::ADFun<cg_double>  tape;
-      ADvector ax(n);
+      ADVector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      ADvector ay(1), az;
+      ADVector ay(1), az;
       az    = algo_(ax);
       ay[0] = az[m-1];
       tape.Dependent(ax, ay);
