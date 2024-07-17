@@ -95,7 +95,7 @@ def main() :
    file_obj  = open(configure_file, 'r')
    file_data = file_obj.read()
    file_obj.close()
-   ad_package = 'adept,adolc,autodiff,cppad,cppad_jit,cppadcg,sacado'
+   ad_package = 'adept,adolc,autodiff,codi,cppad,cppad_jit,cppadcg,sacado'
    for package in ad_package.split(',') :
       PACKAGE = package.upper()
       pattern = f'# *define *CMPAD_HAS_{PACKAGE} *[01]'

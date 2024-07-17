@@ -55,6 +55,7 @@ Source Code
 # include <cmpad/adept/gradient.hpp>
 # include <cmpad/adolc/gradient.hpp>
 # include <cmpad/autodiff/gradient.hpp>
+# include <cmpad/codi/gradient.hpp>
 # include <cmpad/cppad/gradient.hpp>
 # include <cmpad/cppad_jit/gradient.hpp>
 # include <cmpad/cppadcg/gradient.hpp>
@@ -103,6 +104,9 @@ cmpad::vector<std::string> get_package_available(void)
 # endif
 # if CMPAD_HAS_AUTODIFF
    package_available.push_back("autodiff");
+# endif
+# if CMPAD_HAS_CODI
+   package_available.push_back("codi");
 # endif
 # if CMPAD_HAS_CPPAD
    package_available.push_back("cppad");
@@ -252,6 +256,12 @@ int main(int argc, char* argv[])
 # if CMPAD_HAS_AUTODIFF
    else if( package == "autodiff" )
    {  CMPAD_PACKAGE_TEST(autodiff) }
+# endif
+   //
+   // file_name, case_found
+# if CMPAD_HAS_CODI
+   else if( package == "codi" )
+   {  CMPAD_PACKAGE_TEST(codi) }
 # endif
    //
    // file_name, case_found

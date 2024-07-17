@@ -77,6 +77,7 @@ set -e -u
 #  `adolc`_,      :ref:`adolc_gradient.hpp-name`,             cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,          cpp
 #  `autograd`_,   :ref:`autograd_gradient.py-name`,           python
+#  `codi`_,       :ref:`codi_gradient.hpp-name`,              cpp
 #  `cppad_jit`_,  :ref:`cppad_jit_gradient.hpp-name`,         cpp
 #  `cppad_py`_,   :ref:`cppad_py_gradient.py-name`,           python
 #  `cppad`_,      :ref:`cppad_gradient.hpp-name`,             cpp
@@ -86,7 +87,7 @@ set -e -u
 #  `torch`_,      :ref:`torch_gradient.py-name`,              python
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 # {xrst_suspend}
-pkg_available=' adept adolc autodiff autograd'
+pkg_available=' adept adolc autodiff autograd codi'
 pkg_available="$pkg_available cppad_jit cppad_py cppadcg"
 pkg_available="$pkg_available jax torch sacado "
 # {xrst_resume}
@@ -105,9 +106,8 @@ pkg_available="$pkg_available jax torch sacado "
 #  Web Site,      Language
 #  `clad`_,       cpp
 #  `fastad`_,     cpp
-#  `codi`_,       cpp
 # {xrst_suspend}
-under_construction='clad codi fastad'
+under_construction='clad fastad'
 # {xrst_resume}
 #
 # prefix
@@ -226,13 +226,13 @@ do
    ;;
 
    # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
-   clad|codi|fastad)
+   clad|fastad)
    # END CPP_PACKAGE_NOT_IMPLEMENTED
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;
 
    # BEGIN CPP_PACKAGE_LIST
-   adept|adolc|autodiff|clad|cppad_jit|cppad|cppadcg|fastad|sacado)
+   adept|adolc|autodiff|codi|cppad_jit|cppad|cppadcg|sacado)
    # END CPP_PACKAGE_LIST
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;
