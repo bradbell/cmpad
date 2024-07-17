@@ -29,25 +29,25 @@ namespace cmpad { namespace sacado { // BEGIN cmpad::sacado namespace
 using Sacado::Rad::ADvar;
 
 // gradient
-template < template<class Vector> class TemplateAlgo> class gradient
+template < template<class ADvector> class TemplateAlgo> class gradient
 : public
 cmpad::gradient< TemplateAlgo< cmpad::vector< ADvar<double> > > > {
 private:
    //
-   // Vector
-   typedef cmpad::vector< ADvar<double> > Vector;
+   // ADvector
+   typedef cmpad::vector< ADvar<double> > ADvector;
    //
    // option_
    option_t                option_;
    //
    // algo_
-   TemplateAlgo<Vector>    algo_;
+   TemplateAlgo<ADvector>  algo_;
    //
    // ax_
-   Vector                  ax_;
+   ADvector                ax_;
    //
    // ay_
-   Vector                  ay_;
+   ADvector                ay_;
    //
    // g_
    cmpad::vector<double>   g_;

@@ -26,19 +26,19 @@
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
 // cmpad::adolc::gradient
-template < template<class Vector> class TemplateAlgo > class gradient
+template < template<class ADvector> class TemplateAlgo > class gradient
 : public
 cmpad::gradient< TemplateAlgo< cmpad::vector<adouble> > > {
 private:
    //
-   // Vector
-   typedef cmpad::vector<adouble> Vector;
+   // ADvector
+   typedef cmpad::vector<adouble> ADvector;
    //
    // option_
    option_t                      option_;
    //
    // algo_
-   TemplateAlgo<Vector>          algo_;
+   TemplateAlgo<ADvector>        algo_;
    //
    // tag_
    int                           tag_;
@@ -82,13 +82,13 @@ public:
       // independent variables
       int keep = 0;
       trace_on(tag_, keep);
-      Vector ax(n);
+      ADvector ax(n);
       for(size_t j = 0; j < n; ++j)
          ax[j] <<= 0.0;
       //
       // ay
       // dependent variable
-      Vector ay = algo_(ax);
+      ADvector ay = algo_(ax);
       //
       // create f : x -> y
       double f;

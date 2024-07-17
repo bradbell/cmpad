@@ -42,19 +42,19 @@ static_assert(
 );
 
 // cmpad::cppad_jit::gradient
-template < template<class Vector> class TemplateAlgo > class gradient
+template < template<class ADvector> class TemplateAlgo > class gradient
 : public
 cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
 private:
    //
-   // Vector
-   typedef cmpad::vector< CppAD::AD<double> > Vector;
+   // ADvector
+   typedef cmpad::vector< CppAD::AD<double> > ADvector;
    //
    // option_
    option_t                          option_;
    //
    // algo_
-   TemplateAlgo<Vector>  algo_;
+   TemplateAlgo<ADvector>            algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -105,7 +105,7 @@ public:
       g_.resize(n);
       //
       // ax, ay, az, aw
-      Vector ax(n), ay(1), az, aw(1), ag(n);
+      ADvector ax(n), ay(1), az, aw(1), ag(n);
       //
       // function_name
       string function_name = "grad_cppad_jit";

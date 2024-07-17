@@ -26,13 +26,13 @@
 namespace cmpad { namespace adept { // BEGIN cmpad::adept namespace
 
 // cmpad::adept::gradient
-template < template<class Vector> class TemplateAlgo> class gradient
+template < template<class ADvector> class TemplateAlgo> class gradient
 : public
 ::cmpad::gradient< TemplateAlgo< cmpad::vector<::adept::adouble> > > {
 private:
    //
-   // Vector
-   typedef typename cmpad::vector<::adept::adouble> Vector;
+   // ADvector
+   typedef typename cmpad::vector<::adept::adouble> ADvector;
    //
    // option_
    option_t                          option_;
@@ -41,7 +41,7 @@ private:
    ::adept::Stack*                   stack_;
    //
    // algo_
-   TemplateAlgo<Vector>*             algo_;
+   TemplateAlgo<ADvector>*           algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -87,7 +87,7 @@ public:
       stack_ = new ::adept::Stack;
       //
       // algo_
-      algo_ = new TemplateAlgo<Vector>();
+      algo_ = new TemplateAlgo<ADvector>();
       //
       // algo_
       algo_->setup(option);
@@ -113,7 +113,7 @@ public:
       size_t m = algo_->range();
       //
       // ax
-      Vector ax(n);
+      ADvector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = x[i];
       //
@@ -121,7 +121,7 @@ public:
       stack_->new_recording();
       //
       // ay
-      Vector ay = (*algo_)(ax);
+      ADvector ay = (*algo_)(ax);
       assert( ay.size() == m );
       //
       // g_
