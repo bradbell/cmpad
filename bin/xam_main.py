@@ -140,7 +140,7 @@ def main() :
    n_other_dict = {
       'det_by_minor' : 0 ,
       'an_ode'       : 9 ,
-      'llsq_obj'     : 500
+      'llsq_obj'     : 100
    }
    #
    # time_setup
