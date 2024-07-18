@@ -42,6 +42,9 @@ private:
    // algo_
    TemplateAlgo<ADVector>          algo_;
    //
+   // tape_
+   ADScalar::Tape&                 tape_;
+   //
    // ax_, ay_
    ADVector                        ax_;
    ADVector                        ay_;
@@ -50,6 +53,9 @@ private:
    cmpad::vector<double>           g_;
 //
 public:
+   gradient(void)
+   : tape_ ( ADScalar::getTape() )
+   { } 
    //
    // scalar_type
    typedef double scalar_type;
@@ -103,31 +109,30 @@ public:
       for(size_t j = 0; j < n; ++j)
          ax_[j] = x[j];
       //
-      // tape
-      ADScalar::Tape& tape = ADScalar::getTape();
-      tape.setActive();
+      // tape_
+      tape_.setActive();
       for(size_t j = 0; j < n; ++j)
-         tape.registerInput( ax_[j] );
+         tape_.registerInput( ax_[j] );
       //
       // az
       // dependent variable
       ay_      = algo_(ax_);
       ADScalar az = ay_[m-1];
       //
-      // tape
-      tape.registerOutput(az);
-      tape.setPassive();
+      // tape_
+      tape_.registerOutput(az);
+      tape_.setPassive();
       //
-      // tape, az, ax_
+      // tape_, az, ax_
       az.gradient()[0] = 1.0;
-      tape.evaluate();
+      tape_.evaluate();
       //
       // g_
       for(size_t j = 0; j < n; ++j)
          g_[j] = ax_[j].getGradient()[0];
       //
       // clean tape and adjoints
-      tape.reset();
+      tape_.reset();
       //
       return g_;
    }
