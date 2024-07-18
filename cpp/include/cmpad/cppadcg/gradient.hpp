@@ -29,23 +29,21 @@
 
 namespace cmpad { namespace cppadcg { // BEGIN cmpad::cppadcg namespace
 //
-// cg_double
-typedef CppAD::cg::CG<double>  cg_double;
-//
 // cmpad::cppadcg::gradient
-template < template<class ADVector> class TemplateAlgo> class gradient
+template < template<class ADVector> class Algo> class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<cg_double> > > > {
+cmpad::gradient {
 private:
    //
-   // ADVector
-   typedef cmpad::vector< CppAD::AD<cg_double> >      ADVector;
+   // Scalar, ADVector
+   typedef CppAD::cg::CG<double>                   Scalar;
+   typedef cmpad::vector< CppAD::AD<Scalar> >      ADVector;
    //
    // option_
    option_t                                           option_;
    //
    // algo_
-   TemplateAlgo<ADVector>                             algo_;
+   Algo<ADVector>                                     algo_;
    //
    // w_
    cmpad::vector<double>                              w_;
@@ -97,7 +95,7 @@ public:
       "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
       //
       // tape
-      CppAD::ADFun<cg_double>  tape;
+      CppAD::ADFun<Scalar>  tape;
       ADVector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;

@@ -60,9 +60,9 @@ Source Code
 namespace cmpad { namespace cppad { // BEGIN cmpad::cppad namespace
 
 // cmpad::cppad::gradient
-template < template<class ADVector> class TemplateAlgo> class gradient
+template < template<class ADVector> class Algo> class gradient
 : public
-::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
+::cmpad::gradient {
 public:
    //
    // scalar_type
@@ -72,14 +72,14 @@ public:
    typedef ::cmpad::vector<scalar_type> vector_type;
    //
 private:
-   // ad_vector_type
-   typedef typename ::cmpad::vector< CppAD::AD<scalar_type> >  ad_vector_type;
+   // ADVector
+   typedef typename ::cmpad::vector< CppAD::AD<scalar_type> >  ADVector;
    //
    // option_
    option_t                      option_;
    //
    // algo_
-   TemplateAlgo<ad_vector_type>  algo_;
+   Algo<ADVector>                algo_;
    //
    // w_
    vector_type                   w_;
@@ -120,11 +120,11 @@ public:
       "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
       //
       // tape_
-      ad_vector_type ax(n);
+      ADVector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      ad_vector_type ay(1), az;
+      ADVector ay(1), az;
       az    = algo_(ax);
       ay[0] = az[m-1];
       tape_.Dependent(ax, ay);
@@ -159,10 +159,10 @@ public:
 // BEGIN cmpad::cppad::special namespace
 namespace cmpad { namespace cppad { namespace special {
 
-// cmpad::cppad::gradient
-template < template<class ADVector> class TemplateAlgo> class gradient
+// cmpad::cppad::special::gradient
+template < template<class ADVector> class Algo> class gradient
 : public
-::cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<valvector> > > > {
+::cmpad::gradient {
 public:
    //
    // scalar_type
@@ -172,14 +172,14 @@ public:
    typedef ::cmpad::vector<scalar_type> vector_type;
    //
 private:
-   // ad_vector_type
-   typedef typename ::cmpad::vector< CppAD::AD<scalar_type> >  ad_vector_type;
+   // ADVector
+   typedef typename ::cmpad::vector< CppAD::AD<scalar_type> >  ADVector;
    //
    // option_
    option_t                      option_;
    //
    // algo_
-   TemplateAlgo<ad_vector_type>  algo_;
+   Algo<ADVector>                algo_;
    //
    // x_
    vector_type                   x_;
@@ -226,11 +226,11 @@ public:
       "no_conditional_skip no_compare_op no_print_for_op no_cumulative_sum_op";
       //
       // tape_
-      ad_vector_type ax(n);
+      ADVector ax(n);
       for(size_t i = 0; i < n; ++i)
          ax[i] = 0.;
       CppAD::Independent(ax);
-      ad_vector_type ay(1), az;
+      ADVector ay(1), az;
       az    = algo_(ax);
       ay[0] = az[m-1];
       tape_.Dependent(ax, ay);

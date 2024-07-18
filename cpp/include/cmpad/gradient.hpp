@@ -15,10 +15,13 @@ C++ Abstract Class For Calculating Gradient
 
 Syntax
 ******
-| |tab| ``# include <cmpad/gradient.hpp``
-| |tab| *Algo* *algo*
-| |tab| ``cmpad::gradient`` < *Algo* > *grad*
-| |tab| *g* = *grad* ( *x* )
+| |tab| ``# include <cmpad/gradient.hpp>``
+| |tab| `` template< template<class ADVector> class Algo> class`` *Grad*
+| |tab| |tab| ``: public cmpad::gradient`` {
+| |tab| |tab| *...*
+| |tab| };
+
+
 
 Source Code
 ***********
@@ -27,29 +30,26 @@ Source Code
    // END C++
 }
 
-
 Algo
 ****
-The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class.
-The *algo* object is initialized using its
+The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class
+(we use *algo* for a corresponding object).
+An *Algo* object is initialized using its
 :ref:`cpp_fun_obj@setup` member function.
 The gradient is for the last component of the range space of the algorithm.
-Hence, *algo*.range() can be greater than one.
+Hence, *algo*\ ``.range()`` can be greater than one.
 
-grad
+Grad
 ****
 This is a :ref:`cpp_fun_obj-name` interface to the
-gradient of the function corresponding to *algo* .
-It calculates the gradient of the last component of the vector
+gradient of the function corresponding to *Algo*
+(we use *grad* for a corresponding object).
+The object *grad* calculates the gradient of the last component of the vector
 returned by *algo*.
-It is initialized using its ``setup`` member function
-(which in turn will initialize *algo* with its ``setup`` syntax).
-The ``setup`` should do calculations that do not depend on *x*
+The object *grad* is initialized using its ``setup`` member function
+(which in turn initializes *algo* using its ``setup`` member function).
+The ``setup`` functions should do calculations that do not depend on *x*
 (to make the evaluation of the gradient faster).
-We use *Grad* to denote the type of *grad* ; i.e.,
-
-| |tab| ``typedef cmpad::gradient`` < *Algo* > *Grad*
-
 
 vector_type
 ***********
@@ -57,7 +57,8 @@ The type of the vectors *x* and *g* is
 
 | |tab| ``typedef cmpad::vector<double>`` *Grad* :: ``vector_type``
 
-(This is different from *Algo* :: ``vector_type`` .)
+This is different from *Algo* :: ``vector_type`` which usually is
+an AD vector type for a particular package..
 
 scalar_type
 ***********
@@ -65,7 +66,8 @@ The type of the elements of *x* and *g* is
 
 | |tab| ``typedef double`` *Grad* :: ``scalar_type``
 
-(This is different from *Algo* :: ``scalar_type`` .)
+This is different from *Algo* :: ``scalar_type`` which usually s
+an AD scalar type for a particular package.
 
 
 domain
@@ -118,8 +120,7 @@ Example and Derived Classes
 
 namespace cmpad {
    // gradient
-   template <class Algo> class gradient
-      : public fun_obj< cmpad::vector<double> > {
+   class gradient : public fun_obj< cmpad::vector<double> > {
    public:
       // scalar_type
       typedef double scalar_type;

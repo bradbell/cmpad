@@ -26,9 +26,9 @@
 namespace cmpad { namespace adept { // BEGIN cmpad::adept namespace
 
 // cmpad::adept::gradient
-template < template<class ADVector> class TemplateAlgo> class gradient
+template < template<class ADVector> class Algo> class gradient
 : public
-::cmpad::gradient< TemplateAlgo< cmpad::vector<::adept::adouble> > > {
+::cmpad::gradient {
 private:
    //
    // ADVector
@@ -41,7 +41,7 @@ private:
    ::adept::Stack*                   stack_;
    //
    // algo_
-   TemplateAlgo<ADVector>*           algo_;
+   Algo<ADVector>*                   algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -87,7 +87,7 @@ public:
       stack_ = new ::adept::Stack;
       //
       // algo_
-      algo_ = new TemplateAlgo<ADVector>();
+      algo_ = new Algo<ADVector>();
       //
       // algo_
       algo_->setup(option);

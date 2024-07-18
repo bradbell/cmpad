@@ -20,7 +20,7 @@ Calculate Gradient Using @Package@
 Syntax
 ******
 | |tab| ``# include <cmpad/@package@/gradient.hpp>``
-| |tab| ``cmpad::@package@::gradient`` < *TemplateAlgo* > *grad*
+| |tab| ``cmpad::@package@::gradient`` < *Algo* > *grad*
 | |tab| *g* = *grad* ( *x* )
 
 
@@ -28,21 +28,21 @@ Purpose
 *******
 This implements the :ref:`cpp_gradient-name` interface using @Package@.
 
-TemplateAlgo
-************
-The class TemplateAlgo<ADVector> must be a derived from the
+Algo
+****
+The class *Algo* < *ADVector* > must be a derived from the
 :ref:`fun_obj\<ADVector\> <cpp_fun_obj-name>` class.
 
 ADVector
 ********
-This is a :ref:`cpp_fun_obj@Vector` type.
+This is one or more :ref:`cpp_fun_obj@Vector` types chosen by the package.
 The type *ADVector*\ ``::value_type`` is the scalar type used
-to record the operations in the algorithm.
+to record the operations in the algorithm for this package.
 
 scalar_type
 ***********
 The type
-cmpad::@package@::gradient<TemplateAlgo>::scalar_type is ``double`` ;
+cmpad::@package@::gradient< *Algo* >::scalar_type is ``double`` ;
 see :ref:`cpp_gradient@scalar_type` .
 
 {xrst_suspend @not_cppad_jit@}

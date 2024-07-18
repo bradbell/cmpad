@@ -25,22 +25,22 @@
 
 namespace cmpad { namespace codi { // BEGIN cmpad::codi namespace
 
-typedef ::codi::RealReverseVec<1> ADScalar;
 
 // cmpad::codi::gradient
-template < template<class ADVector> class TemplateAlgo > class gradient
+template < template<class ADVector> class Algo > class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector<ADScalar> > > {
+cmpad::gradient {
 private:
    //
-   // ADVector
-   typedef cmpad::vector<ADScalar> ADVector;
+   // ADScalar, ADVector
+   typedef ::codi::RealReverseVec<1> ADScalar;
+   typedef cmpad::vector<ADScalar>   ADVector;
    //
    // option_
    option_t                        option_;
    //
    // algo_
-   TemplateAlgo<ADVector>          algo_;
+   Algo<ADVector>                  algo_;
    //
    // tape_
    ADScalar::Tape&                 tape_;

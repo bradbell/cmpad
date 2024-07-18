@@ -42,19 +42,20 @@ static_assert(
 );
 
 // cmpad::cppad_jit::gradient
-template < template<class ADVector> class TemplateAlgo > class gradient
+template < template<class ADVector> class Algo > class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector< CppAD::AD<double> > > > {
+cmpad::gradient {
 private:
    //
-   // ADVector
-   typedef cmpad::vector< CppAD::AD<double> > ADVector;
+   // ADScalar, ADVector
+   typedef CppAD::AD<double>       ADScalar;
+   typedef cmpad::vector<ADScalar> ADVector;
    //
    // option_
    option_t                          option_;
    //
    // algo_
-   TemplateAlgo<ADVector>            algo_;
+   Algo<ADVector>                    algo_;
    //
    // g_
    cmpad::vector<double>             g_;
@@ -126,12 +127,12 @@ public:
          tapef.optimize(optimize_options);
       //
       // atapef
-      CppAD::ADFun< CppAD::AD<double> , double > atapef;
+      CppAD::ADFun< ADScalar, double > atapef;
       atapef = tapef.base2ad();
       //
       // ax, aw
       CppAD::Independent(ax);
-      aw[0] = CppAD::AD<double>( 1.0 );
+      aw[0] = ADScalar( 1.0 );
       //
       // tapeg
       atapef.Forward(0, ax);

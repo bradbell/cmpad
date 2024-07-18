@@ -26,9 +26,9 @@
 namespace cmpad { namespace adolc { // BEGIN cmpad::adolc namespace
 
 // cmpad::adolc::gradient
-template < template<class ADVector> class TemplateAlgo > class gradient
+template < template<class ADVector> class Algo > class gradient
 : public
-cmpad::gradient< TemplateAlgo< cmpad::vector<adouble> > > {
+cmpad::gradient {
 private:
    //
    // ADVector
@@ -38,7 +38,7 @@ private:
    option_t                      option_;
    //
    // algo_
-   TemplateAlgo<ADVector>        algo_;
+   Algo<ADVector>                algo_;
    //
    // tag_
    int                           tag_;
