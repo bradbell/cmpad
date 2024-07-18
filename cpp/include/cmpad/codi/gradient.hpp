@@ -45,9 +45,10 @@ private:
    // tape_
    ADScalar::Tape&                 tape_;
    //
-   // ax_, ay_
+   // ax_, ay_, az_
    ADVector                        ax_;
    ADVector                        ay_;
+   ADScalar                        az_;
    //
    // g_
    cmpad::vector<double>           g_;
@@ -114,17 +115,17 @@ public:
       for(size_t j = 0; j < n; ++j)
          tape_.registerInput( ax_[j] );
       //
-      // az
+      // az_
       // dependent variable
-      ay_      = algo_(ax_);
-      ADScalar az = ay_[m-1];
+      ay_ = algo_(ax_);
+      az_ = ay_[m-1];
       //
       // tape_
-      tape_.registerOutput(az);
+      tape_.registerOutput(az_);
       tape_.setPassive();
       //
-      // tape_, az, ax_
-      az.gradient()[0] = 1.0;
+      // tape_, az_, ax_
+      az_.gradient()[0] = 1.0;
       tape_.evaluate();
       //
       // g_
