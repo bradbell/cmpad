@@ -38,7 +38,7 @@ cpp_run_cmpad = 'cpp/build/src/run_cmpad'
 # The values *n_arg* and *n_other* determine the number of floating
 # point operations and are small for these cases so that the
 # program runs quickly:
-# 
+#
 #
 # ..  csv-table::
 #     :widths: auto

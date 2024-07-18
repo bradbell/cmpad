@@ -55,7 +55,7 @@ private:
 public:
    gradient(void)
    : tape_ ( ADScalar::getTape() )
-   { } 
+   { }
    //
    // scalar_type
    typedef double scalar_type;
