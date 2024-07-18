@@ -34,7 +34,11 @@ cpp_run_cmpad = 'cpp/build/src/run_cmpad'
 # and a completely new version is created.
 # The meaning of the columns are described in :ref:`csv_column-name` .
 # Below is a display of an
-# :download:`example xam_man.csv <{xrst_dir xam_main.csv}>` :
+# :download:`example xam_man.csv <{xrst_dir xam_main.csv}>` .
+# The values *n_arg* and *n_other* determine the number of floating
+# point operations and are small for these cases so that the
+# program runs quickly:
+# 
 #
 # ..  csv-table::
 #     :widths: auto

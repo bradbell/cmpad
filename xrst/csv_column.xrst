@@ -39,8 +39,8 @@ The computation is repeated enough times so that this minimum time is reached.
 package
 *******
 This string is the name of the AD package that *rate* corresponds to.
-If *package* is ``none`` , this is not a derivative calculation
-but rather an evaluations of the function using the algorithm.
+If *package* is ``none`` , this is not a derivative calculation but rather 
+an evaluations of the function using the algorithm with type ``double`` .  
 Otherwise *package* is one of the following:
 {xrst_literal ,
    bin/get_package.sh
@@ -59,10 +59,11 @@ The possible values (so far) are
 n_arg
 *****
 This is the value of then *n_arg* integer and is always the dimension of
-the argument space for the function and algorithm; e.g.,
-:ref:`det_by_minor@option@n_arg` for the det_by_minor algorithm.
-If *algorithm* is ``det_by_minor``, *n_arg* must be a square
-and its square root is the row and column dimension of the matrix.
+the argument space for the function and algorithm; see the heading n_arg in
+:ref:`det_by_minor <det_by_minor@option@n_arg>` , 
+:ref:`an_ode <an_ode@option@n_arg>` , 
+:ref:`llsq_obj <llsq_obj@option@n_arg>`  .
+
 
 
 n_other
@@ -76,6 +77,11 @@ the meaning of this integer is algorithm specific:
    det_by_minor, must be zero and is not used
    an_ode, number of Runge-Kutta steps used to approximate ODE
    llsq_obj, is the number of data points in the least squares fit.
+
+For more information see the heading n_other in
+:ref:`det_by_minor <det_by_minor@option@n_other>` , 
+:ref:`an_ode <an_ode@option@n_other>` , 
+:ref:`llsq_obj <llsq_obj@option@n_other>`  .
 
 time_setup
 **********

@@ -46,7 +46,7 @@ The only option used by this algorithm is ``n_arg`` ; see below:
 n_arg
 =====
 This is the number of arguments to the algorithm
-which is the number of elements in the matrix; i.e., math:`\ell^2` .
+which is the number of elements in the matrix; i.e., :math:`\ell^2` .
 There is an assert checking that *n_arg* > 0.
 
 n_other
@@ -135,7 +135,7 @@ There is an assert checking that *n_arg* > 0.
 n_other
 =======
 This is the number of :ref:`Runge-Kutta steps<rk4_step-name>`
-used to approximate the solution of the ODE :math:`y(2)` .
+used to approximate the solution of the ODE :math:`y(t)` .
 There is an assert checking that *n_other* > 0.
 
 {xrst_toc_hidden
