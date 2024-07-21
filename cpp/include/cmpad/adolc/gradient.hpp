@@ -13,6 +13,7 @@
    @#######@       , ######
    @package@       , adolc
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 
 {xrst_end adolc_gradient.hpp}

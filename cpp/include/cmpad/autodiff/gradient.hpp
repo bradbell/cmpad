@@ -13,6 +13,7 @@
    @#######@       , ########
    @package@       , autodiff
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 
 {xrst_end autodiff_gradient.hpp}

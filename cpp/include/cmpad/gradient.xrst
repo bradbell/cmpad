@@ -56,6 +56,15 @@ were *ext* is the file extension for C source files and dll object files.
 In particular this routine is not thread safe.
 {xrst_resume}
 
+{xrst_suspend @not_codi@}
+time_setup
+**********
+If :ref:`option_t@time_setup` is true (false)
+the ``gradient_retape`` ( ``gradient_onetape`` ) version of
+this routine is used because it is faster when the setup time is (is not)
+included.
+{xrst_resume}
+
 Example
 *******
 The file :ref:`xam_gradient_@package@.cpp-name`

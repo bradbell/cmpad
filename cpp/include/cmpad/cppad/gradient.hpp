@@ -21,6 +21,7 @@ Gradients Using CppAD
    @#######@       , #####
    @package@       , cppad
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 {xrst_end cppad_gradient.hpp}
 ------------------------------------------------------------------------------

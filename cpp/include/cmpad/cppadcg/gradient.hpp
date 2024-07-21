@@ -16,6 +16,7 @@
    @#######@       , #############
    @package@       , cppadcg
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 
 {xrst_end cppadcg_gradient.hpp}

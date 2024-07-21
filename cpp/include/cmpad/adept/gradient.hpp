@@ -13,6 +13,7 @@
    @#######@       , #####
    @package@       , adept
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 
 {xrst_end adept_gradient.hpp}

@@ -13,6 +13,7 @@
    @#######@       , ######
    @package@       , sacado
    @not_cppad_jit@ , true
+   @not_codi@      , true
 }
 
 
