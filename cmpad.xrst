@@ -33,11 +33,14 @@ C++
 .. csv-table::
    :widths: auto
 
+   :ref:`adept_gradient.hpp-title`
    :ref:`adolc_gradient.hpp-title`
-   :ref:`cppad_gradient.hpp-title`
-   :ref:`sacado_gradient.hpp-title`
    :ref:`autodiff_gradient.hpp-title`
+   :ref:`codi_gradient.hpp-title`
    :ref:`cppad_jit_gradient.hpp-title`
+   :ref:`cppad_gradient.hpp-title`
+   :ref:`cppadcg_gradient.hpp-title`
+   :ref:`sacado_gradient.hpp-title`
 
 Python
 ======
