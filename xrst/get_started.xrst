@@ -116,8 +116,11 @@ This argument is algorithm specific; see the heading *n_other* for
 time_setup
 ==========
 If this flag is present on the command line, the setup time is included.
-This is used to test the speed for cases where it is not possible
-to tape one set of operations and use that for different parameter values.
+This is used to test what the speed comparisons would be for
+algorithms where it is not possible to tape the floating point operations 
+and use that tape for different argument values.
+For example, one can tape the ``det_by_minor`` operations for one size
+of matrix and use that for different values of the matrix elements.
 
 
 Run Seed Test
