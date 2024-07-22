@@ -19,11 +19,15 @@ Git Repository
 
 Version of this Documentation
 *****************************
-cmpad-2024.7.21
+cmpad-2024.7.22
 
 Example Speed Comparison
 ************************
-see the c++ :ref:`xam_main.py@xam_main.csv` .
+see :ref:`xam_main.py@xam_main.csv` .
+
+Getting Started
+***************
+see :ref:`get_started-name` .
 
 Gradient Source Code Comparison
 *******************************
@@ -57,6 +61,7 @@ Documentation
 *************
 
 {xrst_toc_table
+   xrst/get_started.xrst
    bin/get_package.sh
    xrst/run_cmpad.xrst
    xrst/algorithm.xrst

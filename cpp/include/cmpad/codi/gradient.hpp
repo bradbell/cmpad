@@ -9,12 +9,14 @@
 {xrst_spell
    retape
    onetape
+   Co
+   Di
 }
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@       , CODI
-   @#######@       , ####
+   @Package@       , CoDiPack
+   @#######@       , ########
    @package@       , codi
    @not_cppad_jit@ , true
    @not_codi@      , false
@@ -281,9 +283,6 @@ private:
    //
    // time_setup_
    bool                   time_setup_;
-   //
-   // g_
-   cmpad::vector<double>  g_;
 //
 public:
    //

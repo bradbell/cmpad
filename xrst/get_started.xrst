@@ -1,0 +1,140 @@
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
+SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
+SPDX-FileContributor: 2023-24 Bradley M. Bell
+
+{xrst_begin get_started}
+{xrst_spell
+   cd
+   cmake
+   src
+   py
+   llsq
+   obj
+   csv
+}
+
+Get Started Using cmpad
+#######################
+The instructions below are for execution a bash shell.
+
+Clone Repository
+****************
+Clone the cmpad git repository and change into its top source directory
+with the commands:
+
+| |tab|  ``git clone https://github.com/bradbell/cmpad.git cmpad.git``
+| |tab|  ``cd cmpad.git``
+
+Pick An AD Package
+******************
+Pick one AD package that has been implemented from the
+:ref:`get_package@AD Package List` ; e.g. ``adolc`` .
+We use *package* to denote this AD package below.
+
+Install Package
+***************
+Create a local install of *package* in the ``build/release`` subdirectory
+with the following commands:
+
+| |tab| ``bin/get_package.sh release`` *package*
+
+
+Build C++ Executable
+********************
+If *package* is a C++ package,
+execute the following command:
+
+| |tab| ``cpp/bin/run_cmake.sh``
+
+You should see the following in the cmake output:
+
+| |tab| ``cmpad_has_``\ *package* = 1
+
+The value will be zero for the other
+C++ packages, unless you installed some of them.
+Now execute the following commands:
+
+| |tab| cd ``cpp/build``
+| |tab| ``make``
+| |tab| cd ``../..``
+
+
+Setup Python Environment
+************************
+If *package* is a Python package,
+execute the following commands:
+
+| |tab| ``bash``
+| |tab| ``build_type=release``
+| |tab| ``source bin/environment.sh``
+
+This sets up a Python virtual environment that can be deactivated using the
+``exit`` command
+(which exits the shell started with the ``bash`` command above).
+
+Choose Test Parameters
+**********************
+Each of the parameters below has a default value that is used when
+the parameter is not specified.
+
+program
+=======
+If this is a C++ package, *program* is
+``cpp/build/src/run_cmpad`` .
+If it is a Python package, *program* is
+``python/bin/run_cmpad.py`` .
+
+file_name
+=========
+Choose a *file_name* where the output of the speed tests will be written
+(default is ``cmpad.csv`` ).
+
+algorithm
+=========
+Choose and :ref:`algorithm-name` (default is ``det_by_minor`` ).
+
+min_time
+========
+Choose a minimum time, in seconds, over which to average
+the computation rate (default is ``0.5`` ).
+
+n_arg
+=====
+Since of the domain space for this use of the algorithm.
+Note that for ``det_by_minor`` this must be a square and
+is the number of elements in the matrix (default is ``9`` ).
+
+n_other
+=======
+This argument is algorithm specific; see the heading *n_other* for
+:ref:`det_by_minor <det_by_minor@option@n_other>` ,
+:ref:`an_ode <an_ode@option@n_other>` ,
+:ref:`llsq_obj <llsq_obj@option@n_other>`
+(default is ``0`` ).
+
+time_setup
+==========
+If this flag is present on the command line, the setup time is included.
+This is used to test the speed for cases where it is not possible
+to tape one set of operations and use that for different parameter values.
+
+
+Run Seed Test
+*************
+Execute the following command.
+
+| |tab| *program* \
+| |tab| |tab| -p *package* \
+| |tab| |tab| -f *file_name* \
+| |tab| |tab| -a *algorithm* \
+| |tab| |tab| -m *min_time* \
+| |tab| |tab| -n *n_arg* \
+| |tab| |tab| -o *other* \
+| |tab| |tab| --time_setup
+
+All of the lines above, except for *program* , are optional.
+If a line is not present, the corresponding default value is used.
+Running this program will add one line to *file_name* with
+the test parameters and results.
+
+{xrst_end get_started}

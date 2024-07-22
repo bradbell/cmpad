@@ -36,7 +36,7 @@ import platform
 import numpy
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.7.21'
+cmpad_version = 'cmpad-2024.7.22'
 # ----------------------------------------------------------------------------
 #
 # program
@@ -138,27 +138,27 @@ def main() :
    # --algorithm
    parser.add_argument('-a', '--algorithm',
       metavar='algorithm', default='det_by_minor',
-      help = 'is one of { det_by_minor}'
+      help = 'is det_by_minor, an_ode, or llsq_obj [det_by_minor]'
    )
    # --file_name
    parser.add_argument('-f', '--file_name',
       metavar='file_name', default='cmpad.csv',
-      help = 'csv file that the line is added to'
+      help = 'csv file that line is added to [cmpad.csv]'
    )
    # --min_time
    parser.add_argument('-m', '--min_time',
       metavar='min_time', default='0.5',
-      help = 'minimum time in seconds to average computation rate'
+      help = 'minimum time in seconds to average computation rate [0.5]'
    )
    # --n_arg
    parser.add_argument('-n', '--n_arg',
       metavar='n_arg', default='9',
-      help = 'none or an AD package name'
+      help = 'size of the algorithm domain space [9]'
    )
    # --n_other
    parser.add_argument('-o', '--n_other',
       metavar='n_other', default='0',
-      help = 'The meaning of this integer is algorithm specific.'
+      help = 'The meaning of this integer is algorithm specific [0].'
    )
    # --package
    parser.add_argument('-p', '--package',

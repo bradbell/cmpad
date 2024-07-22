@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 // SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-// SPDX-FileContributor: 2023 Bradley M. Bell
+// SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
 {xrst_begin parse_args}
@@ -172,15 +172,15 @@ arguments_t parse_args(int argc, char* argv[])
    {  const char* usage =
          "cmpad: Compare C++ AD packages\n\n"
          "-a: --algorithm:  string: "
-            "is one of { det_by_minor, an_ode} [det_by_minor]\n"
+            "is det_by_minor, an_ode or llsq_obj [det_by_minor]\n"
          "-f: --file_name:  string: "
             "csv file that line is added to [cmpad.csv]\n"
          "-m: --min_time:   double: "
             "minimum time in seconds to average computation rate [0.5]\n"
          "-n: --n_arg:      size_t: "
-            "size of argument to algorithm [9]\n"
+            "size of the algorithm domain space [9]\n"
          "-o: --n_other:  size_t: "
-            "an number with meaning that is algorithm specific [0]\n"
+            "The meaning opf this integer is algorithm specific [0]\n"
          "-p: --package:    string: "
             "none or an AD packae name [none]\n"
          "-t: --time_setup:       : "

@@ -22,8 +22,8 @@ set -e -u
 #
 # Syntax
 # ******
-# ``cpp/bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
-# ``cpp/bin/get_package.sh`` *build_type* ``all``
+# | ``cpp/bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# | ``cpp/bin/get_package.sh`` *build_type* ``all``
 #
 # build_type
 # ==========
@@ -44,8 +44,8 @@ set -e -u
 # This list must have at least one package ; i.e.,
 # *package_2* , *package_3* , ... are optional.
 #
-# AD Packages
-# ***********
+# AD Package List
+# ***************
 # This is the set of AD packages (so far) that can be installed:
 # If one of these packages is not install, it will not be included in
 # the cmpad testing.
@@ -72,7 +72,7 @@ set -e -u
 #  :widths: auto
 #  :header-rows: 1
 #
-#  Web Site,      Implemented,                                Language
+#  AD Package,    Implementation,                             Language
 #  `adept`_,      :ref:`adept_gradient.hpp-name`,             cpp
 #  `adolc`_,      :ref:`adolc_gradient.hpp-name`,             cpp
 #  `autodiff`_,   :ref:`autodiff_gradient.hpp-name`,          cpp
@@ -92,7 +92,7 @@ pkg_available="$pkg_available cppad_jit cppad_py cppadcg"
 pkg_available="$pkg_available jax torch sacado "
 # {xrst_resume}
 #
-# #. Implemented is the list of cmpad derivatives implemented so far
+# #. Implementation is the list of cmpad derivatives implementations so far
 # #. Installing autodiff or fastad also installs eigen.
 # #. Installing cppad or cppad_jit has the same effect.
 # #. Installing cppadcg also installs cppad.
@@ -103,7 +103,7 @@ pkg_available="$pkg_available jax torch sacado "
 #  :widths: auto
 #  :header-rows: 1
 #
-#  Web Site,      Language
+#  AD Package,    Language
 #  `clad`_,       cpp
 #  `fastad`_,     cpp
 # {xrst_suspend}
