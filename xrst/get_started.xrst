@@ -74,8 +74,9 @@ This sets up a Python virtual environment that can be deactivated using the
 
 Choose Test Parameters
 **********************
-Each of the parameters below has a default value that is used when
-the parameter is not specified.
+Each of the parameters below,
+except for *program*, 
+has a default value that is used when the parameter is not specified.
 
 program
 =======
@@ -123,13 +124,13 @@ Run Seed Test
 *************
 Execute the following command.
 
-| |tab| *program* \
-| |tab| |tab| -p *package* \
-| |tab| |tab| -f *file_name* \
-| |tab| |tab| -a *algorithm* \
-| |tab| |tab| -m *min_time* \
-| |tab| |tab| -n *n_arg* \
-| |tab| |tab| -o *other* \
+| |tab| *program* \\
+| |tab| |tab| -p *package* \\
+| |tab| |tab| -f *file_name* \\
+| |tab| |tab| -a *algorithm* \\
+| |tab| |tab| -m *min_time* \\
+| |tab| |tab| -n *n_arg* \\
+| |tab| |tab| -o *other* \\
 | |tab| |tab| --time_setup
 
 All of the lines above, except for *program* , are optional.
