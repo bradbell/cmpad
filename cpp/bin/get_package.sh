@@ -82,6 +82,11 @@ then
 fi
 # ---------------------------------------------------------------------------
 #
+if [ "$package" == adolc ]
+then
+   # adolc can use colpack
+   $program $build_type colpack
+fi
 if [ "$package" == autodiff ] || [ "$package" == 'fastad' ]
 then
    # autodiff requires eigen
@@ -114,7 +119,10 @@ case $package in
    web_page='https://github.com/coin-or/ADOL-C.git'
    version='master'
    configure="--prefix=$prefix --with-colpack=$prefix"
+   configure="$configure --enable-sparse"
    configure="$configure --enable-static --enable-shared --enable-atrig-erf"
+   # https://github.com/coin-or/ADOL-C/issues/25
+   # configure="$configure --enable-python"
    configure="cd ..; autoreconf -fi; cd build ; ../configure $configure"
    ;;
 
@@ -143,6 +151,13 @@ case $package in
    version='master'
    configure='cmake -S .. -B .'
    configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
+   colpack)
+   web_page='https://github.com/CSCsw/ColPack.git'
+   version='v1.0.10'
+   configure="--prefix=$prefix --enable-static --enable-shared"
+   configure="autoreconf -fi; ./configure $configure"
    ;;
 
    cppad)
@@ -201,7 +216,7 @@ then
    then
       configure="$configure --enable-debug"
    fi
-elif [ "$package" == 'adept' ]
+elif [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
 then
    if [ "$build_type" == 'debug' ]
    then
@@ -250,7 +265,7 @@ if [ -e "$configured_flag" ]
 then
    echo "Skipping configuration because following file exists:"
    echo $configured_flag
-   if [ "$package" == 'adept' ]
+   if [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
    then
       echo_eval cd external/$package_top_srcdir
    else
@@ -384,7 +399,7 @@ then
 fi
 # -----------------------------------------------------------------------------
 # build
-if [ "$package" != 'adept' ]
+if [ "$package" != 'adept' ] && [ "$package" != 'colpack' ]
 then
    if [ ! -d build ]
    then

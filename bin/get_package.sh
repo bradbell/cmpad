@@ -8,6 +8,7 @@ set -e -u
 # -----------------------------------------------------------------------------
 # {xrst_begin get_package}
 # {xrst_spell
+#     colpack
 #     eigen
 #     rm
 #     srcdir
@@ -93,6 +94,7 @@ pkg_available="$pkg_available jax torch sacado "
 # {xrst_resume}
 #
 # #. Implementation is the list of cmpad derivatives implementations so far
+# #. Installing adolc also installs colpack.
 # #. Installing autodiff or fastad also installs eigen.
 # #. Installing cppad or cppad_jit has the same effect.
 # #. Installing cppadcg also installs cppad.
@@ -220,7 +222,7 @@ do
    case $package in
 
    # BEGIN CPP_PACKAGE_SUPPORT
-   eigen)
+   eigen|colpack)
    # END CPP_PACKAGE_SUPPORT
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;

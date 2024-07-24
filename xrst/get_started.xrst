@@ -75,7 +75,7 @@ This sets up a Python virtual environment that can be deactivated using the
 Choose Test Parameters
 **********************
 Each of the parameters below,
-except for *program*, 
+except for *program*,
 has a default value that is used when the parameter is not specified.
 
 program
@@ -101,8 +101,8 @@ the computation rate (default is ``0.5`` ).
 
 n_arg
 =====
-Since of the domain space for this use of the algorithm.
-Note that for ``det_by_minor`` this must be a square and
+Size of the domain space for this use of the algorithm.
+Note that for ``det_by_minor`` *n_arg* must be a square and
 is the number of elements in the matrix (default is ``9`` ).
 
 n_other
@@ -117,7 +117,7 @@ time_setup
 ==========
 If this flag is present on the command line, the setup time is included.
 This is used to test what the speed comparisons would be for
-algorithms where it is not possible to tape the floating point operations 
+algorithms where it is not possible to tape the floating point operations
 and use that tape for different argument values.
 For example, one can tape the ``det_by_minor`` operations for one size
 of matrix and use that for different values of the matrix elements.
