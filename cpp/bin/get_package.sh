@@ -202,6 +202,13 @@ case $package in
    # -D Trilinos_INSTALL_LIB_DIR=$prefix/$libdir
    ;;
 
+   xad)
+   web_page='https://github.com/auto-differentiation/xad.git'
+   version='main'
+   configure='cmake -S .. -B .'
+   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   ;;
+
    *)
    echo "$program: build_type package"
    echo "package = '$package' is not available"
@@ -411,7 +418,13 @@ fi
 # CMakeCache.txt
 if [ -e CMakeCache.txt ]
 then
-   rm CMakeCache.txt
+   echo_eval rm CMakeCache.txt
+fi
+#
+# CMakeFiles
+if [ -e CMakeFiles.txt ]
+then
+   echo_eval rm -r CMakeFiles
 fi
 #
 # configure

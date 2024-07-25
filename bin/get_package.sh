@@ -35,7 +35,7 @@ set -e -u
 # all
 # ===
 # If *package_1* is ``all`` , all of the possible packages,
-# except fastad and clad (those under construction) are installed.
+# except clad, fastad and xad (those under construction) are installed.
 # In this case, *package_2* .. must not be present on the command line.
 #
 # package_j
@@ -66,6 +66,7 @@ set -e -u
 # .. _jax:       https://github.com/google/jax
 # .. _sacado:    https://trilinos.github.io/sacado.html
 # .. _torch:     https://github.com/pytorch/pytorch
+# .. _xad:       https://github.com/auto-differentiation/xad
 # {xrst_comment END_SORT_THIS_LINE_MINUS_1}
 #
 # {xrst_comment BEGIN_SORT_THIS_LINE_PLUS_6}
@@ -108,8 +109,9 @@ pkg_available="$pkg_available jax torch sacado "
 #  AD Package,    Language
 #  `clad`_,       cpp
 #  `fastad`_,     cpp
+#  `xad`_,        cpp
 # {xrst_suspend}
-under_construction='clad fastad'
+under_construction='clad fastad xad'
 # {xrst_resume}
 #
 # prefix
@@ -228,7 +230,7 @@ do
    ;;
 
    # BEGIN CPP_PACKAGE_NOT_IMPLEMENTED
-   clad|fastad)
+   clad|fastad|xad)
    # END CPP_PACKAGE_NOT_IMPLEMENTED
    echo_eval cpp/bin/get_package.sh $build_type $package
    ;;
