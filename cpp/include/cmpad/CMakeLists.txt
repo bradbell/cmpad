@@ -13,13 +13,19 @@ FOREACH(package adept adolc clad cppad cppadcg sacado)
    ENDIF( )
 ENDFOREACH( )
 #
+# cmpad_has_xad
+IF( EXISTS "${cmpad_install_prefix}/include/XAD/XAD.hpp" )
+   SET( cmpad_has_xad 1 )
+ELSE( )
+   SET( cmpad_has_xad 0 )
+ENDIF( )
+#
 # cmpad_has_codi
-IF( EXISTS "${cmpad_install_prefix}/include/codi.h" )
+IF( EXISTS "${cmpad_install_prefix}/include/codi.hpp" )
    SET( cmpad_has_codi 1 )
 ELSE( )
    SET( cmpad_has_codi 0 )
 ENDIF( )
-   SET( cmpad_has_codi 1 )
 #
 # cmpad_has_autodiff
 IF( EXISTS
@@ -80,8 +86,9 @@ CONFIGURE_FILE(
 )
 # ---------------------------------------------------------------------------
 # cmpad_has_${package} PARENT_SCOPE
-#
-FOREACH(package adept adolc autodiff clad codi cppad cppad_jit cppadcg sacado)
+FOREACH(package
+   adept adolc autodiff clad codi cppad cppad_jit cppadcg sacado xad
+)
    print_variable( cmpad_has_${package} )
    SET(cmpad_has_${package} ${cmpad_has_${package}} PARENT_SCOPE)
 ENDFOREACH( )

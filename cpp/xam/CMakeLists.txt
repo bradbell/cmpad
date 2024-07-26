@@ -8,7 +8,6 @@
 # BEGIN_SORT_THIS_LINE_PLUS_2
 SET(example_list
    an_ode.cpp
-   cppad/llsq_obj.cpp
    csv_read.cpp
    csv_speed.cpp
    csv_write.cpp
@@ -24,8 +23,14 @@ SET(example_list
 # END_SORT_THIS_LINE_MINUS_2
 #
 # example_list
+# special version of llsq_obj algorithm using cppad valvector type
+IF( ${cmpad_has_cppad} )
+   SET(example_list ${example_list} cppad/llsq_obj.cpp )
+ENDIF( )
+#
+# example_list
 # examples that require AD packages
-FOREACH(package adept adolc autodiff codi cppad cppad_jit cppadcg sacado)
+FOREACH(package adept adolc autodiff codi cppad cppad_jit cppadcg sacado xad)
    IF( ${cmpad_has_${package}} )
       SET(example_list ${example_list} gradient/${package}.cpp)
    ENDIF( )

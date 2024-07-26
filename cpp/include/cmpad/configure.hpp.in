@@ -73,6 +73,7 @@ is present on the cmake command line.
 # define CMPAD_HAS_CPPAD_JIT   @cmpad_has_cppad_jit@
 # define CMPAD_HAS_CPPADCG     @cmpad_has_cppadcg@
 # define CMPAD_HAS_SACADO      @cmpad_has_sacado@
+# define CMPAD_HAS_XAD         @cmpad_has_xad@
 
 // CMPAD_COMPILER_IS_compiler
 # define CMPAD_COMPILER_IS_CLANG @cmpad_compiler_is_clang@

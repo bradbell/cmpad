@@ -30,4 +30,4 @@ INCLUDE_DIRECTORIES(
 # test
 ADD_EXECUTABLE(test ${test_list})
 #
-TARGET_LINK_LIBRARIES(test cmpad xam)
+TARGET_LINK_LIBRARIES(test cmpad xam ${xad_LINK_LIBRARIES})

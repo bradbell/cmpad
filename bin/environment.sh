@@ -18,12 +18,12 @@ then
 else
    #
    # environment.$$
-   # 2DO: remove ==1.26.4 when autograd works with numpy=2.0.0
+   # 2DO: remove ==1.26.4 when autograd works with numpy==2.0.0
    # https://github.com/HIPS/autograd/issues/622
 cat << EOF > environment.$$
 python3.11 -m venv build/$build_type
 source build/$build_type/bin/activate
-for package in toml pytest numpy=1.26.4
+for package in toml pytest numpy==1.26.4
 do
    echo "pip install \$package"
    if ! pip install \$package >& environment.log

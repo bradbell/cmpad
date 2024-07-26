@@ -72,7 +72,6 @@ C++ valvector Special Version of llsq_obj
 # include <cmpad/fun_obj.hpp>
 //
 # include <cmpad/vector.hpp>
-# include <cmpad/cppad/cppad.hpp>
 
 namespace cmpad { // BEGIN cmpad namespace
 
@@ -179,6 +178,9 @@ public:
 // ----------------------------------------------------------------------------
 // BEGIN VALVECTOR_SPECIALIZATION
 // ----------------------------------------------------------------------------
+# if CMPAD_HAS_CPPAD
+# include <cmpad/cppad/cppad.hpp>
+
 namespace cmpad { // BEGIN cmpad namespace
 
 template <>
@@ -286,6 +288,7 @@ public:
 };
 
 } // END cmapd namespace
-
+# endif // CMPAD_HAS_CPPAD
+//
 // END VALVECTOR_SPECIALIZATION
 # endif

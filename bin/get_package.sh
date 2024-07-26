@@ -12,6 +12,7 @@ set -e -u
 #     eigen
 #     rm
 #     srcdir
+#     xad
 # }
 # {xrst_comment_ch #}
 #

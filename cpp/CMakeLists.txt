@@ -15,13 +15,22 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 SET(CMAKE_CXX_STANDARD 17)
 #
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
-PROJECT(cmpad VERSION 2024.7.24)
+PROJECT(cmpad VERSION 2024.7.26)
 #
 # pkg_check_modules
 FIND_PACKAGE(PkgConfig REQUIRED)
 #
 # Boost_UNIT_TEST_FRAMEWORK_LIBRARY
 FIND_PACKAGE(Boost REQUIRED unit_test_framework)
+#
+# CMAKE_BUILD_TYPE
+IF( NOT ( "${CMAKE_BUILD_TYPE}" STREQUAL "debug" ) )
+   IF( NOT ( "${CMAKE_BUILD_TYPE}" STREQUAL "release" ) )
+      MESSAGE(FATAL_ERROR
+         "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} is not debug or release"
+      )
+   ENDIF()
+ENDIF()
 #
 # cmpad_install_prefix
 SET(cmpad_install_prefix "${PROJECT_SOURCE_DIR}/../build/${CMAKE_BUILD_TYPE}" )
@@ -49,6 +58,23 @@ FOREACH(package adolc cppad cppadcg)
       SET(${package}_LINK_LIBRARIES "")
    ENDIF( )
 ENDFOREACH( )
+#
+# xad_LINK_LIBRARIES
+SET(xad_LINK_LIBRARIES "")
+FOREACH(dir lib lib64)
+   IF( "${CMAKE_BUILD_TYPE}" STREQUAL "debug" )
+      SET(tmp "${cmpad_install_prefix}/${dir}/libxad_d.a")
+      IF( EXISTS ${tmp} )
+         SET( xad_LINK_LIBRARIES "${tmp}" )
+      ENDIF( )
+   ELSE( )
+      SET(tmp "${cmpad_install_prefix}/${dir}/libxad.a")
+      IF( EXISTS ${tmp} )
+         SET( xad_LINK_LIBRARIES "${tmp}" )
+      ENDIF( )
+   ENDIF( )
+ENDFOREACH( )
+print_variable( xad_LINK_LIBRARIES )
 #
 # adept_LINK_LIBRARIES
 SET(adept_LINK_LIBRARIES "")

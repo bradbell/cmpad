@@ -18,7 +18,6 @@
 
 // BEGIN_SORT_THIS_LINE_PLUS_1
 CMPAD_TEST_EXAMPLE(an_ode)
-CMPAD_TEST_EXAMPLE(cppad_llsq_obj)
 CMPAD_TEST_EXAMPLE(csv_read)
 CMPAD_TEST_EXAMPLE(csv_speed)
 CMPAD_TEST_EXAMPLE(csv_write)
@@ -45,6 +44,7 @@ CMPAD_TEST_EXAMPLE(gradient_autodiff)
 CMPAD_TEST_EXAMPLE(gradient_codi)
 # endif
 # if CMPAD_HAS_CPPAD
+CMPAD_TEST_EXAMPLE(cppad_llsq_obj)
 CMPAD_TEST_EXAMPLE(gradient_cppad)
 # endif
 # if CMPAD_HAS_CPPAD_JIT
