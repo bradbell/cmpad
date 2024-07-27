@@ -5,4 +5,4 @@
 # ---------------------------------------------------------------------------
 # run_cmpad
 ADD_EXECUTABLE(run_cmpad run_cmpad.cpp parse_args.cpp)
-TARGET_LINK_LIBRARIES(run_cmpad cmpad ${xam_LINK_LIBRARIES} )
+TARGET_LINK_LIBRARIES(run_cmpad cmpad ${static_link_libraries} )

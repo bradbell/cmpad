@@ -3,7 +3,7 @@
 // SPDX-FileContributor: 2023-24 Bradley M. Bell
 // ---------------------------------------------------------------------------
 /*
-{xrst_comment xam_gradient_xad.cpp}
+{xrst_begin xam_gradient_xad.cpp}
 
 Example and Test of Gradient Using xad
 ######################################

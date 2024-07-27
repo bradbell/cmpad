@@ -56,3 +56,7 @@ CMPAD_TEST_EXAMPLE(gradient_cppadcg)
 # if CMPAD_HAS_SACADO
 CMPAD_TEST_EXAMPLE(gradient_sacado)
 # endif
+# if CMPAD_HAS_XAD
+// 2DO: Get this test to pass
+// CMPAD_TEST_EXAMPLE(gradient_xad)
+# endif

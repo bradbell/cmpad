@@ -108,6 +108,7 @@ Example and Derived Classes
    cpp/include/cmpad/cppad_jit/gradient.hpp
    cpp/include/cmpad/cppadcg/gradient.hpp
    cpp/include/cmpad/sacado/gradient.hpp
+   cpp/include/cmpad/xad/gradient.hpp
 }
 {xrst_comment END_SORT_THIS_LINE_MINUS_2}
 

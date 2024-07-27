@@ -5,18 +5,12 @@
 # ifndef CMPAD_XAD_GRADIENT_HPP
 # define CMPAD_XAD_GRADIENT_HPP
 /*
-{xrst_commnet xad_gradient.hpp}
-{xrst_spell
-   retape
-   onetape
-   Co
-   Di
-}
+{xrst_begin xad_gradient.hpp}
 
 {xrst_template ,
    cpp/include/cmpad/gradient.xrst
-   @Package@       , CoDiPack
-   @#######@       , ########
+   @Package@       , XAD
+   @#######@       , ###
    @package@       , xad
    @not_cppad_jit@ , true
    @not_codi@      , true
@@ -26,11 +20,16 @@
 */
 // BEGIN C++
 # if CMPAD_HAS_XAD
+/*
+2DO: Under Construction: This gradient does not yet pass its tests
+*/
 
 # include <XAD/XAD.hpp>
 # include <cmpad/gradient.hpp>
 
 namespace cmpad { namespace xad { // BEGIN cmpad::xad namespace
+
+::xad::adj<double>::tape_type adj_tape;
 
 // cmpad::xad::gradient_retape
 template < template<class ADVector> class Algo > class gradient
@@ -49,9 +48,6 @@ private:
    //
    // algo_
    Algo<ADVector>                  algo_;
-   //
-   // tape_
-   mode::tape_type                 tape_;
    //
    // ax_, ay_, az_
    ADVector                        ax_;
@@ -111,34 +107,32 @@ public:
       int n    = int( algo_.domain() );
       int m    = int( algo_.range() );
       //
-      // ax
+      // ax_
       // independent variable values
       for(size_t j = 0; j < n; ++j)
          ax_[j] = x[j];
       //
-      // tape_
+      // adj_tape
+      adj_tape.clearAll();
       for(size_t j = 0; j < n; ++j)
-         tape_.registerInput( ax_[j] );
-      tape_.newRecording();
+         adj_tape.registerInput( ax_[j] );
+      adj_tape.newRecording();
       //
       // az_
       // dependent variable
       ay_ = algo_(ax_);
       az_ = ay_[m-1];
       //
-      // tape_
-      tape_.registerOutput(az_);
+      // adj_tape
+      adj_tape.registerOutput(az_);
       //
-      // tape_, az_, ax_
+      // adj_tape, az_, ax_
       derivative(az_) = 1.0;
-      tape_.computeAdjoints();
+      adj_tape.computeAdjoints();
       //
       // g_
       for(size_t j = 0; j < n; ++j)
          g_[j] = derivative( ax_[j] );
-      //
-      // clean tape and adjoints
-      tape_.clearAll();
       //
       return g_;
    }

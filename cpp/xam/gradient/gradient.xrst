@@ -19,6 +19,7 @@ Example and Test of Gradient
    cpp/xam/gradient/cppad_jit.cpp
    cpp/xam/gradient/cppadcg.cpp
    cpp/xam/gradient/sacado.cpp
+   cpp/xam/gradient/xad.cpp
 }
 {xrst_comment END_SORT_THIS_LINE_MINUS_2}
 

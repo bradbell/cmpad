@@ -46,6 +46,31 @@ Source Code
 # include <cmpad/near_equal.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
+// check_grad_det_set_minor
+inline void check_grad_det_set_minor(
+   cmpad::vector<size_t>& r,
+   cmpad::vector<size_t>& c,
+   size_t                 i,
+   size_t                 j)
+{  assert( r.size() == c.size() );
+   size_t ell = r.size() - 1;
+   for(size_t k = 0; k < ell; ++k)
+   {  r[k] = k+1;
+      c[k] = k+1;
+   }
+   r[ell] = 0;
+   c[ell] = 0;
+   //
+   if( i == 0 )
+      r[ell] = 1;
+   else
+      r[i-1] = i+1;
+   if( j == 0 )
+      c[ell] = 1;
+   else
+      c[j-1] = j+1;
+}
+
 // BEGIN PROTOTYPE
 template <class Gradient>
 bool check_grad_det( Gradient& grad_det )
@@ -83,12 +108,6 @@ bool check_grad_det( Gradient& grad_det )
       // r, c
       // index values corresponding to computing determinat of entire matrix
       cmpad::vector<size_t> r(ell+1), c(ell+1);
-      for(size_t i = 0; i < ell; ++i)
-      {  r[i] = i+1;
-         c[i] = i+1;
-      }
-      r[ell] = 0;
-      c[ell] = 0;
       //
       // i, j
       // for each row and column index in the matrix
@@ -97,14 +116,7 @@ bool check_grad_det( Gradient& grad_det )
          {
             // r, c
             // minor with row i and column j removed
-            if( i == 0 )
-               r[ell] = 1;
-            else
-               r[i-1] = i+1;
-            if( j == 0 )
-               c[ell] = 1;
-            else
-               c[j-1] = j+1;
+            check_grad_det_set_minor(r, c, i, j);
             //
             // det_minor
             // determinant of minor corresponding to (i, j) removed
@@ -119,16 +131,6 @@ bool check_grad_det( Gradient& grad_det )
             // ok
             ok &= near_equal(g[ i * ell + j ], check, rel_error, x);
             //
-            // r, c
-            // restore to computing determinant of entire matrix
-            if( i == 0 )
-               r[ell] = 0;
-            else
-               r[i-1] = i;
-            if( j == 0 )
-               c[ell] = 0;
-            else
-               c[j-1] = j;
          }
       }
    }

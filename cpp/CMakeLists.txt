@@ -15,7 +15,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 SET(CMAKE_CXX_STANDARD 17)
 #
 # PROGECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR
-PROJECT(cmpad VERSION 2024.7.26)
+PROJECT(cmpad VERSION 2024.7.27)
 #
 # pkg_check_modules
 FIND_PACKAGE(PkgConfig REQUIRED)
@@ -140,7 +140,7 @@ INCLUDE_DIRECTORIES(
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(xam)
 #
-# link libraries
+# dynamic link libraries
 LINK_LIBRARIES(
    ${adept_LINK_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
@@ -149,6 +149,9 @@ LINK_LIBRARIES(
    ${sacado_LINK_LIBRARIES}
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 )
+#
+# static_link_libraries
+SET(static_link_libraries ${xad_LINK_LIBRARIES})
 #
 # other subdirectories
 ADD_SUBDIRECTORY(src)
