@@ -66,7 +66,7 @@ The type of the elements of *x* and *g* is
 
 | |tab| ``typedef double`` *Grad* :: ``scalar_type``
 
-This is different from *Algo* :: ``scalar_type`` which usually s
+This is different from *Algo* :: ``scalar_type`` which usually is
 an AD scalar type for a particular package.
 
 
