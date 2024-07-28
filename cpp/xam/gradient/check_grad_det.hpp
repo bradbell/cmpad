@@ -46,31 +46,6 @@ Source Code
 # include <cmpad/near_equal.hpp>
 # include <cmpad/algo/det_of_minor.hpp>
 
-// check_grad_det_set_minor
-inline void check_grad_det_set_minor(
-   cmpad::vector<size_t>& r,
-   cmpad::vector<size_t>& c,
-   size_t                 i,
-   size_t                 j)
-{  assert( r.size() == c.size() );
-   size_t ell = r.size() - 1;
-   for(size_t k = 0; k < ell; ++k)
-   {  r[k] = k+1;
-      c[k] = k+1;
-   }
-   r[ell] = 0;
-   c[ell] = 0;
-   //
-   if( i == 0 )
-      r[ell] = 1;
-   else
-      r[i-1] = i+1;
-   if( j == 0 )
-      c[ell] = 1;
-   else
-      c[j-1] = j+1;
-}
-
 // BEGIN PROTOTYPE
 template <class Gradient>
 bool check_grad_det( Gradient& grad_det )
@@ -84,6 +59,32 @@ bool check_grad_det( Gradient& grad_det )
    //
    // near_equal
    using cmpad::near_equal;
+   //
+   // set_minor
+   // r and c corresponding to minor with row i and column j removed
+   auto set_minor = []
+   (cmpad::vector<size_t>& r, cmpad::vector<size_t>& c, size_t i, size_t j)
+   {  assert( r.size() == c.size() );
+      size_t ell = r.size() - 1;
+      assert( i < ell );
+      assert( j < ell );
+      //
+      for(size_t k = 0; k < ell; ++k)
+      {  r[k] = k+1;
+         c[k] = k+1;
+      }
+      r[ell] = 0;
+      c[ell] = 0;
+      //
+      if( i == 0 )
+         r[ell] = 1;
+      else
+         r[i-1] = i+1;
+      if( j == 0 )
+         c[ell] = 1;
+      else
+         c[j-1] = j+1;
+   };
    //
    // ell
    for(size_t ell = 3; ell < 5; ++ell)
@@ -115,8 +116,7 @@ bool check_grad_det( Gradient& grad_det )
       {  for(size_t j = 0; j < ell; j++)
          {
             // r, c
-            // minor with row i and column j removed
-            check_grad_det_set_minor(r, c, i, j);
+            set_minor(r, c, i, j);
             //
             // det_minor
             // determinant of minor corresponding to (i, j) removed
