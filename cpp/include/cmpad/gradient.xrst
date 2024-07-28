@@ -21,6 +21,7 @@ Syntax
 ******
 | |tab| ``# include <cmpad/@package@/gradient.hpp>``
 | |tab| ``cmpad::@package@::gradient`` < *Algo* > *grad*
+| |tab| *grad* ``.setup`` ( *option* )
 | |tab| *g* = *grad* ( *x* )
 
 
@@ -30,20 +31,30 @@ This implements the :ref:`cpp_gradient-name` interface using @Package@.
 
 Algo
 ****
-The class *Algo* < *ADVector* > must be a derived from the
-:ref:`fun_obj\<ADVector\> <cpp_fun_obj-name>` class.
+see :ref:`cpp_gradient@Algo` for the base class.
 
 ADVector
 ********
-This is one or more :ref:`cpp_fun_obj@Vector` types chosen by the package.
-The type *ADVector*\ ``::value_type`` is the scalar type used
-to record the operations in the algorithm for this package.
+The type *Algo* ``::vector_type`` is the
+:ref:`cpp_gradient@ADVector` type for this gradient.
+
+vector_type
+***********
+see :ref:`cpp_gradient@vector_type` for the base class.
 
 scalar_type
 ***********
-The type
-``cmpad::@package@::gradient<`` *Algo* ``>::scalar_type`` is ``double`` ;
-see :ref:`cpp_gradient@scalar_type` .
+see :ref:`cpp_gradient@scalar_type` for the base class.
+
+setup
+*****
+see the gradient :ref:`cpp_gradient@Grad@setup` for the base class.
+
+option
+******
+This :ref:`option_t-name` object is used to specify
+the setup options.
+
 
 {xrst_suspend @not_cppad_jit@}
 Side Effect

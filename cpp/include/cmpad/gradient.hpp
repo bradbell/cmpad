@@ -16,8 +16,8 @@ C++ Abstract Class For Calculating Gradient
 Syntax
 ******
 | |tab| ``# include <cmpad/gradient.hpp>``
-| |tab| `` template< template<class ADVector> class Algo> class`` *Grad*
-| |tab| |tab| ``: public cmpad::gradient`` {
+| |tab| ``template< template<class`` *ADVector* ``> class`` *Algo* ``> class``
+| |tab| *Grad* ``: public cmpad::gradient`` {
 | |tab| |tab| *...*
 | |tab| };
 
@@ -30,14 +30,23 @@ Source Code
    // END C++
 }
 
+ADVector
+********
+This is a :ref:`cpp_fun_obj@Vector` type chosen by the package.
+The type *ADVector*\ ``::value_type`` is the scalar type used by the package
+to record the operations in the algorithm.
+
 Algo
 ****
 The *Algo* class is derived from the :ref:`cpp_fun_obj-name` class
 (we use *algo* for a corresponding object).
-An *Algo* object is initialized using its
-:ref:`cpp_fun_obj@setup` member function.
 The gradient is for the last component of the range space of the algorithm.
 Hence, *algo*\ ``.range()`` can be greater than one.
+
+setup
+=====
+An *Algo* object is initialized using its
+:ref:`cpp_fun_obj@setup` member function.
 
 Grad
 ****
@@ -46,6 +55,9 @@ gradient of the function corresponding to *Algo*
 (we use *grad* for a corresponding object).
 The object *grad* calculates the gradient of the last component of the vector
 returned by *algo*.
+
+setup
+=====
 The object *grad* is initialized using its ``setup`` member function
 (which in turn initializes *algo* using its ``setup`` member function).
 The ``setup`` functions should do calculations that do not depend on *x*
