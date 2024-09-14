@@ -26,6 +26,9 @@ then
    echo 'bin/git_commit.sh: cannot find ./.git'
    exit 1
 fi
+#
+# grep, sed
+source bin/grep_and_sed.sh
 # -----------------------------------------------------------------------------
 # EDITOR
 set +u
@@ -36,38 +39,20 @@ then
 fi
 set -u
 # -----------------------------------------------------------------------------
-# xam_main.csv
-csv_file='xam_main.csv'
-pattern=$( echo "$csv_file" | sed -e 's|/|[/]|g' )
-if git status --porcelain | grep "$pattern" > /dev/null
-then
-   res=''
-   while [ "$res" != 'yes' ] && [ "$res" != 'no' ]
-   do
-      read -p "revert to old $csv_file [yes/no] ?" res
-   done
-   if [ "$res" == 'yes' ]
-   then
-      echo "removing change to $csv_file"
-      git reset "$csv_file"   > /dev/null
-      git checkout "$csv_file" > /dev/null
-   fi
-fi
-# -----------------------------------------------------------------------------
 # new files
 # convert spaces in file names to @@
 list=$(
-   git status --porcelain | sed -n -e '/^?? /p' |  \
-      sed -e 's|^?? ||' -e 's|"||g' -e 's| |@@|g'
+   git status --porcelain | $sed -n -e '/^?? /p' |  \
+      $sed -e 's|^?? ||' -e 's|"||g' -e 's| |@@|g'
 )
 for file in $list
 do
    # convert @@ in file names back to spaces
-   file=$(echo $file | sed -e 's|@@| |g')
+   file=$(echo $file | $sed -e 's|@@| |g')
    res=''
    while [ "$res" != 'delete' ] && [ "$res" != 'add' ] && [ "$res" != 'abort' ]
    do
-      read -p "$file is uknown to git, [delete/add/abort] ?" res
+      read -p "'$file' is unknown to git, [delete/add/abort] ?" res
    done
    if [ "$res" == 'delete' ]
    then
@@ -94,16 +79,16 @@ $branch:
 # 4. Lines starting with '#' are not included in the message.
 # 5. Below is a list of the files for this commit:
 EOF
-git status --porcelain | sed -e 's|^|# |' >> temp.log
+git status --porcelain | $sed -e 's|^|# |' >> temp.log
 $EDITOR temp.log
-sed -i temp.log -e '/^#/d'
-if ! head -1 temp.log | grep "^$branch:" > /dev/null
+$sed -i -e '/^#/d' temp.log
+if ! head -1 temp.log | $grep "^$branch:" > /dev/null
 then
    echo "Aborting because first line does not begin with $branch:"
    echo 'See ./temp.log'
    exit 1
 fi
-if ! head -1 temp.log | grep "^$branch:.*[^ \t]" > /dev/null
+if ! head -1 temp.log | $grep "^$branch:.*[^ \t]" > /dev/null
 then
    echo "Aborting because only white space follow $branch: in first line"
    echo 'See ./temp.log'
