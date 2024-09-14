@@ -37,7 +37,7 @@ set -e -u
 # ===
 # If *package_1* is ``all`` , all of the possible packages,
 # except clad, fastad and xad (those under construction) are installed.
-# In this case, *package_2* .. must not be present on the command line.
+# In this case, *package_2* ... must not be present on the command line.
 #
 # package_j
 # =========

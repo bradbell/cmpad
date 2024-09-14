@@ -39,14 +39,17 @@ The computation is repeated enough times so that this minimum time is reached.
 package
 *******
 This string is the name of the AD package that *rate* corresponds to.
-If *package* is ``none`` , this is not a derivative calculation but rather
-an evaluations of the function using the algorithm with type ``double`` .
-Otherwise *package* is one of the following:
+It can be any of the following values:
 {xrst_literal ,
    bin/get_package.sh
    # BEGIN CPP_PACKAGE_LIST, # END CPP_PACKAGE_LIST
    # BEGIN PYTHON_PACKAGE_LIST, # END PYTHON_PACKAGE_LIST
 }
+
+none
+====
+If *package* is ``none`` , this is not a derivative calculation but rather
+an evaluations of the function using the algorithm with type ``double`` .
 
 algorithm
 *********

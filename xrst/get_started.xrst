@@ -17,19 +17,25 @@ Get Started Using cmpad
 #######################
 The instructions below are for execution a bash shell.
 
+* Items in italic font get replaced by the value you choose; e.g., *program* .
+* Items in code font get entered as is; e.g., ``--time_setup`` .
+
 Clone Repository
 ****************
 Clone the cmpad git repository and change into its top source directory
 with the commands:
-
-| |tab|  ``git clone https://github.com/bradbell/cmpad.git cmpad.git``
-| |tab|  ``cd cmpad.git``
+{xrst_code sh}
+git clone https://github.com/bradbell/cmpad.git cmpad.git
+cd cmpad.git
+{xrst_code}
 
 Pick An AD Package
 ******************
 Pick one AD package that has been implemented from the
 :ref:`get_package@AD Package List` ; e.g. ``adolc`` .
 We use *package* to denote this AD package below.
+If *package* is ``none``, you will be timing the algorithm
+instead of its derivative.
 
 Install Package
 ***************
@@ -41,10 +47,10 @@ with the following commands:
 
 Build C++ Executable
 ********************
-If *package* is a C++ package,
-execute the following command:
-
-| |tab| ``cpp/bin/run_cmake.sh``
+This step is only necessary if *package* is a C++ package:
+{xrst_code sh}
+cpp/bin/run_cmake.sh
+{xrst_code}
 
 You should see the following in the cmake output:
 
@@ -53,20 +59,21 @@ You should see the following in the cmake output:
 The value will be zero for the other
 C++ packages, unless you installed some of them.
 Now execute the following commands:
-
-| |tab| cd ``cpp/build``
-| |tab| ``make``
-| |tab| cd ``../..``
+{xrst_code sh}
+cd cpp/build
+make
+cd ../..
+{xrst_code}
 
 
 Setup Python Environment
 ************************
-If *package* is a Python package,
-execute the following commands:
-
-| |tab| ``bash``
-| |tab| ``build_type=release``
-| |tab| ``source bin/environment.sh``
+This step is only necessary if *package* is a Python package:
+{xrst_code sh}
+bash
+build_type=release
+source bin/environment.sh
+{xrst_code}
 
 This sets up a Python virtual environment that can be deactivated using the
 ``exit`` command
@@ -77,6 +84,8 @@ Choose Test Parameters
 Each of the parameters below,
 except for *program*,
 has a default value that is used when the parameter is not specified.
+Note that ``--time_setup`` is just a flag and has no corresponding value.
+See :ref:`run_cmpad-name` for more discussion of these parameters and flags.
 
 program
 =======
@@ -84,6 +93,7 @@ If this is a C++ package, *program* is
 ``cpp/build/src/run_cmpad`` .
 If it is a Python package, *program* is
 ``python/bin/run_cmpad.py`` .
+There is no default value for this parameter.
 
 file_name
 =========
@@ -113,8 +123,8 @@ This argument is algorithm specific; see the heading *n_other* for
 :ref:`llsq_obj <llsq_obj@option@n_other>`
 (default is ``0`` ).
 
-time_setup
-==========
+--time_setup
+============
 If this flag is present on the command line, the setup time is included.
 This is used to test what the speed comparisons would be for
 algorithms where it is not possible to tape the floating point operations
@@ -128,13 +138,13 @@ Run Seed Test
 Execute the following command.
 
 | |tab| *program* \\
-| |tab| |tab| -p *package* \\
-| |tab| |tab| -f *file_name* \\
-| |tab| |tab| -a *algorithm* \\
-| |tab| |tab| -m *min_time* \\
-| |tab| |tab| -n *n_arg* \\
-| |tab| |tab| -o *other* \\
-| |tab| |tab| --time_setup
+| |tab| |tab| ``-p`` *package* \\
+| |tab| |tab| ``-f`` *file_name* \\
+| |tab| |tab| ``-a`` *algorithm* \\
+| |tab| |tab| ``-m`` *min_time* \\
+| |tab| |tab| ``-n`` *n_arg* \\
+| |tab| |tab| ``-o`` *other* \\
+| |tab| |tab| ``--time_setup``
 
 All of the lines above, except for *program* , are optional.
 If a line is not present, the corresponding default value is used.
