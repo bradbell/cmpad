@@ -17,6 +17,8 @@ fi
 # ---------------------------------------------------------------------------
 ignore_list='
    ./bin/environment.sh
+   ./bin/dev_settings.sh
+   ./bin/grep_and_sed.sh
 '
 for file_name in $( git ls-files | sed -e 's|^bin|./bin|' )
 do
