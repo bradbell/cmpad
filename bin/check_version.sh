@@ -1,16 +1,18 @@
 #! /usr/bin/env bash
-# ---------------------------------------------------------------------------
+set -u -e
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
-# SPDX-FileContributor: 2023 Bradley M. Bell
+# SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
-# bash function that echos and executes a command
+# echo_eval
 echo_eval() {
-	echo $*
-	eval $*
+   echo $*
+   eval $*
 }
+#
+# sed
+source bin/grep_and_sed.sh
 # -----------------------------------------------------------------------------
-set -u -e
 if [ "$#" != 0 ]
 then
    echo 'bin/check_version.sh: expects no arguments'
@@ -23,7 +25,7 @@ then
 fi
 # -------------------------------------------------------------------------
 check_version() {
-   sed "$1" -f temp.sed > temp.out
+   $sed "$1" -f temp.sed > temp.out
    if ! diff "$1" temp.out > /dev/null
    then
       if [ -x "$1" ]
@@ -40,7 +42,7 @@ check_version() {
 }
 # -------------------------------------------------------------------------
 # version
-version=$(date +%Y.%m.%d | sed -e 's|\.0*|.|g')
+version=$(date +%Y.%m.%d | $sed -e 's|\.0*|.|g')
 #
 # temp.sed
 cat << EOF > temp.sed

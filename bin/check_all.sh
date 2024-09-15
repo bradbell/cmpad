@@ -1,15 +1,13 @@
 #! /usr/bin/env bash
-# ---------------------------------------------------------------------------
+set -e -u
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
-# ---------------------------------------------------------------------------
-set -e -u
 # -----------------------------------------------------------------------------
-# bash function that echos and executes a command
+# echo_eval
 echo_eval() {
-	echo $*
-	eval $*
+   echo $*
+   eval $*
 }
 # -----------------------------------------------------------------------------
 # program

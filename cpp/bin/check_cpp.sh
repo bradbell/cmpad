@@ -8,8 +8,8 @@ set -e -u
 # -----------------------------------------------------------------------------
 # bash function that echos and executes a command
 echo_eval() {
-	echo $*
-	eval $*
+   echo $*
+   eval $*
 }
 # -----------------------------------------------------------------------------
 program='cpp/bin/check_cpp.sh'
