@@ -34,11 +34,13 @@ set -e -u
 # {xrst_end cpp_get_package}
 # -----------------------------------------------------------------------------
 # echo_eval
-# bash function that echos and executes a command
 echo_eval() {
    echo $*
    eval $*
 }
+#
+# grep, sed
+source bin/grep_and_sed.sh
 # -----------------------------------------------------------------------------
 #
 # program
@@ -119,11 +121,12 @@ case $package in
    web_page='https://github.com/coin-or/ADOL-C.git'
    version='master'
    configure="--prefix=$prefix --with-colpack=$prefix"
-   configure="$configure --enable-sparse"
+   configure="$configure --enable-sparse -enable-static"
+   configure="$configure CXXFLAGS='-std=c++17'"
    configure="$configure --enable-static --enable-shared --enable-atrig-erf"
    # https://github.com/coin-or/ADOL-C/issues/25
    # configure="$configure --enable-python"
-   configure="cd ..; autoreconf -fi; cd build ; ../configure $configure"
+   configure="cd ..; autoreconf -fi; cd build_dir ; ../configure $configure"
    ;;
 
    autodiff)
@@ -245,7 +248,7 @@ else
 fi
 #
 # package_top_srcdir
-if echo $web_page | grep '\.git' > /dev/null
+if echo $web_page | $grep '\.git' > /dev/null
 then
    package_top_srcdir="$package.git"
 else
@@ -276,7 +279,7 @@ then
    then
       echo_eval cd external/$package_top_srcdir
    else
-      echo_eval cd external/$package_top_srcdir/build
+      echo_eval cd external/$package_top_srcdir/build_dir
    fi
    echo_eval make -j $n_job install
    #
@@ -307,7 +310,7 @@ then
    done
    if [ "$missing" != '' ]
    then
-      missing=$(echo $missing | sed -e 's|, ||')
+      missing=$(echo $missing | $sed -e 's|, ||')
       echo "$program: $package requires following programs:"
       echo "$missing"
       exit 1
@@ -323,7 +326,7 @@ fi
 echo_eval cd external
 #
 # package top source directory
-if echo $web_page | grep '\.git' > /dev/null
+if echo $web_page | $grep '\.git' > /dev/null
 then
    if [ ! -d "$package.git" ]
    then
@@ -365,54 +368,54 @@ if [ "$package" == 'adolc' ]
 then
    # uni5_for.c
    # missing definition of some loop indices
-   sed -i ADOL-C/src/uni5_for.c -e 's|for (\([ij]\)=|for(int \1=|'
+   $sed -i ADOL-C/src/uni5_for.c -e 's|for (\([ij]\)=|for(int \1=|'
    #
    # remove extra print out when ADOLC_DEBUG is defined
    list=$(git grep -l '^ *# *if *defined(ADOLC_DEBUG)')
    for file in $list
    do
-      sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
+      $sed -i $file -e 's|^\( *\)# *if *\(defined(ADOLC_DEBUG)\)|\1#if 0 // \2|'
    done
    #
    # remove extra print out when ADOLC_LOCDEBUG ADOLC_DEBUB are defined
    list='ADOL-C/src/storemanager.cpp'
    for file in $list
    do
-      sed -i $file \
+      $sed -i $file \
          -e 's|^\( *\)# *ifdef *\(ADOLC_LOCDEBUG\)|\1#if 0 // \2|' \
          -e 's|^\( *\)# *ifdef *\(ADOLC_DEBUG\)|\1#if 0 // \2|'
    done
 fi
 if [ "$package" == 'clad' ]
 then
-   if ! grep 'lib64' CMakeLists.txt
+   if ! $grep 'lib64' CMakeLists.txt
    then
-      if [ ! -d build ]
+      if [ ! -d build_dir ]
       then
-         echo_eval mkdir build
+         echo_eval mkdir build_dir
       fi
-      cd build
+      cd build_dir
       if ! $configure >& /dev/null
       then
          echo 'configure clad failed. Attempting to patch clad CMakeLists.txt'
          for file in $(find .. -name CMakeLists.txt)
          do
             # does not handel case where libraries are in /lib64/
-            sed -i -e "s|/lib/|/lib64/|g" $file
+            $sed -i -e "s|/lib/|/lib64/|g" $file
          done
       fi
       cd ..
    fi
 fi
 # -----------------------------------------------------------------------------
-# build
+# build_dir
 if [ "$package" != 'adept' ] && [ "$package" != 'colpack' ]
 then
-   if [ ! -d build ]
+   if [ ! -d build_dir ]
    then
-      echo_eval mkdir build
+      echo_eval mkdir build_dir
    fi
-   echo_eval cd build
+   echo_eval cd build_dir
 fi
 #
 # CMakeCache.txt

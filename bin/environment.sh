@@ -26,10 +26,10 @@ source build/$build_type/bin/activate
 for package in toml pytest numpy==1.26.4
 do
    echo "pip install \$package"
-   if ! pip install \$package >& environment.log
+   if ! pip install \$package >& /dev/null
    then
-      cat environment.log
-      echo "Error: pip install \$package"
+      # To display error message
+      pip install \$package
    fi
 done
 EOF
