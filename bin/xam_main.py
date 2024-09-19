@@ -29,7 +29,7 @@ cpp_run_cmpad = 'cpp/build/src/run_cmpad'
 #
 # xam_main.csv
 # ************
-# This program create the file ``xam_main.csv`` .
+# The ``xam_main.py`` program creates the file ``xam_main.csv`` .
 # If this file already exists, the previous version is removed
 # and a completely new version is created.
 # The meaning of the columns are described in :ref:`csv_column-name` .

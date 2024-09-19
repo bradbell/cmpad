@@ -143,7 +143,7 @@ Execute the following command.
 | |tab| |tab| ``-a`` *algorithm* \\
 | |tab| |tab| ``-m`` *min_time* \\
 | |tab| |tab| ``-n`` *n_arg* \\
-| |tab| |tab| ``-o`` *other* \\
+| |tab| |tab| ``-o`` *n_other* \\
 | |tab| |tab| ``--time_setup``
 
 All of the lines above, except for *program* , are optional.

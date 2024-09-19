@@ -4,22 +4,39 @@ SPDX-FileContributor: 2023-24 Bradley M. Bell
 ---------------------------------------------------------------------------
 {xrst_begin cmpad}
 
-
 Compare Algorithmic Differentiation Packages
 ############################################
 
-Under Construction
-******************
-This project is under construction and does not yet have a stable
-API that is guaranteed to be supported in the future.
+Version of this Documentation
+*****************************
+cmpad-2024.9.18
+
+Summary
+*******
+This package compares freely available AD tools.
+It compares both speed and how the user implements
+the computation of derivatives.
+The algorithms included in the comparisons are chosen so that they
+as easy to test for derivative correctness, are of a varied type,
+and can scale from very small to very large problems.
+Currently, only C++ and Python languages are included in the comparisons.
+It is easy to add a new package to the comparisons.
+It would be harder to add a new algorithm to the comparisons
+because one would have to test for correct derivatives.
+It would be even more difficult to add a new language,
+but the package structure is intended to handle this.
+
+Release Notes
+*************
+:ref:`release_notes-title`
+
+Get Started
+***********
+:ref:`get_started-name`
 
 Git Repository
 **************
 `<https://github.com/bradbell/cmpad>`_
-
-Version of this Documentation
-*****************************
-cmpad-2024.9.15
 
 Example Speed Comparison
 ************************
@@ -67,6 +84,7 @@ Documentation
    xrst/algorithm.xrst
    cpp/cpp.xrst
    python/python.xrst
+   xrst/release_notes.xrst
 }
 
 {xrst_end cmpad}

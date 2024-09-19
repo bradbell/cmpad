@@ -1,0 +1,31 @@
+{xrst_begin_parent release_notes}
+
+Compare AD Release Notes
+########################
+
+{xrst_end release_notes}
+
+-------------------------------------------------------------------------------
+{xrst_begin 2024}
+{xrst_spell
+   dd
+   mm
+}
+
+Release Notes for 2024
+######################
+
+mm-dd
+*****
+
+09-19
+=====
+#. Start the release notes; i.e., changes from 2024-09-19 
+   will be tracked by the release notes.
+#. A :ref:`cmpad@Summary` describing cmpad was added.
+#. The C++ version of run_cmpad was not recognizing the
+   ``-o`` option (see :ref:`run_cmpad@Arguments` ).
+   This has been fixed.
+
+{xrst_end 2024}
+-------------------------------------------------------------------------------

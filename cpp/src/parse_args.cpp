@@ -77,8 +77,8 @@ arguments_t parse_args(int argc, char* argv[])
    };
    //
    // shortopts
-   // one : means option is required.
-   const char* shortopts = "a:f:m:n:g:p:vht";
+   // one : means argument requires after the option
+   const char* shortopts = "a:f:m:n:o:p:" "vht";
    //
    // error_msg
    std::string error_msg = "";
@@ -179,7 +179,7 @@ arguments_t parse_args(int argc, char* argv[])
             "minimum time in seconds to average computation rate [0.5]\n"
          "-n: --n_arg:      size_t: "
             "size of the algorithm domain space [9]\n"
-         "-o: --n_other:  size_t: "
+         "-o: --n_other:    size_t: "
             "The meaning opf this integer is algorithm specific [0]\n"
          "-p: --package:    string: "
             "none or an AD packae name [none]\n"
