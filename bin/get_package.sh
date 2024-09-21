@@ -23,8 +23,8 @@ set -e -u
 #
 # Syntax
 # ******
-# | ``cpp/bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
-# | ``cpp/bin/get_package.sh`` *build_type* ``all``
+# | ``bin/get_package.sh`` *build_type* *package_1* [ *package_2* [ ... ] ]
+# | ``bin/get_package.sh`` *build_type* ``all``
 #
 # build_type
 # ==========

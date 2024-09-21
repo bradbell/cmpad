@@ -22,6 +22,12 @@ Release Notes for 2024
 mm-dd
 *****
 
+09-21
+=====
+The :ref:`get_package@Syntax` for ``bin/get_package.sh`` 
+mistakenly had ``cpp/bin/package.sh`` as the program name.
+This has been corrected to ``bin/package.sh``.
+
 09-19
 =====
 #. Start the release notes; i.e., changes from 2024-09-19
