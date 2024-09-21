@@ -183,7 +183,7 @@ def main() :
    else :
       pypi_name = {
          'autograd' : 'autograd' ,
-         'torch'    : 'torch'    ,
+         'torch'    : 'torch --index-url https://download.pytorch.org/whl/cpu'    ,
          'jax'      : 'jax[cpu]' ,
       }
       name  = pypi_name[package]
