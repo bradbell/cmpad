@@ -24,9 +24,15 @@ mm-dd
 
 09-21
 =====
-The :ref:`get_package@Syntax` for ``bin/get_package.sh`` 
-mistakenly had ``cpp/bin/package.sh`` as the program name.
-This has been corrected to ``bin/package.sh``.
+#. The :ref:`get_package@Syntax` for ``bin/get_package.sh``
+   mistakenly had ``cpp/bin/get_package.sh`` as the program name.
+   This has been corrected to ``bin/get_package.sh``.
+#. If the ``PKG_CONFIG_PATH`` environment variable was not defined,
+   the :ref:`get_package-name` routine would terminate with the error::
+
+      cpp/bin/get_package.sh: line 104: PKG_CONFIG_PATH: unbound variable
+
+   This has been fixed.
 
 09-19
 =====

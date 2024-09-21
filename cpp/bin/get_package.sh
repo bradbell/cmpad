@@ -101,7 +101,12 @@ then
 fi
 #
 # PKG_CONFIG_PATH
-PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig"
+if [ "${PKG_CONFIG_PATH+x}" == '' ]
+then
+   PKG_CONFIG_PATH="$prefix/lib/pkgconfig"
+else
+   PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig"
+fi
 PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib64/pkgconfig"
 PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/share/pkgconfig"
 export PKG_CONFIT_PATH
