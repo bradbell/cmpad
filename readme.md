@@ -11,6 +11,9 @@
 ## Git Repository
 <https://github.com/bradbell/cmpad>
 
+## Reporting Test Resluts
+(discussions/categories/test-results)
+
 ## License
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
