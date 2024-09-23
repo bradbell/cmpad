@@ -1,18 +1,12 @@
 # Compare Algorithmic Differentiation Packages
 
-## This package is under construction
+1. [Get\_started](https://cmpad.readthedocs.io/get_started.html)
 
-## Get Started
-<https://cmpad.readthedocs.io/get_started.html>
+2. [Documentation](https://cmpad.readthedocs.io)
 
-## Documentation
-<https://cmpad.readthedocs.io>
+3. [Git Repository](https://github.com/bradbell/cmpad)
 
-## Git Repository
-<https://github.com/bradbell/cmpad>
-
-## Reporting Test Resluts
-(discussions/categories/test-results)
+4.  [Test Results](https://github.com/bradbell/cmpad/discussions/categories/test-results)
 
 ## License
 
