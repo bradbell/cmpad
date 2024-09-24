@@ -221,7 +221,7 @@ The partial derivative of :math:`y(x)` with respect to :math:`x_j` is
 
    \frac{ \partial y(x)} { \partial x_j }
    =
-   - \sum_i^n \left(
+   - \sum_{i=0}^{n-1} \left(
       s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
    \right) t_i^j
 
