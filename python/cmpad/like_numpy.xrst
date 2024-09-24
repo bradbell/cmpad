@@ -26,7 +26,7 @@ Syntax
 | |tab| *vec*    = *like_numpy* . ``concatenate`` ( *vec_list* )
 | |tab| *vec*    = *left* *op* *right*
 | |tab| *size*   = ``len`` ( *vec* )
-| |tab| *scalar* = *vec*.sum()
+| |tab| *scalar* = *vec*. ``sum`` ()
 | |tab| *scalar* = *vec* [ *index* ]
 | |tab| *vec*    = *vec*. ``reshape(-1)``
 
