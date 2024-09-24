@@ -169,7 +169,7 @@ Function
 
 .. math::
 
-   y(x) = \frac{1}{2} \sum_i^n \left(
+   y(x) = \frac{1}{2} \sum_{i=0}^{n-1} \left(
       s_i - x_0 - x_1 t_i - x_2 t_i^2 - \cdots
    \right)^2
 
@@ -177,14 +177,14 @@ where *s* and *t* in :math:`{\bf R}^n` are given by:
 
 .. math::
 
-   t_j & = -1 + i * 2 / (n - 1)
+   t_i & = -1 + i * 2 / (n - 1)
    \\
-   s_j & = \mathrm{sign} ( t_j )
+   s_i & = \mathrm{sign} ( t_i )
    =
    \cases{
-      -1 & if $t_j < 0$ \\
-       0 & if $t_j = 0$ \\
-      +1 & if $t_j > 0$
+      -1 & if $t_i < 0$ \\
+       0 & if $t_i = 0$ \\
+      +1 & if $t_i > 0$
    }
 
 

@@ -22,6 +22,13 @@ Release Notes for 2024
 mm-dd
 *****
 
+09-23
+=====
+There was an indexing error in the definition of the
+linear least squares objective :ref:`llsq_obj@Function` .
+To be more specific, some of the *j* indices should have been *i* .
+This has been fixed.
+
 09-21
 =====
 #. The :ref:`get_package@Syntax` for ``bin/get_package.sh``
