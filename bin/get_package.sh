@@ -122,8 +122,8 @@ under_construction='clad fastad xad'
 #
 # where *build_type* is ``debug`` or ``release`` .
 #
-# Virtual Environment
-# *******************
+# environment.sh
+# **************
 # The following commands set the prefix as a virtual environment:
 #
 # | build_type=\ *build_type*

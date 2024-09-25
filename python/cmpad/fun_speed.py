@@ -87,9 +87,7 @@ def fun_speed(fun_obj, option, min_time) :
    #
    # repeat, t_start, t_end, t_diff
    repeat  = 0
-   t_start = timeit.default_timer()
-   t_end   = timeit.default_timer()
-   t_diff  = t_end - t_start
+   t_diff  = 0.0
    #
    # while t_diff < min_time
    while t_diff < min_time  :

@@ -22,6 +22,11 @@ Release Notes for 2024
 mm-dd
 *****
 
+09-24
+=====
+Change the file :ref:`get_package@environment.sh` so that it works
+with bash version 3 or higher (not version 4 or higher).
+
 09-23
 =====
 There was an indexing error in the definition of the
