@@ -4,7 +4,7 @@ set -e -u
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
-if [[ ! -v build_type ]]
+if [[ ! "${build_type+x}" ]]
 then
    echo 'usage: build_type=(debug or release)'
    echo '       source bin/environment.sh'
@@ -48,7 +48,7 @@ EOF
       rm ./environment.$$
       #
       # activate
-      if [[ -v VIRTUAL_ENV ]]
+      if [[ "${VIRTUAL_ENV+x}" ]]
       then
          if ! echo $VIRTUAL_ENV | grep "/build/$build_type\$" > /dev/null
          then
