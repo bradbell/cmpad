@@ -80,6 +80,10 @@ def pyproject_version() :
 # install_cppad_py
 def install_cppad_py(build_type) :
    #
+   # requires cppad
+   command_str = f'cpp/bin/get_package.sh {build_type} cppad'
+   system_command( [ command_str ] )
+   #
    # external
    if not os.path.isdir( 'external' ) :
       os.mkdir('external')
@@ -136,7 +140,6 @@ def install_cppad_py(build_type) :
    #
    # list_of_commands
    list_of_commands = [
-      'bin/get_cppad.sh',
       f'pip install .',
    ]
    system_command(list_of_commands)

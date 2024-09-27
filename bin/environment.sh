@@ -1,4 +1,3 @@
-#! /usr/bin/env bash
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
@@ -19,16 +18,27 @@ else
    # 2DO: remove ==1.26.4 when autograd works with numpy==2.0.0
    # https://github.com/HIPS/autograd/issues/622
 cat << EOF > environment.$$
+#
+# disconnect from currently active virtual environment
+if [[ "${VIRTUAL_ENV+x}" ]]
+then
+   deactivate
+fi
+#
+# disconnect from extra packages on this system
+PYTHONPATH=''
+#
+# create virtual environment without system site-packages
 python3 -m venv build/$build_type
+#
+# activate the virtual environment
 source build/$build_type/bin/activate
+#
+# install packages that may be required
 for package in toml pytest numpy==1.26.4
 do
    echo "pip install \$package"
-   if ! pip install \$package >& /dev/null
-   then
-      # To display error message
-      pip install \$package
-   fi
+   pip install \$package
 done
 EOF
    #
