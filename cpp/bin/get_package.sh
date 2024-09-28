@@ -117,21 +117,21 @@ case $package in
    adept)
    web_page='https://github.com/rjhogan/Adept-2.git'
    version='master'
-   configure="--prefix=$prefix"
+   configure="autoreconf -fi; ./configure"
+   configure+=" --prefix=$prefix"
    configure+=" --enable-static --enable-shared"
-   configure="autoreconf -fi; ./configure $configure"
    ;;
 
    adolc)
    web_page='https://github.com/coin-or/ADOL-C.git'
    version='master'
-   configure="--prefix=$prefix --with-colpack=$prefix"
+   configure="cd ..; autoreconf -fi; cd build_dir ; ../configure"
+   configure+=" --prefix=$prefix --with-colpack=$prefix"
    configure+=" --enable-sparse -enable-static"
    configure+=" CXXFLAGS='-std=c++17'"
    configure+=" --enable-static --enable-shared --enable-atrig-erf"
    # https://github.com/coin-or/ADOL-C/issues/25
    # configure="$configure --enable-python"
-   configure="cd ..; autoreconf -fi; cd build_dir ; ../configure $configure"
    ;;
 
    autodiff)
@@ -164,8 +164,8 @@ case $package in
    colpack)
    web_page='https://github.com/CSCsw/ColPack.git'
    version='v1.0.10'
-   configure="--prefix=$prefix --enable-static --enable-shared"
-   configure="autoreconf -fi; ./configure $configure"
+   configure="autoreconf -fi; ./configure"
+   configure+=" --prefix=$prefix --enable-static --enable-shared"
    ;;
 
    cppad)
