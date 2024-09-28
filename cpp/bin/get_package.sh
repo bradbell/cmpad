@@ -105,10 +105,10 @@ if [ "${PKG_CONFIG_PATH+x}" == '' ]
 then
    PKG_CONFIG_PATH="$prefix/lib/pkgconfig"
 else
-   PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig"
+   PKG_CONFIG_PATH+=":$prefix/lib/pkgconfig"
 fi
-PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib64/pkgconfig"
-PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/share/pkgconfig"
+PKG_CONFIG_PATH+=":$prefix/lib64/pkgconfig"
+PKG_CONFIG_PATH+=":$prefix/share/pkgconfig"
 export PKG_CONFIT_PATH
 #
 # web_page, version, configure
@@ -118,7 +118,7 @@ case $package in
    web_page='https://github.com/rjhogan/Adept-2.git'
    version='master'
    configure="--prefix=$prefix"
-   configure="$configure --enable-static --enable-shared"
+   configure+=" --enable-static --enable-shared"
    configure="autoreconf -fi; ./configure $configure"
    ;;
 
@@ -126,9 +126,9 @@ case $package in
    web_page='https://github.com/coin-or/ADOL-C.git'
    version='master'
    configure="--prefix=$prefix --with-colpack=$prefix"
-   configure="$configure --enable-sparse -enable-static"
-   configure="$configure CXXFLAGS='-std=c++17'"
-   configure="$configure --enable-static --enable-shared --enable-atrig-erf"
+   configure+=" --enable-sparse -enable-static"
+   configure+=" CXXFLAGS='-std=c++17'"
+   configure+=" --enable-static --enable-shared --enable-atrig-erf"
    # https://github.com/coin-or/ADOL-C/issues/25
    # configure="$configure --enable-python"
    configure="cd ..; autoreconf -fi; cd build_dir ; ../configure $configure"
@@ -138,10 +138,10 @@ case $package in
    web_page='https://github.com/autodiff/autodiff.git'
    version='main'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    for name in TESTS PYTHON EXAMPLES DOCS
    do
-      configure="$configure -D AUTODIFF_BUILD_$name=OFF"
+      configure+=" -D AUTODIFF_BUILD_$name=OFF"
    done
    ;;
 
@@ -149,16 +149,16 @@ case $package in
    web_page='https://github.com/vgvassilev/clad.git'
    version='master'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
-   configure="$configure -D CLAD_INCLUDE_DOCS=OFF"
-   configure="$configure -D LLVM_EXTERNAL_LIT=$(which lit)"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CLAD_INCLUDE_DOCS=OFF"
+   configure+=" -D LLVM_EXTERNAL_LIT=$(which lit)"
    ;;
 
    codi)
    web_page='https://github.com/scicompkl/codipack.git'
    version='master'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    colpack)
@@ -172,41 +172,41 @@ case $package in
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
    configure='cmake -S .. -B .'
-   configure="$configure -D cppad_prefix=$prefix"
-   configure="$configure -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
+   configure+=" -D cppad_prefix=$prefix"
+   configure+=" -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
    ;;
 
    cppadcg)
    web_page="https://github.com/joaoleal/CppADCodeGen.git"
    version='master'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
-   configure="$configure -D EIGEN3_INCLUDE_DIR=$prefix/include"
-   configure="$configure -D GOOGLETEST_GIT=ON"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D EIGEN3_INCLUDE_DIR=$prefix/include"
+   configure+=" -D GOOGLETEST_GIT=ON"
    ;;
 
    eigen)
    web_page='https://gitlab.com/libeigen/$package.git'
    version='3.4.0'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    fastad)
    web_page='https://github.com/JamesYang007/FastAD.git'
    version='master'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
    version='trilinos-release-14-4-0'
    configure='cmake -S .. -B .'
-   configure="$configure -D Trilinos_ENABLE_Sacado=ON"
-   configure="$configure -D Sacado_ENABLE_TESTS=OFF"
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
-   configure="$configure -D BUILD_SHARED_LIBS=ON"
+   configure+=" -D Trilinos_ENABLE_Sacado=ON"
+   configure+=" -D Sacado_ENABLE_TESTS=OFF"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D BUILD_SHARED_LIBS=ON"
    # -D Trilinos_INSTALL_LIB_DIR=$prefix/$libdir
    ;;
 
@@ -214,7 +214,7 @@ case $package in
    web_page='https://github.com/auto-differentiation/xad.git'
    version='main'
    configure='cmake -S .. -B .'
-   configure="$configure -D CMAKE_INSTALL_PREFIX=$prefix"
+   configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    *)
@@ -229,18 +229,18 @@ if [ "$package" == 'adolc' ]
 then
    if [ "$build_type" == 'debug' ]
    then
-      configure="$configure --enable-debug"
+      configure+=" --enable-debug"
    fi
 elif [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
 then
    if [ "$build_type" == 'debug' ]
    then
-      configure="$configure CXXFLAGS='-g -O0'"
+      configure+=" CXXFLAGS='-g -O0'"
    else
-      configure="$configure CXXFLAGS='-DNDEBUG -O2'"
+      configure+=" CXXFLAGS='-DNDEBUG -O2'"
    fi
 else
-   configure="$configure -D CMAKE_BUILD_TYPE=$build_type"
+   configure+=" -D CMAKE_BUILD_TYPE=$build_type"
 fi
 # ----------------------------------------------------------------------------
 #
@@ -310,7 +310,7 @@ then
    do
       if ! which $program > /dev/null
       then
-         missing="$missing, $package"
+         missing+=", $package"
       fi
    done
    if [ "$missing" != '' ]
@@ -414,13 +414,24 @@ then
 fi
 # -----------------------------------------------------------------------------
 # build_dir
-if [ "$package" != 'adept' ] && [ "$package" != 'colpack' ]
+if [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
 then
-   if [ ! -d build_dir ]
+   if [ -e Makefile ]
    then
-      echo_eval mkdir build_dir
+      make clean
    fi
-   echo_eval cd build_dir
+else
+   if [ -d build_dir ]
+   then
+      cd build_dir
+      if [ -e Makefile ]
+      then
+         make clean
+      fi
+   else
+      echo_eval mkdir build_dir
+      echo_eval cd build_dir
+   fi
 fi
 #
 # CMakeCache.txt
