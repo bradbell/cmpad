@@ -18,7 +18,7 @@ build_type='release'
 code_generator=""
 vector='-D cmpad_vector=std'
 verbose='-D CMAKE_VERBOSE_MAKEFILE=NO'
-for i in $(seq 1 $#)
+for (( i=1; i<=$#; i++ ))
 do
    i_th_command_line_argument="${!i}"
    case "$i_th_command_line_argument" in

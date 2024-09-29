@@ -14,6 +14,7 @@ Compare AD Release Notes
 {xrst_spell
    dd
    mm
+   homebrew
 }
 
 Release Notes for 2024
@@ -21,6 +22,14 @@ Release Notes for 2024
 
 mm-dd
 *****
+
+09-29
+=====
+First version of cmpad that works on MacOS with Homebrew.
+To be specific, the following tests passed::
+
+   bin/get_package.sh release all
+   bin/check_all.sh release
 
 09-24
 =====

@@ -38,14 +38,17 @@ ENDIF( )
 # cmpad_compiler_is_clang
 # cmpad_compiler_is_gnu
 # cmpad_compiler_is_msvc
+STRING( TOLOWER "${CMAKE_CXX_COMPILER_ID}" compiler )
 FOREACH(name clang gnu msvc )
-   STRING( TOLOWER "${CMAKE_CXX_COMPILER_ID}" compiler )
    IF( "${compiler}" STREQUAL "${name}" )
       SET(cmpad_compiler_is_${name} 1)
    ELSE( )
       SET(cmpad_compiler_is_${name} 0)
    ENDIF( )
 ENDFOREACH( )
+IF( "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang" )
+   SET(cmpad_compiler_is_clang 1)
+ENDIF( )
 #
 # cmpad_has_cppadcg
 # cmpad_has_cppad_jit
