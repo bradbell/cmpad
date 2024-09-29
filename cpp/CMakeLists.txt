@@ -136,11 +136,7 @@ INCLUDE_DIRECTORIES(
    ${cmpad_install_prefix}/include
 )
 #
-# library directories
-ADD_SUBDIRECTORY(lib)
-ADD_SUBDIRECTORY(xam)
-#
-# dynamic link libraries
+# external dynamic link libraries
 LINK_LIBRARIES(
    ${adept_LINK_LIBRARIES}
    ${adolc_LINK_LIBRARIES}
@@ -150,8 +146,12 @@ LINK_LIBRARIES(
    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 )
 #
-# static_link_libraries
+# external static_link_libraries
 SET(static_link_libraries ${xad_LINK_LIBRARIES})
+#
+# library directories
+ADD_SUBDIRECTORY(lib)
+ADD_SUBDIRECTORY(xam)
 #
 # other subdirectories
 ADD_SUBDIRECTORY(src)

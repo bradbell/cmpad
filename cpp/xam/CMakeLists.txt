@@ -40,4 +40,5 @@ print_variable(example_list)
 # xam
 # All the ./*.cpp files should be included below and in ../test/xam.cpp
 ADD_LIBRARY(xam SHARED ${example_list} )
+TARGET_LINK_LIBRARIES(xam cmpad)
 SET_TARGET_PROPERTIES(xam PROPERTIES SOVERSION ${cmpad_VERSION})
