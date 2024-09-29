@@ -110,34 +110,47 @@ fi
 PKG_CONFIG_PATH+=":$prefix/lib64/pkgconfig"
 PKG_CONFIG_PATH+=":$prefix/share/pkgconfig"
 export PKG_CONFIT_PATH
-#
-# web_page, version, configure
+# ----------------------------------------------------------------------------
+# web_page, version, build_dir, configure
 case $package in
 
    adept)
    web_page='https://github.com/rjhogan/Adept-2.git'
    version='master'
+   build_dir='.'
    configure="autoreconf -fi; ./configure"
    configure+=" --prefix=$prefix"
    configure+=" --enable-static --enable-shared"
+   if [ "$build_type" == 'debug' ]
+   then
+      configure+=" CXXFLAGS='-g -O0'"
+   else
+      configure+=" CXXFLAGS='-DNDEBUG -O2'"
+   fi
    ;;
 
    adolc)
    web_page='https://github.com/coin-or/ADOL-C.git'
    version='master'
-   configure="cd ..; autoreconf -fi; cd build_dir ; ../configure"
+   build_dir='build_dir'
+   configure="pwd; autoreconf -fi; cd $build_dir ; ../configure"
    configure+=" --prefix=$prefix --with-colpack=$prefix"
    configure+=" --enable-sparse -enable-static"
    configure+=" CXXFLAGS='-std=c++17'"
    configure+=" --enable-static --enable-shared --enable-atrig-erf"
    # https://github.com/coin-or/ADOL-C/issues/25
    # configure="$configure --enable-python"
+   if [ "$build_type" == 'debug' ]
+   then
+      configure+=" --enable-debug"
+   fi
    ;;
 
    autodiff)
    web_page='https://github.com/autodiff/autodiff.git'
    version='main'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    for name in TESTS PYTHON EXAMPLES DOCS
    do
@@ -148,7 +161,8 @@ case $package in
    clad)
    web_page='https://github.com/vgvassilev/clad.git'
    version='master'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    configure+=" -D CLAD_INCLUDE_DOCS=OFF"
    configure+=" -D LLVM_EXTERNAL_LIT=$(which lit)"
@@ -157,21 +171,30 @@ case $package in
    codi)
    web_page='https://github.com/scicompkl/codipack.git'
    version='master'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    colpack)
    web_page='https://github.com/CSCsw/ColPack.git'
    version='v1.0.10'
+   build_dir='.'
    configure="autoreconf -fi; ./configure"
    configure+=" --prefix=$prefix --enable-static --enable-shared"
+   if [ "$build_type" == 'debug' ]
+   then
+      configure+=" CXXFLAGS='-g -O0'"
+   else
+      configure+=" CXXFLAGS='-DNDEBUG -O2'"
+   fi
    ;;
 
    cppad)
    web_page='https://github.com/coin-or/CppAD.git'
    version='master'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D cppad_prefix=$prefix"
    configure+=" -D cppad_cxx_flags='-D CPPAD_DEBUG_AND_RELEASE'"
    ;;
@@ -179,7 +202,8 @@ case $package in
    cppadcg)
    web_page="https://github.com/joaoleal/CppADCodeGen.git"
    version='master'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    configure+=" -D EIGEN3_INCLUDE_DIR=$prefix/include"
    configure+=" -D GOOGLETEST_GIT=ON"
@@ -188,21 +212,24 @@ case $package in
    eigen)
    web_page='https://gitlab.com/libeigen/$package.git'
    version='3.4.0'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    fastad)
    web_page='https://github.com/JamesYang007/FastAD.git'
    version='master'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
    sacado)
    web_page='https://github.com/trilinos/Trilinos/archive/refs/tags'
    version='trilinos-release-14-4-0'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure="cd $build_dir; cmake -S .. -B ."
    configure+=" -D Trilinos_ENABLE_Sacado=ON"
    configure+=" -D Sacado_ENABLE_TESTS=OFF"
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
@@ -213,7 +240,8 @@ case $package in
    xad)
    web_page='https://github.com/auto-differentiation/xad.git'
    version='main'
-   configure='cmake -S .. -B .'
+   build_dir='build_dir'
+   configure='cd $build_dir; cmake -S .. -B .'
    configure+=" -D CMAKE_INSTALL_PREFIX=$prefix"
    ;;
 
@@ -224,24 +252,6 @@ case $package in
    ;;
 
 esac
-#
-if [ "$package" == 'adolc' ]
-then
-   if [ "$build_type" == 'debug' ]
-   then
-      configure+=" --enable-debug"
-   fi
-elif [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
-then
-   if [ "$build_type" == 'debug' ]
-   then
-      configure+=" CXXFLAGS='-g -O0'"
-   else
-      configure+=" CXXFLAGS='-DNDEBUG -O2'"
-   fi
-else
-   configure+=" -D CMAKE_BUILD_TYPE=$build_type"
-fi
 # ----------------------------------------------------------------------------
 #
 # n_job
@@ -261,31 +271,31 @@ else
 fi
 echo $package_top_srcdir
 #
-# other_build
+#
+# configure_flag
+# other_flag
+configured_flag="external/$package.$build_type"
 if [ $build_type == 'debug' ]
 then
-   other_build='release'
+   other_flag="external/$package.release"
 else
+   other_flag="external/$package.debug"
    other_build='debug'
 fi
 #
-# configure_flag
-configured_flag="external/$package.$build_type"
-# -----------------------------------------------------------------------------
-if [ -e "external/$package.$other_build" ]
+# other_flag
+if [ -e "$other_flag" ]
 then
-   rm "external/$package.$other_build"
+   rm "$other_flag"
 fi
+#
+# configure_flag
+# check if already configured
 if [ -e "$configured_flag" ]
 then
    echo "Skipping configuration because following file exists:"
    echo $configured_flag
-   if [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
-   then
-      echo_eval cd external/$package_top_srcdir
-   else
-      echo_eval cd external/$package_top_srcdir/build_dir
-   fi
+   echo_eval cd external/$package_top_srcdir/$build_dir
    echo_eval make -j $n_job install
    #
    if [ "$package" == 'eigen' ]
@@ -302,7 +312,9 @@ then
    echo "$program: $package OK"
    exit 0
 fi
-# -----------------------------------------------------------------------------
+#
+# clad
+# check some special requirements
 if [ "$package" == 'clad' ]
 then
    missing=""
@@ -321,7 +333,6 @@ then
       exit 1
    fi
 fi
-# -----------------------------------------------------------------------------
 #
 # external/$package_top_srcdir
 if [ ! -d external ]
@@ -329,8 +340,6 @@ then
    echo_eval mkdir external
 fi
 echo_eval cd external
-#
-# package top source directory
 if echo $web_page | $grep '\.git' > /dev/null
 then
    if [ ! -d "$package.git" ]
@@ -343,6 +352,13 @@ then
    if [ "$(git branch --show-current)" != '' ]
    then
       echo_eval git pull
+   fi
+   if [ "$build_dir" != '.' ]
+   then
+      if ! grep "^/$build_dir/\$" .gitignore > /dev/null
+      then
+         echo "/$build_dir/" >> .gitignore
+      fi
    fi
 else
    if [ "$package" != 'sacado' ]
@@ -367,7 +383,7 @@ else
    fi
    cd sacado
 fi
-# -----------------------------------------------------------------------------
+#
 # patch source
 if [ "$package" == 'adolc' ]
 then
@@ -395,11 +411,11 @@ if [ "$package" == 'clad' ]
 then
    if ! $grep 'lib64' CMakeLists.txt
    then
-      if [ ! -d build_dir ]
+      if [ ! -d $build_dir ]
       then
-         echo_eval mkdir build_dir
+         echo_eval mkdir -p $build_dir
       fi
-      cd build_dir
+      push $build_dir
       if ! $configure >& /dev/null
       then
          echo 'configure clad failed. Attempting to patch clad CMakeLists.txt'
@@ -409,41 +425,33 @@ then
             $sed -i -e "s|/lib/|/lib64/|g" $file
          done
       fi
-      cd ..
+      popd
    fi
 fi
-# -----------------------------------------------------------------------------
+#
 # build_dir
-if [ "$package" == 'adept' ] || [ "$package" == 'colpack' ]
+if [ -d $build_dir ]
 then
+   pushd $build_dir
    if [ -e Makefile ]
    then
       make clean
    fi
+   popd
 else
-   if [ -d build_dir ]
-   then
-      cd build_dir
-      if [ -e Makefile ]
-      then
-         make clean
-      fi
-   else
-      echo_eval mkdir build_dir
-      echo_eval cd build_dir
-   fi
+   echo_eval mkdir -p $build_dir
 fi
 #
 # CMakeCache.txt
-if [ -e CMakeCache.txt ]
+if [ -e $build_dir/CMakeCache.txt ]
 then
-   echo_eval rm CMakeCache.txt
+   echo_eval rm $build_dir/CMakeCache.txt
 fi
 #
 # CMakeFiles
-if [ -e CMakeFiles.txt ]
+if [ -e $build_dir/CMakeFiles.txt ]
 then
-   echo_eval rm -r CMakeFiles
+   echo_eval rm -r $build_dir/CMakeFiles
 fi
 #
 # configure

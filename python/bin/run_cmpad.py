@@ -36,7 +36,7 @@ import platform
 import numpy
 #
 # cmpad_version
-cmpad_version = 'cmpad-2024.9.28'
+cmpad_version = 'cmpad-2024.9.29'
 # ----------------------------------------------------------------------------
 #
 # program
