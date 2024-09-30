@@ -115,23 +115,6 @@ pkg_available="$pkg_available jax torch sacado "
 under_construction='clad fastad xad'
 # {xrst_resume}
 #
-# prefix
-# ******
-# The prefixes for the packages installed by ``bin/get_package.sh`` is
-#
-# | |tab| *top_srcdir* / ``build`` *build_type*
-#
-# where *build_type* is ``debug`` or ``release`` .
-#
-# environment.sh
-# **************
-# The following commands set the prefix as a virtual environment:
-#
-# | build_type=\ *build_type*
-# | source bin/environment.sh
-#
-# where *build_type* is ``debug`` or ``release``.
-#
 # external
 # ********
 # The source code, and corresponding builds, for all the c++ packages,
@@ -146,15 +129,25 @@ under_construction='clad fastad xad'
 # | |tab| ``rm external/``\ *package*\ .\ *build_type*
 # | |tab| ``bin/cpp/get_package`` *build_type* *package*
 #
-# {xrst_toc_hidden
-#     cpp/bin/get_package.sh
-#     python/bin/get_package.py
-# }
+# prefix
+# ******
+# The prefixes for the packages installed by ``bin/get_package.sh`` is
+#
+# | |tab| *top_srcdir* / ``build`` *build_type*
+#
+# This is a python virtual environment created by
+# :ref:`environment-name` .
 #
 # Language Specific
 # *****************
 # The scripts :ref:`cpp_get_package-name` and :ref:`py_get_package-name`
 # can be used to get individual C++ and Python AD packages.
+#
+# {xrst_toc_hidden
+#     bin/environment.sh
+#     cpp/bin/get_package.sh
+#     python/bin/get_package.py
+# }
 #
 # {xrst_end get_package}
 # -----------------------------------------------------------------------------
@@ -194,6 +187,9 @@ then
    echo "build_type=$build_type is not debug or release"
    exit 1
 fi
+#
+# environment
+source bin/environment.sh
 #
 # package
 package="$1"
@@ -245,8 +241,6 @@ do
    # BEGIN PYTHON_PACKAGE_LIST
    autograd|cppad_py|jax|torch)
    # END PYTHON_PACKAGE_LIST
-   echo "source bin/environment.sh build_type=$build_type"
-   source bin/environment.sh
    echo_eval python/bin/get_package.py $build_type $package
    ;;
 

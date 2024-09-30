@@ -99,7 +99,8 @@ cd ../..
 
 Setup Python Environment
 ************************
-This step is only necessary if *package* is a Python package:
+This step is only necessary if *package* is a Python package
+( see :ref:`environment-name` ):
 {xrst_code sh}
 bash
 build_type=release

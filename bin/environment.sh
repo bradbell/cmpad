@@ -2,6 +2,49 @@
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
 # ---------------------------------------------------------------------------
+# {xrst_begin environment}
+# {xrst_spell
+#     toml
+#     pytest
+# }
+# {xrst_comment_ch #}
+#
+# Create and Activate cmpad Environment
+# #####################################
+#
+# Syntax
+# ******
+# | |tab| ``build_type=``\ *build_type*
+# | |tab| ``source bin/environment.sh``
+#
+# build_type
+# **********
+# This must be either ``debug`` or ``release`` .
+#
+# Create Environment
+# ******************
+# If the file ``build/``\ *build_type*\ ``/bin/activate`` does **not** exist,
+# a python virtual environment is create in the directory
+# ``build/``\ *build_type* .
+# In addition, the python packages xrst, toml, pytest, and numpy
+# are installed in this environment.
+# In this case, environment.sh will output text saying that it is creating
+# ``build/``\ *build_type*\ ``/bin/activate`` .
+#
+# Activate Environment
+# ********************
+# If the shell variable value $VIRTUAL_ENV does not end with
+# ``build/``\ *build_type*\ , ``build/``\ *build_type*\ ``/bin/activate``
+# is used to activate the environment.
+# In this case, environment.sh will output text saying that it is sourcing
+# ``build/``\ *build_type*\ ``/bin/activate`` .
+#
+# PYTHONPATH
+# **********
+# This shell variable will be set to the location of the site-packages
+# in the virtual environment.
+#
+# {xrst_end environment}
 if [[ ! "${build_type+x}" ]]
 then
    echo 'usage: build_type=(debug or release)'
@@ -13,6 +56,9 @@ elif [ ! -d .git ]
 then
    echo "bin/environment.sh: Cannot find .git in pwd = $(pwd)"
 else
+   #
+   # activate
+   activate="build/$build_type/bin/activate"
    #
    # environment.$$
    # 2DO: remove ==1.26.4 when autograd works with numpy==2.0.0
@@ -32,40 +78,40 @@ PYTHONPATH=''
 python3 -m venv build/$build_type
 #
 # activate the virtual environment
-source build/$build_type/bin/activate
+echo "source: $activate"
+source $activate
 #
 # install packages that may be required
-for package in toml pytest numpy==1.26.4
+for package in xrst toml pytest numpy==1.26.4
 do
    echo "pip install \$package"
    pip install \$package
 done
+#
+# Most recent test version of xrst
+pip uninstall -y xrst
+pip install --index-url https://test.pypi.org/simple/ xrst
 EOF
    #
    # build/$build_type
-   if [ ! -e build/$build_type/bin/activate ]
+   if [ ! -e $activate ]
    then
-      echo "# begin: creatting build/$build_type"
+      echo "begin: creatting $activate"
       bash environment.$$
-      echo "# end: creatting build/$build_type"
+      echo "end: creatting $activate"
    fi
-   if [ ! -e build/$build_type/bin/activate ]
+   if [ ! -e $activate ]
    then
-      echo "bin/environment.sh: build/$build_type/bin/activate is missing"
+      echo "bin/environment.sh: $activate is missing"
       echo "It should have been created by see ./environment.$$"
    else
       rm ./environment.$$
       #
       # activate
-      if [[ "${VIRTUAL_ENV+x}" ]]
+      if ! echo "${VIRTUAL_ENV-x}" | grep "/build/$build_type\$" > /dev/null
       then
-         if ! echo $VIRTUAL_ENV | grep "/build/$build_type\$" > /dev/null
-         then
-            deactivate
-            source "build/$build_type/bin/activate"
-         fi
-      else
-         source "build/$build_type/bin/activate"
+         echo "source: $activate"
+         source $activate
       fi
       #
       # site_pacakages

@@ -29,6 +29,11 @@ mm-dd
    the get started instructions.
 #. The title of :ref:`get_package-name` was fixed and its
    first paragraph was improved.
+#. Documentation was added for the :ref:`environment-name` utility.
+   It was also changed to check when it is necessary to create
+   and activate the environment.
+   In addition, it installs the xrst package so that users can run
+   bin/check_all.sh.
 
 09-29
 =====
@@ -40,7 +45,7 @@ To be specific, the following tests passed::
 
 09-24
 =====
-Change the file :ref:`get_package@environment.sh` so that it works
+Change the file :ref:`environment-name` so that it works
 with bash version 3 or higher (not version 4 or higher).
 
 09-23

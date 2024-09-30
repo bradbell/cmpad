@@ -35,6 +35,9 @@ then
    exit 1
 fi
 build_type="$1"
+#
+# environment.sh
+source bin/environment.sh
 # -----------------------------------------------------------------------------
 list=$( ls bin/check_* | sed -e '/check_all.sh/d' -e '/check_main.py/d'  )
 for check in $list
@@ -42,9 +45,6 @@ do
    echo_eval $check
 done
 echo_eval bin/run_xrst.sh
-#
-echo "source bin/environment.sh build_type=$build_type"
-source bin/environment.sh
 #
 echo_eval python/bin/check_python.py $build_type
 echo_eval cpp/bin/check_cpp.sh  $build_type
