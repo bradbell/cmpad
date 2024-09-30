@@ -3,7 +3,6 @@ set -e -u
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 # SPDX-FileCopyrightText: Bradley M. Bell <bradbell@seanet.com>
 # SPDX-FileContributor: 2023-24 Bradley M. Bell
-# ---------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 # {xrst_begin get_package}
 # {xrst_spell
@@ -15,11 +14,13 @@ set -e -u
 # }
 # {xrst_comment_ch #}
 #
-# Getting Optional C++ Packages
-# #############################
+# Getting AD Packages
+# ###################
 # This shell script can be used to install optional AD packages
-# that cmpad can test. In addition, it can be used to install packages
-# required by these optional packages.
+# that cmpad can test and compare. These packages are installed locally
+# in the directories ``build/debug`` and ``build/release`` .
+# These installs can be completely removed by deleting those directories
+# and the ``external`` directory.
 #
 # Syntax
 # ******

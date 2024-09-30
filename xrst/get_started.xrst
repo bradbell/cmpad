@@ -11,6 +11,12 @@ SPDX-FileContributor: 2023-24 Bradley M. Bell
    llsq
    obj
    csv
+   grep
+   sed
+   ggrep
+   gsed
+   unix
+   darwin
 }
 
 Get Started Using cmpad
@@ -19,6 +25,31 @@ The instructions below are for execution a bash shell.
 
 * Items in italic font get replaced by the value you choose; e.g., *program* .
 * Items in code font get entered as is; e.g., ``--time_setup`` .
+
+System Requirements
+*******************
+The following packages should be installed using your system package manager:
+{xrst_spell_off}
+{xrst_comment BEGIN_SORT_THIS_LINE_PLUS_1}
+autoconf ,
+automake ,
+bash ,
+c++ ,
+cmake ,
+fortran .
+git ,
+libtool ,
+python3 ,
+swig ,
+wget ,
+{xrst_comment END_SORT_THIS_LINE_MINUS_1}
+{xrst_spell_on}
+
+sed and grep
+============
+You will need a gnu version of sed and grep.
+These are named ``sed`` and ``grep`` on most unix systems,
+but on Darwin (MacOS) they may be named ``gsed`` and ``ggrep`` .
 
 Clone Repository
 ****************

@@ -23,6 +23,13 @@ Release Notes for 2024
 mm-dd
 *****
 
+09-30
+=====
+#. A list of :ref:`get_started@System Requirements` were added to
+   the get started instructions.
+#. The title of :ref:`get_package-name` was fixed and its
+   first paragraph was improved.
+
 09-29
 =====
 First version of cmpad that works on MacOS with Homebrew.
